@@ -1,0 +1,295 @@
+openapi: 3.0.0
+info:
+  description: Description of the VPC API
+  title: VPC API
+  version: 0.0.1
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/cloudhub/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/cloudhub/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/vpcs:
+    get:
+      description: Returns a list of VPCs for the given organization id
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+      summary: Returns a list of vpcs.
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    SuccessListVpcs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    vpc:
+      example:
+        isDefault: true
+        internalDns:
+          specialDomains:
+          - specialDomains
+          - specialDomains
+          dnsServers:
+          - dnsServers
+          - dnsServers
+        cidrBlock: 10.0.0.0/20
+        name: name
+        associatedEnvironments:
+        - associatedEnvironments
+        - associatedEnvironments
+        id: id
+        vpcRoutes:
+        - Next Hop: Next Hop
+          CIDR: CIDR
+        - Next Hop: Next Hop
+          CIDR: CIDR
+        ownerId: ownerId
+        region: region
+        sharedWith:
+        - sharedWith
+        - sharedWith
+        firewallRules:
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+      properties:
+        associatedEnvironments:
+          default: []
+          items:
+            description: Environment Id.
+            title: The first anyOf schema
+            type: string
+          title: The associatedEnvironments schema
+          type: array
+        cidrBlock:
+          default: 10.0.0.0/20
+          description: An explanation about the purpose of this instance.
+          title: The cidrBlock schema
+          type: string
+        firewallRules:
+          default: []
+          items:
+            $ref: '#/components/schemas/vpc_firewallRules'
+          title: The firewallRules schema
+          type: array
+        id:
+          description: The vpc Id
+          title: The id schema
+          type: string
+        internalDns:
+          $ref: '#/components/schemas/The_internalDns_schema'
+        isDefault:
+          title: The isDefault schema
+          type: boolean
+        name:
+          title: The name schema
+          type: string
+        ownerId:
+          title: The ownerId schema
+          type: string
+        region:
+          title: The region schema
+          type: string
+        sharedWith:
+          default: []
+          items:
+            type: string
+          title: The sharedWith schema
+          type: array
+        vpcRoutes:
+          default: []
+          items:
+            $ref: '#/components/schemas/The_first_anyOf_schema'
+          title: The vpcRoutes schema
+          type: array
+      title: VPC Object Schema
+      type: object
+    inline_response_200:
+      example:
+        total: 1
+        data:
+        - isDefault: true
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+          cidrBlock: 10.0.0.0/20
+          name: name
+          associatedEnvironments:
+          - associatedEnvironments
+          - associatedEnvironments
+          id: id
+          vpcRoutes:
+          - Next Hop: Next Hop
+            CIDR: CIDR
+          - Next Hop: Next Hop
+            CIDR: CIDR
+          ownerId: ownerId
+          region: region
+          sharedWith:
+          - sharedWith
+          - sharedWith
+          firewallRules:
+          - protocol: protocol
+            fromPort: 0
+            cidrBlock: cidrBlock
+            toPort: 6
+          - protocol: protocol
+            fromPort: 0
+            cidrBlock: cidrBlock
+            toPort: 6
+        - isDefault: true
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+          cidrBlock: 10.0.0.0/20
+          name: name
+          associatedEnvironments:
+          - associatedEnvironments
+          - associatedEnvironments
+          id: id
+          vpcRoutes:
+          - Next Hop: Next Hop
+            CIDR: CIDR
+          - Next Hop: Next Hop
+            CIDR: CIDR
+          ownerId: ownerId
+          region: region
+          sharedWith:
+          - sharedWith
+          - sharedWith
+          firewallRules:
+          - protocol: protocol
+            fromPort: 0
+            cidrBlock: cidrBlock
+            toPort: 6
+          - protocol: protocol
+            fromPort: 0
+            cidrBlock: cidrBlock
+            toPort: 6
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/vpc'
+          title: List of vpcs
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    vpc_firewallRules:
+      example:
+        protocol: protocol
+        fromPort: 0
+        cidrBlock: cidrBlock
+        toPort: 6
+      properties:
+        cidrBlock:
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: The cidrBlock schema
+          type: string
+        fromPort:
+          default: 0
+          description: An explanation about the purpose of this instance.
+          title: The fromPort schema
+          type: integer
+        protocol:
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: The protocol schema
+          type: string
+        toPort:
+          default: 0
+          description: An explanation about the purpose of this instance.
+          title: The toPort schema
+          type: integer
+      required:
+      - cidrBlock
+      - fromPort
+      - protocol
+      - toPort
+      type: object
+    The_internalDns_schema:
+      example:
+        specialDomains:
+        - specialDomains
+        - specialDomains
+        dnsServers:
+        - dnsServers
+        - dnsServers
+      properties:
+        dnsServers:
+          default: []
+          items:
+            type: string
+          title: The dnsServers schema
+          type: array
+        specialDomains:
+          default: []
+          items:
+            type: string
+          title: The specialDomains schema
+          type: array
+      required:
+      - dnsServers
+      - specialDomains
+      title: The internalDns schema
+      type: object
+    The_first_anyOf_schema:
+      example:
+        Next Hop: Next Hop
+        CIDR: CIDR
+      properties:
+        CIDR:
+          default: ""
+          title: The CIDR schema
+          type: string
+        Next Hop:
+          default: ""
+          title: The Next Hop schema
+          type: string
+      required:
+      - CIDR
+      - Next Hop
+      title: The first anyOf schema
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
