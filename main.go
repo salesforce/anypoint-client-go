@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	auth "github.com/mulesoft-consulting/cloudhub-client-go/authenticate"
+	auth "github.com/mulesoft-consulting/cloudhub-client-go/authorization"
 	vpc "github.com/mulesoft-consulting/cloudhub-client-go/vpc"
 )
 

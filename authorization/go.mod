@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/authenticate
+module github.com/mulesoft-consulting/cloudhub-client-go/authorization
 
 go 1.13
 

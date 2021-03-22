@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   description: Description of the Authentication API
-  title: Authentication API
+  title: Authorization API
   version: 1.0.0
 servers:
 - description: Anypoint Cloudhub

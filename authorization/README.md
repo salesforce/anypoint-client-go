@@ -1,4 +1,4 @@
-# Go API client for authenticate
+# Go API client for authorization
 
 Description of the Authentication API
 
@@ -22,7 +22,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sw "./authenticate"
+import sw "./authorization"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
