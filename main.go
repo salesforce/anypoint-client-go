@@ -38,9 +38,9 @@ func (c conventionalMarshaller) MarshalJSON() ([]byte, error) {
 }
 
 func main() {
-	orgId := "a9e7fe3f-c09f-4b05-9b2f-c786e009ce94"
-	client_id := "7627f157dac94390951b4d804d218289"
-	client_secret := "75Db67bE3DFf420A9e038adAff3CEFBd"
+	orgId := ""
+	client_id := ""
+	client_secret := ""
 
 	ctx := context.Background()
 
