@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Description of the VPC API
   title: VPC API
-  version: 0.0.1
+  version: 1.0.0
 servers:
 - description: Anypoint Cloudhub
   url: https://anypoint.mulesoft.com/cloudhub/api/
