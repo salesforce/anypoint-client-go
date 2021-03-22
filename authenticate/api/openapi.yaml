@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  description: Description of the Authentication API
+  title: Authentication API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/v2/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/v2/
+paths:
+  /oauth2/token:
+    post:
+      description: Authenticates a connected app and returns access token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/credentials'
+        description: Request body containing credentials
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+      summary: Returns access token
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    SuccessAuth:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    credentials:
+      properties:
+        grant_type:
+          default: client_credentials
+          title: oauth grant type. Use client_credentials.
+          type: string
+        client_id:
+          example: bb644ad254434087f80fe323d254434
+          title: the connected app client_id
+          type: string
+        client_secret:
+          example: 084ADC05A977a4044e1B604Cfd4F4238
+          title: the connected app client_secret
+          type: string
+      type: object
+    inline_response_200:
+      example:
+        access_token: e4abe472725d-93b3-426e-8ca7-5a45636b
+        token_type: brearer
+        expires_in: 3600
+      properties:
+        access_token:
+          example: e4abe472725d-93b3-426e-8ca7-5a45636b
+          title: Authorization token
+          type: string
+        expires_in:
+          example: 3600
+          title: Expiration period
+          type: integer
+        token_type:
+          example: brearer
+          title: token type
+          type: string
+      type: object
