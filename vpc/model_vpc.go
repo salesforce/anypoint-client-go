@@ -26,9 +26,9 @@ type Vpc struct {
 	AssociatedEnvironments *[]string `json:"associatedEnvironments,omitempty"`
 	// An explanation about the purpose of this instance.
 	CidrBlock *string `json:"cidrBlock,omitempty"`
-	FirewallRules *[]VpcCoreFirewallRules `json:"firewallRules,omitempty"`
-	InternalDns *InternalDnsSchema `json:"internalDns,omitempty"`
-	VpcRoutes *[]VpcRouteSchema `json:"vpcRoutes,omitempty"`
+	FirewallRules *[]FirewallRule `json:"firewallRules,omitempty"`
+	InternalDns *InternalDns `json:"internalDns,omitempty"`
+	VpcRoutes *[]VpcRoute `json:"vpcRoutes,omitempty"`
 }
 
 // NewVpc instantiates a new Vpc object
@@ -306,9 +306,9 @@ func (o *Vpc) SetCidrBlock(v string) {
 }
 
 // GetFirewallRules returns the FirewallRules field value if set, zero value otherwise.
-func (o *Vpc) GetFirewallRules() []VpcCoreFirewallRules {
+func (o *Vpc) GetFirewallRules() []FirewallRule {
 	if o == nil || o.FirewallRules == nil {
-		var ret []VpcCoreFirewallRules
+		var ret []FirewallRule
 		return ret
 	}
 	return *o.FirewallRules
@@ -316,7 +316,7 @@ func (o *Vpc) GetFirewallRules() []VpcCoreFirewallRules {
 
 // GetFirewallRulesOk returns a tuple with the FirewallRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool) {
+func (o *Vpc) GetFirewallRulesOk() (*[]FirewallRule, bool) {
 	if o == nil || o.FirewallRules == nil {
 		return nil, false
 	}
@@ -332,15 +332,15 @@ func (o *Vpc) HasFirewallRules() bool {
 	return false
 }
 
-// SetFirewallRules gets a reference to the given []VpcCoreFirewallRules and assigns it to the FirewallRules field.
-func (o *Vpc) SetFirewallRules(v []VpcCoreFirewallRules) {
+// SetFirewallRules gets a reference to the given []FirewallRule and assigns it to the FirewallRules field.
+func (o *Vpc) SetFirewallRules(v []FirewallRule) {
 	o.FirewallRules = &v
 }
 
 // GetInternalDns returns the InternalDns field value if set, zero value otherwise.
-func (o *Vpc) GetInternalDns() InternalDnsSchema {
+func (o *Vpc) GetInternalDns() InternalDns {
 	if o == nil || o.InternalDns == nil {
-		var ret InternalDnsSchema
+		var ret InternalDns
 		return ret
 	}
 	return *o.InternalDns
@@ -348,7 +348,7 @@ func (o *Vpc) GetInternalDns() InternalDnsSchema {
 
 // GetInternalDnsOk returns a tuple with the InternalDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetInternalDnsOk() (*InternalDnsSchema, bool) {
+func (o *Vpc) GetInternalDnsOk() (*InternalDns, bool) {
 	if o == nil || o.InternalDns == nil {
 		return nil, false
 	}
@@ -364,15 +364,15 @@ func (o *Vpc) HasInternalDns() bool {
 	return false
 }
 
-// SetInternalDns gets a reference to the given InternalDnsSchema and assigns it to the InternalDns field.
-func (o *Vpc) SetInternalDns(v InternalDnsSchema) {
+// SetInternalDns gets a reference to the given InternalDns and assigns it to the InternalDns field.
+func (o *Vpc) SetInternalDns(v InternalDns) {
 	o.InternalDns = &v
 }
 
 // GetVpcRoutes returns the VpcRoutes field value if set, zero value otherwise.
-func (o *Vpc) GetVpcRoutes() []VpcRouteSchema {
+func (o *Vpc) GetVpcRoutes() []VpcRoute {
 	if o == nil || o.VpcRoutes == nil {
-		var ret []VpcRouteSchema
+		var ret []VpcRoute
 		return ret
 	}
 	return *o.VpcRoutes
@@ -380,7 +380,7 @@ func (o *Vpc) GetVpcRoutes() []VpcRouteSchema {
 
 // GetVpcRoutesOk returns a tuple with the VpcRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetVpcRoutesOk() (*[]VpcRouteSchema, bool) {
+func (o *Vpc) GetVpcRoutesOk() (*[]VpcRoute, bool) {
 	if o == nil || o.VpcRoutes == nil {
 		return nil, false
 	}
@@ -396,8 +396,8 @@ func (o *Vpc) HasVpcRoutes() bool {
 	return false
 }
 
-// SetVpcRoutes gets a reference to the given []VpcRouteSchema and assigns it to the VpcRoutes field.
-func (o *Vpc) SetVpcRoutes(v []VpcRouteSchema) {
+// SetVpcRoutes gets a reference to the given []VpcRoute and assigns it to the VpcRoutes field.
+func (o *Vpc) SetVpcRoutes(v []VpcRoute) {
 	o.VpcRoutes = &v
 }
 

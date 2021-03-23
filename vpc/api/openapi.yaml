@@ -194,26 +194,26 @@ components:
   schemas:
     vpc:
       allOf:
-      - $ref: '#/components/schemas/vpcId_schema'
+      - $ref: '#/components/schemas/vpcId'
       - $ref: '#/components/schemas/vpcCore'
-      title: vpc schema
+      title: vpc
     vpcCore:
       properties:
         isDefault:
           default: false
-          title: isDefault schema
+          title: isDefault
           type: boolean
         name:
           example: myAwesomeVPC
-          title: name schema
+          title: name
           type: string
         ownerId:
           example: 0000-1111-2222-3333-4444
-          title: ownerId schema
+          title: ownerId
           type: string
         region:
           example: us-east-1
-          title: The region schema
+          title: region
           type: string
         sharedWith:
           default: []
@@ -221,7 +221,7 @@ components:
           - 0000000-1111-2222-3333-44444444444
           items:
             type: string
-          title: sharedWith schema
+          title: sharedWith
           type: array
         associatedEnvironments:
           default: []
@@ -229,14 +229,14 @@ components:
           - eeeeb145-6f79-402d-85fc-8c90905d2490
           items:
             description: Environment Id.
-            title: associatedEnvironment schema
+            title: associatedEnvironment
             type: string
-          title: associatedEnvironments schema
+          title: associatedEnvironments
           type: array
         cidrBlock:
           default: 10.0.0.0/20
           description: An explanation about the purpose of this instance.
-          title: cidrBlock schema
+          title: cidrBlock
           type: string
         firewallRules:
           default: []
@@ -250,11 +250,11 @@ components:
             fromPort: 8091
             toPort: 8092
           items:
-            $ref: '#/components/schemas/vpcCore_firewallRules'
-          title: firewallRules schema
+            $ref: '#/components/schemas/firewallRule'
+          title: firewallRules
           type: array
         internalDns:
-          $ref: '#/components/schemas/internalDns_schema'
+          $ref: '#/components/schemas/internalDns'
         vpcRoutes:
           default: []
           example:
@@ -263,10 +263,10 @@ components:
           - Next Hop: Internet Gateway
             CIDR: 0.0.0.0/0
           items:
-            $ref: '#/components/schemas/vpcRoute_schema'
-          title: vpcRoutes schema
+            $ref: '#/components/schemas/vpcRoute'
+          title: vpcRoutes
           type: array
-      title: vpcCore schema
+      title: vpcCore
       type: object
     inline_response_200:
       example:
@@ -295,18 +295,18 @@ components:
           title: the error message
           type: string
       type: object
-    vpcId_schema:
+    vpcId:
       properties:
         id:
           description: The vpc Id
           example: vpc-0b111d1a1ace2a12f
-          title: id schema
+          title: id
           type: string
       required:
       - id
-      title: vpcId schema
+      title: vpcId
       type: object
-    vpcCore_firewallRules:
+    firewallRule:
       properties:
         cidrBlock:
           default: ""
@@ -333,40 +333,41 @@ components:
       - fromPort
       - protocol
       - toPort
+      title: firewallRule
       type: object
-    internalDns_schema:
+    internalDns:
       properties:
         dnsServers:
           default: []
           items:
             type: string
-          title: dnsServers schema
+          title: dnsServers
           type: array
         specialDomains:
           default: []
           items:
             type: string
-          title: specialDomains schema
+          title: specialDomains
           type: array
       required:
       - dnsServers
       - specialDomains
-      title: internalDns schema
+      title: internalDns
       type: object
-    vpcRoute_schema:
+    vpcRoute:
       properties:
         CIDR:
           default: ""
-          title: The CIDR schema
+          title: CIDR
           type: string
         Next Hop:
           default: ""
-          title: The Next Hop schema
+          title: NextHop
           type: string
       required:
       - CIDR
       - Next Hop
-      title: vpcRoute schema
+      title: vpcRoute
       type: object
   securitySchemes:
     bearerAuth:
