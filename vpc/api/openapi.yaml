@@ -200,15 +200,15 @@ components:
       properties:
         isDefault:
           default: false
-          title: The isDefault schema
+          title: isDefault schema
           type: boolean
         name:
           example: myAwesomeVPC
-          title: The name schema
+          title: name schema
           type: string
         ownerId:
           example: 0000-1111-2222-3333-4444
-          title: The ownerId schema
+          title: ownerId schema
           type: string
         region:
           example: us-east-1
@@ -220,7 +220,7 @@ components:
           - 0000000-1111-2222-3333-44444444444
           items:
             type: string
-          title: List of Organization Ids to share the vpc with
+          title: sharedWith schema
           type: array
         associatedEnvironments:
           default: []
@@ -228,14 +228,14 @@ components:
           - eeeeb145-6f79-402d-85fc-8c90905d2490
           items:
             description: Environment Id.
-            title: The first anyOf schema
+            title: associatedEnvironment schema
             type: string
-          title: The associatedEnvironments schema
+          title: associatedEnvironments schema
           type: array
         cidrBlock:
           default: 10.0.0.0/20
           description: An explanation about the purpose of this instance.
-          title: The cidrBlock schema
+          title: cidrBlock schema
           type: string
         firewallRules:
           default: []
@@ -250,10 +250,10 @@ components:
             toPort: 8092
           items:
             $ref: '#/components/schemas/vpcCore_firewallRules'
-          title: The firewallRules schema
+          title: firewallRules schema
           type: array
         internalDns:
-          $ref: '#/components/schemas/The_internalDns_schema'
+          $ref: '#/components/schemas/internalDns_schema'
         vpcRoutes:
           default: []
           example:
@@ -262,10 +262,10 @@ components:
           - Next Hop: Internet Gateway
             CIDR: 0.0.0.0/0
           items:
-            $ref: '#/components/schemas/The_first_anyOf_schema'
-          title: The vpcRoutes schema
+            $ref: '#/components/schemas/vpcRoute_schema'
+          title: vpcRoutes schema
           type: array
-      title: VPC Object Schema
+      title: vpcCore schema
       type: object
     inline_response_200:
       example:
@@ -299,7 +299,7 @@ components:
         id:
           description: The vpc Id
           example: vpc-0b111d1a1ace2a12f
-          title: The id schema
+          title: id schema
           type: string
       required:
       - id
@@ -309,22 +309,22 @@ components:
         cidrBlock:
           default: ""
           description: An explanation about the purpose of this instance.
-          title: The cidrBlock schema
+          title: cidrBlock schema
           type: string
         fromPort:
           default: 0
           description: An explanation about the purpose of this instance.
-          title: The fromPort schema
+          title: fromPort schema
           type: integer
         protocol:
           default: ""
           description: An explanation about the purpose of this instance.
-          title: The protocol schema
+          title: protocol schema
           type: string
         toPort:
           default: 0
           description: An explanation about the purpose of this instance.
-          title: The toPort schema
+          title: toPort schema
           type: integer
       required:
       - cidrBlock
@@ -332,26 +332,26 @@ components:
       - protocol
       - toPort
       type: object
-    The_internalDns_schema:
+    internalDns_schema:
       properties:
         dnsServers:
           default: []
           items:
             type: string
-          title: The dnsServers schema
+          title: dnsServers schema
           type: array
         specialDomains:
           default: []
           items:
             type: string
-          title: The specialDomains schema
+          title: specialDomains schema
           type: array
       required:
       - dnsServers
       - specialDomains
-      title: The internalDns schema
+      title: internalDns schema
       type: object
-    The_first_anyOf_schema:
+    vpcRoute_schema:
       properties:
         CIDR:
           default: ""
@@ -364,7 +364,7 @@ components:
       required:
       - CIDR
       - Next Hop
-      title: The first anyOf schema
+      title: vpcRoute schema
       type: object
   securitySchemes:
     bearerAuth:

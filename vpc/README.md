@@ -89,12 +89,12 @@ Class | Method | HTTP request | Description
 
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse400](docs/InlineResponse400.md)
- - [TheFirstAnyOfSchema](docs/TheFirstAnyOfSchema.md)
- - [TheInternalDnsSchema](docs/TheInternalDnsSchema.md)
+ - [InternalDnsSchema](docs/InternalDnsSchema.md)
  - [Vpc](docs/Vpc.md)
  - [VpcAllOf](docs/VpcAllOf.md)
  - [VpcCore](docs/VpcCore.md)
  - [VpcCoreFirewallRules](docs/VpcCoreFirewallRules.md)
+ - [VpcRouteSchema](docs/VpcRouteSchema.md)
 
 
 ## Documentation For Authorization

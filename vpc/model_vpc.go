@@ -27,8 +27,8 @@ type Vpc struct {
 	// An explanation about the purpose of this instance.
 	CidrBlock *string `json:"cidrBlock,omitempty"`
 	FirewallRules *[]VpcCoreFirewallRules `json:"firewallRules,omitempty"`
-	InternalDns *TheInternalDnsSchema `json:"internalDns,omitempty"`
-	VpcRoutes *[]TheFirstAnyOfSchema `json:"vpcRoutes,omitempty"`
+	InternalDns *InternalDnsSchema `json:"internalDns,omitempty"`
+	VpcRoutes *[]VpcRouteSchema `json:"vpcRoutes,omitempty"`
 }
 
 // NewVpc instantiates a new Vpc object
@@ -338,9 +338,9 @@ func (o *Vpc) SetFirewallRules(v []VpcCoreFirewallRules) {
 }
 
 // GetInternalDns returns the InternalDns field value if set, zero value otherwise.
-func (o *Vpc) GetInternalDns() TheInternalDnsSchema {
+func (o *Vpc) GetInternalDns() InternalDnsSchema {
 	if o == nil || o.InternalDns == nil {
-		var ret TheInternalDnsSchema
+		var ret InternalDnsSchema
 		return ret
 	}
 	return *o.InternalDns
@@ -348,7 +348,7 @@ func (o *Vpc) GetInternalDns() TheInternalDnsSchema {
 
 // GetInternalDnsOk returns a tuple with the InternalDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetInternalDnsOk() (*TheInternalDnsSchema, bool) {
+func (o *Vpc) GetInternalDnsOk() (*InternalDnsSchema, bool) {
 	if o == nil || o.InternalDns == nil {
 		return nil, false
 	}
@@ -364,15 +364,15 @@ func (o *Vpc) HasInternalDns() bool {
 	return false
 }
 
-// SetInternalDns gets a reference to the given TheInternalDnsSchema and assigns it to the InternalDns field.
-func (o *Vpc) SetInternalDns(v TheInternalDnsSchema) {
+// SetInternalDns gets a reference to the given InternalDnsSchema and assigns it to the InternalDns field.
+func (o *Vpc) SetInternalDns(v InternalDnsSchema) {
 	o.InternalDns = &v
 }
 
 // GetVpcRoutes returns the VpcRoutes field value if set, zero value otherwise.
-func (o *Vpc) GetVpcRoutes() []TheFirstAnyOfSchema {
+func (o *Vpc) GetVpcRoutes() []VpcRouteSchema {
 	if o == nil || o.VpcRoutes == nil {
-		var ret []TheFirstAnyOfSchema
+		var ret []VpcRouteSchema
 		return ret
 	}
 	return *o.VpcRoutes
@@ -380,7 +380,7 @@ func (o *Vpc) GetVpcRoutes() []TheFirstAnyOfSchema {
 
 // GetVpcRoutesOk returns a tuple with the VpcRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool) {
+func (o *Vpc) GetVpcRoutesOk() (*[]VpcRouteSchema, bool) {
 	if o == nil || o.VpcRoutes == nil {
 		return nil, false
 	}
@@ -396,8 +396,8 @@ func (o *Vpc) HasVpcRoutes() bool {
 	return false
 }
 
-// SetVpcRoutes gets a reference to the given []TheFirstAnyOfSchema and assigns it to the VpcRoutes field.
-func (o *Vpc) SetVpcRoutes(v []TheFirstAnyOfSchema) {
+// SetVpcRoutes gets a reference to the given []VpcRouteSchema and assigns it to the VpcRoutes field.
+func (o *Vpc) SetVpcRoutes(v []VpcRouteSchema) {
 	o.VpcRoutes = &v
 }
 
