@@ -87,14 +87,14 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [FirewallRule](docs/FirewallRule.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse400](docs/InlineResponse400.md)
- - [InternalDnsSchema](docs/InternalDnsSchema.md)
+ - [InternalDns](docs/InternalDns.md)
  - [Vpc](docs/Vpc.md)
  - [VpcCore](docs/VpcCore.md)
- - [VpcCoreFirewallRules](docs/VpcCoreFirewallRules.md)
- - [VpcIdSchema](docs/VpcIdSchema.md)
- - [VpcRouteSchema](docs/VpcRouteSchema.md)
+ - [VpcId](docs/VpcId.md)
+ - [VpcRoute](docs/VpcRoute.md)
 
 
 ## Documentation For Authorization

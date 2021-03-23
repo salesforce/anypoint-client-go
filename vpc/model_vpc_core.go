@@ -24,9 +24,9 @@ type VpcCore struct {
 	AssociatedEnvironments *[]string `json:"associatedEnvironments,omitempty"`
 	// An explanation about the purpose of this instance.
 	CidrBlock *string `json:"cidrBlock,omitempty"`
-	FirewallRules *[]VpcCoreFirewallRules `json:"firewallRules,omitempty"`
-	InternalDns *InternalDnsSchema `json:"internalDns,omitempty"`
-	VpcRoutes *[]VpcRouteSchema `json:"vpcRoutes,omitempty"`
+	FirewallRules *[]FirewallRule `json:"firewallRules,omitempty"`
+	InternalDns *InternalDns `json:"internalDns,omitempty"`
+	VpcRoutes *[]VpcRoute `json:"vpcRoutes,omitempty"`
 }
 
 // NewVpcCore instantiates a new VpcCore object
@@ -279,9 +279,9 @@ func (o *VpcCore) SetCidrBlock(v string) {
 }
 
 // GetFirewallRules returns the FirewallRules field value if set, zero value otherwise.
-func (o *VpcCore) GetFirewallRules() []VpcCoreFirewallRules {
+func (o *VpcCore) GetFirewallRules() []FirewallRule {
 	if o == nil || o.FirewallRules == nil {
-		var ret []VpcCoreFirewallRules
+		var ret []FirewallRule
 		return ret
 	}
 	return *o.FirewallRules
@@ -289,7 +289,7 @@ func (o *VpcCore) GetFirewallRules() []VpcCoreFirewallRules {
 
 // GetFirewallRulesOk returns a tuple with the FirewallRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpcCore) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool) {
+func (o *VpcCore) GetFirewallRulesOk() (*[]FirewallRule, bool) {
 	if o == nil || o.FirewallRules == nil {
 		return nil, false
 	}
@@ -305,15 +305,15 @@ func (o *VpcCore) HasFirewallRules() bool {
 	return false
 }
 
-// SetFirewallRules gets a reference to the given []VpcCoreFirewallRules and assigns it to the FirewallRules field.
-func (o *VpcCore) SetFirewallRules(v []VpcCoreFirewallRules) {
+// SetFirewallRules gets a reference to the given []FirewallRule and assigns it to the FirewallRules field.
+func (o *VpcCore) SetFirewallRules(v []FirewallRule) {
 	o.FirewallRules = &v
 }
 
 // GetInternalDns returns the InternalDns field value if set, zero value otherwise.
-func (o *VpcCore) GetInternalDns() InternalDnsSchema {
+func (o *VpcCore) GetInternalDns() InternalDns {
 	if o == nil || o.InternalDns == nil {
-		var ret InternalDnsSchema
+		var ret InternalDns
 		return ret
 	}
 	return *o.InternalDns
@@ -321,7 +321,7 @@ func (o *VpcCore) GetInternalDns() InternalDnsSchema {
 
 // GetInternalDnsOk returns a tuple with the InternalDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpcCore) GetInternalDnsOk() (*InternalDnsSchema, bool) {
+func (o *VpcCore) GetInternalDnsOk() (*InternalDns, bool) {
 	if o == nil || o.InternalDns == nil {
 		return nil, false
 	}
@@ -337,15 +337,15 @@ func (o *VpcCore) HasInternalDns() bool {
 	return false
 }
 
-// SetInternalDns gets a reference to the given InternalDnsSchema and assigns it to the InternalDns field.
-func (o *VpcCore) SetInternalDns(v InternalDnsSchema) {
+// SetInternalDns gets a reference to the given InternalDns and assigns it to the InternalDns field.
+func (o *VpcCore) SetInternalDns(v InternalDns) {
 	o.InternalDns = &v
 }
 
 // GetVpcRoutes returns the VpcRoutes field value if set, zero value otherwise.
-func (o *VpcCore) GetVpcRoutes() []VpcRouteSchema {
+func (o *VpcCore) GetVpcRoutes() []VpcRoute {
 	if o == nil || o.VpcRoutes == nil {
-		var ret []VpcRouteSchema
+		var ret []VpcRoute
 		return ret
 	}
 	return *o.VpcRoutes
@@ -353,7 +353,7 @@ func (o *VpcCore) GetVpcRoutes() []VpcRouteSchema {
 
 // GetVpcRoutesOk returns a tuple with the VpcRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpcCore) GetVpcRoutesOk() (*[]VpcRouteSchema, bool) {
+func (o *VpcCore) GetVpcRoutesOk() (*[]VpcRoute, bool) {
 	if o == nil || o.VpcRoutes == nil {
 		return nil, false
 	}
@@ -369,8 +369,8 @@ func (o *VpcCore) HasVpcRoutes() bool {
 	return false
 }
 
-// SetVpcRoutes gets a reference to the given []VpcRouteSchema and assigns it to the VpcRoutes field.
-func (o *VpcCore) SetVpcRoutes(v []VpcRouteSchema) {
+// SetVpcRoutes gets a reference to the given []VpcRoute and assigns it to the VpcRoutes field.
+func (o *VpcCore) SetVpcRoutes(v []VpcRoute) {
 	o.VpcRoutes = &v
 }
 
