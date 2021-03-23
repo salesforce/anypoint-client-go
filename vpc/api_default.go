@@ -481,7 +481,7 @@ func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdPutRequest) VpcCore(vpcCore VpcC
 	return r
 }
 
-func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdPutRequest) Execute() (*_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdPutRequest) Execute() (Vpc, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdPutExecute(r)
 }
 
@@ -504,19 +504,21 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPut(ctx _context.Context,
 
 /*
  * Execute executes the request
+ * @return Vpc
  */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiApiOrganizationsOrgIdVpcsVpcIdPutRequest) (*_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiApiOrganizationsOrgIdVpcsVpcIdPutRequest) (Vpc, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  Vpc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdPut")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/organizations/{orgId}/vpcs/{vpcId}"
@@ -527,7 +529,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiAp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.vpcCore == nil {
-		return nil, reportError("vpcCore is required and must be specified")
+		return localVarReturnValue, nil, reportError("vpcCore is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -551,19 +553,19 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiAp
 	localVarPostBody = r.vpcCore
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -576,12 +578,22 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiAp
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

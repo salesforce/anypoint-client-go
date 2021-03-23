@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdVpcsVpcIdPut
 
-> OrganizationsOrgIdVpcsVpcIdPut(ctx, orgId, vpcId).VpcCore(vpcCore).Execute()
+> Vpc OrganizationsOrgIdVpcsVpcIdPut(ctx, orgId, vpcId).VpcCore(vpcCore).Execute()
 
 Update the VPC configuration
 
@@ -330,6 +330,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `OrganizationsOrgIdVpcsVpcIdPut`: Vpc
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdVpcsVpcIdPut`: %v\n", resp)
 }
 ```
 
@@ -355,7 +357,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**Vpc**](Vpc.md)
 
 ### Authorization
 
