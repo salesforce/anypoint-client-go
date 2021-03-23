@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **AssociatedEnvironments** | Pointer to **[]string** |  | [optional] [default to []]
 **CidrBlock** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to "10.0.0.0/20"]
 **FirewallRules** | Pointer to [**[]VpcCoreFirewallRules**](VpcCoreFirewallRules.md) |  | [optional] [default to []]
-**InternalDns** | Pointer to [**TheInternalDnsSchema**](TheInternalDnsSchema.md) |  | [optional] 
-**VpcRoutes** | Pointer to [**[]TheFirstAnyOfSchema**](TheFirstAnyOfSchema.md) |  | [optional] [default to []]
+**InternalDns** | Pointer to [**InternalDnsSchema**](InternalDnsSchema.md) |  | [optional] 
+**VpcRoutes** | Pointer to [**[]VpcRouteSchema**](VpcRouteSchema.md) |  | [optional] [default to []]
 
 ## Methods
 
@@ -236,20 +236,20 @@ HasFirewallRules returns a boolean if a field has been set.
 
 ### GetInternalDns
 
-`func (o *VpcCore) GetInternalDns() TheInternalDnsSchema`
+`func (o *VpcCore) GetInternalDns() InternalDnsSchema`
 
 GetInternalDns returns the InternalDns field if non-nil, zero value otherwise.
 
 ### GetInternalDnsOk
 
-`func (o *VpcCore) GetInternalDnsOk() (*TheInternalDnsSchema, bool)`
+`func (o *VpcCore) GetInternalDnsOk() (*InternalDnsSchema, bool)`
 
 GetInternalDnsOk returns a tuple with the InternalDns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInternalDns
 
-`func (o *VpcCore) SetInternalDns(v TheInternalDnsSchema)`
+`func (o *VpcCore) SetInternalDns(v InternalDnsSchema)`
 
 SetInternalDns sets InternalDns field to given value.
 
@@ -261,20 +261,20 @@ HasInternalDns returns a boolean if a field has been set.
 
 ### GetVpcRoutes
 
-`func (o *VpcCore) GetVpcRoutes() []TheFirstAnyOfSchema`
+`func (o *VpcCore) GetVpcRoutes() []VpcRouteSchema`
 
 GetVpcRoutes returns the VpcRoutes field if non-nil, zero value otherwise.
 
 ### GetVpcRoutesOk
 
-`func (o *VpcCore) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool)`
+`func (o *VpcCore) GetVpcRoutesOk() (*[]VpcRouteSchema, bool)`
 
 GetVpcRoutesOk returns a tuple with the VpcRoutes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVpcRoutes
 
-`func (o *VpcCore) SetVpcRoutes(v []TheFirstAnyOfSchema)`
+`func (o *VpcCore) SetVpcRoutes(v []VpcRouteSchema)`
 
 SetVpcRoutes sets VpcRoutes field to given value.
 

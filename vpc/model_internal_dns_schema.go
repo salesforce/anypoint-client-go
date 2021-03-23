@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// TheInternalDnsSchema struct for TheInternalDnsSchema
-type TheInternalDnsSchema struct {
+// InternalDnsSchema struct for InternalDnsSchema
+type InternalDnsSchema struct {
 	DnsServers []string `json:"dnsServers"`
 	SpecialDomains []string `json:"specialDomains"`
 }
 
-// NewTheInternalDnsSchema instantiates a new TheInternalDnsSchema object
+// NewInternalDnsSchema instantiates a new InternalDnsSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTheInternalDnsSchema(dnsServers []string, specialDomains []string) *TheInternalDnsSchema {
-	this := TheInternalDnsSchema{}
+func NewInternalDnsSchema(dnsServers []string, specialDomains []string) *InternalDnsSchema {
+	this := InternalDnsSchema{}
 	this.DnsServers = dnsServers
 	this.SpecialDomains = specialDomains
 	return &this
 }
 
-// NewTheInternalDnsSchemaWithDefaults instantiates a new TheInternalDnsSchema object
+// NewInternalDnsSchemaWithDefaults instantiates a new InternalDnsSchema object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTheInternalDnsSchemaWithDefaults() *TheInternalDnsSchema {
-	this := TheInternalDnsSchema{}
+func NewInternalDnsSchemaWithDefaults() *InternalDnsSchema {
+	this := InternalDnsSchema{}
 	return &this
 }
 
 // GetDnsServers returns the DnsServers field value
-func (o *TheInternalDnsSchema) GetDnsServers() []string {
+func (o *InternalDnsSchema) GetDnsServers() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -51,7 +51,7 @@ func (o *TheInternalDnsSchema) GetDnsServers() []string {
 
 // GetDnsServersOk returns a tuple with the DnsServers field value
 // and a boolean to check if the value has been set.
-func (o *TheInternalDnsSchema) GetDnsServersOk() (*[]string, bool) {
+func (o *InternalDnsSchema) GetDnsServersOk() (*[]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -59,12 +59,12 @@ func (o *TheInternalDnsSchema) GetDnsServersOk() (*[]string, bool) {
 }
 
 // SetDnsServers sets field value
-func (o *TheInternalDnsSchema) SetDnsServers(v []string) {
+func (o *InternalDnsSchema) SetDnsServers(v []string) {
 	o.DnsServers = v
 }
 
 // GetSpecialDomains returns the SpecialDomains field value
-func (o *TheInternalDnsSchema) GetSpecialDomains() []string {
+func (o *InternalDnsSchema) GetSpecialDomains() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -75,7 +75,7 @@ func (o *TheInternalDnsSchema) GetSpecialDomains() []string {
 
 // GetSpecialDomainsOk returns a tuple with the SpecialDomains field value
 // and a boolean to check if the value has been set.
-func (o *TheInternalDnsSchema) GetSpecialDomainsOk() (*[]string, bool) {
+func (o *InternalDnsSchema) GetSpecialDomainsOk() (*[]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -83,11 +83,11 @@ func (o *TheInternalDnsSchema) GetSpecialDomainsOk() (*[]string, bool) {
 }
 
 // SetSpecialDomains sets field value
-func (o *TheInternalDnsSchema) SetSpecialDomains(v []string) {
+func (o *InternalDnsSchema) SetSpecialDomains(v []string) {
 	o.SpecialDomains = v
 }
 
-func (o TheInternalDnsSchema) MarshalJSON() ([]byte, error) {
+func (o InternalDnsSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["dnsServers"] = o.DnsServers
@@ -98,38 +98,38 @@ func (o TheInternalDnsSchema) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableTheInternalDnsSchema struct {
-	value *TheInternalDnsSchema
+type NullableInternalDnsSchema struct {
+	value *InternalDnsSchema
 	isSet bool
 }
 
-func (v NullableTheInternalDnsSchema) Get() *TheInternalDnsSchema {
+func (v NullableInternalDnsSchema) Get() *InternalDnsSchema {
 	return v.value
 }
 
-func (v *NullableTheInternalDnsSchema) Set(val *TheInternalDnsSchema) {
+func (v *NullableInternalDnsSchema) Set(val *InternalDnsSchema) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTheInternalDnsSchema) IsSet() bool {
+func (v NullableInternalDnsSchema) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTheInternalDnsSchema) Unset() {
+func (v *NullableInternalDnsSchema) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTheInternalDnsSchema(val *TheInternalDnsSchema) *NullableTheInternalDnsSchema {
-	return &NullableTheInternalDnsSchema{value: val, isSet: true}
+func NewNullableInternalDnsSchema(val *InternalDnsSchema) *NullableInternalDnsSchema {
+	return &NullableInternalDnsSchema{value: val, isSet: true}
 }
 
-func (v NullableTheInternalDnsSchema) MarshalJSON() ([]byte, error) {
+func (v NullableInternalDnsSchema) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTheInternalDnsSchema) UnmarshalJSON(src []byte) error {
+func (v *NullableInternalDnsSchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

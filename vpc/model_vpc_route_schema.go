@@ -14,28 +14,28 @@ import (
 	"encoding/json"
 )
 
-// TheFirstAnyOfSchema struct for TheFirstAnyOfSchema
-type TheFirstAnyOfSchema struct {
+// VpcRouteSchema struct for VpcRouteSchema
+type VpcRouteSchema struct {
 	CIDR string `json:"CIDR"`
 	NextHop string `json:"Next Hop"`
 }
 
-// NewTheFirstAnyOfSchema instantiates a new TheFirstAnyOfSchema object
+// NewVpcRouteSchema instantiates a new VpcRouteSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTheFirstAnyOfSchema(cIDR string, nextHop string) *TheFirstAnyOfSchema {
-	this := TheFirstAnyOfSchema{}
+func NewVpcRouteSchema(cIDR string, nextHop string) *VpcRouteSchema {
+	this := VpcRouteSchema{}
 	this.CIDR = cIDR
 	this.NextHop = nextHop
 	return &this
 }
 
-// NewTheFirstAnyOfSchemaWithDefaults instantiates a new TheFirstAnyOfSchema object
+// NewVpcRouteSchemaWithDefaults instantiates a new VpcRouteSchema object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTheFirstAnyOfSchemaWithDefaults() *TheFirstAnyOfSchema {
-	this := TheFirstAnyOfSchema{}
+func NewVpcRouteSchemaWithDefaults() *VpcRouteSchema {
+	this := VpcRouteSchema{}
 	var cIDR string = ""
 	this.CIDR = cIDR
 	var nextHop string = ""
@@ -44,7 +44,7 @@ func NewTheFirstAnyOfSchemaWithDefaults() *TheFirstAnyOfSchema {
 }
 
 // GetCIDR returns the CIDR field value
-func (o *TheFirstAnyOfSchema) GetCIDR() string {
+func (o *VpcRouteSchema) GetCIDR() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -55,7 +55,7 @@ func (o *TheFirstAnyOfSchema) GetCIDR() string {
 
 // GetCIDROk returns a tuple with the CIDR field value
 // and a boolean to check if the value has been set.
-func (o *TheFirstAnyOfSchema) GetCIDROk() (*string, bool) {
+func (o *VpcRouteSchema) GetCIDROk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -63,12 +63,12 @@ func (o *TheFirstAnyOfSchema) GetCIDROk() (*string, bool) {
 }
 
 // SetCIDR sets field value
-func (o *TheFirstAnyOfSchema) SetCIDR(v string) {
+func (o *VpcRouteSchema) SetCIDR(v string) {
 	o.CIDR = v
 }
 
 // GetNextHop returns the NextHop field value
-func (o *TheFirstAnyOfSchema) GetNextHop() string {
+func (o *VpcRouteSchema) GetNextHop() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *TheFirstAnyOfSchema) GetNextHop() string {
 
 // GetNextHopOk returns a tuple with the NextHop field value
 // and a boolean to check if the value has been set.
-func (o *TheFirstAnyOfSchema) GetNextHopOk() (*string, bool) {
+func (o *VpcRouteSchema) GetNextHopOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -87,11 +87,11 @@ func (o *TheFirstAnyOfSchema) GetNextHopOk() (*string, bool) {
 }
 
 // SetNextHop sets field value
-func (o *TheFirstAnyOfSchema) SetNextHop(v string) {
+func (o *VpcRouteSchema) SetNextHop(v string) {
 	o.NextHop = v
 }
 
-func (o TheFirstAnyOfSchema) MarshalJSON() ([]byte, error) {
+func (o VpcRouteSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["CIDR"] = o.CIDR
@@ -102,38 +102,38 @@ func (o TheFirstAnyOfSchema) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableTheFirstAnyOfSchema struct {
-	value *TheFirstAnyOfSchema
+type NullableVpcRouteSchema struct {
+	value *VpcRouteSchema
 	isSet bool
 }
 
-func (v NullableTheFirstAnyOfSchema) Get() *TheFirstAnyOfSchema {
+func (v NullableVpcRouteSchema) Get() *VpcRouteSchema {
 	return v.value
 }
 
-func (v *NullableTheFirstAnyOfSchema) Set(val *TheFirstAnyOfSchema) {
+func (v *NullableVpcRouteSchema) Set(val *VpcRouteSchema) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTheFirstAnyOfSchema) IsSet() bool {
+func (v NullableVpcRouteSchema) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTheFirstAnyOfSchema) Unset() {
+func (v *NullableVpcRouteSchema) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTheFirstAnyOfSchema(val *TheFirstAnyOfSchema) *NullableTheFirstAnyOfSchema {
-	return &NullableTheFirstAnyOfSchema{value: val, isSet: true}
+func NewNullableVpcRouteSchema(val *VpcRouteSchema) *NullableVpcRouteSchema {
+	return &NullableVpcRouteSchema{value: val, isSet: true}
 }
 
-func (v NullableTheFirstAnyOfSchema) MarshalJSON() ([]byte, error) {
+func (v NullableVpcRouteSchema) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTheFirstAnyOfSchema) UnmarshalJSON(src []byte) error {
+func (v *NullableVpcRouteSchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

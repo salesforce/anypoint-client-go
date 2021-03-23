@@ -14,32 +14,32 @@ import (
 	"encoding/json"
 )
 
-// VpcAllOf struct for VpcAllOf
-type VpcAllOf struct {
+// VpcIdSchema struct for VpcIdSchema
+type VpcIdSchema struct {
 	// The vpc Id
 	Id string `json:"id"`
 }
 
-// NewVpcAllOf instantiates a new VpcAllOf object
+// NewVpcIdSchema instantiates a new VpcIdSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVpcAllOf(id string) *VpcAllOf {
-	this := VpcAllOf{}
+func NewVpcIdSchema(id string) *VpcIdSchema {
+	this := VpcIdSchema{}
 	this.Id = id
 	return &this
 }
 
-// NewVpcAllOfWithDefaults instantiates a new VpcAllOf object
+// NewVpcIdSchemaWithDefaults instantiates a new VpcIdSchema object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVpcAllOfWithDefaults() *VpcAllOf {
-	this := VpcAllOf{}
+func NewVpcIdSchemaWithDefaults() *VpcIdSchema {
+	this := VpcIdSchema{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *VpcAllOf) GetId() string {
+func (o *VpcIdSchema) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *VpcAllOf) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VpcAllOf) GetIdOk() (*string, bool) {
+func (o *VpcIdSchema) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -58,11 +58,11 @@ func (o *VpcAllOf) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *VpcAllOf) SetId(v string) {
+func (o *VpcIdSchema) SetId(v string) {
 	o.Id = v
 }
 
-func (o VpcAllOf) MarshalJSON() ([]byte, error) {
+func (o VpcIdSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
@@ -70,38 +70,38 @@ func (o VpcAllOf) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableVpcAllOf struct {
-	value *VpcAllOf
+type NullableVpcIdSchema struct {
+	value *VpcIdSchema
 	isSet bool
 }
 
-func (v NullableVpcAllOf) Get() *VpcAllOf {
+func (v NullableVpcIdSchema) Get() *VpcIdSchema {
 	return v.value
 }
 
-func (v *NullableVpcAllOf) Set(val *VpcAllOf) {
+func (v *NullableVpcIdSchema) Set(val *VpcIdSchema) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVpcAllOf) IsSet() bool {
+func (v NullableVpcIdSchema) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVpcAllOf) Unset() {
+func (v *NullableVpcIdSchema) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVpcAllOf(val *VpcAllOf) *NullableVpcAllOf {
-	return &NullableVpcAllOf{value: val, isSet: true}
+func NewNullableVpcIdSchema(val *VpcIdSchema) *NullableVpcIdSchema {
+	return &NullableVpcIdSchema{value: val, isSet: true}
 }
 
-func (v NullableVpcAllOf) MarshalJSON() ([]byte, error) {
+func (v NullableVpcIdSchema) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVpcAllOf) UnmarshalJSON(src []byte) error {
+func (v *NullableVpcIdSchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
