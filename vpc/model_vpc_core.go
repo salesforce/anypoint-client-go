@@ -14,10 +14,8 @@ import (
 	"encoding/json"
 )
 
-// Vpc struct for Vpc
-type Vpc struct {
-	// The vpc Id
-	Id string `json:"id"`
+// VpcCore struct for VpcCore
+type VpcCore struct {
 	IsDefault *bool `json:"isDefault,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OwnerId *string `json:"ownerId,omitempty"`
@@ -31,13 +29,12 @@ type Vpc struct {
 	VpcRoutes *[]TheFirstAnyOfSchema `json:"vpcRoutes,omitempty"`
 }
 
-// NewVpc instantiates a new Vpc object
+// NewVpcCore instantiates a new VpcCore object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVpc(id string) *Vpc {
-	this := Vpc{}
-	this.Id = id
+func NewVpcCore() *VpcCore {
+	this := VpcCore{}
 	var isDefault bool = false
 	this.IsDefault = &isDefault
 	var cidrBlock string = "10.0.0.0/20"
@@ -45,44 +42,20 @@ func NewVpc(id string) *Vpc {
 	return &this
 }
 
-// NewVpcWithDefaults instantiates a new Vpc object
+// NewVpcCoreWithDefaults instantiates a new VpcCore object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVpcWithDefaults() *Vpc {
-	this := Vpc{}
+func NewVpcCoreWithDefaults() *VpcCore {
+	this := VpcCore{}
 	var isDefault bool = false
 	this.IsDefault = &isDefault
 	var cidrBlock string = "10.0.0.0/20"
 	this.CidrBlock = &cidrBlock
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *Vpc) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Vpc) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Vpc) SetId(v string) {
-	o.Id = v
 }
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
-func (o *Vpc) GetIsDefault() bool {
+func (o *VpcCore) GetIsDefault() bool {
 	if o == nil || o.IsDefault == nil {
 		var ret bool
 		return ret
@@ -92,7 +65,7 @@ func (o *Vpc) GetIsDefault() bool {
 
 // GetIsDefaultOk returns a tuple with the IsDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetIsDefaultOk() (*bool, bool) {
+func (o *VpcCore) GetIsDefaultOk() (*bool, bool) {
 	if o == nil || o.IsDefault == nil {
 		return nil, false
 	}
@@ -100,7 +73,7 @@ func (o *Vpc) GetIsDefaultOk() (*bool, bool) {
 }
 
 // HasIsDefault returns a boolean if a field has been set.
-func (o *Vpc) HasIsDefault() bool {
+func (o *VpcCore) HasIsDefault() bool {
 	if o != nil && o.IsDefault != nil {
 		return true
 	}
@@ -109,12 +82,12 @@ func (o *Vpc) HasIsDefault() bool {
 }
 
 // SetIsDefault gets a reference to the given bool and assigns it to the IsDefault field.
-func (o *Vpc) SetIsDefault(v bool) {
+func (o *VpcCore) SetIsDefault(v bool) {
 	o.IsDefault = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Vpc) GetName() string {
+func (o *VpcCore) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -124,7 +97,7 @@ func (o *Vpc) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetNameOk() (*string, bool) {
+func (o *VpcCore) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -132,7 +105,7 @@ func (o *Vpc) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *Vpc) HasName() bool {
+func (o *VpcCore) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -141,12 +114,12 @@ func (o *Vpc) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Vpc) SetName(v string) {
+func (o *VpcCore) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
-func (o *Vpc) GetOwnerId() string {
+func (o *VpcCore) GetOwnerId() string {
 	if o == nil || o.OwnerId == nil {
 		var ret string
 		return ret
@@ -156,7 +129,7 @@ func (o *Vpc) GetOwnerId() string {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetOwnerIdOk() (*string, bool) {
+func (o *VpcCore) GetOwnerIdOk() (*string, bool) {
 	if o == nil || o.OwnerId == nil {
 		return nil, false
 	}
@@ -164,7 +137,7 @@ func (o *Vpc) GetOwnerIdOk() (*string, bool) {
 }
 
 // HasOwnerId returns a boolean if a field has been set.
-func (o *Vpc) HasOwnerId() bool {
+func (o *VpcCore) HasOwnerId() bool {
 	if o != nil && o.OwnerId != nil {
 		return true
 	}
@@ -173,12 +146,12 @@ func (o *Vpc) HasOwnerId() bool {
 }
 
 // SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
-func (o *Vpc) SetOwnerId(v string) {
+func (o *VpcCore) SetOwnerId(v string) {
 	o.OwnerId = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *Vpc) GetRegion() string {
+func (o *VpcCore) GetRegion() string {
 	if o == nil || o.Region == nil {
 		var ret string
 		return ret
@@ -188,7 +161,7 @@ func (o *Vpc) GetRegion() string {
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetRegionOk() (*string, bool) {
+func (o *VpcCore) GetRegionOk() (*string, bool) {
 	if o == nil || o.Region == nil {
 		return nil, false
 	}
@@ -196,7 +169,7 @@ func (o *Vpc) GetRegionOk() (*string, bool) {
 }
 
 // HasRegion returns a boolean if a field has been set.
-func (o *Vpc) HasRegion() bool {
+func (o *VpcCore) HasRegion() bool {
 	if o != nil && o.Region != nil {
 		return true
 	}
@@ -205,12 +178,12 @@ func (o *Vpc) HasRegion() bool {
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *Vpc) SetRegion(v string) {
+func (o *VpcCore) SetRegion(v string) {
 	o.Region = &v
 }
 
 // GetSharedWith returns the SharedWith field value if set, zero value otherwise.
-func (o *Vpc) GetSharedWith() []string {
+func (o *VpcCore) GetSharedWith() []string {
 	if o == nil || o.SharedWith == nil {
 		var ret []string
 		return ret
@@ -220,7 +193,7 @@ func (o *Vpc) GetSharedWith() []string {
 
 // GetSharedWithOk returns a tuple with the SharedWith field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetSharedWithOk() (*[]string, bool) {
+func (o *VpcCore) GetSharedWithOk() (*[]string, bool) {
 	if o == nil || o.SharedWith == nil {
 		return nil, false
 	}
@@ -228,7 +201,7 @@ func (o *Vpc) GetSharedWithOk() (*[]string, bool) {
 }
 
 // HasSharedWith returns a boolean if a field has been set.
-func (o *Vpc) HasSharedWith() bool {
+func (o *VpcCore) HasSharedWith() bool {
 	if o != nil && o.SharedWith != nil {
 		return true
 	}
@@ -237,12 +210,12 @@ func (o *Vpc) HasSharedWith() bool {
 }
 
 // SetSharedWith gets a reference to the given []string and assigns it to the SharedWith field.
-func (o *Vpc) SetSharedWith(v []string) {
+func (o *VpcCore) SetSharedWith(v []string) {
 	o.SharedWith = &v
 }
 
 // GetAssociatedEnvironments returns the AssociatedEnvironments field value if set, zero value otherwise.
-func (o *Vpc) GetAssociatedEnvironments() []string {
+func (o *VpcCore) GetAssociatedEnvironments() []string {
 	if o == nil || o.AssociatedEnvironments == nil {
 		var ret []string
 		return ret
@@ -252,7 +225,7 @@ func (o *Vpc) GetAssociatedEnvironments() []string {
 
 // GetAssociatedEnvironmentsOk returns a tuple with the AssociatedEnvironments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetAssociatedEnvironmentsOk() (*[]string, bool) {
+func (o *VpcCore) GetAssociatedEnvironmentsOk() (*[]string, bool) {
 	if o == nil || o.AssociatedEnvironments == nil {
 		return nil, false
 	}
@@ -260,7 +233,7 @@ func (o *Vpc) GetAssociatedEnvironmentsOk() (*[]string, bool) {
 }
 
 // HasAssociatedEnvironments returns a boolean if a field has been set.
-func (o *Vpc) HasAssociatedEnvironments() bool {
+func (o *VpcCore) HasAssociatedEnvironments() bool {
 	if o != nil && o.AssociatedEnvironments != nil {
 		return true
 	}
@@ -269,12 +242,12 @@ func (o *Vpc) HasAssociatedEnvironments() bool {
 }
 
 // SetAssociatedEnvironments gets a reference to the given []string and assigns it to the AssociatedEnvironments field.
-func (o *Vpc) SetAssociatedEnvironments(v []string) {
+func (o *VpcCore) SetAssociatedEnvironments(v []string) {
 	o.AssociatedEnvironments = &v
 }
 
 // GetCidrBlock returns the CidrBlock field value if set, zero value otherwise.
-func (o *Vpc) GetCidrBlock() string {
+func (o *VpcCore) GetCidrBlock() string {
 	if o == nil || o.CidrBlock == nil {
 		var ret string
 		return ret
@@ -284,7 +257,7 @@ func (o *Vpc) GetCidrBlock() string {
 
 // GetCidrBlockOk returns a tuple with the CidrBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetCidrBlockOk() (*string, bool) {
+func (o *VpcCore) GetCidrBlockOk() (*string, bool) {
 	if o == nil || o.CidrBlock == nil {
 		return nil, false
 	}
@@ -292,7 +265,7 @@ func (o *Vpc) GetCidrBlockOk() (*string, bool) {
 }
 
 // HasCidrBlock returns a boolean if a field has been set.
-func (o *Vpc) HasCidrBlock() bool {
+func (o *VpcCore) HasCidrBlock() bool {
 	if o != nil && o.CidrBlock != nil {
 		return true
 	}
@@ -301,12 +274,12 @@ func (o *Vpc) HasCidrBlock() bool {
 }
 
 // SetCidrBlock gets a reference to the given string and assigns it to the CidrBlock field.
-func (o *Vpc) SetCidrBlock(v string) {
+func (o *VpcCore) SetCidrBlock(v string) {
 	o.CidrBlock = &v
 }
 
 // GetFirewallRules returns the FirewallRules field value if set, zero value otherwise.
-func (o *Vpc) GetFirewallRules() []VpcCoreFirewallRules {
+func (o *VpcCore) GetFirewallRules() []VpcCoreFirewallRules {
 	if o == nil || o.FirewallRules == nil {
 		var ret []VpcCoreFirewallRules
 		return ret
@@ -316,7 +289,7 @@ func (o *Vpc) GetFirewallRules() []VpcCoreFirewallRules {
 
 // GetFirewallRulesOk returns a tuple with the FirewallRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool) {
+func (o *VpcCore) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool) {
 	if o == nil || o.FirewallRules == nil {
 		return nil, false
 	}
@@ -324,7 +297,7 @@ func (o *Vpc) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool) {
 }
 
 // HasFirewallRules returns a boolean if a field has been set.
-func (o *Vpc) HasFirewallRules() bool {
+func (o *VpcCore) HasFirewallRules() bool {
 	if o != nil && o.FirewallRules != nil {
 		return true
 	}
@@ -333,12 +306,12 @@ func (o *Vpc) HasFirewallRules() bool {
 }
 
 // SetFirewallRules gets a reference to the given []VpcCoreFirewallRules and assigns it to the FirewallRules field.
-func (o *Vpc) SetFirewallRules(v []VpcCoreFirewallRules) {
+func (o *VpcCore) SetFirewallRules(v []VpcCoreFirewallRules) {
 	o.FirewallRules = &v
 }
 
 // GetInternalDns returns the InternalDns field value if set, zero value otherwise.
-func (o *Vpc) GetInternalDns() TheInternalDnsSchema {
+func (o *VpcCore) GetInternalDns() TheInternalDnsSchema {
 	if o == nil || o.InternalDns == nil {
 		var ret TheInternalDnsSchema
 		return ret
@@ -348,7 +321,7 @@ func (o *Vpc) GetInternalDns() TheInternalDnsSchema {
 
 // GetInternalDnsOk returns a tuple with the InternalDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetInternalDnsOk() (*TheInternalDnsSchema, bool) {
+func (o *VpcCore) GetInternalDnsOk() (*TheInternalDnsSchema, bool) {
 	if o == nil || o.InternalDns == nil {
 		return nil, false
 	}
@@ -356,7 +329,7 @@ func (o *Vpc) GetInternalDnsOk() (*TheInternalDnsSchema, bool) {
 }
 
 // HasInternalDns returns a boolean if a field has been set.
-func (o *Vpc) HasInternalDns() bool {
+func (o *VpcCore) HasInternalDns() bool {
 	if o != nil && o.InternalDns != nil {
 		return true
 	}
@@ -365,12 +338,12 @@ func (o *Vpc) HasInternalDns() bool {
 }
 
 // SetInternalDns gets a reference to the given TheInternalDnsSchema and assigns it to the InternalDns field.
-func (o *Vpc) SetInternalDns(v TheInternalDnsSchema) {
+func (o *VpcCore) SetInternalDns(v TheInternalDnsSchema) {
 	o.InternalDns = &v
 }
 
 // GetVpcRoutes returns the VpcRoutes field value if set, zero value otherwise.
-func (o *Vpc) GetVpcRoutes() []TheFirstAnyOfSchema {
+func (o *VpcCore) GetVpcRoutes() []TheFirstAnyOfSchema {
 	if o == nil || o.VpcRoutes == nil {
 		var ret []TheFirstAnyOfSchema
 		return ret
@@ -380,7 +353,7 @@ func (o *Vpc) GetVpcRoutes() []TheFirstAnyOfSchema {
 
 // GetVpcRoutesOk returns a tuple with the VpcRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vpc) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool) {
+func (o *VpcCore) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool) {
 	if o == nil || o.VpcRoutes == nil {
 		return nil, false
 	}
@@ -388,7 +361,7 @@ func (o *Vpc) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool) {
 }
 
 // HasVpcRoutes returns a boolean if a field has been set.
-func (o *Vpc) HasVpcRoutes() bool {
+func (o *VpcCore) HasVpcRoutes() bool {
 	if o != nil && o.VpcRoutes != nil {
 		return true
 	}
@@ -397,15 +370,12 @@ func (o *Vpc) HasVpcRoutes() bool {
 }
 
 // SetVpcRoutes gets a reference to the given []TheFirstAnyOfSchema and assigns it to the VpcRoutes field.
-func (o *Vpc) SetVpcRoutes(v []TheFirstAnyOfSchema) {
+func (o *VpcCore) SetVpcRoutes(v []TheFirstAnyOfSchema) {
 	o.VpcRoutes = &v
 }
 
-func (o Vpc) MarshalJSON() ([]byte, error) {
+func (o VpcCore) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
 	if o.IsDefault != nil {
 		toSerialize["isDefault"] = o.IsDefault
 	}
@@ -439,38 +409,38 @@ func (o Vpc) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableVpc struct {
-	value *Vpc
+type NullableVpcCore struct {
+	value *VpcCore
 	isSet bool
 }
 
-func (v NullableVpc) Get() *Vpc {
+func (v NullableVpcCore) Get() *VpcCore {
 	return v.value
 }
 
-func (v *NullableVpc) Set(val *Vpc) {
+func (v *NullableVpcCore) Set(val *VpcCore) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVpc) IsSet() bool {
+func (v NullableVpcCore) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVpc) Unset() {
+func (v *NullableVpcCore) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVpc(val *Vpc) *NullableVpc {
-	return &NullableVpc{value: val, isSet: true}
+func NewNullableVpcCore(val *VpcCore) *NullableVpcCore {
+	return &NullableVpcCore{value: val, isSet: true}
 }
 
-func (v NullableVpc) MarshalJSON() ([]byte, error) {
+func (v NullableVpcCore) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVpc) UnmarshalJSON(src []byte) error {
+func (v *NullableVpcCore) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,10 +1,9 @@
-# Vpc
+# VpcCore
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The vpc Id | 
 **IsDefault** | Pointer to **bool** |  | [optional] [default to false]
 **Name** | Pointer to **string** |  | [optional] 
 **OwnerId** | Pointer to **string** |  | [optional] 
@@ -18,290 +17,270 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewVpc
+### NewVpcCore
 
-`func NewVpc(id string, ) *Vpc`
+`func NewVpcCore() *VpcCore`
 
-NewVpc instantiates a new Vpc object
+NewVpcCore instantiates a new VpcCore object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewVpcWithDefaults
+### NewVpcCoreWithDefaults
 
-`func NewVpcWithDefaults() *Vpc`
+`func NewVpcCoreWithDefaults() *VpcCore`
 
-NewVpcWithDefaults instantiates a new Vpc object
+NewVpcCoreWithDefaults instantiates a new VpcCore object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
-
-`func (o *Vpc) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Vpc) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Vpc) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
 ### GetIsDefault
 
-`func (o *Vpc) GetIsDefault() bool`
+`func (o *VpcCore) GetIsDefault() bool`
 
 GetIsDefault returns the IsDefault field if non-nil, zero value otherwise.
 
 ### GetIsDefaultOk
 
-`func (o *Vpc) GetIsDefaultOk() (*bool, bool)`
+`func (o *VpcCore) GetIsDefaultOk() (*bool, bool)`
 
 GetIsDefaultOk returns a tuple with the IsDefault field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsDefault
 
-`func (o *Vpc) SetIsDefault(v bool)`
+`func (o *VpcCore) SetIsDefault(v bool)`
 
 SetIsDefault sets IsDefault field to given value.
 
 ### HasIsDefault
 
-`func (o *Vpc) HasIsDefault() bool`
+`func (o *VpcCore) HasIsDefault() bool`
 
 HasIsDefault returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *Vpc) GetName() string`
+`func (o *VpcCore) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *Vpc) GetNameOk() (*string, bool)`
+`func (o *VpcCore) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *Vpc) SetName(v string)`
+`func (o *VpcCore) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *Vpc) HasName() bool`
+`func (o *VpcCore) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetOwnerId
 
-`func (o *Vpc) GetOwnerId() string`
+`func (o *VpcCore) GetOwnerId() string`
 
 GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
 
 ### GetOwnerIdOk
 
-`func (o *Vpc) GetOwnerIdOk() (*string, bool)`
+`func (o *VpcCore) GetOwnerIdOk() (*string, bool)`
 
 GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerId
 
-`func (o *Vpc) SetOwnerId(v string)`
+`func (o *VpcCore) SetOwnerId(v string)`
 
 SetOwnerId sets OwnerId field to given value.
 
 ### HasOwnerId
 
-`func (o *Vpc) HasOwnerId() bool`
+`func (o *VpcCore) HasOwnerId() bool`
 
 HasOwnerId returns a boolean if a field has been set.
 
 ### GetRegion
 
-`func (o *Vpc) GetRegion() string`
+`func (o *VpcCore) GetRegion() string`
 
 GetRegion returns the Region field if non-nil, zero value otherwise.
 
 ### GetRegionOk
 
-`func (o *Vpc) GetRegionOk() (*string, bool)`
+`func (o *VpcCore) GetRegionOk() (*string, bool)`
 
 GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRegion
 
-`func (o *Vpc) SetRegion(v string)`
+`func (o *VpcCore) SetRegion(v string)`
 
 SetRegion sets Region field to given value.
 
 ### HasRegion
 
-`func (o *Vpc) HasRegion() bool`
+`func (o *VpcCore) HasRegion() bool`
 
 HasRegion returns a boolean if a field has been set.
 
 ### GetSharedWith
 
-`func (o *Vpc) GetSharedWith() []string`
+`func (o *VpcCore) GetSharedWith() []string`
 
 GetSharedWith returns the SharedWith field if non-nil, zero value otherwise.
 
 ### GetSharedWithOk
 
-`func (o *Vpc) GetSharedWithOk() (*[]string, bool)`
+`func (o *VpcCore) GetSharedWithOk() (*[]string, bool)`
 
 GetSharedWithOk returns a tuple with the SharedWith field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSharedWith
 
-`func (o *Vpc) SetSharedWith(v []string)`
+`func (o *VpcCore) SetSharedWith(v []string)`
 
 SetSharedWith sets SharedWith field to given value.
 
 ### HasSharedWith
 
-`func (o *Vpc) HasSharedWith() bool`
+`func (o *VpcCore) HasSharedWith() bool`
 
 HasSharedWith returns a boolean if a field has been set.
 
 ### GetAssociatedEnvironments
 
-`func (o *Vpc) GetAssociatedEnvironments() []string`
+`func (o *VpcCore) GetAssociatedEnvironments() []string`
 
 GetAssociatedEnvironments returns the AssociatedEnvironments field if non-nil, zero value otherwise.
 
 ### GetAssociatedEnvironmentsOk
 
-`func (o *Vpc) GetAssociatedEnvironmentsOk() (*[]string, bool)`
+`func (o *VpcCore) GetAssociatedEnvironmentsOk() (*[]string, bool)`
 
 GetAssociatedEnvironmentsOk returns a tuple with the AssociatedEnvironments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssociatedEnvironments
 
-`func (o *Vpc) SetAssociatedEnvironments(v []string)`
+`func (o *VpcCore) SetAssociatedEnvironments(v []string)`
 
 SetAssociatedEnvironments sets AssociatedEnvironments field to given value.
 
 ### HasAssociatedEnvironments
 
-`func (o *Vpc) HasAssociatedEnvironments() bool`
+`func (o *VpcCore) HasAssociatedEnvironments() bool`
 
 HasAssociatedEnvironments returns a boolean if a field has been set.
 
 ### GetCidrBlock
 
-`func (o *Vpc) GetCidrBlock() string`
+`func (o *VpcCore) GetCidrBlock() string`
 
 GetCidrBlock returns the CidrBlock field if non-nil, zero value otherwise.
 
 ### GetCidrBlockOk
 
-`func (o *Vpc) GetCidrBlockOk() (*string, bool)`
+`func (o *VpcCore) GetCidrBlockOk() (*string, bool)`
 
 GetCidrBlockOk returns a tuple with the CidrBlock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCidrBlock
 
-`func (o *Vpc) SetCidrBlock(v string)`
+`func (o *VpcCore) SetCidrBlock(v string)`
 
 SetCidrBlock sets CidrBlock field to given value.
 
 ### HasCidrBlock
 
-`func (o *Vpc) HasCidrBlock() bool`
+`func (o *VpcCore) HasCidrBlock() bool`
 
 HasCidrBlock returns a boolean if a field has been set.
 
 ### GetFirewallRules
 
-`func (o *Vpc) GetFirewallRules() []VpcCoreFirewallRules`
+`func (o *VpcCore) GetFirewallRules() []VpcCoreFirewallRules`
 
 GetFirewallRules returns the FirewallRules field if non-nil, zero value otherwise.
 
 ### GetFirewallRulesOk
 
-`func (o *Vpc) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool)`
+`func (o *VpcCore) GetFirewallRulesOk() (*[]VpcCoreFirewallRules, bool)`
 
 GetFirewallRulesOk returns a tuple with the FirewallRules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirewallRules
 
-`func (o *Vpc) SetFirewallRules(v []VpcCoreFirewallRules)`
+`func (o *VpcCore) SetFirewallRules(v []VpcCoreFirewallRules)`
 
 SetFirewallRules sets FirewallRules field to given value.
 
 ### HasFirewallRules
 
-`func (o *Vpc) HasFirewallRules() bool`
+`func (o *VpcCore) HasFirewallRules() bool`
 
 HasFirewallRules returns a boolean if a field has been set.
 
 ### GetInternalDns
 
-`func (o *Vpc) GetInternalDns() TheInternalDnsSchema`
+`func (o *VpcCore) GetInternalDns() TheInternalDnsSchema`
 
 GetInternalDns returns the InternalDns field if non-nil, zero value otherwise.
 
 ### GetInternalDnsOk
 
-`func (o *Vpc) GetInternalDnsOk() (*TheInternalDnsSchema, bool)`
+`func (o *VpcCore) GetInternalDnsOk() (*TheInternalDnsSchema, bool)`
 
 GetInternalDnsOk returns a tuple with the InternalDns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInternalDns
 
-`func (o *Vpc) SetInternalDns(v TheInternalDnsSchema)`
+`func (o *VpcCore) SetInternalDns(v TheInternalDnsSchema)`
 
 SetInternalDns sets InternalDns field to given value.
 
 ### HasInternalDns
 
-`func (o *Vpc) HasInternalDns() bool`
+`func (o *VpcCore) HasInternalDns() bool`
 
 HasInternalDns returns a boolean if a field has been set.
 
 ### GetVpcRoutes
 
-`func (o *Vpc) GetVpcRoutes() []TheFirstAnyOfSchema`
+`func (o *VpcCore) GetVpcRoutes() []TheFirstAnyOfSchema`
 
 GetVpcRoutes returns the VpcRoutes field if non-nil, zero value otherwise.
 
 ### GetVpcRoutesOk
 
-`func (o *Vpc) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool)`
+`func (o *VpcCore) GetVpcRoutesOk() (*[]TheFirstAnyOfSchema, bool)`
 
 GetVpcRoutesOk returns a tuple with the VpcRoutes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVpcRoutes
 
-`func (o *Vpc) SetVpcRoutes(v []TheFirstAnyOfSchema)`
+`func (o *VpcCore) SetVpcRoutes(v []TheFirstAnyOfSchema)`
 
 SetVpcRoutes sets VpcRoutes field to given value.
 
 ### HasVpcRoutes
 
-`func (o *Vpc) HasVpcRoutes() bool`
+`func (o *VpcCore) HasVpcRoutes() bool`
 
 HasVpcRoutes returns a boolean if a field has been set.
 
