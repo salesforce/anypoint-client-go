@@ -1,0 +1,373 @@
+openapi: 3.0.0
+info:
+  description: Description of the VPC API
+  title: VPC API
+  version: 1.0.1
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/cloudhub/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/cloudhub/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/vpcs:
+    get:
+      description: Returns a list of VPCs for the given organization id
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+      summary: Returns a list of vpcs.
+    post:
+      description: Creates a new VPC for the probided organization
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vpcCore'
+        description: VPC Object don't
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vpc'
+          description: Success response
+      summary: Creates a new VPC in the provided organization.
+  /organizations/{orgId}/vpcs/{vpcId}:
+    delete:
+      description: Delete a VPC by its given id for the given organization id.
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The VPC Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+      summary: Delete a VPC by its id.
+    get:
+      description: Returns the vpc with the given id in the given organization id
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The VPC Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vpc'
+          description: Success response
+      summary: Returns the vpc instance with the given id.
+    put:
+      description: Changes the configuration of the VPC by overriding the values of
+        the properties passed in the JSON. ownerId, region and cidrBlock cannot be
+        overriden. Organizations that do not own the VPC can only update isDefault
+        and associatedEnvironments.
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The VPC Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vpcCore'
+        description: VPC Object don't
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+      summary: Update the VPC configuration
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessGetVpc:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vpc'
+      description: Success response
+    SuccessPostVPC:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vpc'
+      description: Success response
+    SuccessDeleteVpc:
+      description: Success response
+    SuccessListVpcs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    vpc:
+      allOf:
+      - $ref: '#/components/schemas/vpc_allOf'
+      - $ref: '#/components/schemas/vpcCore'
+    vpcCore:
+      properties:
+        isDefault:
+          default: false
+          title: The isDefault schema
+          type: boolean
+        name:
+          example: myAwesomeVPC
+          title: The name schema
+          type: string
+        ownerId:
+          example: 0000-1111-2222-3333-4444
+          title: The ownerId schema
+          type: string
+        region:
+          example: us-east-1
+          title: The region schema
+          type: string
+        sharedWith:
+          default: []
+          example:
+          - 0000000-1111-2222-3333-44444444444
+          items:
+            type: string
+          title: List of Organization Ids to share the vpc with
+          type: array
+        associatedEnvironments:
+          default: []
+          example:
+          - eeeeb145-6f79-402d-85fc-8c90905d2490
+          items:
+            description: Environment Id.
+            title: The first anyOf schema
+            type: string
+          title: The associatedEnvironments schema
+          type: array
+        cidrBlock:
+          default: 10.0.0.0/20
+          description: An explanation about the purpose of this instance.
+          title: The cidrBlock schema
+          type: string
+        firewallRules:
+          default: []
+          example:
+          - cidrBlock: 0.0.0.0/0
+            protocol: tcp
+            fromPort: 8081
+            toPort: 8082
+          - cidrBlock: 192.168.1.0/24
+            protocol: tcp
+            fromPort: 8091
+            toPort: 8092
+          items:
+            $ref: '#/components/schemas/vpcCore_firewallRules'
+          title: The firewallRules schema
+          type: array
+        internalDns:
+          $ref: '#/components/schemas/The_internalDns_schema'
+        vpcRoutes:
+          default: []
+          example:
+          - Next Hop: Local
+            CIDR: 10.0.0.0/20
+          - Next Hop: Internet Gateway
+            CIDR: 0.0.0.0/0
+          items:
+            $ref: '#/components/schemas/The_first_anyOf_schema'
+          title: The vpcRoutes schema
+          type: array
+      title: VPC Object Schema
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/vpc'
+          title: List of vpcs
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: vpcs limit has been reached (max=1, use=1) for the organization
+          title: the error message
+          type: string
+      type: object
+    vpc_allOf:
+      properties:
+        id:
+          description: The vpc Id
+          example: vpc-0b111d1a1ace2a12f
+          title: The id schema
+          type: string
+      required:
+      - id
+      type: object
+    vpcCore_firewallRules:
+      properties:
+        cidrBlock:
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: The cidrBlock schema
+          type: string
+        fromPort:
+          default: 0
+          description: An explanation about the purpose of this instance.
+          title: The fromPort schema
+          type: integer
+        protocol:
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: The protocol schema
+          type: string
+        toPort:
+          default: 0
+          description: An explanation about the purpose of this instance.
+          title: The toPort schema
+          type: integer
+      required:
+      - cidrBlock
+      - fromPort
+      - protocol
+      - toPort
+      type: object
+    The_internalDns_schema:
+      properties:
+        dnsServers:
+          default: []
+          items:
+            type: string
+          title: The dnsServers schema
+          type: array
+        specialDomains:
+          default: []
+          items:
+            type: string
+          title: The specialDomains schema
+          type: array
+      required:
+      - dnsServers
+      - specialDomains
+      title: The internalDns schema
+      type: object
+    The_first_anyOf_schema:
+      properties:
+        CIDR:
+          default: ""
+          title: The CIDR schema
+          type: string
+        Next Hop:
+          default: ""
+          title: The Next Hop schema
+          type: string
+      required:
+      - CIDR
+      - Next Hop
+      title: The first anyOf schema
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
