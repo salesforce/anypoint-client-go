@@ -10,9 +10,9 @@ docs/InlineResponse200.md
 docs/InlineResponse400.md
 docs/InternalDnsSchema.md
 docs/Vpc.md
-docs/VpcAllOf.md
 docs/VpcCore.md
 docs/VpcCoreFirewallRules.md
+docs/VpcIdSchema.md
 docs/VpcRouteSchema.md
 git_push.sh
 go.mod
@@ -21,9 +21,9 @@ model_inline_response_200.go
 model_inline_response_400.go
 model_internal_dns_schema.go
 model_vpc.go
-model_vpc_all_of.go
 model_vpc_core.go
 model_vpc_core_firewall_rules.go
+model_vpc_id_schema.go
 model_vpc_route_schema.go
 response.go
 utils.go

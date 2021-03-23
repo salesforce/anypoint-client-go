@@ -194,8 +194,9 @@ components:
   schemas:
     vpc:
       allOf:
-      - $ref: '#/components/schemas/vpc_allOf'
+      - $ref: '#/components/schemas/vpcId_schema'
       - $ref: '#/components/schemas/vpcCore'
+      title: vpc schema
     vpcCore:
       properties:
         isDefault:
@@ -294,7 +295,7 @@ components:
           title: the error message
           type: string
       type: object
-    vpc_allOf:
+    vpcId_schema:
       properties:
         id:
           description: The vpc Id
@@ -303,6 +304,7 @@ components:
           type: string
       required:
       - id
+      title: vpcId schema
       type: object
     vpcCore_firewallRules:
       properties:

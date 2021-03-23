@@ -91,9 +91,9 @@ Class | Method | HTTP request | Description
  - [InlineResponse400](docs/InlineResponse400.md)
  - [InternalDnsSchema](docs/InternalDnsSchema.md)
  - [Vpc](docs/Vpc.md)
- - [VpcAllOf](docs/VpcAllOf.md)
  - [VpcCore](docs/VpcCore.md)
  - [VpcCoreFirewallRules](docs/VpcCoreFirewallRules.md)
+ - [VpcIdSchema](docs/VpcIdSchema.md)
  - [VpcRouteSchema](docs/VpcRouteSchema.md)
 
 
