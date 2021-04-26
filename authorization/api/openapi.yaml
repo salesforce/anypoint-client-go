@@ -5,11 +5,11 @@ info:
   version: 1.0.0
 servers:
 - description: Anypoint Cloudhub
-  url: https://anypoint.mulesoft.com/accounts/api/v2/
+  url: https://anypoint.mulesoft.com/accounts/
 - description: Anypoint Cloudhub EU
-  url: https://eu1.anypoint.mulesoft.com/accounts/api/v2/
+  url: https://eu1.anypoint.mulesoft.com/accounts/
 paths:
-  /oauth2/token:
+  /api/v2/oauth2/token:
     post:
       description: Authenticates a connected app and returns access token
       requestBody:
@@ -29,6 +29,26 @@ paths:
                 $ref: '#/components/schemas/inline_response_200'
           description: Success response
       summary: Returns access token
+  /login:
+    post:
+      description: Authenticates a user and returns access token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userPwdCredentials'
+        description: Request body containing credentials
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: Success response
+      summary: Returns access token
 components:
   responses:
     UnauthorizedError:
@@ -38,6 +58,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+    SuccessAuthUserPwd:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200_1'
       description: Success response
   schemas:
     credentials:
@@ -55,6 +81,17 @@ components:
           title: the connected app client_secret
           type: string
       type: object
+    userPwdCredentials:
+      properties:
+        username:
+          default: ""
+          title: username
+          type: string
+        password:
+          default: ""
+          title: password
+          type: string
+      type: object
     inline_response_200:
       example:
         access_token: e4abe472725d-93b3-426e-8ca7-5a45636b
@@ -69,6 +106,25 @@ components:
           example: 3600
           title: Expiration period
           type: integer
+        token_type:
+          example: brearer
+          title: token type
+          type: string
+      type: object
+    inline_response_200_1:
+      example:
+        access_token: e4abe472725d-93b3-426e-8ca7-5a45636b
+        redirectUrl: /home/
+        token_type: brearer
+      properties:
+        access_token:
+          example: e4abe472725d-93b3-426e-8ca7-5a45636b
+          title: Authorization token
+          type: string
+        redirectUrl:
+          example: /home/
+          title: redirect url
+          type: string
         token_type:
           example: brearer
           title: token type
