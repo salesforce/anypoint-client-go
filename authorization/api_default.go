@@ -26,29 +26,29 @@ var (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type DefaultApiApiOauth2TokenPostRequest struct {
+type DefaultApiApiApiV2Oauth2TokenPostRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	credentials *Credentials
 }
 
-func (r DefaultApiApiOauth2TokenPostRequest) Credentials(credentials Credentials) DefaultApiApiOauth2TokenPostRequest {
+func (r DefaultApiApiApiV2Oauth2TokenPostRequest) Credentials(credentials Credentials) DefaultApiApiApiV2Oauth2TokenPostRequest {
 	r.credentials = &credentials
 	return r
 }
 
-func (r DefaultApiApiOauth2TokenPostRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
-	return r.ApiService.Oauth2TokenPostExecute(r)
+func (r DefaultApiApiApiV2Oauth2TokenPostRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+	return r.ApiService.ApiV2Oauth2TokenPostExecute(r)
 }
 
 /*
- * Oauth2TokenPost Returns access token
+ * ApiV2Oauth2TokenPost Returns access token
  * Authenticates a connected app and returns access token
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return DefaultApiApiOauth2TokenPostRequest
+ * @return DefaultApiApiApiV2Oauth2TokenPostRequest
  */
-func (a *DefaultApiService) Oauth2TokenPost(ctx _context.Context) DefaultApiApiOauth2TokenPostRequest {
-	return DefaultApiApiOauth2TokenPostRequest{
+func (a *DefaultApiService) ApiV2Oauth2TokenPost(ctx _context.Context) DefaultApiApiApiV2Oauth2TokenPostRequest {
+	return DefaultApiApiApiV2Oauth2TokenPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -58,7 +58,7 @@ func (a *DefaultApiService) Oauth2TokenPost(ctx _context.Context) DefaultApiApiO
  * Execute executes the request
  * @return InlineResponse200
  */
-func (a *DefaultApiService) Oauth2TokenPostExecute(r DefaultApiApiOauth2TokenPostRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *DefaultApiService) ApiV2Oauth2TokenPostExecute(r DefaultApiApiApiV2Oauth2TokenPostRequest) (InlineResponse200, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -68,12 +68,12 @@ func (a *DefaultApiService) Oauth2TokenPostExecute(r DefaultApiApiOauth2TokenPos
 		localVarReturnValue  InlineResponse200
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Oauth2TokenPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV2Oauth2TokenPost")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/oauth2/token"
+	localVarPath := localBasePath + "/api/v2/oauth2/token"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -101,6 +101,118 @@ func (a *DefaultApiService) Oauth2TokenPostExecute(r DefaultApiApiOauth2TokenPos
 	}
 	// body params
 	localVarPostBody = r.credentials
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiApiLoginPostRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	userPwdCredentials *UserPwdCredentials
+}
+
+func (r DefaultApiApiLoginPostRequest) UserPwdCredentials(userPwdCredentials UserPwdCredentials) DefaultApiApiLoginPostRequest {
+	r.userPwdCredentials = &userPwdCredentials
+	return r
+}
+
+func (r DefaultApiApiLoginPostRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+	return r.ApiService.LoginPostExecute(r)
+}
+
+/*
+ * LoginPost Returns access token
+ * Authenticates a user and returns access token
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return DefaultApiApiLoginPostRequest
+ */
+func (a *DefaultApiService) LoginPost(ctx _context.Context) DefaultApiApiLoginPostRequest {
+	return DefaultApiApiLoginPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return InlineResponse2001
+ */
+func (a *DefaultApiService) LoginPostExecute(r DefaultApiApiLoginPostRequest) (InlineResponse2001, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse2001
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.LoginPost")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/login"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.userPwdCredentials == nil {
+		return localVarReturnValue, nil, reportError("userPwdCredentials is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.userPwdCredentials
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -105,11 +105,11 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://anypoint.mulesoft.com/accounts/api/v2",
+				URL: "https://anypoint.mulesoft.com/accounts",
 				Description: "Anypoint Cloudhub",
 			},
 			{
-				URL: "https://eu1.anypoint.mulesoft.com/accounts/api/v2",
+				URL: "https://eu1.anypoint.mulesoft.com/accounts",
 				Description: "Anypoint Cloudhub EU",
 			},
 		},

@@ -74,17 +74,20 @@ ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://anypoint.mulesoft.com/accounts/api/v2*
+All URIs are relative to *https://anypoint.mulesoft.com/accounts*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**Oauth2TokenPost**](docs/DefaultApi.md#oauth2tokenpost) | **Post** /oauth2/token | Returns access token
+*DefaultApi* | [**ApiV2Oauth2TokenPost**](docs/DefaultApi.md#apiv2oauth2tokenpost) | **Post** /api/v2/oauth2/token | Returns access token
+*DefaultApi* | [**LoginPost**](docs/DefaultApi.md#loginpost) | **Post** /login | Returns access token
 
 
 ## Documentation For Models
 
  - [Credentials](docs/Credentials.md)
  - [InlineResponse200](docs/InlineResponse200.md)
+ - [InlineResponse2001](docs/InlineResponse2001.md)
+ - [UserPwdCredentials](docs/UserPwdCredentials.md)
 
 
 ## Documentation For Authorization

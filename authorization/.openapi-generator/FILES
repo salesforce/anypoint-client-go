@@ -8,10 +8,14 @@ configuration.go
 docs/Credentials.md
 docs/DefaultApi.md
 docs/InlineResponse200.md
+docs/InlineResponse2001.md
+docs/UserPwdCredentials.md
 git_push.sh
 go.mod
 go.sum
 model_credentials.go
 model_inline_response_200.go
+model_inline_response_200_1.go
+model_user_pwd_credentials.go
 response.go
 utils.go
