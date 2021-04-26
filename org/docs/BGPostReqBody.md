@@ -1,0 +1,114 @@
+# BGPostReqBody
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Entitlements** | [**Entitlements**](Entitlements.md) |  | 
+**Name** | [**Name**](Name.md) |  | 
+**OwnerId** | [**OwnerId**](OwnerId.md) |  | 
+**ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
+
+## Methods
+
+### NewBGPostReqBody
+
+`func NewBGPostReqBody(entitlements Entitlements, name Name, ownerId OwnerId, parentOrganizationId string, ) *BGPostReqBody`
+
+NewBGPostReqBody instantiates a new BGPostReqBody object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewBGPostReqBodyWithDefaults
+
+`func NewBGPostReqBodyWithDefaults() *BGPostReqBody`
+
+NewBGPostReqBodyWithDefaults instantiates a new BGPostReqBody object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetEntitlements
+
+`func (o *BGPostReqBody) GetEntitlements() Entitlements`
+
+GetEntitlements returns the Entitlements field if non-nil, zero value otherwise.
+
+### GetEntitlementsOk
+
+`func (o *BGPostReqBody) GetEntitlementsOk() (*Entitlements, bool)`
+
+GetEntitlementsOk returns a tuple with the Entitlements field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntitlements
+
+`func (o *BGPostReqBody) SetEntitlements(v Entitlements)`
+
+SetEntitlements sets Entitlements field to given value.
+
+
+### GetName
+
+`func (o *BGPostReqBody) GetName() Name`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *BGPostReqBody) GetNameOk() (*Name, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *BGPostReqBody) SetName(v Name)`
+
+SetName sets Name field to given value.
+
+
+### GetOwnerId
+
+`func (o *BGPostReqBody) GetOwnerId() OwnerId`
+
+GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
+
+### GetOwnerIdOk
+
+`func (o *BGPostReqBody) GetOwnerIdOk() (*OwnerId, bool)`
+
+GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwnerId
+
+`func (o *BGPostReqBody) SetOwnerId(v OwnerId)`
+
+SetOwnerId sets OwnerId field to given value.
+
+
+### GetParentOrganizationId
+
+`func (o *BGPostReqBody) GetParentOrganizationId() string`
+
+GetParentOrganizationId returns the ParentOrganizationId field if non-nil, zero value otherwise.
+
+### GetParentOrganizationIdOk
+
+`func (o *BGPostReqBody) GetParentOrganizationIdOk() (*string, bool)`
+
+GetParentOrganizationIdOk returns a tuple with the ParentOrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentOrganizationId
+
+`func (o *BGPostReqBody) SetParentOrganizationId(v string)`
+
+SetParentOrganizationId sets ParentOrganizationId field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
