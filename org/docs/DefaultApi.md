@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdGet
 
-> OneOfBGCoremasterBGDetail OrganizationsOrgIdGet(ctx, orgId).Execute()
+> MasterBGDetail OrganizationsOrgIdGet(ctx, orgId).Execute()
 
 Returns the business Group instance with the given id.
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdGet`: OneOfBGCoremasterBGDetail
+    // response from `OrganizationsOrgIdGet`: MasterBGDetail
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdGet`: %v\n", resp)
 }
 ```
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OneOfBGCoremasterBGDetail**](oneOf&lt;BGCore,masterBGDetail&gt;.md)
+[**MasterBGDetail**](MasterBGDetail.md)
 
 ### Authorization
 

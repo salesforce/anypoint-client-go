@@ -140,7 +140,7 @@ type DefaultApiApiOrganizationsOrgIdGetRequest struct {
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdGetRequest) Execute() (OneOfBGCoremasterBGDetail, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdGetRequest) Execute() (MasterBGDetail, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdGetExecute(r)
 }
 
@@ -161,16 +161,16 @@ func (a *DefaultApiService) OrganizationsOrgIdGet(ctx _context.Context, orgId st
 
 /*
  * Execute executes the request
- * @return OneOfBGCoremasterBGDetail
+ * @return MasterBGDetail
  */
-func (a *DefaultApiService) OrganizationsOrgIdGetExecute(r DefaultApiApiOrganizationsOrgIdGetRequest) (OneOfBGCoremasterBGDetail, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdGetExecute(r DefaultApiApiOrganizationsOrgIdGetRequest) (MasterBGDetail, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OneOfBGCoremasterBGDetail
+		localVarReturnValue  MasterBGDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdGet")
