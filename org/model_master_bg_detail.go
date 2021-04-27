@@ -52,6 +52,7 @@ type MasterBGDetail struct {
 	TenantOrganizationIds []string `json:"tenantOrganizationIds"`
 	// An explanation about the purpose of this instance.
 	UpdatedAt string `json:"updatedAt"`
+	Owner Owner `json:"owner"`
 	// An explanation about the purpose of this instance.
 	SessionTimeout int32 `json:"sessionTimeout"`
 	// An explanation about the purpose of this instance.
@@ -62,7 +63,7 @@ type MasterBGDetail struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, sessionTimeout int32, subscription map[string]map[string]interface{}) *MasterBGDetail {
+func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription map[string]map[string]interface{}) *MasterBGDetail {
 	this := MasterBGDetail{}
 	this.ClientId = clientId
 	this.CreatedAt = createdAt
@@ -82,6 +83,7 @@ func NewMasterBGDetail(clientId string, createdAt string, domain string, entitle
 	this.SubOrganizationIds = subOrganizationIds
 	this.TenantOrganizationIds = tenantOrganizationIds
 	this.UpdatedAt = updatedAt
+	this.Owner = owner
 	this.SessionTimeout = sessionTimeout
 	this.Subscription = subscription
 	return &this
@@ -553,6 +555,30 @@ func (o *MasterBGDetail) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
 
+// GetOwner returns the Owner field value
+func (o *MasterBGDetail) GetOwner() Owner {
+	if o == nil {
+		var ret Owner
+		return ret
+	}
+
+	return o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value
+// and a boolean to check if the value has been set.
+func (o *MasterBGDetail) GetOwnerOk() (*Owner, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Owner, true
+}
+
+// SetOwner sets field value
+func (o *MasterBGDetail) SetOwner(v Owner) {
+	o.Owner = v
+}
+
 // GetSessionTimeout returns the SessionTimeout field value
 func (o *MasterBGDetail) GetSessionTimeout() int32 {
 	if o == nil {
@@ -656,6 +682,9 @@ func (o MasterBGDetail) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["owner"] = o.Owner
 	}
 	if true {
 		toSerialize["sessionTimeout"] = o.SessionTimeout

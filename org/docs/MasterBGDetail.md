@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **SubOrganizationIds** | [**[]AnyOfstring**](AnyOfstring.md) | An explanation about the purpose of this instance. | [default to []]
 **TenantOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
 **UpdatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**Owner** | [**Owner**](Owner.md) |  | 
 **SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
 **Subscription** | **map[string]map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
 
@@ -29,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewMasterBGDetail
 
-`func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, sessionTimeout int32, subscription map[string]map[string]interface{}, ) *MasterBGDetail`
+`func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription map[string]map[string]interface{}, ) *MasterBGDetail`
 
 NewMasterBGDetail instantiates a new MasterBGDetail object
 This constructor will assign default values to properties that have it defined,
@@ -402,6 +403,26 @@ and a boolean to check if the value has been set.
 `func (o *MasterBGDetail) SetUpdatedAt(v string)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
+
+
+### GetOwner
+
+`func (o *MasterBGDetail) GetOwner() Owner`
+
+GetOwner returns the Owner field if non-nil, zero value otherwise.
+
+### GetOwnerOk
+
+`func (o *MasterBGDetail) GetOwnerOk() (*Owner, bool)`
+
+GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwner
+
+`func (o *MasterBGDetail) SetOwner(v Owner)`
+
+SetOwner sets Owner field to given value.
 
 
 ### GetSessionTimeout

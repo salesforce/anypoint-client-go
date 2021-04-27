@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdGet
 
-> OneOfBGDetailmasterBGDetail OrganizationsOrgIdGet(ctx, orgId).Execute()
+> OneOfBGCoremasterBGDetail OrganizationsOrgIdGet(ctx, orgId).Execute()
 
 Returns the business Group instance with the given id.
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdGet`: OneOfBGDetailmasterBGDetail
+    // response from `OrganizationsOrgIdGet`: OneOfBGCoremasterBGDetail
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdGet`: %v\n", resp)
 }
 ```
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OneOfBGDetailmasterBGDetail**](oneOf&lt;BGDetail,masterBGDetail&gt;.md)
+[**OneOfBGCoremasterBGDetail**](oneOf&lt;BGCore,masterBGDetail&gt;.md)
 
 ### Authorization
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdPut
 
-> BGDetail OrganizationsOrgIdPut(ctx, orgId).BGPutReqBody(bGPutReqBody).Execute()
+> BGCore OrganizationsOrgIdPut(ctx, orgId).BGPutReqBody(bGPutReqBody).Execute()
 
 Put a Business Group by its id.
 
@@ -182,7 +182,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdPut`: BGDetail
+    // response from `OrganizationsOrgIdPut`: BGCore
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdPut`: %v\n", resp)
 }
 ```
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BGDetail**](BGDetail.md)
+[**BGCore**](BGCore.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsPost
 
-> BGDetail OrganizationsPost(ctx).BGPostReqBody(bGPostReqBody).Execute()
+> BGCore OrganizationsPost(ctx).BGPostReqBody(bGPostReqBody).Execute()
 
 Creates a new Business Group within an organization.
 
@@ -253,7 +253,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsPost`: BGDetail
+    // response from `OrganizationsPost`: BGCore
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsPost`: %v\n", resp)
 }
 ```
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BGDetail**](BGDetail.md)
+[**BGCore**](BGCore.md)
 
 ### Authorization
 

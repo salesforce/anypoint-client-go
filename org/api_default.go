@@ -140,7 +140,7 @@ type DefaultApiApiOrganizationsOrgIdGetRequest struct {
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdGetRequest) Execute() (OneOfBGDetailmasterBGDetail, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdGetRequest) Execute() (OneOfBGCoremasterBGDetail, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdGetExecute(r)
 }
 
@@ -161,16 +161,16 @@ func (a *DefaultApiService) OrganizationsOrgIdGet(ctx _context.Context, orgId st
 
 /*
  * Execute executes the request
- * @return OneOfBGDetailmasterBGDetail
+ * @return OneOfBGCoremasterBGDetail
  */
-func (a *DefaultApiService) OrganizationsOrgIdGetExecute(r DefaultApiApiOrganizationsOrgIdGetRequest) (OneOfBGDetailmasterBGDetail, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdGetExecute(r DefaultApiApiOrganizationsOrgIdGetRequest) (OneOfBGCoremasterBGDetail, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OneOfBGDetailmasterBGDetail
+		localVarReturnValue  OneOfBGCoremasterBGDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdGet")
@@ -251,7 +251,7 @@ func (r DefaultApiApiOrganizationsOrgIdPutRequest) BGPutReqBody(bGPutReqBody BGP
 	return r
 }
 
-func (r DefaultApiApiOrganizationsOrgIdPutRequest) Execute() (BGDetail, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdPutRequest) Execute() (BGCore, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdPutExecute(r)
 }
 
@@ -272,16 +272,16 @@ func (a *DefaultApiService) OrganizationsOrgIdPut(ctx _context.Context, orgId st
 
 /*
  * Execute executes the request
- * @return BGDetail
+ * @return BGCore
  */
-func (a *DefaultApiService) OrganizationsOrgIdPutExecute(r DefaultApiApiOrganizationsOrgIdPutRequest) (BGDetail, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdPutExecute(r DefaultApiApiOrganizationsOrgIdPutRequest) (BGCore, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  BGDetail
+		localVarReturnValue  BGCore
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdPut")
@@ -366,7 +366,7 @@ func (r DefaultApiApiOrganizationsPostRequest) BGPostReqBody(bGPostReqBody BGPos
 	return r
 }
 
-func (r DefaultApiApiOrganizationsPostRequest) Execute() (BGDetail, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsPostRequest) Execute() (BGCore, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsPostExecute(r)
 }
 
@@ -385,16 +385,16 @@ func (a *DefaultApiService) OrganizationsPost(ctx _context.Context) DefaultApiAp
 
 /*
  * Execute executes the request
- * @return BGDetail
+ * @return BGCore
  */
-func (a *DefaultApiService) OrganizationsPostExecute(r DefaultApiApiOrganizationsPostRequest) (BGDetail, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsPostExecute(r DefaultApiApiOrganizationsPostRequest) (BGCore, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  BGDetail
+		localVarReturnValue  BGCore
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsPost")
