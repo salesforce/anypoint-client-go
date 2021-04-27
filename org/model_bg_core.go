@@ -22,10 +22,9 @@ type BGCore struct {
 	CreatedAt string `json:"createdAt"`
 	// An explanation about the purpose of this instance.
 	Domain string `json:"domain"`
+	Entitlements Entitlements `json:"entitlements"`
 	// An explanation about the purpose of this instance.
-	Entitlements map[string]map[string]interface{} `json:"entitlements"`
-	// An explanation about the purpose of this instance.
-	Environments []AnyOfmap `json:"environments"`
+	Environments []Environment `json:"environments"`
 	// An explanation about the purpose of this instance.
 	Id string `json:"id"`
 	// An explanation about the purpose of this instance.
@@ -45,9 +44,9 @@ type BGCore struct {
 	// An explanation about the purpose of this instance.
 	ParentOrganizationIds []string `json:"parentOrganizationIds"`
 	// An explanation about the purpose of this instance.
-	Properties map[string]map[string]interface{} `json:"properties"`
+	Properties map[string]interface{} `json:"properties"`
 	// An explanation about the purpose of this instance.
-	SubOrganizationIds []AnyOfstring `json:"subOrganizationIds"`
+	SubOrganizationIds []string `json:"subOrganizationIds"`
 	// An explanation about the purpose of this instance.
 	TenantOrganizationIds []string `json:"tenantOrganizationIds"`
 	// An explanation about the purpose of this instance.
@@ -59,7 +58,7 @@ type BGCore struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGCore(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, owner Owner) *BGCore {
+func NewBGCore(clientId string, createdAt string, domain string, entitlements Entitlements, environments []Environment, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]interface{}, subOrganizationIds []string, tenantOrganizationIds []string, updatedAt string, owner Owner) *BGCore {
 	this := BGCore{}
 	this.ClientId = clientId
 	this.CreatedAt = createdAt
@@ -188,9 +187,9 @@ func (o *BGCore) SetDomain(v string) {
 }
 
 // GetEntitlements returns the Entitlements field value
-func (o *BGCore) GetEntitlements() map[string]map[string]interface{} {
+func (o *BGCore) GetEntitlements() Entitlements {
 	if o == nil {
-		var ret map[string]map[string]interface{}
+		var ret Entitlements
 		return ret
 	}
 
@@ -199,7 +198,7 @@ func (o *BGCore) GetEntitlements() map[string]map[string]interface{} {
 
 // GetEntitlementsOk returns a tuple with the Entitlements field value
 // and a boolean to check if the value has been set.
-func (o *BGCore) GetEntitlementsOk() (*map[string]map[string]interface{}, bool) {
+func (o *BGCore) GetEntitlementsOk() (*Entitlements, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -207,14 +206,14 @@ func (o *BGCore) GetEntitlementsOk() (*map[string]map[string]interface{}, bool) 
 }
 
 // SetEntitlements sets field value
-func (o *BGCore) SetEntitlements(v map[string]map[string]interface{}) {
+func (o *BGCore) SetEntitlements(v Entitlements) {
 	o.Entitlements = v
 }
 
 // GetEnvironments returns the Environments field value
-func (o *BGCore) GetEnvironments() []AnyOfmap {
+func (o *BGCore) GetEnvironments() []Environment {
 	if o == nil {
-		var ret []AnyOfmap
+		var ret []Environment
 		return ret
 	}
 
@@ -223,7 +222,7 @@ func (o *BGCore) GetEnvironments() []AnyOfmap {
 
 // GetEnvironmentsOk returns a tuple with the Environments field value
 // and a boolean to check if the value has been set.
-func (o *BGCore) GetEnvironmentsOk() (*[]AnyOfmap, bool) {
+func (o *BGCore) GetEnvironmentsOk() (*[]Environment, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -231,7 +230,7 @@ func (o *BGCore) GetEnvironmentsOk() (*[]AnyOfmap, bool) {
 }
 
 // SetEnvironments sets field value
-func (o *BGCore) SetEnvironments(v []AnyOfmap) {
+func (o *BGCore) SetEnvironments(v []Environment) {
 	o.Environments = v
 }
 
@@ -452,9 +451,9 @@ func (o *BGCore) SetParentOrganizationIds(v []string) {
 }
 
 // GetProperties returns the Properties field value
-func (o *BGCore) GetProperties() map[string]map[string]interface{} {
+func (o *BGCore) GetProperties() map[string]interface{} {
 	if o == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -463,7 +462,7 @@ func (o *BGCore) GetProperties() map[string]map[string]interface{} {
 
 // GetPropertiesOk returns a tuple with the Properties field value
 // and a boolean to check if the value has been set.
-func (o *BGCore) GetPropertiesOk() (*map[string]map[string]interface{}, bool) {
+func (o *BGCore) GetPropertiesOk() (*map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -471,14 +470,14 @@ func (o *BGCore) GetPropertiesOk() (*map[string]map[string]interface{}, bool) {
 }
 
 // SetProperties sets field value
-func (o *BGCore) SetProperties(v map[string]map[string]interface{}) {
+func (o *BGCore) SetProperties(v map[string]interface{}) {
 	o.Properties = v
 }
 
 // GetSubOrganizationIds returns the SubOrganizationIds field value
-func (o *BGCore) GetSubOrganizationIds() []AnyOfstring {
+func (o *BGCore) GetSubOrganizationIds() []string {
 	if o == nil {
-		var ret []AnyOfstring
+		var ret []string
 		return ret
 	}
 
@@ -487,7 +486,7 @@ func (o *BGCore) GetSubOrganizationIds() []AnyOfstring {
 
 // GetSubOrganizationIdsOk returns a tuple with the SubOrganizationIds field value
 // and a boolean to check if the value has been set.
-func (o *BGCore) GetSubOrganizationIdsOk() (*[]AnyOfstring, bool) {
+func (o *BGCore) GetSubOrganizationIdsOk() (*[]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -495,7 +494,7 @@ func (o *BGCore) GetSubOrganizationIdsOk() (*[]AnyOfstring, bool) {
 }
 
 // SetSubOrganizationIds sets field value
-func (o *BGCore) SetSubOrganizationIds(v []AnyOfstring) {
+func (o *BGCore) SetSubOrganizationIds(v []string) {
 	o.SubOrganizationIds = v
 }
 

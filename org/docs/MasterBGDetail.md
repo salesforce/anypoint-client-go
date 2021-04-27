@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **ClientId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **CreatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **Domain** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Entitlements** | **map[string]map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
-**Environments** | [**[]AnyOfmap**](AnyOfmap.md) | An explanation about the purpose of this instance. | [default to []]
+**Entitlements** | [**Entitlements**](Entitlements.md) |  | 
+**Environments** | [**[]Environment**](Environment.md) | An explanation about the purpose of this instance. | [default to []]
 **Id** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **IdproviderId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **IsAutomaticAdminPromotionExempt** | **bool** | An explanation about the purpose of this instance. | [default to false]
@@ -18,19 +18,19 @@ Name | Type | Description | Notes
 **Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **ParentOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
-**Properties** | **map[string]map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
-**SubOrganizationIds** | [**[]AnyOfstring**](AnyOfstring.md) | An explanation about the purpose of this instance. | [default to []]
+**Properties** | **map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
+**SubOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
 **TenantOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
 **UpdatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **Owner** | [**Owner**](Owner.md) |  | 
 **SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Subscription** | **map[string]map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
+**Subscription** | [**Subscription**](Subscription.md) |  | 
 
 ## Methods
 
 ### NewMasterBGDetail
 
-`func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription map[string]map[string]interface{}, ) *MasterBGDetail`
+`func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements Entitlements, environments []Environment, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]interface{}, subOrganizationIds []string, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription Subscription, ) *MasterBGDetail`
 
 NewMasterBGDetail instantiates a new MasterBGDetail object
 This constructor will assign default values to properties that have it defined,
@@ -107,40 +107,40 @@ SetDomain sets Domain field to given value.
 
 ### GetEntitlements
 
-`func (o *MasterBGDetail) GetEntitlements() map[string]map[string]interface{}`
+`func (o *MasterBGDetail) GetEntitlements() Entitlements`
 
 GetEntitlements returns the Entitlements field if non-nil, zero value otherwise.
 
 ### GetEntitlementsOk
 
-`func (o *MasterBGDetail) GetEntitlementsOk() (*map[string]map[string]interface{}, bool)`
+`func (o *MasterBGDetail) GetEntitlementsOk() (*Entitlements, bool)`
 
 GetEntitlementsOk returns a tuple with the Entitlements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEntitlements
 
-`func (o *MasterBGDetail) SetEntitlements(v map[string]map[string]interface{})`
+`func (o *MasterBGDetail) SetEntitlements(v Entitlements)`
 
 SetEntitlements sets Entitlements field to given value.
 
 
 ### GetEnvironments
 
-`func (o *MasterBGDetail) GetEnvironments() []AnyOfmap`
+`func (o *MasterBGDetail) GetEnvironments() []Environment`
 
 GetEnvironments returns the Environments field if non-nil, zero value otherwise.
 
 ### GetEnvironmentsOk
 
-`func (o *MasterBGDetail) GetEnvironmentsOk() (*[]AnyOfmap, bool)`
+`func (o *MasterBGDetail) GetEnvironmentsOk() (*[]Environment, bool)`
 
 GetEnvironmentsOk returns a tuple with the Environments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnvironments
 
-`func (o *MasterBGDetail) SetEnvironments(v []AnyOfmap)`
+`func (o *MasterBGDetail) SetEnvironments(v []Environment)`
 
 SetEnvironments sets Environments field to given value.
 
@@ -327,40 +327,40 @@ SetParentOrganizationIds sets ParentOrganizationIds field to given value.
 
 ### GetProperties
 
-`func (o *MasterBGDetail) GetProperties() map[string]map[string]interface{}`
+`func (o *MasterBGDetail) GetProperties() map[string]interface{}`
 
 GetProperties returns the Properties field if non-nil, zero value otherwise.
 
 ### GetPropertiesOk
 
-`func (o *MasterBGDetail) GetPropertiesOk() (*map[string]map[string]interface{}, bool)`
+`func (o *MasterBGDetail) GetPropertiesOk() (*map[string]interface{}, bool)`
 
 GetPropertiesOk returns a tuple with the Properties field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProperties
 
-`func (o *MasterBGDetail) SetProperties(v map[string]map[string]interface{})`
+`func (o *MasterBGDetail) SetProperties(v map[string]interface{})`
 
 SetProperties sets Properties field to given value.
 
 
 ### GetSubOrganizationIds
 
-`func (o *MasterBGDetail) GetSubOrganizationIds() []AnyOfstring`
+`func (o *MasterBGDetail) GetSubOrganizationIds() []string`
 
 GetSubOrganizationIds returns the SubOrganizationIds field if non-nil, zero value otherwise.
 
 ### GetSubOrganizationIdsOk
 
-`func (o *MasterBGDetail) GetSubOrganizationIdsOk() (*[]AnyOfstring, bool)`
+`func (o *MasterBGDetail) GetSubOrganizationIdsOk() (*[]string, bool)`
 
 GetSubOrganizationIdsOk returns a tuple with the SubOrganizationIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubOrganizationIds
 
-`func (o *MasterBGDetail) SetSubOrganizationIds(v []AnyOfstring)`
+`func (o *MasterBGDetail) SetSubOrganizationIds(v []string)`
 
 SetSubOrganizationIds sets SubOrganizationIds field to given value.
 
@@ -447,20 +447,20 @@ SetSessionTimeout sets SessionTimeout field to given value.
 
 ### GetSubscription
 
-`func (o *MasterBGDetail) GetSubscription() map[string]map[string]interface{}`
+`func (o *MasterBGDetail) GetSubscription() Subscription`
 
 GetSubscription returns the Subscription field if non-nil, zero value otherwise.
 
 ### GetSubscriptionOk
 
-`func (o *MasterBGDetail) GetSubscriptionOk() (*map[string]map[string]interface{}, bool)`
+`func (o *MasterBGDetail) GetSubscriptionOk() (*Subscription, bool)`
 
 GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscription
 
-`func (o *MasterBGDetail) SetSubscription(v map[string]map[string]interface{})`
+`func (o *MasterBGDetail) SetSubscription(v Subscription)`
 
 SetSubscription sets Subscription field to given value.
 

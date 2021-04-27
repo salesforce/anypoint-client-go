@@ -1,0 +1,72 @@
+# MqMessages
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**AddOn** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Base** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+
+## Methods
+
+### NewMqMessages
+
+`func NewMqMessages(addOn int32, base int32, ) *MqMessages`
+
+NewMqMessages instantiates a new MqMessages object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMqMessagesWithDefaults
+
+`func NewMqMessagesWithDefaults() *MqMessages`
+
+NewMqMessagesWithDefaults instantiates a new MqMessages object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetAddOn
+
+`func (o *MqMessages) GetAddOn() int32`
+
+GetAddOn returns the AddOn field if non-nil, zero value otherwise.
+
+### GetAddOnOk
+
+`func (o *MqMessages) GetAddOnOk() (*int32, bool)`
+
+GetAddOnOk returns a tuple with the AddOn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddOn
+
+`func (o *MqMessages) SetAddOn(v int32)`
+
+SetAddOn sets AddOn field to given value.
+
+
+### GetBase
+
+`func (o *MqMessages) GetBase() int32`
+
+GetBase returns the Base field if non-nil, zero value otherwise.
+
+### GetBaseOk
+
+`func (o *MqMessages) GetBaseOk() (*int32, bool)`
+
+GetBaseOk returns a tuple with the Base field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBase
+
+`func (o *MqMessages) SetBase(v int32)`
+
+SetBase sets Base field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -22,10 +22,9 @@ type MasterBGDetail struct {
 	CreatedAt string `json:"createdAt"`
 	// An explanation about the purpose of this instance.
 	Domain string `json:"domain"`
+	Entitlements Entitlements `json:"entitlements"`
 	// An explanation about the purpose of this instance.
-	Entitlements map[string]map[string]interface{} `json:"entitlements"`
-	// An explanation about the purpose of this instance.
-	Environments []AnyOfmap `json:"environments"`
+	Environments []Environment `json:"environments"`
 	// An explanation about the purpose of this instance.
 	Id string `json:"id"`
 	// An explanation about the purpose of this instance.
@@ -45,9 +44,9 @@ type MasterBGDetail struct {
 	// An explanation about the purpose of this instance.
 	ParentOrganizationIds []string `json:"parentOrganizationIds"`
 	// An explanation about the purpose of this instance.
-	Properties map[string]map[string]interface{} `json:"properties"`
+	Properties map[string]interface{} `json:"properties"`
 	// An explanation about the purpose of this instance.
-	SubOrganizationIds []AnyOfstring `json:"subOrganizationIds"`
+	SubOrganizationIds []string `json:"subOrganizationIds"`
 	// An explanation about the purpose of this instance.
 	TenantOrganizationIds []string `json:"tenantOrganizationIds"`
 	// An explanation about the purpose of this instance.
@@ -55,15 +54,14 @@ type MasterBGDetail struct {
 	Owner Owner `json:"owner"`
 	// An explanation about the purpose of this instance.
 	SessionTimeout int32 `json:"sessionTimeout"`
-	// An explanation about the purpose of this instance.
-	Subscription map[string]map[string]interface{} `json:"subscription"`
+	Subscription Subscription `json:"subscription"`
 }
 
 // NewMasterBGDetail instantiates a new MasterBGDetail object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription map[string]map[string]interface{}) *MasterBGDetail {
+func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements Entitlements, environments []Environment, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]interface{}, subOrganizationIds []string, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription Subscription) *MasterBGDetail {
 	this := MasterBGDetail{}
 	this.ClientId = clientId
 	this.CreatedAt = createdAt
@@ -196,9 +194,9 @@ func (o *MasterBGDetail) SetDomain(v string) {
 }
 
 // GetEntitlements returns the Entitlements field value
-func (o *MasterBGDetail) GetEntitlements() map[string]map[string]interface{} {
+func (o *MasterBGDetail) GetEntitlements() Entitlements {
 	if o == nil {
-		var ret map[string]map[string]interface{}
+		var ret Entitlements
 		return ret
 	}
 
@@ -207,7 +205,7 @@ func (o *MasterBGDetail) GetEntitlements() map[string]map[string]interface{} {
 
 // GetEntitlementsOk returns a tuple with the Entitlements field value
 // and a boolean to check if the value has been set.
-func (o *MasterBGDetail) GetEntitlementsOk() (*map[string]map[string]interface{}, bool) {
+func (o *MasterBGDetail) GetEntitlementsOk() (*Entitlements, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -215,14 +213,14 @@ func (o *MasterBGDetail) GetEntitlementsOk() (*map[string]map[string]interface{}
 }
 
 // SetEntitlements sets field value
-func (o *MasterBGDetail) SetEntitlements(v map[string]map[string]interface{}) {
+func (o *MasterBGDetail) SetEntitlements(v Entitlements) {
 	o.Entitlements = v
 }
 
 // GetEnvironments returns the Environments field value
-func (o *MasterBGDetail) GetEnvironments() []AnyOfmap {
+func (o *MasterBGDetail) GetEnvironments() []Environment {
 	if o == nil {
-		var ret []AnyOfmap
+		var ret []Environment
 		return ret
 	}
 
@@ -231,7 +229,7 @@ func (o *MasterBGDetail) GetEnvironments() []AnyOfmap {
 
 // GetEnvironmentsOk returns a tuple with the Environments field value
 // and a boolean to check if the value has been set.
-func (o *MasterBGDetail) GetEnvironmentsOk() (*[]AnyOfmap, bool) {
+func (o *MasterBGDetail) GetEnvironmentsOk() (*[]Environment, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -239,7 +237,7 @@ func (o *MasterBGDetail) GetEnvironmentsOk() (*[]AnyOfmap, bool) {
 }
 
 // SetEnvironments sets field value
-func (o *MasterBGDetail) SetEnvironments(v []AnyOfmap) {
+func (o *MasterBGDetail) SetEnvironments(v []Environment) {
 	o.Environments = v
 }
 
@@ -460,9 +458,9 @@ func (o *MasterBGDetail) SetParentOrganizationIds(v []string) {
 }
 
 // GetProperties returns the Properties field value
-func (o *MasterBGDetail) GetProperties() map[string]map[string]interface{} {
+func (o *MasterBGDetail) GetProperties() map[string]interface{} {
 	if o == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -471,7 +469,7 @@ func (o *MasterBGDetail) GetProperties() map[string]map[string]interface{} {
 
 // GetPropertiesOk returns a tuple with the Properties field value
 // and a boolean to check if the value has been set.
-func (o *MasterBGDetail) GetPropertiesOk() (*map[string]map[string]interface{}, bool) {
+func (o *MasterBGDetail) GetPropertiesOk() (*map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -479,14 +477,14 @@ func (o *MasterBGDetail) GetPropertiesOk() (*map[string]map[string]interface{}, 
 }
 
 // SetProperties sets field value
-func (o *MasterBGDetail) SetProperties(v map[string]map[string]interface{}) {
+func (o *MasterBGDetail) SetProperties(v map[string]interface{}) {
 	o.Properties = v
 }
 
 // GetSubOrganizationIds returns the SubOrganizationIds field value
-func (o *MasterBGDetail) GetSubOrganizationIds() []AnyOfstring {
+func (o *MasterBGDetail) GetSubOrganizationIds() []string {
 	if o == nil {
-		var ret []AnyOfstring
+		var ret []string
 		return ret
 	}
 
@@ -495,7 +493,7 @@ func (o *MasterBGDetail) GetSubOrganizationIds() []AnyOfstring {
 
 // GetSubOrganizationIdsOk returns a tuple with the SubOrganizationIds field value
 // and a boolean to check if the value has been set.
-func (o *MasterBGDetail) GetSubOrganizationIdsOk() (*[]AnyOfstring, bool) {
+func (o *MasterBGDetail) GetSubOrganizationIdsOk() (*[]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -503,7 +501,7 @@ func (o *MasterBGDetail) GetSubOrganizationIdsOk() (*[]AnyOfstring, bool) {
 }
 
 // SetSubOrganizationIds sets field value
-func (o *MasterBGDetail) SetSubOrganizationIds(v []AnyOfstring) {
+func (o *MasterBGDetail) SetSubOrganizationIds(v []string) {
 	o.SubOrganizationIds = v
 }
 
@@ -604,9 +602,9 @@ func (o *MasterBGDetail) SetSessionTimeout(v int32) {
 }
 
 // GetSubscription returns the Subscription field value
-func (o *MasterBGDetail) GetSubscription() map[string]map[string]interface{} {
+func (o *MasterBGDetail) GetSubscription() Subscription {
 	if o == nil {
-		var ret map[string]map[string]interface{}
+		var ret Subscription
 		return ret
 	}
 
@@ -615,7 +613,7 @@ func (o *MasterBGDetail) GetSubscription() map[string]map[string]interface{} {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value
 // and a boolean to check if the value has been set.
-func (o *MasterBGDetail) GetSubscriptionOk() (*map[string]map[string]interface{}, bool) {
+func (o *MasterBGDetail) GetSubscriptionOk() (*Subscription, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -623,7 +621,7 @@ func (o *MasterBGDetail) GetSubscriptionOk() (*map[string]map[string]interface{}
 }
 
 // SetSubscription sets field value
-func (o *MasterBGDetail) SetSubscription(v map[string]map[string]interface{}) {
+func (o *MasterBGDetail) SetSubscription(v Subscription) {
 	o.Subscription = v
 }
 

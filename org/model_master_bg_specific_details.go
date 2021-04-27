@@ -18,15 +18,14 @@ import (
 type MasterBGSpecificDetails struct {
 	// An explanation about the purpose of this instance.
 	SessionTimeout int32 `json:"sessionTimeout"`
-	// An explanation about the purpose of this instance.
-	Subscription map[string]map[string]interface{} `json:"subscription"`
+	Subscription Subscription `json:"subscription"`
 }
 
 // NewMasterBGSpecificDetails instantiates a new MasterBGSpecificDetails object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMasterBGSpecificDetails(sessionTimeout int32, subscription map[string]map[string]interface{}) *MasterBGSpecificDetails {
+func NewMasterBGSpecificDetails(sessionTimeout int32, subscription Subscription) *MasterBGSpecificDetails {
 	this := MasterBGSpecificDetails{}
 	this.SessionTimeout = sessionTimeout
 	this.Subscription = subscription
@@ -68,9 +67,9 @@ func (o *MasterBGSpecificDetails) SetSessionTimeout(v int32) {
 }
 
 // GetSubscription returns the Subscription field value
-func (o *MasterBGSpecificDetails) GetSubscription() map[string]map[string]interface{} {
+func (o *MasterBGSpecificDetails) GetSubscription() Subscription {
 	if o == nil {
-		var ret map[string]map[string]interface{}
+		var ret Subscription
 		return ret
 	}
 
@@ -79,7 +78,7 @@ func (o *MasterBGSpecificDetails) GetSubscription() map[string]map[string]interf
 
 // GetSubscriptionOk returns a tuple with the Subscription field value
 // and a boolean to check if the value has been set.
-func (o *MasterBGSpecificDetails) GetSubscriptionOk() (*map[string]map[string]interface{}, bool) {
+func (o *MasterBGSpecificDetails) GetSubscriptionOk() (*Subscription, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -87,7 +86,7 @@ func (o *MasterBGSpecificDetails) GetSubscriptionOk() (*map[string]map[string]in
 }
 
 // SetSubscription sets field value
-func (o *MasterBGSpecificDetails) SetSubscription(v map[string]map[string]interface{}) {
+func (o *MasterBGSpecificDetails) SetSubscription(v Subscription) {
 	o.Subscription = v
 }
 
