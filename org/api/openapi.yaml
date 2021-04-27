@@ -37,7 +37,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BGDetail'
+                $ref: '#/components/schemas/BGCore'
           description: Success response
       summary: Creates a new Business Group within an organization.
   /organizations/{orgId}:
@@ -82,7 +82,7 @@ paths:
             application/json:
               schema:
                 oneOf:
-                - $ref: '#/components/schemas/BGDetail'
+                - $ref: '#/components/schemas/BGCore'
                 - $ref: '#/components/schemas/masterBGDetail'
           description: Success response
       summary: Returns the business Group instance with the given id.
@@ -111,7 +111,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BGDetail'
+                $ref: '#/components/schemas/BGCore'
           description: Success response
       summary: Put a Business Group by its id.
 components:
@@ -131,14 +131,14 @@ components:
         application/json:
           schema:
             oneOf:
-            - $ref: '#/components/schemas/BGDetail'
+            - $ref: '#/components/schemas/BGCore'
             - $ref: '#/components/schemas/masterBGDetail'
       description: Success response
     SuccessPostBG:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BGDetail'
+            $ref: '#/components/schemas/BGCore'
       description: Success response
     SuccessDeleteBG:
       content:
@@ -151,7 +151,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BGDetail'
+            $ref: '#/components/schemas/BGCore'
       description: Success response
   schemas:
     BGPostReqBody:
@@ -185,6 +185,52 @@ components:
       - $ref: '#/components/schemas/BGPutSpecificProperties'
       title: BGPutReqBody
     BGCore:
+      example:
+        entitlements:
+          key: '{}'
+        isAutomaticAdminPromotionExempt: false
+        owner:
+          lastLogin: lastLogin
+          lastName: lastName
+          mfaVerifiersConfigured: mfaVerifiersConfigured
+          type: type
+          enabled: false
+          mfaVerificationExcluded: false
+          organizationId: organizationId
+          createdAt: createdAt
+          firstName: firstName
+          deleted: false
+          phoneNumber: phoneNumber
+          id: id
+          idprovider_id: idprovider_id
+          email: email
+          updatedAt: updatedAt
+          username: username
+        subOrganizationIds:
+        - ""
+        - ""
+        clientId: '["1ab4bb7db66448be902379d1fcfb1a43"]'
+        environments:
+        - ""
+        - ""
+        tenantOrganizationIds:
+        - tenantOrganizationIds
+        - tenantOrganizationIds
+        ownerId: ownerId
+        isFederated: false
+        createdAt: '["2021-03-05T14:06:52.976Z"]'
+        isMaster: false
+        domain: '["ms-04"]'
+        name: name
+        id: id
+        mfaRequired: mfaRequired
+        idprovider_id: idprovider_id
+        properties:
+          key: '{}'
+        parentOrganizationIds:
+        - parentOrganizationIds
+        - parentOrganizationIds
+        updatedAt: updatedAt
       properties:
         clientId:
           default: ""
@@ -1072,6 +1118,8 @@ components:
           description: An explanation about the purpose of this instance.
           title: updatedAt
           type: string
+        owner:
+          $ref: '#/components/schemas/owner'
       required:
       - clientId
       - createdAt
@@ -1094,11 +1142,6 @@ components:
       - updatedAt
       title: BGCore
       type: object
-    BGDetail:
-      allOf:
-      - $ref: '#/components/schemas/BGCore'
-      - $ref: '#/components/schemas/The_owner_schema'
-      title: BGDetail
     masterBGDetail:
       allOf:
       - $ref: '#/components/schemas/BGCore'
@@ -1115,7 +1158,24 @@ components:
       - sessionTimeout
       title: BGPutSpecificProperties
       type: object
-    The_owner_schema:
+    owner:
+      example:
+        lastLogin: lastLogin
+        lastName: lastName
+        mfaVerifiersConfigured: mfaVerifiersConfigured
+        type: type
+        enabled: false
+        mfaVerificationExcluded: false
+        organizationId: organizationId
+        createdAt: createdAt
+        firstName: firstName
+        deleted: false
+        phoneNumber: phoneNumber
+        id: id
+        idprovider_id: idprovider_id
+        email: email
+        updatedAt: updatedAt
+        username: username
       properties:
         createdAt:
           default: ""
@@ -1214,7 +1274,7 @@ components:
       - type
       - updatedAt
       - username
-      title: The owner schema
+      title: owner
       type: object
     masterBGSpecificDetails:
       properties:

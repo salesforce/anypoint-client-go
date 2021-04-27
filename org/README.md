@@ -87,13 +87,12 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [BGCore](docs/BGCore.md)
- - [BGDetail](docs/BGDetail.md)
  - [BGPostReqBody](docs/BGPostReqBody.md)
  - [BGPutReqBody](docs/BGPutReqBody.md)
  - [BGPutSpecificProperties](docs/BGPutSpecificProperties.md)
  - [MasterBGDetail](docs/MasterBGDetail.md)
  - [MasterBGSpecificDetails](docs/MasterBGSpecificDetails.md)
- - [TheOwnerSchema](docs/TheOwnerSchema.md)
+ - [Owner](docs/Owner.md)
 
 
 ## Documentation For Authorization

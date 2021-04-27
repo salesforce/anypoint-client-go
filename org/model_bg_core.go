@@ -52,13 +52,14 @@ type BGCore struct {
 	TenantOrganizationIds []string `json:"tenantOrganizationIds"`
 	// An explanation about the purpose of this instance.
 	UpdatedAt string `json:"updatedAt"`
+	Owner Owner `json:"owner"`
 }
 
 // NewBGCore instantiates a new BGCore object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGCore(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string) *BGCore {
+func NewBGCore(clientId string, createdAt string, domain string, entitlements map[string]map[string]interface{}, environments []AnyOfmap, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]map[string]interface{}, subOrganizationIds []AnyOfstring, tenantOrganizationIds []string, updatedAt string, owner Owner) *BGCore {
 	this := BGCore{}
 	this.ClientId = clientId
 	this.CreatedAt = createdAt
@@ -78,6 +79,7 @@ func NewBGCore(clientId string, createdAt string, domain string, entitlements ma
 	this.SubOrganizationIds = subOrganizationIds
 	this.TenantOrganizationIds = tenantOrganizationIds
 	this.UpdatedAt = updatedAt
+	this.Owner = owner
 	return &this
 }
 
@@ -545,6 +547,30 @@ func (o *BGCore) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
 
+// GetOwner returns the Owner field value
+func (o *BGCore) GetOwner() Owner {
+	if o == nil {
+		var ret Owner
+		return ret
+	}
+
+	return o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value
+// and a boolean to check if the value has been set.
+func (o *BGCore) GetOwnerOk() (*Owner, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Owner, true
+}
+
+// SetOwner sets field value
+func (o *BGCore) SetOwner(v Owner) {
+	o.Owner = v
+}
+
 func (o BGCore) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -600,6 +626,9 @@ func (o BGCore) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["owner"] = o.Owner
 	}
 	return json.Marshal(toSerialize)
 }
