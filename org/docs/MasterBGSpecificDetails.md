@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Subscription** | **map[string]map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
+**Subscription** | [**Subscription**](Subscription.md) |  | 
 
 ## Methods
 
 ### NewMasterBGSpecificDetails
 
-`func NewMasterBGSpecificDetails(sessionTimeout int32, subscription map[string]map[string]interface{}, ) *MasterBGSpecificDetails`
+`func NewMasterBGSpecificDetails(sessionTimeout int32, subscription Subscription, ) *MasterBGSpecificDetails`
 
 NewMasterBGSpecificDetails instantiates a new MasterBGSpecificDetails object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetSessionTimeout sets SessionTimeout field to given value.
 
 ### GetSubscription
 
-`func (o *MasterBGSpecificDetails) GetSubscription() map[string]map[string]interface{}`
+`func (o *MasterBGSpecificDetails) GetSubscription() Subscription`
 
 GetSubscription returns the Subscription field if non-nil, zero value otherwise.
 
 ### GetSubscriptionOk
 
-`func (o *MasterBGSpecificDetails) GetSubscriptionOk() (*map[string]map[string]interface{}, bool)`
+`func (o *MasterBGSpecificDetails) GetSubscriptionOk() (*Subscription, bool)`
 
 GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscription
 
-`func (o *MasterBGSpecificDetails) SetSubscription(v map[string]map[string]interface{})`
+`func (o *MasterBGSpecificDetails) SetSubscription(v Subscription)`
 
 SetSubscription sets Subscription field to given value.
 
