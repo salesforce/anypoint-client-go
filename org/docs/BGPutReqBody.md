@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Entitlements** | [**Entitlements**](Entitlements.md) |  | 
-**Name** | [**Name**](Name.md) |  | 
-**OwnerId** | [**OwnerId**](OwnerId.md) |  | 
+**Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewBGPutReqBody
 
-`func NewBGPutReqBody(entitlements Entitlements, name Name, ownerId OwnerId, parentOrganizationId string, sessionTimeout int32, ) *BGPutReqBody`
+`func NewBGPutReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string, sessionTimeout int32, ) *BGPutReqBody`
 
 NewBGPutReqBody instantiates a new BGPutReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -51,40 +51,40 @@ SetEntitlements sets Entitlements field to given value.
 
 ### GetName
 
-`func (o *BGPutReqBody) GetName() Name`
+`func (o *BGPutReqBody) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *BGPutReqBody) GetNameOk() (*Name, bool)`
+`func (o *BGPutReqBody) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *BGPutReqBody) SetName(v Name)`
+`func (o *BGPutReqBody) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetOwnerId
 
-`func (o *BGPutReqBody) GetOwnerId() OwnerId`
+`func (o *BGPutReqBody) GetOwnerId() string`
 
 GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
 
 ### GetOwnerIdOk
 
-`func (o *BGPutReqBody) GetOwnerIdOk() (*OwnerId, bool)`
+`func (o *BGPutReqBody) GetOwnerIdOk() (*string, bool)`
 
 GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerId
 
-`func (o *BGPutReqBody) SetOwnerId(v OwnerId)`
+`func (o *BGPutReqBody) SetOwnerId(v string)`
 
 SetOwnerId sets OwnerId field to given value.
 

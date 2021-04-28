@@ -17,8 +17,10 @@ import (
 // BGPostReqBody struct for BGPostReqBody
 type BGPostReqBody struct {
 	Entitlements Entitlements `json:"entitlements"`
-	Name Name `json:"name"`
-	OwnerId OwnerId `json:"ownerId"`
+	// An explanation about the purpose of this instance.
+	Name string `json:"name"`
+	// An explanation about the purpose of this instance.
+	OwnerId string `json:"ownerId"`
 	// An explanation about the purpose of this instance.
 	ParentOrganizationId string `json:"parentOrganizationId"`
 }
@@ -27,7 +29,7 @@ type BGPostReqBody struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPostReqBody(entitlements Entitlements, name Name, ownerId OwnerId, parentOrganizationId string) *BGPostReqBody {
+func NewBGPostReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string) *BGPostReqBody {
 	this := BGPostReqBody{}
 	this.Entitlements = entitlements
 	this.Name = name
@@ -41,6 +43,10 @@ func NewBGPostReqBody(entitlements Entitlements, name Name, ownerId OwnerId, par
 // but it doesn't guarantee that properties required by API are set
 func NewBGPostReqBodyWithDefaults() *BGPostReqBody {
 	this := BGPostReqBody{}
+	var name string = ""
+	this.Name = name
+	var ownerId string = ""
+	this.OwnerId = ownerId
 	var parentOrganizationId string = ""
 	this.ParentOrganizationId = parentOrganizationId
 	return &this
@@ -71,9 +77,9 @@ func (o *BGPostReqBody) SetEntitlements(v Entitlements) {
 }
 
 // GetName returns the Name field value
-func (o *BGPostReqBody) GetName() Name {
+func (o *BGPostReqBody) GetName() string {
 	if o == nil {
-		var ret Name
+		var ret string
 		return ret
 	}
 
@@ -82,7 +88,7 @@ func (o *BGPostReqBody) GetName() Name {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *BGPostReqBody) GetNameOk() (*Name, bool) {
+func (o *BGPostReqBody) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -90,14 +96,14 @@ func (o *BGPostReqBody) GetNameOk() (*Name, bool) {
 }
 
 // SetName sets field value
-func (o *BGPostReqBody) SetName(v Name) {
+func (o *BGPostReqBody) SetName(v string) {
 	o.Name = v
 }
 
 // GetOwnerId returns the OwnerId field value
-func (o *BGPostReqBody) GetOwnerId() OwnerId {
+func (o *BGPostReqBody) GetOwnerId() string {
 	if o == nil {
-		var ret OwnerId
+		var ret string
 		return ret
 	}
 
@@ -106,7 +112,7 @@ func (o *BGPostReqBody) GetOwnerId() OwnerId {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value
 // and a boolean to check if the value has been set.
-func (o *BGPostReqBody) GetOwnerIdOk() (*OwnerId, bool) {
+func (o *BGPostReqBody) GetOwnerIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -114,7 +120,7 @@ func (o *BGPostReqBody) GetOwnerIdOk() (*OwnerId, bool) {
 }
 
 // SetOwnerId sets field value
-func (o *BGPostReqBody) SetOwnerId(v OwnerId) {
+func (o *BGPostReqBody) SetOwnerId(v string) {
 	o.OwnerId = v
 }
 
