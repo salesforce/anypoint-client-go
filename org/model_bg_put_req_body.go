@@ -17,8 +17,10 @@ import (
 // BGPutReqBody struct for BGPutReqBody
 type BGPutReqBody struct {
 	Entitlements Entitlements `json:"entitlements"`
-	Name Name `json:"name"`
-	OwnerId OwnerId `json:"ownerId"`
+	// An explanation about the purpose of this instance.
+	Name string `json:"name"`
+	// An explanation about the purpose of this instance.
+	OwnerId string `json:"ownerId"`
 	// An explanation about the purpose of this instance.
 	ParentOrganizationId string `json:"parentOrganizationId"`
 	// An explanation about the purpose of this instance.
@@ -29,7 +31,7 @@ type BGPutReqBody struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPutReqBody(entitlements Entitlements, name Name, ownerId OwnerId, parentOrganizationId string, sessionTimeout int32) *BGPutReqBody {
+func NewBGPutReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string, sessionTimeout int32) *BGPutReqBody {
 	this := BGPutReqBody{}
 	this.Entitlements = entitlements
 	this.Name = name
@@ -44,6 +46,10 @@ func NewBGPutReqBody(entitlements Entitlements, name Name, ownerId OwnerId, pare
 // but it doesn't guarantee that properties required by API are set
 func NewBGPutReqBodyWithDefaults() *BGPutReqBody {
 	this := BGPutReqBody{}
+	var name string = ""
+	this.Name = name
+	var ownerId string = ""
+	this.OwnerId = ownerId
 	var parentOrganizationId string = ""
 	this.ParentOrganizationId = parentOrganizationId
 	var sessionTimeout int32 = 0
@@ -76,9 +82,9 @@ func (o *BGPutReqBody) SetEntitlements(v Entitlements) {
 }
 
 // GetName returns the Name field value
-func (o *BGPutReqBody) GetName() Name {
+func (o *BGPutReqBody) GetName() string {
 	if o == nil {
-		var ret Name
+		var ret string
 		return ret
 	}
 
@@ -87,7 +93,7 @@ func (o *BGPutReqBody) GetName() Name {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *BGPutReqBody) GetNameOk() (*Name, bool) {
+func (o *BGPutReqBody) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -95,14 +101,14 @@ func (o *BGPutReqBody) GetNameOk() (*Name, bool) {
 }
 
 // SetName sets field value
-func (o *BGPutReqBody) SetName(v Name) {
+func (o *BGPutReqBody) SetName(v string) {
 	o.Name = v
 }
 
 // GetOwnerId returns the OwnerId field value
-func (o *BGPutReqBody) GetOwnerId() OwnerId {
+func (o *BGPutReqBody) GetOwnerId() string {
 	if o == nil {
-		var ret OwnerId
+		var ret string
 		return ret
 	}
 
@@ -111,7 +117,7 @@ func (o *BGPutReqBody) GetOwnerId() OwnerId {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value
 // and a boolean to check if the value has been set.
-func (o *BGPutReqBody) GetOwnerIdOk() (*OwnerId, bool) {
+func (o *BGPutReqBody) GetOwnerIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -119,7 +125,7 @@ func (o *BGPutReqBody) GetOwnerIdOk() (*OwnerId, bool) {
 }
 
 // SetOwnerId sets field value
-func (o *BGPutReqBody) SetOwnerId(v OwnerId) {
+func (o *BGPutReqBody) SetOwnerId(v string) {
 	o.OwnerId = v
 }
 

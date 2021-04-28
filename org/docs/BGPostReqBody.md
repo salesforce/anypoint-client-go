@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Entitlements** | [**Entitlements**](Entitlements.md) |  | 
-**Name** | [**Name**](Name.md) |  | 
-**OwnerId** | [**OwnerId**](OwnerId.md) |  | 
+**Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 
 ## Methods
 
 ### NewBGPostReqBody
 
-`func NewBGPostReqBody(entitlements Entitlements, name Name, ownerId OwnerId, parentOrganizationId string, ) *BGPostReqBody`
+`func NewBGPostReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string, ) *BGPostReqBody`
 
 NewBGPostReqBody instantiates a new BGPostReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -50,40 +50,40 @@ SetEntitlements sets Entitlements field to given value.
 
 ### GetName
 
-`func (o *BGPostReqBody) GetName() Name`
+`func (o *BGPostReqBody) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *BGPostReqBody) GetNameOk() (*Name, bool)`
+`func (o *BGPostReqBody) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *BGPostReqBody) SetName(v Name)`
+`func (o *BGPostReqBody) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetOwnerId
 
-`func (o *BGPostReqBody) GetOwnerId() OwnerId`
+`func (o *BGPostReqBody) GetOwnerId() string`
 
 GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
 
 ### GetOwnerIdOk
 
-`func (o *BGPostReqBody) GetOwnerIdOk() (*OwnerId, bool)`
+`func (o *BGPostReqBody) GetOwnerIdOk() (*string, bool)`
 
 GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerId
 
-`func (o *BGPostReqBody) SetOwnerId(v OwnerId)`
+`func (o *BGPostReqBody) SetOwnerId(v string)`
 
 SetOwnerId sets OwnerId field to given value.
 

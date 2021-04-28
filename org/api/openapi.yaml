@@ -256,16 +256,22 @@ components:
           designCenter:
             api: false
             mozart: false
-        name: '{}'
-        ownerId: '{}'
+        name: name
+        ownerId: ownerId
         parentOrganizationId: parentOrganizationId
       properties:
         entitlements:
           $ref: '#/components/schemas/BGCore/properties/entitlements'
         name:
-          $ref: '#/components/schemas/BGCore/properties/name'
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: name
+          type: string
         ownerId:
-          $ref: '#/components/schemas/BGCore/properties/ownerId'
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: ownerId
+          type: string
         parentOrganizationId:
           default: ""
           description: An explanation about the purpose of this instance.
