@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Assigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Assigned** | **float32** | An explanation about the purpose of this instance. | [default to 0]
 **Reassigned** | **float32** | An explanation about the purpose of this instance. | [default to 0.0]
 
 ## Methods
 
 ### NewVCoresDesign
 
-`func NewVCoresDesign(assigned int32, reassigned float32, ) *VCoresDesign`
+`func NewVCoresDesign(assigned float32, reassigned float32, ) *VCoresDesign`
 
 NewVCoresDesign instantiates a new VCoresDesign object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAssigned
 
-`func (o *VCoresDesign) GetAssigned() int32`
+`func (o *VCoresDesign) GetAssigned() float32`
 
 GetAssigned returns the Assigned field if non-nil, zero value otherwise.
 
 ### GetAssignedOk
 
-`func (o *VCoresDesign) GetAssignedOk() (*int32, bool)`
+`func (o *VCoresDesign) GetAssignedOk() (*float32, bool)`
 
 GetAssignedOk returns a tuple with the Assigned field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssigned
 
-`func (o *VCoresDesign) SetAssigned(v int32)`
+`func (o *VCoresDesign) SetAssigned(v float32)`
 
 SetAssigned sets Assigned field to given value.
 

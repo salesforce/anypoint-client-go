@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Assigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Assigned** | **float32** | An explanation about the purpose of this instance. | [default to 0]
 **Reassigned** | **float32** | An explanation about the purpose of this instance. | [default to 0.0]
 
 ## Methods
 
 ### NewVCoresProduction
 
-`func NewVCoresProduction(assigned int32, reassigned float32, ) *VCoresProduction`
+`func NewVCoresProduction(assigned float32, reassigned float32, ) *VCoresProduction`
 
 NewVCoresProduction instantiates a new VCoresProduction object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAssigned
 
-`func (o *VCoresProduction) GetAssigned() int32`
+`func (o *VCoresProduction) GetAssigned() float32`
 
 GetAssigned returns the Assigned field if non-nil, zero value otherwise.
 
 ### GetAssignedOk
 
-`func (o *VCoresProduction) GetAssignedOk() (*int32, bool)`
+`func (o *VCoresProduction) GetAssignedOk() (*float32, bool)`
 
 GetAssignedOk returns a tuple with the Assigned field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssigned
 
-`func (o *VCoresProduction) SetAssigned(v int32)`
+`func (o *VCoresProduction) SetAssigned(v float32)`
 
 SetAssigned sets Assigned field to given value.
 

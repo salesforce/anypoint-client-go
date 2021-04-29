@@ -170,7 +170,7 @@ components:
             assigned: 5
           vCoresDesign:
             reassigned: 8.762042012749001
-            assigned: 6
+            assigned: 6.683562403749608
           vpcs:
             reassigned: 2
             assigned: 1
@@ -231,7 +231,7 @@ components:
             base: 2
           vCoresSandbox:
             reassigned: 6.965117697638846
-            assigned: 3
+            assigned: 3.5571952270680973
           createEnvironments: false
           apiMonitoring:
             schedules: 6
@@ -250,7 +250,7 @@ components:
             enabled: false
           vCoresProduction:
             reassigned: 6.438423552598547
-            assigned: 9
+            assigned: 9.018348186070783
           crowdSelfServiceMigration:
             enabled: false
           designCenter:
@@ -309,7 +309,7 @@ components:
             assigned: 5
           vCoresDesign:
             reassigned: 8.762042012749001
-            assigned: 6
+            assigned: 6.683562403749608
           vpcs:
             reassigned: 2
             assigned: 1
@@ -370,7 +370,7 @@ components:
             base: 2
           vCoresSandbox:
             reassigned: 6.965117697638846
-            assigned: 3
+            assigned: 3.5571952270680973
           createEnvironments: false
           apiMonitoring:
             schedules: 6
@@ -389,7 +389,7 @@ components:
             enabled: false
           vCoresProduction:
             reassigned: 6.438423552598547
-            assigned: 9
+            assigned: 9.018348186070783
           crowdSelfServiceMigration:
             enabled: false
           designCenter:
@@ -1099,13 +1099,13 @@ components:
       description: An explanation about the purpose of this instance.
       example:
         reassigned: 8.762042012749001
-        assigned: 6
+        assigned: 6.683562403749608
       properties:
         assigned:
           default: 0
           description: An explanation about the purpose of this instance.
           title: assigned
-          type: integer
+          type: number
         reassigned:
           default: 0.0
           description: An explanation about the purpose of this instance.
@@ -1120,13 +1120,13 @@ components:
       description: An explanation about the purpose of this instance.
       example:
         reassigned: 6.438423552598547
-        assigned: 9
+        assigned: 9.018348186070783
       properties:
         assigned:
           default: 0
           description: An explanation about the purpose of this instance.
           title: assigned
-          type: integer
+          type: number
         reassigned:
           default: 0.0
           description: An explanation about the purpose of this instance.
@@ -1141,13 +1141,13 @@ components:
       description: An explanation about the purpose of this instance.
       example:
         reassigned: 6.965117697638846
-        assigned: 3
+        assigned: 3.5571952270680973
       properties:
         assigned:
           default: 0
           description: An explanation about the purpose of this instance.
           title: assigned
-          type: integer
+          type: number
         reassigned:
           default: 0.0
           description: An explanation about the purpose of this instance.
@@ -1255,7 +1255,7 @@ components:
           assigned: 5
         vCoresDesign:
           reassigned: 8.762042012749001
-          assigned: 6
+          assigned: 6.683562403749608
         vpcs:
           reassigned: 2
           assigned: 1
@@ -1316,7 +1316,7 @@ components:
           base: 2
         vCoresSandbox:
           reassigned: 6.965117697638846
-          assigned: 3
+          assigned: 3.5571952270680973
         createEnvironments: false
         apiMonitoring:
           schedules: 6
@@ -1335,7 +1335,7 @@ components:
           enabled: false
         vCoresProduction:
           reassigned: 6.438423552598547
-          assigned: 9
+          assigned: 9.018348186070783
         crowdSelfServiceMigration:
           enabled: false
         designCenter:
