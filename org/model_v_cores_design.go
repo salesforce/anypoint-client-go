@@ -17,7 +17,7 @@ import (
 // VCoresDesign An explanation about the purpose of this instance.
 type VCoresDesign struct {
 	// An explanation about the purpose of this instance.
-	Assigned int32 `json:"assigned"`
+	Assigned float32 `json:"assigned"`
 	// An explanation about the purpose of this instance.
 	Reassigned float32 `json:"reassigned"`
 }
@@ -26,7 +26,7 @@ type VCoresDesign struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVCoresDesign(assigned int32, reassigned float32) *VCoresDesign {
+func NewVCoresDesign(assigned float32, reassigned float32) *VCoresDesign {
 	this := VCoresDesign{}
 	this.Assigned = assigned
 	this.Reassigned = reassigned
@@ -38,7 +38,7 @@ func NewVCoresDesign(assigned int32, reassigned float32) *VCoresDesign {
 // but it doesn't guarantee that properties required by API are set
 func NewVCoresDesignWithDefaults() *VCoresDesign {
 	this := VCoresDesign{}
-	var assigned int32 = 0
+	var assigned float32 = 0
 	this.Assigned = assigned
 	var reassigned float32 = 0.0
 	this.Reassigned = reassigned
@@ -46,9 +46,9 @@ func NewVCoresDesignWithDefaults() *VCoresDesign {
 }
 
 // GetAssigned returns the Assigned field value
-func (o *VCoresDesign) GetAssigned() int32 {
+func (o *VCoresDesign) GetAssigned() float32 {
 	if o == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *VCoresDesign) GetAssigned() int32 {
 
 // GetAssignedOk returns a tuple with the Assigned field value
 // and a boolean to check if the value has been set.
-func (o *VCoresDesign) GetAssignedOk() (*int32, bool) {
+func (o *VCoresDesign) GetAssignedOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *VCoresDesign) GetAssignedOk() (*int32, bool) {
 }
 
 // SetAssigned sets field value
-func (o *VCoresDesign) SetAssigned(v int32) {
+func (o *VCoresDesign) SetAssigned(v float32) {
 	o.Assigned = v
 }
 

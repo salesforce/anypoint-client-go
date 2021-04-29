@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Assigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Assigned** | **float32** | An explanation about the purpose of this instance. | [default to 0]
 **Reassigned** | **float32** | An explanation about the purpose of this instance. | [default to 0.0]
 
 ## Methods
 
 ### NewVCoresSandbox
 
-`func NewVCoresSandbox(assigned int32, reassigned float32, ) *VCoresSandbox`
+`func NewVCoresSandbox(assigned float32, reassigned float32, ) *VCoresSandbox`
 
 NewVCoresSandbox instantiates a new VCoresSandbox object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAssigned
 
-`func (o *VCoresSandbox) GetAssigned() int32`
+`func (o *VCoresSandbox) GetAssigned() float32`
 
 GetAssigned returns the Assigned field if non-nil, zero value otherwise.
 
 ### GetAssignedOk
 
-`func (o *VCoresSandbox) GetAssignedOk() (*int32, bool)`
+`func (o *VCoresSandbox) GetAssignedOk() (*float32, bool)`
 
 GetAssignedOk returns a tuple with the Assigned field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssigned
 
-`func (o *VCoresSandbox) SetAssigned(v int32)`
+`func (o *VCoresSandbox) SetAssigned(v float32)`
 
 SetAssigned sets Assigned field to given value.
 
