@@ -17,61 +17,77 @@ import (
 // Owner struct for Owner
 type Owner struct {
 	// An explanation about the purpose of this instance.
-	CreatedAt string `json:"createdAt"`
+	CreatedAt *string `json:"createdAt,omitempty"`
 	// An explanation about the purpose of this instance.
-	Deleted bool `json:"deleted"`
+	Deleted *bool `json:"deleted,omitempty"`
 	// An explanation about the purpose of this instance.
-	Email string `json:"email"`
+	Email *string `json:"email,omitempty"`
 	// An explanation about the purpose of this instance.
-	Enabled bool `json:"enabled"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// An explanation about the purpose of this instance.
-	FirstName string `json:"firstName"`
+	FirstName *string `json:"firstName,omitempty"`
 	// An explanation about the purpose of this instance.
-	Id string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// An explanation about the purpose of this instance.
-	IdproviderId string `json:"idprovider_id"`
+	IdproviderId *string `json:"idprovider_id,omitempty"`
 	// An explanation about the purpose of this instance.
-	LastLogin string `json:"lastLogin"`
+	LastLogin *string `json:"lastLogin,omitempty"`
 	// An explanation about the purpose of this instance.
-	LastName string `json:"lastName"`
+	LastName *string `json:"lastName,omitempty"`
 	// An explanation about the purpose of this instance.
-	MfaVerificationExcluded bool `json:"mfaVerificationExcluded"`
+	MfaVerificationExcluded *bool `json:"mfaVerificationExcluded,omitempty"`
 	// An explanation about the purpose of this instance.
-	MfaVerifiersConfigured string `json:"mfaVerifiersConfigured"`
+	MfaVerifiersConfigured *string `json:"mfaVerifiersConfigured,omitempty"`
 	// An explanation about the purpose of this instance.
-	OrganizationId string `json:"organizationId"`
+	OrganizationId *string `json:"organizationId,omitempty"`
 	// An explanation about the purpose of this instance.
-	PhoneNumber string `json:"phoneNumber"`
+	PhoneNumber *string `json:"phoneNumber,omitempty"`
 	// An explanation about the purpose of this instance.
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 	// An explanation about the purpose of this instance.
-	UpdatedAt string `json:"updatedAt"`
+	UpdatedAt *string `json:"updatedAt,omitempty"`
 	// An explanation about the purpose of this instance.
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 }
 
 // NewOwner instantiates a new Owner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOwner(createdAt string, deleted bool, email string, enabled bool, firstName string, id string, idproviderId string, lastLogin string, lastName string, mfaVerificationExcluded bool, mfaVerifiersConfigured string, organizationId string, phoneNumber string, type_ string, updatedAt string, username string) *Owner {
+func NewOwner() *Owner {
 	this := Owner{}
-	this.CreatedAt = createdAt
-	this.Deleted = deleted
-	this.Email = email
-	this.Enabled = enabled
-	this.FirstName = firstName
-	this.Id = id
-	this.IdproviderId = idproviderId
-	this.LastLogin = lastLogin
-	this.LastName = lastName
-	this.MfaVerificationExcluded = mfaVerificationExcluded
-	this.MfaVerifiersConfigured = mfaVerifiersConfigured
-	this.OrganizationId = organizationId
-	this.PhoneNumber = phoneNumber
-	this.Type = type_
-	this.UpdatedAt = updatedAt
-	this.Username = username
+	var createdAt string = ""
+	this.CreatedAt = &createdAt
+	var deleted bool = false
+	this.Deleted = &deleted
+	var email string = ""
+	this.Email = &email
+	var enabled bool = false
+	this.Enabled = &enabled
+	var firstName string = ""
+	this.FirstName = &firstName
+	var id string = ""
+	this.Id = &id
+	var idproviderId string = ""
+	this.IdproviderId = &idproviderId
+	var lastLogin string = ""
+	this.LastLogin = &lastLogin
+	var lastName string = ""
+	this.LastName = &lastName
+	var mfaVerificationExcluded bool = false
+	this.MfaVerificationExcluded = &mfaVerificationExcluded
+	var mfaVerifiersConfigured string = ""
+	this.MfaVerifiersConfigured = &mfaVerifiersConfigured
+	var organizationId string = ""
+	this.OrganizationId = &organizationId
+	var phoneNumber string = ""
+	this.PhoneNumber = &phoneNumber
+	var type_ string = ""
+	this.Type = &type_
+	var updatedAt string = ""
+	this.UpdatedAt = &updatedAt
+	var username string = ""
+	this.Username = &username
 	return &this
 }
 
@@ -81,472 +97,600 @@ func NewOwner(createdAt string, deleted bool, email string, enabled bool, firstN
 func NewOwnerWithDefaults() *Owner {
 	this := Owner{}
 	var createdAt string = ""
-	this.CreatedAt = createdAt
+	this.CreatedAt = &createdAt
 	var deleted bool = false
-	this.Deleted = deleted
+	this.Deleted = &deleted
 	var email string = ""
-	this.Email = email
+	this.Email = &email
 	var enabled bool = false
-	this.Enabled = enabled
+	this.Enabled = &enabled
 	var firstName string = ""
-	this.FirstName = firstName
+	this.FirstName = &firstName
 	var id string = ""
-	this.Id = id
+	this.Id = &id
 	var idproviderId string = ""
-	this.IdproviderId = idproviderId
+	this.IdproviderId = &idproviderId
 	var lastLogin string = ""
-	this.LastLogin = lastLogin
+	this.LastLogin = &lastLogin
 	var lastName string = ""
-	this.LastName = lastName
+	this.LastName = &lastName
 	var mfaVerificationExcluded bool = false
-	this.MfaVerificationExcluded = mfaVerificationExcluded
+	this.MfaVerificationExcluded = &mfaVerificationExcluded
 	var mfaVerifiersConfigured string = ""
-	this.MfaVerifiersConfigured = mfaVerifiersConfigured
+	this.MfaVerifiersConfigured = &mfaVerifiersConfigured
 	var organizationId string = ""
-	this.OrganizationId = organizationId
+	this.OrganizationId = &organizationId
 	var phoneNumber string = ""
-	this.PhoneNumber = phoneNumber
+	this.PhoneNumber = &phoneNumber
 	var type_ string = ""
-	this.Type = type_
+	this.Type = &type_
 	var updatedAt string = ""
-	this.UpdatedAt = updatedAt
+	this.UpdatedAt = &updatedAt
 	var username string = ""
-	this.Username = username
+	this.Username = &username
 	return &this
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Owner) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || o.CreatedAt == nil {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Owner) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *Owner) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetDeleted returns the Deleted field value
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *Owner) GetDeleted() bool {
-	if o == nil {
+	if o == nil || o.Deleted == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Deleted
+	return *o.Deleted
 }
 
-// GetDeletedOk returns a tuple with the Deleted field value
+// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetDeletedOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.Deleted == nil {
 		return nil, false
 	}
-	return &o.Deleted, true
+	return o.Deleted, true
 }
 
-// SetDeleted sets field value
+// HasDeleted returns a boolean if a field has been set.
+func (o *Owner) HasDeleted() bool {
+	if o != nil && o.Deleted != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
 func (o *Owner) SetDeleted(v bool) {
-	o.Deleted = v
+	o.Deleted = &v
 }
 
-// GetEmail returns the Email field value
+// GetEmail returns the Email field value if set, zero value otherwise.
 func (o *Owner) GetEmail() string {
-	if o == nil {
+	if o == nil || o.Email == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Email
+	return *o.Email
 }
 
-// GetEmailOk returns a tuple with the Email field value
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetEmailOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Email == nil {
 		return nil, false
 	}
-	return &o.Email, true
+	return o.Email, true
 }
 
-// SetEmail sets field value
+// HasEmail returns a boolean if a field has been set.
+func (o *Owner) HasEmail() bool {
+	if o != nil && o.Email != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEmail gets a reference to the given string and assigns it to the Email field.
 func (o *Owner) SetEmail(v string) {
-	o.Email = v
+	o.Email = &v
 }
 
-// GetEnabled returns the Enabled field value
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *Owner) GetEnabled() bool {
-	if o == nil {
+	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Enabled
+	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetEnabledOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.Enabled == nil {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
-// SetEnabled sets field value
+// HasEnabled returns a boolean if a field has been set.
+func (o *Owner) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 func (o *Owner) SetEnabled(v bool) {
-	o.Enabled = v
+	o.Enabled = &v
 }
 
-// GetFirstName returns the FirstName field value
+// GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *Owner) GetFirstName() string {
-	if o == nil {
+	if o == nil || o.FirstName == nil {
 		var ret string
 		return ret
 	}
-
-	return o.FirstName
+	return *o.FirstName
 }
 
-// GetFirstNameOk returns a tuple with the FirstName field value
+// GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetFirstNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.FirstName == nil {
 		return nil, false
 	}
-	return &o.FirstName, true
+	return o.FirstName, true
 }
 
-// SetFirstName sets field value
+// HasFirstName returns a boolean if a field has been set.
+func (o *Owner) HasFirstName() bool {
+	if o != nil && o.FirstName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstName gets a reference to the given string and assigns it to the FirstName field.
 func (o *Owner) SetFirstName(v string) {
-	o.FirstName = v
+	o.FirstName = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Owner) GetId() string {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Owner) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Owner) SetId(v string) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetIdproviderId returns the IdproviderId field value
+// GetIdproviderId returns the IdproviderId field value if set, zero value otherwise.
 func (o *Owner) GetIdproviderId() string {
-	if o == nil {
+	if o == nil || o.IdproviderId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.IdproviderId
+	return *o.IdproviderId
 }
 
-// GetIdproviderIdOk returns a tuple with the IdproviderId field value
+// GetIdproviderIdOk returns a tuple with the IdproviderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetIdproviderIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.IdproviderId == nil {
 		return nil, false
 	}
-	return &o.IdproviderId, true
+	return o.IdproviderId, true
 }
 
-// SetIdproviderId sets field value
+// HasIdproviderId returns a boolean if a field has been set.
+func (o *Owner) HasIdproviderId() bool {
+	if o != nil && o.IdproviderId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIdproviderId gets a reference to the given string and assigns it to the IdproviderId field.
 func (o *Owner) SetIdproviderId(v string) {
-	o.IdproviderId = v
+	o.IdproviderId = &v
 }
 
-// GetLastLogin returns the LastLogin field value
+// GetLastLogin returns the LastLogin field value if set, zero value otherwise.
 func (o *Owner) GetLastLogin() string {
-	if o == nil {
+	if o == nil || o.LastLogin == nil {
 		var ret string
 		return ret
 	}
-
-	return o.LastLogin
+	return *o.LastLogin
 }
 
-// GetLastLoginOk returns a tuple with the LastLogin field value
+// GetLastLoginOk returns a tuple with the LastLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetLastLoginOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.LastLogin == nil {
 		return nil, false
 	}
-	return &o.LastLogin, true
+	return o.LastLogin, true
 }
 
-// SetLastLogin sets field value
+// HasLastLogin returns a boolean if a field has been set.
+func (o *Owner) HasLastLogin() bool {
+	if o != nil && o.LastLogin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastLogin gets a reference to the given string and assigns it to the LastLogin field.
 func (o *Owner) SetLastLogin(v string) {
-	o.LastLogin = v
+	o.LastLogin = &v
 }
 
-// GetLastName returns the LastName field value
+// GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *Owner) GetLastName() string {
-	if o == nil {
+	if o == nil || o.LastName == nil {
 		var ret string
 		return ret
 	}
-
-	return o.LastName
+	return *o.LastName
 }
 
-// GetLastNameOk returns a tuple with the LastName field value
+// GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetLastNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.LastName == nil {
 		return nil, false
 	}
-	return &o.LastName, true
+	return o.LastName, true
 }
 
-// SetLastName sets field value
+// HasLastName returns a boolean if a field has been set.
+func (o *Owner) HasLastName() bool {
+	if o != nil && o.LastName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastName gets a reference to the given string and assigns it to the LastName field.
 func (o *Owner) SetLastName(v string) {
-	o.LastName = v
+	o.LastName = &v
 }
 
-// GetMfaVerificationExcluded returns the MfaVerificationExcluded field value
+// GetMfaVerificationExcluded returns the MfaVerificationExcluded field value if set, zero value otherwise.
 func (o *Owner) GetMfaVerificationExcluded() bool {
-	if o == nil {
+	if o == nil || o.MfaVerificationExcluded == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.MfaVerificationExcluded
+	return *o.MfaVerificationExcluded
 }
 
-// GetMfaVerificationExcludedOk returns a tuple with the MfaVerificationExcluded field value
+// GetMfaVerificationExcludedOk returns a tuple with the MfaVerificationExcluded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetMfaVerificationExcludedOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.MfaVerificationExcluded == nil {
 		return nil, false
 	}
-	return &o.MfaVerificationExcluded, true
+	return o.MfaVerificationExcluded, true
 }
 
-// SetMfaVerificationExcluded sets field value
+// HasMfaVerificationExcluded returns a boolean if a field has been set.
+func (o *Owner) HasMfaVerificationExcluded() bool {
+	if o != nil && o.MfaVerificationExcluded != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMfaVerificationExcluded gets a reference to the given bool and assigns it to the MfaVerificationExcluded field.
 func (o *Owner) SetMfaVerificationExcluded(v bool) {
-	o.MfaVerificationExcluded = v
+	o.MfaVerificationExcluded = &v
 }
 
-// GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field value
+// GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field value if set, zero value otherwise.
 func (o *Owner) GetMfaVerifiersConfigured() string {
-	if o == nil {
+	if o == nil || o.MfaVerifiersConfigured == nil {
 		var ret string
 		return ret
 	}
-
-	return o.MfaVerifiersConfigured
+	return *o.MfaVerifiersConfigured
 }
 
-// GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field value
+// GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetMfaVerifiersConfiguredOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.MfaVerifiersConfigured == nil {
 		return nil, false
 	}
-	return &o.MfaVerifiersConfigured, true
+	return o.MfaVerifiersConfigured, true
 }
 
-// SetMfaVerifiersConfigured sets field value
+// HasMfaVerifiersConfigured returns a boolean if a field has been set.
+func (o *Owner) HasMfaVerifiersConfigured() bool {
+	if o != nil && o.MfaVerifiersConfigured != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMfaVerifiersConfigured gets a reference to the given string and assigns it to the MfaVerifiersConfigured field.
 func (o *Owner) SetMfaVerifiersConfigured(v string) {
-	o.MfaVerifiersConfigured = v
+	o.MfaVerifiersConfigured = &v
 }
 
-// GetOrganizationId returns the OrganizationId field value
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Owner) GetOrganizationId() string {
-	if o == nil {
+	if o == nil || o.OrganizationId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.OrganizationId
+	return *o.OrganizationId
 }
 
-// GetOrganizationIdOk returns a tuple with the OrganizationId field value
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetOrganizationIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.OrganizationId == nil {
 		return nil, false
 	}
-	return &o.OrganizationId, true
+	return o.OrganizationId, true
 }
 
-// SetOrganizationId sets field value
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *Owner) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
 func (o *Owner) SetOrganizationId(v string) {
-	o.OrganizationId = v
+	o.OrganizationId = &v
 }
 
-// GetPhoneNumber returns the PhoneNumber field value
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *Owner) GetPhoneNumber() string {
-	if o == nil {
+	if o == nil || o.PhoneNumber == nil {
 		var ret string
 		return ret
 	}
-
-	return o.PhoneNumber
+	return *o.PhoneNumber
 }
 
-// GetPhoneNumberOk returns a tuple with the PhoneNumber field value
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetPhoneNumberOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.PhoneNumber == nil {
 		return nil, false
 	}
-	return &o.PhoneNumber, true
+	return o.PhoneNumber, true
 }
 
-// SetPhoneNumber sets field value
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *Owner) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given string and assigns it to the PhoneNumber field.
 func (o *Owner) SetPhoneNumber(v string) {
-	o.PhoneNumber = v
+	o.PhoneNumber = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Owner) GetType() string {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Owner) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *Owner) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Owner) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || o.UpdatedAt == nil {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetUpdatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Owner) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *Owner) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *Owner) GetUsername() string {
-	if o == nil {
+	if o == nil || o.Username == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Owner) GetUsernameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Username == nil {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *Owner) HasUsername() bool {
+	if o != nil && o.Username != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *Owner) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
 func (o Owner) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.CreatedAt != nil {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
-	if true {
+	if o.Deleted != nil {
 		toSerialize["deleted"] = o.Deleted
 	}
-	if true {
+	if o.Email != nil {
 		toSerialize["email"] = o.Email
 	}
-	if true {
+	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if true {
+	if o.FirstName != nil {
 		toSerialize["firstName"] = o.FirstName
 	}
-	if true {
+	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
+	if o.IdproviderId != nil {
 		toSerialize["idprovider_id"] = o.IdproviderId
 	}
-	if true {
+	if o.LastLogin != nil {
 		toSerialize["lastLogin"] = o.LastLogin
 	}
-	if true {
+	if o.LastName != nil {
 		toSerialize["lastName"] = o.LastName
 	}
-	if true {
+	if o.MfaVerificationExcluded != nil {
 		toSerialize["mfaVerificationExcluded"] = o.MfaVerificationExcluded
 	}
-	if true {
+	if o.MfaVerifiersConfigured != nil {
 		toSerialize["mfaVerifiersConfigured"] = o.MfaVerifiersConfigured
 	}
-	if true {
+	if o.OrganizationId != nil {
 		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if true {
+	if o.PhoneNumber != nil {
 		toSerialize["phoneNumber"] = o.PhoneNumber
 	}
-	if true {
+	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
-	if true {
+	if o.UpdatedAt != nil {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
-	if true {
+	if o.Username != nil {
 		toSerialize["username"] = o.Username
 	}
 	return json.Marshal(toSerialize)

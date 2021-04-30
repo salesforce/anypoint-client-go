@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Api** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Mozart** | **bool** | An explanation about the purpose of this instance. | [default to false]
+**Api** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**Mozart** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 
 ## Methods
 
 ### NewTheDesignCenterSchema
 
-`func NewTheDesignCenterSchema(api bool, mozart bool, ) *TheDesignCenterSchema`
+`func NewTheDesignCenterSchema() *TheDesignCenterSchema`
 
 NewTheDesignCenterSchema instantiates a new TheDesignCenterSchema object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetApi sets Api field to given value.
 
+### HasApi
+
+`func (o *TheDesignCenterSchema) HasApi() bool`
+
+HasApi returns a boolean if a field has been set.
 
 ### GetMozart
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetMozart sets Mozart field to given value.
 
+### HasMozart
+
+`func (o *TheDesignCenterSchema) HasMozart() bool`
+
+HasMozart returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

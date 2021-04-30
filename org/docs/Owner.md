@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Deleted** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Email** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Enabled** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**FirstName** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Id** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**IdproviderId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**LastLogin** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**LastName** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**MfaVerificationExcluded** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**MfaVerifiersConfigured** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**OrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**PhoneNumber** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Type** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**UpdatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Username** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**CreatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Deleted** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**Email** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Enabled** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**FirstName** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Id** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**IdproviderId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**LastLogin** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**LastName** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**MfaVerificationExcluded** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**MfaVerifiersConfigured** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**OrganizationId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**PhoneNumber** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Type** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**UpdatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Username** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 
 ## Methods
 
 ### NewOwner
 
-`func NewOwner(createdAt string, deleted bool, email string, enabled bool, firstName string, id string, idproviderId string, lastLogin string, lastName string, mfaVerificationExcluded bool, mfaVerifiersConfigured string, organizationId string, phoneNumber string, type_ string, updatedAt string, username string, ) *Owner`
+`func NewOwner() *Owner`
 
 NewOwner instantiates a new Owner object
 This constructor will assign default values to properties that have it defined,
@@ -59,6 +59,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Owner) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDeleted
 
@@ -79,6 +84,11 @@ and a boolean to check if the value has been set.
 
 SetDeleted sets Deleted field to given value.
 
+### HasDeleted
+
+`func (o *Owner) HasDeleted() bool`
+
+HasDeleted returns a boolean if a field has been set.
 
 ### GetEmail
 
@@ -99,6 +109,11 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
+### HasEmail
+
+`func (o *Owner) HasEmail() bool`
+
+HasEmail returns a boolean if a field has been set.
 
 ### GetEnabled
 
@@ -119,6 +134,11 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+### HasEnabled
+
+`func (o *Owner) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
 
 ### GetFirstName
 
@@ -139,6 +159,11 @@ and a boolean to check if the value has been set.
 
 SetFirstName sets FirstName field to given value.
 
+### HasFirstName
+
+`func (o *Owner) HasFirstName() bool`
+
+HasFirstName returns a boolean if a field has been set.
 
 ### GetId
 
@@ -159,6 +184,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Owner) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetIdproviderId
 
@@ -179,6 +209,11 @@ and a boolean to check if the value has been set.
 
 SetIdproviderId sets IdproviderId field to given value.
 
+### HasIdproviderId
+
+`func (o *Owner) HasIdproviderId() bool`
+
+HasIdproviderId returns a boolean if a field has been set.
 
 ### GetLastLogin
 
@@ -199,6 +234,11 @@ and a boolean to check if the value has been set.
 
 SetLastLogin sets LastLogin field to given value.
 
+### HasLastLogin
+
+`func (o *Owner) HasLastLogin() bool`
+
+HasLastLogin returns a boolean if a field has been set.
 
 ### GetLastName
 
@@ -219,6 +259,11 @@ and a boolean to check if the value has been set.
 
 SetLastName sets LastName field to given value.
 
+### HasLastName
+
+`func (o *Owner) HasLastName() bool`
+
+HasLastName returns a boolean if a field has been set.
 
 ### GetMfaVerificationExcluded
 
@@ -239,6 +284,11 @@ and a boolean to check if the value has been set.
 
 SetMfaVerificationExcluded sets MfaVerificationExcluded field to given value.
 
+### HasMfaVerificationExcluded
+
+`func (o *Owner) HasMfaVerificationExcluded() bool`
+
+HasMfaVerificationExcluded returns a boolean if a field has been set.
 
 ### GetMfaVerifiersConfigured
 
@@ -259,6 +309,11 @@ and a boolean to check if the value has been set.
 
 SetMfaVerifiersConfigured sets MfaVerifiersConfigured field to given value.
 
+### HasMfaVerifiersConfigured
+
+`func (o *Owner) HasMfaVerifiersConfigured() bool`
+
+HasMfaVerifiersConfigured returns a boolean if a field has been set.
 
 ### GetOrganizationId
 
@@ -279,6 +334,11 @@ and a boolean to check if the value has been set.
 
 SetOrganizationId sets OrganizationId field to given value.
 
+### HasOrganizationId
+
+`func (o *Owner) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 ### GetPhoneNumber
 
@@ -299,6 +359,11 @@ and a boolean to check if the value has been set.
 
 SetPhoneNumber sets PhoneNumber field to given value.
 
+### HasPhoneNumber
+
+`func (o *Owner) HasPhoneNumber() bool`
+
+HasPhoneNumber returns a boolean if a field has been set.
 
 ### GetType
 
@@ -319,6 +384,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *Owner) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -339,6 +409,11 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+### HasUpdatedAt
+
+`func (o *Owner) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -359,6 +434,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *Owner) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

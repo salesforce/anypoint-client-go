@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**ProductSKU** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**ProductSKU** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
 
 ## Methods
 
 ### NewApiQuery
 
-`func NewApiQuery(enabled bool, productSKU int32, ) *ApiQuery`
+`func NewApiQuery(enabled bool, ) *ApiQuery`
 
 NewApiQuery instantiates a new ApiQuery object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetProductSKU sets ProductSKU field to given value.
 
+### HasProductSKU
+
+`func (o *ApiQuery) HasProductSKU() bool`
+
+HasProductSKU returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

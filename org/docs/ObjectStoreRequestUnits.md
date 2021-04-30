@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddOn** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Base** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**AddOn** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
+**Base** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
 
 ## Methods
 
 ### NewObjectStoreRequestUnits
 
-`func NewObjectStoreRequestUnits(addOn int32, base int32, ) *ObjectStoreRequestUnits`
+`func NewObjectStoreRequestUnits() *ObjectStoreRequestUnits`
 
 NewObjectStoreRequestUnits instantiates a new ObjectStoreRequestUnits object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetAddOn sets AddOn field to given value.
 
+### HasAddOn
+
+`func (o *ObjectStoreRequestUnits) HasAddOn() bool`
+
+HasAddOn returns a boolean if a field has been set.
 
 ### GetBase
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetBase sets Base field to given value.
 
+### HasBase
+
+`func (o *ObjectStoreRequestUnits) HasBase() bool`
+
+HasBase returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

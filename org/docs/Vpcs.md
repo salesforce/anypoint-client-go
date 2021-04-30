@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Assigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Reassigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Reassigned** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
 
 ## Methods
 
 ### NewVpcs
 
-`func NewVpcs(assigned int32, reassigned int32, ) *Vpcs`
+`func NewVpcs(assigned int32, ) *Vpcs`
 
 NewVpcs instantiates a new Vpcs object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetReassigned sets Reassigned field to given value.
 
+### HasReassigned
+
+`func (o *Vpcs) HasReassigned() bool`
+
+HasReassigned returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

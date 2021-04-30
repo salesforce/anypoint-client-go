@@ -17,18 +17,18 @@ import (
 // MasterBGSpecificDetails struct for MasterBGSpecificDetails
 type MasterBGSpecificDetails struct {
 	// An explanation about the purpose of this instance.
-	SessionTimeout int32 `json:"sessionTimeout"`
-	Subscription Subscription `json:"subscription"`
+	SessionTimeout *int32 `json:"sessionTimeout,omitempty"`
+	Subscription *Subscription `json:"subscription,omitempty"`
 }
 
 // NewMasterBGSpecificDetails instantiates a new MasterBGSpecificDetails object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMasterBGSpecificDetails(sessionTimeout int32, subscription Subscription) *MasterBGSpecificDetails {
+func NewMasterBGSpecificDetails() *MasterBGSpecificDetails {
 	this := MasterBGSpecificDetails{}
-	this.SessionTimeout = sessionTimeout
-	this.Subscription = subscription
+	var sessionTimeout int32 = 0
+	this.SessionTimeout = &sessionTimeout
 	return &this
 }
 
@@ -38,64 +38,80 @@ func NewMasterBGSpecificDetails(sessionTimeout int32, subscription Subscription)
 func NewMasterBGSpecificDetailsWithDefaults() *MasterBGSpecificDetails {
 	this := MasterBGSpecificDetails{}
 	var sessionTimeout int32 = 0
-	this.SessionTimeout = sessionTimeout
+	this.SessionTimeout = &sessionTimeout
 	return &this
 }
 
-// GetSessionTimeout returns the SessionTimeout field value
+// GetSessionTimeout returns the SessionTimeout field value if set, zero value otherwise.
 func (o *MasterBGSpecificDetails) GetSessionTimeout() int32 {
-	if o == nil {
+	if o == nil || o.SessionTimeout == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.SessionTimeout
+	return *o.SessionTimeout
 }
 
-// GetSessionTimeoutOk returns a tuple with the SessionTimeout field value
+// GetSessionTimeoutOk returns a tuple with the SessionTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MasterBGSpecificDetails) GetSessionTimeoutOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil || o.SessionTimeout == nil {
 		return nil, false
 	}
-	return &o.SessionTimeout, true
+	return o.SessionTimeout, true
 }
 
-// SetSessionTimeout sets field value
+// HasSessionTimeout returns a boolean if a field has been set.
+func (o *MasterBGSpecificDetails) HasSessionTimeout() bool {
+	if o != nil && o.SessionTimeout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionTimeout gets a reference to the given int32 and assigns it to the SessionTimeout field.
 func (o *MasterBGSpecificDetails) SetSessionTimeout(v int32) {
-	o.SessionTimeout = v
+	o.SessionTimeout = &v
 }
 
-// GetSubscription returns the Subscription field value
+// GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *MasterBGSpecificDetails) GetSubscription() Subscription {
-	if o == nil {
+	if o == nil || o.Subscription == nil {
 		var ret Subscription
 		return ret
 	}
-
-	return o.Subscription
+	return *o.Subscription
 }
 
-// GetSubscriptionOk returns a tuple with the Subscription field value
+// GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MasterBGSpecificDetails) GetSubscriptionOk() (*Subscription, bool) {
-	if o == nil  {
+	if o == nil || o.Subscription == nil {
 		return nil, false
 	}
-	return &o.Subscription, true
+	return o.Subscription, true
 }
 
-// SetSubscription sets field value
+// HasSubscription returns a boolean if a field has been set.
+func (o *MasterBGSpecificDetails) HasSubscription() bool {
+	if o != nil && o.Subscription != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscription gets a reference to the given Subscription and assigns it to the Subscription field.
 func (o *MasterBGSpecificDetails) SetSubscription(v Subscription) {
-	o.Subscription = v
+	o.Subscription = &v
 }
 
 func (o MasterBGSpecificDetails) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.SessionTimeout != nil {
 		toSerialize["sessionTimeout"] = o.SessionTimeout
 	}
-	if true {
+	if o.Subscription != nil {
 		toSerialize["subscription"] = o.Subscription
 	}
 	return json.Marshal(toSerialize)

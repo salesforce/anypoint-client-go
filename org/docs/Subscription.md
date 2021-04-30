@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Category** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Expiration** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Type** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**Category** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Expiration** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Type** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 
 ## Methods
 
 ### NewSubscription
 
-`func NewSubscription(category string, expiration string, type_ string, ) *Subscription`
+`func NewSubscription() *Subscription`
 
 NewSubscription instantiates a new Subscription object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetCategory sets Category field to given value.
 
+### HasCategory
+
+`func (o *Subscription) HasCategory() bool`
+
+HasCategory returns a boolean if a field has been set.
 
 ### GetExpiration
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetExpiration sets Expiration field to given value.
 
+### HasExpiration
+
+`func (o *Subscription) HasExpiration() bool`
+
+HasExpiration returns a boolean if a field has been set.
 
 ### GetType
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *Subscription) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

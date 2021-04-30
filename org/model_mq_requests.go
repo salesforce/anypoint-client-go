@@ -17,19 +17,21 @@ import (
 // MqRequests An explanation about the purpose of this instance.
 type MqRequests struct {
 	// An explanation about the purpose of this instance.
-	AddOn int32 `json:"addOn"`
+	AddOn *int32 `json:"addOn,omitempty"`
 	// An explanation about the purpose of this instance.
-	Base int32 `json:"base"`
+	Base *int32 `json:"base,omitempty"`
 }
 
 // NewMqRequests instantiates a new MqRequests object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMqRequests(addOn int32, base int32) *MqRequests {
+func NewMqRequests() *MqRequests {
 	this := MqRequests{}
-	this.AddOn = addOn
-	this.Base = base
+	var addOn int32 = 0
+	this.AddOn = &addOn
+	var base int32 = 0
+	this.Base = &base
 	return &this
 }
 
@@ -39,66 +41,82 @@ func NewMqRequests(addOn int32, base int32) *MqRequests {
 func NewMqRequestsWithDefaults() *MqRequests {
 	this := MqRequests{}
 	var addOn int32 = 0
-	this.AddOn = addOn
+	this.AddOn = &addOn
 	var base int32 = 0
-	this.Base = base
+	this.Base = &base
 	return &this
 }
 
-// GetAddOn returns the AddOn field value
+// GetAddOn returns the AddOn field value if set, zero value otherwise.
 func (o *MqRequests) GetAddOn() int32 {
-	if o == nil {
+	if o == nil || o.AddOn == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.AddOn
+	return *o.AddOn
 }
 
-// GetAddOnOk returns a tuple with the AddOn field value
+// GetAddOnOk returns a tuple with the AddOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MqRequests) GetAddOnOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil || o.AddOn == nil {
 		return nil, false
 	}
-	return &o.AddOn, true
+	return o.AddOn, true
 }
 
-// SetAddOn sets field value
+// HasAddOn returns a boolean if a field has been set.
+func (o *MqRequests) HasAddOn() bool {
+	if o != nil && o.AddOn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAddOn gets a reference to the given int32 and assigns it to the AddOn field.
 func (o *MqRequests) SetAddOn(v int32) {
-	o.AddOn = v
+	o.AddOn = &v
 }
 
-// GetBase returns the Base field value
+// GetBase returns the Base field value if set, zero value otherwise.
 func (o *MqRequests) GetBase() int32 {
-	if o == nil {
+	if o == nil || o.Base == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.Base
+	return *o.Base
 }
 
-// GetBaseOk returns a tuple with the Base field value
+// GetBaseOk returns a tuple with the Base field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MqRequests) GetBaseOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil || o.Base == nil {
 		return nil, false
 	}
-	return &o.Base, true
+	return o.Base, true
 }
 
-// SetBase sets field value
+// HasBase returns a boolean if a field has been set.
+func (o *MqRequests) HasBase() bool {
+	if o != nil && o.Base != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBase gets a reference to the given int32 and assigns it to the Base field.
 func (o *MqRequests) SetBase(v int32) {
-	o.Base = v
+	o.Base = &v
 }
 
 func (o MqRequests) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.AddOn != nil {
 		toSerialize["addOn"] = o.AddOn
 	}
-	if true {
+	if o.Base != nil {
 		toSerialize["base"] = o.Base
 	}
 	return json.Marshal(toSerialize)

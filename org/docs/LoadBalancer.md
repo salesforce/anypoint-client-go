@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Assigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Reassigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Reassigned** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
 
 ## Methods
 
 ### NewLoadBalancer
 
-`func NewLoadBalancer(assigned int32, reassigned int32, ) *LoadBalancer`
+`func NewLoadBalancer(assigned int32, ) *LoadBalancer`
 
 NewLoadBalancer instantiates a new LoadBalancer object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetReassigned sets Reassigned field to given value.
 
+### HasReassigned
+
+`func (o *LoadBalancer) HasReassigned() bool`
+
+HasReassigned returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
