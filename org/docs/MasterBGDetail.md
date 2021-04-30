@@ -4,33 +4,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**CreatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Domain** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Entitlements** | [**Entitlements**](Entitlements.md) |  | 
-**Environments** | [**[]Environment**](Environment.md) | An explanation about the purpose of this instance. | [default to []]
-**Id** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**IdproviderId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**IsAutomaticAdminPromotionExempt** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**IsFederated** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**IsMaster** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**MfaRequired** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**ParentOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
-**Properties** | **map[string]interface{}** | An explanation about the purpose of this instance. | [default to {}]
-**SubOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
-**TenantOrganizationIds** | **[]string** | An explanation about the purpose of this instance. | [default to []]
-**UpdatedAt** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Owner** | [**Owner**](Owner.md) |  | 
-**SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Subscription** | [**Subscription**](Subscription.md) |  | 
+**ClientId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**CreatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Domain** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Entitlements** | Pointer to [**Entitlements**](Entitlements.md) |  | [optional] 
+**Environments** | Pointer to [**[]Environment**](Environment.md) | An explanation about the purpose of this instance. | [optional] [default to []]
+**Id** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**IdproviderId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**IsAutomaticAdminPromotionExempt** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**IsFederated** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**IsMaster** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**MfaRequired** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Name** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**OwnerId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**ParentOrganizationIds** | Pointer to **[]string** | An explanation about the purpose of this instance. | [optional] [default to []]
+**Properties** | Pointer to **map[string]interface{}** | An explanation about the purpose of this instance. | [optional] [default to {}]
+**SubOrganizationIds** | Pointer to **[]string** | An explanation about the purpose of this instance. | [optional] [default to []]
+**TenantOrganizationIds** | Pointer to **[]string** | An explanation about the purpose of this instance. | [optional] [default to []]
+**UpdatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Owner** | Pointer to [**Owner**](Owner.md) |  | [optional] 
+**SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
+**Subscription** | Pointer to [**Subscription**](Subscription.md) |  | [optional] 
 
 ## Methods
 
 ### NewMasterBGDetail
 
-`func NewMasterBGDetail(clientId string, createdAt string, domain string, entitlements Entitlements, environments []Environment, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]interface{}, subOrganizationIds []string, tenantOrganizationIds []string, updatedAt string, owner Owner, sessionTimeout int32, subscription Subscription, ) *MasterBGDetail`
+`func NewMasterBGDetail() *MasterBGDetail`
 
 NewMasterBGDetail instantiates a new MasterBGDetail object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +64,11 @@ and a boolean to check if the value has been set.
 
 SetClientId sets ClientId field to given value.
 
+### HasClientId
+
+`func (o *MasterBGDetail) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -84,6 +89,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *MasterBGDetail) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDomain
 
@@ -104,6 +114,11 @@ and a boolean to check if the value has been set.
 
 SetDomain sets Domain field to given value.
 
+### HasDomain
+
+`func (o *MasterBGDetail) HasDomain() bool`
+
+HasDomain returns a boolean if a field has been set.
 
 ### GetEntitlements
 
@@ -124,6 +139,11 @@ and a boolean to check if the value has been set.
 
 SetEntitlements sets Entitlements field to given value.
 
+### HasEntitlements
+
+`func (o *MasterBGDetail) HasEntitlements() bool`
+
+HasEntitlements returns a boolean if a field has been set.
 
 ### GetEnvironments
 
@@ -144,6 +164,11 @@ and a boolean to check if the value has been set.
 
 SetEnvironments sets Environments field to given value.
 
+### HasEnvironments
+
+`func (o *MasterBGDetail) HasEnvironments() bool`
+
+HasEnvironments returns a boolean if a field has been set.
 
 ### GetId
 
@@ -164,6 +189,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *MasterBGDetail) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetIdproviderId
 
@@ -184,6 +214,11 @@ and a boolean to check if the value has been set.
 
 SetIdproviderId sets IdproviderId field to given value.
 
+### HasIdproviderId
+
+`func (o *MasterBGDetail) HasIdproviderId() bool`
+
+HasIdproviderId returns a boolean if a field has been set.
 
 ### GetIsAutomaticAdminPromotionExempt
 
@@ -204,6 +239,11 @@ and a boolean to check if the value has been set.
 
 SetIsAutomaticAdminPromotionExempt sets IsAutomaticAdminPromotionExempt field to given value.
 
+### HasIsAutomaticAdminPromotionExempt
+
+`func (o *MasterBGDetail) HasIsAutomaticAdminPromotionExempt() bool`
+
+HasIsAutomaticAdminPromotionExempt returns a boolean if a field has been set.
 
 ### GetIsFederated
 
@@ -224,6 +264,11 @@ and a boolean to check if the value has been set.
 
 SetIsFederated sets IsFederated field to given value.
 
+### HasIsFederated
+
+`func (o *MasterBGDetail) HasIsFederated() bool`
+
+HasIsFederated returns a boolean if a field has been set.
 
 ### GetIsMaster
 
@@ -244,6 +289,11 @@ and a boolean to check if the value has been set.
 
 SetIsMaster sets IsMaster field to given value.
 
+### HasIsMaster
+
+`func (o *MasterBGDetail) HasIsMaster() bool`
+
+HasIsMaster returns a boolean if a field has been set.
 
 ### GetMfaRequired
 
@@ -264,6 +314,11 @@ and a boolean to check if the value has been set.
 
 SetMfaRequired sets MfaRequired field to given value.
 
+### HasMfaRequired
+
+`func (o *MasterBGDetail) HasMfaRequired() bool`
+
+HasMfaRequired returns a boolean if a field has been set.
 
 ### GetName
 
@@ -284,6 +339,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *MasterBGDetail) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetOwnerId
 
@@ -304,6 +364,11 @@ and a boolean to check if the value has been set.
 
 SetOwnerId sets OwnerId field to given value.
 
+### HasOwnerId
+
+`func (o *MasterBGDetail) HasOwnerId() bool`
+
+HasOwnerId returns a boolean if a field has been set.
 
 ### GetParentOrganizationIds
 
@@ -324,6 +389,11 @@ and a boolean to check if the value has been set.
 
 SetParentOrganizationIds sets ParentOrganizationIds field to given value.
 
+### HasParentOrganizationIds
+
+`func (o *MasterBGDetail) HasParentOrganizationIds() bool`
+
+HasParentOrganizationIds returns a boolean if a field has been set.
 
 ### GetProperties
 
@@ -344,6 +414,11 @@ and a boolean to check if the value has been set.
 
 SetProperties sets Properties field to given value.
 
+### HasProperties
+
+`func (o *MasterBGDetail) HasProperties() bool`
+
+HasProperties returns a boolean if a field has been set.
 
 ### GetSubOrganizationIds
 
@@ -364,6 +439,11 @@ and a boolean to check if the value has been set.
 
 SetSubOrganizationIds sets SubOrganizationIds field to given value.
 
+### HasSubOrganizationIds
+
+`func (o *MasterBGDetail) HasSubOrganizationIds() bool`
+
+HasSubOrganizationIds returns a boolean if a field has been set.
 
 ### GetTenantOrganizationIds
 
@@ -384,6 +464,11 @@ and a boolean to check if the value has been set.
 
 SetTenantOrganizationIds sets TenantOrganizationIds field to given value.
 
+### HasTenantOrganizationIds
+
+`func (o *MasterBGDetail) HasTenantOrganizationIds() bool`
+
+HasTenantOrganizationIds returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -404,6 +489,11 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+### HasUpdatedAt
+
+`func (o *MasterBGDetail) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetOwner
 
@@ -424,6 +514,11 @@ and a boolean to check if the value has been set.
 
 SetOwner sets Owner field to given value.
 
+### HasOwner
+
+`func (o *MasterBGDetail) HasOwner() bool`
+
+HasOwner returns a boolean if a field has been set.
 
 ### GetSessionTimeout
 
@@ -444,6 +539,11 @@ and a boolean to check if the value has been set.
 
 SetSessionTimeout sets SessionTimeout field to given value.
 
+### HasSessionTimeout
+
+`func (o *MasterBGDetail) HasSessionTimeout() bool`
+
+HasSessionTimeout returns a boolean if a field has been set.
 
 ### GetSubscription
 
@@ -464,6 +564,11 @@ and a boolean to check if the value has been set.
 
 SetSubscription sets Subscription field to given value.
 
+### HasSubscription
+
+`func (o *MasterBGDetail) HasSubscription() bool`
+
+HasSubscription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

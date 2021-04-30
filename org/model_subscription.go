@@ -17,22 +17,25 @@ import (
 // Subscription An explanation about the purpose of this instance.
 type Subscription struct {
 	// An explanation about the purpose of this instance.
-	Category string `json:"category"`
+	Category *string `json:"category,omitempty"`
 	// An explanation about the purpose of this instance.
-	Expiration string `json:"expiration"`
+	Expiration *string `json:"expiration,omitempty"`
 	// An explanation about the purpose of this instance.
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewSubscription instantiates a new Subscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscription(category string, expiration string, type_ string) *Subscription {
+func NewSubscription() *Subscription {
 	this := Subscription{}
-	this.Category = category
-	this.Expiration = expiration
-	this.Type = type_
+	var category string = ""
+	this.Category = &category
+	var expiration string = ""
+	this.Expiration = &expiration
+	var type_ string = ""
+	this.Type = &type_
 	return &this
 }
 
@@ -42,95 +45,119 @@ func NewSubscription(category string, expiration string, type_ string) *Subscrip
 func NewSubscriptionWithDefaults() *Subscription {
 	this := Subscription{}
 	var category string = ""
-	this.Category = category
+	this.Category = &category
 	var expiration string = ""
-	this.Expiration = expiration
+	this.Expiration = &expiration
 	var type_ string = ""
-	this.Type = type_
+	this.Type = &type_
 	return &this
 }
 
-// GetCategory returns the Category field value
+// GetCategory returns the Category field value if set, zero value otherwise.
 func (o *Subscription) GetCategory() string {
-	if o == nil {
+	if o == nil || o.Category == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Category
+	return *o.Category
 }
 
-// GetCategoryOk returns a tuple with the Category field value
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetCategoryOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Category == nil {
 		return nil, false
 	}
-	return &o.Category, true
+	return o.Category, true
 }
 
-// SetCategory sets field value
+// HasCategory returns a boolean if a field has been set.
+func (o *Subscription) HasCategory() bool {
+	if o != nil && o.Category != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCategory gets a reference to the given string and assigns it to the Category field.
 func (o *Subscription) SetCategory(v string) {
-	o.Category = v
+	o.Category = &v
 }
 
-// GetExpiration returns the Expiration field value
+// GetExpiration returns the Expiration field value if set, zero value otherwise.
 func (o *Subscription) GetExpiration() string {
-	if o == nil {
+	if o == nil || o.Expiration == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Expiration
+	return *o.Expiration
 }
 
-// GetExpirationOk returns a tuple with the Expiration field value
+// GetExpirationOk returns a tuple with the Expiration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetExpirationOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Expiration == nil {
 		return nil, false
 	}
-	return &o.Expiration, true
+	return o.Expiration, true
 }
 
-// SetExpiration sets field value
+// HasExpiration returns a boolean if a field has been set.
+func (o *Subscription) HasExpiration() bool {
+	if o != nil && o.Expiration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiration gets a reference to the given string and assigns it to the Expiration field.
 func (o *Subscription) SetExpiration(v string) {
-	o.Expiration = v
+	o.Expiration = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Subscription) GetType() string {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *Subscription) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *Subscription) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Category != nil {
 		toSerialize["category"] = o.Category
 	}
-	if true {
+	if o.Expiration != nil {
 		toSerialize["expiration"] = o.Expiration
 	}
-	if true {
+	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)

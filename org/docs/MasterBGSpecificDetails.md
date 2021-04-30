@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Subscription** | [**Subscription**](Subscription.md) |  | 
+**SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
+**Subscription** | Pointer to [**Subscription**](Subscription.md) |  | [optional] 
 
 ## Methods
 
 ### NewMasterBGSpecificDetails
 
-`func NewMasterBGSpecificDetails(sessionTimeout int32, subscription Subscription, ) *MasterBGSpecificDetails`
+`func NewMasterBGSpecificDetails() *MasterBGSpecificDetails`
 
 NewMasterBGSpecificDetails instantiates a new MasterBGSpecificDetails object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSessionTimeout sets SessionTimeout field to given value.
 
+### HasSessionTimeout
+
+`func (o *MasterBGSpecificDetails) HasSessionTimeout() bool`
+
+HasSessionTimeout returns a boolean if a field has been set.
 
 ### GetSubscription
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetSubscription sets Subscription field to given value.
 
+### HasSubscription
+
+`func (o *MasterBGSpecificDetails) HasSubscription() bool`
+
+HasSubscription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

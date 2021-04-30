@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Assigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
-**Reassigned** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Reassigned** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
 
 ## Methods
 
 ### NewVpns
 
-`func NewVpns(assigned int32, reassigned int32, ) *Vpns`
+`func NewVpns(assigned int32, ) *Vpns`
 
 NewVpns instantiates a new Vpns object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetReassigned sets Reassigned field to given value.
 
+### HasReassigned
+
+`func (o *Vpns) HasReassigned() bool`
+
+HasReassigned returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

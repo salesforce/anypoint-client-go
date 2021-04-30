@@ -19,17 +19,18 @@ type VCoresSandbox struct {
 	// An explanation about the purpose of this instance.
 	Assigned float32 `json:"assigned"`
 	// An explanation about the purpose of this instance.
-	Reassigned float32 `json:"reassigned"`
+	Reassigned *float32 `json:"reassigned,omitempty"`
 }
 
 // NewVCoresSandbox instantiates a new VCoresSandbox object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVCoresSandbox(assigned float32, reassigned float32) *VCoresSandbox {
+func NewVCoresSandbox(assigned float32) *VCoresSandbox {
 	this := VCoresSandbox{}
 	this.Assigned = assigned
-	this.Reassigned = reassigned
+	var reassigned float32 = 0.0
+	this.Reassigned = &reassigned
 	return &this
 }
 
@@ -41,7 +42,7 @@ func NewVCoresSandboxWithDefaults() *VCoresSandbox {
 	var assigned float32 = 0
 	this.Assigned = assigned
 	var reassigned float32 = 0.0
-	this.Reassigned = reassigned
+	this.Reassigned = &reassigned
 	return &this
 }
 
@@ -69,28 +70,36 @@ func (o *VCoresSandbox) SetAssigned(v float32) {
 	o.Assigned = v
 }
 
-// GetReassigned returns the Reassigned field value
+// GetReassigned returns the Reassigned field value if set, zero value otherwise.
 func (o *VCoresSandbox) GetReassigned() float32 {
-	if o == nil {
+	if o == nil || o.Reassigned == nil {
 		var ret float32
 		return ret
 	}
-
-	return o.Reassigned
+	return *o.Reassigned
 }
 
-// GetReassignedOk returns a tuple with the Reassigned field value
+// GetReassignedOk returns a tuple with the Reassigned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VCoresSandbox) GetReassignedOk() (*float32, bool) {
-	if o == nil  {
+	if o == nil || o.Reassigned == nil {
 		return nil, false
 	}
-	return &o.Reassigned, true
+	return o.Reassigned, true
 }
 
-// SetReassigned sets field value
+// HasReassigned returns a boolean if a field has been set.
+func (o *VCoresSandbox) HasReassigned() bool {
+	if o != nil && o.Reassigned != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReassigned gets a reference to the given float32 and assigns it to the Reassigned field.
 func (o *VCoresSandbox) SetReassigned(v float32) {
-	o.Reassigned = v
+	o.Reassigned = &v
 }
 
 func (o VCoresSandbox) MarshalJSON() ([]byte, error) {
@@ -98,7 +107,7 @@ func (o VCoresSandbox) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["assigned"] = o.Assigned
 	}
-	if true {
+	if o.Reassigned != nil {
 		toSerialize["reassigned"] = o.Reassigned
 	}
 	return json.Marshal(toSerialize)

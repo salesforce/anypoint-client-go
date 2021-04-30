@@ -17,68 +17,73 @@ import (
 // BGCore struct for BGCore
 type BGCore struct {
 	// An explanation about the purpose of this instance.
-	ClientId string `json:"clientId"`
+	ClientId *string `json:"clientId,omitempty"`
 	// An explanation about the purpose of this instance.
-	CreatedAt string `json:"createdAt"`
+	CreatedAt *string `json:"createdAt,omitempty"`
 	// An explanation about the purpose of this instance.
-	Domain string `json:"domain"`
-	Entitlements Entitlements `json:"entitlements"`
+	Domain *string `json:"domain,omitempty"`
+	Entitlements *Entitlements `json:"entitlements,omitempty"`
 	// An explanation about the purpose of this instance.
-	Environments []Environment `json:"environments"`
+	Environments *[]Environment `json:"environments,omitempty"`
 	// An explanation about the purpose of this instance.
-	Id string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// An explanation about the purpose of this instance.
-	IdproviderId string `json:"idprovider_id"`
+	IdproviderId *string `json:"idprovider_id,omitempty"`
 	// An explanation about the purpose of this instance.
-	IsAutomaticAdminPromotionExempt bool `json:"isAutomaticAdminPromotionExempt"`
+	IsAutomaticAdminPromotionExempt *bool `json:"isAutomaticAdminPromotionExempt,omitempty"`
 	// An explanation about the purpose of this instance.
-	IsFederated bool `json:"isFederated"`
+	IsFederated *bool `json:"isFederated,omitempty"`
 	// An explanation about the purpose of this instance.
-	IsMaster bool `json:"isMaster"`
+	IsMaster *bool `json:"isMaster,omitempty"`
 	// An explanation about the purpose of this instance.
-	MfaRequired string `json:"mfaRequired"`
+	MfaRequired *string `json:"mfaRequired,omitempty"`
 	// An explanation about the purpose of this instance.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// An explanation about the purpose of this instance.
-	OwnerId string `json:"ownerId"`
+	OwnerId *string `json:"ownerId,omitempty"`
 	// An explanation about the purpose of this instance.
-	ParentOrganizationIds []string `json:"parentOrganizationIds"`
+	ParentOrganizationIds *[]string `json:"parentOrganizationIds,omitempty"`
 	// An explanation about the purpose of this instance.
-	Properties map[string]interface{} `json:"properties"`
+	Properties *map[string]interface{} `json:"properties,omitempty"`
 	// An explanation about the purpose of this instance.
-	SubOrganizationIds []string `json:"subOrganizationIds"`
+	SubOrganizationIds *[]string `json:"subOrganizationIds,omitempty"`
 	// An explanation about the purpose of this instance.
-	TenantOrganizationIds []string `json:"tenantOrganizationIds"`
+	TenantOrganizationIds *[]string `json:"tenantOrganizationIds,omitempty"`
 	// An explanation about the purpose of this instance.
-	UpdatedAt string `json:"updatedAt"`
-	Owner Owner `json:"owner"`
+	UpdatedAt *string `json:"updatedAt,omitempty"`
+	Owner *Owner `json:"owner,omitempty"`
 }
 
 // NewBGCore instantiates a new BGCore object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGCore(clientId string, createdAt string, domain string, entitlements Entitlements, environments []Environment, id string, idproviderId string, isAutomaticAdminPromotionExempt bool, isFederated bool, isMaster bool, mfaRequired string, name string, ownerId string, parentOrganizationIds []string, properties map[string]interface{}, subOrganizationIds []string, tenantOrganizationIds []string, updatedAt string, owner Owner) *BGCore {
+func NewBGCore() *BGCore {
 	this := BGCore{}
-	this.ClientId = clientId
-	this.CreatedAt = createdAt
-	this.Domain = domain
-	this.Entitlements = entitlements
-	this.Environments = environments
-	this.Id = id
-	this.IdproviderId = idproviderId
-	this.IsAutomaticAdminPromotionExempt = isAutomaticAdminPromotionExempt
-	this.IsFederated = isFederated
-	this.IsMaster = isMaster
-	this.MfaRequired = mfaRequired
-	this.Name = name
-	this.OwnerId = ownerId
-	this.ParentOrganizationIds = parentOrganizationIds
-	this.Properties = properties
-	this.SubOrganizationIds = subOrganizationIds
-	this.TenantOrganizationIds = tenantOrganizationIds
-	this.UpdatedAt = updatedAt
-	this.Owner = owner
+	var clientId string = ""
+	this.ClientId = &clientId
+	var createdAt string = ""
+	this.CreatedAt = &createdAt
+	var domain string = ""
+	this.Domain = &domain
+	var id string = ""
+	this.Id = &id
+	var idproviderId string = ""
+	this.IdproviderId = &idproviderId
+	var isAutomaticAdminPromotionExempt bool = false
+	this.IsAutomaticAdminPromotionExempt = &isAutomaticAdminPromotionExempt
+	var isFederated bool = false
+	this.IsFederated = &isFederated
+	var isMaster bool = false
+	this.IsMaster = &isMaster
+	var mfaRequired string = ""
+	this.MfaRequired = &mfaRequired
+	var name string = ""
+	this.Name = &name
+	var ownerId string = ""
+	this.OwnerId = &ownerId
+	var updatedAt string = ""
+	this.UpdatedAt = &updatedAt
 	return &this
 }
 
@@ -88,545 +93,697 @@ func NewBGCore(clientId string, createdAt string, domain string, entitlements En
 func NewBGCoreWithDefaults() *BGCore {
 	this := BGCore{}
 	var clientId string = ""
-	this.ClientId = clientId
+	this.ClientId = &clientId
 	var createdAt string = ""
-	this.CreatedAt = createdAt
+	this.CreatedAt = &createdAt
 	var domain string = ""
-	this.Domain = domain
+	this.Domain = &domain
 	var id string = ""
-	this.Id = id
+	this.Id = &id
 	var idproviderId string = ""
-	this.IdproviderId = idproviderId
+	this.IdproviderId = &idproviderId
 	var isAutomaticAdminPromotionExempt bool = false
-	this.IsAutomaticAdminPromotionExempt = isAutomaticAdminPromotionExempt
+	this.IsAutomaticAdminPromotionExempt = &isAutomaticAdminPromotionExempt
 	var isFederated bool = false
-	this.IsFederated = isFederated
+	this.IsFederated = &isFederated
 	var isMaster bool = false
-	this.IsMaster = isMaster
+	this.IsMaster = &isMaster
 	var mfaRequired string = ""
-	this.MfaRequired = mfaRequired
+	this.MfaRequired = &mfaRequired
 	var name string = ""
-	this.Name = name
+	this.Name = &name
 	var ownerId string = ""
-	this.OwnerId = ownerId
+	this.OwnerId = &ownerId
 	var updatedAt string = ""
-	this.UpdatedAt = updatedAt
+	this.UpdatedAt = &updatedAt
 	return &this
 }
 
-// GetClientId returns the ClientId field value
+// GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *BGCore) GetClientId() string {
-	if o == nil {
+	if o == nil || o.ClientId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.ClientId
+	return *o.ClientId
 }
 
-// GetClientIdOk returns a tuple with the ClientId field value
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetClientIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.ClientId == nil {
 		return nil, false
 	}
-	return &o.ClientId, true
+	return o.ClientId, true
 }
 
-// SetClientId sets field value
+// HasClientId returns a boolean if a field has been set.
+func (o *BGCore) HasClientId() bool {
+	if o != nil && o.ClientId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given string and assigns it to the ClientId field.
 func (o *BGCore) SetClientId(v string) {
-	o.ClientId = v
+	o.ClientId = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *BGCore) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || o.CreatedAt == nil {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *BGCore) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *BGCore) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetDomain returns the Domain field value
+// GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *BGCore) GetDomain() string {
-	if o == nil {
+	if o == nil || o.Domain == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Domain
+	return *o.Domain
 }
 
-// GetDomainOk returns a tuple with the Domain field value
+// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetDomainOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Domain == nil {
 		return nil, false
 	}
-	return &o.Domain, true
+	return o.Domain, true
 }
 
-// SetDomain sets field value
+// HasDomain returns a boolean if a field has been set.
+func (o *BGCore) HasDomain() bool {
+	if o != nil && o.Domain != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDomain gets a reference to the given string and assigns it to the Domain field.
 func (o *BGCore) SetDomain(v string) {
-	o.Domain = v
+	o.Domain = &v
 }
 
-// GetEntitlements returns the Entitlements field value
+// GetEntitlements returns the Entitlements field value if set, zero value otherwise.
 func (o *BGCore) GetEntitlements() Entitlements {
-	if o == nil {
+	if o == nil || o.Entitlements == nil {
 		var ret Entitlements
 		return ret
 	}
-
-	return o.Entitlements
+	return *o.Entitlements
 }
 
-// GetEntitlementsOk returns a tuple with the Entitlements field value
+// GetEntitlementsOk returns a tuple with the Entitlements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetEntitlementsOk() (*Entitlements, bool) {
-	if o == nil  {
+	if o == nil || o.Entitlements == nil {
 		return nil, false
 	}
-	return &o.Entitlements, true
+	return o.Entitlements, true
 }
 
-// SetEntitlements sets field value
+// HasEntitlements returns a boolean if a field has been set.
+func (o *BGCore) HasEntitlements() bool {
+	if o != nil && o.Entitlements != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEntitlements gets a reference to the given Entitlements and assigns it to the Entitlements field.
 func (o *BGCore) SetEntitlements(v Entitlements) {
-	o.Entitlements = v
+	o.Entitlements = &v
 }
 
-// GetEnvironments returns the Environments field value
+// GetEnvironments returns the Environments field value if set, zero value otherwise.
 func (o *BGCore) GetEnvironments() []Environment {
-	if o == nil {
+	if o == nil || o.Environments == nil {
 		var ret []Environment
 		return ret
 	}
-
-	return o.Environments
+	return *o.Environments
 }
 
-// GetEnvironmentsOk returns a tuple with the Environments field value
+// GetEnvironmentsOk returns a tuple with the Environments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetEnvironmentsOk() (*[]Environment, bool) {
-	if o == nil  {
+	if o == nil || o.Environments == nil {
 		return nil, false
 	}
-	return &o.Environments, true
+	return o.Environments, true
 }
 
-// SetEnvironments sets field value
+// HasEnvironments returns a boolean if a field has been set.
+func (o *BGCore) HasEnvironments() bool {
+	if o != nil && o.Environments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvironments gets a reference to the given []Environment and assigns it to the Environments field.
 func (o *BGCore) SetEnvironments(v []Environment) {
-	o.Environments = v
+	o.Environments = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *BGCore) GetId() string {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *BGCore) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *BGCore) SetId(v string) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetIdproviderId returns the IdproviderId field value
+// GetIdproviderId returns the IdproviderId field value if set, zero value otherwise.
 func (o *BGCore) GetIdproviderId() string {
-	if o == nil {
+	if o == nil || o.IdproviderId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.IdproviderId
+	return *o.IdproviderId
 }
 
-// GetIdproviderIdOk returns a tuple with the IdproviderId field value
+// GetIdproviderIdOk returns a tuple with the IdproviderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetIdproviderIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.IdproviderId == nil {
 		return nil, false
 	}
-	return &o.IdproviderId, true
+	return o.IdproviderId, true
 }
 
-// SetIdproviderId sets field value
+// HasIdproviderId returns a boolean if a field has been set.
+func (o *BGCore) HasIdproviderId() bool {
+	if o != nil && o.IdproviderId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIdproviderId gets a reference to the given string and assigns it to the IdproviderId field.
 func (o *BGCore) SetIdproviderId(v string) {
-	o.IdproviderId = v
+	o.IdproviderId = &v
 }
 
-// GetIsAutomaticAdminPromotionExempt returns the IsAutomaticAdminPromotionExempt field value
+// GetIsAutomaticAdminPromotionExempt returns the IsAutomaticAdminPromotionExempt field value if set, zero value otherwise.
 func (o *BGCore) GetIsAutomaticAdminPromotionExempt() bool {
-	if o == nil {
+	if o == nil || o.IsAutomaticAdminPromotionExempt == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.IsAutomaticAdminPromotionExempt
+	return *o.IsAutomaticAdminPromotionExempt
 }
 
-// GetIsAutomaticAdminPromotionExemptOk returns a tuple with the IsAutomaticAdminPromotionExempt field value
+// GetIsAutomaticAdminPromotionExemptOk returns a tuple with the IsAutomaticAdminPromotionExempt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetIsAutomaticAdminPromotionExemptOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.IsAutomaticAdminPromotionExempt == nil {
 		return nil, false
 	}
-	return &o.IsAutomaticAdminPromotionExempt, true
+	return o.IsAutomaticAdminPromotionExempt, true
 }
 
-// SetIsAutomaticAdminPromotionExempt sets field value
+// HasIsAutomaticAdminPromotionExempt returns a boolean if a field has been set.
+func (o *BGCore) HasIsAutomaticAdminPromotionExempt() bool {
+	if o != nil && o.IsAutomaticAdminPromotionExempt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAutomaticAdminPromotionExempt gets a reference to the given bool and assigns it to the IsAutomaticAdminPromotionExempt field.
 func (o *BGCore) SetIsAutomaticAdminPromotionExempt(v bool) {
-	o.IsAutomaticAdminPromotionExempt = v
+	o.IsAutomaticAdminPromotionExempt = &v
 }
 
-// GetIsFederated returns the IsFederated field value
+// GetIsFederated returns the IsFederated field value if set, zero value otherwise.
 func (o *BGCore) GetIsFederated() bool {
-	if o == nil {
+	if o == nil || o.IsFederated == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.IsFederated
+	return *o.IsFederated
 }
 
-// GetIsFederatedOk returns a tuple with the IsFederated field value
+// GetIsFederatedOk returns a tuple with the IsFederated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetIsFederatedOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.IsFederated == nil {
 		return nil, false
 	}
-	return &o.IsFederated, true
+	return o.IsFederated, true
 }
 
-// SetIsFederated sets field value
+// HasIsFederated returns a boolean if a field has been set.
+func (o *BGCore) HasIsFederated() bool {
+	if o != nil && o.IsFederated != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsFederated gets a reference to the given bool and assigns it to the IsFederated field.
 func (o *BGCore) SetIsFederated(v bool) {
-	o.IsFederated = v
+	o.IsFederated = &v
 }
 
-// GetIsMaster returns the IsMaster field value
+// GetIsMaster returns the IsMaster field value if set, zero value otherwise.
 func (o *BGCore) GetIsMaster() bool {
-	if o == nil {
+	if o == nil || o.IsMaster == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.IsMaster
+	return *o.IsMaster
 }
 
-// GetIsMasterOk returns a tuple with the IsMaster field value
+// GetIsMasterOk returns a tuple with the IsMaster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetIsMasterOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.IsMaster == nil {
 		return nil, false
 	}
-	return &o.IsMaster, true
+	return o.IsMaster, true
 }
 
-// SetIsMaster sets field value
+// HasIsMaster returns a boolean if a field has been set.
+func (o *BGCore) HasIsMaster() bool {
+	if o != nil && o.IsMaster != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsMaster gets a reference to the given bool and assigns it to the IsMaster field.
 func (o *BGCore) SetIsMaster(v bool) {
-	o.IsMaster = v
+	o.IsMaster = &v
 }
 
-// GetMfaRequired returns the MfaRequired field value
+// GetMfaRequired returns the MfaRequired field value if set, zero value otherwise.
 func (o *BGCore) GetMfaRequired() string {
-	if o == nil {
+	if o == nil || o.MfaRequired == nil {
 		var ret string
 		return ret
 	}
-
-	return o.MfaRequired
+	return *o.MfaRequired
 }
 
-// GetMfaRequiredOk returns a tuple with the MfaRequired field value
+// GetMfaRequiredOk returns a tuple with the MfaRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetMfaRequiredOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.MfaRequired == nil {
 		return nil, false
 	}
-	return &o.MfaRequired, true
+	return o.MfaRequired, true
 }
 
-// SetMfaRequired sets field value
+// HasMfaRequired returns a boolean if a field has been set.
+func (o *BGCore) HasMfaRequired() bool {
+	if o != nil && o.MfaRequired != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMfaRequired gets a reference to the given string and assigns it to the MfaRequired field.
 func (o *BGCore) SetMfaRequired(v string) {
-	o.MfaRequired = v
+	o.MfaRequired = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *BGCore) GetName() string {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *BGCore) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *BGCore) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetOwnerId returns the OwnerId field value
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise.
 func (o *BGCore) GetOwnerId() string {
-	if o == nil {
+	if o == nil || o.OwnerId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.OwnerId
+	return *o.OwnerId
 }
 
-// GetOwnerIdOk returns a tuple with the OwnerId field value
+// GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetOwnerIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.OwnerId == nil {
 		return nil, false
 	}
-	return &o.OwnerId, true
+	return o.OwnerId, true
 }
 
-// SetOwnerId sets field value
+// HasOwnerId returns a boolean if a field has been set.
+func (o *BGCore) HasOwnerId() bool {
+	if o != nil && o.OwnerId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
 func (o *BGCore) SetOwnerId(v string) {
-	o.OwnerId = v
+	o.OwnerId = &v
 }
 
-// GetParentOrganizationIds returns the ParentOrganizationIds field value
+// GetParentOrganizationIds returns the ParentOrganizationIds field value if set, zero value otherwise.
 func (o *BGCore) GetParentOrganizationIds() []string {
-	if o == nil {
+	if o == nil || o.ParentOrganizationIds == nil {
 		var ret []string
 		return ret
 	}
-
-	return o.ParentOrganizationIds
+	return *o.ParentOrganizationIds
 }
 
-// GetParentOrganizationIdsOk returns a tuple with the ParentOrganizationIds field value
+// GetParentOrganizationIdsOk returns a tuple with the ParentOrganizationIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetParentOrganizationIdsOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil || o.ParentOrganizationIds == nil {
 		return nil, false
 	}
-	return &o.ParentOrganizationIds, true
+	return o.ParentOrganizationIds, true
 }
 
-// SetParentOrganizationIds sets field value
+// HasParentOrganizationIds returns a boolean if a field has been set.
+func (o *BGCore) HasParentOrganizationIds() bool {
+	if o != nil && o.ParentOrganizationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParentOrganizationIds gets a reference to the given []string and assigns it to the ParentOrganizationIds field.
 func (o *BGCore) SetParentOrganizationIds(v []string) {
-	o.ParentOrganizationIds = v
+	o.ParentOrganizationIds = &v
 }
 
-// GetProperties returns the Properties field value
+// GetProperties returns the Properties field value if set, zero value otherwise.
 func (o *BGCore) GetProperties() map[string]interface{} {
-	if o == nil {
+	if o == nil || o.Properties == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-
-	return o.Properties
+	return *o.Properties
 }
 
-// GetPropertiesOk returns a tuple with the Properties field value
+// GetPropertiesOk returns a tuple with the Properties field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetPropertiesOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil || o.Properties == nil {
 		return nil, false
 	}
-	return &o.Properties, true
+	return o.Properties, true
 }
 
-// SetProperties sets field value
+// HasProperties returns a boolean if a field has been set.
+func (o *BGCore) HasProperties() bool {
+	if o != nil && o.Properties != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProperties gets a reference to the given map[string]interface{} and assigns it to the Properties field.
 func (o *BGCore) SetProperties(v map[string]interface{}) {
-	o.Properties = v
+	o.Properties = &v
 }
 
-// GetSubOrganizationIds returns the SubOrganizationIds field value
+// GetSubOrganizationIds returns the SubOrganizationIds field value if set, zero value otherwise.
 func (o *BGCore) GetSubOrganizationIds() []string {
-	if o == nil {
+	if o == nil || o.SubOrganizationIds == nil {
 		var ret []string
 		return ret
 	}
-
-	return o.SubOrganizationIds
+	return *o.SubOrganizationIds
 }
 
-// GetSubOrganizationIdsOk returns a tuple with the SubOrganizationIds field value
+// GetSubOrganizationIdsOk returns a tuple with the SubOrganizationIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetSubOrganizationIdsOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil || o.SubOrganizationIds == nil {
 		return nil, false
 	}
-	return &o.SubOrganizationIds, true
+	return o.SubOrganizationIds, true
 }
 
-// SetSubOrganizationIds sets field value
+// HasSubOrganizationIds returns a boolean if a field has been set.
+func (o *BGCore) HasSubOrganizationIds() bool {
+	if o != nil && o.SubOrganizationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubOrganizationIds gets a reference to the given []string and assigns it to the SubOrganizationIds field.
 func (o *BGCore) SetSubOrganizationIds(v []string) {
-	o.SubOrganizationIds = v
+	o.SubOrganizationIds = &v
 }
 
-// GetTenantOrganizationIds returns the TenantOrganizationIds field value
+// GetTenantOrganizationIds returns the TenantOrganizationIds field value if set, zero value otherwise.
 func (o *BGCore) GetTenantOrganizationIds() []string {
-	if o == nil {
+	if o == nil || o.TenantOrganizationIds == nil {
 		var ret []string
 		return ret
 	}
-
-	return o.TenantOrganizationIds
+	return *o.TenantOrganizationIds
 }
 
-// GetTenantOrganizationIdsOk returns a tuple with the TenantOrganizationIds field value
+// GetTenantOrganizationIdsOk returns a tuple with the TenantOrganizationIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetTenantOrganizationIdsOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil || o.TenantOrganizationIds == nil {
 		return nil, false
 	}
-	return &o.TenantOrganizationIds, true
+	return o.TenantOrganizationIds, true
 }
 
-// SetTenantOrganizationIds sets field value
+// HasTenantOrganizationIds returns a boolean if a field has been set.
+func (o *BGCore) HasTenantOrganizationIds() bool {
+	if o != nil && o.TenantOrganizationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantOrganizationIds gets a reference to the given []string and assigns it to the TenantOrganizationIds field.
 func (o *BGCore) SetTenantOrganizationIds(v []string) {
-	o.TenantOrganizationIds = v
+	o.TenantOrganizationIds = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *BGCore) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || o.UpdatedAt == nil {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetUpdatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *BGCore) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *BGCore) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetOwner returns the Owner field value
+// GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *BGCore) GetOwner() Owner {
-	if o == nil {
+	if o == nil || o.Owner == nil {
 		var ret Owner
 		return ret
 	}
-
-	return o.Owner
+	return *o.Owner
 }
 
-// GetOwnerOk returns a tuple with the Owner field value
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGCore) GetOwnerOk() (*Owner, bool) {
-	if o == nil  {
+	if o == nil || o.Owner == nil {
 		return nil, false
 	}
-	return &o.Owner, true
+	return o.Owner, true
 }
 
-// SetOwner sets field value
+// HasOwner returns a boolean if a field has been set.
+func (o *BGCore) HasOwner() bool {
+	if o != nil && o.Owner != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner gets a reference to the given Owner and assigns it to the Owner field.
 func (o *BGCore) SetOwner(v Owner) {
-	o.Owner = v
+	o.Owner = &v
 }
 
 func (o BGCore) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.ClientId != nil {
 		toSerialize["clientId"] = o.ClientId
 	}
-	if true {
+	if o.CreatedAt != nil {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
-	if true {
+	if o.Domain != nil {
 		toSerialize["domain"] = o.Domain
 	}
-	if true {
+	if o.Entitlements != nil {
 		toSerialize["entitlements"] = o.Entitlements
 	}
-	if true {
+	if o.Environments != nil {
 		toSerialize["environments"] = o.Environments
 	}
-	if true {
+	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
+	if o.IdproviderId != nil {
 		toSerialize["idprovider_id"] = o.IdproviderId
 	}
-	if true {
+	if o.IsAutomaticAdminPromotionExempt != nil {
 		toSerialize["isAutomaticAdminPromotionExempt"] = o.IsAutomaticAdminPromotionExempt
 	}
-	if true {
+	if o.IsFederated != nil {
 		toSerialize["isFederated"] = o.IsFederated
 	}
-	if true {
+	if o.IsMaster != nil {
 		toSerialize["isMaster"] = o.IsMaster
 	}
-	if true {
+	if o.MfaRequired != nil {
 		toSerialize["mfaRequired"] = o.MfaRequired
 	}
-	if true {
+	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
+	if o.OwnerId != nil {
 		toSerialize["ownerId"] = o.OwnerId
 	}
-	if true {
+	if o.ParentOrganizationIds != nil {
 		toSerialize["parentOrganizationIds"] = o.ParentOrganizationIds
 	}
-	if true {
+	if o.Properties != nil {
 		toSerialize["properties"] = o.Properties
 	}
-	if true {
+	if o.SubOrganizationIds != nil {
 		toSerialize["subOrganizationIds"] = o.SubOrganizationIds
 	}
-	if true {
+	if o.TenantOrganizationIds != nil {
 		toSerialize["tenantOrganizationIds"] = o.TenantOrganizationIds
 	}
-	if true {
+	if o.UpdatedAt != nil {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
-	if true {
+	if o.Owner != nil {
 		toSerialize["owner"] = o.Owner
 	}
 	return json.Marshal(toSerialize)

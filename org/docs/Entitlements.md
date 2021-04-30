@@ -4,61 +4,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AngGovernance** | [**AngGovernance**](AngGovernance.md) |  | 
-**AnypointSecurityEdgePolicies** | [**AnypointSecurityEdgePolicies**](AnypointSecurityEdgePolicies.md) |  | 
-**AnypointSecurityTokenization** | [**AnypointSecurityTokenization**](AnypointSecurityTokenization.md) |  | 
-**ApiCommunityManager** | [**ApiCommunityManager**](ApiCommunityManager.md) |  | 
-**ApiMonitoring** | [**ApiMonitoring**](ApiMonitoring.md) |  | 
-**ApiQuery** | [**ApiQuery**](ApiQuery.md) |  | 
-**ApiQueryC360** | [**ApiQueryC360**](ApiQueryC360.md) |  | 
-**Apis** | [**Apis**](Apis.md) |  | 
-**AppViz** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**ArmAlerts** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Autoscaling** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Cam** | [**Cam**](Cam.md) |  | 
+**AngGovernance** | Pointer to [**AngGovernance**](AngGovernance.md) |  | [optional] 
+**AnypointSecurityEdgePolicies** | Pointer to [**AnypointSecurityEdgePolicies**](AnypointSecurityEdgePolicies.md) |  | [optional] 
+**AnypointSecurityTokenization** | Pointer to [**AnypointSecurityTokenization**](AnypointSecurityTokenization.md) |  | [optional] 
+**ApiCommunityManager** | Pointer to [**ApiCommunityManager**](ApiCommunityManager.md) |  | [optional] 
+**ApiMonitoring** | Pointer to [**ApiMonitoring**](ApiMonitoring.md) |  | [optional] 
+**ApiQuery** | Pointer to [**ApiQuery**](ApiQuery.md) |  | [optional] 
+**ApiQueryC360** | Pointer to [**ApiQueryC360**](ApiQueryC360.md) |  | [optional] 
+**Apis** | Pointer to [**Apis**](Apis.md) |  | [optional] 
+**AppViz** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**ArmAlerts** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**Autoscaling** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**Cam** | Pointer to [**Cam**](Cam.md) |  | [optional] 
 **CreateEnvironments** | **bool** | An explanation about the purpose of this instance. | [default to false]
 **CreateSubOrgs** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Crowd** | [**Crowd**](Crowd.md) |  | 
-**CrowdSelfServiceMigration** | [**CrowdSelfServiceMigration**](CrowdSelfServiceMigration.md) |  | 
-**DesignCenter** | [**TheDesignCenterSchema**](TheDesignCenterSchema.md) |  | 
-**Exchange2** | [**Exchange2**](Exchange2.md) |  | 
-**ExternalIdentity** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Gateways** | [**Gateways**](Gateways.md) |  | 
+**Crowd** | Pointer to [**Crowd**](Crowd.md) |  | [optional] 
+**CrowdSelfServiceMigration** | Pointer to [**CrowdSelfServiceMigration**](CrowdSelfServiceMigration.md) |  | [optional] 
+**DesignCenter** | Pointer to [**TheDesignCenterSchema**](TheDesignCenterSchema.md) |  | [optional] 
+**Exchange2** | Pointer to [**Exchange2**](Exchange2.md) |  | [optional] 
+**ExternalIdentity** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**Gateways** | Pointer to [**Gateways**](Gateways.md) |  | [optional] 
 **GlobalDeployment** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Hybrid** | [**TheHybridSchema**](TheHybridSchema.md) |  | 
-**HybridAutoDiscoverProperties** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**HybridInsight** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**KpiDashboard** | [**KpiDashboard**](KpiDashboard.md) |  | 
+**Hybrid** | Pointer to [**TheHybridSchema**](TheHybridSchema.md) |  | [optional] 
+**HybridAutoDiscoverProperties** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**HybridInsight** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**KpiDashboard** | Pointer to [**KpiDashboard**](KpiDashboard.md) |  | [optional] 
 **LoadBalancer** | [**LoadBalancer**](LoadBalancer.md) |  | 
-**Messaging** | [**Messaging**](Messaging.md) |  | 
-**MonitoringCenter** | [**MonitoringCenter**](MonitoringCenter.md) |  | 
-**MqAdvancedFeatures** | [**MqAdvancedFeatures**](MqAdvancedFeatures.md) |  | 
-**MqMessages** | [**MqMessages**](MqMessages.md) |  | 
-**MqRequests** | [**MqRequests**](MqRequests.md) |  | 
-**ObjectStoreKeys** | [**ObjectStoreKeys**](ObjectStoreKeys.md) |  | 
-**ObjectStoreRequestUnits** | [**ObjectStoreRequestUnits**](ObjectStoreRequestUnits.md) |  | 
-**PartnersProduction** | [**PartnersProduction**](PartnersProduction.md) |  | 
-**PartnersSandbox** | [**PartnersSandbox**](PartnersSandbox.md) |  | 
-**Pcf** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**RuntimeFabric** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**RuntimeFabricCloud** | [**RuntimeFabricCloud**](RuntimeFabricCloud.md) |  | 
-**ServiceMesh** | [**ServiceMesh**](ServiceMesh.md) |  | 
+**Messaging** | Pointer to [**Messaging**](Messaging.md) |  | [optional] 
+**MonitoringCenter** | Pointer to [**MonitoringCenter**](MonitoringCenter.md) |  | [optional] 
+**MqAdvancedFeatures** | Pointer to [**MqAdvancedFeatures**](MqAdvancedFeatures.md) |  | [optional] 
+**MqMessages** | Pointer to [**MqMessages**](MqMessages.md) |  | [optional] 
+**MqRequests** | Pointer to [**MqRequests**](MqRequests.md) |  | [optional] 
+**ObjectStoreKeys** | Pointer to [**ObjectStoreKeys**](ObjectStoreKeys.md) |  | [optional] 
+**ObjectStoreRequestUnits** | Pointer to [**ObjectStoreRequestUnits**](ObjectStoreRequestUnits.md) |  | [optional] 
+**PartnersProduction** | Pointer to [**PartnersProduction**](PartnersProduction.md) |  | [optional] 
+**PartnersSandbox** | Pointer to [**PartnersSandbox**](PartnersSandbox.md) |  | [optional] 
+**Pcf** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**RuntimeFabric** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**RuntimeFabricCloud** | Pointer to [**RuntimeFabricCloud**](RuntimeFabricCloud.md) |  | [optional] 
+**ServiceMesh** | Pointer to [**ServiceMesh**](ServiceMesh.md) |  | [optional] 
 **StaticIps** | [**StaticIps**](StaticIps.md) |  | 
-**TradingPartnersProduction** | [**TradingPartnersProduction**](TradingPartnersProduction.md) |  | 
-**TradingPartnersSandbox** | [**TradingPartnersSandbox**](TradingPartnersSandbox.md) |  | 
+**TradingPartnersProduction** | Pointer to [**TradingPartnersProduction**](TradingPartnersProduction.md) |  | [optional] 
+**TradingPartnersSandbox** | Pointer to [**TradingPartnersSandbox**](TradingPartnersSandbox.md) |  | [optional] 
 **VCoresDesign** | [**VCoresDesign**](VCoresDesign.md) |  | 
 **VCoresProduction** | [**VCoresProduction**](VCoresProduction.md) |  | 
 **VCoresSandbox** | [**VCoresSandbox**](VCoresSandbox.md) |  | 
 **Vpcs** | [**Vpcs**](Vpcs.md) |  | 
 **Vpns** | [**Vpns**](Vpns.md) |  | 
-**WorkerClouds** | [**WorkerClouds**](WorkerClouds.md) |  | 
-**WorkerLoggingOverride** | [**WorkerLoggingOverride**](WorkerLoggingOverride.md) |  | 
+**WorkerClouds** | Pointer to [**WorkerClouds**](WorkerClouds.md) |  | [optional] 
+**WorkerLoggingOverride** | Pointer to [**WorkerLoggingOverride**](WorkerLoggingOverride.md) |  | [optional] 
 
 ## Methods
 
 ### NewEntitlements
 
-`func NewEntitlements(angGovernance AngGovernance, anypointSecurityEdgePolicies AnypointSecurityEdgePolicies, anypointSecurityTokenization AnypointSecurityTokenization, apiCommunityManager ApiCommunityManager, apiMonitoring ApiMonitoring, apiQuery ApiQuery, apiQueryC360 ApiQueryC360, apis Apis, appViz bool, armAlerts bool, autoscaling bool, cam Cam, createEnvironments bool, createSubOrgs bool, crowd Crowd, crowdSelfServiceMigration CrowdSelfServiceMigration, designCenter TheDesignCenterSchema, exchange2 Exchange2, externalIdentity bool, gateways Gateways, globalDeployment bool, hybrid TheHybridSchema, hybridAutoDiscoverProperties bool, hybridInsight bool, kpiDashboard KpiDashboard, loadBalancer LoadBalancer, messaging Messaging, monitoringCenter MonitoringCenter, mqAdvancedFeatures MqAdvancedFeatures, mqMessages MqMessages, mqRequests MqRequests, objectStoreKeys ObjectStoreKeys, objectStoreRequestUnits ObjectStoreRequestUnits, partnersProduction PartnersProduction, partnersSandbox PartnersSandbox, pcf bool, runtimeFabric bool, runtimeFabricCloud RuntimeFabricCloud, serviceMesh ServiceMesh, staticIps StaticIps, tradingPartnersProduction TradingPartnersProduction, tradingPartnersSandbox TradingPartnersSandbox, vCoresDesign VCoresDesign, vCoresProduction VCoresProduction, vCoresSandbox VCoresSandbox, vpcs Vpcs, vpns Vpns, workerClouds WorkerClouds, workerLoggingOverride WorkerLoggingOverride, ) *Entitlements`
+`func NewEntitlements(createEnvironments bool, createSubOrgs bool, globalDeployment bool, loadBalancer LoadBalancer, staticIps StaticIps, vCoresDesign VCoresDesign, vCoresProduction VCoresProduction, vCoresSandbox VCoresSandbox, vpcs Vpcs, vpns Vpns, ) *Entitlements`
 
 NewEntitlements instantiates a new Entitlements object
 This constructor will assign default values to properties that have it defined,
@@ -92,6 +92,11 @@ and a boolean to check if the value has been set.
 
 SetAngGovernance sets AngGovernance field to given value.
 
+### HasAngGovernance
+
+`func (o *Entitlements) HasAngGovernance() bool`
+
+HasAngGovernance returns a boolean if a field has been set.
 
 ### GetAnypointSecurityEdgePolicies
 
@@ -112,6 +117,11 @@ and a boolean to check if the value has been set.
 
 SetAnypointSecurityEdgePolicies sets AnypointSecurityEdgePolicies field to given value.
 
+### HasAnypointSecurityEdgePolicies
+
+`func (o *Entitlements) HasAnypointSecurityEdgePolicies() bool`
+
+HasAnypointSecurityEdgePolicies returns a boolean if a field has been set.
 
 ### GetAnypointSecurityTokenization
 
@@ -132,6 +142,11 @@ and a boolean to check if the value has been set.
 
 SetAnypointSecurityTokenization sets AnypointSecurityTokenization field to given value.
 
+### HasAnypointSecurityTokenization
+
+`func (o *Entitlements) HasAnypointSecurityTokenization() bool`
+
+HasAnypointSecurityTokenization returns a boolean if a field has been set.
 
 ### GetApiCommunityManager
 
@@ -152,6 +167,11 @@ and a boolean to check if the value has been set.
 
 SetApiCommunityManager sets ApiCommunityManager field to given value.
 
+### HasApiCommunityManager
+
+`func (o *Entitlements) HasApiCommunityManager() bool`
+
+HasApiCommunityManager returns a boolean if a field has been set.
 
 ### GetApiMonitoring
 
@@ -172,6 +192,11 @@ and a boolean to check if the value has been set.
 
 SetApiMonitoring sets ApiMonitoring field to given value.
 
+### HasApiMonitoring
+
+`func (o *Entitlements) HasApiMonitoring() bool`
+
+HasApiMonitoring returns a boolean if a field has been set.
 
 ### GetApiQuery
 
@@ -192,6 +217,11 @@ and a boolean to check if the value has been set.
 
 SetApiQuery sets ApiQuery field to given value.
 
+### HasApiQuery
+
+`func (o *Entitlements) HasApiQuery() bool`
+
+HasApiQuery returns a boolean if a field has been set.
 
 ### GetApiQueryC360
 
@@ -212,6 +242,11 @@ and a boolean to check if the value has been set.
 
 SetApiQueryC360 sets ApiQueryC360 field to given value.
 
+### HasApiQueryC360
+
+`func (o *Entitlements) HasApiQueryC360() bool`
+
+HasApiQueryC360 returns a boolean if a field has been set.
 
 ### GetApis
 
@@ -232,6 +267,11 @@ and a boolean to check if the value has been set.
 
 SetApis sets Apis field to given value.
 
+### HasApis
+
+`func (o *Entitlements) HasApis() bool`
+
+HasApis returns a boolean if a field has been set.
 
 ### GetAppViz
 
@@ -252,6 +292,11 @@ and a boolean to check if the value has been set.
 
 SetAppViz sets AppViz field to given value.
 
+### HasAppViz
+
+`func (o *Entitlements) HasAppViz() bool`
+
+HasAppViz returns a boolean if a field has been set.
 
 ### GetArmAlerts
 
@@ -272,6 +317,11 @@ and a boolean to check if the value has been set.
 
 SetArmAlerts sets ArmAlerts field to given value.
 
+### HasArmAlerts
+
+`func (o *Entitlements) HasArmAlerts() bool`
+
+HasArmAlerts returns a boolean if a field has been set.
 
 ### GetAutoscaling
 
@@ -292,6 +342,11 @@ and a boolean to check if the value has been set.
 
 SetAutoscaling sets Autoscaling field to given value.
 
+### HasAutoscaling
+
+`func (o *Entitlements) HasAutoscaling() bool`
+
+HasAutoscaling returns a boolean if a field has been set.
 
 ### GetCam
 
@@ -312,6 +367,11 @@ and a boolean to check if the value has been set.
 
 SetCam sets Cam field to given value.
 
+### HasCam
+
+`func (o *Entitlements) HasCam() bool`
+
+HasCam returns a boolean if a field has been set.
 
 ### GetCreateEnvironments
 
@@ -372,6 +432,11 @@ and a boolean to check if the value has been set.
 
 SetCrowd sets Crowd field to given value.
 
+### HasCrowd
+
+`func (o *Entitlements) HasCrowd() bool`
+
+HasCrowd returns a boolean if a field has been set.
 
 ### GetCrowdSelfServiceMigration
 
@@ -392,6 +457,11 @@ and a boolean to check if the value has been set.
 
 SetCrowdSelfServiceMigration sets CrowdSelfServiceMigration field to given value.
 
+### HasCrowdSelfServiceMigration
+
+`func (o *Entitlements) HasCrowdSelfServiceMigration() bool`
+
+HasCrowdSelfServiceMigration returns a boolean if a field has been set.
 
 ### GetDesignCenter
 
@@ -412,6 +482,11 @@ and a boolean to check if the value has been set.
 
 SetDesignCenter sets DesignCenter field to given value.
 
+### HasDesignCenter
+
+`func (o *Entitlements) HasDesignCenter() bool`
+
+HasDesignCenter returns a boolean if a field has been set.
 
 ### GetExchange2
 
@@ -432,6 +507,11 @@ and a boolean to check if the value has been set.
 
 SetExchange2 sets Exchange2 field to given value.
 
+### HasExchange2
+
+`func (o *Entitlements) HasExchange2() bool`
+
+HasExchange2 returns a boolean if a field has been set.
 
 ### GetExternalIdentity
 
@@ -452,6 +532,11 @@ and a boolean to check if the value has been set.
 
 SetExternalIdentity sets ExternalIdentity field to given value.
 
+### HasExternalIdentity
+
+`func (o *Entitlements) HasExternalIdentity() bool`
+
+HasExternalIdentity returns a boolean if a field has been set.
 
 ### GetGateways
 
@@ -472,6 +557,11 @@ and a boolean to check if the value has been set.
 
 SetGateways sets Gateways field to given value.
 
+### HasGateways
+
+`func (o *Entitlements) HasGateways() bool`
+
+HasGateways returns a boolean if a field has been set.
 
 ### GetGlobalDeployment
 
@@ -512,6 +602,11 @@ and a boolean to check if the value has been set.
 
 SetHybrid sets Hybrid field to given value.
 
+### HasHybrid
+
+`func (o *Entitlements) HasHybrid() bool`
+
+HasHybrid returns a boolean if a field has been set.
 
 ### GetHybridAutoDiscoverProperties
 
@@ -532,6 +627,11 @@ and a boolean to check if the value has been set.
 
 SetHybridAutoDiscoverProperties sets HybridAutoDiscoverProperties field to given value.
 
+### HasHybridAutoDiscoverProperties
+
+`func (o *Entitlements) HasHybridAutoDiscoverProperties() bool`
+
+HasHybridAutoDiscoverProperties returns a boolean if a field has been set.
 
 ### GetHybridInsight
 
@@ -552,6 +652,11 @@ and a boolean to check if the value has been set.
 
 SetHybridInsight sets HybridInsight field to given value.
 
+### HasHybridInsight
+
+`func (o *Entitlements) HasHybridInsight() bool`
+
+HasHybridInsight returns a boolean if a field has been set.
 
 ### GetKpiDashboard
 
@@ -572,6 +677,11 @@ and a boolean to check if the value has been set.
 
 SetKpiDashboard sets KpiDashboard field to given value.
 
+### HasKpiDashboard
+
+`func (o *Entitlements) HasKpiDashboard() bool`
+
+HasKpiDashboard returns a boolean if a field has been set.
 
 ### GetLoadBalancer
 
@@ -612,6 +722,11 @@ and a boolean to check if the value has been set.
 
 SetMessaging sets Messaging field to given value.
 
+### HasMessaging
+
+`func (o *Entitlements) HasMessaging() bool`
+
+HasMessaging returns a boolean if a field has been set.
 
 ### GetMonitoringCenter
 
@@ -632,6 +747,11 @@ and a boolean to check if the value has been set.
 
 SetMonitoringCenter sets MonitoringCenter field to given value.
 
+### HasMonitoringCenter
+
+`func (o *Entitlements) HasMonitoringCenter() bool`
+
+HasMonitoringCenter returns a boolean if a field has been set.
 
 ### GetMqAdvancedFeatures
 
@@ -652,6 +772,11 @@ and a boolean to check if the value has been set.
 
 SetMqAdvancedFeatures sets MqAdvancedFeatures field to given value.
 
+### HasMqAdvancedFeatures
+
+`func (o *Entitlements) HasMqAdvancedFeatures() bool`
+
+HasMqAdvancedFeatures returns a boolean if a field has been set.
 
 ### GetMqMessages
 
@@ -672,6 +797,11 @@ and a boolean to check if the value has been set.
 
 SetMqMessages sets MqMessages field to given value.
 
+### HasMqMessages
+
+`func (o *Entitlements) HasMqMessages() bool`
+
+HasMqMessages returns a boolean if a field has been set.
 
 ### GetMqRequests
 
@@ -692,6 +822,11 @@ and a boolean to check if the value has been set.
 
 SetMqRequests sets MqRequests field to given value.
 
+### HasMqRequests
+
+`func (o *Entitlements) HasMqRequests() bool`
+
+HasMqRequests returns a boolean if a field has been set.
 
 ### GetObjectStoreKeys
 
@@ -712,6 +847,11 @@ and a boolean to check if the value has been set.
 
 SetObjectStoreKeys sets ObjectStoreKeys field to given value.
 
+### HasObjectStoreKeys
+
+`func (o *Entitlements) HasObjectStoreKeys() bool`
+
+HasObjectStoreKeys returns a boolean if a field has been set.
 
 ### GetObjectStoreRequestUnits
 
@@ -732,6 +872,11 @@ and a boolean to check if the value has been set.
 
 SetObjectStoreRequestUnits sets ObjectStoreRequestUnits field to given value.
 
+### HasObjectStoreRequestUnits
+
+`func (o *Entitlements) HasObjectStoreRequestUnits() bool`
+
+HasObjectStoreRequestUnits returns a boolean if a field has been set.
 
 ### GetPartnersProduction
 
@@ -752,6 +897,11 @@ and a boolean to check if the value has been set.
 
 SetPartnersProduction sets PartnersProduction field to given value.
 
+### HasPartnersProduction
+
+`func (o *Entitlements) HasPartnersProduction() bool`
+
+HasPartnersProduction returns a boolean if a field has been set.
 
 ### GetPartnersSandbox
 
@@ -772,6 +922,11 @@ and a boolean to check if the value has been set.
 
 SetPartnersSandbox sets PartnersSandbox field to given value.
 
+### HasPartnersSandbox
+
+`func (o *Entitlements) HasPartnersSandbox() bool`
+
+HasPartnersSandbox returns a boolean if a field has been set.
 
 ### GetPcf
 
@@ -792,6 +947,11 @@ and a boolean to check if the value has been set.
 
 SetPcf sets Pcf field to given value.
 
+### HasPcf
+
+`func (o *Entitlements) HasPcf() bool`
+
+HasPcf returns a boolean if a field has been set.
 
 ### GetRuntimeFabric
 
@@ -812,6 +972,11 @@ and a boolean to check if the value has been set.
 
 SetRuntimeFabric sets RuntimeFabric field to given value.
 
+### HasRuntimeFabric
+
+`func (o *Entitlements) HasRuntimeFabric() bool`
+
+HasRuntimeFabric returns a boolean if a field has been set.
 
 ### GetRuntimeFabricCloud
 
@@ -832,6 +997,11 @@ and a boolean to check if the value has been set.
 
 SetRuntimeFabricCloud sets RuntimeFabricCloud field to given value.
 
+### HasRuntimeFabricCloud
+
+`func (o *Entitlements) HasRuntimeFabricCloud() bool`
+
+HasRuntimeFabricCloud returns a boolean if a field has been set.
 
 ### GetServiceMesh
 
@@ -852,6 +1022,11 @@ and a boolean to check if the value has been set.
 
 SetServiceMesh sets ServiceMesh field to given value.
 
+### HasServiceMesh
+
+`func (o *Entitlements) HasServiceMesh() bool`
+
+HasServiceMesh returns a boolean if a field has been set.
 
 ### GetStaticIps
 
@@ -892,6 +1067,11 @@ and a boolean to check if the value has been set.
 
 SetTradingPartnersProduction sets TradingPartnersProduction field to given value.
 
+### HasTradingPartnersProduction
+
+`func (o *Entitlements) HasTradingPartnersProduction() bool`
+
+HasTradingPartnersProduction returns a boolean if a field has been set.
 
 ### GetTradingPartnersSandbox
 
@@ -912,6 +1092,11 @@ and a boolean to check if the value has been set.
 
 SetTradingPartnersSandbox sets TradingPartnersSandbox field to given value.
 
+### HasTradingPartnersSandbox
+
+`func (o *Entitlements) HasTradingPartnersSandbox() bool`
+
+HasTradingPartnersSandbox returns a boolean if a field has been set.
 
 ### GetVCoresDesign
 
@@ -1032,6 +1217,11 @@ and a boolean to check if the value has been set.
 
 SetWorkerClouds sets WorkerClouds field to given value.
 
+### HasWorkerClouds
+
+`func (o *Entitlements) HasWorkerClouds() bool`
+
+HasWorkerClouds returns a boolean if a field has been set.
 
 ### GetWorkerLoggingOverride
 
@@ -1052,6 +1242,11 @@ and a boolean to check if the value has been set.
 
 SetWorkerLoggingOverride sets WorkerLoggingOverride field to given value.
 
+### HasWorkerLoggingOverride
+
+`func (o *Entitlements) HasWorkerLoggingOverride() bool`
+
+HasWorkerLoggingOverride returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

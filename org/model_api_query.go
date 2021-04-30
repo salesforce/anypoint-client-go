@@ -19,17 +19,18 @@ type ApiQuery struct {
 	// An explanation about the purpose of this instance.
 	Enabled bool `json:"enabled"`
 	// An explanation about the purpose of this instance.
-	ProductSKU int32 `json:"productSKU"`
+	ProductSKU *int32 `json:"productSKU,omitempty"`
 }
 
 // NewApiQuery instantiates a new ApiQuery object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiQuery(enabled bool, productSKU int32) *ApiQuery {
+func NewApiQuery(enabled bool) *ApiQuery {
 	this := ApiQuery{}
 	this.Enabled = enabled
-	this.ProductSKU = productSKU
+	var productSKU int32 = 0
+	this.ProductSKU = &productSKU
 	return &this
 }
 
@@ -41,7 +42,7 @@ func NewApiQueryWithDefaults() *ApiQuery {
 	var enabled bool = false
 	this.Enabled = enabled
 	var productSKU int32 = 0
-	this.ProductSKU = productSKU
+	this.ProductSKU = &productSKU
 	return &this
 }
 
@@ -69,28 +70,36 @@ func (o *ApiQuery) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-// GetProductSKU returns the ProductSKU field value
+// GetProductSKU returns the ProductSKU field value if set, zero value otherwise.
 func (o *ApiQuery) GetProductSKU() int32 {
-	if o == nil {
+	if o == nil || o.ProductSKU == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.ProductSKU
+	return *o.ProductSKU
 }
 
-// GetProductSKUOk returns a tuple with the ProductSKU field value
+// GetProductSKUOk returns a tuple with the ProductSKU field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiQuery) GetProductSKUOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil || o.ProductSKU == nil {
 		return nil, false
 	}
-	return &o.ProductSKU, true
+	return o.ProductSKU, true
 }
 
-// SetProductSKU sets field value
+// HasProductSKU returns a boolean if a field has been set.
+func (o *ApiQuery) HasProductSKU() bool {
+	if o != nil && o.ProductSKU != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProductSKU gets a reference to the given int32 and assigns it to the ProductSKU field.
 func (o *ApiQuery) SetProductSKU(v int32) {
-	o.ProductSKU = v
+	o.ProductSKU = &v
 }
 
 func (o ApiQuery) MarshalJSON() ([]byte, error) {
@@ -98,7 +107,7 @@ func (o ApiQuery) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if true {
+	if o.ProductSKU != nil {
 		toSerialize["productSKU"] = o.ProductSKU
 	}
 	return json.Marshal(toSerialize)

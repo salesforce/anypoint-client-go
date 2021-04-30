@@ -553,26 +553,6 @@ components:
           type: string
         owner:
           $ref: '#/components/schemas/owner'
-      required:
-      - clientId
-      - createdAt
-      - domain
-      - entitlements
-      - environments
-      - id
-      - idprovider_id
-      - isAutomaticAdminPromotionExempt
-      - isFederated
-      - isMaster
-      - mfaRequired
-      - name
-      - owner
-      - ownerId
-      - parentOrganizationIds
-      - properties
-      - subOrganizationIds
-      - tenantOrganizationIds
-      - updatedAt
       title: BGCore
       type: object
     masterBGDetail:
@@ -679,7 +659,6 @@ components:
           type: integer
       required:
       - enabled
-      - productSKU
       title: apiQuery
       type: object
     apiQueryC360:
@@ -782,9 +761,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: mozart
           type: boolean
-      required:
-      - api
-      - mozart
       title: The designCenter schema
       type: object
     exchange2:
@@ -861,7 +837,6 @@ components:
           type: integer
       required:
       - assigned
-      - reassigned
       title: loadBalancer
       type: object
     messaging:
@@ -922,9 +897,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: base
           type: integer
-      required:
-      - addOn
-      - base
       title: mqMessages
       type: object
     mqRequests:
@@ -943,9 +915,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: base
           type: integer
-      required:
-      - addOn
-      - base
       title: mqRequests
       type: object
     objectStoreKeys:
@@ -964,9 +933,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: base
           type: integer
-      required:
-      - addOn
-      - base
       title: objectStoreKeys
       type: object
     objectStoreRequestUnits:
@@ -985,9 +951,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: base
           type: integer
-      required:
-      - addOn
-      - base
       title: objectStoreRequestUnits
       type: object
     partnersProduction:
@@ -1064,7 +1027,6 @@ components:
           type: integer
       required:
       - assigned
-      - reassigned
       title: staticIps
       type: object
     tradingPartnersProduction:
@@ -1113,7 +1075,6 @@ components:
           type: number
       required:
       - assigned
-      - reassigned
       title: vCoresDesign
       type: object
     vCoresProduction:
@@ -1134,7 +1095,6 @@ components:
           type: number
       required:
       - assigned
-      - reassigned
       title: vCoresProduction
       type: object
     vCoresSandbox:
@@ -1155,7 +1115,6 @@ components:
           type: number
       required:
       - assigned
-      - reassigned
       title: vCoresSandbox
       type: object
     vpcs:
@@ -1176,7 +1135,6 @@ components:
           type: integer
       required:
       - assigned
-      - reassigned
       title: vpcs
       type: object
     vpns:
@@ -1197,7 +1155,6 @@ components:
           type: integer
       required:
       - assigned
-      - reassigned
       title: vpns
       type: object
     workerClouds:
@@ -1218,7 +1175,6 @@ components:
           type: integer
       required:
       - assigned
-      - reassigned
       title: workerClouds
       type: object
     workerLoggingOverride:
@@ -1474,55 +1430,16 @@ components:
         workerLoggingOverride:
           $ref: '#/components/schemas/workerLoggingOverride'
       required:
-      - angGovernance
-      - anypointSecurityEdgePolicies
-      - anypointSecurityTokenization
-      - apiCommunityManager
-      - apiMonitoring
-      - apiQuery
-      - apiQueryC360
-      - apis
-      - appViz
-      - armAlerts
-      - autoscaling
-      - cam
       - createEnvironments
       - createSubOrgs
-      - crowd
-      - crowdSelfServiceMigration
-      - designCenter
-      - exchange2
-      - externalIdentity
-      - gateways
       - globalDeployment
-      - hybrid
-      - hybridAutoDiscoverProperties
-      - hybridInsight
-      - kpiDashboard
       - loadBalancer
-      - messaging
-      - monitoringCenter
-      - mqAdvancedFeatures
-      - mqMessages
-      - mqRequests
-      - objectStoreKeys
-      - objectStoreRequestUnits
-      - partnersProduction
-      - partnersSandbox
-      - pcf
-      - runtimeFabric
-      - runtimeFabricCloud
-      - serviceMesh
       - staticIps
-      - tradingPartnersProduction
-      - tradingPartnersSandbox
       - vCoresDesign
       - vCoresProduction
       - vCoresSandbox
       - vpcs
       - vpns
-      - workerClouds
-      - workerLoggingOverride
       title: entitlements
       type: object
     environment:
@@ -1673,23 +1590,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: username
           type: string
-      required:
-      - createdAt
-      - deleted
-      - email
-      - enabled
-      - firstName
-      - id
-      - idprovider_id
-      - lastLogin
-      - lastName
-      - mfaVerificationExcluded
-      - mfaVerifiersConfigured
-      - organizationId
-      - phoneNumber
-      - type
-      - updatedAt
-      - username
       title: owner
       type: object
     subscription:
@@ -1710,10 +1610,6 @@ components:
           description: An explanation about the purpose of this instance.
           title: type
           type: string
-      required:
-      - category
-      - expiration
-      - type
       title: subscription
       type: object
     masterBGSpecificDetails:
@@ -1725,9 +1621,6 @@ components:
           type: integer
         subscription:
           $ref: '#/components/schemas/subscription'
-      required:
-      - sessionTimeout
-      - subscription
       title: masterBGSpecificDetails
       type: object
   securitySchemes:
