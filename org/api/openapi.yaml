@@ -285,10 +285,134 @@ components:
       title: BGPostReqBody
       type: object
     BGPutReqBody:
-      allOf:
-      - $ref: '#/components/schemas/BGPostReqBody'
-      - $ref: '#/components/schemas/BGPutSpecificProperties'
+      example:
+        entitlements:
+          workerLoggingOverride:
+            enabled: false
+          globalDeployment: false
+          crowd:
+            environments: false
+            hideApiManagerDesigner: false
+            hideFormerApiPlatform: false
+          monitoringCenter:
+            productSKU: 9
+          objectStoreKeys:
+            addOn: 1
+            base: 1
+          workerClouds:
+            reassigned: 6
+            assigned: 5
+          vCoresDesign:
+            reassigned: 8.762042012749001
+            assigned: 6.683562403749608
+          vpcs:
+            reassigned: 2
+            assigned: 1
+          gateways:
+            assigned: 5
+          appViz: false
+          apiCommunityManager:
+            enabled: false
+          hybridInsight: false
+          apiQuery:
+            productSKU: 1
+            enabled: false
+          objectStoreRequestUnits:
+            addOn: 1
+            base: 6
+          messaging:
+            assigned: 7
+          tradingPartnersProduction:
+            assigned: 9
+          angGovernance:
+            level: 0
+          anypointSecurityTokenization:
+            enabled: false
+          hybrid:
+            enabled: false
+          apis:
+            enabled: false
+          staticIps:
+            reassigned: 5
+            assigned: 4
+          runtimeFabricCloud:
+            enabled: false
+          kpiDashboard:
+            enabled: false
+          autoscaling: false
+          partnersSandbox:
+            assigned: 1
+          externalIdentity: false
+          hybridAutoDiscoverProperties: false
+          vpns:
+            reassigned: 6
+            assigned: 6
+          runtimeFabric: false
+          serviceMesh:
+            enabled: false
+          cam:
+            enabled: false
+          anypointSecurityEdgePolicies:
+            enabled: false
+          pcf: false
+          armAlerts: false
+          createSubOrgs: false
+          loadBalancer:
+            reassigned: 2
+            assigned: 5
+          mqMessages:
+            addOn: 3
+            base: 2
+          vCoresSandbox:
+            reassigned: 6.965117697638846
+            assigned: 3.5571952270680973
+          createEnvironments: false
+          apiMonitoring:
+            schedules: 6
+          tradingPartnersSandbox:
+            assigned: 9
+          mqRequests:
+            addOn: 4
+            base: 7
+          apiQueryC360:
+            enabled: false
+          partnersProduction:
+            assigned: 7
+          exchange2:
+            enabled: false
+          mqAdvancedFeatures:
+            enabled: false
+          vCoresProduction:
+            reassigned: 6.438423552598547
+            assigned: 9.018348186070783
+          crowdSelfServiceMigration:
+            enabled: false
+          designCenter:
+            api: false
+            mozart: false
+        name: name
+        sessionTimeout: 0
+        ownerId: ownerId
+      properties:
+        entitlements:
+          $ref: '#/components/schemas/BGCore/properties/entitlements'
+        name:
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: name
+          type: string
+        ownerId:
+          default: ""
+          description: An explanation about the purpose of this instance.
+          title: ownerId
+          type: string
+        sessionTimeout:
+          default: 0
+          description: An explanation about the purpose of this instance.
+          title: sessionTimeout
+          type: integer
       title: BGPutReqBody
+      type: object
     BGCore:
       example:
         entitlements:
@@ -560,17 +684,6 @@ components:
       - $ref: '#/components/schemas/BGCore'
       - $ref: '#/components/schemas/masterBGSpecificDetails'
       title: masterBGDetail
-    BGPutSpecificProperties:
-      properties:
-        sessionTimeout:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: sessionTimeout
-          type: integer
-      required:
-      - sessionTimeout
-      title: BGPutSpecificProperties
-      type: object
     angGovernance:
       description: An explanation about the purpose of this instance.
       example:

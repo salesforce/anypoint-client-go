@@ -16,28 +16,27 @@ import (
 
 // BGPutReqBody struct for BGPutReqBody
 type BGPutReqBody struct {
-	Entitlements Entitlements `json:"entitlements"`
+	Entitlements *Entitlements `json:"entitlements,omitempty"`
 	// An explanation about the purpose of this instance.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// An explanation about the purpose of this instance.
-	OwnerId string `json:"ownerId"`
+	OwnerId *string `json:"ownerId,omitempty"`
 	// An explanation about the purpose of this instance.
-	ParentOrganizationId string `json:"parentOrganizationId"`
-	// An explanation about the purpose of this instance.
-	SessionTimeout int32 `json:"sessionTimeout"`
+	SessionTimeout *int32 `json:"sessionTimeout,omitempty"`
 }
 
 // NewBGPutReqBody instantiates a new BGPutReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPutReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string, sessionTimeout int32) *BGPutReqBody {
+func NewBGPutReqBody() *BGPutReqBody {
 	this := BGPutReqBody{}
-	this.Entitlements = entitlements
-	this.Name = name
-	this.OwnerId = ownerId
-	this.ParentOrganizationId = parentOrganizationId
-	this.SessionTimeout = sessionTimeout
+	var name string = ""
+	this.Name = &name
+	var ownerId string = ""
+	this.OwnerId = &ownerId
+	var sessionTimeout int32 = 0
+	this.SessionTimeout = &sessionTimeout
 	return &this
 }
 
@@ -47,151 +46,154 @@ func NewBGPutReqBody(entitlements Entitlements, name string, ownerId string, par
 func NewBGPutReqBodyWithDefaults() *BGPutReqBody {
 	this := BGPutReqBody{}
 	var name string = ""
-	this.Name = name
+	this.Name = &name
 	var ownerId string = ""
-	this.OwnerId = ownerId
-	var parentOrganizationId string = ""
-	this.ParentOrganizationId = parentOrganizationId
+	this.OwnerId = &ownerId
 	var sessionTimeout int32 = 0
-	this.SessionTimeout = sessionTimeout
+	this.SessionTimeout = &sessionTimeout
 	return &this
 }
 
-// GetEntitlements returns the Entitlements field value
+// GetEntitlements returns the Entitlements field value if set, zero value otherwise.
 func (o *BGPutReqBody) GetEntitlements() Entitlements {
-	if o == nil {
+	if o == nil || o.Entitlements == nil {
 		var ret Entitlements
 		return ret
 	}
-
-	return o.Entitlements
+	return *o.Entitlements
 }
 
-// GetEntitlementsOk returns a tuple with the Entitlements field value
+// GetEntitlementsOk returns a tuple with the Entitlements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGPutReqBody) GetEntitlementsOk() (*Entitlements, bool) {
-	if o == nil  {
+	if o == nil || o.Entitlements == nil {
 		return nil, false
 	}
-	return &o.Entitlements, true
+	return o.Entitlements, true
 }
 
-// SetEntitlements sets field value
+// HasEntitlements returns a boolean if a field has been set.
+func (o *BGPutReqBody) HasEntitlements() bool {
+	if o != nil && o.Entitlements != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEntitlements gets a reference to the given Entitlements and assigns it to the Entitlements field.
 func (o *BGPutReqBody) SetEntitlements(v Entitlements) {
-	o.Entitlements = v
+	o.Entitlements = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *BGPutReqBody) GetName() string {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGPutReqBody) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *BGPutReqBody) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *BGPutReqBody) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetOwnerId returns the OwnerId field value
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise.
 func (o *BGPutReqBody) GetOwnerId() string {
-	if o == nil {
+	if o == nil || o.OwnerId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.OwnerId
+	return *o.OwnerId
 }
 
-// GetOwnerIdOk returns a tuple with the OwnerId field value
+// GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGPutReqBody) GetOwnerIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.OwnerId == nil {
 		return nil, false
 	}
-	return &o.OwnerId, true
+	return o.OwnerId, true
 }
 
-// SetOwnerId sets field value
+// HasOwnerId returns a boolean if a field has been set.
+func (o *BGPutReqBody) HasOwnerId() bool {
+	if o != nil && o.OwnerId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
 func (o *BGPutReqBody) SetOwnerId(v string) {
-	o.OwnerId = v
+	o.OwnerId = &v
 }
 
-// GetParentOrganizationId returns the ParentOrganizationId field value
-func (o *BGPutReqBody) GetParentOrganizationId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ParentOrganizationId
-}
-
-// GetParentOrganizationIdOk returns a tuple with the ParentOrganizationId field value
-// and a boolean to check if the value has been set.
-func (o *BGPutReqBody) GetParentOrganizationIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ParentOrganizationId, true
-}
-
-// SetParentOrganizationId sets field value
-func (o *BGPutReqBody) SetParentOrganizationId(v string) {
-	o.ParentOrganizationId = v
-}
-
-// GetSessionTimeout returns the SessionTimeout field value
+// GetSessionTimeout returns the SessionTimeout field value if set, zero value otherwise.
 func (o *BGPutReqBody) GetSessionTimeout() int32 {
-	if o == nil {
+	if o == nil || o.SessionTimeout == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.SessionTimeout
+	return *o.SessionTimeout
 }
 
-// GetSessionTimeoutOk returns a tuple with the SessionTimeout field value
+// GetSessionTimeoutOk returns a tuple with the SessionTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BGPutReqBody) GetSessionTimeoutOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil || o.SessionTimeout == nil {
 		return nil, false
 	}
-	return &o.SessionTimeout, true
+	return o.SessionTimeout, true
 }
 
-// SetSessionTimeout sets field value
+// HasSessionTimeout returns a boolean if a field has been set.
+func (o *BGPutReqBody) HasSessionTimeout() bool {
+	if o != nil && o.SessionTimeout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionTimeout gets a reference to the given int32 and assigns it to the SessionTimeout field.
 func (o *BGPutReqBody) SetSessionTimeout(v int32) {
-	o.SessionTimeout = v
+	o.SessionTimeout = &v
 }
 
 func (o BGPutReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Entitlements != nil {
 		toSerialize["entitlements"] = o.Entitlements
 	}
-	if true {
+	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
+	if o.OwnerId != nil {
 		toSerialize["ownerId"] = o.OwnerId
 	}
-	if true {
-		toSerialize["parentOrganizationId"] = o.ParentOrganizationId
-	}
-	if true {
+	if o.SessionTimeout != nil {
 		toSerialize["sessionTimeout"] = o.SessionTimeout
 	}
 	return json.Marshal(toSerialize)

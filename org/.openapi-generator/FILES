@@ -16,7 +16,6 @@ docs/Apis.md
 docs/BGCore.md
 docs/BGPostReqBody.md
 docs/BGPutReqBody.md
-docs/BGPutSpecificProperties.md
 docs/Cam.md
 docs/Crowd.md
 docs/CrowdSelfServiceMigration.md
@@ -68,7 +67,6 @@ model_apis.go
 model_bg_core.go
 model_bg_post_req_body.go
 model_bg_put_req_body.go
-model_bg_put_specific_properties.go
 model_cam.go
 model_crowd.go
 model_crowd_self_service_migration.go

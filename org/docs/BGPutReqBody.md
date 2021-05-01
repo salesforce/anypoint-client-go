@@ -4,17 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Entitlements** | [**Entitlements**](Entitlements.md) |  | 
-**Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**SessionTimeout** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Entitlements** | Pointer to [**Entitlements**](Entitlements.md) |  | [optional] 
+**Name** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**OwnerId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
 
 ## Methods
 
 ### NewBGPutReqBody
 
-`func NewBGPutReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string, sessionTimeout int32, ) *BGPutReqBody`
+`func NewBGPutReqBody() *BGPutReqBody`
 
 NewBGPutReqBody instantiates a new BGPutReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetEntitlements sets Entitlements field to given value.
 
+### HasEntitlements
+
+`func (o *BGPutReqBody) HasEntitlements() bool`
+
+HasEntitlements returns a boolean if a field has been set.
 
 ### GetName
 
@@ -68,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *BGPutReqBody) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetOwnerId
 
@@ -88,26 +97,11 @@ and a boolean to check if the value has been set.
 
 SetOwnerId sets OwnerId field to given value.
 
+### HasOwnerId
 
-### GetParentOrganizationId
+`func (o *BGPutReqBody) HasOwnerId() bool`
 
-`func (o *BGPutReqBody) GetParentOrganizationId() string`
-
-GetParentOrganizationId returns the ParentOrganizationId field if non-nil, zero value otherwise.
-
-### GetParentOrganizationIdOk
-
-`func (o *BGPutReqBody) GetParentOrganizationIdOk() (*string, bool)`
-
-GetParentOrganizationIdOk returns a tuple with the ParentOrganizationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetParentOrganizationId
-
-`func (o *BGPutReqBody) SetParentOrganizationId(v string)`
-
-SetParentOrganizationId sets ParentOrganizationId field to given value.
-
+HasOwnerId returns a boolean if a field has been set.
 
 ### GetSessionTimeout
 
@@ -128,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetSessionTimeout sets SessionTimeout field to given value.
 
+### HasSessionTimeout
+
+`func (o *BGPutReqBody) HasSessionTimeout() bool`
+
+HasSessionTimeout returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
