@@ -765,6 +765,17 @@ components:
           $ref: '#/components/schemas/workerClouds'
         workerLoggingOverride:
           $ref: '#/components/schemas/workerLoggingOverride'
+      required:
+      - createEnvironments
+      - createSubOrgs
+      - globalDeployment
+      - loadBalancer
+      - staticIps
+      - vCoresDesign
+      - vCoresProduction
+      - vCoresSandbox
+      - vpcs
+      - vpns
       title: entitlements
       type: object
     entitlementsCore:
@@ -836,7 +847,7 @@ components:
       - vCoresSandbox
       - vpcs
       - vpns
-      title: entitlements
+      title: entitlementsCore
       type: object
     environment:
       description: An explanation about the purpose of this instance.
