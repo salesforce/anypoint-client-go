@@ -69,6 +69,8 @@ func NewMasterBGDetail() *MasterBGDetail {
 	this.CreatedAt = &createdAt
 	var domain string = ""
 	this.Domain = &domain
+	var entitlements Entitlements = {}
+	this.Entitlements = &entitlements
 	var id string = ""
 	this.Id = &id
 	var idproviderId string = ""
@@ -103,6 +105,8 @@ func NewMasterBGDetailWithDefaults() *MasterBGDetail {
 	this.CreatedAt = &createdAt
 	var domain string = ""
 	this.Domain = &domain
+	var entitlements Entitlements = {}
+	this.Entitlements = &entitlements
 	var id string = ""
 	this.Id = &id
 	var idproviderId string = ""

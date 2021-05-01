@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Entitlements** | [**Entitlements**](Entitlements.md) |  | 
+**Entitlements** | [**EntitlementsCore**](EntitlementsCore.md) |  | [default to {}]
 **Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewBGPostReqBody
 
-`func NewBGPostReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string, ) *BGPostReqBody`
+`func NewBGPostReqBody(entitlements EntitlementsCore, name string, ownerId string, parentOrganizationId string, ) *BGPostReqBody`
 
 NewBGPostReqBody instantiates a new BGPostReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEntitlements
 
-`func (o *BGPostReqBody) GetEntitlements() Entitlements`
+`func (o *BGPostReqBody) GetEntitlements() EntitlementsCore`
 
 GetEntitlements returns the Entitlements field if non-nil, zero value otherwise.
 
 ### GetEntitlementsOk
 
-`func (o *BGPostReqBody) GetEntitlementsOk() (*Entitlements, bool)`
+`func (o *BGPostReqBody) GetEntitlementsOk() (*EntitlementsCore, bool)`
 
 GetEntitlementsOk returns a tuple with the Entitlements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEntitlements
 
-`func (o *BGPostReqBody) SetEntitlements(v Entitlements)`
+`func (o *BGPostReqBody) SetEntitlements(v EntitlementsCore)`
 
 SetEntitlements sets Entitlements field to given value.
 

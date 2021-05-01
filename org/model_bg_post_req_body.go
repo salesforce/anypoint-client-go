@@ -16,7 +16,7 @@ import (
 
 // BGPostReqBody struct for BGPostReqBody
 type BGPostReqBody struct {
-	Entitlements Entitlements `json:"entitlements"`
+	Entitlements EntitlementsCore `json:"entitlements"`
 	// An explanation about the purpose of this instance.
 	Name string `json:"name"`
 	// An explanation about the purpose of this instance.
@@ -29,7 +29,7 @@ type BGPostReqBody struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPostReqBody(entitlements Entitlements, name string, ownerId string, parentOrganizationId string) *BGPostReqBody {
+func NewBGPostReqBody(entitlements EntitlementsCore, name string, ownerId string, parentOrganizationId string) *BGPostReqBody {
 	this := BGPostReqBody{}
 	this.Entitlements = entitlements
 	this.Name = name
@@ -43,6 +43,8 @@ func NewBGPostReqBody(entitlements Entitlements, name string, ownerId string, pa
 // but it doesn't guarantee that properties required by API are set
 func NewBGPostReqBodyWithDefaults() *BGPostReqBody {
 	this := BGPostReqBody{}
+	var entitlements EntitlementsCore = {}
+	this.Entitlements = entitlements
 	var name string = ""
 	this.Name = name
 	var ownerId string = ""
@@ -53,9 +55,9 @@ func NewBGPostReqBodyWithDefaults() *BGPostReqBody {
 }
 
 // GetEntitlements returns the Entitlements field value
-func (o *BGPostReqBody) GetEntitlements() Entitlements {
+func (o *BGPostReqBody) GetEntitlements() EntitlementsCore {
 	if o == nil {
-		var ret Entitlements
+		var ret EntitlementsCore
 		return ret
 	}
 
@@ -64,7 +66,7 @@ func (o *BGPostReqBody) GetEntitlements() Entitlements {
 
 // GetEntitlementsOk returns a tuple with the Entitlements field value
 // and a boolean to check if the value has been set.
-func (o *BGPostReqBody) GetEntitlementsOk() (*Entitlements, bool) {
+func (o *BGPostReqBody) GetEntitlementsOk() (*EntitlementsCore, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -72,7 +74,7 @@ func (o *BGPostReqBody) GetEntitlementsOk() (*Entitlements, bool) {
 }
 
 // SetEntitlements sets field value
-func (o *BGPostReqBody) SetEntitlements(v Entitlements) {
+func (o *BGPostReqBody) SetEntitlements(v EntitlementsCore) {
 	o.Entitlements = v
 }
 

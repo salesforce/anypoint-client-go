@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-    bGPostReqBody := *openapiclient.NewBGPostReqBody(*openapiclient.NewEntitlements(false, false, false, *openapiclient.NewLoadBalancer(int32(123)), *openapiclient.NewStaticIps(int32(123)), *openapiclient.NewVCoresDesign(float32(123)), *openapiclient.NewVCoresProduction(float32(123)), *openapiclient.NewVCoresSandbox(float32(123)), *openapiclient.NewVpcs(int32(123)), *openapiclient.NewVpns(int32(123))), "Name_example", "OwnerId_example", "ParentOrganizationId_example") // BGPostReqBody | Business Group Request Body Object
+    bGPostReqBody := *openapiclient.NewBGPostReqBody(*openapiclient.NewEntitlementsCore(false, false, false, *openapiclient.NewLoadBalancer(int32(123)), *openapiclient.NewStaticIps(int32(123)), *openapiclient.NewVCoresDesign(float32(123)), *openapiclient.NewVCoresProduction(float32(123)), *openapiclient.NewVCoresSandbox(float32(123)), *openapiclient.NewVpcs(int32(123)), *openapiclient.NewVpns(int32(123))), "Name_example", "OwnerId_example", "ParentOrganizationId_example") // BGPostReqBody | Business Group Request Body Object
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

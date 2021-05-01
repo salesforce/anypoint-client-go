@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Entitlements** | Pointer to [**Entitlements**](Entitlements.md) |  | [optional] 
+**Entitlements** | Pointer to [**EntitlementsCore**](EntitlementsCore.md) |  | [optional] [default to {}]
 **Name** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **OwnerId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEntitlements
 
-`func (o *BGPutReqBody) GetEntitlements() Entitlements`
+`func (o *BGPutReqBody) GetEntitlements() EntitlementsCore`
 
 GetEntitlements returns the Entitlements field if non-nil, zero value otherwise.
 
 ### GetEntitlementsOk
 
-`func (o *BGPutReqBody) GetEntitlementsOk() (*Entitlements, bool)`
+`func (o *BGPutReqBody) GetEntitlementsOk() (*EntitlementsCore, bool)`
 
 GetEntitlementsOk returns a tuple with the Entitlements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEntitlements
 
-`func (o *BGPutReqBody) SetEntitlements(v Entitlements)`
+`func (o *BGPutReqBody) SetEntitlements(v EntitlementsCore)`
 
 SetEntitlements sets Entitlements field to given value.
 

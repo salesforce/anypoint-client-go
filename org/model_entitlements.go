@@ -32,9 +32,9 @@ type Entitlements struct {
 	Autoscaling *bool `json:"autoscaling,omitempty"`
 	Cam *Cam `json:"cam,omitempty"`
 	// An explanation about the purpose of this instance.
-	CreateEnvironments bool `json:"createEnvironments"`
+	CreateEnvironments *bool `json:"createEnvironments,omitempty"`
 	// An explanation about the purpose of this instance.
-	CreateSubOrgs bool `json:"createSubOrgs"`
+	CreateSubOrgs *bool `json:"createSubOrgs,omitempty"`
 	Crowd *Crowd `json:"crowd,omitempty"`
 	CrowdSelfServiceMigration *CrowdSelfServiceMigration `json:"crowdSelfServiceMigration,omitempty"`
 	DesignCenter *TheDesignCenterSchema `json:"designCenter,omitempty"`
@@ -43,14 +43,14 @@ type Entitlements struct {
 	ExternalIdentity *bool `json:"externalIdentity,omitempty"`
 	Gateways *Gateways `json:"gateways,omitempty"`
 	// An explanation about the purpose of this instance.
-	GlobalDeployment bool `json:"globalDeployment"`
+	GlobalDeployment *bool `json:"globalDeployment,omitempty"`
 	Hybrid *TheHybridSchema `json:"hybrid,omitempty"`
 	// An explanation about the purpose of this instance.
 	HybridAutoDiscoverProperties *bool `json:"hybridAutoDiscoverProperties,omitempty"`
 	// An explanation about the purpose of this instance.
 	HybridInsight *bool `json:"hybridInsight,omitempty"`
 	KpiDashboard *KpiDashboard `json:"kpiDashboard,omitempty"`
-	LoadBalancer LoadBalancer `json:"loadBalancer"`
+	LoadBalancer *LoadBalancer `json:"loadBalancer,omitempty"`
 	Messaging *Messaging `json:"messaging,omitempty"`
 	MonitoringCenter *MonitoringCenter `json:"monitoringCenter,omitempty"`
 	MqAdvancedFeatures *MqAdvancedFeatures `json:"mqAdvancedFeatures,omitempty"`
@@ -66,14 +66,14 @@ type Entitlements struct {
 	RuntimeFabric *bool `json:"runtimeFabric,omitempty"`
 	RuntimeFabricCloud *RuntimeFabricCloud `json:"runtimeFabricCloud,omitempty"`
 	ServiceMesh *ServiceMesh `json:"serviceMesh,omitempty"`
-	StaticIps StaticIps `json:"staticIps"`
+	StaticIps *StaticIps `json:"staticIps,omitempty"`
 	TradingPartnersProduction *TradingPartnersProduction `json:"tradingPartnersProduction,omitempty"`
 	TradingPartnersSandbox *TradingPartnersSandbox `json:"tradingPartnersSandbox,omitempty"`
-	VCoresDesign VCoresDesign `json:"vCoresDesign"`
-	VCoresProduction VCoresProduction `json:"vCoresProduction"`
-	VCoresSandbox VCoresSandbox `json:"vCoresSandbox"`
-	Vpcs Vpcs `json:"vpcs"`
-	Vpns Vpns `json:"vpns"`
+	VCoresDesign *VCoresDesign `json:"vCoresDesign,omitempty"`
+	VCoresProduction *VCoresProduction `json:"vCoresProduction,omitempty"`
+	VCoresSandbox *VCoresSandbox `json:"vCoresSandbox,omitempty"`
+	Vpcs *Vpcs `json:"vpcs,omitempty"`
+	Vpns *Vpns `json:"vpns,omitempty"`
 	WorkerClouds *WorkerClouds `json:"workerClouds,omitempty"`
 	WorkerLoggingOverride *WorkerLoggingOverride `json:"workerLoggingOverride,omitempty"`
 }
@@ -82,7 +82,7 @@ type Entitlements struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEntitlements(createEnvironments bool, createSubOrgs bool, globalDeployment bool, loadBalancer LoadBalancer, staticIps StaticIps, vCoresDesign VCoresDesign, vCoresProduction VCoresProduction, vCoresSandbox VCoresSandbox, vpcs Vpcs, vpns Vpns) *Entitlements {
+func NewEntitlements() *Entitlements {
 	this := Entitlements{}
 	var appViz bool = false
 	this.AppViz = &appViz
@@ -90,26 +90,22 @@ func NewEntitlements(createEnvironments bool, createSubOrgs bool, globalDeployme
 	this.ArmAlerts = &armAlerts
 	var autoscaling bool = false
 	this.Autoscaling = &autoscaling
-	this.CreateEnvironments = createEnvironments
-	this.CreateSubOrgs = createSubOrgs
+	var createEnvironments bool = false
+	this.CreateEnvironments = &createEnvironments
+	var createSubOrgs bool = false
+	this.CreateSubOrgs = &createSubOrgs
 	var externalIdentity bool = false
 	this.ExternalIdentity = &externalIdentity
-	this.GlobalDeployment = globalDeployment
+	var globalDeployment bool = false
+	this.GlobalDeployment = &globalDeployment
 	var hybridAutoDiscoverProperties bool = false
 	this.HybridAutoDiscoverProperties = &hybridAutoDiscoverProperties
 	var hybridInsight bool = false
 	this.HybridInsight = &hybridInsight
-	this.LoadBalancer = loadBalancer
 	var pcf bool = false
 	this.Pcf = &pcf
 	var runtimeFabric bool = false
 	this.RuntimeFabric = &runtimeFabric
-	this.StaticIps = staticIps
-	this.VCoresDesign = vCoresDesign
-	this.VCoresProduction = vCoresProduction
-	this.VCoresSandbox = vCoresSandbox
-	this.Vpcs = vpcs
-	this.Vpns = vpns
 	return &this
 }
 
@@ -125,13 +121,13 @@ func NewEntitlementsWithDefaults() *Entitlements {
 	var autoscaling bool = false
 	this.Autoscaling = &autoscaling
 	var createEnvironments bool = false
-	this.CreateEnvironments = createEnvironments
+	this.CreateEnvironments = &createEnvironments
 	var createSubOrgs bool = false
-	this.CreateSubOrgs = createSubOrgs
+	this.CreateSubOrgs = &createSubOrgs
 	var externalIdentity bool = false
 	this.ExternalIdentity = &externalIdentity
 	var globalDeployment bool = false
-	this.GlobalDeployment = globalDeployment
+	this.GlobalDeployment = &globalDeployment
 	var hybridAutoDiscoverProperties bool = false
 	this.HybridAutoDiscoverProperties = &hybridAutoDiscoverProperties
 	var hybridInsight bool = false
@@ -527,52 +523,68 @@ func (o *Entitlements) SetCam(v Cam) {
 	o.Cam = &v
 }
 
-// GetCreateEnvironments returns the CreateEnvironments field value
+// GetCreateEnvironments returns the CreateEnvironments field value if set, zero value otherwise.
 func (o *Entitlements) GetCreateEnvironments() bool {
-	if o == nil {
+	if o == nil || o.CreateEnvironments == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.CreateEnvironments
+	return *o.CreateEnvironments
 }
 
-// GetCreateEnvironmentsOk returns a tuple with the CreateEnvironments field value
+// GetCreateEnvironmentsOk returns a tuple with the CreateEnvironments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetCreateEnvironmentsOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.CreateEnvironments == nil {
 		return nil, false
 	}
-	return &o.CreateEnvironments, true
+	return o.CreateEnvironments, true
 }
 
-// SetCreateEnvironments sets field value
+// HasCreateEnvironments returns a boolean if a field has been set.
+func (o *Entitlements) HasCreateEnvironments() bool {
+	if o != nil && o.CreateEnvironments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreateEnvironments gets a reference to the given bool and assigns it to the CreateEnvironments field.
 func (o *Entitlements) SetCreateEnvironments(v bool) {
-	o.CreateEnvironments = v
+	o.CreateEnvironments = &v
 }
 
-// GetCreateSubOrgs returns the CreateSubOrgs field value
+// GetCreateSubOrgs returns the CreateSubOrgs field value if set, zero value otherwise.
 func (o *Entitlements) GetCreateSubOrgs() bool {
-	if o == nil {
+	if o == nil || o.CreateSubOrgs == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.CreateSubOrgs
+	return *o.CreateSubOrgs
 }
 
-// GetCreateSubOrgsOk returns a tuple with the CreateSubOrgs field value
+// GetCreateSubOrgsOk returns a tuple with the CreateSubOrgs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetCreateSubOrgsOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.CreateSubOrgs == nil {
 		return nil, false
 	}
-	return &o.CreateSubOrgs, true
+	return o.CreateSubOrgs, true
 }
 
-// SetCreateSubOrgs sets field value
+// HasCreateSubOrgs returns a boolean if a field has been set.
+func (o *Entitlements) HasCreateSubOrgs() bool {
+	if o != nil && o.CreateSubOrgs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreateSubOrgs gets a reference to the given bool and assigns it to the CreateSubOrgs field.
 func (o *Entitlements) SetCreateSubOrgs(v bool) {
-	o.CreateSubOrgs = v
+	o.CreateSubOrgs = &v
 }
 
 // GetCrowd returns the Crowd field value if set, zero value otherwise.
@@ -767,28 +779,36 @@ func (o *Entitlements) SetGateways(v Gateways) {
 	o.Gateways = &v
 }
 
-// GetGlobalDeployment returns the GlobalDeployment field value
+// GetGlobalDeployment returns the GlobalDeployment field value if set, zero value otherwise.
 func (o *Entitlements) GetGlobalDeployment() bool {
-	if o == nil {
+	if o == nil || o.GlobalDeployment == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.GlobalDeployment
+	return *o.GlobalDeployment
 }
 
-// GetGlobalDeploymentOk returns a tuple with the GlobalDeployment field value
+// GetGlobalDeploymentOk returns a tuple with the GlobalDeployment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetGlobalDeploymentOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.GlobalDeployment == nil {
 		return nil, false
 	}
-	return &o.GlobalDeployment, true
+	return o.GlobalDeployment, true
 }
 
-// SetGlobalDeployment sets field value
+// HasGlobalDeployment returns a boolean if a field has been set.
+func (o *Entitlements) HasGlobalDeployment() bool {
+	if o != nil && o.GlobalDeployment != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalDeployment gets a reference to the given bool and assigns it to the GlobalDeployment field.
 func (o *Entitlements) SetGlobalDeployment(v bool) {
-	o.GlobalDeployment = v
+	o.GlobalDeployment = &v
 }
 
 // GetHybrid returns the Hybrid field value if set, zero value otherwise.
@@ -919,28 +939,36 @@ func (o *Entitlements) SetKpiDashboard(v KpiDashboard) {
 	o.KpiDashboard = &v
 }
 
-// GetLoadBalancer returns the LoadBalancer field value
+// GetLoadBalancer returns the LoadBalancer field value if set, zero value otherwise.
 func (o *Entitlements) GetLoadBalancer() LoadBalancer {
-	if o == nil {
+	if o == nil || o.LoadBalancer == nil {
 		var ret LoadBalancer
 		return ret
 	}
-
-	return o.LoadBalancer
+	return *o.LoadBalancer
 }
 
-// GetLoadBalancerOk returns a tuple with the LoadBalancer field value
+// GetLoadBalancerOk returns a tuple with the LoadBalancer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetLoadBalancerOk() (*LoadBalancer, bool) {
-	if o == nil  {
+	if o == nil || o.LoadBalancer == nil {
 		return nil, false
 	}
-	return &o.LoadBalancer, true
+	return o.LoadBalancer, true
 }
 
-// SetLoadBalancer sets field value
+// HasLoadBalancer returns a boolean if a field has been set.
+func (o *Entitlements) HasLoadBalancer() bool {
+	if o != nil && o.LoadBalancer != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoadBalancer gets a reference to the given LoadBalancer and assigns it to the LoadBalancer field.
 func (o *Entitlements) SetLoadBalancer(v LoadBalancer) {
-	o.LoadBalancer = v
+	o.LoadBalancer = &v
 }
 
 // GetMessaging returns the Messaging field value if set, zero value otherwise.
@@ -1359,28 +1387,36 @@ func (o *Entitlements) SetServiceMesh(v ServiceMesh) {
 	o.ServiceMesh = &v
 }
 
-// GetStaticIps returns the StaticIps field value
+// GetStaticIps returns the StaticIps field value if set, zero value otherwise.
 func (o *Entitlements) GetStaticIps() StaticIps {
-	if o == nil {
+	if o == nil || o.StaticIps == nil {
 		var ret StaticIps
 		return ret
 	}
-
-	return o.StaticIps
+	return *o.StaticIps
 }
 
-// GetStaticIpsOk returns a tuple with the StaticIps field value
+// GetStaticIpsOk returns a tuple with the StaticIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetStaticIpsOk() (*StaticIps, bool) {
-	if o == nil  {
+	if o == nil || o.StaticIps == nil {
 		return nil, false
 	}
-	return &o.StaticIps, true
+	return o.StaticIps, true
 }
 
-// SetStaticIps sets field value
+// HasStaticIps returns a boolean if a field has been set.
+func (o *Entitlements) HasStaticIps() bool {
+	if o != nil && o.StaticIps != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStaticIps gets a reference to the given StaticIps and assigns it to the StaticIps field.
 func (o *Entitlements) SetStaticIps(v StaticIps) {
-	o.StaticIps = v
+	o.StaticIps = &v
 }
 
 // GetTradingPartnersProduction returns the TradingPartnersProduction field value if set, zero value otherwise.
@@ -1447,124 +1483,164 @@ func (o *Entitlements) SetTradingPartnersSandbox(v TradingPartnersSandbox) {
 	o.TradingPartnersSandbox = &v
 }
 
-// GetVCoresDesign returns the VCoresDesign field value
+// GetVCoresDesign returns the VCoresDesign field value if set, zero value otherwise.
 func (o *Entitlements) GetVCoresDesign() VCoresDesign {
-	if o == nil {
+	if o == nil || o.VCoresDesign == nil {
 		var ret VCoresDesign
 		return ret
 	}
-
-	return o.VCoresDesign
+	return *o.VCoresDesign
 }
 
-// GetVCoresDesignOk returns a tuple with the VCoresDesign field value
+// GetVCoresDesignOk returns a tuple with the VCoresDesign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetVCoresDesignOk() (*VCoresDesign, bool) {
-	if o == nil  {
+	if o == nil || o.VCoresDesign == nil {
 		return nil, false
 	}
-	return &o.VCoresDesign, true
+	return o.VCoresDesign, true
 }
 
-// SetVCoresDesign sets field value
+// HasVCoresDesign returns a boolean if a field has been set.
+func (o *Entitlements) HasVCoresDesign() bool {
+	if o != nil && o.VCoresDesign != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVCoresDesign gets a reference to the given VCoresDesign and assigns it to the VCoresDesign field.
 func (o *Entitlements) SetVCoresDesign(v VCoresDesign) {
-	o.VCoresDesign = v
+	o.VCoresDesign = &v
 }
 
-// GetVCoresProduction returns the VCoresProduction field value
+// GetVCoresProduction returns the VCoresProduction field value if set, zero value otherwise.
 func (o *Entitlements) GetVCoresProduction() VCoresProduction {
-	if o == nil {
+	if o == nil || o.VCoresProduction == nil {
 		var ret VCoresProduction
 		return ret
 	}
-
-	return o.VCoresProduction
+	return *o.VCoresProduction
 }
 
-// GetVCoresProductionOk returns a tuple with the VCoresProduction field value
+// GetVCoresProductionOk returns a tuple with the VCoresProduction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetVCoresProductionOk() (*VCoresProduction, bool) {
-	if o == nil  {
+	if o == nil || o.VCoresProduction == nil {
 		return nil, false
 	}
-	return &o.VCoresProduction, true
+	return o.VCoresProduction, true
 }
 
-// SetVCoresProduction sets field value
+// HasVCoresProduction returns a boolean if a field has been set.
+func (o *Entitlements) HasVCoresProduction() bool {
+	if o != nil && o.VCoresProduction != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVCoresProduction gets a reference to the given VCoresProduction and assigns it to the VCoresProduction field.
 func (o *Entitlements) SetVCoresProduction(v VCoresProduction) {
-	o.VCoresProduction = v
+	o.VCoresProduction = &v
 }
 
-// GetVCoresSandbox returns the VCoresSandbox field value
+// GetVCoresSandbox returns the VCoresSandbox field value if set, zero value otherwise.
 func (o *Entitlements) GetVCoresSandbox() VCoresSandbox {
-	if o == nil {
+	if o == nil || o.VCoresSandbox == nil {
 		var ret VCoresSandbox
 		return ret
 	}
-
-	return o.VCoresSandbox
+	return *o.VCoresSandbox
 }
 
-// GetVCoresSandboxOk returns a tuple with the VCoresSandbox field value
+// GetVCoresSandboxOk returns a tuple with the VCoresSandbox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetVCoresSandboxOk() (*VCoresSandbox, bool) {
-	if o == nil  {
+	if o == nil || o.VCoresSandbox == nil {
 		return nil, false
 	}
-	return &o.VCoresSandbox, true
+	return o.VCoresSandbox, true
 }
 
-// SetVCoresSandbox sets field value
+// HasVCoresSandbox returns a boolean if a field has been set.
+func (o *Entitlements) HasVCoresSandbox() bool {
+	if o != nil && o.VCoresSandbox != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVCoresSandbox gets a reference to the given VCoresSandbox and assigns it to the VCoresSandbox field.
 func (o *Entitlements) SetVCoresSandbox(v VCoresSandbox) {
-	o.VCoresSandbox = v
+	o.VCoresSandbox = &v
 }
 
-// GetVpcs returns the Vpcs field value
+// GetVpcs returns the Vpcs field value if set, zero value otherwise.
 func (o *Entitlements) GetVpcs() Vpcs {
-	if o == nil {
+	if o == nil || o.Vpcs == nil {
 		var ret Vpcs
 		return ret
 	}
-
-	return o.Vpcs
+	return *o.Vpcs
 }
 
-// GetVpcsOk returns a tuple with the Vpcs field value
+// GetVpcsOk returns a tuple with the Vpcs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetVpcsOk() (*Vpcs, bool) {
-	if o == nil  {
+	if o == nil || o.Vpcs == nil {
 		return nil, false
 	}
-	return &o.Vpcs, true
+	return o.Vpcs, true
 }
 
-// SetVpcs sets field value
+// HasVpcs returns a boolean if a field has been set.
+func (o *Entitlements) HasVpcs() bool {
+	if o != nil && o.Vpcs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcs gets a reference to the given Vpcs and assigns it to the Vpcs field.
 func (o *Entitlements) SetVpcs(v Vpcs) {
-	o.Vpcs = v
+	o.Vpcs = &v
 }
 
-// GetVpns returns the Vpns field value
+// GetVpns returns the Vpns field value if set, zero value otherwise.
 func (o *Entitlements) GetVpns() Vpns {
-	if o == nil {
+	if o == nil || o.Vpns == nil {
 		var ret Vpns
 		return ret
 	}
-
-	return o.Vpns
+	return *o.Vpns
 }
 
-// GetVpnsOk returns a tuple with the Vpns field value
+// GetVpnsOk returns a tuple with the Vpns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Entitlements) GetVpnsOk() (*Vpns, bool) {
-	if o == nil  {
+	if o == nil || o.Vpns == nil {
 		return nil, false
 	}
-	return &o.Vpns, true
+	return o.Vpns, true
 }
 
-// SetVpns sets field value
+// HasVpns returns a boolean if a field has been set.
+func (o *Entitlements) HasVpns() bool {
+	if o != nil && o.Vpns != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVpns gets a reference to the given Vpns and assigns it to the Vpns field.
 func (o *Entitlements) SetVpns(v Vpns) {
-	o.Vpns = v
+	o.Vpns = &v
 }
 
 // GetWorkerClouds returns the WorkerClouds field value if set, zero value otherwise.
@@ -1669,10 +1745,10 @@ func (o Entitlements) MarshalJSON() ([]byte, error) {
 	if o.Cam != nil {
 		toSerialize["cam"] = o.Cam
 	}
-	if true {
+	if o.CreateEnvironments != nil {
 		toSerialize["createEnvironments"] = o.CreateEnvironments
 	}
-	if true {
+	if o.CreateSubOrgs != nil {
 		toSerialize["createSubOrgs"] = o.CreateSubOrgs
 	}
 	if o.Crowd != nil {
@@ -1693,7 +1769,7 @@ func (o Entitlements) MarshalJSON() ([]byte, error) {
 	if o.Gateways != nil {
 		toSerialize["gateways"] = o.Gateways
 	}
-	if true {
+	if o.GlobalDeployment != nil {
 		toSerialize["globalDeployment"] = o.GlobalDeployment
 	}
 	if o.Hybrid != nil {
@@ -1708,7 +1784,7 @@ func (o Entitlements) MarshalJSON() ([]byte, error) {
 	if o.KpiDashboard != nil {
 		toSerialize["kpiDashboard"] = o.KpiDashboard
 	}
-	if true {
+	if o.LoadBalancer != nil {
 		toSerialize["loadBalancer"] = o.LoadBalancer
 	}
 	if o.Messaging != nil {
@@ -1750,7 +1826,7 @@ func (o Entitlements) MarshalJSON() ([]byte, error) {
 	if o.ServiceMesh != nil {
 		toSerialize["serviceMesh"] = o.ServiceMesh
 	}
-	if true {
+	if o.StaticIps != nil {
 		toSerialize["staticIps"] = o.StaticIps
 	}
 	if o.TradingPartnersProduction != nil {
@@ -1759,19 +1835,19 @@ func (o Entitlements) MarshalJSON() ([]byte, error) {
 	if o.TradingPartnersSandbox != nil {
 		toSerialize["tradingPartnersSandbox"] = o.TradingPartnersSandbox
 	}
-	if true {
+	if o.VCoresDesign != nil {
 		toSerialize["vCoresDesign"] = o.VCoresDesign
 	}
-	if true {
+	if o.VCoresProduction != nil {
 		toSerialize["vCoresProduction"] = o.VCoresProduction
 	}
-	if true {
+	if o.VCoresSandbox != nil {
 		toSerialize["vCoresSandbox"] = o.VCoresSandbox
 	}
-	if true {
+	if o.Vpcs != nil {
 		toSerialize["vpcs"] = o.Vpcs
 	}
-	if true {
+	if o.Vpns != nil {
 		toSerialize["vpns"] = o.Vpns
 	}
 	if o.WorkerClouds != nil {

@@ -21,6 +21,7 @@ docs/Crowd.md
 docs/CrowdSelfServiceMigration.md
 docs/DefaultApi.md
 docs/Entitlements.md
+docs/EntitlementsCore.md
 docs/Environment.md
 docs/Exchange2.md
 docs/Gateways.md
@@ -71,6 +72,7 @@ model_cam.go
 model_crowd.go
 model_crowd_self_service_migration.go
 model_entitlements.go
+model_entitlements_core.go
 model_environment.go
 model_exchange2.go
 model_gateways.go
