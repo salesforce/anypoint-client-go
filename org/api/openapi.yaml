@@ -778,7 +778,6 @@ components:
       title: entitlements
       type: object
     entitlementsCore:
-      default: {}
       description: An explanation about the purpose of this instance.
       example:
         globalDeployment: false

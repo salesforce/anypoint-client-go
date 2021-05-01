@@ -31,8 +31,6 @@ type BGPutReqBody struct {
 // will change when the set of required properties is changed
 func NewBGPutReqBody() *BGPutReqBody {
 	this := BGPutReqBody{}
-	var entitlements EntitlementsCore = {}
-	this.Entitlements = &entitlements
 	var name string = ""
 	this.Name = &name
 	var ownerId string = ""
@@ -47,8 +45,6 @@ func NewBGPutReqBody() *BGPutReqBody {
 // but it doesn't guarantee that properties required by API are set
 func NewBGPutReqBodyWithDefaults() *BGPutReqBody {
 	this := BGPutReqBody{}
-	var entitlements EntitlementsCore = {}
-	this.Entitlements = &entitlements
 	var name string = ""
 	this.Name = &name
 	var ownerId string = ""

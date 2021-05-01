@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Entitlements** | [**EntitlementsCore**](EntitlementsCore.md) |  | [default to {}]
+**Entitlements** | [**EntitlementsCore**](EntitlementsCore.md) |  | 
 **Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
 **ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
