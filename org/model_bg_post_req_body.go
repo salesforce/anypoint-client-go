@@ -43,8 +43,6 @@ func NewBGPostReqBody(entitlements EntitlementsCore, name string, ownerId string
 // but it doesn't guarantee that properties required by API are set
 func NewBGPostReqBodyWithDefaults() *BGPostReqBody {
 	this := BGPostReqBody{}
-	var entitlements EntitlementsCore = {}
-	this.Entitlements = entitlements
 	var name string = ""
 	this.Name = name
 	var ownerId string = ""

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Entitlements** | Pointer to [**EntitlementsCore**](EntitlementsCore.md) |  | [optional] [default to {}]
+**Entitlements** | Pointer to [**EntitlementsCore**](EntitlementsCore.md) |  | [optional] 
 **Name** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **OwnerId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
