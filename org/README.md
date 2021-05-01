@@ -97,7 +97,6 @@ Class | Method | HTTP request | Description
  - [BGCore](docs/BGCore.md)
  - [BGPostReqBody](docs/BGPostReqBody.md)
  - [BGPutReqBody](docs/BGPutReqBody.md)
- - [BGPutSpecificProperties](docs/BGPutSpecificProperties.md)
  - [Cam](docs/Cam.md)
  - [Crowd](docs/Crowd.md)
  - [CrowdSelfServiceMigration](docs/CrowdSelfServiceMigration.md)

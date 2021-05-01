@@ -173,7 +173,7 @@ import (
 
 func main() {
     orgId := "orgId_example" // string | The organization Id
-    bGPutReqBody := *openapiclient.NewBGPutReqBody(*openapiclient.NewEntitlements(false, false, false, *openapiclient.NewLoadBalancer(int32(123)), *openapiclient.NewStaticIps(int32(123)), *openapiclient.NewVCoresDesign(float32(123)), *openapiclient.NewVCoresProduction(float32(123)), *openapiclient.NewVCoresSandbox(float32(123)), *openapiclient.NewVpcs(int32(123)), *openapiclient.NewVpns(int32(123))), "Name_example", "OwnerId_example", "ParentOrganizationId_example", int32(123)) // BGPutReqBody | Business Group Request Body Object
+    bGPutReqBody := *openapiclient.NewBGPutReqBody() // BGPutReqBody | Business Group Request Body Object
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
