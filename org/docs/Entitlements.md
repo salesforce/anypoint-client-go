@@ -16,20 +16,20 @@ Name | Type | Description | Notes
 **ArmAlerts** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **Autoscaling** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **Cam** | Pointer to [**Cam**](Cam.md) |  | [optional] 
-**CreateEnvironments** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**CreateSubOrgs** | **bool** | An explanation about the purpose of this instance. | [default to false]
+**CreateEnvironments** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
+**CreateSubOrgs** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **Crowd** | Pointer to [**Crowd**](Crowd.md) |  | [optional] 
 **CrowdSelfServiceMigration** | Pointer to [**CrowdSelfServiceMigration**](CrowdSelfServiceMigration.md) |  | [optional] 
 **DesignCenter** | Pointer to [**TheDesignCenterSchema**](TheDesignCenterSchema.md) |  | [optional] 
 **Exchange2** | Pointer to [**Exchange2**](Exchange2.md) |  | [optional] 
 **ExternalIdentity** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **Gateways** | Pointer to [**Gateways**](Gateways.md) |  | [optional] 
-**GlobalDeployment** | **bool** | An explanation about the purpose of this instance. | [default to false]
+**GlobalDeployment** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **Hybrid** | Pointer to [**TheHybridSchema**](TheHybridSchema.md) |  | [optional] 
 **HybridAutoDiscoverProperties** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **HybridInsight** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **KpiDashboard** | Pointer to [**KpiDashboard**](KpiDashboard.md) |  | [optional] 
-**LoadBalancer** | [**LoadBalancer**](LoadBalancer.md) |  | 
+**LoadBalancer** | Pointer to [**LoadBalancer**](LoadBalancer.md) |  | [optional] 
 **Messaging** | Pointer to [**Messaging**](Messaging.md) |  | [optional] 
 **MonitoringCenter** | Pointer to [**MonitoringCenter**](MonitoringCenter.md) |  | [optional] 
 **MqAdvancedFeatures** | Pointer to [**MqAdvancedFeatures**](MqAdvancedFeatures.md) |  | [optional] 
@@ -43,14 +43,14 @@ Name | Type | Description | Notes
 **RuntimeFabric** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
 **RuntimeFabricCloud** | Pointer to [**RuntimeFabricCloud**](RuntimeFabricCloud.md) |  | [optional] 
 **ServiceMesh** | Pointer to [**ServiceMesh**](ServiceMesh.md) |  | [optional] 
-**StaticIps** | [**StaticIps**](StaticIps.md) |  | 
+**StaticIps** | Pointer to [**StaticIps**](StaticIps.md) |  | [optional] 
 **TradingPartnersProduction** | Pointer to [**TradingPartnersProduction**](TradingPartnersProduction.md) |  | [optional] 
 **TradingPartnersSandbox** | Pointer to [**TradingPartnersSandbox**](TradingPartnersSandbox.md) |  | [optional] 
-**VCoresDesign** | [**VCoresDesign**](VCoresDesign.md) |  | 
-**VCoresProduction** | [**VCoresProduction**](VCoresProduction.md) |  | 
-**VCoresSandbox** | [**VCoresSandbox**](VCoresSandbox.md) |  | 
-**Vpcs** | [**Vpcs**](Vpcs.md) |  | 
-**Vpns** | [**Vpns**](Vpns.md) |  | 
+**VCoresDesign** | Pointer to [**VCoresDesign**](VCoresDesign.md) |  | [optional] 
+**VCoresProduction** | Pointer to [**VCoresProduction**](VCoresProduction.md) |  | [optional] 
+**VCoresSandbox** | Pointer to [**VCoresSandbox**](VCoresSandbox.md) |  | [optional] 
+**Vpcs** | Pointer to [**Vpcs**](Vpcs.md) |  | [optional] 
+**Vpns** | Pointer to [**Vpns**](Vpns.md) |  | [optional] 
 **WorkerClouds** | Pointer to [**WorkerClouds**](WorkerClouds.md) |  | [optional] 
 **WorkerLoggingOverride** | Pointer to [**WorkerLoggingOverride**](WorkerLoggingOverride.md) |  | [optional] 
 
@@ -58,7 +58,7 @@ Name | Type | Description | Notes
 
 ### NewEntitlements
 
-`func NewEntitlements(createEnvironments bool, createSubOrgs bool, globalDeployment bool, loadBalancer LoadBalancer, staticIps StaticIps, vCoresDesign VCoresDesign, vCoresProduction VCoresProduction, vCoresSandbox VCoresSandbox, vpcs Vpcs, vpns Vpns, ) *Entitlements`
+`func NewEntitlements() *Entitlements`
 
 NewEntitlements instantiates a new Entitlements object
 This constructor will assign default values to properties that have it defined,
@@ -392,6 +392,11 @@ and a boolean to check if the value has been set.
 
 SetCreateEnvironments sets CreateEnvironments field to given value.
 
+### HasCreateEnvironments
+
+`func (o *Entitlements) HasCreateEnvironments() bool`
+
+HasCreateEnvironments returns a boolean if a field has been set.
 
 ### GetCreateSubOrgs
 
@@ -412,6 +417,11 @@ and a boolean to check if the value has been set.
 
 SetCreateSubOrgs sets CreateSubOrgs field to given value.
 
+### HasCreateSubOrgs
+
+`func (o *Entitlements) HasCreateSubOrgs() bool`
+
+HasCreateSubOrgs returns a boolean if a field has been set.
 
 ### GetCrowd
 
@@ -582,6 +592,11 @@ and a boolean to check if the value has been set.
 
 SetGlobalDeployment sets GlobalDeployment field to given value.
 
+### HasGlobalDeployment
+
+`func (o *Entitlements) HasGlobalDeployment() bool`
+
+HasGlobalDeployment returns a boolean if a field has been set.
 
 ### GetHybrid
 
@@ -702,6 +717,11 @@ and a boolean to check if the value has been set.
 
 SetLoadBalancer sets LoadBalancer field to given value.
 
+### HasLoadBalancer
+
+`func (o *Entitlements) HasLoadBalancer() bool`
+
+HasLoadBalancer returns a boolean if a field has been set.
 
 ### GetMessaging
 
@@ -1047,6 +1067,11 @@ and a boolean to check if the value has been set.
 
 SetStaticIps sets StaticIps field to given value.
 
+### HasStaticIps
+
+`func (o *Entitlements) HasStaticIps() bool`
+
+HasStaticIps returns a boolean if a field has been set.
 
 ### GetTradingPartnersProduction
 
@@ -1117,6 +1142,11 @@ and a boolean to check if the value has been set.
 
 SetVCoresDesign sets VCoresDesign field to given value.
 
+### HasVCoresDesign
+
+`func (o *Entitlements) HasVCoresDesign() bool`
+
+HasVCoresDesign returns a boolean if a field has been set.
 
 ### GetVCoresProduction
 
@@ -1137,6 +1167,11 @@ and a boolean to check if the value has been set.
 
 SetVCoresProduction sets VCoresProduction field to given value.
 
+### HasVCoresProduction
+
+`func (o *Entitlements) HasVCoresProduction() bool`
+
+HasVCoresProduction returns a boolean if a field has been set.
 
 ### GetVCoresSandbox
 
@@ -1157,6 +1192,11 @@ and a boolean to check if the value has been set.
 
 SetVCoresSandbox sets VCoresSandbox field to given value.
 
+### HasVCoresSandbox
+
+`func (o *Entitlements) HasVCoresSandbox() bool`
+
+HasVCoresSandbox returns a boolean if a field has been set.
 
 ### GetVpcs
 
@@ -1177,6 +1217,11 @@ and a boolean to check if the value has been set.
 
 SetVpcs sets Vpcs field to given value.
 
+### HasVpcs
+
+`func (o *Entitlements) HasVpcs() bool`
+
+HasVpcs returns a boolean if a field has been set.
 
 ### GetVpns
 
@@ -1197,6 +1242,11 @@ and a boolean to check if the value has been set.
 
 SetVpns sets Vpns field to given value.
 
+### HasVpns
+
+`func (o *Entitlements) HasVpns() bool`
+
+HasVpns returns a boolean if a field has been set.
 
 ### GetWorkerClouds
 

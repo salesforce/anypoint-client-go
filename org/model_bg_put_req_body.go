@@ -16,7 +16,7 @@ import (
 
 // BGPutReqBody struct for BGPutReqBody
 type BGPutReqBody struct {
-	Entitlements *Entitlements `json:"entitlements,omitempty"`
+	Entitlements *EntitlementsCore `json:"entitlements,omitempty"`
 	// An explanation about the purpose of this instance.
 	Name *string `json:"name,omitempty"`
 	// An explanation about the purpose of this instance.
@@ -31,6 +31,8 @@ type BGPutReqBody struct {
 // will change when the set of required properties is changed
 func NewBGPutReqBody() *BGPutReqBody {
 	this := BGPutReqBody{}
+	var entitlements EntitlementsCore = {}
+	this.Entitlements = &entitlements
 	var name string = ""
 	this.Name = &name
 	var ownerId string = ""
@@ -45,6 +47,8 @@ func NewBGPutReqBody() *BGPutReqBody {
 // but it doesn't guarantee that properties required by API are set
 func NewBGPutReqBodyWithDefaults() *BGPutReqBody {
 	this := BGPutReqBody{}
+	var entitlements EntitlementsCore = {}
+	this.Entitlements = &entitlements
 	var name string = ""
 	this.Name = &name
 	var ownerId string = ""
@@ -55,9 +59,9 @@ func NewBGPutReqBodyWithDefaults() *BGPutReqBody {
 }
 
 // GetEntitlements returns the Entitlements field value if set, zero value otherwise.
-func (o *BGPutReqBody) GetEntitlements() Entitlements {
+func (o *BGPutReqBody) GetEntitlements() EntitlementsCore {
 	if o == nil || o.Entitlements == nil {
-		var ret Entitlements
+		var ret EntitlementsCore
 		return ret
 	}
 	return *o.Entitlements
@@ -65,7 +69,7 @@ func (o *BGPutReqBody) GetEntitlements() Entitlements {
 
 // GetEntitlementsOk returns a tuple with the Entitlements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BGPutReqBody) GetEntitlementsOk() (*Entitlements, bool) {
+func (o *BGPutReqBody) GetEntitlementsOk() (*EntitlementsCore, bool) {
 	if o == nil || o.Entitlements == nil {
 		return nil, false
 	}
@@ -81,8 +85,8 @@ func (o *BGPutReqBody) HasEntitlements() bool {
 	return false
 }
 
-// SetEntitlements gets a reference to the given Entitlements and assigns it to the Entitlements field.
-func (o *BGPutReqBody) SetEntitlements(v Entitlements) {
+// SetEntitlements gets a reference to the given EntitlementsCore and assigns it to the Entitlements field.
+func (o *BGPutReqBody) SetEntitlements(v EntitlementsCore) {
 	o.Entitlements = &v
 }
 

@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
  - [Crowd](docs/Crowd.md)
  - [CrowdSelfServiceMigration](docs/CrowdSelfServiceMigration.md)
  - [Entitlements](docs/Entitlements.md)
+ - [EntitlementsCore](docs/EntitlementsCore.md)
  - [Environment](docs/Environment.md)
  - [Exchange2](docs/Exchange2.md)
  - [Gateways](docs/Gateways.md)
