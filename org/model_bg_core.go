@@ -66,8 +66,6 @@ func NewBGCore() *BGCore {
 	this.CreatedAt = &createdAt
 	var domain string = ""
 	this.Domain = &domain
-	var entitlements Entitlements = {}
-	this.Entitlements = &entitlements
 	var id string = ""
 	this.Id = &id
 	var idproviderId string = ""
@@ -100,8 +98,6 @@ func NewBGCoreWithDefaults() *BGCore {
 	this.CreatedAt = &createdAt
 	var domain string = ""
 	this.Domain = &domain
-	var entitlements Entitlements = {}
-	this.Entitlements = &entitlements
 	var id string = ""
 	this.Id = &id
 	var idproviderId string = ""

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ClientId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **CreatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **Domain** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**Entitlements** | Pointer to [**Entitlements**](Entitlements.md) |  | [optional] [default to {}]
+**Entitlements** | Pointer to [**Entitlements**](Entitlements.md) |  | [optional] 
 **Environments** | Pointer to [**[]Environment**](Environment.md) | An explanation about the purpose of this instance. | [optional] [default to []]
 **Id** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
 **IdproviderId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
