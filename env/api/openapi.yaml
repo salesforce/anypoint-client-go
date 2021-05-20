@@ -1,0 +1,310 @@
+openapi: 3.0.0
+info:
+  description: Description of the ENV API
+  title: ENV API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments:
+    get:
+      description: Returns all matching environments
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+    post:
+      description: Creates an environment
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  title: name
+                  type: string
+                typr:
+                  title: type
+                  type: string
+              type: object
+        required: false
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/env'
+          description: Success response
+  /organizations/{orgId}/environments/{environmentId}:
+    delete:
+      description: Delete an environment
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of an environment
+        explode: false
+        in: path
+        name: environmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Retrieves an environment by id
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of an environment
+        explode: false
+        in: path
+        name: environmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/env'
+          description: Success response
+    put:
+      description: Update an environment, implemented as a patch. Note that only the
+        name is allowed to be updated, isProduction and type can not.
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of an environment
+        explode: false
+        in: path
+        name: environmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object_1'
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  title: name
+                  type: string
+              type: object
+        required: false
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/env'
+          description: Success response
+components:
+  requestBodies:
+    inline_object_1:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object_1'
+      required: false
+    inline_object:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object'
+      required: false
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessGetENV:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/env'
+      description: Success response
+    SuccessPostENV:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/env'
+      description: Success response
+    SuccessPutENV:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/env'
+      description: Success response
+    SuccessDeleteENV:
+      description: Success response
+    SuccessListENVs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    env:
+      allOf:
+      - $ref: '#/components/schemas/envId'
+      - $ref: '#/components/schemas/envCore'
+      title: env
+    envCore:
+      properties:
+        name:
+          example: myAwesomeENV
+          title: name
+          type: string
+        organizationId:
+          example: 0000-1111-2222-3333-4444
+          title: organizationId
+          type: string
+        isProduction:
+          default: false
+          title: isProduction
+          type: boolean
+        type:
+          example: sandbox
+          title: type
+          type: string
+        clientId:
+          example: 11-2222-3333-444
+          title: clientId
+          type: string
+      title: envCore
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/env'
+          title: List of envs
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_object:
+      properties:
+        name:
+          title: name
+          type: string
+        typr:
+          title: type
+          type: string
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    inline_object_1:
+      properties:
+        name:
+          title: name
+          type: string
+      type: object
+    envId:
+      properties:
+        id:
+          description: The env Id
+          example: 9149aec2-f882-4d36-b419-3fb07c
+          title: id
+          type: string
+      required:
+      - id
+      title: envId
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
