@@ -52,7 +52,7 @@ paths:
                 name:
                   title: name
                   type: string
-                typr:
+                type:
                   title: type
                   type: string
               type: object
@@ -271,7 +271,7 @@ components:
         name:
           title: name
           type: string
-        typr:
+        type:
           title: type
           type: string
       type: object
