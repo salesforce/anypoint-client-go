@@ -17,7 +17,7 @@ import (
 // InlineObject struct for InlineObject
 type InlineObject struct {
 	Name *string `json:"name,omitempty"`
-	Typr *string `json:"typr,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewInlineObject instantiates a new InlineObject object
@@ -69,36 +69,36 @@ func (o *InlineObject) SetName(v string) {
 	o.Name = &v
 }
 
-// GetTypr returns the Typr field value if set, zero value otherwise.
-func (o *InlineObject) GetTypr() string {
-	if o == nil || o.Typr == nil {
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *InlineObject) GetType() string {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-	return *o.Typr
+	return *o.Type
 }
 
-// GetTyprOk returns a tuple with the Typr field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InlineObject) GetTyprOk() (*string, bool) {
-	if o == nil || o.Typr == nil {
+func (o *InlineObject) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return o.Typr, true
+	return o.Type, true
 }
 
-// HasTypr returns a boolean if a field has been set.
-func (o *InlineObject) HasTypr() bool {
-	if o != nil && o.Typr != nil {
+// HasType returns a boolean if a field has been set.
+func (o *InlineObject) HasType() bool {
+	if o != nil && o.Type != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTypr gets a reference to the given string and assigns it to the Typr field.
-func (o *InlineObject) SetTypr(v string) {
-	o.Typr = &v
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *InlineObject) SetType(v string) {
+	o.Type = &v
 }
 
 func (o InlineObject) MarshalJSON() ([]byte, error) {
@@ -106,8 +106,8 @@ func (o InlineObject) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.Typr != nil {
-		toSerialize["typr"] = o.Typr
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

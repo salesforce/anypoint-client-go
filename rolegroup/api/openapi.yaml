@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  description: Description of the ENV API
-  title: ENV API
+  description: Description of the RoleGroup API
+  title: RoleGroup API
   version: 1.0.0
 servers:
 - description: Anypoint Cloudhub
@@ -11,9 +11,9 @@ servers:
 security:
 - bearerAuth: []
 paths:
-  /organizations/{orgId}/environments:
+  /organizations/{orgId}/rolegroups:
     get:
-      description: Returns all matching environments
+      description: Returns all rolegroups within the organization
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -33,7 +33,7 @@ paths:
                 $ref: '#/components/schemas/inline_response_200'
           description: Success response
     post:
-      description: Creates an environment
+      description: Creates an rolegroup. Name must be unique.
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -44,19 +44,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  title: name
-                  type: string
-                type:
-                  title: type
-                  type: string
-              type: object
-        required: false
+              $ref: '#/components/schemas/rolegroupPostBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -70,11 +61,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/env'
+                $ref: '#/components/schemas/rolegroup'
           description: Success response
-  /organizations/{orgId}/environments/{environmentId}:
+  /organizations/{orgId}/rolegroups/{rolegroupId}:
     delete:
-      description: Delete an environment
+      description: Delete a rolegroup
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -84,10 +75,10 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The id of an environment
+      - description: The id of a rolegroup
         explode: false
         in: path
-        name: environmentId
+        name: rolegroupId
         required: true
         schema:
           type: string
@@ -96,9 +87,16 @@ paths:
         "401":
           description: Access token is missing or invalid
         "204":
+          content:
+            application/json:
+              schema:
+                items:
+                  description: organization id
+                  type: string
+                type: array
           description: Success response
     get:
-      description: Retrieves an environment by id
+      description: Retrieves a rolegroup by id
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -108,10 +106,10 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The id of an environment
+      - description: The id of rolegroup
         explode: false
         in: path
-        name: environmentId
+        name: rolegroupId
         required: true
         schema:
           type: string
@@ -123,11 +121,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/env'
+                $ref: '#/components/schemas/rolegroup'
           description: Success response
     put:
-      description: Update an environment, implemented as a patch. Note that only the
-        name is allowed to be updated, isProduction and type can not.
+      description: Update a role gorup, implemented as a patch. Note that only the
+        name (must be unique) and description is allowed to be updated.
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -137,25 +135,19 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The id of an environment
+      - description: The id of an rolegroup
         explode: false
         in: path
-        name: environmentId
+        name: rolegroupId
         required: true
         schema:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/inline_object_1'
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  title: name
-                  type: string
-              type: object
-        required: false
+              $ref: '#/components/schemas/rolegroupPutBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -169,22 +161,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/env'
+                $ref: '#/components/schemas/rolegroup'
           description: Success response
 components:
-  requestBodies:
-    inline_object_1:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/inline_object_1'
-      required: false
-    inline_object:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/inline_object'
-      required: false
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
@@ -194,86 +173,153 @@ components:
           schema:
             $ref: '#/components/schemas/inline_response_400'
       description: Bad request response
-    SuccessGetENV:
+    SuccessGetRoleGroup:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/env'
+            $ref: '#/components/schemas/rolegroup'
       description: Success response
-    SuccessPostENV:
+    SuccessPostRoleGroup:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/env'
+            $ref: '#/components/schemas/rolegroup'
       description: Success response
-    SuccessPutENV:
+    SuccessPutRoleGroup:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/env'
+            $ref: '#/components/schemas/rolegroup'
       description: Success response
-    SuccessDeleteENV:
+    SuccessDeleteRoleGroup:
+      content:
+        application/json:
+          schema:
+            items:
+              description: organization id
+              type: string
+            type: array
       description: Success response
-    SuccessListENVs:
+    SuccessListRoleGroups:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/inline_response_200'
       description: Success response
   schemas:
-    env:
-      allOf:
-      - $ref: '#/components/schemas/envId'
-      - $ref: '#/components/schemas/envCore'
-      title: env
-    envCore:
+    rolegroupPostBody:
       properties:
         name:
-          example: myAwesomeENV
           title: name
           type: string
-        organizationId:
-          example: 0000-1111-2222-3333-4444
-          title: organizationId
+        description:
+          title: description
           type: string
-        isProduction:
-          default: false
-          title: isProduction
+        external_names:
+          items:
+            title: externalName
+            type: string
+          title: externalNames
+          type: array
+      title: rolegroupPostBody
+      type: object
+    rolegroupPutBody:
+      properties:
+        name:
+          title: name
+          type: string
+        description:
+          title: description
+          type: string
+        external_names:
+          items:
+            title: externalName
+            type: string
+          title: externalNames
+          type: array
+      title: rolegroupPutBody
+      type: object
+    rolegroup:
+      example:
+        updated_at: 2021-03-05T14:06:52.976Z
+        org_id: aa1f55d6-213d-4f60-845c-207286484cd1
+        editable: true
+        name: API Creators
+        external_names:
+        - external_names
+        - external_names
+        description: API Creators
+        created_at: 2021-03-05T14:06:52.976Z
+        role_group_id: a1a8b488-1e48-44ac-ba40-d53f518808af
+      properties:
+        role_group_id:
+          example: a1a8b488-1e48-44ac-ba40-d53f518808af
+          title: id
+          type: string
+        name:
+          example: API Creators
+          title: name
+          type: string
+        external_names:
+          items:
+            title: externalName
+            type: string
+          title: externalNames
+          type: array
+        description:
+          example: API Creators
+          title: description
+          type: string
+        org_id:
+          example: aa1f55d6-213d-4f60-845c-207286484cd1
+          title: orgId
+          type: string
+        editable:
+          title: editable
           type: boolean
-        type:
-          example: sandbox
-          title: type
+        created_at:
+          example: 2021-03-05T14:06:52.976Z
+          title: createdAt
           type: string
-        clientId:
-          example: 11-2222-3333-444
-          title: clientId
+        updated_at:
+          example: 2021-03-05T14:06:52.976Z
+          title: updatedAt
           type: string
-      title: envCore
+      title: rolegroup
       type: object
     inline_response_200:
       example:
         total: 0
         data:
-        - null
-        - null
+        - updated_at: 2021-03-05T14:06:52.976Z
+          org_id: aa1f55d6-213d-4f60-845c-207286484cd1
+          editable: true
+          name: API Creators
+          external_names:
+          - external_names
+          - external_names
+          description: API Creators
+          created_at: 2021-03-05T14:06:52.976Z
+          role_group_id: a1a8b488-1e48-44ac-ba40-d53f518808af
+        - updated_at: 2021-03-05T14:06:52.976Z
+          org_id: aa1f55d6-213d-4f60-845c-207286484cd1
+          editable: true
+          name: API Creators
+          external_names:
+          - external_names
+          - external_names
+          description: API Creators
+          created_at: 2021-03-05T14:06:52.976Z
+          role_group_id: a1a8b488-1e48-44ac-ba40-d53f518808af
       properties:
         data:
           items:
-            $ref: '#/components/schemas/env'
-          title: List of envs
+            $ref: '#/components/schemas/rolegroup'
+          title: List of rolegroups
           type: array
         total:
           title: Total number of results
           type: integer
-      type: object
-    inline_object:
-      properties:
-        name:
-          title: name
-          type: string
-        type:
-          title: type
-          type: string
       type: object
     inline_response_400:
       properties:
@@ -285,23 +331,6 @@ components:
           example: A sample message here
           title: the error message
           type: string
-      type: object
-    inline_object_1:
-      properties:
-        name:
-          title: name
-          type: string
-      type: object
-    envId:
-      properties:
-        id:
-          description: The env Id
-          example: 9149aec2-f882-4d36-b419-3fb07c
-          title: id
-          type: string
-      required:
-      - id
-      title: envId
       type: object
   securitySchemes:
     bearerAuth:
