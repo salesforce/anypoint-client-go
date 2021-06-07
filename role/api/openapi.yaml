@@ -1,0 +1,462 @@
+openapi: 3.0.0
+info:
+  description: Description of the Role API
+  title: Role API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /roles:
+    get:
+      description: Retrieves all availables roles (permissions)
+      parameters:
+      - description: search by role name
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: search by role description
+        explode: true
+        in: query
+        name: description
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: include internal roles in search
+        explode: true
+        in: query
+        name: include_internal
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: A search string to use for partial matches of role names
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Pagination parameter to start returning results from this position
+          of matches
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Pagination parameter for how many results to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Sort order for filtering
+        explode: true
+        in: query
+        name: ascending
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+  /organizations/{orgId}/rolegroups/{rolegroupId}/roles:
+    delete:
+      description: Delete assigned roles
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a rolegroup
+        explode: false
+        in: path
+        name: rolegroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          content:
+            application/json:
+              schema:
+                items:
+                  description: number of deleted roles
+                  type: integer
+                type: array
+          description: Success response
+    get:
+      description: Returns all roles assigned to the given rolegroup within the organization
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a rolegroup
+        explode: false
+        in: path
+        name: rolegroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: Success response
+    post:
+      description: Assigns a role to a rolegroup.
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a rolegroup
+        explode: false
+        in: path
+        name: rolegroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rolePostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rolePostResponseBody'
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessListRoles:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+    SuccessAssignRoles:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/rolePostResponseBody'
+      description: Success response
+    SuccessDeleteAssignedRoles:
+      content:
+        application/json:
+          schema:
+            items:
+              description: number of deleted roles
+              type: integer
+            type: array
+      description: Success response
+    SuccessListAssingedRoles:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200_1'
+      description: Success response
+  schemas:
+    rolePostBody:
+      items:
+        properties:
+          context_params:
+            properties:
+              org:
+                title: org
+                type: string
+            title: context_params
+            type: object
+          role_id:
+            title: roleId
+            type: string
+        title: roleToAssign
+        type: object
+      title: rolePostBody
+      type: array
+    rolePostResponseBody:
+      items:
+        properties:
+          role_group_id:
+            title: rolegroupId
+            type: string
+          role_id:
+            title: roleId
+            type: string
+          role_group_assignment_id:
+            title: roleGroupAssignmentId
+            type: string
+          context_params_json:
+            properties:
+              org:
+                title: org
+                type: string
+            title: contextParamsJson
+            type: object
+          context_params:
+            properties:
+              org:
+                title: org
+                type: string
+            title: contextParams
+            type: object
+        title: rolePostResponseItem
+        type: object
+      title: rolePostResponseBody
+      type: array
+    roleDeleteBody:
+      items:
+        properties:
+          context_params:
+            properties:
+              org:
+                title: org
+                type: string
+            title: contextParams
+            type: object
+          role_group_assignment_id:
+            title: roleGroupAssignmentId
+            type: string
+          role_group_id:
+            title: roleGroupId
+            type: string
+          role_id:
+            title: roleId
+            type: string
+        title: roleToDelete
+        type: object
+      title: roleDeleteBody
+      type: array
+    role:
+      example:
+        shareable: true
+        internal: true
+        role_id: role_id
+        org_id: org_id
+        name: name
+        description: description
+        namespaces:
+        - namespaces
+        - namespaces
+      properties:
+        role_id:
+          title: roleId
+          type: string
+        name:
+          title: name
+          type: string
+        description:
+          title: description
+          type: string
+        internal:
+          title: internal
+          type: boolean
+        org_id:
+          nullable: true
+          title: orgId
+          type: string
+        namespaces:
+          items:
+            title: namespace
+            type: string
+          title: namespaces
+          type: array
+        shareable:
+          title: shareable
+          type: boolean
+      title: role
+      type: object
+    assignedRole:
+      example:
+        role_group_assignment_id: role_group_assignment_id
+        internal: true
+        role_id: role_id
+        org_id: org_id
+        name: name
+        created_at: 2021-06-07T15:58:33.755Z
+        description: description
+        role_group_id: role_group_id
+        context_params:
+          org: org
+      properties:
+        context_params:
+          $ref: '#/components/schemas/contextParams'
+        created_at:
+          example: 2021-06-07T15:58:33.755Z
+          title: createdAt
+          type: string
+        role_group_assignment_id:
+          title: roleGroupAssignmentId
+          type: string
+        role_group_id:
+          title: roleGroupId
+          type: string
+        role_id:
+          title: roleId
+          type: string
+        org_id:
+          title: orgId
+          type: string
+        name:
+          title: name
+          type: string
+        description:
+          title: description
+          type: string
+        internal:
+          title: internal
+          type: boolean
+      title: assignedRole
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - shareable: true
+          internal: true
+          role_id: role_id
+          org_id: org_id
+          name: name
+          description: description
+          namespaces:
+          - namespaces
+          - namespaces
+        - shareable: true
+          internal: true
+          role_id: role_id
+          org_id: org_id
+          name: name
+          description: description
+          namespaces:
+          - namespaces
+          - namespaces
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/role'
+          title: List of available roles
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_response_200_1:
+      example:
+        total: 0
+        data:
+        - role_group_assignment_id: role_group_assignment_id
+          internal: true
+          role_id: role_id
+          org_id: org_id
+          name: name
+          created_at: 2021-06-07T15:58:33.755Z
+          description: description
+          role_group_id: role_group_id
+          context_params:
+            org: org
+        - role_group_assignment_id: role_group_assignment_id
+          internal: true
+          role_id: role_id
+          org_id: org_id
+          name: name
+          created_at: 2021-06-07T15:58:33.755Z
+          description: description
+          role_group_id: role_group_id
+          context_params:
+            org: org
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/assignedRole'
+          title: List of assigned roles
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    contextParams:
+      example:
+        org: org
+      properties:
+        org:
+          title: org
+          type: string
+      title: contextParams
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
