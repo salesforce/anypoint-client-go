@@ -101,6 +101,11 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/roleDeleteBody'
       responses:
         "401":
           description: Access token is missing or invalid

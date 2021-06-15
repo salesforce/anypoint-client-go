@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete
 
-> []int32 OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(ctx, orgId, rolegroupId).Execute()
+> []int32 OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(ctx, orgId, rolegroupId).RequestBody(requestBody).Execute()
 
 
 
@@ -34,10 +34,11 @@ import (
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     rolegroupId := "rolegroupId_example" // string | The id of a rolegroup
+    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(context.Background(), orgId, rolegroupId).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(context.Background(), orgId, rolegroupId).RequestBody(requestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **requestBody** | **[]map[string]interface{}** |  | 
 
 ### Return type
 
@@ -76,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

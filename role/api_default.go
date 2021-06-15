@@ -32,8 +32,13 @@ type DefaultApiApiOrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteRequest stru
 	ApiService *DefaultApiService
 	orgId string
 	rolegroupId string
+	requestBody *[]map[string]interface{}
 }
 
+func (r DefaultApiApiOrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteRequest) RequestBody(requestBody []map[string]interface{}) DefaultApiApiOrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteRequest {
+	r.requestBody = &requestBody
+	return r
+}
 
 func (r DefaultApiApiOrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteRequest) Execute() ([]int32, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteExecute(r)
@@ -84,7 +89,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteEx
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -100,6 +105,8 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdRolesDeleteEx
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
