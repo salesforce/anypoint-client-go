@@ -1,0 +1,309 @@
+openapi: 3.0.0
+info:
+  description: Description of the User API
+  title: User API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/users:
+    delete:
+      description: Delete one or more users
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/usersDeleteBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Returns the group of users that belong to the specified organization.
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A search string to specify the type of user you want to retrieve.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - host
+          - proxy
+          - all
+          type: string
+        style: form
+      - description: Maximum number of users to retrieve per request.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The number of records to omit from the response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+    post:
+      description: Creates a User
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/usersPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: Success response
+    put:
+      description: Update an User
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/usersPutBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "204":
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessPostUser:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/user'
+      description: Success response
+    SuccessPutUsers:
+      description: Success response
+    SuccessDeleteUsers:
+      description: Success response
+    SuccessListUsers:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    usersPostBody:
+      properties:
+        username:
+          title: username
+          type: string
+        firstName:
+          title: firstName
+          type: string
+        lastName:
+          title: lastName
+          type: string
+        email:
+          title: email
+          type: string
+        phoneNumber:
+          title: phoneNumber
+          type: string
+        password:
+          title: password
+          type: string
+      title: usersPostBody
+      type: object
+    usersPutBody:
+      items:
+        properties:
+          username:
+            title: username
+            type: string
+          firstName:
+            title: firstName
+            type: string
+          lastName:
+            title: lastName
+            type: string
+          email:
+            title: email
+            type: string
+          phoneNumber:
+            title: phoneNumber
+            type: string
+          password:
+            title: password
+            type: string
+      title: userPutBody
+      type: array
+    usersDeleteBody:
+      items:
+        properties:
+          inviteId:
+            title: userId
+            type: string
+      title: userDeleteBody
+      type: array
+    user:
+      allOf:
+      - $ref: '#/components/schemas/userId'
+      - $ref: '#/components/schemas/userCore'
+      title: user
+    userCore:
+      properties:
+        username:
+          example: UzerMule.test
+          title: username
+          type: string
+        firstName:
+          example: Uzer
+          title: firstName
+          type: string
+        lastName:
+          default: Mule
+          title: lastName
+          type: string
+        email:
+          example: api.platform.qa+uzer@gmail.com
+          title: email
+          type: string
+        enabled:
+          example: true
+          title: enabled
+          type: boolean
+        idprovider_id:
+          example: mulesoft
+          title: idproviderId
+          type: string
+        createdAt:
+          example: Mon Feb 09 2015 17:47:26 GMT-0300 (ART)
+          title: createdAt
+          type: string
+        updatedAt:
+          example: Mon Feb 09 2015 17:47:26 GMT-0300 (ART)
+          title: updatedAt
+          type: string
+        isApiConsumer:
+          example: false
+          title: isFederated
+          type: boolean
+      title: userCore
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/user'
+          title: List of users
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    userId:
+      properties:
+        id:
+          description: The user Id
+          example: 4b353f44-6486-42ae-ae77-18b4032f9643
+          title: id
+          type: string
+      required:
+      - id
+      title: userId
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
