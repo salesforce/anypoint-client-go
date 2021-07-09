@@ -242,6 +242,7 @@ components:
     rolegroup:
       example:
         updated_at: 2021-03-05T14:06:52.976Z
+        user_count: 0
         org_id: aa1f55d6-213d-4f60-845c-207286484cd1
         editable: true
         name: API Creators
@@ -285,6 +286,10 @@ components:
           example: 2021-03-05T14:06:52.976Z
           title: updatedAt
           type: string
+        user_count:
+          example: 0
+          title: userCount
+          type: integer
       title: rolegroup
       type: object
     inline_response_200:
@@ -292,6 +297,7 @@ components:
         total: 0
         data:
         - updated_at: 2021-03-05T14:06:52.976Z
+          user_count: 0
           org_id: aa1f55d6-213d-4f60-845c-207286484cd1
           editable: true
           name: API Creators
@@ -302,6 +308,7 @@ components:
           created_at: 2021-03-05T14:06:52.976Z
           role_group_id: a1a8b488-1e48-44ac-ba40-d53f518808af
         - updated_at: 2021-03-05T14:06:52.976Z
+          user_count: 0
           org_id: aa1f55d6-213d-4f60-845c-207286484cd1
           editable: true
           name: API Creators
