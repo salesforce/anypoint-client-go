@@ -1,0 +1,231 @@
+openapi: 3.0.0
+info:
+  description: Description of the Invite API
+  title: Invite API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/invites:
+    delete:
+      description: Delete one or more invites
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invitesDeleteBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Returns outstanding or expired invites
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A search string to use for partial matches of invited emails
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Pagination parameter for choosing how many results include in
+          the response
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Pagination parameter to start returning results from the specified
+          position of matches
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+    post:
+      description: Creates an invite
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invitePostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invite'
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessPostInvite:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/invite'
+      description: Success response
+    SuccessDeleteInvites:
+      description: Success response
+    SuccessListInvites:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    invitePostBody:
+      properties:
+        email:
+          title: email
+          type: string
+        role_groups:
+          $ref: '#/components/schemas/roleGroups'
+      title: invitePostBody
+      type: object
+    invitesDeleteBody:
+      items:
+        properties:
+          inviteId:
+            title: inviteId
+            type: string
+        title: inviteDelete
+        type: object
+      title: invitesDeleteBody
+      type: array
+    invite:
+      allOf:
+      - $ref: '#/components/schemas/inviteObjId'
+      - $ref: '#/components/schemas/inviteCore'
+      title: invite
+    inviteCore:
+      properties:
+        code:
+          title: code
+          type: string
+        invited_at:
+          title: invitedAt
+          type: string
+        invited_email:
+          title: invitedEmail
+          type: string
+        expires_at:
+          title: expiresAt
+          type: string
+        status:
+          title: status
+          type: string
+      title: inviteCore
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/invite'
+          title: List of invites
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    roleGroups:
+      properties:
+        role_group_id:
+          title: roleGroupId
+          type: string
+        name:
+          title: name
+          type: string
+      title: roleGroups
+      type: object
+    inviteObjId:
+      properties:
+        id:
+          title: id
+          type: string
+      required:
+      - id
+      title: inviteObjId
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

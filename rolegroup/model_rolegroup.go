@@ -24,6 +24,7 @@ type Rolegroup struct {
 	Editable *bool `json:"editable,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
+	UserCount *int32 `json:"user_count,omitempty"`
 }
 
 // NewRolegroup instantiates a new Rolegroup object
@@ -299,6 +300,38 @@ func (o *Rolegroup) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetUserCount returns the UserCount field value if set, zero value otherwise.
+func (o *Rolegroup) GetUserCount() int32 {
+	if o == nil || o.UserCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.UserCount
+}
+
+// GetUserCountOk returns a tuple with the UserCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Rolegroup) GetUserCountOk() (*int32, bool) {
+	if o == nil || o.UserCount == nil {
+		return nil, false
+	}
+	return o.UserCount, true
+}
+
+// HasUserCount returns a boolean if a field has been set.
+func (o *Rolegroup) HasUserCount() bool {
+	if o != nil && o.UserCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUserCount gets a reference to the given int32 and assigns it to the UserCount field.
+func (o *Rolegroup) SetUserCount(v int32) {
+	o.UserCount = &v
+}
+
 func (o Rolegroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RoleGroupId != nil {
@@ -324,6 +357,9 @@ func (o Rolegroup) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.UserCount != nil {
+		toSerialize["user_count"] = o.UserCount
 	}
 	return json.Marshal(toSerialize)
 }

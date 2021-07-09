@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Editable** | Pointer to **bool** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
+**UserCount** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *Rolegroup) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetUserCount
+
+`func (o *Rolegroup) GetUserCount() int32`
+
+GetUserCount returns the UserCount field if non-nil, zero value otherwise.
+
+### GetUserCountOk
+
+`func (o *Rolegroup) GetUserCountOk() (*int32, bool)`
+
+GetUserCountOk returns a tuple with the UserCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserCount
+
+`func (o *Rolegroup) SetUserCount(v int32)`
+
+SetUserCount sets UserCount field to given value.
+
+### HasUserCount
+
+`func (o *Rolegroup) HasUserCount() bool`
+
+HasUserCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
