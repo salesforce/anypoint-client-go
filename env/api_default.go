@@ -241,11 +241,11 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest struct {
 	ApiService *DefaultApiService
 	orgId string
 	environmentId string
-	inlineObject1 *InlineObject1
+	envCore *EnvCore
 }
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) InlineObject1(inlineObject1 InlineObject1) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest {
-	r.inlineObject1 = &inlineObject1
+func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) EnvCore(envCore EnvCore) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest {
+	r.envCore = &envCore
 	return r
 }
 
@@ -315,7 +315,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdPutExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.inlineObject1
+	localVarPostBody = r.envCore
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
