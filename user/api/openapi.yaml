@@ -294,6 +294,10 @@ components:
           example: api.platform.qa+uzer@gmail.com
           title: email
           type: string
+        organizationId:
+          example: xxxxxx-213d-4f60-845c-207286484cd1
+          title: organizationId
+          type: string
         enabled:
           example: true
           title: enabled

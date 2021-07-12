@@ -21,6 +21,7 @@ type UserCore struct {
 	LastName *string `json:"lastName,omitempty"`
 	PhoneNumber *string `json:"phoneNumber,omitempty"`
 	Email *string `json:"email,omitempty"`
+	OrganizationId *string `json:"organizationId,omitempty"`
 	Enabled *bool `json:"enabled,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
 	LastLogin *string `json:"lastLogin,omitempty"`
@@ -218,6 +219,38 @@ func (o *UserCore) HasEmail() bool {
 // SetEmail gets a reference to the given string and assigns it to the Email field.
 func (o *UserCore) SetEmail(v string) {
 	o.Email = &v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *UserCore) GetOrganizationId() string {
+	if o == nil || o.OrganizationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserCore) GetOrganizationIdOk() (*string, bool) {
+	if o == nil || o.OrganizationId == nil {
+		return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *UserCore) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
+func (o *UserCore) SetOrganizationId(v string) {
+	o.OrganizationId = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -748,6 +781,9 @@ func (o UserCore) MarshalJSON() ([]byte, error) {
 	}
 	if o.Email != nil {
 		toSerialize["email"] = o.Email
+	}
+	if o.OrganizationId != nil {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled

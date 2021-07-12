@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **LastName** | Pointer to **string** |  | [optional] [default to "Mule"]
 **PhoneNumber** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **string** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 **LastLogin** | Pointer to **string** |  | [optional] 
@@ -190,6 +191,31 @@ SetEmail sets Email field to given value.
 `func (o *User) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
+
+### GetOrganizationId
+
+`func (o *User) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *User) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *User) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *User) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 ### GetEnabled
 
