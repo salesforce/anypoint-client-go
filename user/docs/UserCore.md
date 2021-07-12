@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **LastName** | Pointer to **string** |  | [optional] [default to "Mule"]
 **PhoneNumber** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **string** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 **LastLogin** | Pointer to **string** |  | [optional] 
@@ -20,9 +21,11 @@ Name | Type | Description | Notes
 **IsFederated** | Pointer to **bool** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
-**MemberOfOrganizations** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**MemberOfOrganizations** | Pointer to [**[]Org**](Org.md) |  | [optional] 
+**ContributorOfOrganizations** | Pointer to [**[]Org**](Org.md) |  | [optional] 
 **Properties** | Pointer to [**Properties**](Properties.md) |  | [optional] 
 **OrganizationPreferences** | Pointer to **map[string]interface{}** |  | [optional] 
+**PrimaryOrganization** | Pointer to [**PrimaryOrganization**](PrimaryOrganization.md) |  | [optional] 
 
 ## Methods
 
@@ -167,6 +170,31 @@ SetEmail sets Email field to given value.
 `func (o *UserCore) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
+
+### GetOrganizationId
+
+`func (o *UserCore) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *UserCore) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *UserCore) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *UserCore) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 ### GetEnabled
 
@@ -445,20 +473,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetMemberOfOrganizations
 
-`func (o *UserCore) GetMemberOfOrganizations() []map[string]interface{}`
+`func (o *UserCore) GetMemberOfOrganizations() []Org`
 
 GetMemberOfOrganizations returns the MemberOfOrganizations field if non-nil, zero value otherwise.
 
 ### GetMemberOfOrganizationsOk
 
-`func (o *UserCore) GetMemberOfOrganizationsOk() (*[]map[string]interface{}, bool)`
+`func (o *UserCore) GetMemberOfOrganizationsOk() (*[]Org, bool)`
 
 GetMemberOfOrganizationsOk returns a tuple with the MemberOfOrganizations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemberOfOrganizations
 
-`func (o *UserCore) SetMemberOfOrganizations(v []map[string]interface{})`
+`func (o *UserCore) SetMemberOfOrganizations(v []Org)`
 
 SetMemberOfOrganizations sets MemberOfOrganizations field to given value.
 
@@ -467,6 +495,31 @@ SetMemberOfOrganizations sets MemberOfOrganizations field to given value.
 `func (o *UserCore) HasMemberOfOrganizations() bool`
 
 HasMemberOfOrganizations returns a boolean if a field has been set.
+
+### GetContributorOfOrganizations
+
+`func (o *UserCore) GetContributorOfOrganizations() []Org`
+
+GetContributorOfOrganizations returns the ContributorOfOrganizations field if non-nil, zero value otherwise.
+
+### GetContributorOfOrganizationsOk
+
+`func (o *UserCore) GetContributorOfOrganizationsOk() (*[]Org, bool)`
+
+GetContributorOfOrganizationsOk returns a tuple with the ContributorOfOrganizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContributorOfOrganizations
+
+`func (o *UserCore) SetContributorOfOrganizations(v []Org)`
+
+SetContributorOfOrganizations sets ContributorOfOrganizations field to given value.
+
+### HasContributorOfOrganizations
+
+`func (o *UserCore) HasContributorOfOrganizations() bool`
+
+HasContributorOfOrganizations returns a boolean if a field has been set.
 
 ### GetProperties
 
@@ -517,6 +570,31 @@ SetOrganizationPreferences sets OrganizationPreferences field to given value.
 `func (o *UserCore) HasOrganizationPreferences() bool`
 
 HasOrganizationPreferences returns a boolean if a field has been set.
+
+### GetPrimaryOrganization
+
+`func (o *UserCore) GetPrimaryOrganization() PrimaryOrganization`
+
+GetPrimaryOrganization returns the PrimaryOrganization field if non-nil, zero value otherwise.
+
+### GetPrimaryOrganizationOk
+
+`func (o *UserCore) GetPrimaryOrganizationOk() (*PrimaryOrganization, bool)`
+
+GetPrimaryOrganizationOk returns a tuple with the PrimaryOrganization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrimaryOrganization
+
+`func (o *UserCore) SetPrimaryOrganization(v PrimaryOrganization)`
+
+SetPrimaryOrganization sets PrimaryOrganization field to given value.
+
+### HasPrimaryOrganization
+
+`func (o *UserCore) HasPrimaryOrganization() bool`
+
+HasPrimaryOrganization returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -23,6 +23,7 @@ type User struct {
 	LastName *string `json:"lastName,omitempty"`
 	PhoneNumber *string `json:"phoneNumber,omitempty"`
 	Email *string `json:"email,omitempty"`
+	OrganizationId *string `json:"organizationId,omitempty"`
 	Enabled *bool `json:"enabled,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
 	LastLogin *string `json:"lastLogin,omitempty"`
@@ -34,9 +35,11 @@ type User struct {
 	IsFederated *bool `json:"isFederated,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Organization *Organization `json:"organization,omitempty"`
-	MemberOfOrganizations *[]map[string]interface{} `json:"memberOfOrganizations,omitempty"`
+	MemberOfOrganizations *[]Org `json:"memberOfOrganizations,omitempty"`
+	ContributorOfOrganizations *[]Org `json:"contributorOfOrganizations,omitempty"`
 	Properties *Properties `json:"properties,omitempty"`
 	OrganizationPreferences *map[string]interface{} `json:"organizationPreferences,omitempty"`
+	PrimaryOrganization *PrimaryOrganization `json:"primaryOrganization,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -243,6 +246,38 @@ func (o *User) HasEmail() bool {
 // SetEmail gets a reference to the given string and assigns it to the Email field.
 func (o *User) SetEmail(v string) {
 	o.Email = &v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *User) GetOrganizationId() string {
+	if o == nil || o.OrganizationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetOrganizationIdOk() (*string, bool) {
+	if o == nil || o.OrganizationId == nil {
+		return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *User) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
+func (o *User) SetOrganizationId(v string) {
+	o.OrganizationId = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -598,9 +633,9 @@ func (o *User) SetOrganization(v Organization) {
 }
 
 // GetMemberOfOrganizations returns the MemberOfOrganizations field value if set, zero value otherwise.
-func (o *User) GetMemberOfOrganizations() []map[string]interface{} {
+func (o *User) GetMemberOfOrganizations() []Org {
 	if o == nil || o.MemberOfOrganizations == nil {
-		var ret []map[string]interface{}
+		var ret []Org
 		return ret
 	}
 	return *o.MemberOfOrganizations
@@ -608,7 +643,7 @@ func (o *User) GetMemberOfOrganizations() []map[string]interface{} {
 
 // GetMemberOfOrganizationsOk returns a tuple with the MemberOfOrganizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetMemberOfOrganizationsOk() (*[]map[string]interface{}, bool) {
+func (o *User) GetMemberOfOrganizationsOk() (*[]Org, bool) {
 	if o == nil || o.MemberOfOrganizations == nil {
 		return nil, false
 	}
@@ -624,9 +659,41 @@ func (o *User) HasMemberOfOrganizations() bool {
 	return false
 }
 
-// SetMemberOfOrganizations gets a reference to the given []map[string]interface{} and assigns it to the MemberOfOrganizations field.
-func (o *User) SetMemberOfOrganizations(v []map[string]interface{}) {
+// SetMemberOfOrganizations gets a reference to the given []Org and assigns it to the MemberOfOrganizations field.
+func (o *User) SetMemberOfOrganizations(v []Org) {
 	o.MemberOfOrganizations = &v
+}
+
+// GetContributorOfOrganizations returns the ContributorOfOrganizations field value if set, zero value otherwise.
+func (o *User) GetContributorOfOrganizations() []Org {
+	if o == nil || o.ContributorOfOrganizations == nil {
+		var ret []Org
+		return ret
+	}
+	return *o.ContributorOfOrganizations
+}
+
+// GetContributorOfOrganizationsOk returns a tuple with the ContributorOfOrganizations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetContributorOfOrganizationsOk() (*[]Org, bool) {
+	if o == nil || o.ContributorOfOrganizations == nil {
+		return nil, false
+	}
+	return o.ContributorOfOrganizations, true
+}
+
+// HasContributorOfOrganizations returns a boolean if a field has been set.
+func (o *User) HasContributorOfOrganizations() bool {
+	if o != nil && o.ContributorOfOrganizations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetContributorOfOrganizations gets a reference to the given []Org and assigns it to the ContributorOfOrganizations field.
+func (o *User) SetContributorOfOrganizations(v []Org) {
+	o.ContributorOfOrganizations = &v
 }
 
 // GetProperties returns the Properties field value if set, zero value otherwise.
@@ -693,6 +760,38 @@ func (o *User) SetOrganizationPreferences(v map[string]interface{}) {
 	o.OrganizationPreferences = &v
 }
 
+// GetPrimaryOrganization returns the PrimaryOrganization field value if set, zero value otherwise.
+func (o *User) GetPrimaryOrganization() PrimaryOrganization {
+	if o == nil || o.PrimaryOrganization == nil {
+		var ret PrimaryOrganization
+		return ret
+	}
+	return *o.PrimaryOrganization
+}
+
+// GetPrimaryOrganizationOk returns a tuple with the PrimaryOrganization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetPrimaryOrganizationOk() (*PrimaryOrganization, bool) {
+	if o == nil || o.PrimaryOrganization == nil {
+		return nil, false
+	}
+	return o.PrimaryOrganization, true
+}
+
+// HasPrimaryOrganization returns a boolean if a field has been set.
+func (o *User) HasPrimaryOrganization() bool {
+	if o != nil && o.PrimaryOrganization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryOrganization gets a reference to the given PrimaryOrganization and assigns it to the PrimaryOrganization field.
+func (o *User) SetPrimaryOrganization(v PrimaryOrganization) {
+	o.PrimaryOrganization = &v
+}
+
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -712,6 +811,9 @@ func (o User) MarshalJSON() ([]byte, error) {
 	}
 	if o.Email != nil {
 		toSerialize["email"] = o.Email
+	}
+	if o.OrganizationId != nil {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
@@ -749,11 +851,17 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if o.MemberOfOrganizations != nil {
 		toSerialize["memberOfOrganizations"] = o.MemberOfOrganizations
 	}
+	if o.ContributorOfOrganizations != nil {
+		toSerialize["contributorOfOrganizations"] = o.ContributorOfOrganizations
+	}
 	if o.Properties != nil {
 		toSerialize["properties"] = o.Properties
 	}
 	if o.OrganizationPreferences != nil {
 		toSerialize["organizationPreferences"] = o.OrganizationPreferences
+	}
+	if o.PrimaryOrganization != nil {
+		toSerialize["primaryOrganization"] = o.PrimaryOrganization
 	}
 	return json.Marshal(toSerialize)
 }

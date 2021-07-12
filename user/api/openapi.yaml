@@ -294,6 +294,10 @@ components:
           example: api.platform.qa+uzer@gmail.com
           title: email
           type: string
+        organizationId:
+          example: xxxxxx-213d-4f60-845c-207286484cd1
+          title: organizationId
+          type: string
         enabled:
           example: true
           title: enabled
@@ -337,85 +341,21 @@ components:
           $ref: '#/components/schemas/organization'
         memberOfOrganizations:
           items:
-            properties:
-              parentName:
-                nullable: true
-                title: parentName
-                type: string
-              parentId:
-                nullable: true
-                title: parentId
-                type: string
-              domain:
-                title: domain
-                type: string
-              id:
-                title: id
-                type: string
-              createdAt:
-                title: createdAt
-                type: string
-              updatedAt:
-                title: updatedAt
-                type: string
-              ownerId:
-                title: ownerId
-                type: string
-              clientId:
-                title: clientId
-                type: string
-              idprovider_id:
-                title: idprovider_id
-                type: string
-              isFederated:
-                title: isFederated
-                type: boolean
-              parentOrganizationIds:
-                items:
-                  type: string
-                title: parentOrganizationIds
-                type: array
-              subOrganizationIds:
-                items:
-                  type: string
-                title: subOrganizationIds
-                type: array
-              tenantOrganizationIds:
-                items:
-                  type: string
-                title: tenantOrganizationIds
-                type: array
-              mfaRequired:
-                title: mfaRequired
-                type: string
-              isAutomaticAdminPromotionExempt:
-                title: isAutomaticAdminPromotionExempt
-                type: boolean
-              isMaster:
-                title: isMaster
-                type: boolean
-              subscription:
-                properties:
-                  category:
-                    title: category
-                    type: string
-                  type:
-                    title: type
-                    type: string
-                  expiration:
-                    title: expiration
-                    type: string
-                title: subscription
-                type: object
-            title: memberOfOrganization
-            type: object
+            $ref: '#/components/schemas/org'
           title: memberOfOrganizations
+          type: array
+        contributorOfOrganizations:
+          items:
+            $ref: '#/components/schemas/org'
+          title: contributorOfOrganizations
           type: array
         properties:
           $ref: '#/components/schemas/properties'
         organizationPreferences:
           title: organizationPreferences
           type: object
+        primaryOrganization:
+          $ref: '#/components/schemas/primaryOrganization'
       title: userCore
       type: object
     organization:
@@ -483,80 +423,76 @@ components:
       type: object
     memberOfOrganizations:
       items:
-        properties:
-          parentName:
-            nullable: true
-            title: parentName
-            type: string
-          parentId:
-            nullable: true
-            title: parentId
-            type: string
-          domain:
-            title: domain
-            type: string
-          id:
-            title: id
-            type: string
-          createdAt:
-            title: createdAt
-            type: string
-          updatedAt:
-            title: updatedAt
-            type: string
-          ownerId:
-            title: ownerId
-            type: string
-          clientId:
-            title: clientId
-            type: string
-          idprovider_id:
-            title: idprovider_id
-            type: string
-          isFederated:
-            title: isFederated
-            type: boolean
-          parentOrganizationIds:
-            items:
-              type: string
-            title: parentOrganizationIds
-            type: array
-          subOrganizationIds:
-            items:
-              type: string
-            title: subOrganizationIds
-            type: array
-          tenantOrganizationIds:
-            items:
-              type: string
-            title: tenantOrganizationIds
-            type: array
-          mfaRequired:
-            title: mfaRequired
-            type: string
-          isAutomaticAdminPromotionExempt:
-            title: isAutomaticAdminPromotionExempt
-            type: boolean
-          isMaster:
-            title: isMaster
-            type: boolean
-          subscription:
-            properties:
-              category:
-                title: category
-                type: string
-              type:
-                title: type
-                type: string
-              expiration:
-                title: expiration
-                type: string
-            title: subscription
-            type: object
-        title: memberOfOrganization
-        type: object
+        $ref: '#/components/schemas/org'
       title: memberOfOrganizations
       type: array
+    contributorOfOrganizations:
+      items:
+        $ref: '#/components/schemas/org'
+      title: contributorOfOrganizations
+      type: array
+    org:
+      properties:
+        parentName:
+          nullable: true
+          title: parentName
+          type: string
+        parentId:
+          nullable: true
+          title: parentId
+          type: string
+        domain:
+          title: domain
+          type: string
+        id:
+          title: id
+          type: string
+        createdAt:
+          title: createdAt
+          type: string
+        updatedAt:
+          title: updatedAt
+          type: string
+        ownerId:
+          title: ownerId
+          type: string
+        clientId:
+          title: clientId
+          type: string
+        idprovider_id:
+          title: idprovider_id
+          type: string
+        isFederated:
+          title: isFederated
+          type: boolean
+        parentOrganizationIds:
+          items:
+            type: string
+          title: parentOrganizationIds
+          type: array
+        subOrganizationIds:
+          items:
+            type: string
+          title: subOrganizationIds
+          type: array
+        tenantOrganizationIds:
+          items:
+            type: string
+          title: tenantOrganizationIds
+          type: array
+        mfaRequired:
+          title: mfaRequired
+          type: string
+        isAutomaticAdminPromotionExempt:
+          title: isAutomaticAdminPromotionExempt
+          type: boolean
+        isMaster:
+          title: isMaster
+          type: boolean
+        subscription:
+          $ref: '#/components/schemas/subscription'
+      title: org
+      type: object
     inline_response_200:
       example:
         total: 0
@@ -601,6 +537,16 @@ components:
           title: cs_auth
           type: object
       title: properties
+      type: object
+    primaryOrganization:
+      properties:
+        id:
+          title: id
+          type: string
+        name:
+          title: name
+          type: string
+      title: primaryOrganization
       type: object
     subscription:
       properties:
