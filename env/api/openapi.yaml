@@ -146,16 +146,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/inline_object_1'
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  title: name
-                  type: string
-              type: object
-        required: false
+              $ref: '#/components/schemas/envCore'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -173,12 +167,6 @@ paths:
           description: Success response
 components:
   requestBodies:
-    inline_object_1:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/inline_object_1'
-      required: false
     inline_object:
       content:
         application/json:
@@ -284,12 +272,6 @@ components:
         message:
           example: A sample message here
           title: the error message
-          type: string
-      type: object
-    inline_object_1:
-      properties:
-        name:
-          title: name
           type: string
       type: object
     envId:

@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdEnvironmentsEnvironmentIdPut
 
-> Env OrganizationsOrgIdEnvironmentsEnvironmentIdPut(ctx, orgId, environmentId).InlineObject1(inlineObject1).Execute()
+> Env OrganizationsOrgIdEnvironmentsEnvironmentIdPut(ctx, orgId, environmentId).EnvCore(envCore).Execute()
 
 
 
@@ -179,11 +179,11 @@ import (
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     environmentId := "environmentId_example" // string | The id of an environment
-    inlineObject1 := *openapiclient.NewInlineObject1() // InlineObject1 |  (optional)
+    envCore := *openapiclient.NewEnvCore() // EnvCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdPut(context.Background(), orgId, environmentId).InlineObject1(inlineObject1).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdPut(context.Background(), orgId, environmentId).EnvCore(envCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **inlineObject1** | [**InlineObject1**](InlineObject1.md) |  | 
+ **envCore** | [**EnvCore**](EnvCore.md) |  | 
 
 ### Return type
 

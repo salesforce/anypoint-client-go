@@ -91,7 +91,6 @@ Class | Method | HTTP request | Description
  - [EnvCore](docs/EnvCore.md)
  - [EnvId](docs/EnvId.md)
  - [InlineObject](docs/InlineObject.md)
- - [InlineObject1](docs/InlineObject1.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse400](docs/InlineResponse400.md)
 
