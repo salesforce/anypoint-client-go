@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **MemberOfOrganizations** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **Properties** | Pointer to [**Properties**](Properties.md) |  | [optional] 
 **OrganizationPreferences** | Pointer to **map[string]interface{}** |  | [optional] 
+**PrimaryOrganization** | Pointer to [**PrimaryOrganization**](PrimaryOrganization.md) |  | [optional] 
 
 ## Methods
 
@@ -517,6 +518,31 @@ SetOrganizationPreferences sets OrganizationPreferences field to given value.
 `func (o *UserCore) HasOrganizationPreferences() bool`
 
 HasOrganizationPreferences returns a boolean if a field has been set.
+
+### GetPrimaryOrganization
+
+`func (o *UserCore) GetPrimaryOrganization() PrimaryOrganization`
+
+GetPrimaryOrganization returns the PrimaryOrganization field if non-nil, zero value otherwise.
+
+### GetPrimaryOrganizationOk
+
+`func (o *UserCore) GetPrimaryOrganizationOk() (*PrimaryOrganization, bool)`
+
+GetPrimaryOrganizationOk returns a tuple with the PrimaryOrganization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrimaryOrganization
+
+`func (o *UserCore) SetPrimaryOrganization(v PrimaryOrganization)`
+
+SetPrimaryOrganization sets PrimaryOrganization field to given value.
+
+### HasPrimaryOrganization
+
+`func (o *UserCore) HasPrimaryOrganization() bool`
+
+HasPrimaryOrganization returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

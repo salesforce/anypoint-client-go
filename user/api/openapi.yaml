@@ -416,6 +416,8 @@ components:
         organizationPreferences:
           title: organizationPreferences
           type: object
+        primaryOrganization:
+          $ref: '#/components/schemas/primaryOrganization'
       title: userCore
       type: object
     organization:
@@ -601,6 +603,16 @@ components:
           title: cs_auth
           type: object
       title: properties
+      type: object
+    primaryOrganization:
+      properties:
+        id:
+          title: id
+          type: string
+        name:
+          title: name
+          type: string
+      title: primaryOrganization
       type: object
     subscription:
       properties:

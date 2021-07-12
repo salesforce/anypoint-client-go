@@ -37,6 +37,7 @@ type User struct {
 	MemberOfOrganizations *[]map[string]interface{} `json:"memberOfOrganizations,omitempty"`
 	Properties *Properties `json:"properties,omitempty"`
 	OrganizationPreferences *map[string]interface{} `json:"organizationPreferences,omitempty"`
+	PrimaryOrganization *PrimaryOrganization `json:"primaryOrganization,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -693,6 +694,38 @@ func (o *User) SetOrganizationPreferences(v map[string]interface{}) {
 	o.OrganizationPreferences = &v
 }
 
+// GetPrimaryOrganization returns the PrimaryOrganization field value if set, zero value otherwise.
+func (o *User) GetPrimaryOrganization() PrimaryOrganization {
+	if o == nil || o.PrimaryOrganization == nil {
+		var ret PrimaryOrganization
+		return ret
+	}
+	return *o.PrimaryOrganization
+}
+
+// GetPrimaryOrganizationOk returns a tuple with the PrimaryOrganization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetPrimaryOrganizationOk() (*PrimaryOrganization, bool) {
+	if o == nil || o.PrimaryOrganization == nil {
+		return nil, false
+	}
+	return o.PrimaryOrganization, true
+}
+
+// HasPrimaryOrganization returns a boolean if a field has been set.
+func (o *User) HasPrimaryOrganization() bool {
+	if o != nil && o.PrimaryOrganization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryOrganization gets a reference to the given PrimaryOrganization and assigns it to the PrimaryOrganization field.
+func (o *User) SetPrimaryOrganization(v PrimaryOrganization) {
+	o.PrimaryOrganization = &v
+}
+
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -754,6 +787,9 @@ func (o User) MarshalJSON() ([]byte, error) {
 	}
 	if o.OrganizationPreferences != nil {
 		toSerialize["organizationPreferences"] = o.OrganizationPreferences
+	}
+	if o.PrimaryOrganization != nil {
+		toSerialize["primaryOrganization"] = o.PrimaryOrganization
 	}
 	return json.Marshal(toSerialize)
 }

@@ -90,6 +90,7 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse400](docs/InlineResponse400.md)
  - [Organization](docs/Organization.md)
+ - [PrimaryOrganization](docs/PrimaryOrganization.md)
  - [Properties](docs/Properties.md)
  - [Subscription](docs/Subscription.md)
  - [User](docs/User.md)
