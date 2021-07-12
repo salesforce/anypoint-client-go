@@ -473,11 +473,11 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsPostRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
-	inlineObject *InlineObject
+	envCore *EnvCore
 }
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsPostRequest) InlineObject(inlineObject InlineObject) DefaultApiApiOrganizationsOrgIdEnvironmentsPostRequest {
-	r.inlineObject = &inlineObject
+func (r DefaultApiApiOrganizationsOrgIdEnvironmentsPostRequest) EnvCore(envCore EnvCore) DefaultApiApiOrganizationsOrgIdEnvironmentsPostRequest {
+	r.envCore = &envCore
 	return r
 }
 
@@ -544,7 +544,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsPostExecute(r DefaultA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.inlineObject
+	localVarPostBody = r.envCore
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

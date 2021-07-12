@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdEnvironmentsPost
 
-> Env OrganizationsOrgIdEnvironmentsPost(ctx, orgId).InlineObject(inlineObject).Execute()
+> Env OrganizationsOrgIdEnvironmentsPost(ctx, orgId).EnvCore(envCore).Execute()
 
 
 
@@ -323,11 +323,11 @@ import (
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
-    inlineObject := *openapiclient.NewInlineObject() // InlineObject |  (optional)
+    envCore := *openapiclient.NewEnvCore() // EnvCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsPost(context.Background(), orgId).InlineObject(inlineObject).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsPost(context.Background(), orgId).EnvCore(envCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -353,7 +353,7 @@ Other parameters are passed through a pointer to a apiOrganizationsOrgIdEnvironm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inlineObject** | [**InlineObject**](InlineObject.md) |  | 
+ **envCore** | [**EnvCore**](EnvCore.md) |  | 
 
 ### Return type
 

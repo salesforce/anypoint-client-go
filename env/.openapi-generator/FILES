@@ -9,7 +9,6 @@ docs/DefaultApi.md
 docs/Env.md
 docs/EnvCore.md
 docs/EnvId.md
-docs/InlineObject.md
 docs/InlineResponse200.md
 docs/InlineResponse400.md
 git_push.sh
@@ -18,7 +17,6 @@ go.sum
 model_env.go
 model_env_core.go
 model_env_id.go
-model_inline_object.go
 model_inline_response_200.go
 model_inline_response_400.go
 response.go
