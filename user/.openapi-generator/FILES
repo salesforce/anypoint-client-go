@@ -8,6 +8,7 @@ configuration.go
 docs/DefaultApi.md
 docs/InlineResponse200.md
 docs/InlineResponse400.md
+docs/Org.md
 docs/Organization.md
 docs/PrimaryOrganization.md
 docs/Properties.md
@@ -22,6 +23,7 @@ go.mod
 go.sum
 model_inline_response_200.go
 model_inline_response_400.go
+model_org.go
 model_organization.go
 model_primary_organization.go
 model_properties.go
