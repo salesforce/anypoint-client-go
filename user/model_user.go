@@ -21,12 +21,22 @@ type User struct {
 	Username *string `json:"username,omitempty"`
 	FirstName *string `json:"firstName,omitempty"`
 	LastName *string `json:"lastName,omitempty"`
+	PhoneNumber *string `json:"phoneNumber,omitempty"`
 	Email *string `json:"email,omitempty"`
 	Enabled *bool `json:"enabled,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
+	LastLogin *string `json:"lastLogin,omitempty"`
+	MfaVerificationExcluded *bool `json:"mfaVerificationExcluded,omitempty"`
+	MfaVerifiersConfigured *bool `json:"mfaVerifiersConfigured,omitempty"`
 	IdproviderId *string `json:"idprovider_id,omitempty"`
 	CreatedAt *string `json:"createdAt,omitempty"`
 	UpdatedAt *string `json:"updatedAt,omitempty"`
-	IsApiConsumer *bool `json:"isApiConsumer,omitempty"`
+	IsFederated *bool `json:"isFederated,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Organization *Organization `json:"organization,omitempty"`
+	MemberOfOrganizations *[]map[string]interface{} `json:"memberOfOrganizations,omitempty"`
+	Properties *Properties `json:"properties,omitempty"`
+	OrganizationPreferences *map[string]interface{} `json:"organizationPreferences,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -171,6 +181,38 @@ func (o *User) SetLastName(v string) {
 	o.LastName = &v
 }
 
+// GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
+func (o *User) GetPhoneNumber() string {
+	if o == nil || o.PhoneNumber == nil {
+		var ret string
+		return ret
+	}
+	return *o.PhoneNumber
+}
+
+// GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetPhoneNumberOk() (*string, bool) {
+	if o == nil || o.PhoneNumber == nil {
+		return nil, false
+	}
+	return o.PhoneNumber, true
+}
+
+// HasPhoneNumber returns a boolean if a field has been set.
+func (o *User) HasPhoneNumber() bool {
+	if o != nil && o.PhoneNumber != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPhoneNumber gets a reference to the given string and assigns it to the PhoneNumber field.
+func (o *User) SetPhoneNumber(v string) {
+	o.PhoneNumber = &v
+}
+
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *User) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -233,6 +275,134 @@ func (o *User) HasEnabled() bool {
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 func (o *User) SetEnabled(v bool) {
 	o.Enabled = &v
+}
+
+// GetDeleted returns the Deleted field value if set, zero value otherwise.
+func (o *User) GetDeleted() bool {
+	if o == nil || o.Deleted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Deleted
+}
+
+// GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetDeletedOk() (*bool, bool) {
+	if o == nil || o.Deleted == nil {
+		return nil, false
+	}
+	return o.Deleted, true
+}
+
+// HasDeleted returns a boolean if a field has been set.
+func (o *User) HasDeleted() bool {
+	if o != nil && o.Deleted != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleted gets a reference to the given bool and assigns it to the Deleted field.
+func (o *User) SetDeleted(v bool) {
+	o.Deleted = &v
+}
+
+// GetLastLogin returns the LastLogin field value if set, zero value otherwise.
+func (o *User) GetLastLogin() string {
+	if o == nil || o.LastLogin == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastLogin
+}
+
+// GetLastLoginOk returns a tuple with the LastLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLastLoginOk() (*string, bool) {
+	if o == nil || o.LastLogin == nil {
+		return nil, false
+	}
+	return o.LastLogin, true
+}
+
+// HasLastLogin returns a boolean if a field has been set.
+func (o *User) HasLastLogin() bool {
+	if o != nil && o.LastLogin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastLogin gets a reference to the given string and assigns it to the LastLogin field.
+func (o *User) SetLastLogin(v string) {
+	o.LastLogin = &v
+}
+
+// GetMfaVerificationExcluded returns the MfaVerificationExcluded field value if set, zero value otherwise.
+func (o *User) GetMfaVerificationExcluded() bool {
+	if o == nil || o.MfaVerificationExcluded == nil {
+		var ret bool
+		return ret
+	}
+	return *o.MfaVerificationExcluded
+}
+
+// GetMfaVerificationExcludedOk returns a tuple with the MfaVerificationExcluded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetMfaVerificationExcludedOk() (*bool, bool) {
+	if o == nil || o.MfaVerificationExcluded == nil {
+		return nil, false
+	}
+	return o.MfaVerificationExcluded, true
+}
+
+// HasMfaVerificationExcluded returns a boolean if a field has been set.
+func (o *User) HasMfaVerificationExcluded() bool {
+	if o != nil && o.MfaVerificationExcluded != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMfaVerificationExcluded gets a reference to the given bool and assigns it to the MfaVerificationExcluded field.
+func (o *User) SetMfaVerificationExcluded(v bool) {
+	o.MfaVerificationExcluded = &v
+}
+
+// GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field value if set, zero value otherwise.
+func (o *User) GetMfaVerifiersConfigured() bool {
+	if o == nil || o.MfaVerifiersConfigured == nil {
+		var ret bool
+		return ret
+	}
+	return *o.MfaVerifiersConfigured
+}
+
+// GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetMfaVerifiersConfiguredOk() (*bool, bool) {
+	if o == nil || o.MfaVerifiersConfigured == nil {
+		return nil, false
+	}
+	return o.MfaVerifiersConfigured, true
+}
+
+// HasMfaVerifiersConfigured returns a boolean if a field has been set.
+func (o *User) HasMfaVerifiersConfigured() bool {
+	if o != nil && o.MfaVerifiersConfigured != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMfaVerifiersConfigured gets a reference to the given bool and assigns it to the MfaVerifiersConfigured field.
+func (o *User) SetMfaVerifiersConfigured(v bool) {
+	o.MfaVerifiersConfigured = &v
 }
 
 // GetIdproviderId returns the IdproviderId field value if set, zero value otherwise.
@@ -331,36 +501,196 @@ func (o *User) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
-// GetIsApiConsumer returns the IsApiConsumer field value if set, zero value otherwise.
-func (o *User) GetIsApiConsumer() bool {
-	if o == nil || o.IsApiConsumer == nil {
+// GetIsFederated returns the IsFederated field value if set, zero value otherwise.
+func (o *User) GetIsFederated() bool {
+	if o == nil || o.IsFederated == nil {
 		var ret bool
 		return ret
 	}
-	return *o.IsApiConsumer
+	return *o.IsFederated
 }
 
-// GetIsApiConsumerOk returns a tuple with the IsApiConsumer field value if set, nil otherwise
+// GetIsFederatedOk returns a tuple with the IsFederated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetIsApiConsumerOk() (*bool, bool) {
-	if o == nil || o.IsApiConsumer == nil {
+func (o *User) GetIsFederatedOk() (*bool, bool) {
+	if o == nil || o.IsFederated == nil {
 		return nil, false
 	}
-	return o.IsApiConsumer, true
+	return o.IsFederated, true
 }
 
-// HasIsApiConsumer returns a boolean if a field has been set.
-func (o *User) HasIsApiConsumer() bool {
-	if o != nil && o.IsApiConsumer != nil {
+// HasIsFederated returns a boolean if a field has been set.
+func (o *User) HasIsFederated() bool {
+	if o != nil && o.IsFederated != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIsApiConsumer gets a reference to the given bool and assigns it to the IsApiConsumer field.
-func (o *User) SetIsApiConsumer(v bool) {
-	o.IsApiConsumer = &v
+// SetIsFederated gets a reference to the given bool and assigns it to the IsFederated field.
+func (o *User) SetIsFederated(v bool) {
+	o.IsFederated = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *User) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *User) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *User) SetType(v string) {
+	o.Type = &v
+}
+
+// GetOrganization returns the Organization field value if set, zero value otherwise.
+func (o *User) GetOrganization() Organization {
+	if o == nil || o.Organization == nil {
+		var ret Organization
+		return ret
+	}
+	return *o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetOrganizationOk() (*Organization, bool) {
+	if o == nil || o.Organization == nil {
+		return nil, false
+	}
+	return o.Organization, true
+}
+
+// HasOrganization returns a boolean if a field has been set.
+func (o *User) HasOrganization() bool {
+	if o != nil && o.Organization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganization gets a reference to the given Organization and assigns it to the Organization field.
+func (o *User) SetOrganization(v Organization) {
+	o.Organization = &v
+}
+
+// GetMemberOfOrganizations returns the MemberOfOrganizations field value if set, zero value otherwise.
+func (o *User) GetMemberOfOrganizations() []map[string]interface{} {
+	if o == nil || o.MemberOfOrganizations == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return *o.MemberOfOrganizations
+}
+
+// GetMemberOfOrganizationsOk returns a tuple with the MemberOfOrganizations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetMemberOfOrganizationsOk() (*[]map[string]interface{}, bool) {
+	if o == nil || o.MemberOfOrganizations == nil {
+		return nil, false
+	}
+	return o.MemberOfOrganizations, true
+}
+
+// HasMemberOfOrganizations returns a boolean if a field has been set.
+func (o *User) HasMemberOfOrganizations() bool {
+	if o != nil && o.MemberOfOrganizations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMemberOfOrganizations gets a reference to the given []map[string]interface{} and assigns it to the MemberOfOrganizations field.
+func (o *User) SetMemberOfOrganizations(v []map[string]interface{}) {
+	o.MemberOfOrganizations = &v
+}
+
+// GetProperties returns the Properties field value if set, zero value otherwise.
+func (o *User) GetProperties() Properties {
+	if o == nil || o.Properties == nil {
+		var ret Properties
+		return ret
+	}
+	return *o.Properties
+}
+
+// GetPropertiesOk returns a tuple with the Properties field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetPropertiesOk() (*Properties, bool) {
+	if o == nil || o.Properties == nil {
+		return nil, false
+	}
+	return o.Properties, true
+}
+
+// HasProperties returns a boolean if a field has been set.
+func (o *User) HasProperties() bool {
+	if o != nil && o.Properties != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProperties gets a reference to the given Properties and assigns it to the Properties field.
+func (o *User) SetProperties(v Properties) {
+	o.Properties = &v
+}
+
+// GetOrganizationPreferences returns the OrganizationPreferences field value if set, zero value otherwise.
+func (o *User) GetOrganizationPreferences() map[string]interface{} {
+	if o == nil || o.OrganizationPreferences == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.OrganizationPreferences
+}
+
+// GetOrganizationPreferencesOk returns a tuple with the OrganizationPreferences field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetOrganizationPreferencesOk() (*map[string]interface{}, bool) {
+	if o == nil || o.OrganizationPreferences == nil {
+		return nil, false
+	}
+	return o.OrganizationPreferences, true
+}
+
+// HasOrganizationPreferences returns a boolean if a field has been set.
+func (o *User) HasOrganizationPreferences() bool {
+	if o != nil && o.OrganizationPreferences != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationPreferences gets a reference to the given map[string]interface{} and assigns it to the OrganizationPreferences field.
+func (o *User) SetOrganizationPreferences(v map[string]interface{}) {
+	o.OrganizationPreferences = &v
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
@@ -377,11 +707,26 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if o.LastName != nil {
 		toSerialize["lastName"] = o.LastName
 	}
+	if o.PhoneNumber != nil {
+		toSerialize["phoneNumber"] = o.PhoneNumber
+	}
 	if o.Email != nil {
 		toSerialize["email"] = o.Email
 	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
+	}
+	if o.Deleted != nil {
+		toSerialize["deleted"] = o.Deleted
+	}
+	if o.LastLogin != nil {
+		toSerialize["lastLogin"] = o.LastLogin
+	}
+	if o.MfaVerificationExcluded != nil {
+		toSerialize["mfaVerificationExcluded"] = o.MfaVerificationExcluded
+	}
+	if o.MfaVerifiersConfigured != nil {
+		toSerialize["mfaVerifiersConfigured"] = o.MfaVerifiersConfigured
 	}
 	if o.IdproviderId != nil {
 		toSerialize["idprovider_id"] = o.IdproviderId
@@ -392,8 +737,23 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
-	if o.IsApiConsumer != nil {
-		toSerialize["isApiConsumer"] = o.IsApiConsumer
+	if o.IsFederated != nil {
+		toSerialize["isFederated"] = o.IsFederated
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.Organization != nil {
+		toSerialize["organization"] = o.Organization
+	}
+	if o.MemberOfOrganizations != nil {
+		toSerialize["memberOfOrganizations"] = o.MemberOfOrganizations
+	}
+	if o.Properties != nil {
+		toSerialize["properties"] = o.Properties
+	}
+	if o.OrganizationPreferences != nil {
+		toSerialize["organizationPreferences"] = o.OrganizationPreferences
 	}
 	return json.Marshal(toSerialize)
 }

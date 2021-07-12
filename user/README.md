@@ -78,20 +78,25 @@ All URIs are relative to *https://anypoint.mulesoft.com/accounts/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**OrganizationsOrgIdUsersDelete**](docs/DefaultApi.md#organizationsorgidusersdelete) | **Delete** /organizations/{orgId}/users | 
 *DefaultApi* | [**OrganizationsOrgIdUsersGet**](docs/DefaultApi.md#organizationsorgidusersget) | **Get** /organizations/{orgId}/users | 
 *DefaultApi* | [**OrganizationsOrgIdUsersPost**](docs/DefaultApi.md#organizationsorgiduserspost) | **Post** /organizations/{orgId}/users | 
-*DefaultApi* | [**OrganizationsOrgIdUsersPut**](docs/DefaultApi.md#organizationsorgidusersput) | **Put** /organizations/{orgId}/users | 
+*DefaultApi* | [**OrganizationsOrgIdUsersUserIdDelete**](docs/DefaultApi.md#organizationsorgidusersuseriddelete) | **Delete** /organizations/{orgId}/users/{userId} | 
+*DefaultApi* | [**OrganizationsOrgIdUsersUserIdGet**](docs/DefaultApi.md#organizationsorgidusersuseridget) | **Get** /organizations/{orgId}/users/{userId} | 
+*DefaultApi* | [**OrganizationsOrgIdUsersUserIdPut**](docs/DefaultApi.md#organizationsorgidusersuseridput) | **Put** /organizations/{orgId}/users/{userId} | 
 
 
 ## Documentation For Models
 
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse400](docs/InlineResponse400.md)
+ - [Organization](docs/Organization.md)
+ - [Properties](docs/Properties.md)
+ - [Subscription](docs/Subscription.md)
  - [User](docs/User.md)
  - [UserCore](docs/UserCore.md)
  - [UserId](docs/UserId.md)
- - [UsersPostBody](docs/UsersPostBody.md)
+ - [UserPostBody](docs/UserPostBody.md)
+ - [UserPutBody](docs/UserPutBody.md)
 
 
 ## Documentation For Authorization

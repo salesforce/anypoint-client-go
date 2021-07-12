@@ -4,81 +4,12 @@ All URIs are relative to *https://anypoint.mulesoft.com/accounts/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrganizationsOrgIdUsersDelete**](DefaultApi.md#OrganizationsOrgIdUsersDelete) | **Delete** /organizations/{orgId}/users | 
 [**OrganizationsOrgIdUsersGet**](DefaultApi.md#OrganizationsOrgIdUsersGet) | **Get** /organizations/{orgId}/users | 
 [**OrganizationsOrgIdUsersPost**](DefaultApi.md#OrganizationsOrgIdUsersPost) | **Post** /organizations/{orgId}/users | 
-[**OrganizationsOrgIdUsersPut**](DefaultApi.md#OrganizationsOrgIdUsersPut) | **Put** /organizations/{orgId}/users | 
+[**OrganizationsOrgIdUsersUserIdDelete**](DefaultApi.md#OrganizationsOrgIdUsersUserIdDelete) | **Delete** /organizations/{orgId}/users/{userId} | 
+[**OrganizationsOrgIdUsersUserIdGet**](DefaultApi.md#OrganizationsOrgIdUsersUserIdGet) | **Get** /organizations/{orgId}/users/{userId} | 
+[**OrganizationsOrgIdUsersUserIdPut**](DefaultApi.md#OrganizationsOrgIdUsersUserIdPut) | **Put** /organizations/{orgId}/users/{userId} | 
 
-
-
-## OrganizationsOrgIdUsersDelete
-
-> OrganizationsOrgIdUsersDelete(ctx, orgId).RequestBody(requestBody).Execute()
-
-
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgId := "orgId_example" // string | The ID of the organization in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersDelete(context.Background(), orgId).RequestBody(requestBody).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** | The ID of the organization in GUID format | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrganizationsOrgIdUsersDeleteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **requestBody** | **[]map[string]interface{}** |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## OrganizationsOrgIdUsersGet
@@ -159,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdUsersPost
 
-> User OrganizationsOrgIdUsersPost(ctx, orgId).UsersPostBody(usersPostBody).Execute()
+> User OrganizationsOrgIdUsersPost(ctx, orgId).UserPostBody(userPostBody).Execute()
 
 
 
@@ -179,11 +110,11 @@ import (
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
-    usersPostBody := *openapiclient.NewUsersPostBody() // UsersPostBody |  (optional)
+    userPostBody := *openapiclient.NewUserPostBody() // UserPostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersPost(context.Background(), orgId).UsersPostBody(usersPostBody).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersPost(context.Background(), orgId).UserPostBody(userPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,7 +140,7 @@ Other parameters are passed through a pointer to a apiOrganizationsOrgIdUsersPos
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **usersPostBody** | [**UsersPostBody**](UsersPostBody.md) |  | 
+ **userPostBody** | [**UserPostBody**](UserPostBody.md) |  | 
 
 ### Return type
 
@@ -229,9 +160,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## OrganizationsOrgIdUsersPut
+## OrganizationsOrgIdUsersUserIdDelete
 
-> OrganizationsOrgIdUsersPut(ctx, orgId).RequestBody(requestBody).Execute()
+> OrganizationsOrgIdUsersUserIdDelete(ctx, orgId, userId).Execute()
 
 
 
@@ -251,13 +182,13 @@ import (
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    userId := "userId_example" // string | The ID of the user
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersPut(context.Background(), orgId).RequestBody(requestBody).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdDelete(context.Background(), orgId, userId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -270,20 +201,169 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **orgId** | **string** | The ID of the organization in GUID format | 
+**userId** | **string** | The ID of the user | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrganizationsOrgIdUsersPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdUsersUserIdDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestBody** | **[]map[string]interface{}** |  | 
+
 
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsOrgIdUsersUserIdGet
+
+> User OrganizationsOrgIdUsersUserIdGet(ctx, orgId, userId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgId := "orgId_example" // string | The ID of the organization in GUID format
+    userId := "userId_example" // string | the ID of the user
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdGet(context.Background(), orgId, userId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OrganizationsOrgIdUsersUserIdGet`: User
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdUsersUserIdGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The ID of the organization in GUID format | 
+**userId** | **string** | the ID of the user | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdUsersUserIdGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsOrgIdUsersUserIdPut
+
+> User OrganizationsOrgIdUsersUserIdPut(ctx, orgId, userId).UserPutBody(userPutBody).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgId := "orgId_example" // string | The ID of the organization in GUID format
+    userId := "userId_example" // string | The ID of the user
+    userPutBody := *openapiclient.NewUserPutBody() // UserPutBody |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdPut(context.Background(), orgId, userId).UserPutBody(userPutBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OrganizationsOrgIdUsersUserIdPut`: User
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdUsersUserIdPut`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The ID of the organization in GUID format | 
+**userId** | **string** | The ID of the user | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdUsersUserIdPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **userPutBody** | [**UserPutBody**](UserPutBody.md) |  | 
+
+### Return type
+
+[**User**](User.md)
 
 ### Authorization
 

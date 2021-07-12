@@ -7,12 +7,22 @@ Name | Type | Description | Notes
 **Username** | Pointer to **string** |  | [optional] 
 **FirstName** | Pointer to **string** |  | [optional] 
 **LastName** | Pointer to **string** |  | [optional] [default to "Mule"]
+**PhoneNumber** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
+**Deleted** | Pointer to **bool** |  | [optional] 
+**LastLogin** | Pointer to **string** |  | [optional] 
+**MfaVerificationExcluded** | Pointer to **bool** |  | [optional] 
+**MfaVerifiersConfigured** | Pointer to **bool** |  | [optional] 
 **IdproviderId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
-**IsApiConsumer** | Pointer to **bool** |  | [optional] 
+**IsFederated** | Pointer to **bool** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
+**MemberOfOrganizations** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**Properties** | Pointer to [**Properties**](Properties.md) |  | [optional] 
+**OrganizationPreferences** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -108,6 +118,31 @@ SetLastName sets LastName field to given value.
 
 HasLastName returns a boolean if a field has been set.
 
+### GetPhoneNumber
+
+`func (o *UserCore) GetPhoneNumber() string`
+
+GetPhoneNumber returns the PhoneNumber field if non-nil, zero value otherwise.
+
+### GetPhoneNumberOk
+
+`func (o *UserCore) GetPhoneNumberOk() (*string, bool)`
+
+GetPhoneNumberOk returns a tuple with the PhoneNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhoneNumber
+
+`func (o *UserCore) SetPhoneNumber(v string)`
+
+SetPhoneNumber sets PhoneNumber field to given value.
+
+### HasPhoneNumber
+
+`func (o *UserCore) HasPhoneNumber() bool`
+
+HasPhoneNumber returns a boolean if a field has been set.
+
 ### GetEmail
 
 `func (o *UserCore) GetEmail() string`
@@ -157,6 +192,106 @@ SetEnabled sets Enabled field to given value.
 `func (o *UserCore) HasEnabled() bool`
 
 HasEnabled returns a boolean if a field has been set.
+
+### GetDeleted
+
+`func (o *UserCore) GetDeleted() bool`
+
+GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+
+### GetDeletedOk
+
+`func (o *UserCore) GetDeletedOk() (*bool, bool)`
+
+GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleted
+
+`func (o *UserCore) SetDeleted(v bool)`
+
+SetDeleted sets Deleted field to given value.
+
+### HasDeleted
+
+`func (o *UserCore) HasDeleted() bool`
+
+HasDeleted returns a boolean if a field has been set.
+
+### GetLastLogin
+
+`func (o *UserCore) GetLastLogin() string`
+
+GetLastLogin returns the LastLogin field if non-nil, zero value otherwise.
+
+### GetLastLoginOk
+
+`func (o *UserCore) GetLastLoginOk() (*string, bool)`
+
+GetLastLoginOk returns a tuple with the LastLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLogin
+
+`func (o *UserCore) SetLastLogin(v string)`
+
+SetLastLogin sets LastLogin field to given value.
+
+### HasLastLogin
+
+`func (o *UserCore) HasLastLogin() bool`
+
+HasLastLogin returns a boolean if a field has been set.
+
+### GetMfaVerificationExcluded
+
+`func (o *UserCore) GetMfaVerificationExcluded() bool`
+
+GetMfaVerificationExcluded returns the MfaVerificationExcluded field if non-nil, zero value otherwise.
+
+### GetMfaVerificationExcludedOk
+
+`func (o *UserCore) GetMfaVerificationExcludedOk() (*bool, bool)`
+
+GetMfaVerificationExcludedOk returns a tuple with the MfaVerificationExcluded field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMfaVerificationExcluded
+
+`func (o *UserCore) SetMfaVerificationExcluded(v bool)`
+
+SetMfaVerificationExcluded sets MfaVerificationExcluded field to given value.
+
+### HasMfaVerificationExcluded
+
+`func (o *UserCore) HasMfaVerificationExcluded() bool`
+
+HasMfaVerificationExcluded returns a boolean if a field has been set.
+
+### GetMfaVerifiersConfigured
+
+`func (o *UserCore) GetMfaVerifiersConfigured() bool`
+
+GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field if non-nil, zero value otherwise.
+
+### GetMfaVerifiersConfiguredOk
+
+`func (o *UserCore) GetMfaVerifiersConfiguredOk() (*bool, bool)`
+
+GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMfaVerifiersConfigured
+
+`func (o *UserCore) SetMfaVerifiersConfigured(v bool)`
+
+SetMfaVerifiersConfigured sets MfaVerifiersConfigured field to given value.
+
+### HasMfaVerifiersConfigured
+
+`func (o *UserCore) HasMfaVerifiersConfigured() bool`
+
+HasMfaVerifiersConfigured returns a boolean if a field has been set.
 
 ### GetIdproviderId
 
@@ -233,30 +368,155 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
-### GetIsApiConsumer
+### GetIsFederated
 
-`func (o *UserCore) GetIsApiConsumer() bool`
+`func (o *UserCore) GetIsFederated() bool`
 
-GetIsApiConsumer returns the IsApiConsumer field if non-nil, zero value otherwise.
+GetIsFederated returns the IsFederated field if non-nil, zero value otherwise.
 
-### GetIsApiConsumerOk
+### GetIsFederatedOk
 
-`func (o *UserCore) GetIsApiConsumerOk() (*bool, bool)`
+`func (o *UserCore) GetIsFederatedOk() (*bool, bool)`
 
-GetIsApiConsumerOk returns a tuple with the IsApiConsumer field if it's non-nil, zero value otherwise
+GetIsFederatedOk returns a tuple with the IsFederated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsApiConsumer
+### SetIsFederated
 
-`func (o *UserCore) SetIsApiConsumer(v bool)`
+`func (o *UserCore) SetIsFederated(v bool)`
 
-SetIsApiConsumer sets IsApiConsumer field to given value.
+SetIsFederated sets IsFederated field to given value.
 
-### HasIsApiConsumer
+### HasIsFederated
 
-`func (o *UserCore) HasIsApiConsumer() bool`
+`func (o *UserCore) HasIsFederated() bool`
 
-HasIsApiConsumer returns a boolean if a field has been set.
+HasIsFederated returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *UserCore) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *UserCore) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *UserCore) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *UserCore) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *UserCore) GetOrganization() Organization`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *UserCore) GetOrganizationOk() (*Organization, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *UserCore) SetOrganization(v Organization)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *UserCore) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
+
+### GetMemberOfOrganizations
+
+`func (o *UserCore) GetMemberOfOrganizations() []map[string]interface{}`
+
+GetMemberOfOrganizations returns the MemberOfOrganizations field if non-nil, zero value otherwise.
+
+### GetMemberOfOrganizationsOk
+
+`func (o *UserCore) GetMemberOfOrganizationsOk() (*[]map[string]interface{}, bool)`
+
+GetMemberOfOrganizationsOk returns a tuple with the MemberOfOrganizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMemberOfOrganizations
+
+`func (o *UserCore) SetMemberOfOrganizations(v []map[string]interface{})`
+
+SetMemberOfOrganizations sets MemberOfOrganizations field to given value.
+
+### HasMemberOfOrganizations
+
+`func (o *UserCore) HasMemberOfOrganizations() bool`
+
+HasMemberOfOrganizations returns a boolean if a field has been set.
+
+### GetProperties
+
+`func (o *UserCore) GetProperties() Properties`
+
+GetProperties returns the Properties field if non-nil, zero value otherwise.
+
+### GetPropertiesOk
+
+`func (o *UserCore) GetPropertiesOk() (*Properties, bool)`
+
+GetPropertiesOk returns a tuple with the Properties field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProperties
+
+`func (o *UserCore) SetProperties(v Properties)`
+
+SetProperties sets Properties field to given value.
+
+### HasProperties
+
+`func (o *UserCore) HasProperties() bool`
+
+HasProperties returns a boolean if a field has been set.
+
+### GetOrganizationPreferences
+
+`func (o *UserCore) GetOrganizationPreferences() map[string]interface{}`
+
+GetOrganizationPreferences returns the OrganizationPreferences field if non-nil, zero value otherwise.
+
+### GetOrganizationPreferencesOk
+
+`func (o *UserCore) GetOrganizationPreferencesOk() (*map[string]interface{}, bool)`
+
+GetOrganizationPreferencesOk returns a tuple with the OrganizationPreferences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationPreferences
+
+`func (o *UserCore) SetOrganizationPreferences(v map[string]interface{})`
+
+SetOrganizationPreferences sets OrganizationPreferences field to given value.
+
+### HasOrganizationPreferences
+
+`func (o *UserCore) HasOrganizationPreferences() bool`
+
+HasOrganizationPreferences returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
