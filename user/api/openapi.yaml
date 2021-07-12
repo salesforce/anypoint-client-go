@@ -12,27 +12,6 @@ security:
 - bearerAuth: []
 paths:
   /organizations/{orgId}/users:
-    delete:
-      description: Delete one or more users
-      parameters:
-      - description: The ID of the organization in GUID format
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/usersDeleteBody'
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "204":
-          description: Success response
     get:
       description: Returns the group of users that belong to the specified organization.
       parameters:
@@ -96,7 +75,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/usersPostBody'
+              $ref: '#/components/schemas/userPostBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -112,8 +91,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/user'
           description: Success response
-    put:
-      description: Update an User
+  /organizations/{orgId}/users/{userId}:
+    delete:
+      description: Delete the user
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -123,11 +103,71 @@ paths:
         schema:
           type: string
         style: simple
+      - description: The ID of the user
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Returns a specific user that belong to the specified organization.
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the ID of the user
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: Success response
+    put:
+      description: Update a user
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/usersPutBody'
+              $ref: '#/components/schemas/userPutBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -138,6 +178,10 @@ paths:
                 $ref: '#/components/schemas/inline_response_400'
           description: Bad request response
         "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
           description: Success response
 components:
   responses:
@@ -155,9 +199,13 @@ components:
           schema:
             $ref: '#/components/schemas/user'
       description: Success response
-    SuccessPutUsers:
+    SuccessPutUser:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/user'
       description: Success response
-    SuccessDeleteUsers:
+    SuccessDeleteUser:
       description: Success response
     SuccessListUsers:
       content:
@@ -165,8 +213,14 @@ components:
           schema:
             $ref: '#/components/schemas/inline_response_200'
       description: Success response
+    SuccessGetUser:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/user'
+      description: Success response
   schemas:
-    usersPostBody:
+    userPostBody:
       properties:
         username:
           title: username
@@ -186,39 +240,33 @@ components:
         password:
           title: password
           type: string
-      title: usersPostBody
+      title: userPostBody
       type: object
-    usersPutBody:
-      items:
+    userPutBody:
+      properties:
+        username:
+          title: username
+          type: string
+        firstName:
+          title: firstName
+          type: string
+        lastName:
+          title: lastName
+          type: string
+        email:
+          title: email
+          type: string
+        phoneNumber:
+          title: phoneNumber
+          type: string
+        password:
+          title: password
+          type: string
         properties:
-          username:
-            title: username
-            type: string
-          firstName:
-            title: firstName
-            type: string
-          lastName:
-            title: lastName
-            type: string
-          email:
-            title: email
-            type: string
-          phoneNumber:
-            title: phoneNumber
-            type: string
-          password:
-            title: password
-            type: string
+          title: properties
+          type: object
       title: userPutBody
-      type: array
-    usersDeleteBody:
-      items:
-        properties:
-          inviteId:
-            title: userId
-            type: string
-      title: userDeleteBody
-      type: array
+      type: object
     user:
       allOf:
       - $ref: '#/components/schemas/userId'
@@ -238,6 +286,10 @@ components:
           default: Mule
           title: lastName
           type: string
+        phoneNumber:
+          example: 111-111-1111
+          title: phoneNumber
+          type: string
         email:
           example: api.platform.qa+uzer@gmail.com
           title: email
@@ -245,6 +297,22 @@ components:
         enabled:
           example: true
           title: enabled
+          type: boolean
+        deleted:
+          example: false
+          title: deleted
+          type: boolean
+        lastLogin:
+          example: 2021-07-12T09:28:43.569Z
+          title: lastLogin
+          type: string
+        mfaVerificationExcluded:
+          example: false
+          title: mfaVerificationExcluded
+          type: boolean
+        mfaVerifiersConfigured:
+          example: false
+          title: mfaVerifiersConfigured
           type: boolean
         idprovider_id:
           example: mulesoft
@@ -258,12 +326,237 @@ components:
           example: Mon Feb 09 2015 17:47:26 GMT-0300 (ART)
           title: updatedAt
           type: string
-        isApiConsumer:
+        isFederated:
           example: false
           title: isFederated
           type: boolean
+        type:
+          title: type
+          type: string
+        organization:
+          $ref: '#/components/schemas/organization'
+        memberOfOrganizations:
+          items:
+            properties:
+              parentName:
+                nullable: true
+                title: parentName
+                type: string
+              parentId:
+                nullable: true
+                title: parentId
+                type: string
+              domain:
+                title: domain
+                type: string
+              id:
+                title: id
+                type: string
+              createdAt:
+                title: createdAt
+                type: string
+              updatedAt:
+                title: updatedAt
+                type: string
+              ownerId:
+                title: ownerId
+                type: string
+              clientId:
+                title: clientId
+                type: string
+              idprovider_id:
+                title: idprovider_id
+                type: string
+              isFederated:
+                title: isFederated
+                type: boolean
+              parentOrganizationIds:
+                items:
+                  type: string
+                title: parentOrganizationIds
+                type: array
+              subOrganizationIds:
+                items:
+                  type: string
+                title: subOrganizationIds
+                type: array
+              tenantOrganizationIds:
+                items:
+                  type: string
+                title: tenantOrganizationIds
+                type: array
+              mfaRequired:
+                title: mfaRequired
+                type: string
+              isAutomaticAdminPromotionExempt:
+                title: isAutomaticAdminPromotionExempt
+                type: boolean
+              isMaster:
+                title: isMaster
+                type: boolean
+              subscription:
+                properties:
+                  category:
+                    title: category
+                    type: string
+                  type:
+                    title: type
+                    type: string
+                  expiration:
+                    title: expiration
+                    type: string
+                title: subscription
+                type: object
+            title: memberOfOrganization
+            type: object
+          title: memberOfOrganizations
+          type: array
+        properties:
+          $ref: '#/components/schemas/properties'
+        organizationPreferences:
+          title: organizationPreferences
+          type: object
       title: userCore
       type: object
+    organization:
+      properties:
+        name:
+          title: name
+          type: string
+        id:
+          title: id
+          type: string
+        createdAt:
+          title: createdAt
+          type: string
+        updatedAt:
+          title: updatedAt
+          type: string
+        ownerId:
+          title: ownerId
+          type: string
+        clientId:
+          title: clientId
+          type: string
+        idprovider_id:
+          title: idprovider_id
+          type: string
+        isFederated:
+          title: isFederated
+          type: boolean
+        parentOrganizationIds:
+          items:
+            type: string
+          title: parentOrganizationIds
+          type: array
+        subOrganizationIds:
+          items:
+            type: string
+          title: subOrganizationIds
+          type: array
+        tenantOrganizationIds:
+          items:
+            type: string
+          title: tenantOrganizationIds
+          type: array
+        mfaRequired:
+          title: mfaRequired
+          type: string
+        isAutomaticAdminPromotionExempt:
+          title: isAutomaticAdminPromotionExempt
+          type: boolean
+        domain:
+          title: domain
+          type: string
+        isMaster:
+          title: isMaster
+          type: boolean
+        subscription:
+          $ref: '#/components/schemas/subscription'
+        properties:
+          title: properties
+          type: object
+        entitlements:
+          title: entitlements
+          type: object
+      title: organization
+      type: object
+    memberOfOrganizations:
+      items:
+        properties:
+          parentName:
+            nullable: true
+            title: parentName
+            type: string
+          parentId:
+            nullable: true
+            title: parentId
+            type: string
+          domain:
+            title: domain
+            type: string
+          id:
+            title: id
+            type: string
+          createdAt:
+            title: createdAt
+            type: string
+          updatedAt:
+            title: updatedAt
+            type: string
+          ownerId:
+            title: ownerId
+            type: string
+          clientId:
+            title: clientId
+            type: string
+          idprovider_id:
+            title: idprovider_id
+            type: string
+          isFederated:
+            title: isFederated
+            type: boolean
+          parentOrganizationIds:
+            items:
+              type: string
+            title: parentOrganizationIds
+            type: array
+          subOrganizationIds:
+            items:
+              type: string
+            title: subOrganizationIds
+            type: array
+          tenantOrganizationIds:
+            items:
+              type: string
+            title: tenantOrganizationIds
+            type: array
+          mfaRequired:
+            title: mfaRequired
+            type: string
+          isAutomaticAdminPromotionExempt:
+            title: isAutomaticAdminPromotionExempt
+            type: boolean
+          isMaster:
+            title: isMaster
+            type: boolean
+          subscription:
+            properties:
+              category:
+                title: category
+                type: string
+              type:
+                title: type
+                type: string
+              expiration:
+                title: expiration
+                type: string
+            title: subscription
+            type: object
+        title: memberOfOrganization
+        type: object
+      title: memberOfOrganizations
+      type: array
     inline_response_200:
       example:
         total: 0
@@ -301,6 +594,26 @@ components:
       required:
       - id
       title: userId
+      type: object
+    properties:
+      properties:
+        cs_auth:
+          title: cs_auth
+          type: object
+      title: properties
+      type: object
+    subscription:
+      properties:
+        category:
+          title: category
+          type: string
+        type:
+          title: type
+          type: string
+        expiration:
+          title: expiration
+          type: string
+      title: subscription
       type: object
   securitySchemes:
     bearerAuth:

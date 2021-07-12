@@ -8,12 +8,22 @@ Name | Type | Description | Notes
 **Username** | Pointer to **string** |  | [optional] 
 **FirstName** | Pointer to **string** |  | [optional] 
 **LastName** | Pointer to **string** |  | [optional] [default to "Mule"]
+**PhoneNumber** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
+**Deleted** | Pointer to **bool** |  | [optional] 
+**LastLogin** | Pointer to **string** |  | [optional] 
+**MfaVerificationExcluded** | Pointer to **bool** |  | [optional] 
+**MfaVerifiersConfigured** | Pointer to **bool** |  | [optional] 
 **IdproviderId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
-**IsApiConsumer** | Pointer to **bool** |  | [optional] 
+**IsFederated** | Pointer to **bool** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
+**MemberOfOrganizations** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**Properties** | Pointer to [**Properties**](Properties.md) |  | [optional] 
+**OrganizationPreferences** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -129,6 +139,31 @@ SetLastName sets LastName field to given value.
 
 HasLastName returns a boolean if a field has been set.
 
+### GetPhoneNumber
+
+`func (o *User) GetPhoneNumber() string`
+
+GetPhoneNumber returns the PhoneNumber field if non-nil, zero value otherwise.
+
+### GetPhoneNumberOk
+
+`func (o *User) GetPhoneNumberOk() (*string, bool)`
+
+GetPhoneNumberOk returns a tuple with the PhoneNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhoneNumber
+
+`func (o *User) SetPhoneNumber(v string)`
+
+SetPhoneNumber sets PhoneNumber field to given value.
+
+### HasPhoneNumber
+
+`func (o *User) HasPhoneNumber() bool`
+
+HasPhoneNumber returns a boolean if a field has been set.
+
 ### GetEmail
 
 `func (o *User) GetEmail() string`
@@ -178,6 +213,106 @@ SetEnabled sets Enabled field to given value.
 `func (o *User) HasEnabled() bool`
 
 HasEnabled returns a boolean if a field has been set.
+
+### GetDeleted
+
+`func (o *User) GetDeleted() bool`
+
+GetDeleted returns the Deleted field if non-nil, zero value otherwise.
+
+### GetDeletedOk
+
+`func (o *User) GetDeletedOk() (*bool, bool)`
+
+GetDeletedOk returns a tuple with the Deleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleted
+
+`func (o *User) SetDeleted(v bool)`
+
+SetDeleted sets Deleted field to given value.
+
+### HasDeleted
+
+`func (o *User) HasDeleted() bool`
+
+HasDeleted returns a boolean if a field has been set.
+
+### GetLastLogin
+
+`func (o *User) GetLastLogin() string`
+
+GetLastLogin returns the LastLogin field if non-nil, zero value otherwise.
+
+### GetLastLoginOk
+
+`func (o *User) GetLastLoginOk() (*string, bool)`
+
+GetLastLoginOk returns a tuple with the LastLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLogin
+
+`func (o *User) SetLastLogin(v string)`
+
+SetLastLogin sets LastLogin field to given value.
+
+### HasLastLogin
+
+`func (o *User) HasLastLogin() bool`
+
+HasLastLogin returns a boolean if a field has been set.
+
+### GetMfaVerificationExcluded
+
+`func (o *User) GetMfaVerificationExcluded() bool`
+
+GetMfaVerificationExcluded returns the MfaVerificationExcluded field if non-nil, zero value otherwise.
+
+### GetMfaVerificationExcludedOk
+
+`func (o *User) GetMfaVerificationExcludedOk() (*bool, bool)`
+
+GetMfaVerificationExcludedOk returns a tuple with the MfaVerificationExcluded field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMfaVerificationExcluded
+
+`func (o *User) SetMfaVerificationExcluded(v bool)`
+
+SetMfaVerificationExcluded sets MfaVerificationExcluded field to given value.
+
+### HasMfaVerificationExcluded
+
+`func (o *User) HasMfaVerificationExcluded() bool`
+
+HasMfaVerificationExcluded returns a boolean if a field has been set.
+
+### GetMfaVerifiersConfigured
+
+`func (o *User) GetMfaVerifiersConfigured() bool`
+
+GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field if non-nil, zero value otherwise.
+
+### GetMfaVerifiersConfiguredOk
+
+`func (o *User) GetMfaVerifiersConfiguredOk() (*bool, bool)`
+
+GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMfaVerifiersConfigured
+
+`func (o *User) SetMfaVerifiersConfigured(v bool)`
+
+SetMfaVerifiersConfigured sets MfaVerifiersConfigured field to given value.
+
+### HasMfaVerifiersConfigured
+
+`func (o *User) HasMfaVerifiersConfigured() bool`
+
+HasMfaVerifiersConfigured returns a boolean if a field has been set.
 
 ### GetIdproviderId
 
@@ -254,30 +389,155 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
-### GetIsApiConsumer
+### GetIsFederated
 
-`func (o *User) GetIsApiConsumer() bool`
+`func (o *User) GetIsFederated() bool`
 
-GetIsApiConsumer returns the IsApiConsumer field if non-nil, zero value otherwise.
+GetIsFederated returns the IsFederated field if non-nil, zero value otherwise.
 
-### GetIsApiConsumerOk
+### GetIsFederatedOk
 
-`func (o *User) GetIsApiConsumerOk() (*bool, bool)`
+`func (o *User) GetIsFederatedOk() (*bool, bool)`
 
-GetIsApiConsumerOk returns a tuple with the IsApiConsumer field if it's non-nil, zero value otherwise
+GetIsFederatedOk returns a tuple with the IsFederated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsApiConsumer
+### SetIsFederated
 
-`func (o *User) SetIsApiConsumer(v bool)`
+`func (o *User) SetIsFederated(v bool)`
 
-SetIsApiConsumer sets IsApiConsumer field to given value.
+SetIsFederated sets IsFederated field to given value.
 
-### HasIsApiConsumer
+### HasIsFederated
 
-`func (o *User) HasIsApiConsumer() bool`
+`func (o *User) HasIsFederated() bool`
 
-HasIsApiConsumer returns a boolean if a field has been set.
+HasIsFederated returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *User) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *User) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *User) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *User) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetOrganization
+
+`func (o *User) GetOrganization() Organization`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *User) GetOrganizationOk() (*Organization, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *User) SetOrganization(v Organization)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *User) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
+
+### GetMemberOfOrganizations
+
+`func (o *User) GetMemberOfOrganizations() []map[string]interface{}`
+
+GetMemberOfOrganizations returns the MemberOfOrganizations field if non-nil, zero value otherwise.
+
+### GetMemberOfOrganizationsOk
+
+`func (o *User) GetMemberOfOrganizationsOk() (*[]map[string]interface{}, bool)`
+
+GetMemberOfOrganizationsOk returns a tuple with the MemberOfOrganizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMemberOfOrganizations
+
+`func (o *User) SetMemberOfOrganizations(v []map[string]interface{})`
+
+SetMemberOfOrganizations sets MemberOfOrganizations field to given value.
+
+### HasMemberOfOrganizations
+
+`func (o *User) HasMemberOfOrganizations() bool`
+
+HasMemberOfOrganizations returns a boolean if a field has been set.
+
+### GetProperties
+
+`func (o *User) GetProperties() Properties`
+
+GetProperties returns the Properties field if non-nil, zero value otherwise.
+
+### GetPropertiesOk
+
+`func (o *User) GetPropertiesOk() (*Properties, bool)`
+
+GetPropertiesOk returns a tuple with the Properties field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProperties
+
+`func (o *User) SetProperties(v Properties)`
+
+SetProperties sets Properties field to given value.
+
+### HasProperties
+
+`func (o *User) HasProperties() bool`
+
+HasProperties returns a boolean if a field has been set.
+
+### GetOrganizationPreferences
+
+`func (o *User) GetOrganizationPreferences() map[string]interface{}`
+
+GetOrganizationPreferences returns the OrganizationPreferences field if non-nil, zero value otherwise.
+
+### GetOrganizationPreferencesOk
+
+`func (o *User) GetOrganizationPreferencesOk() (*map[string]interface{}, bool)`
+
+GetOrganizationPreferencesOk returns a tuple with the OrganizationPreferences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationPreferences
+
+`func (o *User) SetOrganizationPreferences(v map[string]interface{})`
+
+SetOrganizationPreferences sets OrganizationPreferences field to given value.
+
+### HasOrganizationPreferences
+
+`func (o *User) HasOrganizationPreferences() bool`
+
+HasOrganizationPreferences returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// UsersPostBody struct for UsersPostBody
-type UsersPostBody struct {
+// UserPostBody struct for UserPostBody
+type UserPostBody struct {
 	Username *string `json:"username,omitempty"`
 	FirstName *string `json:"firstName,omitempty"`
 	LastName *string `json:"lastName,omitempty"`
@@ -24,25 +24,25 @@ type UsersPostBody struct {
 	Password *string `json:"password,omitempty"`
 }
 
-// NewUsersPostBody instantiates a new UsersPostBody object
+// NewUserPostBody instantiates a new UserPostBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsersPostBody() *UsersPostBody {
-	this := UsersPostBody{}
+func NewUserPostBody() *UserPostBody {
+	this := UserPostBody{}
 	return &this
 }
 
-// NewUsersPostBodyWithDefaults instantiates a new UsersPostBody object
+// NewUserPostBodyWithDefaults instantiates a new UserPostBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUsersPostBodyWithDefaults() *UsersPostBody {
-	this := UsersPostBody{}
+func NewUserPostBodyWithDefaults() *UserPostBody {
+	this := UserPostBody{}
 	return &this
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *UsersPostBody) GetUsername() string {
+func (o *UserPostBody) GetUsername() string {
 	if o == nil || o.Username == nil {
 		var ret string
 		return ret
@@ -52,7 +52,7 @@ func (o *UsersPostBody) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersPostBody) GetUsernameOk() (*string, bool) {
+func (o *UserPostBody) GetUsernameOk() (*string, bool) {
 	if o == nil || o.Username == nil {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *UsersPostBody) GetUsernameOk() (*string, bool) {
 }
 
 // HasUsername returns a boolean if a field has been set.
-func (o *UsersPostBody) HasUsername() bool {
+func (o *UserPostBody) HasUsername() bool {
 	if o != nil && o.Username != nil {
 		return true
 	}
@@ -69,12 +69,12 @@ func (o *UsersPostBody) HasUsername() bool {
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *UsersPostBody) SetUsername(v string) {
+func (o *UserPostBody) SetUsername(v string) {
 	o.Username = &v
 }
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
-func (o *UsersPostBody) GetFirstName() string {
+func (o *UserPostBody) GetFirstName() string {
 	if o == nil || o.FirstName == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *UsersPostBody) GetFirstName() string {
 
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersPostBody) GetFirstNameOk() (*string, bool) {
+func (o *UserPostBody) GetFirstNameOk() (*string, bool) {
 	if o == nil || o.FirstName == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *UsersPostBody) GetFirstNameOk() (*string, bool) {
 }
 
 // HasFirstName returns a boolean if a field has been set.
-func (o *UsersPostBody) HasFirstName() bool {
+func (o *UserPostBody) HasFirstName() bool {
 	if o != nil && o.FirstName != nil {
 		return true
 	}
@@ -101,12 +101,12 @@ func (o *UsersPostBody) HasFirstName() bool {
 }
 
 // SetFirstName gets a reference to the given string and assigns it to the FirstName field.
-func (o *UsersPostBody) SetFirstName(v string) {
+func (o *UserPostBody) SetFirstName(v string) {
 	o.FirstName = &v
 }
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
-func (o *UsersPostBody) GetLastName() string {
+func (o *UserPostBody) GetLastName() string {
 	if o == nil || o.LastName == nil {
 		var ret string
 		return ret
@@ -116,7 +116,7 @@ func (o *UsersPostBody) GetLastName() string {
 
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersPostBody) GetLastNameOk() (*string, bool) {
+func (o *UserPostBody) GetLastNameOk() (*string, bool) {
 	if o == nil || o.LastName == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *UsersPostBody) GetLastNameOk() (*string, bool) {
 }
 
 // HasLastName returns a boolean if a field has been set.
-func (o *UsersPostBody) HasLastName() bool {
+func (o *UserPostBody) HasLastName() bool {
 	if o != nil && o.LastName != nil {
 		return true
 	}
@@ -133,12 +133,12 @@ func (o *UsersPostBody) HasLastName() bool {
 }
 
 // SetLastName gets a reference to the given string and assigns it to the LastName field.
-func (o *UsersPostBody) SetLastName(v string) {
+func (o *UserPostBody) SetLastName(v string) {
 	o.LastName = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
-func (o *UsersPostBody) GetEmail() string {
+func (o *UserPostBody) GetEmail() string {
 	if o == nil || o.Email == nil {
 		var ret string
 		return ret
@@ -148,7 +148,7 @@ func (o *UsersPostBody) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersPostBody) GetEmailOk() (*string, bool) {
+func (o *UserPostBody) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
 		return nil, false
 	}
@@ -156,7 +156,7 @@ func (o *UsersPostBody) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *UsersPostBody) HasEmail() bool {
+func (o *UserPostBody) HasEmail() bool {
 	if o != nil && o.Email != nil {
 		return true
 	}
@@ -165,12 +165,12 @@ func (o *UsersPostBody) HasEmail() bool {
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *UsersPostBody) SetEmail(v string) {
+func (o *UserPostBody) SetEmail(v string) {
 	o.Email = &v
 }
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
-func (o *UsersPostBody) GetPhoneNumber() string {
+func (o *UserPostBody) GetPhoneNumber() string {
 	if o == nil || o.PhoneNumber == nil {
 		var ret string
 		return ret
@@ -180,7 +180,7 @@ func (o *UsersPostBody) GetPhoneNumber() string {
 
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersPostBody) GetPhoneNumberOk() (*string, bool) {
+func (o *UserPostBody) GetPhoneNumberOk() (*string, bool) {
 	if o == nil || o.PhoneNumber == nil {
 		return nil, false
 	}
@@ -188,7 +188,7 @@ func (o *UsersPostBody) GetPhoneNumberOk() (*string, bool) {
 }
 
 // HasPhoneNumber returns a boolean if a field has been set.
-func (o *UsersPostBody) HasPhoneNumber() bool {
+func (o *UserPostBody) HasPhoneNumber() bool {
 	if o != nil && o.PhoneNumber != nil {
 		return true
 	}
@@ -197,12 +197,12 @@ func (o *UsersPostBody) HasPhoneNumber() bool {
 }
 
 // SetPhoneNumber gets a reference to the given string and assigns it to the PhoneNumber field.
-func (o *UsersPostBody) SetPhoneNumber(v string) {
+func (o *UserPostBody) SetPhoneNumber(v string) {
 	o.PhoneNumber = &v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
-func (o *UsersPostBody) GetPassword() string {
+func (o *UserPostBody) GetPassword() string {
 	if o == nil || o.Password == nil {
 		var ret string
 		return ret
@@ -212,7 +212,7 @@ func (o *UsersPostBody) GetPassword() string {
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsersPostBody) GetPasswordOk() (*string, bool) {
+func (o *UserPostBody) GetPasswordOk() (*string, bool) {
 	if o == nil || o.Password == nil {
 		return nil, false
 	}
@@ -220,7 +220,7 @@ func (o *UsersPostBody) GetPasswordOk() (*string, bool) {
 }
 
 // HasPassword returns a boolean if a field has been set.
-func (o *UsersPostBody) HasPassword() bool {
+func (o *UserPostBody) HasPassword() bool {
 	if o != nil && o.Password != nil {
 		return true
 	}
@@ -229,11 +229,11 @@ func (o *UsersPostBody) HasPassword() bool {
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *UsersPostBody) SetPassword(v string) {
+func (o *UserPostBody) SetPassword(v string) {
 	o.Password = &v
 }
 
-func (o UsersPostBody) MarshalJSON() ([]byte, error) {
+func (o UserPostBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Username != nil {
 		toSerialize["username"] = o.Username
@@ -256,38 +256,38 @@ func (o UsersPostBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUsersPostBody struct {
-	value *UsersPostBody
+type NullableUserPostBody struct {
+	value *UserPostBody
 	isSet bool
 }
 
-func (v NullableUsersPostBody) Get() *UsersPostBody {
+func (v NullableUserPostBody) Get() *UserPostBody {
 	return v.value
 }
 
-func (v *NullableUsersPostBody) Set(val *UsersPostBody) {
+func (v *NullableUserPostBody) Set(val *UserPostBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUsersPostBody) IsSet() bool {
+func (v NullableUserPostBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUsersPostBody) Unset() {
+func (v *NullableUserPostBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUsersPostBody(val *UsersPostBody) *NullableUsersPostBody {
-	return &NullableUsersPostBody{value: val, isSet: true}
+func NewNullableUserPostBody(val *UserPostBody) *NullableUserPostBody {
+	return &NullableUserPostBody{value: val, isSet: true}
 }
 
-func (v NullableUsersPostBody) MarshalJSON() ([]byte, error) {
+func (v NullableUserPostBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUsersPostBody) UnmarshalJSON(src []byte) error {
+func (v *NullableUserPostBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
