@@ -44,19 +44,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  title: name
-                  type: string
-                type:
-                  title: type
-                  type: string
-              type: object
-        required: false
+              $ref: '#/components/schemas/envCore'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -166,13 +157,6 @@ paths:
                 $ref: '#/components/schemas/env'
           description: Success response
 components:
-  requestBodies:
-    inline_object:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/inline_object'
-      required: false
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
@@ -253,15 +237,6 @@ components:
         total:
           title: Total number of results
           type: integer
-      type: object
-    inline_object:
-      properties:
-        name:
-          title: name
-          type: string
-        type:
-          title: type
-          type: string
       type: object
     inline_response_400:
       properties:
