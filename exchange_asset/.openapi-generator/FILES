@@ -1,0 +1,16 @@
+.gitignore
+.openapi-generator-ignore
+.travis.yml
+README.md
+api/openapi.yaml
+api_misc.go
+client.go
+configuration.go
+docs/MiscApi.md
+docs/ModifyanassetRequest.md
+git_push.sh
+go.mod
+go.sum
+model_modifyanasset_request.go
+response.go
+utils.go
