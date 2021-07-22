@@ -253,7 +253,7 @@ components:
       properties:
         id:
           description: The env Id
-          example: 9149aec2-f882-4d36-b419-3fb07c
+          example: 9149aec2-f882-4d36-b419-3fb07f
           title: id
           type: string
       required:
