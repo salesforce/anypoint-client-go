@@ -289,6 +289,7 @@ components:
   schemas:
     Queue:
       example:
+        queueId: queueId
         fifo: true
         defaultLockTtl: 6
         encrypted: true
@@ -296,6 +297,8 @@ components:
         defaultDeliveryDelay: 1
         type: type
       properties:
+        queueId:
+          type: string
         defaultTtl:
           format: int32
           type: integer

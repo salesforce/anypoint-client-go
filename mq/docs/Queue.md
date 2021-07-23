@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**QueueId** | Pointer to **string** |  | [optional] 
 **DefaultTtl** | **int32** |  | 
 **DefaultLockTtl** | **int32** |  | 
 **Type** | **string** |  | 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed
 NewQueueWithDefaults instantiates a new Queue object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetQueueId
+
+`func (o *Queue) GetQueueId() string`
+
+GetQueueId returns the QueueId field if non-nil, zero value otherwise.
+
+### GetQueueIdOk
+
+`func (o *Queue) GetQueueIdOk() (*string, bool)`
+
+GetQueueIdOk returns a tuple with the QueueId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueueId
+
+`func (o *Queue) SetQueueId(v string)`
+
+SetQueueId sets QueueId field to given value.
+
+### HasQueueId
+
+`func (o *Queue) HasQueueId() bool`
+
+HasQueueId returns a boolean if a field has been set.
 
 ### GetDefaultTtl
 

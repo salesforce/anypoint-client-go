@@ -16,6 +16,7 @@ import (
 
 // Queue struct for Queue
 type Queue struct {
+	QueueId *string `json:"queueId,omitempty"`
 	DefaultTtl int32 `json:"defaultTtl"`
 	DefaultLockTtl int32 `json:"defaultLockTtl"`
 	Type string `json:"type"`
@@ -43,6 +44,38 @@ func NewQueue(defaultTtl int32, defaultLockTtl int32, type_ string, encrypted bo
 func NewQueueWithDefaults() *Queue {
 	this := Queue{}
 	return &this
+}
+
+// GetQueueId returns the QueueId field value if set, zero value otherwise.
+func (o *Queue) GetQueueId() string {
+	if o == nil || o.QueueId == nil {
+		var ret string
+		return ret
+	}
+	return *o.QueueId
+}
+
+// GetQueueIdOk returns a tuple with the QueueId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Queue) GetQueueIdOk() (*string, bool) {
+	if o == nil || o.QueueId == nil {
+		return nil, false
+	}
+	return o.QueueId, true
+}
+
+// HasQueueId returns a boolean if a field has been set.
+func (o *Queue) HasQueueId() bool {
+	if o != nil && o.QueueId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueueId gets a reference to the given string and assigns it to the QueueId field.
+func (o *Queue) SetQueueId(v string) {
+	o.QueueId = &v
 }
 
 // GetDefaultTtl returns the DefaultTtl field value
@@ -207,6 +240,9 @@ func (o *Queue) SetFifo(v bool) {
 
 func (o Queue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.QueueId != nil {
+		toSerialize["queueId"] = o.QueueId
+	}
 	if true {
 		toSerialize["defaultTtl"] = o.DefaultTtl
 	}
