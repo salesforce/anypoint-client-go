@@ -1,0 +1,437 @@
+openapi: 3.0.0
+info:
+  description: Description of the Alert in Runtime Manager API
+  title: Alert Runtime Manager
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/armui/api
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/armui/api
+security:
+- bearerAuth: []
+paths:
+  /v1/alerts:
+    get:
+      description: Get alerts
+      parameters:
+      - description: The organization ID
+        explode: false
+        in: header
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment ID
+        explode: false
+        in: header
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertWithId'
+                title: alerts from GET
+                type: array
+          description: Success response
+      summary: Get all the alert instances from the run time manager
+  /v1/alerts/cloudhub/{cloudhub-rm-alert}:
+    delete:
+      description: Delete one alert
+      operationId: Deleteonealert
+      parameters:
+      - description: the org id
+        explode: false
+        in: header
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the env id
+        explode: false
+        in: header
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the name of the cloud hub alert
+        explode: false
+        in: path
+        name: cloudhub-rm-alert
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          default: Bearer {token}
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          content:
+            text/plain:
+              example: successfully deleted
+          description: No content
+      summary: Deleteonealert
+    get:
+      description: Get one specific alert
+      parameters:
+      - description: the org id
+        explode: false
+        in: header
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the env id
+        explode: false
+        in: header
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the name of the cloud hub alert
+        explode: false
+        in: path
+        name: cloudhub-rm-alert
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          default: Bearer {token}
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlertWithId'
+                title: alerts from GET
+                type: array
+          description: Success response
+      summary: Get one specific alert
+    put:
+      description: Modify one alert
+      operationId: Modify one alert
+      parameters:
+      - description: the org id
+        explode: false
+        in: header
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the env id
+        explode: false
+        in: header
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the name of the cloud hub alert
+        explode: false
+        in: path
+        name: cloudhub-rm-alert
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: authorization key
+        explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          default: Bearer {token}
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertWithId'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertWithId'
+          description: Success create an alert
+  /v1/alerts/cloudhub:
+    post:
+      description: Add new alert
+      operationId: Addnewalert
+      parameters:
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          default: Bearer {token}
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: envId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alert'
+        description: Add a new alert
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertWithId'
+          description: Success create an alert
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    SuccessGetAlerts:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/AlertWithId'
+            title: alerts from GET
+            type: array
+      description: Success response
+    SuccessGetAlert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AlertWithId'
+      description: Success response
+    SuccessCreateAlert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AlertWithId'
+      description: Success create an alert
+  schemas:
+    Alert:
+      example:
+        severity: severity
+        condition:
+          periodCount: 0
+          periodMins: 1
+          resources:
+          - resources
+          - resources
+          type: type
+          value: 6
+          operator: operator
+          resourceType: resourceType
+        name: name
+        actions:
+        - subject: subject
+          userIds:
+          - userIds
+          - userIds
+          type: type
+          content: content
+        - subject: subject
+          userIds:
+          - userIds
+          - userIds
+          type: type
+          content: content
+      properties:
+        name:
+          type: string
+        severity:
+          type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/Action'
+          type: array
+        condition:
+          $ref: '#/components/schemas/Condition'
+      required:
+      - actions
+      - condition
+      - name
+      - severity
+      title: Alert
+      type: object
+    Action:
+      example:
+        subject: subject
+        userIds:
+        - userIds
+        - userIds
+        type: type
+        content: content
+      properties:
+        type:
+          type: string
+        content:
+          type: string
+        subject:
+          type: string
+        userIds:
+          items:
+            type: string
+          type: array
+      required:
+      - content
+      - subject
+      - type
+      - userIds
+      title: Action
+      type: object
+    Condition:
+      example:
+        periodCount: 0
+        periodMins: 1
+        resources:
+        - resources
+        - resources
+        type: type
+        value: 6
+        operator: operator
+        resourceType: resourceType
+      properties:
+        operator:
+          type: string
+        periodCount:
+          format: int32
+          type: integer
+        value:
+          format: int32
+          type: integer
+        resourceType:
+          type: string
+        type:
+          type: string
+        periodMins:
+          format: int32
+          type: integer
+        resources:
+          items:
+            type: string
+          type: array
+      required:
+      - operator
+      - periodCount
+      - periodMins
+      - resourceType
+      - resources
+      - type
+      - value
+      title: Condition
+      type: object
+    AlertWithId:
+      example:
+        severity: severity
+        condition:
+          periodCount: 0
+          periodMins: 1
+          resources:
+          - resources
+          - resources
+          type: type
+          value: 6
+          operator: operator
+          resourceType: resourceType
+        name: name
+        actions:
+        - subject: subject
+          userIds:
+          - userIds
+          - userIds
+          type: type
+          content: content
+        - subject: subject
+          userIds:
+          - userIds
+          - userIds
+          type: type
+          content: content
+      properties:
+        name:
+          type: string
+        severity:
+          type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/Action'
+          type: array
+        condition:
+          $ref: '#/components/schemas/Condition'
+      required:
+      - actions
+      - condition
+      - name
+      - severity
+      title: AlertWithId
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
