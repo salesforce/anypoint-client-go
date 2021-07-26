@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Deleted** | Pointer to **bool** |  | [optional] 
 **LastLogin** | Pointer to **string** |  | [optional] 
 **MfaVerificationExcluded** | Pointer to **bool** |  | [optional] 
-**MfaVerifiersConfigured** | Pointer to **bool** |  | [optional] 
+**MfaVerifiersConfigured** | Pointer to **string** |  | [optional] 
 **IdproviderId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -319,20 +319,20 @@ HasMfaVerificationExcluded returns a boolean if a field has been set.
 
 ### GetMfaVerifiersConfigured
 
-`func (o *User) GetMfaVerifiersConfigured() bool`
+`func (o *User) GetMfaVerifiersConfigured() string`
 
 GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field if non-nil, zero value otherwise.
 
 ### GetMfaVerifiersConfiguredOk
 
-`func (o *User) GetMfaVerifiersConfiguredOk() (*bool, bool)`
+`func (o *User) GetMfaVerifiersConfiguredOk() (*string, bool)`
 
 GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMfaVerifiersConfigured
 
-`func (o *User) SetMfaVerifiersConfigured(v bool)`
+`func (o *User) SetMfaVerifiersConfigured(v string)`
 
 SetMfaVerifiersConfigured sets MfaVerifiersConfigured field to given value.
 

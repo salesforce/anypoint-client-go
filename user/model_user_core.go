@@ -26,7 +26,7 @@ type UserCore struct {
 	Deleted *bool `json:"deleted,omitempty"`
 	LastLogin *string `json:"lastLogin,omitempty"`
 	MfaVerificationExcluded *bool `json:"mfaVerificationExcluded,omitempty"`
-	MfaVerifiersConfigured *bool `json:"mfaVerifiersConfigured,omitempty"`
+	MfaVerifiersConfigured *string `json:"mfaVerifiersConfigured,omitempty"`
 	IdproviderId *string `json:"idprovider_id,omitempty"`
 	CreatedAt *string `json:"createdAt,omitempty"`
 	UpdatedAt *string `json:"updatedAt,omitempty"`
@@ -382,9 +382,9 @@ func (o *UserCore) SetMfaVerificationExcluded(v bool) {
 }
 
 // GetMfaVerifiersConfigured returns the MfaVerifiersConfigured field value if set, zero value otherwise.
-func (o *UserCore) GetMfaVerifiersConfigured() bool {
+func (o *UserCore) GetMfaVerifiersConfigured() string {
 	if o == nil || o.MfaVerifiersConfigured == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 	return *o.MfaVerifiersConfigured
@@ -392,7 +392,7 @@ func (o *UserCore) GetMfaVerifiersConfigured() bool {
 
 // GetMfaVerifiersConfiguredOk returns a tuple with the MfaVerifiersConfigured field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserCore) GetMfaVerifiersConfiguredOk() (*bool, bool) {
+func (o *UserCore) GetMfaVerifiersConfiguredOk() (*string, bool) {
 	if o == nil || o.MfaVerifiersConfigured == nil {
 		return nil, false
 	}
@@ -408,8 +408,8 @@ func (o *UserCore) HasMfaVerifiersConfigured() bool {
 	return false
 }
 
-// SetMfaVerifiersConfigured gets a reference to the given bool and assigns it to the MfaVerifiersConfigured field.
-func (o *UserCore) SetMfaVerifiersConfigured(v bool) {
+// SetMfaVerifiersConfigured gets a reference to the given string and assigns it to the MfaVerifiersConfigured field.
+func (o *UserCore) SetMfaVerifiersConfigured(v string) {
 	o.MfaVerifiersConfigured = &v
 }
 
