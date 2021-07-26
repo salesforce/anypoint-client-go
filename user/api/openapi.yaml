@@ -315,9 +315,9 @@ components:
           title: mfaVerificationExcluded
           type: boolean
         mfaVerifiersConfigured:
-          example: false
+          example: "false"
           title: mfaVerifiersConfigured
-          type: boolean
+          type: string
         idprovider_id:
           example: mulesoft
           title: idproviderId
