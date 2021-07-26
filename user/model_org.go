@@ -19,6 +19,7 @@ type Org struct {
 	ParentName NullableString `json:"parentName,omitempty"`
 	ParentId NullableString `json:"parentId,omitempty"`
 	Domain *string `json:"domain,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Id *string `json:"id,omitempty"`
 	CreatedAt *string `json:"createdAt,omitempty"`
 	UpdatedAt *string `json:"updatedAt,omitempty"`
@@ -166,6 +167,38 @@ func (o *Org) HasDomain() bool {
 // SetDomain gets a reference to the given string and assigns it to the Domain field.
 func (o *Org) SetDomain(v string) {
 	o.Domain = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Org) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Org) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Org) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Org) SetName(v string) {
+	o.Name = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -626,6 +659,9 @@ func (o Org) MarshalJSON() ([]byte, error) {
 	}
 	if o.Domain != nil {
 		toSerialize["domain"] = o.Domain
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id

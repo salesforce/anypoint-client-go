@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **ParentName** | Pointer to **NullableString** |  | [optional] 
 **ParentId** | Pointer to **NullableString** |  | [optional] 
 **Domain** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -135,6 +136,31 @@ SetDomain sets Domain field to given value.
 `func (o *Org) HasDomain() bool`
 
 HasDomain returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *Org) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Org) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Org) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *Org) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetId
 

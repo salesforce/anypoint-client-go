@@ -444,6 +444,9 @@ components:
         domain:
           title: domain
           type: string
+        name:
+          title: name
+          type: string
         id:
           title: id
           type: string
