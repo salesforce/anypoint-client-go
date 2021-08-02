@@ -1,0 +1,467 @@
+openapi: 3.0.0
+info:
+  description: Description of the Team API
+  title: Team API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/teams:
+    get:
+      description: Returns teams.
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: team_id that must appear in the team's ancestor_team_ids.
+        explode: true
+        in: query
+        name: ancestor_team_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: team_id of the immediate parent of the team to return.
+        explode: true
+        in: query
+        name: parent_team_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: id of the team to return.
+        explode: true
+        in: query
+        name: team_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: return only teams that are of this type
+        explode: true
+        in: query
+        name: team_type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A search string to use for case-insensitive partial matches on
+          team name
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Maximum number of rolegroups to retrieve per request.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The number of records to omit from the response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The field to sort on. default team_name
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          enum:
+          - team_name
+          - created_at
+          - team_id
+          type: string
+        style: form
+      - description: Whether to sort ascending or descending. Default true
+        explode: true
+        in: query
+        name: ascending
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "404":
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/teamCollection'
+          description: Success response
+    post:
+      description: Creates a new team
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/teamPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team'
+          description: Success response
+  /organizations/{orgId}/teams/{teamId}:
+    delete:
+      description: delete a team
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: retrieves team by id
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          description: resource not found
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team'
+          description: Success response
+    patch:
+      description: updates a team
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/teamPatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team'
+          description: Success response
+    put:
+      description: moves a team (along with its nested teams) from one parent team
+        to another
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/teamPutBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/team'
+                - properties:
+                    previous_ancestor_team_ids:
+                      items:
+                        type: string
+                      title: previousAncestorTeamIds
+                      type: array
+                  title: previousTeamState
+                  type: object
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      description: resource not found
+    SuccessListTeams:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/teamCollection'
+      description: Success response
+    SuccessGetTeam:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/team'
+      description: Success response
+    SuccessPostTeam:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/team'
+      description: Success response
+    SuccessPatchTeam:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/team'
+      description: Success response
+    SuccessPutTeam:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/team'
+            - properties:
+                previous_ancestor_team_ids:
+                  items:
+                    type: string
+                  title: previousAncestorTeamIds
+                  type: array
+              title: previousTeamState
+              type: object
+      description: Success response
+    SuccessDeleteTeam:
+      description: Success response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors'
+          type: array
+      title: errorsResponse
+      type: object
+    teamPostBody:
+      properties:
+        parent_team_id:
+          title: parentTeamId
+          type: string
+        team_name:
+          title: teamName
+          type: string
+        team_type:
+          default: internal
+          title: teamType
+          type: string
+      title: teamPostBody
+      type: object
+    teamPatchBody:
+      properties:
+        team_name:
+          title: teamName
+          type: string
+        team_type:
+          default: internal
+          title: teamType
+          type: string
+      title: teamPatchBody
+      type: object
+    teamPutBody:
+      properties:
+        parent_team_id:
+          title: parentTeamId
+          type: string
+      title: teamPutBody
+      type: object
+    team:
+      example:
+        ancestor_team_ids:
+        - ancestor_team_ids
+        - ancestor_team_ids
+        updated_at: updated_at
+        org_id: org_id
+        created_at: created_at
+        team_type: team_type
+        team_id: team_id
+        team_name: team_name
+      properties:
+        org_id:
+          title: orgId
+          type: string
+        team_id:
+          title: teamId
+          type: string
+        team_name:
+          title: teamName
+          type: string
+        team_type:
+          title: teamType
+          type: string
+        ancestor_team_ids:
+          items:
+            type: string
+          title: ancestorTeamIds
+          type: array
+        created_at:
+          title: createdAt
+          type: string
+        updated_at:
+          title: updatedAt
+          type: string
+      title: team
+      type: object
+    teamCollection:
+      example:
+        total: 0
+        data:
+        - ancestor_team_ids:
+          - ancestor_team_ids
+          - ancestor_team_ids
+          updated_at: updated_at
+          org_id: org_id
+          created_at: created_at
+          team_type: team_type
+          team_id: team_id
+          team_name: team_name
+        - ancestor_team_ids:
+          - ancestor_team_ids
+          - ancestor_team_ids
+          updated_at: updated_at
+          org_id: org_id
+          created_at: created_at
+          team_type: team_type
+          team_id: team_id
+          team_name: team_name
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/team'
+          title: data
+          type: array
+        total:
+          title: total
+          type: integer
+      title: teamCollection
+      type: object
+    errorsResponse_errors:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          items:
+            title: schemaItem
+            type: string
+          type: array
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
