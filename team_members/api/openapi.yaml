@@ -1,0 +1,322 @@
+openapi: 3.0.0
+info:
+  description: Description of the Team Members API
+  title: Team Members API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/teams/{teamId}/members:
+    get:
+      description: retrieves team by id
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Include the group access mappings that grant the provided membership
+          type By default, all group access mappings are returned
+        explode: true
+        in: query
+        name: membership_type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A search string to use for case-insensitive partial matches on
+          external group name
+        explode: true
+        in: query
+        name: identity_type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Include the members of the team that have ids in this list
+        explode: true
+        in: query
+        name: member_ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A search string to use for case-insensitive partial matches on
+          team name
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Maximum number of rolegroups to retrieve per request.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The number of records to omit from the response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The field to sort on. default identity_type
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          enum:
+          - identity_type
+          - name
+          type: string
+        style: form
+      - description: Whether to sort ascending or descending. Default true
+        explode: true
+        in: query
+        name: ascending
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "404":
+          description: resource not found
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/teamMemberCollection'
+          description: Success response
+  /organizations/{orgId}/teams/{teamId}/members/{userId}:
+    delete:
+      description: delete a team
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user in GUID format
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    put:
+      description: moves a team (along with its nested teams) from one parent team
+        to another
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user in GUID format
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/teamMemberPutBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      description: resource not found
+    SuccessListTeamMembers:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/teamMemberCollection'
+      description: Success response
+    SuccessPutTeamMember:
+      description: Success response
+    SuccessDeleteTeamMember:
+      description: Success response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors'
+          type: array
+      title: errorsResponse
+      type: object
+    teamMemberPutBody:
+      properties:
+        membership_type:
+          enum:
+          - member
+          - maintainer
+          title: membershipType
+          type: string
+      title: teamMemberPutBody
+      type: object
+    teamMember:
+      example:
+        is_assigned_via_external_groups: true
+        updated_at: updated_at
+        name: name
+        created_at: created_at
+        id: id
+        identity_type: identity_type
+        membership_type: membership_type
+      properties:
+        identity_type:
+          title: identityType
+          type: string
+        id:
+          title: id
+          type: string
+        name:
+          title: name
+          type: string
+        membership_type:
+          title: membershipType
+          type: string
+        is_assigned_via_external_groups:
+          title: isAssignedViaExternalGroups
+          type: boolean
+        created_at:
+          title: createdAt
+          type: string
+        updated_at:
+          title: updatedAt
+          type: string
+      title: teamMember
+      type: object
+    teamMemberCollection:
+      example:
+        total: 0
+        data:
+        - is_assigned_via_external_groups: true
+          updated_at: updated_at
+          name: name
+          created_at: created_at
+          id: id
+          identity_type: identity_type
+          membership_type: membership_type
+        - is_assigned_via_external_groups: true
+          updated_at: updated_at
+          name: name
+          created_at: created_at
+          id: id
+          identity_type: identity_type
+          membership_type: membership_type
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/teamMember'
+          title: data
+          type: array
+        total:
+          title: total
+          type: integer
+      title: teamMemberCollection
+      type: object
+    errorsResponse_errors:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          items:
+            title: schemaItem
+            type: string
+          type: array
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
