@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** |  | [optional] 
 **DataPath** | Pointer to **string** |  | [optional] 
 **Keyword** | Pointer to **string** |  | [optional] 
-**Schema** | Pointer to **[]string** |  | [optional] 
+**Schema** | Pointer to **string** |  | [optional] 
 **Data** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
 
@@ -107,20 +107,20 @@ HasKeyword returns a boolean if a field has been set.
 
 ### GetSchema
 
-`func (o *ErrorsResponseErrors) GetSchema() []string`
+`func (o *ErrorsResponseErrors) GetSchema() string`
 
 GetSchema returns the Schema field if non-nil, zero value otherwise.
 
 ### GetSchemaOk
 
-`func (o *ErrorsResponseErrors) GetSchemaOk() (*[]string, bool)`
+`func (o *ErrorsResponseErrors) GetSchemaOk() (*string, bool)`
 
 GetSchemaOk returns a tuple with the Schema field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSchema
 
-`func (o *ErrorsResponseErrors) SetSchema(v []string)`
+`func (o *ErrorsResponseErrors) SetSchema(v string)`
 
 SetSchema sets Schema field to given value.
 

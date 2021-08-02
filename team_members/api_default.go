@@ -81,7 +81,7 @@ func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest) Execute() (
 
 /*
  * OrganizationsOrgIdTeamsTeamIdMembersGet Method for OrganizationsOrgIdTeamsTeamIdMembersGet
- * retrieves team by id
+ * retrieves team members
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The ID of the organization in GUID format
  * @param teamId The ID of the team in GUID format
@@ -226,7 +226,7 @@ func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersUserIdDeleteRequest) Ex
 
 /*
  * OrganizationsOrgIdTeamsTeamIdMembersUserIdDelete Method for OrganizationsOrgIdTeamsTeamIdMembersUserIdDelete
- * delete a team
+ * delete the given user from the given team
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The ID of the organization in GUID format
  * @param teamId The ID of the team in GUID format
@@ -334,7 +334,7 @@ func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersUserIdPutRequest) Execu
 
 /*
  * OrganizationsOrgIdTeamsTeamIdMembersUserIdPut Method for OrganizationsOrgIdTeamsTeamIdMembersUserIdPut
- * moves a team (along with its nested teams) from one parent team to another
+ * adds the given user to the given team
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The ID of the organization in GUID format
  * @param teamId The ID of the team in GUID format

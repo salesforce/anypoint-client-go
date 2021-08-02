@@ -13,7 +13,7 @@ security:
 paths:
   /organizations/{orgId}/teams/{teamId}/members:
     get:
-      description: retrieves team by id
+      description: retrieves team members
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -120,7 +120,7 @@ paths:
           description: Success response
   /organizations/{orgId}/teams/{teamId}/members/{userId}:
     delete:
-      description: delete a team
+      description: delete the given user from the given team
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -152,8 +152,7 @@ paths:
         "204":
           description: Success response
     put:
-      description: moves a team (along with its nested teams) from one parent team
-        to another
+      description: adds the given user to the given team
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -304,10 +303,8 @@ components:
           title: keyword
           type: string
         schema:
-          items:
-            title: schemaItem
-            type: string
-          type: array
+          title: schema
+          type: string
         data:
           title: data
           type: string

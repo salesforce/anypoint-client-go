@@ -449,10 +449,8 @@ components:
           title: keyword
           type: string
         schema:
-          items:
-            title: schemaItem
-            type: string
-          type: array
+          title: schema
+          type: string
         data:
           title: data
           type: string

@@ -19,7 +19,7 @@ type ErrorsResponseErrors struct {
 	Type *string `json:"type,omitempty"`
 	DataPath *string `json:"dataPath,omitempty"`
 	Keyword *string `json:"keyword,omitempty"`
-	Schema *[]string `json:"schema,omitempty"`
+	Schema *string `json:"schema,omitempty"`
 	Data *string `json:"data,omitempty"`
 	Message *string `json:"message,omitempty"`
 }
@@ -138,9 +138,9 @@ func (o *ErrorsResponseErrors) SetKeyword(v string) {
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *ErrorsResponseErrors) GetSchema() []string {
+func (o *ErrorsResponseErrors) GetSchema() string {
 	if o == nil || o.Schema == nil {
-		var ret []string
+		var ret string
 		return ret
 	}
 	return *o.Schema
@@ -148,7 +148,7 @@ func (o *ErrorsResponseErrors) GetSchema() []string {
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorsResponseErrors) GetSchemaOk() (*[]string, bool) {
+func (o *ErrorsResponseErrors) GetSchemaOk() (*string, bool) {
 	if o == nil || o.Schema == nil {
 		return nil, false
 	}
@@ -164,8 +164,8 @@ func (o *ErrorsResponseErrors) HasSchema() bool {
 	return false
 }
 
-// SetSchema gets a reference to the given []string and assigns it to the Schema field.
-func (o *ErrorsResponseErrors) SetSchema(v []string) {
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *ErrorsResponseErrors) SetSchema(v string) {
 	o.Schema = &v
 }
 
