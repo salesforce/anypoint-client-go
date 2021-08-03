@@ -29,7 +29,9 @@ paths:
         name: ancestor_team_id
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: team_id of the immediate parent of the team to return.
         explode: true
@@ -37,7 +39,9 @@ paths:
         name: parent_team_id
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: id of the team to return.
         explode: true

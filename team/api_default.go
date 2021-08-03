@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -31,8 +32,8 @@ type DefaultApiApiOrganizationsOrgIdTeamsGetRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
-	ancestorTeamId *string
-	parentTeamId *string
+	ancestorTeamId *[]string
+	parentTeamId *[]string
 	teamId *string
 	teamType *string
 	search *string
@@ -42,11 +43,11 @@ type DefaultApiApiOrganizationsOrgIdTeamsGetRequest struct {
 	ascending *bool
 }
 
-func (r DefaultApiApiOrganizationsOrgIdTeamsGetRequest) AncestorTeamId(ancestorTeamId string) DefaultApiApiOrganizationsOrgIdTeamsGetRequest {
+func (r DefaultApiApiOrganizationsOrgIdTeamsGetRequest) AncestorTeamId(ancestorTeamId []string) DefaultApiApiOrganizationsOrgIdTeamsGetRequest {
 	r.ancestorTeamId = &ancestorTeamId
 	return r
 }
-func (r DefaultApiApiOrganizationsOrgIdTeamsGetRequest) ParentTeamId(parentTeamId string) DefaultApiApiOrganizationsOrgIdTeamsGetRequest {
+func (r DefaultApiApiOrganizationsOrgIdTeamsGetRequest) ParentTeamId(parentTeamId []string) DefaultApiApiOrganizationsOrgIdTeamsGetRequest {
 	r.parentTeamId = &parentTeamId
 	return r
 }
@@ -125,10 +126,26 @@ func (a *DefaultApiService) OrganizationsOrgIdTeamsGetExecute(r DefaultApiApiOrg
 	localVarFormParams := _neturl.Values{}
 
 	if r.ancestorTeamId != nil {
-		localVarQueryParams.Add("ancestor_team_id", parameterToString(*r.ancestorTeamId, ""))
+		t := *r.ancestorTeamId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ancestor_team_id", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ancestor_team_id", parameterToString(t, "multi"))
+		}
 	}
 	if r.parentTeamId != nil {
-		localVarQueryParams.Add("parent_team_id", parameterToString(*r.parentTeamId, ""))
+		t := *r.parentTeamId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("parent_team_id", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("parent_team_id", parameterToString(t, "multi"))
+		}
 	}
 	if r.teamId != nil {
 		localVarQueryParams.Add("team_id", parameterToString(*r.teamId, ""))
