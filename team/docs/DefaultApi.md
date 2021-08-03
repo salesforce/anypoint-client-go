@@ -35,8 +35,8 @@ import (
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
-    ancestorTeamId := "ancestorTeamId_example" // string | team_id that must appear in the team's ancestor_team_ids. (optional)
-    parentTeamId := "parentTeamId_example" // string | team_id of the immediate parent of the team to return. (optional)
+    ancestorTeamId := []string{"Inner_example"} // []string | team_id that must appear in the team's ancestor_team_ids. (optional)
+    parentTeamId := []string{"Inner_example"} // []string | team_id of the immediate parent of the team to return. (optional)
     teamId := "teamId_example" // string | id of the team to return. (optional)
     teamType := "teamType_example" // string | return only teams that are of this type (optional)
     search := "search_example" // string | A search string to use for case-insensitive partial matches on team name (optional)
@@ -73,8 +73,8 @@ Other parameters are passed through a pointer to a apiOrganizationsOrgIdTeamsGet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ancestorTeamId** | **string** | team_id that must appear in the team&#39;s ancestor_team_ids. | 
- **parentTeamId** | **string** | team_id of the immediate parent of the team to return. | 
+ **ancestorTeamId** | **[]string** | team_id that must appear in the team&#39;s ancestor_team_ids. | 
+ **parentTeamId** | **[]string** | team_id of the immediate parent of the team to return. | 
  **teamId** | **string** | id of the team to return. | 
  **teamType** | **string** | return only teams that are of this type | 
  **search** | **string** | A search string to use for case-insensitive partial matches on team name | 
