@@ -55,7 +55,9 @@ paths:
         name: member_ids
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: A search string to use for case-insensitive partial matches on
           team name
