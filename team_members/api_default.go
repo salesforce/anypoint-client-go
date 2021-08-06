@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -34,7 +35,7 @@ type DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest struct {
 	teamId string
 	membershipType *string
 	identityType *string
-	memberIds *string
+	memberIds *[]string
 	search *string
 	limit *int32
 	offset *int32
@@ -50,7 +51,7 @@ func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest) IdentityTyp
 	r.identityType = &identityType
 	return r
 }
-func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest) MemberIds(memberIds string) DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest {
+func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest) MemberIds(memberIds []string) DefaultApiApiOrganizationsOrgIdTeamsTeamIdMembersGetRequest {
 	r.memberIds = &memberIds
 	return r
 }
@@ -130,7 +131,15 @@ func (a *DefaultApiService) OrganizationsOrgIdTeamsTeamIdMembersGetExecute(r Def
 		localVarQueryParams.Add("identity_type", parameterToString(*r.identityType, ""))
 	}
 	if r.memberIds != nil {
-		localVarQueryParams.Add("member_ids", parameterToString(*r.memberIds, ""))
+		t := *r.memberIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("member_ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("member_ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.search != nil {
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))

@@ -35,7 +35,7 @@ func main() {
     teamId := "teamId_example" // string | The ID of the team in GUID format
     membershipType := "membershipType_example" // string | Include the group access mappings that grant the provided membership type By default, all group access mappings are returned (optional)
     identityType := "identityType_example" // string | A search string to use for case-insensitive partial matches on external group name (optional)
-    memberIds := "memberIds_example" // string | Include the members of the team that have ids in this list (optional)
+    memberIds := []string{"Inner_example"} // []string | Include the members of the team that have ids in this list (optional)
     search := "search_example" // string | A search string to use for case-insensitive partial matches on team name (optional)
     limit := int32(56) // int32 | Maximum number of rolegroups to retrieve per request. (optional)
     offset := int32(56) // int32 | The number of records to omit from the response. (optional)
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
  **membershipType** | **string** | Include the group access mappings that grant the provided membership type By default, all group access mappings are returned | 
  **identityType** | **string** | A search string to use for case-insensitive partial matches on external group name | 
- **memberIds** | **string** | Include the members of the team that have ids in this list | 
+ **memberIds** | **[]string** | Include the members of the team that have ids in this list | 
  **search** | **string** | A search string to use for case-insensitive partial matches on team name | 
  **limit** | **int32** | Maximum number of rolegroups to retrieve per request. | 
  **offset** | **int32** | The number of records to omit from the response. | 
