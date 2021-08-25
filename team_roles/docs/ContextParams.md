@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Org** | Pointer to **string** |  | [optional] 
+**EnvId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetOrg sets Org field to given value.
 `func (o *ContextParams) HasOrg() bool`
 
 HasOrg returns a boolean if a field has been set.
+
+### GetEnvId
+
+`func (o *ContextParams) GetEnvId() string`
+
+GetEnvId returns the EnvId field if non-nil, zero value otherwise.
+
+### GetEnvIdOk
+
+`func (o *ContextParams) GetEnvIdOk() (*string, bool)`
+
+GetEnvIdOk returns a tuple with the EnvId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvId
+
+`func (o *ContextParams) SetEnvId(v string)`
+
+SetEnvId sets EnvId field to given value.
+
+### HasEnvId
+
+`func (o *ContextParams) HasEnvId() bool`
+
+HasEnvId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
