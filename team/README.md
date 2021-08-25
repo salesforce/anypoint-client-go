@@ -82,8 +82,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**OrganizationsOrgIdTeamsPost**](docs/DefaultApi.md#organizationsorgidteamspost) | **Post** /organizations/{orgId}/teams | 
 *DefaultApi* | [**OrganizationsOrgIdTeamsTeamIdDelete**](docs/DefaultApi.md#organizationsorgidteamsteamiddelete) | **Delete** /organizations/{orgId}/teams/{teamId} | 
 *DefaultApi* | [**OrganizationsOrgIdTeamsTeamIdGet**](docs/DefaultApi.md#organizationsorgidteamsteamidget) | **Get** /organizations/{orgId}/teams/{teamId} | 
+*DefaultApi* | [**OrganizationsOrgIdTeamsTeamIdParentPut**](docs/DefaultApi.md#organizationsorgidteamsteamidparentput) | **Put** /organizations/{orgId}/teams/{teamId}/parent | 
 *DefaultApi* | [**OrganizationsOrgIdTeamsTeamIdPatch**](docs/DefaultApi.md#organizationsorgidteamsteamidpatch) | **Patch** /organizations/{orgId}/teams/{teamId} | 
-*DefaultApi* | [**OrganizationsOrgIdTeamsTeamIdPut**](docs/DefaultApi.md#organizationsorgidteamsteamidput) | **Put** /organizations/{orgId}/teams/{teamId} | 
 
 
 ## Documentation For Models
