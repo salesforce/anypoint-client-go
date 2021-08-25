@@ -181,6 +181,9 @@ components:
               org:
                 title: org
                 type: string
+              envId:
+                title: envId
+                type: string
             title: contextParams
             type: object
         title: teamRolePostBody
@@ -198,6 +201,9 @@ components:
               org:
                 title: org
                 type: string
+              envId:
+                title: envId
+                type: string
             title: contextParams
             type: object
         title: teamRoleDeleteBody
@@ -210,6 +216,7 @@ components:
         name: name
         context_params:
           org: org
+          envId: envId
       properties:
         name:
           title: name
@@ -229,10 +236,12 @@ components:
           name: name
           context_params:
             org: org
+            envId: envId
         - role_id: role_id
           name: name
           context_params:
             org: org
+            envId: envId
       properties:
         data:
           items:
@@ -268,9 +277,13 @@ components:
     contextParams:
       example:
         org: org
+        envId: envId
       properties:
         org:
           title: org
+          type: string
+        envId:
+          title: envId
           type: string
       title: contextParams
       type: object
