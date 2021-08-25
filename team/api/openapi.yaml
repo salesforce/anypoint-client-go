@@ -234,6 +234,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/team'
           description: Success response
+  /organizations/{orgId}/teams/{teamId}/parent:
     put:
       description: moves a team (along with its nested teams) from one parent team
         to another

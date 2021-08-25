@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**OrganizationsOrgIdTeamsPost**](DefaultApi.md#OrganizationsOrgIdTeamsPost) | **Post** /organizations/{orgId}/teams | 
 [**OrganizationsOrgIdTeamsTeamIdDelete**](DefaultApi.md#OrganizationsOrgIdTeamsTeamIdDelete) | **Delete** /organizations/{orgId}/teams/{teamId} | 
 [**OrganizationsOrgIdTeamsTeamIdGet**](DefaultApi.md#OrganizationsOrgIdTeamsTeamIdGet) | **Get** /organizations/{orgId}/teams/{teamId} | 
+[**OrganizationsOrgIdTeamsTeamIdParentPut**](DefaultApi.md#OrganizationsOrgIdTeamsTeamIdParentPut) | **Put** /organizations/{orgId}/teams/{teamId}/parent | 
 [**OrganizationsOrgIdTeamsTeamIdPatch**](DefaultApi.md#OrganizationsOrgIdTeamsTeamIdPatch) | **Patch** /organizations/{orgId}/teams/{teamId} | 
-[**OrganizationsOrgIdTeamsTeamIdPut**](DefaultApi.md#OrganizationsOrgIdTeamsTeamIdPut) | **Put** /organizations/{orgId}/teams/{teamId} | 
 
 
 
@@ -317,6 +317,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## OrganizationsOrgIdTeamsTeamIdParentPut
+
+> Team OrganizationsOrgIdTeamsTeamIdParentPut(ctx, orgId, teamId).TeamPutBody(teamPutBody).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgId := "orgId_example" // string | The ID of the organization in GUID format
+    teamId := "teamId_example" // string | The ID of the team in GUID format
+    teamPutBody := *openapiclient.NewTeamPutBody() // TeamPutBody |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut(context.Background(), orgId, teamId).TeamPutBody(teamPutBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OrganizationsOrgIdTeamsTeamIdParentPut`: Team
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The ID of the organization in GUID format | 
+**teamId** | **string** | The ID of the team in GUID format | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdTeamsTeamIdParentPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **teamPutBody** | [**TeamPutBody**](TeamPutBody.md) |  | 
+
+### Return type
+
+[**Team**](team.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## OrganizationsOrgIdTeamsTeamIdPatch
 
 > Team OrganizationsOrgIdTeamsTeamIdPatch(ctx, orgId, teamId).TeamPatchBody(teamPatchBody).Execute()
@@ -377,81 +452,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Team**](Team.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## OrganizationsOrgIdTeamsTeamIdPut
-
-> Team OrganizationsOrgIdTeamsTeamIdPut(ctx, orgId, teamId).TeamPutBody(teamPutBody).Execute()
-
-
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgId := "orgId_example" // string | The ID of the organization in GUID format
-    teamId := "teamId_example" // string | The ID of the team in GUID format
-    teamPutBody := *openapiclient.NewTeamPutBody() // TeamPutBody |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdPut(context.Background(), orgId, teamId).TeamPutBody(teamPutBody).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdPut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrganizationsOrgIdTeamsTeamIdPut`: Team
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdTeamsTeamIdPut`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** | The ID of the organization in GUID format | 
-**teamId** | **string** | The ID of the team in GUID format | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrganizationsOrgIdTeamsTeamIdPutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **teamPutBody** | [**TeamPutBody**](TeamPutBody.md) |  | 
-
-### Return type
-
-[**Team**](team.md)
 
 ### Authorization
 
