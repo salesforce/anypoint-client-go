@@ -1,0 +1,201 @@
+openapi: 3.0.0
+info:
+  description: Description of the Team Group Mappings API
+  title: Team Group Mappings API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/teams/{teamId}/groupmappings:
+    get:
+      description: retrieves team groupmappings
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Maximum number of rolegroups to retrieve per request.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The number of records to omit from the response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "404":
+          description: resource not found
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/teamGroupMappingsCollection'
+          description: Success response
+    put:
+      description: adds the given group mappings to the given team
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the team in GUID format
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/teamGroupMappingsPutBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      description: resource not found
+    SuccessListTeamGroupMappings:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/teamGroupMappingsCollection'
+      description: Success response
+    SuccessPutGroupMappings:
+      description: Success response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors'
+          type: array
+      title: errorsResponse
+      type: object
+    teamGroupMappingsPutBody:
+      properties:
+        membership_type:
+          enum:
+          - member
+          - maintainer
+          title: membershipType
+          type: string
+        external_group_name:
+          title: externalGroupName
+          type: string
+      title: teamGroupMappingsPutBody
+      type: object
+    teamGroupMapping:
+      example:
+        provider_id: provider_id
+        external_group_name: external_group_name
+        membership_type: membership_type
+      properties:
+        membership_type:
+          title: membershipType
+          type: string
+        external_group_name:
+          title: externalGroupName
+          type: string
+        provider_id:
+          title: providerId
+          type: string
+      title: teamGroupMapping
+      type: object
+    teamGroupMappingsCollection:
+      example:
+        total: 0
+        data:
+        - provider_id: provider_id
+          external_group_name: external_group_name
+          membership_type: membership_type
+        - provider_id: provider_id
+          external_group_name: external_group_name
+          membership_type: membership_type
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/teamGroupMapping'
+          title: data
+          type: array
+        total:
+          title: total
+          type: integer
+      title: teamGroupMappingsCollection
+      type: object
+    errorsResponse_errors:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
