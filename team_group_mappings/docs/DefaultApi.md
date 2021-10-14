@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdTeamsTeamIdGroupmappingsPut
 
-> OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(ctx, orgId, teamId).TeamGroupMappingsPutBody(teamGroupMappingsPutBody).Execute()
+> OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(ctx, orgId, teamId).RequestBody(requestBody).Execute()
 
 
 
@@ -109,11 +109,11 @@ import (
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     teamId := "teamId_example" // string | The ID of the team in GUID format
-    teamGroupMappingsPutBody := *openapiclient.NewTeamGroupMappingsPutBody() // TeamGroupMappingsPutBody |  (optional)
+    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(context.Background(), orgId, teamId).TeamGroupMappingsPutBody(teamGroupMappingsPutBody).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(context.Background(), orgId, teamId).RequestBody(requestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **teamGroupMappingsPutBody** | [**TeamGroupMappingsPutBody**](TeamGroupMappingsPutBody.md) |  | 
+ **requestBody** | **[]map[string]interface{}** |  | 
 
 ### Return type
 

@@ -168,11 +168,11 @@ type DefaultApiApiOrganizationsOrgIdTeamsTeamIdGroupmappingsPutRequest struct {
 	ApiService *DefaultApiService
 	orgId string
 	teamId string
-	teamGroupMappingsPutBody *TeamGroupMappingsPutBody
+	requestBody *[]map[string]interface{}
 }
 
-func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdGroupmappingsPutRequest) TeamGroupMappingsPutBody(teamGroupMappingsPutBody TeamGroupMappingsPutBody) DefaultApiApiOrganizationsOrgIdTeamsTeamIdGroupmappingsPutRequest {
-	r.teamGroupMappingsPutBody = &teamGroupMappingsPutBody
+func (r DefaultApiApiOrganizationsOrgIdTeamsTeamIdGroupmappingsPutRequest) RequestBody(requestBody []map[string]interface{}) DefaultApiApiOrganizationsOrgIdTeamsTeamIdGroupmappingsPutRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
@@ -240,7 +240,7 @@ func (a *DefaultApiService) OrganizationsOrgIdTeamsTeamIdGroupmappingsPutExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.teamGroupMappingsPutBody
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err

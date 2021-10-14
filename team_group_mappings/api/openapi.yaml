@@ -123,18 +123,21 @@ components:
       title: errorsResponse
       type: object
     teamGroupMappingsPutBody:
-      properties:
-        membership_type:
-          enum:
-          - member
-          - maintainer
-          title: membershipType
-          type: string
-        external_group_name:
-          title: externalGroupName
-          type: string
+      items:
+        properties:
+          membership_type:
+            enum:
+            - member
+            - maintainer
+            title: membershipType
+            type: string
+          external_group_name:
+            title: externalGroupName
+            type: string
+        title: teamGroupMappingPutBody
+        type: object
       title: teamGroupMappingsPutBody
-      type: object
+      type: array
     teamGroupMapping:
       example:
         provider_id: provider_id

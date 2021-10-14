@@ -88,7 +88,6 @@ Class | Method | HTTP request | Description
  - [ErrorsResponseErrors](docs/ErrorsResponseErrors.md)
  - [TeamGroupMapping](docs/TeamGroupMapping.md)
  - [TeamGroupMappingsCollection](docs/TeamGroupMappingsCollection.md)
- - [TeamGroupMappingsPutBody](docs/TeamGroupMappingsPutBody.md)
 
 
 ## Documentation For Authorization
