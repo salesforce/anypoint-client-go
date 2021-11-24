@@ -1,0 +1,982 @@
+openapi: 3.0.0
+info:
+  description: Description of the Exchange Assets API
+  title: Exchange Assets
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/exchange/api/v2/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/exchange/api/v2
+security:
+- bearerAuth: []
+paths:
+  /assets:
+    post:
+      description: Create a new asset
+      parameters:
+      - description: Specify API Spec formats that assets are allowed to use
+        explode: false
+        in: header
+        name: x-allowed-api-spec-formats
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Indicates if file is immutable.
+        explode: false
+        in: header
+        name: x-strict-package
+        required: true
+        schema:
+          default: false
+          type: boolean
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/postAssetObject'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postAssetResponse'
+          description: Success response
+      summary: Create a new asset
+  /assets/search:
+    get:
+      description: Search for assets
+      parameters:
+      - description: Filter results that partially match the input with the asset
+          name
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results that matches the input with the asset type
+        explode: true
+        in: query
+        name: types
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Filter results by organization using its domain
+        explode: true
+        in: query
+        name: domain
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results by master organization id.
+        explode: true
+        in: query
+        name: masterOrganizationId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results by organizations. For more than one organization,
+          & organizationId=1& organizationId=2, etc...
+        explode: true
+        in: query
+        name: organizationId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The offset specifies the offset of the first row to return
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Amount of objects retrieved in the response
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Property to sort by
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Order for sorting
+        explode: true
+        in: query
+        name: ascending
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Retrieve only the assets that has been shared with you
+        explode: true
+        in: query
+        name: sharedWithMe
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include snapshots in the results
+        explode: true
+        in: query
+        name: includeSnapshots
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/assetSearchResult'
+          description: Success response
+      summary: Search for assets
+  /assets/{orgId}/{assetId}/asset:
+    get:
+      description: Get one specific Asset
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the asset
+        explode: false
+        in: path
+        name: assetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/asset'
+          description: Success response
+      summary: Get one specific Asset
+  /assets/{orgId}/{assetId}:
+    patch:
+      description: Modify an asset
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the asset
+        explode: false
+        in: path
+        name: assetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchAssetNameAndDescr'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "204":
+          content:
+            text/plain:
+              example: ""
+          description: Success response
+      summary: update Asset name and description
+  /assets/{orgId}/{assetId}/{version}:
+    delete:
+      description: Delete an asset
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the asset
+        explode: false
+        in: path
+        name: assetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The version of the asset
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: It could be 'soft-delete' or 'hard-delete', that mean the asset
+          will be logical deleted or physical deleted It's supposed to if it is not
+          specified, the type will be 'soft-delete'
+        explode: false
+        in: header
+        name: X-Delete-Type
+        required: false
+        schema:
+          default: soft-delete
+          enum:
+          - soft-delete
+          - hard-delete
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "409":
+          content:
+            text/plain:
+              example: conflict executing operation
+          description: There were conflicts while executing the operation
+        "204":
+          content:
+            text/plain:
+              example: ""
+          description: Success response
+      summary: Delete an asset
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    ConflictError:
+      content:
+        text/plain:
+          example: conflict executing operation
+      description: There were conflicts while executing the operation
+    SuccessListAssets:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/assetSearchResult'
+      description: Success response
+    SuccessPostAsset:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/postAssetResponse'
+      description: Success response
+    SuccessGetAsset:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/asset'
+      description: Success response
+    SuccessPatchAsset:
+      content:
+        text/plain:
+          example: ""
+      description: Success response
+    SuccessDeleteAsset:
+      content:
+        text/plain:
+          example: ""
+      description: Success response
+  schemas:
+    assetSearchResult:
+      items:
+        properties:
+          groupId:
+            title: groupId
+            type: string
+          assetId:
+            title: assetId
+            type: string
+          version:
+            title: version
+            type: string
+          minorVersion:
+            title: minorVersion
+            type: string
+          versionGroup:
+            title: versionGroup
+            type: string
+          description:
+            title: description
+            type: string
+          isPublic:
+            title: isPublic
+            type: boolean
+          name:
+            title: name
+            type: string
+          contactName:
+            nullable: true
+            title: contactName
+            type: string
+          contactEmail:
+            nullable: true
+            title: contactEmail
+            type: string
+          type:
+            title: type
+            type: string
+          isSnapshot:
+            title: isSnapshot
+            type: boolean
+          status:
+            title: status
+            type: string
+          externalFile:
+            $ref: '#/components/schemas/externalFile'
+          createdDate:
+            title: createdDate
+            type: string
+          updatedDate:
+            title: updatedDate
+            type: string
+          minMuleVersion:
+            nullable: true
+            title: minMuleVersion
+            type: string
+          labels:
+            items:
+              type: string
+            title: labels
+            type: array
+          categories:
+            items:
+              $ref: '#/components/schemas/category'
+            title: categories
+            type: array
+          files:
+            items:
+              $ref: '#/components/schemas/file'
+            title: files
+            type: array
+          customFields:
+            items:
+              $ref: '#/components/schemas/customField'
+            title: customFields
+            type: array
+          rating:
+            title: rating
+            type: integer
+          numberOfRates:
+            title: numberOfRates
+            type: integer
+          createdBy:
+            $ref: '#/components/schemas/createdBy'
+          organization:
+            $ref: '#/components/schemas/organization'
+          id:
+            title: id
+            type: string
+          icon:
+            nullable: true
+            title: icon
+            type: string
+          createdAt:
+            title: createdAt
+            type: string
+          modifiedAt:
+            title: modifiedAt
+            type: string
+        title: assetSearchResultItem
+        type: object
+      title: assetSearchResult
+      type: array
+    asset:
+      example:
+        contactEmail: contactEmail
+        contactName: contactName
+        customFields:
+        - dateValue: dateValue
+          textValue: textValue
+          displayName: displayName
+          dataType: dataType
+          key: key
+        - dateValue: dateValue
+          textValue: textValue
+          displayName: displayName
+          dataType: dataType
+          key: key
+        groupId: groupId
+        description: description
+        type: type
+        version: version
+        labels:
+        - labels
+        - labels
+        dependencies:
+        - organizationId: organizationId
+          assetId: assetId
+          groupId: groupId
+          version: version
+        - organizationId: organizationId
+          assetId: assetId
+          groupId: groupId
+          version: version
+        organizationId: organizationId
+        createdAt: createdAt
+        versions:
+        - versions
+        - versions
+        assetId: assetId
+        versionGroup: versionGroup
+        name: name
+        isPublic: true
+        files:
+        - sha1: sha1
+          isGenerated: true
+          createdDate: createdDate
+          externalLink: externalLink
+          classifier: classifier
+          downloadURL: downloadURL
+          packaging: packaging
+          mainFile: mainFile
+          md5: md5
+        - sha1: sha1
+          isGenerated: true
+          createdDate: createdDate
+          externalLink: externalLink
+          classifier: classifier
+          downloadURL: downloadURL
+          packaging: packaging
+          mainFile: mainFile
+          md5: md5
+        attributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        categories:
+        - displayName: displayName
+          value:
+          - value
+          - value
+          key: key
+        - displayName: displayName
+          value:
+          - value
+          - value
+          key: key
+        minorVersion: minorVersion
+        isSnapshot: true
+        createdById: createdById
+        status: status
+      properties:
+        groupId:
+          title: groupId
+          type: string
+        assetId:
+          title: assetId
+          type: string
+        version:
+          title: version
+          type: string
+        minorVersion:
+          title: minorVersion
+          type: string
+        versionGroup:
+          title: versionGroup
+          type: string
+        description:
+          title: description
+          type: string
+        organizationId:
+          title: organizationId
+          type: string
+        isPublic:
+          title: isPublic
+          type: boolean
+        name:
+          title: name
+          type: string
+        contactName:
+          nullable: true
+          title: contactName
+          type: string
+        contactEmail:
+          nullable: true
+          title: contactEmail
+          type: string
+        type:
+          title: type
+          type: string
+        isSnapshot:
+          title: isSnapshot
+          type: boolean
+        status:
+          title: status
+          type: string
+        labels:
+          items:
+            type: string
+          title: labels
+          type: array
+        attributes:
+          items:
+            $ref: '#/components/schemas/attribute'
+          title: attributes
+          type: array
+        categories:
+          items:
+            $ref: '#/components/schemas/category'
+          title: categories
+          type: array
+        files:
+          items:
+            $ref: '#/components/schemas/file'
+          title: files
+          type: array
+        customFields:
+          items:
+            $ref: '#/components/schemas/customField'
+          title: customFields
+          type: array
+        createdById:
+          title: createdById
+          type: string
+        createdAt:
+          title: createdAt
+          type: string
+        versions:
+          items:
+            type: string
+          title: versions
+          type: array
+        dependencies:
+          items:
+            $ref: '#/components/schemas/dependency'
+          title: dependencies
+          type: array
+      title: asset
+      type: object
+    file:
+      example:
+        sha1: sha1
+        isGenerated: true
+        createdDate: createdDate
+        externalLink: externalLink
+        classifier: classifier
+        downloadURL: downloadURL
+        packaging: packaging
+        mainFile: mainFile
+        md5: md5
+      properties:
+        classifier:
+          title: classifier
+          type: string
+        packaging:
+          title: packaging
+          type: string
+        externalLink:
+          title: externalLink
+          type: string
+        downloadURL:
+          title: downloadURL
+          type: string
+        md5:
+          title: md5
+          type: string
+        sha1:
+          title: sha1
+          type: string
+        createdDate:
+          title: createdDate
+          type: string
+        mainFile:
+          nullable: true
+          title: mainFile
+          type: string
+        isGenerated:
+          title: isGenerated
+          type: boolean
+      title: file
+      type: object
+    externalFile:
+      properties:
+        url:
+          title: url
+          type: string
+      title: externalFile
+      type: object
+    category:
+      example:
+        displayName: displayName
+        value:
+        - value
+        - value
+        key: key
+      properties:
+        value:
+          items:
+            type: string
+          title: value
+          type: array
+        displayName:
+          title: displayName
+          type: string
+        key:
+          title: key
+          type: string
+      title: category
+      type: object
+    customField:
+      example:
+        dateValue: dateValue
+        textValue: textValue
+        displayName: displayName
+        dataType: dataType
+        key: key
+      properties:
+        dateValue:
+          title: dateValue
+          type: string
+        textValue:
+          title: textValue
+          type: string
+        displayName:
+          title: displayName
+          type: string
+        dataType:
+          title: dataType
+          type: string
+        key:
+          title: key
+          type: string
+      title: customField
+      type: object
+    attribute:
+      example:
+        value: value
+        key: key
+      properties:
+        value:
+          title: value
+          type: string
+        key:
+          title: key
+          type: string
+      title: attribute
+      type: object
+    createdBy:
+      properties:
+        id:
+          title: id
+          type: string
+        userName:
+          title: userName
+          type: string
+        firstName:
+          title: firstName
+          type: string
+        lastName:
+          title: lastName
+          type: string
+      title: createdBy
+      type: object
+    organization:
+      properties:
+        id:
+          title: id
+          type: string
+        name:
+          title: name
+          type: string
+        parentOrganizationIds:
+          items:
+            type: string
+          title: parentOrganizationIds
+          type: array
+        subOrganizationIds:
+          items:
+            type: string
+          title: subOrganizationIds
+          type: array
+        tenantOrganizationIds:
+          items:
+            type: string
+          title: tenantOrganizationIds
+          type: array
+        isMaster:
+          title: isMaster
+          type: boolean
+        domain:
+          title: domain
+          type: string
+        isMulesoftOrganization:
+          title: isMulesoftOrganization
+          type: boolean
+      title: organization
+      type: object
+    dependency:
+      example:
+        organizationId: organizationId
+        assetId: assetId
+        groupId: groupId
+        version: version
+      properties:
+        organizationId:
+          title: organizationId
+          type: string
+        groupId:
+          title: groupId
+          type: string
+        assetId:
+          title: assetId
+          type: string
+        version:
+          title: version
+          type: string
+      title: dependency
+      type: object
+    patchAssetNameAndDescr:
+      properties:
+        description:
+          title: description
+          type: string
+        name:
+          title: name
+          type: string
+      title: PatchAssetNameAndDescr
+    postAssetObject:
+      properties:
+        organizationId:
+          description: The id of the organization the asset will belong to
+          title: organizationId
+          type: string
+        assetId:
+          description: The id of the asset
+          title: assetId
+          type: string
+        version:
+          description: The version of the asset being created (must follow Semver
+            syntax)
+          title: version
+          type: string
+        name:
+          description: The visible name of the asset
+          title: name
+          type: string
+        classifier:
+          description: The type of the asset to be created
+          enum:
+          - raml-fragment
+          - raml
+          - oas
+          - wsdl
+          - http
+          - custom
+          title: classifier
+          type: string
+        apiVersion:
+          description: The product version of API assets. Required for "raml", "oas",
+            "wsdl" and "http" assets
+          title: apiVersion
+          type: string
+        main:
+          description: The main file of the asset. Required for "raml", "raml-fragment",
+            "oas" and "wsdl".
+          title: main
+          type: string
+        groupId:
+          description: The id of the business group the asset will belong to
+          title: groupId
+          type: string
+        asset:
+          description: The asset file. Required for "raml", "raml-fragment", "oas"
+            and "wsdl". Maximum size of 5 MB. This field must be the last field of
+            the multipart.
+          format: binary
+          title: asset
+          type: string
+        dependencies:
+          description: Required for "api-group" classifier only, They are APIs included
+            in it, as a JSON array of objects. Because the field must be of String
+            type, the stringified value of the JSON array must be passed as parameter.
+          title: dependencies
+          type: string
+        originalFormatVersion:
+          description: The version of the format of the api specification. ie ‘2.0’
+            for OAS 2.0
+          title: originalFormatVersion
+          type: string
+        metadata:
+          description: A design center object describing asset projectId, branchId
+            and commitId. Because the field must be of String type, the stringified
+            value of the JSON object must be passed as parameter.
+          title: metadata
+          type: string
+        tags:
+          description: An array of strings to be saved as asset's tags. Because the
+            field must be of String type, the stringified value of the JSON array
+            must be passed as parameter.
+          title: tags
+          type: string
+        assetLink:
+          description: The link of the asset. Required for "wsdl" or "http" assets
+          title: assetLink
+          type: string
+      required:
+      - apiVersion
+      - asset
+      - assetId
+      - classifier
+      - groupId
+      - main
+      - name
+      - organizationId
+      - version
+      title: postAssetObject
+      type: object
+    postAssetResponse:
+      example:
+        organizationId: organizationId
+        metadata:
+          classifier: classifier
+          name: name
+          type: type
+          tags:
+          - tags
+          - tags
+        assetId: assetId
+        versionGroup: versionGroup
+        groupId: groupId
+        classifier: classifier
+        name: name
+        type: type
+        version: version
+      properties:
+        organizationId:
+          title: organizationId
+          type: string
+        groupId:
+          title: groupId
+          type: string
+        assetId:
+          title: assetId
+          type: string
+        version:
+          title: version
+          type: string
+        versionGroup:
+          title: versionGroup
+          type: string
+        classifier:
+          title: classifier
+          type: string
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        name:
+          title: name
+          type: string
+        type:
+          title: type
+          type: string
+      title: postAssetResponse
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    metadata:
+      example:
+        classifier: classifier
+        name: name
+        type: type
+        tags:
+        - tags
+        - tags
+      properties:
+        classifier:
+          title: classifier
+          type: string
+        tags:
+          items:
+            type: string
+          title: tags
+          type: array
+        name:
+          title: name
+          type: string
+        type:
+          title: type
+          type: string
+      title: metadata
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
