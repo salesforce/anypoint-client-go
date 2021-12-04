@@ -1,4 +1,4 @@
-# CLOUDHUB CLIENT GO
+# ANYPOINT CLIENT GO
 
 This repository hosts golang modules to query resources on anypoint platform. 
 

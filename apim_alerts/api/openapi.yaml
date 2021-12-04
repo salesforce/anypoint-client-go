@@ -1,0 +1,397 @@
+openapi: 3.0.0
+info:
+  description: Alert for API Manager
+  title: Alert API Manager
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/apimanager/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/apimanager/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/apis/{apiVersion}/alerts:
+    get:
+      description: Get Alerts from API manager
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api version
+        explode: false
+        in: path
+        name: apiVersion
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/alert'
+                title: alerts from GET
+                type: array
+          description: Success response
+      summary: GetAlertsfromAPImanager
+    post:
+      description: Create a new alert for API manager
+      operationId: CreateAlertForAPIManagerInstance
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api version
+        explode: false
+        in: path
+        name: apiVersion
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/alertCore'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/alert'
+          description: Success create an alert
+  /organizations/{orgId}/environments/{envId}/apis/{apiVersion}/alerts/{alertId}:
+    delete:
+      description: Delete an Alert from API manager
+      operationId: DeleteanAlertfromAPImanager
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the api version
+        explode: false
+        in: path
+        name: apiVersion
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the id of the alert
+        explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          content:
+            text/plain:
+              example: successfully deleted
+          description: Success delete alert
+      summary: DeleteanAlertfromAPImanager
+    get:
+      description: Get one alert
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the api version
+        explode: false
+        in: path
+        name: apiVersion
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the id of the alert
+        explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/alert'
+          description: Success response
+      summary: Getonealert
+    patch:
+      description: Modify one alert from API manger
+      operationId: ModifyonealertfromAPImanger
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the api version
+        explode: false
+        in: path
+        name: apiVersion
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: the id of the alert
+        explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/alertCore'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/alert'
+          description: Success response
+      summary: ModifyonealertfromAPImanger
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    SuccessGetAlerts:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/alert'
+            title: alerts from GET
+            type: array
+      description: Success response
+    SuccessGetAlert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/alert'
+      description: Success response
+    SuccessCreateAlert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/alert'
+      description: Success create an alert
+    SuccessDeleteAlert:
+      content:
+        text/plain:
+          example: successfully deleted
+      description: Success delete alert
+  schemas:
+    alert:
+      allOf:
+      - $ref: '#/components/schemas/alertId'
+      - $ref: '#/components/schemas/alertCore'
+      title: alert
+    alertCore:
+      properties:
+        apiAlertsVersion:
+          type: string
+        name:
+          type: string
+        type:
+          title: type
+          type: string
+        enabled:
+          title: enabled
+          type: boolean
+        severity:
+          title: severity
+          type: string
+        recipients:
+          items:
+            $ref: '#/components/schemas/recipient'
+          title: recipients
+          type: array
+        condition:
+          $ref: '#/components/schemas/condition'
+        period:
+          $ref: '#/components/schemas/period'
+      required:
+      - apiAlertsVersion
+      - condition
+      - enabled
+      - name
+      - period
+      - recipients
+      - severity
+      - type
+      title: alertCore
+      type: object
+    recipient:
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - firstName
+      - lastName
+      - type
+      - value
+      title: recipient
+      type: object
+    condition:
+      properties:
+        resourceType:
+          type: string
+        aggregate:
+          type: string
+        operator:
+          type: string
+        value:
+          format: int32
+          type: integer
+      required:
+      - aggregate
+      - operator
+      - resourceType
+      - value
+      title: condition
+      type: object
+    period:
+      properties:
+        duration:
+          $ref: '#/components/schemas/duration'
+        repeat:
+          format: int32
+          type: integer
+      required:
+      - duration
+      - repeat
+      title: period
+      type: object
+    duration:
+      properties:
+        count:
+          format: int32
+          type: integer
+        weight:
+          type: string
+      required:
+      - count
+      - weight
+      title: duration
+      type: object
+    alertId:
+      properties:
+        id:
+          title: id
+          type: string
+      required:
+      - id
+      title: alertId
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

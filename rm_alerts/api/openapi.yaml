@@ -1,0 +1,371 @@
+openapi: 3.0.0
+info:
+  description: Description of the Alert in Runtime Manager API
+  title: Alert Runtime Manager
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/cloudhub/api/v2/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/cloudhub/api/v2/
+security:
+- bearerAuth: []
+paths:
+  /alerts:
+    get:
+      description: Retrieve all alerts in the specified environment. Requires 'Read
+        Alerts' role.
+      parameters:
+      - description: The ID of your current environment
+        explode: false
+        in: header
+        name: X-ANYPNT-ENV-ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Offset to return alerts from
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Maximum number of alerts to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Only return alerts which are connected to this resource (application
+          name)
+        explode: true
+        in: query
+        name: resource
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/alert'
+                title: alerts from GET
+                type: array
+          description: Success response
+      summary: Get all alets for a given environment.
+    post:
+      description: Create a new Alert
+      parameters:
+      - description: The ID of your current environment
+        explode: false
+        in: header
+        name: X-ANYPNT-ENV-ID
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/alertBody'
+        description: Add a new alert
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/alert'
+          description: Success create an alert
+  /alerts/{alertId}:
+    delete:
+      description: Delete alert using its Id
+      parameters:
+      - description: the alert Id
+        explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          content:
+            text/plain:
+              example: successfully deleted
+          description: Success delete alert
+      summary: Delete a specific alert
+    get:
+      description: Get one specific alert
+      parameters:
+      - description: the alert Id
+        explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/alert'
+                title: alerts from GET
+                type: array
+          description: Success response
+      summary: Get one specific alert
+    put:
+      description: Modify one alert
+      operationId: Modify one alert
+      parameters:
+      - description: the alert Id
+        explode: false
+        in: path
+        name: alertId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/alertBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/alert'
+          description: Success create an alert
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    SuccessGetAlerts:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/alert'
+            title: alerts from GET
+            type: array
+      description: Success response
+    SuccessGetAlert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/alert'
+      description: Success response
+    SuccessCreateAlert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/alert'
+      description: Success create an alert
+    SuccessDeleteAlert:
+      content:
+        text/plain:
+          example: successfully deleted
+      description: Success delete alert
+  schemas:
+    alert:
+      example:
+        severity: severity
+        organizationId: organizationId
+        isSystem: true
+        createdAt: 5
+        condition:
+          periodCount: 0
+          periodMins: 1
+          resources:
+          - resources
+          - resources
+          type: type
+          value: 6
+          operator: operator
+          resourceType: resourceType
+        environmentId: environmentId
+        name: name
+        id: id
+        lastModified: 5
+        actions:
+        - subject: subject
+          userIds:
+          - userIds
+          - userIds
+          type: type
+          content: content
+        - subject: subject
+          userIds:
+          - userIds
+          - userIds
+          type: type
+          content: content
+        productName: productName
+        enabled: true
+      properties:
+        id:
+          title: id
+          type: string
+        name:
+          title: name
+          type: string
+        severity:
+          title: severity
+          type: string
+        organizationId:
+          title: organizationId
+          type: string
+        environmentId:
+          title: environmentId
+          type: string
+        productName:
+          title: productName
+          type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/action'
+          title: actions
+          type: array
+        condition:
+          $ref: '#/components/schemas/condition'
+        enabled:
+          title: enabled
+          type: boolean
+        lastModified:
+          title: lastModified
+          type: integer
+        isSystem:
+          title: isSystem
+          type: boolean
+        createdAt:
+          title: createdAt
+          type: integer
+      title: alert
+      type: object
+    action:
+      example:
+        subject: subject
+        userIds:
+        - userIds
+        - userIds
+        type: type
+        content: content
+      properties:
+        type:
+          title: type
+          type: string
+        content:
+          title: content
+          type: string
+        subject:
+          title: subejct
+          type: string
+        userIds:
+          items:
+            type: string
+          title: userIds
+          type: array
+      title: action
+      type: object
+    condition:
+      example:
+        periodCount: 0
+        periodMins: 1
+        resources:
+        - resources
+        - resources
+        type: type
+        value: 6
+        operator: operator
+        resourceType: resourceType
+      properties:
+        operator:
+          title: operator
+          type: string
+        periodCount:
+          title: periodCount
+          type: integer
+        value:
+          title: value
+          type: integer
+        resourceType:
+          title: resourceType
+          type: string
+        type:
+          title: type
+          type: string
+        periodMins:
+          title: periodMins
+          type: integer
+        resources:
+          items:
+            type: string
+          title: resources
+          type: array
+      title: condition
+      type: object
+    alertBody:
+      properties:
+        name:
+          title: name
+          type: string
+        severity:
+          enum:
+          - INFO
+          - WARNING
+          - CRITICAL
+          title: severity
+          type: string
+        condition:
+          $ref: '#/components/schemas/condition'
+        actions:
+          items:
+            $ref: '#/components/schemas/action'
+          title: actions
+          type: array
+      title: postAlertBody
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,444 @@
+openapi: 3.0.1
+info:
+  description: Description of the DLB API
+  title: Dedicated Load Balancer API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/cloudhub/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/cloudhub/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/vpcs/{vpcId}/loadbalancers:
+    get:
+      description: Returns all loadbalancers in the given vpc
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPC in GUID format
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+    post:
+      description: create a DLB
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPC in GUID format
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dlbCore'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+  /organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{dlbId}:
+    delete:
+      description: Deletes a DLB
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPC in GUID format
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the DLB in GUID format
+        explode: false
+        in: path
+        name: dlbId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Retrieves a DLB by id
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPC in GUID format
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the DLB in GUID format
+        explode: false
+        in: path
+        name: dlbId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dlb'
+          description: Success response
+    patch:
+      description: Updates a dlb. uses JSON Patch body object
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPC in GUID format
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the DLB in GUID format
+        explode: false
+        in: path
+        name: dlbId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/jsonPatch'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dlb'
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessGetDLB:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/dlb'
+      description: Success response
+    SuccessPostDLB:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/dlb'
+      description: Success response
+    SuccessPutDLB:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/dlb'
+      description: Success response
+    SuccessDeleteDLB:
+      description: Success response
+    SuccessListDLBs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    dlb:
+      allOf:
+      - $ref: '#/components/schemas/dlbExtras'
+      - $ref: '#/components/schemas/dlbCore'
+      title: dlb
+    dlbCore:
+      properties:
+        name:
+          example: myAwesomeDLB
+          title: name
+          type: string
+        state:
+          default: STOPPED
+          description: dlb state
+          title: state
+          type: string
+        ipWhitelist:
+          items:
+            type: string
+          title: ipWhitelist
+          type: array
+        httpMode:
+          default: redirect
+          title: httpMode
+          type: string
+        defaultSslEndpoint:
+          default: 0
+          example: 0
+          title: defaultSslEndpoint
+          type: integer
+        tlsv1:
+          example: false
+          title: tlsv1
+          type: boolean
+        sslEndpoints:
+          items:
+            $ref: '#/components/schemas/dlbCore_sslEndpoints'
+          type: array
+      title: dlbCore
+      type: object
+    dlbExtras:
+      properties:
+        id:
+          description: The dlb Id
+          example: 619d1c270322c72f81663c12
+          title: id
+          type: string
+        domain:
+          description: dlb domain
+          title: domain
+          type: string
+        deploymentId:
+          description: the dlb deployment id
+          title: deploymentId
+          type: string
+        instanceConfig:
+          $ref: '#/components/schemas/instanceConfig'
+        ipAddresses:
+          items:
+            type: string
+          title: ipAddresses
+          type: array
+        staticIPsDisabled:
+          title: staticIPsDisabled
+          type: boolean
+        vpcId:
+          title: vpcId
+          type: string
+        workers:
+          title: workers
+          type: integer
+        defaultCipherSuite:
+          title: defaultCipherSuite
+          type: string
+        keepUrlEncoding:
+          title: keepUrlEncoding
+          type: boolean
+        upstreamTlsv12:
+          title: upstreamTlsv12
+          type: boolean
+        proxyReadTimeout:
+          title: proxyReadTimeout
+          type: integer
+        ipAddressesInfo:
+          items:
+            $ref: '#/components/schemas/dlbExtras_ipAddressesInfo'
+          type: array
+        doubleStaticIps:
+          title: doubleStaticIps
+          type: string
+      title: dlbExtras
+      type: object
+    jsonPatch:
+      items:
+        properties:
+          op:
+            enum:
+            - replace
+            - add
+            - remove
+            title: op
+            type: string
+          path:
+            example: /state
+            title: path
+            type: string
+          value:
+            title: value
+        title: updateObject
+        type: object
+      title: jsonPatch
+      type: array
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/dlb'
+          title: List of DLBs
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    dlbCore_mappings:
+      properties:
+        inputUri:
+          example: '{app}/'
+          title: inputUri
+          type: string
+        appName:
+          example: '{app}'
+          title: appName
+          type: string
+        appUri:
+          example: /
+          title: appUri
+          type: string
+      type: object
+    dlbCore_sslEndpoints:
+      properties:
+        privateKeyLabel:
+          title: privateKeyLabel
+          type: string
+        privateKeyDigest:
+          title: privateKeyDigest
+          type: string
+        privateKey:
+          title: privateKey
+          type: string
+        publicKeyLabel:
+          title: publicKeyLabel
+          type: string
+        publicKeyDigest:
+          title: publicKeyDigest
+          type: string
+        publicKeyCN:
+          title: publicKeyCN
+          type: string
+        publicKey:
+          title: publicKey
+          type: string
+        verifyClientMode:
+          default: "off"
+          title: verifyClientMode
+          type: string
+        mappings:
+          items:
+            $ref: '#/components/schemas/dlbCore_mappings'
+          type: array
+      type: object
+    instanceConfig:
+      properties:
+        imageName:
+          title: imageName
+          type: string
+      title: instanceConfig
+      type: object
+    dlbExtras_ipAddressesInfo:
+      properties:
+        ip:
+          title: ip
+          type: string
+        status:
+          title: status
+          type: string
+        staticIp:
+          title: staticIp
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

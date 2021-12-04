@@ -1,0 +1,362 @@
+openapi: 3.0.0
+info:
+  description: Anypoint MQ API specification
+  title: Anypoint MQ specfication
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/mq/admin/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/mq/admin/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations:
+    get:
+      description: Get a list of queues in a region
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id for MQ
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/queue'
+                title: alerts from GET
+                type: array
+          description: Success response
+  /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId}:
+    delete:
+      description: Delete queue
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific queue
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Get details about a queue
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific queue
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/queue'
+          description: Success response
+    patch:
+      description: Modify a queue's properties
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific queue
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/queueBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_404'
+          description: Queue not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/queue'
+          description: Success response
+    put:
+      description: Create queue
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific queue
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/queueBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/queue'
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_404'
+      description: Queue not found
+    SuccessGetQueues:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/queue'
+            title: alerts from GET
+            type: array
+      description: Success response
+    SuccessGetQueue:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/queue'
+      description: Success response
+    SuccessCreateQueue:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/queue'
+      description: Successfully created queue
+    SuccessDeleteQueue:
+      description: Success response
+  schemas:
+    queue:
+      example:
+        queueId: queueId
+        fifo: true
+        defaultLockTtl: 6
+        encrypted: true
+        defaultTtl: 0
+        defaultDeliveryDelay: 1
+        type: type
+      properties:
+        queueId:
+          title: queueId
+          type: string
+        defaultTtl:
+          title: defaultTtl
+          type: integer
+        defaultLockTtl:
+          title: defaultLockTtl
+          type: integer
+        type:
+          title: type
+          type: string
+        encrypted:
+          title: encrypted
+          type: boolean
+        defaultDeliveryDelay:
+          title: defaultDeliveryDelay
+          type: integer
+        fifo:
+          title: fifo
+          type: boolean
+      title: queue
+      type: object
+    queueBody:
+      properties:
+        defaultTtl:
+          title: defaultTtl
+          type: integer
+        defaultLockTtl:
+          title: defaultLockTtl
+          type: integer
+        type:
+          title: type
+          type: string
+        encrypted:
+          title: encrypted
+          type: boolean
+        defaultDeliveryDelay:
+          title: defaultDeliveryDelay
+          type: integer
+        fifo:
+          title: fifo
+          type: boolean
+      title: queueBody
+      type: object
+    inline_response_404:
+      properties:
+        status:
+          default: 404
+          title: the response status code
+          type: integer
+        message:
+          example: api error message
+          title: the error message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
