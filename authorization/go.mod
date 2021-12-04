@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/authorization
+module github.com/mulesoft-consulting/anypoint-client-go/authorization
 
 go 1.13
 

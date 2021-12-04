@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/dlb
+module github.com/mulesoft-consulting/anypoint-client-go/dlb
 
 go 1.13
 

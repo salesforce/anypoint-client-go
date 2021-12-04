@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/team_group_mappings
+module github.com/mulesoft-consulting/anypoint-client-go/team_group_mappings
 
 go 1.13
 

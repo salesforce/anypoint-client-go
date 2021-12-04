@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/role
+module github.com/mulesoft-consulting/anypoint-client-go/role
 
 go 1.13
 

@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/exchange_assets
+module github.com/mulesoft-consulting/anypoint-client-go/exchange_assets
 
 go 1.13
 
