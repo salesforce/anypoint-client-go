@@ -1,0 +1,377 @@
+openapi: 3.0.0
+info:
+  description: Description of Identity Provider API
+  title: Identity Provider Management API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/accounts/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/accounts/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/identityProviders:
+    get:
+      description: Returns all identity providers for the given organization
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+  /organizations/{orgId}/identityProviders/idpId:
+    get:
+      description: Returns all identity providers for the given organization
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the Identity Provider in GUID format
+        explode: false
+        in: path
+        name: idpId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            plain/text:
+              schema:
+                example: The requested identity management provider is not found in
+                  the provider org
+          description: Not Found response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: A sample message here
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    NotFoundError:
+      content:
+        plain/text:
+          schema:
+            example: The requested identity management provider is not found in the
+              provider org
+      description: Not Found response
+    SuccessGetIDP:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/idp'
+      description: Success response
+    SuccessListIDPs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+  schemas:
+    idpSummary:
+      example:
+        org_id: org_id
+        name: name
+        provider_id: provider_id
+        type:
+          name: saml
+          description: description
+      properties:
+        provider_id:
+          title: provider_id
+          type: string
+        org_id:
+          title: org_id
+          type: string
+        name:
+          title: name
+          type: string
+        type:
+          $ref: '#/components/schemas/type'
+      title: idpSummary
+      type: object
+    idpSAML:
+      properties:
+        saml:
+          $ref: '#/components/schemas/saml'
+      title: idpSAML
+      type: object
+    idpOIDC:
+      properties:
+        urls:
+          $ref: '#/components/schemas/urls'
+        client:
+          properties:
+            credentials:
+              properties:
+                id:
+                  title: id
+                  type: string
+              title: credentials
+              type: object
+            token_endpoint_auth_methods_supported:
+              items:
+                type: string
+              title: token_endpoint_auth_methods_supported
+              type: array
+          title: client
+          type: string
+        issuer:
+          title: issuer
+          type: string
+        group_scope:
+          title: group_scope
+          type: string
+        allow_untrusted_certificates:
+          title: allow_untrusted_certificates
+          type: boolean
+      title: idpOIDC
+      type: object
+    idp:
+      allOf:
+      - $ref: '#/components/schemas/idpSummary'
+      - $ref: '#/components/schemas/idpSAML'
+      - $ref: '#/components/schemas/idpOIDC'
+      - $ref: '#/components/schemas/idpCommonProps'
+      title: idp
+    idpPostBody:
+      properties:
+        name:
+          title: name
+          type: string
+        type:
+          $ref: '#/components/schemas/idpPostBody_type'
+        oidc_provider:
+          $ref: '#/components/schemas/oidc_provider'
+      title: idpPostBody
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - org_id: org_id
+          name: name
+          provider_id: provider_id
+          type:
+            name: saml
+            description: description
+        - org_id: org_id
+          name: name
+          provider_id: provider_id
+          type:
+            name: saml
+            description: description
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/idpSummary'
+          title: List of envs
+          type: array
+        total:
+          title: Total number of results
+          type: integer
+      type: object
+    type:
+      example:
+        name: saml
+        description: description
+      properties:
+        description:
+          title: description
+          type: string
+        name:
+          enum:
+          - saml
+          - openid
+          title: name
+          type: string
+      title: type
+      type: object
+    claims_mapping:
+      properties:
+        email_attribute:
+          title: email_attribute
+          type: string
+        group_attribute:
+          title: group_attribute
+          type: string
+        lastname_attribute:
+          title: lastname_attribute
+          type: string
+        username_attribute:
+          title: username_attribute
+          type: string
+        firstname_attribute:
+          title: firstname_attribute
+          type: string
+      title: claims_mapping
+      type: object
+    saml:
+      properties:
+        issuer:
+          title: issuer
+          type: string
+        audience:
+          title: audience
+          type: string
+        public_key:
+          items:
+            type: string
+          title: public_key
+          type: array
+        claims_mapping:
+          $ref: '#/components/schemas/claims_mapping'
+        sp_initiated_sso_enabled:
+          title: sp_initiated_sso_enabled
+          type: boolean
+        idp_initiated_sso_enabled:
+          title: idp_initiated_sso_enabled
+          type: boolean
+        require_encrypted_saml_assertions:
+          title: require_encrypted_saml_assertions
+          type: boolean
+      title: saml
+      type: object
+    urls:
+      properties:
+        token:
+          title: token
+          type: string
+        redirect:
+          title: redirect
+          type: string
+        userinfo:
+          title: userinfo
+          type: string
+        authorize:
+          title: authorize
+          type: string
+      title: urls
+      type: object
+    urls_1:
+      properties:
+        sign_on:
+          title: sign_on
+          type: string
+        sign_out:
+          title: sign_out
+          type: string
+      title: urls
+      type: object
+    service_provider:
+      properties:
+        urls:
+          $ref: '#/components/schemas/urls_1'
+      title: service_provider
+      type: object
+    idpCommonProps:
+      properties:
+        service_provider:
+          $ref: '#/components/schemas/service_provider'
+      title: idpCommonProps
+      type: object
+    idpPostBody_type:
+      properties:
+        description:
+          title: description
+          type: string
+        name:
+          enum:
+          - saml
+          - openid
+          title: name
+          type: string
+      type: object
+    urls_2:
+      properties:
+        register:
+          title: register
+          type: string
+      title: urls
+      type: object
+    client:
+      properties:
+        urls:
+          $ref: '#/components/schemas/urls_2'
+      title: client
+      type: object
+    urls_3:
+      properties:
+        authorize:
+          title: authorize
+          type: string
+        token:
+          title: token
+          type: string
+        userinfo:
+          title: userinfo
+          type: string
+      title: urls
+      type: object
+    claims_mapping_1:
+      properties:
+        group_expression:
+          title: group_expression
+          type: string
+      title: claims_mapping
+      type: object
+    oidc_provider:
+      properties:
+        client:
+          $ref: '#/components/schemas/client'
+        issuer:
+          title: issuer
+          type: string
+        urls:
+          $ref: '#/components/schemas/urls_3'
+        group_scope:
+          title: group_scope
+          type: string
+        claims_mapping:
+          $ref: '#/components/schemas/claims_mapping_1'
+      title: oidc_provider
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

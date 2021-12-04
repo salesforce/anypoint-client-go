@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/org
+module github.com/mulesoft-consulting/anypoint-client-go/org
 
 go 1.13
 

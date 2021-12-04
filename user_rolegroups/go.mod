@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/user_rolegroups
+module github.com/mulesoft-consulting/anypoint-client-go/user_rolegroups
 
 go 1.13
 

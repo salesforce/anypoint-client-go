@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/env
+module github.com/mulesoft-consulting/anypoint-client-go/env
 
 go 1.13
 

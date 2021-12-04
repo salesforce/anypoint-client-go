@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/rm_alerts
+module github.com/mulesoft-consulting/anypoint-client-go/rm_alerts
 
 go 1.13
 

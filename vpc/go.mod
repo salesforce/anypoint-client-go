@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/vpc
+module github.com/mulesoft-consulting/anypoint-client-go/vpc
 
 go 1.13
 

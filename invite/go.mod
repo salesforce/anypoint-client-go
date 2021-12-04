@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/cloudhub-client-go/invite
+module github.com/mulesoft-consulting/anypoint-client-go/invite
 
 go 1.13
 
