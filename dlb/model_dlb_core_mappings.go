@@ -19,6 +19,7 @@ type DlbCoreMappings struct {
 	InputUri *string `json:"inputUri,omitempty"`
 	AppName *string `json:"appName,omitempty"`
 	AppUri *string `json:"appUri,omitempty"`
+	UpstreamProtocol *string `json:"upstreamProtocol,omitempty"`
 }
 
 // NewDlbCoreMappings instantiates a new DlbCoreMappings object
@@ -134,6 +135,38 @@ func (o *DlbCoreMappings) SetAppUri(v string) {
 	o.AppUri = &v
 }
 
+// GetUpstreamProtocol returns the UpstreamProtocol field value if set, zero value otherwise.
+func (o *DlbCoreMappings) GetUpstreamProtocol() string {
+	if o == nil || o.UpstreamProtocol == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpstreamProtocol
+}
+
+// GetUpstreamProtocolOk returns a tuple with the UpstreamProtocol field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbCoreMappings) GetUpstreamProtocolOk() (*string, bool) {
+	if o == nil || o.UpstreamProtocol == nil {
+		return nil, false
+	}
+	return o.UpstreamProtocol, true
+}
+
+// HasUpstreamProtocol returns a boolean if a field has been set.
+func (o *DlbCoreMappings) HasUpstreamProtocol() bool {
+	if o != nil && o.UpstreamProtocol != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpstreamProtocol gets a reference to the given string and assigns it to the UpstreamProtocol field.
+func (o *DlbCoreMappings) SetUpstreamProtocol(v string) {
+	o.UpstreamProtocol = &v
+}
+
 func (o DlbCoreMappings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.InputUri != nil {
@@ -144,6 +177,9 @@ func (o DlbCoreMappings) MarshalJSON() ([]byte, error) {
 	}
 	if o.AppUri != nil {
 		toSerialize["appUri"] = o.AppUri
+	}
+	if o.UpstreamProtocol != nil {
+		toSerialize["upstreamProtocol"] = o.UpstreamProtocol
 	}
 	return json.Marshal(toSerialize)
 }
