@@ -385,6 +385,10 @@ components:
           example: /
           title: appUri
           type: string
+        upstreamProtocol:
+          example: http
+          title: upstreamProtocol
+          type: string
       type: object
     dlbCore_sslEndpoints:
       properties:

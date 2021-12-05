@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **InputUri** | Pointer to **string** |  | [optional] 
 **AppName** | Pointer to **string** |  | [optional] 
 **AppUri** | Pointer to **string** |  | [optional] 
+**UpstreamProtocol** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetAppUri sets AppUri field to given value.
 `func (o *DlbCoreMappings) HasAppUri() bool`
 
 HasAppUri returns a boolean if a field has been set.
+
+### GetUpstreamProtocol
+
+`func (o *DlbCoreMappings) GetUpstreamProtocol() string`
+
+GetUpstreamProtocol returns the UpstreamProtocol field if non-nil, zero value otherwise.
+
+### GetUpstreamProtocolOk
+
+`func (o *DlbCoreMappings) GetUpstreamProtocolOk() (*string, bool)`
+
+GetUpstreamProtocolOk returns a tuple with the UpstreamProtocol field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamProtocol
+
+`func (o *DlbCoreMappings) SetUpstreamProtocol(v string)`
+
+SetUpstreamProtocol sets UpstreamProtocol field to given value.
+
+### HasUpstreamProtocol
+
+`func (o *DlbCoreMappings) HasUpstreamProtocol() bool`
+
+HasUpstreamProtocol returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
