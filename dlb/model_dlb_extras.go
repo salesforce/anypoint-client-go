@@ -32,7 +32,7 @@ type DlbExtras struct {
 	UpstreamTlsv12 *bool `json:"upstreamTlsv12,omitempty"`
 	ProxyReadTimeout *int32 `json:"proxyReadTimeout,omitempty"`
 	IpAddressesInfo *[]DlbExtrasIpAddressesInfo `json:"ipAddressesInfo,omitempty"`
-	DoubleStaticIps *string `json:"doubleStaticIps,omitempty"`
+	DoubleStaticIps *bool `json:"doubleStaticIps,omitempty"`
 }
 
 // NewDlbExtras instantiates a new DlbExtras object
@@ -469,9 +469,9 @@ func (o *DlbExtras) SetIpAddressesInfo(v []DlbExtrasIpAddressesInfo) {
 }
 
 // GetDoubleStaticIps returns the DoubleStaticIps field value if set, zero value otherwise.
-func (o *DlbExtras) GetDoubleStaticIps() string {
+func (o *DlbExtras) GetDoubleStaticIps() bool {
 	if o == nil || o.DoubleStaticIps == nil {
-		var ret string
+		var ret bool
 		return ret
 	}
 	return *o.DoubleStaticIps
@@ -479,7 +479,7 @@ func (o *DlbExtras) GetDoubleStaticIps() string {
 
 // GetDoubleStaticIpsOk returns a tuple with the DoubleStaticIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DlbExtras) GetDoubleStaticIpsOk() (*string, bool) {
+func (o *DlbExtras) GetDoubleStaticIpsOk() (*bool, bool) {
 	if o == nil || o.DoubleStaticIps == nil {
 		return nil, false
 	}
@@ -495,8 +495,8 @@ func (o *DlbExtras) HasDoubleStaticIps() bool {
 	return false
 }
 
-// SetDoubleStaticIps gets a reference to the given string and assigns it to the DoubleStaticIps field.
-func (o *DlbExtras) SetDoubleStaticIps(v string) {
+// SetDoubleStaticIps gets a reference to the given bool and assigns it to the DoubleStaticIps field.
+func (o *DlbExtras) SetDoubleStaticIps(v bool) {
 	o.DoubleStaticIps = &v
 }
 

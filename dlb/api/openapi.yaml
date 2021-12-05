@@ -321,7 +321,7 @@ components:
           type: array
         doubleStaticIps:
           title: doubleStaticIps
-          type: string
+          type: boolean
       title: dlbExtras
       type: object
     jsonPatch:
