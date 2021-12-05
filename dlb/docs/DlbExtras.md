@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **UpstreamTlsv12** | Pointer to **bool** |  | [optional] 
 **ProxyReadTimeout** | Pointer to **int32** |  | [optional] 
 **IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfo**](DlbExtrasIpAddressesInfo.md) |  | [optional] 
-**DoubleStaticIps** | Pointer to **string** |  | [optional] 
+**DoubleStaticIps** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -365,20 +365,20 @@ HasIpAddressesInfo returns a boolean if a field has been set.
 
 ### GetDoubleStaticIps
 
-`func (o *DlbExtras) GetDoubleStaticIps() string`
+`func (o *DlbExtras) GetDoubleStaticIps() bool`
 
 GetDoubleStaticIps returns the DoubleStaticIps field if non-nil, zero value otherwise.
 
 ### GetDoubleStaticIpsOk
 
-`func (o *DlbExtras) GetDoubleStaticIpsOk() (*string, bool)`
+`func (o *DlbExtras) GetDoubleStaticIpsOk() (*bool, bool)`
 
 GetDoubleStaticIpsOk returns a tuple with the DoubleStaticIps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDoubleStaticIps
 
-`func (o *DlbExtras) SetDoubleStaticIps(v string)`
+`func (o *DlbExtras) SetDoubleStaticIps(v bool)`
 
 SetDoubleStaticIps sets DoubleStaticIps field to given value.
 
