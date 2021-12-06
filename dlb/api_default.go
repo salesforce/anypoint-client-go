@@ -490,11 +490,11 @@ type DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest struct {
 	ApiService *DefaultApiService
 	orgId string
 	vpcId string
-	dlbCore *DlbCore
+	dlbPostBody *DlbPostBody
 }
 
-func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbCore(dlbCore DlbCore) DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
-	r.dlbCore = &dlbCore
+func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbPostBody(dlbPostBody DlbPostBody) DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
+	r.dlbPostBody = &dlbPostBody
 	return r
 }
 
@@ -564,7 +564,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dlbCore
+	localVarPostBody = r.dlbPostBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

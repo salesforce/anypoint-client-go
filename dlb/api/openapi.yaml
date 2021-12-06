@@ -63,7 +63,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dlbCore'
+              $ref: '#/components/schemas/dlbPostBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -344,6 +344,36 @@ components:
         type: object
       title: jsonPatch
       type: array
+    dlbPostBody:
+      properties:
+        name:
+          example: myAwesomeDLB
+          title: name
+          type: string
+        state:
+          default: STOPPED
+          description: dlb state
+          title: state
+          type: string
+        ipWhitelist:
+          items:
+            type: string
+          title: ipWhitelist
+          type: array
+        httpMode:
+          default: redirect
+          title: httpMode
+          type: string
+        tlsv1:
+          example: false
+          title: tlsv1
+          type: boolean
+        sslEndpoints:
+          items:
+            $ref: '#/components/schemas/dlbPostBody_sslEndpoints'
+          type: array
+      title: dlbPostBody
+      type: object
     inline_response_200:
       example:
         total: 0
@@ -440,6 +470,44 @@ components:
         staticIp:
           title: staticIp
           type: boolean
+      type: object
+    dlbPostBody_mappings:
+      properties:
+        inputUri:
+          example: '{app}/'
+          title: inputUri
+          type: string
+        appName:
+          example: '{app}'
+          title: appName
+          type: string
+        appUri:
+          example: /
+          title: appUri
+          type: string
+      type: object
+    dlbPostBody_sslEndpoints:
+      properties:
+        privateKeyLabel:
+          title: privateKeyLabel
+          type: string
+        privateKey:
+          title: privateKey
+          type: string
+        publicKeyLabel:
+          title: publicKeyLabel
+          type: string
+        publicKey:
+          title: publicKey
+          type: string
+        verifyClientMode:
+          default: "off"
+          title: verifyClientMode
+          type: string
+        mappings:
+          items:
+            $ref: '#/components/schemas/dlbPostBody_mappings'
+          type: array
       type: object
   securitySchemes:
     bearerAuth:
