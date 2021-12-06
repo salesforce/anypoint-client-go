@@ -490,15 +490,15 @@ type DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest struct {
 	ApiService *DefaultApiService
 	orgId string
 	vpcId string
-	dlbCore *DlbCore
+	dlbPostBody *DlbPostBody
 }
 
-func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbCore(dlbCore DlbCore) DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
-	r.dlbCore = &dlbCore
+func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbPostBody(dlbPostBody DlbPostBody) DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
+	r.dlbPostBody = &dlbPostBody
 	return r
 }
 
-func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) Execute() (Dlb, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r)
 }
 
@@ -521,16 +521,16 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx _co
 
 /*
  * Execute executes the request
- * @return InlineResponse200
+ * @return Dlb
  */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) (Dlb, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse200
+		localVarReturnValue  Dlb
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost")
@@ -564,7 +564,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dlbCore
+	localVarPostBody = r.dlbPostBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

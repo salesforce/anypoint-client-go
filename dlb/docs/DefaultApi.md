@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdVpcsVpcIdLoadbalancersPost
 
-> InlineResponse200 OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx, orgId, vpcId).DlbCore(dlbCore).Execute()
+> Dlb OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx, orgId, vpcId).DlbPostBody(dlbPostBody).Execute()
 
 
 
@@ -336,16 +336,16 @@ import (
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     vpcId := "vpcId_example" // string | The ID of the VPC in GUID format
-    dlbCore := *openapiclient.NewDlbCore() // DlbCore |  (optional)
+    dlbPostBody := *openapiclient.NewDlbPostBody() // DlbPostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(context.Background(), orgId, vpcId).DlbCore(dlbCore).Execute()
+    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(context.Background(), orgId, vpcId).DlbPostBody(dlbPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdVpcsVpcIdLoadbalancersPost`: InlineResponse200
+    // response from `OrganizationsOrgIdVpcsVpcIdLoadbalancersPost`: Dlb
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost`: %v\n", resp)
 }
 ```
@@ -368,11 +368,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **dlbCore** | [**DlbCore**](DlbCore.md) |  | 
+ **dlbPostBody** | [**DlbPostBody**](DlbPostBody.md) |  | 
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**Dlb**](Dlb.md)
 
 ### Authorization
 
