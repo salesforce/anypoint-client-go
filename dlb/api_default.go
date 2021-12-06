@@ -498,7 +498,7 @@ func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbCor
 	return r
 }
 
-func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) Execute() (Dlb, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r)
 }
 
@@ -521,16 +521,16 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx _co
 
 /*
  * Execute executes the request
- * @return InlineResponse200
+ * @return Dlb
  */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r DefaultApiApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) (Dlb, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse200
+		localVarReturnValue  Dlb
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost")

@@ -77,7 +77,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/dlb'
           description: Success response
   /organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{dlbId}:
     delete:

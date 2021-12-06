@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdVpcsVpcIdLoadbalancersPost
 
-> InlineResponse200 OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx, orgId, vpcId).DlbCore(dlbCore).Execute()
+> Dlb OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx, orgId, vpcId).DlbCore(dlbCore).Execute()
 
 
 
@@ -345,7 +345,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdVpcsVpcIdLoadbalancersPost`: InlineResponse200
+    // response from `OrganizationsOrgIdVpcsVpcIdLoadbalancersPost`: Dlb
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost`: %v\n", resp)
 }
 ```
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**Dlb**](Dlb.md)
 
 ### Authorization
 
