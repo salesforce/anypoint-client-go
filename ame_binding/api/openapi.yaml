@@ -1,0 +1,233 @@
+openapi: 3.0.0
+info:
+  description: Anypoint MQ Exchange Binding API specification
+  title: Anypoint MQ Exchange Binding specfication
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/mq/admin/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/mq/admin/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId}:
+    delete:
+      description: Delete an exchange queue binding
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange queue binding
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Get details about a queue bound to an exchange
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange queue binding
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exchangeBinding'
+          description: Success response
+    put:
+      description: Create exchange queue binding
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange queue binding
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exchangeBinding'
+          description: Successfully created exchange
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    NotFound:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 404
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Queue not found
+    SuccessGetExchangeBinding:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exchangeBinding'
+      description: Success response
+    SuccessCreateExchangeBinding:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exchangeBinding'
+      description: Successfully created exchange
+    SuccessDeleteExchangeBinding:
+      description: Success response
+  schemas:
+    exchangeBinding:
+      example:
+        exchangeId: exchangeId
+        queueId: queueId
+      properties:
+        queueId:
+          title: queueId
+          type: string
+        exchangeId:
+          title: exchangeId
+          type: string
+      title: exchangeBinding
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
