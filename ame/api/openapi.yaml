@@ -1,0 +1,294 @@
+openapi: 3.0.0
+info:
+  description: Anypoint MQ Exchange API specification
+  title: Anypoint MQ Exchange specfication
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/mq/admin/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/mq/admin/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId}:
+    delete:
+      description: Delete an exchange
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    get:
+      description: Get details about an exchange
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exchange'
+          description: Success response
+    patch:
+      description: Modify an exchange's properties
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/exchangeBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_404'
+          description: Exchange not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exchange'
+          description: Successfully created exchange
+    put:
+      description: Create exchange
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/exchangeBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exchange'
+          description: Successfully created exchange
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                default: 400
+                title: the response status code
+                type: integer
+              message:
+                example: api error message
+                title: the error message
+                type: string
+            type: object
+      description: Bad request response
+    NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_404'
+      description: Exchange not found
+    SuccessGetExchange:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exchange'
+      description: Success response
+    SuccessCreateExchange:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exchange'
+      description: Successfully created exchange
+    SuccessUpdateExchange:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exchange'
+      description: Successfully created exchange
+    SuccessDeleteExchange:
+      description: Success response
+  schemas:
+    exchange:
+      example:
+        exchangeId: exchangeId
+        encrypted: true
+        type: type
+      properties:
+        encrypted:
+          title: encrypted
+          type: boolean
+        type:
+          title: type
+          type: string
+        exchangeId:
+          title: exchangeId
+          type: string
+      title: exchange
+      type: object
+    exchangeBody:
+      properties:
+        encrypted:
+          title: encrypted
+          type: boolean
+        type:
+          title: type
+          type: string
+        exchangeId:
+          title: exchangeId
+          type: string
+      title: exchange
+      type: object
+    inline_response_404:
+      properties:
+        status:
+          default: 404
+          title: the response status code
+          type: integer
+        message:
+          example: api error message
+          title: the error message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
