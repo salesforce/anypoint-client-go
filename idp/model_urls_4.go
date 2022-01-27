@@ -14,32 +14,33 @@ import (
 	"encoding/json"
 )
 
-// Urls1 struct for Urls1
-type Urls1 struct {
+// Urls4 struct for Urls4
+type Urls4 struct {
+	// The Anypoint Platform URL where users must sign in.
 	SignOn *string `json:"sign_on,omitempty"`
-	// only available for SAML
+	// URL to redirect sign out requests, so users both sign out of the Anypoint Platform and have their SAML user's status set to signed out.
 	SignOut *string `json:"sign_out,omitempty"`
 }
 
-// NewUrls1 instantiates a new Urls1 object
+// NewUrls4 instantiates a new Urls4 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUrls1() *Urls1 {
-	this := Urls1{}
+func NewUrls4() *Urls4 {
+	this := Urls4{}
 	return &this
 }
 
-// NewUrls1WithDefaults instantiates a new Urls1 object
+// NewUrls4WithDefaults instantiates a new Urls4 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUrls1WithDefaults() *Urls1 {
-	this := Urls1{}
+func NewUrls4WithDefaults() *Urls4 {
+	this := Urls4{}
 	return &this
 }
 
 // GetSignOn returns the SignOn field value if set, zero value otherwise.
-func (o *Urls1) GetSignOn() string {
+func (o *Urls4) GetSignOn() string {
 	if o == nil || o.SignOn == nil {
 		var ret string
 		return ret
@@ -49,7 +50,7 @@ func (o *Urls1) GetSignOn() string {
 
 // GetSignOnOk returns a tuple with the SignOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Urls1) GetSignOnOk() (*string, bool) {
+func (o *Urls4) GetSignOnOk() (*string, bool) {
 	if o == nil || o.SignOn == nil {
 		return nil, false
 	}
@@ -57,7 +58,7 @@ func (o *Urls1) GetSignOnOk() (*string, bool) {
 }
 
 // HasSignOn returns a boolean if a field has been set.
-func (o *Urls1) HasSignOn() bool {
+func (o *Urls4) HasSignOn() bool {
 	if o != nil && o.SignOn != nil {
 		return true
 	}
@@ -66,12 +67,12 @@ func (o *Urls1) HasSignOn() bool {
 }
 
 // SetSignOn gets a reference to the given string and assigns it to the SignOn field.
-func (o *Urls1) SetSignOn(v string) {
+func (o *Urls4) SetSignOn(v string) {
 	o.SignOn = &v
 }
 
 // GetSignOut returns the SignOut field value if set, zero value otherwise.
-func (o *Urls1) GetSignOut() string {
+func (o *Urls4) GetSignOut() string {
 	if o == nil || o.SignOut == nil {
 		var ret string
 		return ret
@@ -81,7 +82,7 @@ func (o *Urls1) GetSignOut() string {
 
 // GetSignOutOk returns a tuple with the SignOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Urls1) GetSignOutOk() (*string, bool) {
+func (o *Urls4) GetSignOutOk() (*string, bool) {
 	if o == nil || o.SignOut == nil {
 		return nil, false
 	}
@@ -89,7 +90,7 @@ func (o *Urls1) GetSignOutOk() (*string, bool) {
 }
 
 // HasSignOut returns a boolean if a field has been set.
-func (o *Urls1) HasSignOut() bool {
+func (o *Urls4) HasSignOut() bool {
 	if o != nil && o.SignOut != nil {
 		return true
 	}
@@ -98,11 +99,11 @@ func (o *Urls1) HasSignOut() bool {
 }
 
 // SetSignOut gets a reference to the given string and assigns it to the SignOut field.
-func (o *Urls1) SetSignOut(v string) {
+func (o *Urls4) SetSignOut(v string) {
 	o.SignOut = &v
 }
 
-func (o Urls1) MarshalJSON() ([]byte, error) {
+func (o Urls4) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.SignOn != nil {
 		toSerialize["sign_on"] = o.SignOn
@@ -113,38 +114,38 @@ func (o Urls1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUrls1 struct {
-	value *Urls1
+type NullableUrls4 struct {
+	value *Urls4
 	isSet bool
 }
 
-func (v NullableUrls1) Get() *Urls1 {
+func (v NullableUrls4) Get() *Urls4 {
 	return v.value
 }
 
-func (v *NullableUrls1) Set(val *Urls1) {
+func (v *NullableUrls4) Set(val *Urls4) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUrls1) IsSet() bool {
+func (v NullableUrls4) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUrls1) Unset() {
+func (v *NullableUrls4) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUrls1(val *Urls1) *NullableUrls1 {
-	return &NullableUrls1{value: val, isSet: true}
+func NewNullableUrls4(val *Urls4) *NullableUrls4 {
+	return &NullableUrls4{value: val, isSet: true}
 }
 
-func (v NullableUrls1) MarshalJSON() ([]byte, error) {
+func (v NullableUrls4) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUrls1) UnmarshalJSON(src []byte) error {
+func (v *NullableUrls4) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

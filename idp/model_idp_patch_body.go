@@ -14,35 +14,35 @@ import (
 	"encoding/json"
 )
 
-// IdpPostBody struct for IdpPostBody
-type IdpPostBody struct {
+// IdpPatchBody struct for IdpPatchBody
+type IdpPatchBody struct {
 	Name *string `json:"name,omitempty"`
-	Type *IdpPostBodyType `json:"type,omitempty"`
+	Type *IdpPatchBodyType `json:"type,omitempty"`
 	OidcProvider *OidcProvider1 `json:"oidc_provider,omitempty"`
 	AllowUntrustedCertificates *bool `json:"allow_untrusted_certificates,omitempty"`
 	Saml *Saml1 `json:"saml,omitempty"`
 	ServiceProvider *ServiceProvider1 `json:"service_provider,omitempty"`
 }
 
-// NewIdpPostBody instantiates a new IdpPostBody object
+// NewIdpPatchBody instantiates a new IdpPatchBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdpPostBody() *IdpPostBody {
-	this := IdpPostBody{}
+func NewIdpPatchBody() *IdpPatchBody {
+	this := IdpPatchBody{}
 	return &this
 }
 
-// NewIdpPostBodyWithDefaults instantiates a new IdpPostBody object
+// NewIdpPatchBodyWithDefaults instantiates a new IdpPatchBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIdpPostBodyWithDefaults() *IdpPostBody {
-	this := IdpPostBody{}
+func NewIdpPatchBodyWithDefaults() *IdpPatchBody {
+	this := IdpPatchBody{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *IdpPostBody) GetName() string {
+func (o *IdpPatchBody) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -52,7 +52,7 @@ func (o *IdpPostBody) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdpPostBody) GetNameOk() (*string, bool) {
+func (o *IdpPatchBody) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *IdpPostBody) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *IdpPostBody) HasName() bool {
+func (o *IdpPatchBody) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -69,14 +69,14 @@ func (o *IdpPostBody) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *IdpPostBody) SetName(v string) {
+func (o *IdpPatchBody) SetName(v string) {
 	o.Name = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *IdpPostBody) GetType() IdpPostBodyType {
+func (o *IdpPatchBody) GetType() IdpPatchBodyType {
 	if o == nil || o.Type == nil {
-		var ret IdpPostBodyType
+		var ret IdpPatchBodyType
 		return ret
 	}
 	return *o.Type
@@ -84,7 +84,7 @@ func (o *IdpPostBody) GetType() IdpPostBodyType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdpPostBody) GetTypeOk() (*IdpPostBodyType, bool) {
+func (o *IdpPatchBody) GetTypeOk() (*IdpPatchBodyType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *IdpPostBody) GetTypeOk() (*IdpPostBodyType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *IdpPostBody) HasType() bool {
+func (o *IdpPatchBody) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -100,13 +100,13 @@ func (o *IdpPostBody) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given IdpPostBodyType and assigns it to the Type field.
-func (o *IdpPostBody) SetType(v IdpPostBodyType) {
+// SetType gets a reference to the given IdpPatchBodyType and assigns it to the Type field.
+func (o *IdpPatchBody) SetType(v IdpPatchBodyType) {
 	o.Type = &v
 }
 
 // GetOidcProvider returns the OidcProvider field value if set, zero value otherwise.
-func (o *IdpPostBody) GetOidcProvider() OidcProvider1 {
+func (o *IdpPatchBody) GetOidcProvider() OidcProvider1 {
 	if o == nil || o.OidcProvider == nil {
 		var ret OidcProvider1
 		return ret
@@ -116,7 +116,7 @@ func (o *IdpPostBody) GetOidcProvider() OidcProvider1 {
 
 // GetOidcProviderOk returns a tuple with the OidcProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdpPostBody) GetOidcProviderOk() (*OidcProvider1, bool) {
+func (o *IdpPatchBody) GetOidcProviderOk() (*OidcProvider1, bool) {
 	if o == nil || o.OidcProvider == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *IdpPostBody) GetOidcProviderOk() (*OidcProvider1, bool) {
 }
 
 // HasOidcProvider returns a boolean if a field has been set.
-func (o *IdpPostBody) HasOidcProvider() bool {
+func (o *IdpPatchBody) HasOidcProvider() bool {
 	if o != nil && o.OidcProvider != nil {
 		return true
 	}
@@ -133,12 +133,12 @@ func (o *IdpPostBody) HasOidcProvider() bool {
 }
 
 // SetOidcProvider gets a reference to the given OidcProvider1 and assigns it to the OidcProvider field.
-func (o *IdpPostBody) SetOidcProvider(v OidcProvider1) {
+func (o *IdpPatchBody) SetOidcProvider(v OidcProvider1) {
 	o.OidcProvider = &v
 }
 
 // GetAllowUntrustedCertificates returns the AllowUntrustedCertificates field value if set, zero value otherwise.
-func (o *IdpPostBody) GetAllowUntrustedCertificates() bool {
+func (o *IdpPatchBody) GetAllowUntrustedCertificates() bool {
 	if o == nil || o.AllowUntrustedCertificates == nil {
 		var ret bool
 		return ret
@@ -148,7 +148,7 @@ func (o *IdpPostBody) GetAllowUntrustedCertificates() bool {
 
 // GetAllowUntrustedCertificatesOk returns a tuple with the AllowUntrustedCertificates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdpPostBody) GetAllowUntrustedCertificatesOk() (*bool, bool) {
+func (o *IdpPatchBody) GetAllowUntrustedCertificatesOk() (*bool, bool) {
 	if o == nil || o.AllowUntrustedCertificates == nil {
 		return nil, false
 	}
@@ -156,7 +156,7 @@ func (o *IdpPostBody) GetAllowUntrustedCertificatesOk() (*bool, bool) {
 }
 
 // HasAllowUntrustedCertificates returns a boolean if a field has been set.
-func (o *IdpPostBody) HasAllowUntrustedCertificates() bool {
+func (o *IdpPatchBody) HasAllowUntrustedCertificates() bool {
 	if o != nil && o.AllowUntrustedCertificates != nil {
 		return true
 	}
@@ -165,12 +165,12 @@ func (o *IdpPostBody) HasAllowUntrustedCertificates() bool {
 }
 
 // SetAllowUntrustedCertificates gets a reference to the given bool and assigns it to the AllowUntrustedCertificates field.
-func (o *IdpPostBody) SetAllowUntrustedCertificates(v bool) {
+func (o *IdpPatchBody) SetAllowUntrustedCertificates(v bool) {
 	o.AllowUntrustedCertificates = &v
 }
 
 // GetSaml returns the Saml field value if set, zero value otherwise.
-func (o *IdpPostBody) GetSaml() Saml1 {
+func (o *IdpPatchBody) GetSaml() Saml1 {
 	if o == nil || o.Saml == nil {
 		var ret Saml1
 		return ret
@@ -180,7 +180,7 @@ func (o *IdpPostBody) GetSaml() Saml1 {
 
 // GetSamlOk returns a tuple with the Saml field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdpPostBody) GetSamlOk() (*Saml1, bool) {
+func (o *IdpPatchBody) GetSamlOk() (*Saml1, bool) {
 	if o == nil || o.Saml == nil {
 		return nil, false
 	}
@@ -188,7 +188,7 @@ func (o *IdpPostBody) GetSamlOk() (*Saml1, bool) {
 }
 
 // HasSaml returns a boolean if a field has been set.
-func (o *IdpPostBody) HasSaml() bool {
+func (o *IdpPatchBody) HasSaml() bool {
 	if o != nil && o.Saml != nil {
 		return true
 	}
@@ -197,12 +197,12 @@ func (o *IdpPostBody) HasSaml() bool {
 }
 
 // SetSaml gets a reference to the given Saml1 and assigns it to the Saml field.
-func (o *IdpPostBody) SetSaml(v Saml1) {
+func (o *IdpPatchBody) SetSaml(v Saml1) {
 	o.Saml = &v
 }
 
 // GetServiceProvider returns the ServiceProvider field value if set, zero value otherwise.
-func (o *IdpPostBody) GetServiceProvider() ServiceProvider1 {
+func (o *IdpPatchBody) GetServiceProvider() ServiceProvider1 {
 	if o == nil || o.ServiceProvider == nil {
 		var ret ServiceProvider1
 		return ret
@@ -212,7 +212,7 @@ func (o *IdpPostBody) GetServiceProvider() ServiceProvider1 {
 
 // GetServiceProviderOk returns a tuple with the ServiceProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdpPostBody) GetServiceProviderOk() (*ServiceProvider1, bool) {
+func (o *IdpPatchBody) GetServiceProviderOk() (*ServiceProvider1, bool) {
 	if o == nil || o.ServiceProvider == nil {
 		return nil, false
 	}
@@ -220,7 +220,7 @@ func (o *IdpPostBody) GetServiceProviderOk() (*ServiceProvider1, bool) {
 }
 
 // HasServiceProvider returns a boolean if a field has been set.
-func (o *IdpPostBody) HasServiceProvider() bool {
+func (o *IdpPatchBody) HasServiceProvider() bool {
 	if o != nil && o.ServiceProvider != nil {
 		return true
 	}
@@ -229,11 +229,11 @@ func (o *IdpPostBody) HasServiceProvider() bool {
 }
 
 // SetServiceProvider gets a reference to the given ServiceProvider1 and assigns it to the ServiceProvider field.
-func (o *IdpPostBody) SetServiceProvider(v ServiceProvider1) {
+func (o *IdpPatchBody) SetServiceProvider(v ServiceProvider1) {
 	o.ServiceProvider = &v
 }
 
-func (o IdpPostBody) MarshalJSON() ([]byte, error) {
+func (o IdpPatchBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -256,38 +256,38 @@ func (o IdpPostBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableIdpPostBody struct {
-	value *IdpPostBody
+type NullableIdpPatchBody struct {
+	value *IdpPatchBody
 	isSet bool
 }
 
-func (v NullableIdpPostBody) Get() *IdpPostBody {
+func (v NullableIdpPatchBody) Get() *IdpPatchBody {
 	return v.value
 }
 
-func (v *NullableIdpPostBody) Set(val *IdpPostBody) {
+func (v *NullableIdpPatchBody) Set(val *IdpPatchBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIdpPostBody) IsSet() bool {
+func (v NullableIdpPatchBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIdpPostBody) Unset() {
+func (v *NullableIdpPatchBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIdpPostBody(val *IdpPostBody) *NullableIdpPostBody {
-	return &NullableIdpPostBody{value: val, isSet: true}
+func NewNullableIdpPatchBody(val *IdpPatchBody) *NullableIdpPatchBody {
+	return &NullableIdpPatchBody{value: val, isSet: true}
 }
 
-func (v NullableIdpPostBody) MarshalJSON() ([]byte, error) {
+func (v NullableIdpPatchBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIdpPostBody) UnmarshalJSON(src []byte) error {
+func (v *NullableIdpPatchBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -16,11 +16,10 @@ import (
 
 // OidcProvider struct for OidcProvider
 type OidcProvider struct {
-	Client *Client `json:"client,omitempty"`
+	Urls *Urls `json:"urls,omitempty"`
+	Client *string `json:"client,omitempty"`
 	Issuer *string `json:"issuer,omitempty"`
-	Urls *Urls3 `json:"urls,omitempty"`
 	GroupScope *string `json:"group_scope,omitempty"`
-	ClaimsMapping *ClaimsMapping1 `json:"claims_mapping,omitempty"`
 }
 
 // NewOidcProvider instantiates a new OidcProvider object
@@ -40,10 +39,42 @@ func NewOidcProviderWithDefaults() *OidcProvider {
 	return &this
 }
 
+// GetUrls returns the Urls field value if set, zero value otherwise.
+func (o *OidcProvider) GetUrls() Urls {
+	if o == nil || o.Urls == nil {
+		var ret Urls
+		return ret
+	}
+	return *o.Urls
+}
+
+// GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcProvider) GetUrlsOk() (*Urls, bool) {
+	if o == nil || o.Urls == nil {
+		return nil, false
+	}
+	return o.Urls, true
+}
+
+// HasUrls returns a boolean if a field has been set.
+func (o *OidcProvider) HasUrls() bool {
+	if o != nil && o.Urls != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUrls gets a reference to the given Urls and assigns it to the Urls field.
+func (o *OidcProvider) SetUrls(v Urls) {
+	o.Urls = &v
+}
+
 // GetClient returns the Client field value if set, zero value otherwise.
-func (o *OidcProvider) GetClient() Client {
+func (o *OidcProvider) GetClient() string {
 	if o == nil || o.Client == nil {
-		var ret Client
+		var ret string
 		return ret
 	}
 	return *o.Client
@@ -51,7 +82,7 @@ func (o *OidcProvider) GetClient() Client {
 
 // GetClientOk returns a tuple with the Client field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OidcProvider) GetClientOk() (*Client, bool) {
+func (o *OidcProvider) GetClientOk() (*string, bool) {
 	if o == nil || o.Client == nil {
 		return nil, false
 	}
@@ -67,8 +98,8 @@ func (o *OidcProvider) HasClient() bool {
 	return false
 }
 
-// SetClient gets a reference to the given Client and assigns it to the Client field.
-func (o *OidcProvider) SetClient(v Client) {
+// SetClient gets a reference to the given string and assigns it to the Client field.
+func (o *OidcProvider) SetClient(v string) {
 	o.Client = &v
 }
 
@@ -104,38 +135,6 @@ func (o *OidcProvider) SetIssuer(v string) {
 	o.Issuer = &v
 }
 
-// GetUrls returns the Urls field value if set, zero value otherwise.
-func (o *OidcProvider) GetUrls() Urls3 {
-	if o == nil || o.Urls == nil {
-		var ret Urls3
-		return ret
-	}
-	return *o.Urls
-}
-
-// GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OidcProvider) GetUrlsOk() (*Urls3, bool) {
-	if o == nil || o.Urls == nil {
-		return nil, false
-	}
-	return o.Urls, true
-}
-
-// HasUrls returns a boolean if a field has been set.
-func (o *OidcProvider) HasUrls() bool {
-	if o != nil && o.Urls != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUrls gets a reference to the given Urls3 and assigns it to the Urls field.
-func (o *OidcProvider) SetUrls(v Urls3) {
-	o.Urls = &v
-}
-
 // GetGroupScope returns the GroupScope field value if set, zero value otherwise.
 func (o *OidcProvider) GetGroupScope() string {
 	if o == nil || o.GroupScope == nil {
@@ -168,54 +167,19 @@ func (o *OidcProvider) SetGroupScope(v string) {
 	o.GroupScope = &v
 }
 
-// GetClaimsMapping returns the ClaimsMapping field value if set, zero value otherwise.
-func (o *OidcProvider) GetClaimsMapping() ClaimsMapping1 {
-	if o == nil || o.ClaimsMapping == nil {
-		var ret ClaimsMapping1
-		return ret
-	}
-	return *o.ClaimsMapping
-}
-
-// GetClaimsMappingOk returns a tuple with the ClaimsMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OidcProvider) GetClaimsMappingOk() (*ClaimsMapping1, bool) {
-	if o == nil || o.ClaimsMapping == nil {
-		return nil, false
-	}
-	return o.ClaimsMapping, true
-}
-
-// HasClaimsMapping returns a boolean if a field has been set.
-func (o *OidcProvider) HasClaimsMapping() bool {
-	if o != nil && o.ClaimsMapping != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetClaimsMapping gets a reference to the given ClaimsMapping1 and assigns it to the ClaimsMapping field.
-func (o *OidcProvider) SetClaimsMapping(v ClaimsMapping1) {
-	o.ClaimsMapping = &v
-}
-
 func (o OidcProvider) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Urls != nil {
+		toSerialize["urls"] = o.Urls
+	}
 	if o.Client != nil {
 		toSerialize["client"] = o.Client
 	}
 	if o.Issuer != nil {
 		toSerialize["issuer"] = o.Issuer
 	}
-	if o.Urls != nil {
-		toSerialize["urls"] = o.Urls
-	}
 	if o.GroupScope != nil {
 		toSerialize["group_scope"] = o.GroupScope
-	}
-	if o.ClaimsMapping != nil {
-		toSerialize["claims_mapping"] = o.ClaimsMapping
 	}
 	return json.Marshal(toSerialize)
 }

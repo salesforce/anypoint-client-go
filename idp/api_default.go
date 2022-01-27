@@ -133,6 +133,115 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersGetExecute(r Defa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	orgId string
+	idpId string
+}
+
+
+func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.OrganizationsOrgIdIdentityProvidersIdpIdDeleteExecute(r)
+}
+
+/*
+ * OrganizationsOrgIdIdentityProvidersIdpIdDelete Method for OrganizationsOrgIdIdentityProvidersIdpIdDelete
+ * Deletes the given identity provider for the given organization
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param orgId The ID of the organization in GUID format
+ * @param idpId The ID of the Identity Provider in GUID format
+ * @return DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest
+ */
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdDelete(ctx _context.Context, orgId string, idpId string) DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest {
+	return DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		idpId: idpId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdDeleteExecute(r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersIdpIdDelete")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/identityProviders/{idpId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", _neturl.PathEscape(parameterToString(r.idpId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"plain/text"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -181,7 +290,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/identityProviders/idpId"
+	localVarPath := localBasePath + "/organizations/{orgId}/identityProviders/{idpId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", _neturl.PathEscape(parameterToString(r.idpId, "")), -1)
 
@@ -237,6 +346,256 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	orgId string
+	idpId string
+	idpPatchBody *IdpPatchBody
+}
+
+func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) IdpPatchBody(idpPatchBody IdpPatchBody) DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest {
+	r.idpPatchBody = &idpPatchBody
+	return r
+}
+
+func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) Execute() (Idp, *_nethttp.Response, error) {
+	return r.ApiService.OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute(r)
+}
+
+/*
+ * OrganizationsOrgIdIdentityProvidersIdpIdPatch Method for OrganizationsOrgIdIdentityProvidersIdpIdPatch
+ * Updates the given identity provider for the given organization
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param orgId The ID of the organization in GUID format
+ * @param idpId The ID of the Identity Provider in GUID format
+ * @return DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest
+ */
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatch(ctx _context.Context, orgId string, idpId string) DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest {
+	return DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		idpId: idpId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Idp
+ */
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute(r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) (Idp, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Idp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersIdpIdPatch")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/identityProviders/{idpId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", _neturl.PathEscape(parameterToString(r.idpId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "plain/text"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.idpPatchBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v InlineResponse400
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	orgId string
+	idpPostBody *IdpPostBody
+}
+
+func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest) IdpPostBody(idpPostBody IdpPostBody) DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest {
+	r.idpPostBody = &idpPostBody
+	return r
+}
+
+func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest) Execute() (Idp, *_nethttp.Response, error) {
+	return r.ApiService.OrganizationsOrgIdIdentityProvidersPostExecute(r)
+}
+
+/*
+ * OrganizationsOrgIdIdentityProvidersPost Method for OrganizationsOrgIdIdentityProvidersPost
+ * Creates an IDP connection through SAML or OIDC
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param orgId The ID of the organization in GUID format
+ * @return DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest
+ */
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersPost(ctx _context.Context, orgId string) DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest {
+	return DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Idp
+ */
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersPostExecute(r DefaultApiApiOrganizationsOrgIdIdentityProvidersPostRequest) (Idp, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Idp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersPost")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/identityProviders"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.idpPostBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
