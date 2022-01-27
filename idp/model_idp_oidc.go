@@ -16,11 +16,8 @@ import (
 
 // IdpOIDC struct for IdpOIDC
 type IdpOIDC struct {
-	Urls *Urls `json:"urls,omitempty"`
-	Client *string `json:"client,omitempty"`
-	Issuer *string `json:"issuer,omitempty"`
-	GroupScope *string `json:"group_scope,omitempty"`
 	AllowUntrustedCertificates *bool `json:"allow_untrusted_certificates,omitempty"`
+	OidcProvider *OidcProvider `json:"oidc_provider,omitempty"`
 }
 
 // NewIdpOIDC instantiates a new IdpOIDC object
@@ -38,134 +35,6 @@ func NewIdpOIDC() *IdpOIDC {
 func NewIdpOIDCWithDefaults() *IdpOIDC {
 	this := IdpOIDC{}
 	return &this
-}
-
-// GetUrls returns the Urls field value if set, zero value otherwise.
-func (o *IdpOIDC) GetUrls() Urls {
-	if o == nil || o.Urls == nil {
-		var ret Urls
-		return ret
-	}
-	return *o.Urls
-}
-
-// GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IdpOIDC) GetUrlsOk() (*Urls, bool) {
-	if o == nil || o.Urls == nil {
-		return nil, false
-	}
-	return o.Urls, true
-}
-
-// HasUrls returns a boolean if a field has been set.
-func (o *IdpOIDC) HasUrls() bool {
-	if o != nil && o.Urls != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUrls gets a reference to the given Urls and assigns it to the Urls field.
-func (o *IdpOIDC) SetUrls(v Urls) {
-	o.Urls = &v
-}
-
-// GetClient returns the Client field value if set, zero value otherwise.
-func (o *IdpOIDC) GetClient() string {
-	if o == nil || o.Client == nil {
-		var ret string
-		return ret
-	}
-	return *o.Client
-}
-
-// GetClientOk returns a tuple with the Client field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IdpOIDC) GetClientOk() (*string, bool) {
-	if o == nil || o.Client == nil {
-		return nil, false
-	}
-	return o.Client, true
-}
-
-// HasClient returns a boolean if a field has been set.
-func (o *IdpOIDC) HasClient() bool {
-	if o != nil && o.Client != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetClient gets a reference to the given string and assigns it to the Client field.
-func (o *IdpOIDC) SetClient(v string) {
-	o.Client = &v
-}
-
-// GetIssuer returns the Issuer field value if set, zero value otherwise.
-func (o *IdpOIDC) GetIssuer() string {
-	if o == nil || o.Issuer == nil {
-		var ret string
-		return ret
-	}
-	return *o.Issuer
-}
-
-// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IdpOIDC) GetIssuerOk() (*string, bool) {
-	if o == nil || o.Issuer == nil {
-		return nil, false
-	}
-	return o.Issuer, true
-}
-
-// HasIssuer returns a boolean if a field has been set.
-func (o *IdpOIDC) HasIssuer() bool {
-	if o != nil && o.Issuer != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIssuer gets a reference to the given string and assigns it to the Issuer field.
-func (o *IdpOIDC) SetIssuer(v string) {
-	o.Issuer = &v
-}
-
-// GetGroupScope returns the GroupScope field value if set, zero value otherwise.
-func (o *IdpOIDC) GetGroupScope() string {
-	if o == nil || o.GroupScope == nil {
-		var ret string
-		return ret
-	}
-	return *o.GroupScope
-}
-
-// GetGroupScopeOk returns a tuple with the GroupScope field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IdpOIDC) GetGroupScopeOk() (*string, bool) {
-	if o == nil || o.GroupScope == nil {
-		return nil, false
-	}
-	return o.GroupScope, true
-}
-
-// HasGroupScope returns a boolean if a field has been set.
-func (o *IdpOIDC) HasGroupScope() bool {
-	if o != nil && o.GroupScope != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetGroupScope gets a reference to the given string and assigns it to the GroupScope field.
-func (o *IdpOIDC) SetGroupScope(v string) {
-	o.GroupScope = &v
 }
 
 // GetAllowUntrustedCertificates returns the AllowUntrustedCertificates field value if set, zero value otherwise.
@@ -200,22 +69,45 @@ func (o *IdpOIDC) SetAllowUntrustedCertificates(v bool) {
 	o.AllowUntrustedCertificates = &v
 }
 
+// GetOidcProvider returns the OidcProvider field value if set, zero value otherwise.
+func (o *IdpOIDC) GetOidcProvider() OidcProvider {
+	if o == nil || o.OidcProvider == nil {
+		var ret OidcProvider
+		return ret
+	}
+	return *o.OidcProvider
+}
+
+// GetOidcProviderOk returns a tuple with the OidcProvider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdpOIDC) GetOidcProviderOk() (*OidcProvider, bool) {
+	if o == nil || o.OidcProvider == nil {
+		return nil, false
+	}
+	return o.OidcProvider, true
+}
+
+// HasOidcProvider returns a boolean if a field has been set.
+func (o *IdpOIDC) HasOidcProvider() bool {
+	if o != nil && o.OidcProvider != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOidcProvider gets a reference to the given OidcProvider and assigns it to the OidcProvider field.
+func (o *IdpOIDC) SetOidcProvider(v OidcProvider) {
+	o.OidcProvider = &v
+}
+
 func (o IdpOIDC) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Urls != nil {
-		toSerialize["urls"] = o.Urls
-	}
-	if o.Client != nil {
-		toSerialize["client"] = o.Client
-	}
-	if o.Issuer != nil {
-		toSerialize["issuer"] = o.Issuer
-	}
-	if o.GroupScope != nil {
-		toSerialize["group_scope"] = o.GroupScope
-	}
 	if o.AllowUntrustedCertificates != nil {
 		toSerialize["allow_untrusted_certificates"] = o.AllowUntrustedCertificates
+	}
+	if o.OidcProvider != nil {
+		toSerialize["oidc_provider"] = o.OidcProvider
 	}
 	return json.Marshal(toSerialize)
 }

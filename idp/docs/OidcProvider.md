@@ -4,11 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Client** | Pointer to [**Client**](Client.md) |  | [optional] 
+**Urls** | Pointer to [**Urls**](Urls.md) |  | [optional] 
+**Client** | Pointer to **string** |  | [optional] 
 **Issuer** | Pointer to **string** |  | [optional] 
-**Urls** | Pointer to [**Urls3**](Urls3.md) |  | [optional] 
 **GroupScope** | Pointer to **string** |  | [optional] 
-**ClaimsMapping** | Pointer to [**ClaimsMapping1**](ClaimsMapping1.md) |  | [optional] 
 
 ## Methods
 
@@ -29,22 +28,47 @@ NewOidcProviderWithDefaults instantiates a new OidcProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetUrls
+
+`func (o *OidcProvider) GetUrls() Urls`
+
+GetUrls returns the Urls field if non-nil, zero value otherwise.
+
+### GetUrlsOk
+
+`func (o *OidcProvider) GetUrlsOk() (*Urls, bool)`
+
+GetUrlsOk returns a tuple with the Urls field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrls
+
+`func (o *OidcProvider) SetUrls(v Urls)`
+
+SetUrls sets Urls field to given value.
+
+### HasUrls
+
+`func (o *OidcProvider) HasUrls() bool`
+
+HasUrls returns a boolean if a field has been set.
+
 ### GetClient
 
-`func (o *OidcProvider) GetClient() Client`
+`func (o *OidcProvider) GetClient() string`
 
 GetClient returns the Client field if non-nil, zero value otherwise.
 
 ### GetClientOk
 
-`func (o *OidcProvider) GetClientOk() (*Client, bool)`
+`func (o *OidcProvider) GetClientOk() (*string, bool)`
 
 GetClientOk returns a tuple with the Client field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClient
 
-`func (o *OidcProvider) SetClient(v Client)`
+`func (o *OidcProvider) SetClient(v string)`
 
 SetClient sets Client field to given value.
 
@@ -79,31 +103,6 @@ SetIssuer sets Issuer field to given value.
 
 HasIssuer returns a boolean if a field has been set.
 
-### GetUrls
-
-`func (o *OidcProvider) GetUrls() Urls3`
-
-GetUrls returns the Urls field if non-nil, zero value otherwise.
-
-### GetUrlsOk
-
-`func (o *OidcProvider) GetUrlsOk() (*Urls3, bool)`
-
-GetUrlsOk returns a tuple with the Urls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrls
-
-`func (o *OidcProvider) SetUrls(v Urls3)`
-
-SetUrls sets Urls field to given value.
-
-### HasUrls
-
-`func (o *OidcProvider) HasUrls() bool`
-
-HasUrls returns a boolean if a field has been set.
-
 ### GetGroupScope
 
 `func (o *OidcProvider) GetGroupScope() string`
@@ -128,31 +127,6 @@ SetGroupScope sets GroupScope field to given value.
 `func (o *OidcProvider) HasGroupScope() bool`
 
 HasGroupScope returns a boolean if a field has been set.
-
-### GetClaimsMapping
-
-`func (o *OidcProvider) GetClaimsMapping() ClaimsMapping1`
-
-GetClaimsMapping returns the ClaimsMapping field if non-nil, zero value otherwise.
-
-### GetClaimsMappingOk
-
-`func (o *OidcProvider) GetClaimsMappingOk() (*ClaimsMapping1, bool)`
-
-GetClaimsMappingOk returns a tuple with the ClaimsMapping field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClaimsMapping
-
-`func (o *OidcProvider) SetClaimsMapping(v ClaimsMapping1)`
-
-SetClaimsMapping sets ClaimsMapping field to given value.
-
-### HasClaimsMapping
-
-`func (o *OidcProvider) HasClaimsMapping() bool`
-
-HasClaimsMapping returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

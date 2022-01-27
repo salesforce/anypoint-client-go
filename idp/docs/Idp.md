@@ -9,11 +9,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**ModelType**](ModelType.md) |  | [optional] 
 **Saml** | Pointer to [**Saml**](Saml.md) |  | [optional] 
-**Urls** | Pointer to [**Urls**](Urls.md) |  | [optional] 
-**Client** | Pointer to **string** |  | [optional] 
-**Issuer** | Pointer to **string** |  | [optional] 
-**GroupScope** | Pointer to **string** |  | [optional] 
 **AllowUntrustedCertificates** | Pointer to **bool** |  | [optional] 
+**OidcProvider** | Pointer to [**OidcProvider**](OidcProvider.md) |  | [optional] 
 **ServiceProvider** | Pointer to [**ServiceProvider**](ServiceProvider.md) |  | [optional] 
 
 ## Methods
@@ -160,106 +157,6 @@ SetSaml sets Saml field to given value.
 
 HasSaml returns a boolean if a field has been set.
 
-### GetUrls
-
-`func (o *Idp) GetUrls() Urls`
-
-GetUrls returns the Urls field if non-nil, zero value otherwise.
-
-### GetUrlsOk
-
-`func (o *Idp) GetUrlsOk() (*Urls, bool)`
-
-GetUrlsOk returns a tuple with the Urls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrls
-
-`func (o *Idp) SetUrls(v Urls)`
-
-SetUrls sets Urls field to given value.
-
-### HasUrls
-
-`func (o *Idp) HasUrls() bool`
-
-HasUrls returns a boolean if a field has been set.
-
-### GetClient
-
-`func (o *Idp) GetClient() string`
-
-GetClient returns the Client field if non-nil, zero value otherwise.
-
-### GetClientOk
-
-`func (o *Idp) GetClientOk() (*string, bool)`
-
-GetClientOk returns a tuple with the Client field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClient
-
-`func (o *Idp) SetClient(v string)`
-
-SetClient sets Client field to given value.
-
-### HasClient
-
-`func (o *Idp) HasClient() bool`
-
-HasClient returns a boolean if a field has been set.
-
-### GetIssuer
-
-`func (o *Idp) GetIssuer() string`
-
-GetIssuer returns the Issuer field if non-nil, zero value otherwise.
-
-### GetIssuerOk
-
-`func (o *Idp) GetIssuerOk() (*string, bool)`
-
-GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIssuer
-
-`func (o *Idp) SetIssuer(v string)`
-
-SetIssuer sets Issuer field to given value.
-
-### HasIssuer
-
-`func (o *Idp) HasIssuer() bool`
-
-HasIssuer returns a boolean if a field has been set.
-
-### GetGroupScope
-
-`func (o *Idp) GetGroupScope() string`
-
-GetGroupScope returns the GroupScope field if non-nil, zero value otherwise.
-
-### GetGroupScopeOk
-
-`func (o *Idp) GetGroupScopeOk() (*string, bool)`
-
-GetGroupScopeOk returns a tuple with the GroupScope field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupScope
-
-`func (o *Idp) SetGroupScope(v string)`
-
-SetGroupScope sets GroupScope field to given value.
-
-### HasGroupScope
-
-`func (o *Idp) HasGroupScope() bool`
-
-HasGroupScope returns a boolean if a field has been set.
-
 ### GetAllowUntrustedCertificates
 
 `func (o *Idp) GetAllowUntrustedCertificates() bool`
@@ -284,6 +181,31 @@ SetAllowUntrustedCertificates sets AllowUntrustedCertificates field to given val
 `func (o *Idp) HasAllowUntrustedCertificates() bool`
 
 HasAllowUntrustedCertificates returns a boolean if a field has been set.
+
+### GetOidcProvider
+
+`func (o *Idp) GetOidcProvider() OidcProvider`
+
+GetOidcProvider returns the OidcProvider field if non-nil, zero value otherwise.
+
+### GetOidcProviderOk
+
+`func (o *Idp) GetOidcProviderOk() (*OidcProvider, bool)`
+
+GetOidcProviderOk returns a tuple with the OidcProvider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOidcProvider
+
+`func (o *Idp) SetOidcProvider(v OidcProvider)`
+
+SetOidcProvider sets OidcProvider field to given value.
+
+### HasOidcProvider
+
+`func (o *Idp) HasOidcProvider() bool`
+
+HasOidcProvider returns a boolean if a field has been set.
 
 ### GetServiceProvider
 

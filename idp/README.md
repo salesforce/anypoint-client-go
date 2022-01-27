@@ -79,30 +79,42 @@ All URIs are relative to *https://anypoint.mulesoft.com/accounts/api*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**OrganizationsOrgIdIdentityProvidersGet**](docs/DefaultApi.md#organizationsorgididentityprovidersget) | **Get** /organizations/{orgId}/identityProviders | 
-*DefaultApi* | [**OrganizationsOrgIdIdentityProvidersIdpIdGet**](docs/DefaultApi.md#organizationsorgididentityprovidersidpidget) | **Get** /organizations/{orgId}/identityProviders/idpId | 
+*DefaultApi* | [**OrganizationsOrgIdIdentityProvidersIdpIdDelete**](docs/DefaultApi.md#organizationsorgididentityprovidersidpiddelete) | **Delete** /organizations/{orgId}/identityProviders/{idpId} | 
+*DefaultApi* | [**OrganizationsOrgIdIdentityProvidersIdpIdGet**](docs/DefaultApi.md#organizationsorgididentityprovidersidpidget) | **Get** /organizations/{orgId}/identityProviders/{idpId} | 
+*DefaultApi* | [**OrganizationsOrgIdIdentityProvidersIdpIdPatch**](docs/DefaultApi.md#organizationsorgididentityprovidersidpidpatch) | **Patch** /organizations/{orgId}/identityProviders/{idpId} | 
+*DefaultApi* | [**OrganizationsOrgIdIdentityProvidersPost**](docs/DefaultApi.md#organizationsorgididentityproviderspost) | **Post** /organizations/{orgId}/identityProviders | 
 
 
 ## Documentation For Models
 
  - [ClaimsMapping](docs/ClaimsMapping.md)
  - [ClaimsMapping1](docs/ClaimsMapping1.md)
+ - [ClaimsMapping2](docs/ClaimsMapping2.md)
  - [Client](docs/Client.md)
+ - [Credentials](docs/Credentials.md)
  - [Idp](docs/Idp.md)
  - [IdpCommonProps](docs/IdpCommonProps.md)
  - [IdpOIDC](docs/IdpOIDC.md)
+ - [IdpPatchBody](docs/IdpPatchBody.md)
+ - [IdpPatchBodyType](docs/IdpPatchBodyType.md)
  - [IdpPostBody](docs/IdpPostBody.md)
  - [IdpPostBodyType](docs/IdpPostBodyType.md)
  - [IdpSAML](docs/IdpSAML.md)
  - [IdpSummary](docs/IdpSummary.md)
  - [InlineResponse200](docs/InlineResponse200.md)
+ - [InlineResponse400](docs/InlineResponse400.md)
  - [ModelType](docs/ModelType.md)
  - [OidcProvider](docs/OidcProvider.md)
+ - [OidcProvider1](docs/OidcProvider1.md)
  - [Saml](docs/Saml.md)
+ - [Saml1](docs/Saml1.md)
  - [ServiceProvider](docs/ServiceProvider.md)
+ - [ServiceProvider1](docs/ServiceProvider1.md)
  - [Urls](docs/Urls.md)
  - [Urls1](docs/Urls1.md)
  - [Urls2](docs/Urls2.md)
  - [Urls3](docs/Urls3.md)
+ - [Urls4](docs/Urls4.md)
 
 
 ## Documentation For Authorization

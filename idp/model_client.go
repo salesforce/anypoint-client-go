@@ -14,9 +14,10 @@ import (
 	"encoding/json"
 )
 
-// Client struct for Client
+// Client either contains urls or credentials (mutually exclusive)
 type Client struct {
 	Urls *Urls2 `json:"urls,omitempty"`
+	Credentials *Credentials `json:"credentials,omitempty"`
 }
 
 // NewClient instantiates a new Client object
@@ -68,10 +69,45 @@ func (o *Client) SetUrls(v Urls2) {
 	o.Urls = &v
 }
 
+// GetCredentials returns the Credentials field value if set, zero value otherwise.
+func (o *Client) GetCredentials() Credentials {
+	if o == nil || o.Credentials == nil {
+		var ret Credentials
+		return ret
+	}
+	return *o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Client) GetCredentialsOk() (*Credentials, bool) {
+	if o == nil || o.Credentials == nil {
+		return nil, false
+	}
+	return o.Credentials, true
+}
+
+// HasCredentials returns a boolean if a field has been set.
+func (o *Client) HasCredentials() bool {
+	if o != nil && o.Credentials != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentials gets a reference to the given Credentials and assigns it to the Credentials field.
+func (o *Client) SetCredentials(v Credentials) {
+	o.Credentials = &v
+}
+
 func (o Client) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Urls != nil {
 		toSerialize["urls"] = o.Urls
+	}
+	if o.Credentials != nil {
+		toSerialize["credentials"] = o.Credentials
 	}
 	return json.Marshal(toSerialize)
 }

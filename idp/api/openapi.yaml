@@ -32,7 +32,62 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200'
           description: Success response
-  /organizations/{orgId}/identityProviders/idpId:
+    post:
+      description: Creates an IDP connection through SAML or OIDC
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/idpPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/idp'
+          description: Success response
+  /organizations/{orgId}/identityProviders/{idpId}:
+    delete:
+      description: Deletes the given identity provider for the given organization
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the Identity Provider in GUID format
+        explode: false
+        in: path
+        name: idpId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            plain/text:
+              schema:
+                example: This resource does not exist
+          description: Not Found response
+        "204":
+          description: Success response
     get:
       description: Returns all identity providers for the given organization
       parameters:
@@ -59,14 +114,58 @@ paths:
           content:
             plain/text:
               schema:
-                example: The requested identity management provider is not found in
-                  the provider org
+                example: This resource does not exist
+          description: Not Found response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+    patch:
+      description: Updates the given identity provider for the given organization
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the Identity Provider in GUID format
+        explode: false
+        in: path
+        name: idpId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/idpPatchBody'
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            plain/text:
+              schema:
+                example: This resource does not exist
           description: Not Found response
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/idp'
           description: Success response
 components:
   responses:
@@ -76,29 +175,33 @@ components:
       content:
         application/json:
           schema:
-            properties:
-              status:
-                default: 400
-                title: the response status code
-                type: integer
-              message:
-                example: A sample message here
-                title: the error message
-                type: string
-            type: object
+            $ref: '#/components/schemas/inline_response_400'
       description: Bad request response
     NotFoundError:
       content:
         plain/text:
           schema:
-            example: The requested identity management provider is not found in the
-              provider org
+            example: This resource does not exist
       description: Not Found response
     SuccessGetIDP:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/idp'
+      description: Success response
+    SuccessPostIDP:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/idp'
+      description: Success response
+    SuccessPatchIDP:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/idp'
+      description: Success response
+    SuccessDeleteIDP:
       description: Success response
     SuccessListIDPs:
       content:
@@ -137,33 +240,11 @@ components:
       type: object
     idpOIDC:
       properties:
-        urls:
-          $ref: '#/components/schemas/urls'
-        client:
-          properties:
-            credentials:
-              properties:
-                id:
-                  title: id
-                  type: string
-              title: credentials
-              type: object
-            token_endpoint_auth_methods_supported:
-              items:
-                type: string
-              title: token_endpoint_auth_methods_supported
-              type: array
-          title: client
-          type: string
-        issuer:
-          title: issuer
-          type: string
-        group_scope:
-          title: group_scope
-          type: string
         allow_untrusted_certificates:
           title: allow_untrusted_certificates
           type: boolean
+        oidc_provider:
+          $ref: '#/components/schemas/oidc_provider'
       title: idpOIDC
       type: object
     idp:
@@ -181,8 +262,33 @@ components:
         type:
           $ref: '#/components/schemas/idpPostBody_type'
         oidc_provider:
-          $ref: '#/components/schemas/oidc_provider'
+          $ref: '#/components/schemas/oidc_provider_1'
+        allow_untrusted_certificates:
+          title: allow_untrusted_certificates
+          type: boolean
+        saml:
+          $ref: '#/components/schemas/saml_1'
+        service_provider:
+          $ref: '#/components/schemas/service_provider_1'
       title: idpPostBody
+      type: object
+    idpPatchBody:
+      properties:
+        name:
+          title: name
+          type: string
+        type:
+          $ref: '#/components/schemas/idpPatchBody_type'
+        oidc_provider:
+          $ref: '#/components/schemas/oidc_provider_1'
+        allow_untrusted_certificates:
+          title: allow_untrusted_certificates
+          type: boolean
+        saml:
+          $ref: '#/components/schemas/saml_1'
+        service_provider:
+          $ref: '#/components/schemas/service_provider_1'
+      title: idpPatchBody
       type: object
     inline_response_200:
       example:
@@ -209,6 +315,23 @@ components:
         total:
           title: Total number of results
           type: integer
+      type: object
+    inline_response_400:
+      properties:
+        errors:
+          items:
+            properties:
+              type:
+                type: string
+              keyword:
+                type: string
+              schemas:
+                type: string
+              message:
+                example: A sample message here
+                title: the error message
+                type: string
+          type: array
       type: object
     type:
       example:
@@ -287,12 +410,48 @@ components:
           type: string
       title: urls
       type: object
+    oidc_provider:
+      properties:
+        urls:
+          $ref: '#/components/schemas/urls'
+        client:
+          properties:
+            urls:
+              properties:
+                register:
+                  title: register
+                  type: string
+              title: urls
+              type: object
+            credentials:
+              properties:
+                id:
+                  title: id
+                  type: string
+              title: credentials
+              type: object
+            token_endpoint_auth_methods_supported:
+              items:
+                type: string
+              title: token_endpoint_auth_methods_supported
+              type: array
+          title: client
+          type: string
+        issuer:
+          title: issuer
+          type: string
+        group_scope:
+          title: group_scope
+          type: string
+      title: oidc_provider
+      type: object
     urls_1:
       properties:
         sign_on:
           title: sign_on
           type: string
         sign_out:
+          description: only available for SAML
           title: sign_out
           type: string
       title: urls
@@ -328,10 +487,23 @@ components:
           type: string
       title: urls
       type: object
+    credentials:
+      properties:
+        id:
+          title: id
+          type: string
+        secret:
+          title: secret
+          type: string
+      title: credentials
+      type: object
     client:
+      description: either contains urls or credentials (mutually exclusive)
       properties:
         urls:
           $ref: '#/components/schemas/urls_2'
+        credentials:
+          $ref: '#/components/schemas/credentials'
       title: client
       type: object
     urls_3:
@@ -354,7 +526,7 @@ components:
           type: string
       title: claims_mapping
       type: object
-    oidc_provider:
+    oidc_provider_1:
       properties:
         client:
           $ref: '#/components/schemas/client'
@@ -369,6 +541,86 @@ components:
         claims_mapping:
           $ref: '#/components/schemas/claims_mapping_1'
       title: oidc_provider
+      type: object
+    claims_mapping_2:
+      properties:
+        username_attribute:
+          description: Field name in the SAML AttributeStatements that maps to username.
+            By default, the NameID attribute in the SAML assertion is used.
+          title: username_attribute
+          type: string
+        firstname_attribute:
+          description: Field name in the SAML AttributeStatements that maps to First
+            Name. By default, the firstname attribute in the SAML assertion is used.
+          title: firstname_attribute
+          type: string
+        lastname_attribute:
+          description: Field name in the SAML AttributeStatements that maps to Last
+            Name. By default, the lastname attribute in the SAML assertion is used.
+          title: lastname_attribute
+          type: string
+        email_attribute:
+          description: Field name in the SAML AttributeStatements that maps to Email.
+            By default, the email attribute in the SAML assertion is used.
+          title: email_attribute
+          type: string
+        group_attribute:
+          description: Field name in the SAML AttributeStatements that maps to Group.
+          title: group_attribute
+          type: string
+      title: claims_mapping
+      type: object
+    saml_1:
+      properties:
+        issuer:
+          title: issuer
+          type: string
+        public_key:
+          items:
+            type: string
+          title: public_key
+          type: array
+        audience:
+          title: audience
+          type: string
+        claims_mapping:
+          $ref: '#/components/schemas/claims_mapping_2'
+        require_encrypted_saml_assertions:
+          title: require_encrypted_saml_assertions
+          type: boolean
+        idp_initiated_sso_enabled:
+          title: idp_initiated_sso_enabled
+          type: boolean
+        sp_initiated_sso_enabled:
+          title: sp_initiated_sso_enabled
+          type: boolean
+      title: saml
+      type: object
+    urls_4:
+      properties:
+        sign_on:
+          description: The Anypoint Platform URL where users must sign in.
+          title: sign_on
+          type: string
+        sign_out:
+          description: URL to redirect sign out requests, so users both sign out of
+            the Anypoint Platform and have their SAML user's status set to signed
+            out.
+          title: sign_out
+          type: string
+      title: urls
+      type: object
+    service_provider_1:
+      properties:
+        urls:
+          $ref: '#/components/schemas/urls_4'
+      title: service_provider
+      type: object
+    idpPatchBody_type:
+      properties:
+        description:
+          title: description
+          type: string
       type: object
   securitySchemes:
     bearerAuth:
