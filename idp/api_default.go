@@ -250,7 +250,7 @@ type DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest struct {
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+func (r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) Execute() (Idp, *_nethttp.Response, error) {
 	return r.ApiService.OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r)
 }
 
@@ -273,16 +273,16 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGet(ctx _con
 
 /*
  * Execute executes the request
- * @return InlineResponse200
+ * @return Idp
  */
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r DefaultApiApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) (Idp, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse200
+		localVarReturnValue  Idp
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersIdpIdGet")
