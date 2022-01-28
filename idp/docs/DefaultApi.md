@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdIdentityProvidersIdpIdGet
 
-> InlineResponse200 OrganizationsOrgIdIdentityProvidersIdpIdGet(ctx, orgId, idpId).Execute()
+> Idp OrganizationsOrgIdIdentityProvidersIdpIdGet(ctx, orgId, idpId).Execute()
 
 
 
@@ -184,7 +184,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdIdentityProvidersIdpIdGet`: InlineResponse200
+    // response from `OrganizationsOrgIdIdentityProvidersIdpIdGet`: Idp
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdGet`: %v\n", resp)
 }
 ```
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**Idp**](Idp.md)
 
 ### Authorization
 

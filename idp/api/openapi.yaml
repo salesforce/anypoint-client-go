@@ -120,7 +120,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/idp'
           description: Success response
     patch:
       description: Updates the given identity provider for the given organization
