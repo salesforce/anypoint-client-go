@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Register** | Pointer to **string** |  | [optional] 
+**SignOn** | Pointer to **string** |  | [optional] 
+**SignOut** | Pointer to **string** | only available for SAML | [optional] 
 
 ## Methods
 
@@ -25,30 +26,55 @@ NewUrls2WithDefaults instantiates a new Urls2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRegister
+### GetSignOn
 
-`func (o *Urls2) GetRegister() string`
+`func (o *Urls2) GetSignOn() string`
 
-GetRegister returns the Register field if non-nil, zero value otherwise.
+GetSignOn returns the SignOn field if non-nil, zero value otherwise.
 
-### GetRegisterOk
+### GetSignOnOk
 
-`func (o *Urls2) GetRegisterOk() (*string, bool)`
+`func (o *Urls2) GetSignOnOk() (*string, bool)`
 
-GetRegisterOk returns a tuple with the Register field if it's non-nil, zero value otherwise
+GetSignOnOk returns a tuple with the SignOn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegister
+### SetSignOn
 
-`func (o *Urls2) SetRegister(v string)`
+`func (o *Urls2) SetSignOn(v string)`
 
-SetRegister sets Register field to given value.
+SetSignOn sets SignOn field to given value.
 
-### HasRegister
+### HasSignOn
 
-`func (o *Urls2) HasRegister() bool`
+`func (o *Urls2) HasSignOn() bool`
 
-HasRegister returns a boolean if a field has been set.
+HasSignOn returns a boolean if a field has been set.
+
+### GetSignOut
+
+`func (o *Urls2) GetSignOut() string`
+
+GetSignOut returns the SignOut field if non-nil, zero value otherwise.
+
+### GetSignOutOk
+
+`func (o *Urls2) GetSignOutOk() (*string, bool)`
+
+GetSignOutOk returns a tuple with the SignOut field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignOut
+
+`func (o *Urls2) SetSignOut(v string)`
+
+SetSignOut sets SignOut field to given value.
+
+### HasSignOut
+
+`func (o *Urls2) HasSignOut() bool`
+
+HasSignOut returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

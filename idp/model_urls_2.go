@@ -16,7 +16,9 @@ import (
 
 // Urls2 struct for Urls2
 type Urls2 struct {
-	Register *string `json:"register,omitempty"`
+	SignOn *string `json:"sign_on,omitempty"`
+	// only available for SAML
+	SignOut *string `json:"sign_out,omitempty"`
 }
 
 // NewUrls2 instantiates a new Urls2 object
@@ -36,42 +38,77 @@ func NewUrls2WithDefaults() *Urls2 {
 	return &this
 }
 
-// GetRegister returns the Register field value if set, zero value otherwise.
-func (o *Urls2) GetRegister() string {
-	if o == nil || o.Register == nil {
+// GetSignOn returns the SignOn field value if set, zero value otherwise.
+func (o *Urls2) GetSignOn() string {
+	if o == nil || o.SignOn == nil {
 		var ret string
 		return ret
 	}
-	return *o.Register
+	return *o.SignOn
 }
 
-// GetRegisterOk returns a tuple with the Register field value if set, nil otherwise
+// GetSignOnOk returns a tuple with the SignOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Urls2) GetRegisterOk() (*string, bool) {
-	if o == nil || o.Register == nil {
+func (o *Urls2) GetSignOnOk() (*string, bool) {
+	if o == nil || o.SignOn == nil {
 		return nil, false
 	}
-	return o.Register, true
+	return o.SignOn, true
 }
 
-// HasRegister returns a boolean if a field has been set.
-func (o *Urls2) HasRegister() bool {
-	if o != nil && o.Register != nil {
+// HasSignOn returns a boolean if a field has been set.
+func (o *Urls2) HasSignOn() bool {
+	if o != nil && o.SignOn != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetRegister gets a reference to the given string and assigns it to the Register field.
-func (o *Urls2) SetRegister(v string) {
-	o.Register = &v
+// SetSignOn gets a reference to the given string and assigns it to the SignOn field.
+func (o *Urls2) SetSignOn(v string) {
+	o.SignOn = &v
+}
+
+// GetSignOut returns the SignOut field value if set, zero value otherwise.
+func (o *Urls2) GetSignOut() string {
+	if o == nil || o.SignOut == nil {
+		var ret string
+		return ret
+	}
+	return *o.SignOut
+}
+
+// GetSignOutOk returns a tuple with the SignOut field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Urls2) GetSignOutOk() (*string, bool) {
+	if o == nil || o.SignOut == nil {
+		return nil, false
+	}
+	return o.SignOut, true
+}
+
+// HasSignOut returns a boolean if a field has been set.
+func (o *Urls2) HasSignOut() bool {
+	if o != nil && o.SignOut != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSignOut gets a reference to the given string and assigns it to the SignOut field.
+func (o *Urls2) SetSignOut(v string) {
+	o.SignOut = &v
 }
 
 func (o Urls2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Register != nil {
-		toSerialize["register"] = o.Register
+	if o.SignOn != nil {
+		toSerialize["sign_on"] = o.SignOn
+	}
+	if o.SignOut != nil {
+		toSerialize["sign_out"] = o.SignOut
 	}
 	return json.Marshal(toSerialize)
 }

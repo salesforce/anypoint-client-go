@@ -410,33 +410,39 @@ components:
           type: string
       title: urls
       type: object
+    urls_1:
+      properties:
+        register:
+          title: register
+          type: string
+      title: urls
+      type: object
+    credentials:
+      properties:
+        id:
+          title: id
+          type: string
+      title: credentials
+      type: object
+    client:
+      properties:
+        urls:
+          $ref: '#/components/schemas/urls_1'
+        credentials:
+          $ref: '#/components/schemas/credentials'
+        token_endpoint_auth_methods_supported:
+          items:
+            type: string
+          title: token_endpoint_auth_methods_supported
+          type: array
+      title: client
+      type: object
     oidc_provider:
       properties:
         urls:
           $ref: '#/components/schemas/urls'
         client:
-          properties:
-            urls:
-              properties:
-                register:
-                  title: register
-                  type: string
-              title: urls
-              type: object
-            credentials:
-              properties:
-                id:
-                  title: id
-                  type: string
-              title: credentials
-              type: object
-            token_endpoint_auth_methods_supported:
-              items:
-                type: string
-              title: token_endpoint_auth_methods_supported
-              type: array
-          title: client
-          type: string
+          $ref: '#/components/schemas/client'
         issuer:
           title: issuer
           type: string
@@ -445,7 +451,7 @@ components:
           type: string
       title: oidc_provider
       type: object
-    urls_1:
+    urls_2:
       properties:
         sign_on:
           title: sign_on
@@ -459,7 +465,7 @@ components:
     service_provider:
       properties:
         urls:
-          $ref: '#/components/schemas/urls_1'
+          $ref: '#/components/schemas/urls_2'
       title: service_provider
       type: object
     idpCommonProps:
@@ -480,14 +486,7 @@ components:
           title: name
           type: string
       type: object
-    urls_2:
-      properties:
-        register:
-          title: register
-          type: string
-      title: urls
-      type: object
-    credentials:
+    credentials_1:
       properties:
         id:
           title: id
@@ -497,13 +496,13 @@ components:
           type: string
       title: credentials
       type: object
-    client:
+    client_1:
       description: either contains urls or credentials (mutually exclusive)
       properties:
         urls:
-          $ref: '#/components/schemas/urls_2'
+          $ref: '#/components/schemas/urls_1'
         credentials:
-          $ref: '#/components/schemas/credentials'
+          $ref: '#/components/schemas/credentials_1'
       title: client
       type: object
     urls_3:
@@ -529,7 +528,7 @@ components:
     oidc_provider_1:
       properties:
         client:
-          $ref: '#/components/schemas/client'
+          $ref: '#/components/schemas/client_1'
         issuer:
           title: issuer
           type: string

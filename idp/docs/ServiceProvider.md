@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Urls** | Pointer to [**Urls1**](Urls1.md) |  | [optional] 
+**Urls** | Pointer to [**Urls2**](Urls2.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUrls
 
-`func (o *ServiceProvider) GetUrls() Urls1`
+`func (o *ServiceProvider) GetUrls() Urls2`
 
 GetUrls returns the Urls field if non-nil, zero value otherwise.
 
 ### GetUrlsOk
 
-`func (o *ServiceProvider) GetUrlsOk() (*Urls1, bool)`
+`func (o *ServiceProvider) GetUrlsOk() (*Urls2, bool)`
 
 GetUrlsOk returns a tuple with the Urls field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUrls
 
-`func (o *ServiceProvider) SetUrls(v Urls1)`
+`func (o *ServiceProvider) SetUrls(v Urls2)`
 
 SetUrls sets Urls field to given value.
 

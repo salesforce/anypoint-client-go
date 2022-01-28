@@ -14,10 +14,11 @@ import (
 	"encoding/json"
 )
 
-// Client either contains urls or credentials (mutually exclusive)
+// Client struct for Client
 type Client struct {
-	Urls *Urls2 `json:"urls,omitempty"`
+	Urls *Urls1 `json:"urls,omitempty"`
 	Credentials *Credentials `json:"credentials,omitempty"`
+	TokenEndpointAuthMethodsSupported *[]string `json:"token_endpoint_auth_methods_supported,omitempty"`
 }
 
 // NewClient instantiates a new Client object
@@ -38,9 +39,9 @@ func NewClientWithDefaults() *Client {
 }
 
 // GetUrls returns the Urls field value if set, zero value otherwise.
-func (o *Client) GetUrls() Urls2 {
+func (o *Client) GetUrls() Urls1 {
 	if o == nil || o.Urls == nil {
-		var ret Urls2
+		var ret Urls1
 		return ret
 	}
 	return *o.Urls
@@ -48,7 +49,7 @@ func (o *Client) GetUrls() Urls2 {
 
 // GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Client) GetUrlsOk() (*Urls2, bool) {
+func (o *Client) GetUrlsOk() (*Urls1, bool) {
 	if o == nil || o.Urls == nil {
 		return nil, false
 	}
@@ -64,8 +65,8 @@ func (o *Client) HasUrls() bool {
 	return false
 }
 
-// SetUrls gets a reference to the given Urls2 and assigns it to the Urls field.
-func (o *Client) SetUrls(v Urls2) {
+// SetUrls gets a reference to the given Urls1 and assigns it to the Urls field.
+func (o *Client) SetUrls(v Urls1) {
 	o.Urls = &v
 }
 
@@ -101,6 +102,38 @@ func (o *Client) SetCredentials(v Credentials) {
 	o.Credentials = &v
 }
 
+// GetTokenEndpointAuthMethodsSupported returns the TokenEndpointAuthMethodsSupported field value if set, zero value otherwise.
+func (o *Client) GetTokenEndpointAuthMethodsSupported() []string {
+	if o == nil || o.TokenEndpointAuthMethodsSupported == nil {
+		var ret []string
+		return ret
+	}
+	return *o.TokenEndpointAuthMethodsSupported
+}
+
+// GetTokenEndpointAuthMethodsSupportedOk returns a tuple with the TokenEndpointAuthMethodsSupported field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Client) GetTokenEndpointAuthMethodsSupportedOk() (*[]string, bool) {
+	if o == nil || o.TokenEndpointAuthMethodsSupported == nil {
+		return nil, false
+	}
+	return o.TokenEndpointAuthMethodsSupported, true
+}
+
+// HasTokenEndpointAuthMethodsSupported returns a boolean if a field has been set.
+func (o *Client) HasTokenEndpointAuthMethodsSupported() bool {
+	if o != nil && o.TokenEndpointAuthMethodsSupported != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenEndpointAuthMethodsSupported gets a reference to the given []string and assigns it to the TokenEndpointAuthMethodsSupported field.
+func (o *Client) SetTokenEndpointAuthMethodsSupported(v []string) {
+	o.TokenEndpointAuthMethodsSupported = &v
+}
+
 func (o Client) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Urls != nil {
@@ -108,6 +141,9 @@ func (o Client) MarshalJSON() ([]byte, error) {
 	}
 	if o.Credentials != nil {
 		toSerialize["credentials"] = o.Credentials
+	}
+	if o.TokenEndpointAuthMethodsSupported != nil {
+		toSerialize["token_endpoint_auth_methods_supported"] = o.TokenEndpointAuthMethodsSupported
 	}
 	return json.Marshal(toSerialize)
 }
