@@ -16,7 +16,7 @@ import (
 
 // ServiceProvider struct for ServiceProvider
 type ServiceProvider struct {
-	Urls *Urls1 `json:"urls,omitempty"`
+	Urls *Urls2 `json:"urls,omitempty"`
 }
 
 // NewServiceProvider instantiates a new ServiceProvider object
@@ -37,9 +37,9 @@ func NewServiceProviderWithDefaults() *ServiceProvider {
 }
 
 // GetUrls returns the Urls field value if set, zero value otherwise.
-func (o *ServiceProvider) GetUrls() Urls1 {
+func (o *ServiceProvider) GetUrls() Urls2 {
 	if o == nil || o.Urls == nil {
-		var ret Urls1
+		var ret Urls2
 		return ret
 	}
 	return *o.Urls
@@ -47,7 +47,7 @@ func (o *ServiceProvider) GetUrls() Urls1 {
 
 // GetUrlsOk returns a tuple with the Urls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceProvider) GetUrlsOk() (*Urls1, bool) {
+func (o *ServiceProvider) GetUrlsOk() (*Urls2, bool) {
 	if o == nil || o.Urls == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *ServiceProvider) HasUrls() bool {
 	return false
 }
 
-// SetUrls gets a reference to the given Urls1 and assigns it to the Urls field.
-func (o *ServiceProvider) SetUrls(v Urls1) {
+// SetUrls gets a reference to the given Urls2 and assigns it to the Urls field.
+func (o *ServiceProvider) SetUrls(v Urls2) {
 	o.Urls = &v
 }
 

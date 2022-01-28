@@ -16,7 +16,7 @@ import (
 
 // OidcProvider1 struct for OidcProvider1
 type OidcProvider1 struct {
-	Client *Client `json:"client,omitempty"`
+	Client *Client1 `json:"client,omitempty"`
 	Issuer *string `json:"issuer,omitempty"`
 	Urls *Urls3 `json:"urls,omitempty"`
 	GroupScope *string `json:"group_scope,omitempty"`
@@ -41,9 +41,9 @@ func NewOidcProvider1WithDefaults() *OidcProvider1 {
 }
 
 // GetClient returns the Client field value if set, zero value otherwise.
-func (o *OidcProvider1) GetClient() Client {
+func (o *OidcProvider1) GetClient() Client1 {
 	if o == nil || o.Client == nil {
-		var ret Client
+		var ret Client1
 		return ret
 	}
 	return *o.Client
@@ -51,7 +51,7 @@ func (o *OidcProvider1) GetClient() Client {
 
 // GetClientOk returns a tuple with the Client field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OidcProvider1) GetClientOk() (*Client, bool) {
+func (o *OidcProvider1) GetClientOk() (*Client1, bool) {
 	if o == nil || o.Client == nil {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *OidcProvider1) HasClient() bool {
 	return false
 }
 
-// SetClient gets a reference to the given Client and assigns it to the Client field.
-func (o *OidcProvider1) SetClient(v Client) {
+// SetClient gets a reference to the given Client1 and assigns it to the Client field.
+func (o *OidcProvider1) SetClient(v Client1) {
 	o.Client = &v
 }
 

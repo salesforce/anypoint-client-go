@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Urls** | Pointer to [**Urls**](Urls.md) |  | [optional] 
-**Client** | Pointer to **string** |  | [optional] 
+**Client** | Pointer to [**Client**](Client.md) |  | [optional] 
 **Issuer** | Pointer to **string** |  | [optional] 
 **GroupScope** | Pointer to **string** |  | [optional] 
 
@@ -55,20 +55,20 @@ HasUrls returns a boolean if a field has been set.
 
 ### GetClient
 
-`func (o *OidcProvider) GetClient() string`
+`func (o *OidcProvider) GetClient() Client`
 
 GetClient returns the Client field if non-nil, zero value otherwise.
 
 ### GetClientOk
 
-`func (o *OidcProvider) GetClientOk() (*string, bool)`
+`func (o *OidcProvider) GetClientOk() (*Client, bool)`
 
 GetClientOk returns a tuple with the Client field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClient
 
-`func (o *OidcProvider) SetClient(v string)`
+`func (o *OidcProvider) SetClient(v Client)`
 
 SetClient sets Client field to given value.
 

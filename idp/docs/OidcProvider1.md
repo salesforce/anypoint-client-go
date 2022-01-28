@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Client** | Pointer to [**Client**](Client.md) |  | [optional] 
+**Client** | Pointer to [**Client1**](Client1.md) |  | [optional] 
 **Issuer** | Pointer to **string** |  | [optional] 
 **Urls** | Pointer to [**Urls3**](Urls3.md) |  | [optional] 
 **GroupScope** | Pointer to **string** |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetClient
 
-`func (o *OidcProvider1) GetClient() Client`
+`func (o *OidcProvider1) GetClient() Client1`
 
 GetClient returns the Client field if non-nil, zero value otherwise.
 
 ### GetClientOk
 
-`func (o *OidcProvider1) GetClientOk() (*Client, bool)`
+`func (o *OidcProvider1) GetClientOk() (*Client1, bool)`
 
 GetClientOk returns a tuple with the Client field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClient
 
-`func (o *OidcProvider1) SetClient(v Client)`
+`func (o *OidcProvider1) SetClient(v Client1)`
 
 SetClient sets Client field to given value.
 

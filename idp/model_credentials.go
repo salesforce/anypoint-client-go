@@ -17,7 +17,6 @@ import (
 // Credentials struct for Credentials
 type Credentials struct {
 	Id *string `json:"id,omitempty"`
-	Secret *string `json:"secret,omitempty"`
 }
 
 // NewCredentials instantiates a new Credentials object
@@ -69,45 +68,10 @@ func (o *Credentials) SetId(v string) {
 	o.Id = &v
 }
 
-// GetSecret returns the Secret field value if set, zero value otherwise.
-func (o *Credentials) GetSecret() string {
-	if o == nil || o.Secret == nil {
-		var ret string
-		return ret
-	}
-	return *o.Secret
-}
-
-// GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Credentials) GetSecretOk() (*string, bool) {
-	if o == nil || o.Secret == nil {
-		return nil, false
-	}
-	return o.Secret, true
-}
-
-// HasSecret returns a boolean if a field has been set.
-func (o *Credentials) HasSecret() bool {
-	if o != nil && o.Secret != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSecret gets a reference to the given string and assigns it to the Secret field.
-func (o *Credentials) SetSecret(v string) {
-	o.Secret = &v
-}
-
 func (o Credentials) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
-	}
-	if o.Secret != nil {
-		toSerialize["secret"] = o.Secret
 	}
 	return json.Marshal(toSerialize)
 }

@@ -9,7 +9,9 @@ docs/ClaimsMapping.md
 docs/ClaimsMapping1.md
 docs/ClaimsMapping2.md
 docs/Client.md
+docs/Client1.md
 docs/Credentials.md
+docs/Credentials1.md
 docs/DefaultApi.md
 docs/Idp.md
 docs/IdpCommonProps.md
@@ -41,7 +43,9 @@ model_claims_mapping.go
 model_claims_mapping_1.go
 model_claims_mapping_2.go
 model_client.go
+model_client_1.go
 model_credentials.go
+model_credentials_1.go
 model_idp.go
 model_idp_common_props.go
 model_idp_oidc.go

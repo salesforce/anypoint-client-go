@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignOn** | Pointer to **string** |  | [optional] 
-**SignOut** | Pointer to **string** | only available for SAML | [optional] 
+**Register** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -26,55 +25,30 @@ NewUrls1WithDefaults instantiates a new Urls1 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSignOn
+### GetRegister
 
-`func (o *Urls1) GetSignOn() string`
+`func (o *Urls1) GetRegister() string`
 
-GetSignOn returns the SignOn field if non-nil, zero value otherwise.
+GetRegister returns the Register field if non-nil, zero value otherwise.
 
-### GetSignOnOk
+### GetRegisterOk
 
-`func (o *Urls1) GetSignOnOk() (*string, bool)`
+`func (o *Urls1) GetRegisterOk() (*string, bool)`
 
-GetSignOnOk returns a tuple with the SignOn field if it's non-nil, zero value otherwise
+GetRegisterOk returns a tuple with the Register field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSignOn
+### SetRegister
 
-`func (o *Urls1) SetSignOn(v string)`
+`func (o *Urls1) SetRegister(v string)`
 
-SetSignOn sets SignOn field to given value.
+SetRegister sets Register field to given value.
 
-### HasSignOn
+### HasRegister
 
-`func (o *Urls1) HasSignOn() bool`
+`func (o *Urls1) HasRegister() bool`
 
-HasSignOn returns a boolean if a field has been set.
-
-### GetSignOut
-
-`func (o *Urls1) GetSignOut() string`
-
-GetSignOut returns the SignOut field if non-nil, zero value otherwise.
-
-### GetSignOutOk
-
-`func (o *Urls1) GetSignOutOk() (*string, bool)`
-
-GetSignOutOk returns a tuple with the SignOut field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSignOut
-
-`func (o *Urls1) SetSignOut(v string)`
-
-SetSignOut sets SignOut field to given value.
-
-### HasSignOut
-
-`func (o *Urls1) HasSignOut() bool`
-
-HasSignOut returns a boolean if a field has been set.
+HasRegister returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
