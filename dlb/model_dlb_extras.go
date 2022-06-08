@@ -33,6 +33,8 @@ type DlbExtras struct {
 	ProxyReadTimeout *int32 `json:"proxyReadTimeout,omitempty"`
 	IpAddressesInfo *[]DlbExtrasIpAddressesInfo `json:"ipAddressesInfo,omitempty"`
 	DoubleStaticIps *bool `json:"doubleStaticIps,omitempty"`
+	EnableStreaming *bool `json:"enableStreaming,omitempty"`
+	ForwardClientCertificate *bool `json:"forwardClientCertificate,omitempty"`
 }
 
 // NewDlbExtras instantiates a new DlbExtras object
@@ -500,6 +502,70 @@ func (o *DlbExtras) SetDoubleStaticIps(v bool) {
 	o.DoubleStaticIps = &v
 }
 
+// GetEnableStreaming returns the EnableStreaming field value if set, zero value otherwise.
+func (o *DlbExtras) GetEnableStreaming() bool {
+	if o == nil || o.EnableStreaming == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableStreaming
+}
+
+// GetEnableStreamingOk returns a tuple with the EnableStreaming field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbExtras) GetEnableStreamingOk() (*bool, bool) {
+	if o == nil || o.EnableStreaming == nil {
+		return nil, false
+	}
+	return o.EnableStreaming, true
+}
+
+// HasEnableStreaming returns a boolean if a field has been set.
+func (o *DlbExtras) HasEnableStreaming() bool {
+	if o != nil && o.EnableStreaming != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableStreaming gets a reference to the given bool and assigns it to the EnableStreaming field.
+func (o *DlbExtras) SetEnableStreaming(v bool) {
+	o.EnableStreaming = &v
+}
+
+// GetForwardClientCertificate returns the ForwardClientCertificate field value if set, zero value otherwise.
+func (o *DlbExtras) GetForwardClientCertificate() bool {
+	if o == nil || o.ForwardClientCertificate == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ForwardClientCertificate
+}
+
+// GetForwardClientCertificateOk returns a tuple with the ForwardClientCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbExtras) GetForwardClientCertificateOk() (*bool, bool) {
+	if o == nil || o.ForwardClientCertificate == nil {
+		return nil, false
+	}
+	return o.ForwardClientCertificate, true
+}
+
+// HasForwardClientCertificate returns a boolean if a field has been set.
+func (o *DlbExtras) HasForwardClientCertificate() bool {
+	if o != nil && o.ForwardClientCertificate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetForwardClientCertificate gets a reference to the given bool and assigns it to the ForwardClientCertificate field.
+func (o *DlbExtras) SetForwardClientCertificate(v bool) {
+	o.ForwardClientCertificate = &v
+}
+
 func (o DlbExtras) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -543,6 +609,12 @@ func (o DlbExtras) MarshalJSON() ([]byte, error) {
 	}
 	if o.DoubleStaticIps != nil {
 		toSerialize["doubleStaticIps"] = o.DoubleStaticIps
+	}
+	if o.EnableStreaming != nil {
+		toSerialize["enableStreaming"] = o.EnableStreaming
+	}
+	if o.ForwardClientCertificate != nil {
+		toSerialize["forwardClientCertificate"] = o.ForwardClientCertificate
 	}
 	return json.Marshal(toSerialize)
 }

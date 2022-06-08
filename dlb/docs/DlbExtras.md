@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **ProxyReadTimeout** | Pointer to **int32** |  | [optional] 
 **IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfo**](DlbExtrasIpAddressesInfo.md) |  | [optional] 
 **DoubleStaticIps** | Pointer to **bool** |  | [optional] 
+**EnableStreaming** | Pointer to **bool** |  | [optional] 
+**ForwardClientCertificate** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -387,6 +389,56 @@ SetDoubleStaticIps sets DoubleStaticIps field to given value.
 `func (o *DlbExtras) HasDoubleStaticIps() bool`
 
 HasDoubleStaticIps returns a boolean if a field has been set.
+
+### GetEnableStreaming
+
+`func (o *DlbExtras) GetEnableStreaming() bool`
+
+GetEnableStreaming returns the EnableStreaming field if non-nil, zero value otherwise.
+
+### GetEnableStreamingOk
+
+`func (o *DlbExtras) GetEnableStreamingOk() (*bool, bool)`
+
+GetEnableStreamingOk returns a tuple with the EnableStreaming field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableStreaming
+
+`func (o *DlbExtras) SetEnableStreaming(v bool)`
+
+SetEnableStreaming sets EnableStreaming field to given value.
+
+### HasEnableStreaming
+
+`func (o *DlbExtras) HasEnableStreaming() bool`
+
+HasEnableStreaming returns a boolean if a field has been set.
+
+### GetForwardClientCertificate
+
+`func (o *DlbExtras) GetForwardClientCertificate() bool`
+
+GetForwardClientCertificate returns the ForwardClientCertificate field if non-nil, zero value otherwise.
+
+### GetForwardClientCertificateOk
+
+`func (o *DlbExtras) GetForwardClientCertificateOk() (*bool, bool)`
+
+GetForwardClientCertificateOk returns a tuple with the ForwardClientCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForwardClientCertificate
+
+`func (o *DlbExtras) SetForwardClientCertificate(v bool)`
+
+SetForwardClientCertificate sets ForwardClientCertificate field to given value.
+
+### HasForwardClientCertificate
+
+`func (o *DlbExtras) HasForwardClientCertificate() bool`
+
+HasForwardClientCertificate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -33,10 +33,13 @@ type Dlb struct {
 	ProxyReadTimeout *int32 `json:"proxyReadTimeout,omitempty"`
 	IpAddressesInfo *[]DlbExtrasIpAddressesInfo `json:"ipAddressesInfo,omitempty"`
 	DoubleStaticIps *bool `json:"doubleStaticIps,omitempty"`
+	EnableStreaming *bool `json:"enableStreaming,omitempty"`
+	ForwardClientCertificate *bool `json:"forwardClientCertificate,omitempty"`
 	Name *string `json:"name,omitempty"`
 	// dlb state
 	State *string `json:"state,omitempty"`
 	IpWhitelist *[]string `json:"ipWhitelist,omitempty"`
+	IpAllowlist *[]string `json:"ipAllowlist,omitempty"`
 	HttpMode *string `json:"httpMode,omitempty"`
 	DefaultSslEndpoint *int32 `json:"defaultSslEndpoint,omitempty"`
 	Tlsv1 *bool `json:"tlsv1,omitempty"`
@@ -520,6 +523,70 @@ func (o *Dlb) SetDoubleStaticIps(v bool) {
 	o.DoubleStaticIps = &v
 }
 
+// GetEnableStreaming returns the EnableStreaming field value if set, zero value otherwise.
+func (o *Dlb) GetEnableStreaming() bool {
+	if o == nil || o.EnableStreaming == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableStreaming
+}
+
+// GetEnableStreamingOk returns a tuple with the EnableStreaming field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dlb) GetEnableStreamingOk() (*bool, bool) {
+	if o == nil || o.EnableStreaming == nil {
+		return nil, false
+	}
+	return o.EnableStreaming, true
+}
+
+// HasEnableStreaming returns a boolean if a field has been set.
+func (o *Dlb) HasEnableStreaming() bool {
+	if o != nil && o.EnableStreaming != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableStreaming gets a reference to the given bool and assigns it to the EnableStreaming field.
+func (o *Dlb) SetEnableStreaming(v bool) {
+	o.EnableStreaming = &v
+}
+
+// GetForwardClientCertificate returns the ForwardClientCertificate field value if set, zero value otherwise.
+func (o *Dlb) GetForwardClientCertificate() bool {
+	if o == nil || o.ForwardClientCertificate == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ForwardClientCertificate
+}
+
+// GetForwardClientCertificateOk returns a tuple with the ForwardClientCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dlb) GetForwardClientCertificateOk() (*bool, bool) {
+	if o == nil || o.ForwardClientCertificate == nil {
+		return nil, false
+	}
+	return o.ForwardClientCertificate, true
+}
+
+// HasForwardClientCertificate returns a boolean if a field has been set.
+func (o *Dlb) HasForwardClientCertificate() bool {
+	if o != nil && o.ForwardClientCertificate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetForwardClientCertificate gets a reference to the given bool and assigns it to the ForwardClientCertificate field.
+func (o *Dlb) SetForwardClientCertificate(v bool) {
+	o.ForwardClientCertificate = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Dlb) GetName() string {
 	if o == nil || o.Name == nil {
@@ -614,6 +681,38 @@ func (o *Dlb) HasIpWhitelist() bool {
 // SetIpWhitelist gets a reference to the given []string and assigns it to the IpWhitelist field.
 func (o *Dlb) SetIpWhitelist(v []string) {
 	o.IpWhitelist = &v
+}
+
+// GetIpAllowlist returns the IpAllowlist field value if set, zero value otherwise.
+func (o *Dlb) GetIpAllowlist() []string {
+	if o == nil || o.IpAllowlist == nil {
+		var ret []string
+		return ret
+	}
+	return *o.IpAllowlist
+}
+
+// GetIpAllowlistOk returns a tuple with the IpAllowlist field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dlb) GetIpAllowlistOk() (*[]string, bool) {
+	if o == nil || o.IpAllowlist == nil {
+		return nil, false
+	}
+	return o.IpAllowlist, true
+}
+
+// HasIpAllowlist returns a boolean if a field has been set.
+func (o *Dlb) HasIpAllowlist() bool {
+	if o != nil && o.IpAllowlist != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpAllowlist gets a reference to the given []string and assigns it to the IpAllowlist field.
+func (o *Dlb) SetIpAllowlist(v []string) {
+	o.IpAllowlist = &v
 }
 
 // GetHttpMode returns the HttpMode field value if set, zero value otherwise.
@@ -788,6 +887,12 @@ func (o Dlb) MarshalJSON() ([]byte, error) {
 	if o.DoubleStaticIps != nil {
 		toSerialize["doubleStaticIps"] = o.DoubleStaticIps
 	}
+	if o.EnableStreaming != nil {
+		toSerialize["enableStreaming"] = o.EnableStreaming
+	}
+	if o.ForwardClientCertificate != nil {
+		toSerialize["forwardClientCertificate"] = o.ForwardClientCertificate
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -796,6 +901,9 @@ func (o Dlb) MarshalJSON() ([]byte, error) {
 	}
 	if o.IpWhitelist != nil {
 		toSerialize["ipWhitelist"] = o.IpWhitelist
+	}
+	if o.IpAllowlist != nil {
+		toSerialize["ipAllowlist"] = o.IpAllowlist
 	}
 	if o.HttpMode != nil {
 		toSerialize["httpMode"] = o.HttpMode

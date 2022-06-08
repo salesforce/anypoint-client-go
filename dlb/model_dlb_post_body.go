@@ -19,9 +19,18 @@ type DlbPostBody struct {
 	Name *string `json:"name,omitempty"`
 	// dlb state
 	State *string `json:"state,omitempty"`
+	// The DNS domain for the Load Balancer
+	Domain *string `json:"domain,omitempty"`
 	IpWhitelist *[]string `json:"ipWhitelist,omitempty"`
+	IpAllowlist *[]string `json:"ipAllowlist,omitempty"`
 	HttpMode *string `json:"httpMode,omitempty"`
+	DefaultSslEndpoint *int32 `json:"defaultSslEndpoint,omitempty"`
 	Tlsv1 *bool `json:"tlsv1,omitempty"`
+	KeepUrlEncoding *bool `json:"keepUrlEncoding,omitempty"`
+	UpstreamTlsv12 *bool `json:"upstreamTlsv12,omitempty"`
+	DoubleStaticIps *bool `json:"doubleStaticIps,omitempty"`
+	EnableStreaming *bool `json:"enableStreaming,omitempty"`
+	ForwardClientCertificate *bool `json:"forwardClientCertificate,omitempty"`
 	SslEndpoints *[]DlbPostBodySslEndpoints `json:"sslEndpoints,omitempty"`
 }
 
@@ -35,6 +44,8 @@ func NewDlbPostBody() *DlbPostBody {
 	this.State = &state
 	var httpMode string = "redirect"
 	this.HttpMode = &httpMode
+	var defaultSslEndpoint int32 = 0
+	this.DefaultSslEndpoint = &defaultSslEndpoint
 	return &this
 }
 
@@ -47,6 +58,8 @@ func NewDlbPostBodyWithDefaults() *DlbPostBody {
 	this.State = &state
 	var httpMode string = "redirect"
 	this.HttpMode = &httpMode
+	var defaultSslEndpoint int32 = 0
+	this.DefaultSslEndpoint = &defaultSslEndpoint
 	return &this
 }
 
@@ -114,6 +127,38 @@ func (o *DlbPostBody) SetState(v string) {
 	o.State = &v
 }
 
+// GetDomain returns the Domain field value if set, zero value otherwise.
+func (o *DlbPostBody) GetDomain() string {
+	if o == nil || o.Domain == nil {
+		var ret string
+		return ret
+	}
+	return *o.Domain
+}
+
+// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetDomainOk() (*string, bool) {
+	if o == nil || o.Domain == nil {
+		return nil, false
+	}
+	return o.Domain, true
+}
+
+// HasDomain returns a boolean if a field has been set.
+func (o *DlbPostBody) HasDomain() bool {
+	if o != nil && o.Domain != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDomain gets a reference to the given string and assigns it to the Domain field.
+func (o *DlbPostBody) SetDomain(v string) {
+	o.Domain = &v
+}
+
 // GetIpWhitelist returns the IpWhitelist field value if set, zero value otherwise.
 func (o *DlbPostBody) GetIpWhitelist() []string {
 	if o == nil || o.IpWhitelist == nil {
@@ -144,6 +189,38 @@ func (o *DlbPostBody) HasIpWhitelist() bool {
 // SetIpWhitelist gets a reference to the given []string and assigns it to the IpWhitelist field.
 func (o *DlbPostBody) SetIpWhitelist(v []string) {
 	o.IpWhitelist = &v
+}
+
+// GetIpAllowlist returns the IpAllowlist field value if set, zero value otherwise.
+func (o *DlbPostBody) GetIpAllowlist() []string {
+	if o == nil || o.IpAllowlist == nil {
+		var ret []string
+		return ret
+	}
+	return *o.IpAllowlist
+}
+
+// GetIpAllowlistOk returns a tuple with the IpAllowlist field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetIpAllowlistOk() (*[]string, bool) {
+	if o == nil || o.IpAllowlist == nil {
+		return nil, false
+	}
+	return o.IpAllowlist, true
+}
+
+// HasIpAllowlist returns a boolean if a field has been set.
+func (o *DlbPostBody) HasIpAllowlist() bool {
+	if o != nil && o.IpAllowlist != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpAllowlist gets a reference to the given []string and assigns it to the IpAllowlist field.
+func (o *DlbPostBody) SetIpAllowlist(v []string) {
+	o.IpAllowlist = &v
 }
 
 // GetHttpMode returns the HttpMode field value if set, zero value otherwise.
@@ -178,6 +255,38 @@ func (o *DlbPostBody) SetHttpMode(v string) {
 	o.HttpMode = &v
 }
 
+// GetDefaultSslEndpoint returns the DefaultSslEndpoint field value if set, zero value otherwise.
+func (o *DlbPostBody) GetDefaultSslEndpoint() int32 {
+	if o == nil || o.DefaultSslEndpoint == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DefaultSslEndpoint
+}
+
+// GetDefaultSslEndpointOk returns a tuple with the DefaultSslEndpoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetDefaultSslEndpointOk() (*int32, bool) {
+	if o == nil || o.DefaultSslEndpoint == nil {
+		return nil, false
+	}
+	return o.DefaultSslEndpoint, true
+}
+
+// HasDefaultSslEndpoint returns a boolean if a field has been set.
+func (o *DlbPostBody) HasDefaultSslEndpoint() bool {
+	if o != nil && o.DefaultSslEndpoint != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultSslEndpoint gets a reference to the given int32 and assigns it to the DefaultSslEndpoint field.
+func (o *DlbPostBody) SetDefaultSslEndpoint(v int32) {
+	o.DefaultSslEndpoint = &v
+}
+
 // GetTlsv1 returns the Tlsv1 field value if set, zero value otherwise.
 func (o *DlbPostBody) GetTlsv1() bool {
 	if o == nil || o.Tlsv1 == nil {
@@ -208,6 +317,166 @@ func (o *DlbPostBody) HasTlsv1() bool {
 // SetTlsv1 gets a reference to the given bool and assigns it to the Tlsv1 field.
 func (o *DlbPostBody) SetTlsv1(v bool) {
 	o.Tlsv1 = &v
+}
+
+// GetKeepUrlEncoding returns the KeepUrlEncoding field value if set, zero value otherwise.
+func (o *DlbPostBody) GetKeepUrlEncoding() bool {
+	if o == nil || o.KeepUrlEncoding == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KeepUrlEncoding
+}
+
+// GetKeepUrlEncodingOk returns a tuple with the KeepUrlEncoding field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetKeepUrlEncodingOk() (*bool, bool) {
+	if o == nil || o.KeepUrlEncoding == nil {
+		return nil, false
+	}
+	return o.KeepUrlEncoding, true
+}
+
+// HasKeepUrlEncoding returns a boolean if a field has been set.
+func (o *DlbPostBody) HasKeepUrlEncoding() bool {
+	if o != nil && o.KeepUrlEncoding != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKeepUrlEncoding gets a reference to the given bool and assigns it to the KeepUrlEncoding field.
+func (o *DlbPostBody) SetKeepUrlEncoding(v bool) {
+	o.KeepUrlEncoding = &v
+}
+
+// GetUpstreamTlsv12 returns the UpstreamTlsv12 field value if set, zero value otherwise.
+func (o *DlbPostBody) GetUpstreamTlsv12() bool {
+	if o == nil || o.UpstreamTlsv12 == nil {
+		var ret bool
+		return ret
+	}
+	return *o.UpstreamTlsv12
+}
+
+// GetUpstreamTlsv12Ok returns a tuple with the UpstreamTlsv12 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetUpstreamTlsv12Ok() (*bool, bool) {
+	if o == nil || o.UpstreamTlsv12 == nil {
+		return nil, false
+	}
+	return o.UpstreamTlsv12, true
+}
+
+// HasUpstreamTlsv12 returns a boolean if a field has been set.
+func (o *DlbPostBody) HasUpstreamTlsv12() bool {
+	if o != nil && o.UpstreamTlsv12 != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpstreamTlsv12 gets a reference to the given bool and assigns it to the UpstreamTlsv12 field.
+func (o *DlbPostBody) SetUpstreamTlsv12(v bool) {
+	o.UpstreamTlsv12 = &v
+}
+
+// GetDoubleStaticIps returns the DoubleStaticIps field value if set, zero value otherwise.
+func (o *DlbPostBody) GetDoubleStaticIps() bool {
+	if o == nil || o.DoubleStaticIps == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DoubleStaticIps
+}
+
+// GetDoubleStaticIpsOk returns a tuple with the DoubleStaticIps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetDoubleStaticIpsOk() (*bool, bool) {
+	if o == nil || o.DoubleStaticIps == nil {
+		return nil, false
+	}
+	return o.DoubleStaticIps, true
+}
+
+// HasDoubleStaticIps returns a boolean if a field has been set.
+func (o *DlbPostBody) HasDoubleStaticIps() bool {
+	if o != nil && o.DoubleStaticIps != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDoubleStaticIps gets a reference to the given bool and assigns it to the DoubleStaticIps field.
+func (o *DlbPostBody) SetDoubleStaticIps(v bool) {
+	o.DoubleStaticIps = &v
+}
+
+// GetEnableStreaming returns the EnableStreaming field value if set, zero value otherwise.
+func (o *DlbPostBody) GetEnableStreaming() bool {
+	if o == nil || o.EnableStreaming == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableStreaming
+}
+
+// GetEnableStreamingOk returns a tuple with the EnableStreaming field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetEnableStreamingOk() (*bool, bool) {
+	if o == nil || o.EnableStreaming == nil {
+		return nil, false
+	}
+	return o.EnableStreaming, true
+}
+
+// HasEnableStreaming returns a boolean if a field has been set.
+func (o *DlbPostBody) HasEnableStreaming() bool {
+	if o != nil && o.EnableStreaming != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableStreaming gets a reference to the given bool and assigns it to the EnableStreaming field.
+func (o *DlbPostBody) SetEnableStreaming(v bool) {
+	o.EnableStreaming = &v
+}
+
+// GetForwardClientCertificate returns the ForwardClientCertificate field value if set, zero value otherwise.
+func (o *DlbPostBody) GetForwardClientCertificate() bool {
+	if o == nil || o.ForwardClientCertificate == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ForwardClientCertificate
+}
+
+// GetForwardClientCertificateOk returns a tuple with the ForwardClientCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetForwardClientCertificateOk() (*bool, bool) {
+	if o == nil || o.ForwardClientCertificate == nil {
+		return nil, false
+	}
+	return o.ForwardClientCertificate, true
+}
+
+// HasForwardClientCertificate returns a boolean if a field has been set.
+func (o *DlbPostBody) HasForwardClientCertificate() bool {
+	if o != nil && o.ForwardClientCertificate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetForwardClientCertificate gets a reference to the given bool and assigns it to the ForwardClientCertificate field.
+func (o *DlbPostBody) SetForwardClientCertificate(v bool) {
+	o.ForwardClientCertificate = &v
 }
 
 // GetSslEndpoints returns the SslEndpoints field value if set, zero value otherwise.
@@ -250,14 +519,38 @@ func (o DlbPostBody) MarshalJSON() ([]byte, error) {
 	if o.State != nil {
 		toSerialize["state"] = o.State
 	}
+	if o.Domain != nil {
+		toSerialize["domain"] = o.Domain
+	}
 	if o.IpWhitelist != nil {
 		toSerialize["ipWhitelist"] = o.IpWhitelist
+	}
+	if o.IpAllowlist != nil {
+		toSerialize["ipAllowlist"] = o.IpAllowlist
 	}
 	if o.HttpMode != nil {
 		toSerialize["httpMode"] = o.HttpMode
 	}
+	if o.DefaultSslEndpoint != nil {
+		toSerialize["defaultSslEndpoint"] = o.DefaultSslEndpoint
+	}
 	if o.Tlsv1 != nil {
 		toSerialize["tlsv1"] = o.Tlsv1
+	}
+	if o.KeepUrlEncoding != nil {
+		toSerialize["keepUrlEncoding"] = o.KeepUrlEncoding
+	}
+	if o.UpstreamTlsv12 != nil {
+		toSerialize["upstreamTlsv12"] = o.UpstreamTlsv12
+	}
+	if o.DoubleStaticIps != nil {
+		toSerialize["doubleStaticIps"] = o.DoubleStaticIps
+	}
+	if o.EnableStreaming != nil {
+		toSerialize["enableStreaming"] = o.EnableStreaming
+	}
+	if o.ForwardClientCertificate != nil {
+		toSerialize["forwardClientCertificate"] = o.ForwardClientCertificate
 	}
 	if o.SslEndpoints != nil {
 		toSerialize["sslEndpoints"] = o.SslEndpoints
