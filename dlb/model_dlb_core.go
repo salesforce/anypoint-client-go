@@ -20,6 +20,7 @@ type DlbCore struct {
 	// dlb state
 	State *string `json:"state,omitempty"`
 	IpWhitelist *[]string `json:"ipWhitelist,omitempty"`
+	IpAllowlist *[]string `json:"ipAllowlist,omitempty"`
 	HttpMode *string `json:"httpMode,omitempty"`
 	DefaultSslEndpoint *int32 `json:"defaultSslEndpoint,omitempty"`
 	Tlsv1 *bool `json:"tlsv1,omitempty"`
@@ -149,6 +150,38 @@ func (o *DlbCore) HasIpWhitelist() bool {
 // SetIpWhitelist gets a reference to the given []string and assigns it to the IpWhitelist field.
 func (o *DlbCore) SetIpWhitelist(v []string) {
 	o.IpWhitelist = &v
+}
+
+// GetIpAllowlist returns the IpAllowlist field value if set, zero value otherwise.
+func (o *DlbCore) GetIpAllowlist() []string {
+	if o == nil || o.IpAllowlist == nil {
+		var ret []string
+		return ret
+	}
+	return *o.IpAllowlist
+}
+
+// GetIpAllowlistOk returns a tuple with the IpAllowlist field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbCore) GetIpAllowlistOk() (*[]string, bool) {
+	if o == nil || o.IpAllowlist == nil {
+		return nil, false
+	}
+	return o.IpAllowlist, true
+}
+
+// HasIpAllowlist returns a boolean if a field has been set.
+func (o *DlbCore) HasIpAllowlist() bool {
+	if o != nil && o.IpAllowlist != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpAllowlist gets a reference to the given []string and assigns it to the IpAllowlist field.
+func (o *DlbCore) SetIpAllowlist(v []string) {
+	o.IpAllowlist = &v
 }
 
 // GetHttpMode returns the HttpMode field value if set, zero value otherwise.
@@ -289,6 +322,9 @@ func (o DlbCore) MarshalJSON() ([]byte, error) {
 	}
 	if o.IpWhitelist != nil {
 		toSerialize["ipWhitelist"] = o.IpWhitelist
+	}
+	if o.IpAllowlist != nil {
+		toSerialize["ipAllowlist"] = o.IpAllowlist
 	}
 	if o.HttpMode != nil {
 		toSerialize["httpMode"] = o.HttpMode

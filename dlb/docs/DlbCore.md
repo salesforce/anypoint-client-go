@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** | dlb state | [optional] [default to "STOPPED"]
 **IpWhitelist** | Pointer to **[]string** |  | [optional] 
+**IpAllowlist** | Pointer to **[]string** |  | [optional] 
 **HttpMode** | Pointer to **string** |  | [optional] [default to "redirect"]
 **DefaultSslEndpoint** | Pointer to **int32** |  | [optional] [default to 0]
 **Tlsv1** | Pointer to **bool** |  | [optional] 
@@ -105,6 +106,31 @@ SetIpWhitelist sets IpWhitelist field to given value.
 `func (o *DlbCore) HasIpWhitelist() bool`
 
 HasIpWhitelist returns a boolean if a field has been set.
+
+### GetIpAllowlist
+
+`func (o *DlbCore) GetIpAllowlist() []string`
+
+GetIpAllowlist returns the IpAllowlist field if non-nil, zero value otherwise.
+
+### GetIpAllowlistOk
+
+`func (o *DlbCore) GetIpAllowlistOk() (*[]string, bool)`
+
+GetIpAllowlistOk returns a tuple with the IpAllowlist field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpAllowlist
+
+`func (o *DlbCore) SetIpAllowlist(v []string)`
+
+SetIpAllowlist sets IpAllowlist field to given value.
+
+### HasIpAllowlist
+
+`func (o *DlbCore) HasIpAllowlist() bool`
+
+HasIpAllowlist returns a boolean if a field has been set.
 
 ### GetHttpMode
 

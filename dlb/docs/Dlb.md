@@ -18,9 +18,12 @@ Name | Type | Description | Notes
 **ProxyReadTimeout** | Pointer to **int32** |  | [optional] 
 **IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfo**](DlbExtrasIpAddressesInfo.md) |  | [optional] 
 **DoubleStaticIps** | Pointer to **bool** |  | [optional] 
+**EnableStreaming** | Pointer to **bool** |  | [optional] 
+**ForwardClientCertificate** | Pointer to **bool** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** | dlb state | [optional] [default to "STOPPED"]
 **IpWhitelist** | Pointer to **[]string** |  | [optional] 
+**IpAllowlist** | Pointer to **[]string** |  | [optional] 
 **HttpMode** | Pointer to **string** |  | [optional] [default to "redirect"]
 **DefaultSslEndpoint** | Pointer to **int32** |  | [optional] [default to 0]
 **Tlsv1** | Pointer to **bool** |  | [optional] 
@@ -395,6 +398,56 @@ SetDoubleStaticIps sets DoubleStaticIps field to given value.
 
 HasDoubleStaticIps returns a boolean if a field has been set.
 
+### GetEnableStreaming
+
+`func (o *Dlb) GetEnableStreaming() bool`
+
+GetEnableStreaming returns the EnableStreaming field if non-nil, zero value otherwise.
+
+### GetEnableStreamingOk
+
+`func (o *Dlb) GetEnableStreamingOk() (*bool, bool)`
+
+GetEnableStreamingOk returns a tuple with the EnableStreaming field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableStreaming
+
+`func (o *Dlb) SetEnableStreaming(v bool)`
+
+SetEnableStreaming sets EnableStreaming field to given value.
+
+### HasEnableStreaming
+
+`func (o *Dlb) HasEnableStreaming() bool`
+
+HasEnableStreaming returns a boolean if a field has been set.
+
+### GetForwardClientCertificate
+
+`func (o *Dlb) GetForwardClientCertificate() bool`
+
+GetForwardClientCertificate returns the ForwardClientCertificate field if non-nil, zero value otherwise.
+
+### GetForwardClientCertificateOk
+
+`func (o *Dlb) GetForwardClientCertificateOk() (*bool, bool)`
+
+GetForwardClientCertificateOk returns a tuple with the ForwardClientCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForwardClientCertificate
+
+`func (o *Dlb) SetForwardClientCertificate(v bool)`
+
+SetForwardClientCertificate sets ForwardClientCertificate field to given value.
+
+### HasForwardClientCertificate
+
+`func (o *Dlb) HasForwardClientCertificate() bool`
+
+HasForwardClientCertificate returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *Dlb) GetName() string`
@@ -469,6 +522,31 @@ SetIpWhitelist sets IpWhitelist field to given value.
 `func (o *Dlb) HasIpWhitelist() bool`
 
 HasIpWhitelist returns a boolean if a field has been set.
+
+### GetIpAllowlist
+
+`func (o *Dlb) GetIpAllowlist() []string`
+
+GetIpAllowlist returns the IpAllowlist field if non-nil, zero value otherwise.
+
+### GetIpAllowlistOk
+
+`func (o *Dlb) GetIpAllowlistOk() (*[]string, bool)`
+
+GetIpAllowlistOk returns a tuple with the IpAllowlist field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpAllowlist
+
+`func (o *Dlb) SetIpAllowlist(v []string)`
+
+SetIpAllowlist sets IpAllowlist field to given value.
+
+### HasIpAllowlist
+
+`func (o *Dlb) HasIpAllowlist() bool`
+
+HasIpAllowlist returns a boolean if a field has been set.
 
 ### GetHttpMode
 

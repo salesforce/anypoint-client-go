@@ -253,6 +253,11 @@ components:
             type: string
           title: ipWhitelist
           type: array
+        ipAllowlist:
+          items:
+            type: string
+          title: ipAllowlist
+          type: array
         httpMode:
           default: redirect
           title: httpMode
@@ -322,6 +327,12 @@ components:
         doubleStaticIps:
           title: doubleStaticIps
           type: boolean
+        enableStreaming:
+          title: enableStreaming
+          type: boolean
+        forwardClientCertificate:
+          title: forwardClientCertificate
+          type: boolean
       title: dlbExtras
       type: object
     jsonPatch:
@@ -355,18 +366,49 @@ components:
           description: dlb state
           title: state
           type: string
+        domain:
+          description: The DNS domain for the Load Balancer
+          title: domain
+          type: string
         ipWhitelist:
           items:
             type: string
           title: ipWhitelist
           type: array
+        ipAllowlist:
+          items:
+            type: string
+          title: ipAllowlist
+          type: array
         httpMode:
           default: redirect
           title: httpMode
           type: string
+        defaultSslEndpoint:
+          default: 0
+          example: 0
+          title: defaultSslEndpoint
+          type: integer
         tlsv1:
           example: false
           title: tlsv1
+          type: boolean
+        keepUrlEncoding:
+          example: false
+          title: keepUrlEncoding
+          type: boolean
+        upstreamTlsv12:
+          example: false
+          title: upstreamTlsv12
+          type: boolean
+        doubleStaticIps:
+          title: doubleStaticIps
+          type: boolean
+        enableStreaming:
+          title: enableStreaming
+          type: boolean
+        forwardClientCertificate:
+          title: forwardClientCertificate
           type: boolean
         sslEndpoints:
           items:
