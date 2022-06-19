@@ -1,0 +1,582 @@
+openapi: 3.0.0
+info:
+  description: Description of the VPN API
+  title: VPN API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/cloudhub/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/cloudhub/api/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/vpcs/{vpcId}/ipsec:
+    get:
+      description: Returns a list of VPNs for the given organization and VPC
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The vpc Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+        "401":
+          description: Access token is missing or invalid
+      summary: Returns a list of vpns.
+    post:
+      description: Create a VPN connection from a VPC, up to a limit of 10 total VPN
+        Connections per
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The vpc Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vpnPostReqBody'
+        description: VPN request body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vpnPost'
+          description: VPN Infrastucture creation pending
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          description: Bad request
+        "404":
+          description: There is no org or VPC with this id
+      summary: Creates a VPN.
+  /organizations/{orgId}/vpcs/{vpcId}/ipsec/{vpnId}:
+    delete:
+      description: The VPN connection from a VPC.
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The vpc Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The vpn Id
+        explode: false
+        in: path
+        name: vpnId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Succes response for deleting a VPN
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          description: The orgId, vpcId or vpnId was not found.
+      summary: Delete a VPN connection
+    get:
+      description: Returns a specific VPN for the given vpn, organization and VPC
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The vpc Id
+        explode: false
+        in: path
+        name: vpcId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The vpn Id
+        explode: false
+        in: path
+        name: vpnId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vpnGet'
+          description: Succes response for getting a VPN
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          description: The orgId, vpcId or vpnId was not found.
+      summary: Returns a a specific vpn
+components:
+  responses:
+    SuccessListVPNs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+    SuccesPostVpn:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vpnPost'
+      description: VPN Infrastucture creation pending
+    SuccesGetVpn:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vpnGet'
+      description: Succes response for getting a VPN
+    deletedSuccessful:
+      description: Succes response for deleting a VPN
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      description: Bad request
+    NotFoundRequestError:
+      description: There is no org or VPC with this id
+    NotFoundRequestErrorVpn:
+      description: The orgId, vpcId or vpnId was not found.
+  schemas:
+    vpnPostReqBody:
+      properties:
+        name:
+          example: myDatacenterVpn
+          title: name
+          type: string
+        remoteAsn:
+          example: 65000
+          title: remoteAsn
+          type: integer
+        remoteIpAddress:
+          example: 100.100.100.100
+          title: remoteIpAddress
+          type: string
+        remoteNetworks:
+          default: []
+          example:
+          - 10.0.0.0/24
+          items:
+            description: Remote network CIDR.
+            title: remoteNetwork
+            type: string
+          title: remoteNetworks
+          type: array
+        tunnelConfigs:
+          example:
+          - psk: 23847329fn3u__...
+            ptpCidr: 169.254.12.0/30
+          - psk: nsdkjfnsauf23f2linf
+            ptpCidr: 169.254.12.4/30
+          items:
+            $ref: '#/components/schemas/tunnelConfig'
+          title: tunnelConfigs
+          type: array
+      title: vpnPostReqBody
+      type: object
+    vpnGet:
+      allOf:
+      - $ref: '#/components/schemas/vpnId'
+      - $ref: '#/components/schemas/vpnCoreGet'
+      title: vpnGet
+    vpnPost:
+      allOf:
+      - $ref: '#/components/schemas/vpnId'
+      - $ref: '#/components/schemas/vpnCorePost'
+      title: vpnPost
+    vpnCoreGet:
+      properties:
+        spec:
+          $ref: '#/components/schemas/spec'
+        state:
+          $ref: '#/components/schemas/state'
+        updateAvailable:
+          default: false
+          title: updateAvailable
+          type: boolean
+        name:
+          example: vpnforawesomevpc
+          title: name
+          type: string
+      title: vpnCoreGet
+      type: object
+    vpnCorePost:
+      properties:
+        id:
+          description: The vpn Id
+          example: 62a33f23f052884d1d60af34
+          title: id
+          type: string
+        spec:
+          $ref: '#/components/schemas/spec_1'
+        state:
+          $ref: '#/components/schemas/state_1'
+        updateAvailable:
+          default: false
+          title: updateAvailable
+          type: boolean
+        name:
+          example: myDatacenterVpn
+          title: name
+          type: string
+      title: vpnCorePost
+      type: object
+    inline_response_200:
+      example:
+        total: 1
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/vpnGet'
+          title: List of VPNs
+          type: array
+        total:
+          example: 1
+          title: Total number of results
+          type: integer
+      type: object
+    tunnelConfig:
+      properties:
+        psk:
+          default: ""
+          description: Pre-shared secret key, this is used for authentication the
+            VPN-tunnel.
+          example: 23847329fn3u__...
+          title: psk
+          type: string
+        ptpCidr:
+          default: ""
+          description: Point-to-point Classless Inter-Domain Routing (CIDR)
+          example: 169.254.12.0/30
+          title: ptpCidr
+          type: string
+      required:
+      - psk
+      - ptpCidr
+      title: tunnelConfig
+      type: object
+    vpnId:
+      properties:
+        id:
+          description: The vpn Id
+          example: 62a07860f052884d1d129a31
+          title: id
+          type: string
+      required:
+      - id
+      title: vpnId
+      type: object
+    tunnelConfig_1:
+      properties:
+        psk:
+          default: ""
+          description: Pre-shared secret key, this is used for authentication the
+            VPN-tunnel.
+          example: 23847329fn3u__...
+          title: psk
+          type: string
+        ptpCidr:
+          default: ""
+          description: Point-to-point Classless Inter-Domain Routing (CIDR)
+          example: 169.254.12.0/30
+          title: ptpCidr
+          type: string
+        rekeyMarginInSeconds:
+          default: 0
+          description: The margin time in seconds before connection expiration or
+            keying-channel expiration, during which the local side of the VPN connection
+            attempts to negotiate a replacement. The exact time of the rekey is randomly
+            selected based on the value of Rekey fuzz. Relevant only locally, the
+            remote side does not need to agree on it.
+          example: 0
+          title: rekeyMarginInSeconds
+          type: integer
+        rekeyFuzz:
+          default: 0
+          description: The maximum percentage by which marginbytes, marginpackets
+            and margintime are randomly increased to randomize rekeying intervals
+            (important for hosts with many connections).
+          example: 0
+          title: rekeyFuzz
+          type: integer
+      required:
+      - psk
+      - ptpCidr
+      - rekeyFuzz
+      - rekeyMarginInSeconds
+      title: tunnelConfig
+      type: object
+    spec:
+      properties:
+        name:
+          example: vpnforawesomevpc
+          title: name
+          type: string
+        remoteAsn:
+          example: 65000
+          title: remoteAsn
+          type: number
+        remoteIpAddress:
+          example: 192.168.0.0
+          title: remoteIpAddress
+          type: string
+        tunnelConfigs:
+          example:
+          - psk: 23847329fn3u__...
+            ptpCidr: 169.254.12.0/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          - psk: nsdkjfnsauf23f2linf
+            ptpCidr: 169.254.12.4/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          items:
+            $ref: '#/components/schemas/tunnelConfig_1'
+          title: tunnelConfigs
+          type: array
+        remoteNetworks:
+          default: []
+          example:
+          - 10.0.0.0/24
+          items:
+            description: Remote network CIDR.
+            title: remoteNetwork
+            type: string
+          title: remoteNetworks
+          type: array
+      required:
+      - name
+      - remoteIpAddress
+      - remoteNetworks
+      title: spec
+      type: object
+    vpnTunnel:
+      properties:
+        acceptedRouteCount:
+          default: 0
+          description: Amount of routes that have been accepted by the VPN.
+          example: 0
+          title: acceptedRouteCount
+          type: integer
+        lastStatusChange:
+          default: ""
+          description: The last time the status of the VPN changed.
+          example: 2022-06-13T13:24:06Z
+          title: lastStatusChange
+          type: string
+        localExternalIpAddress:
+          default: ""
+          description: The local external ip address.
+          example: 3.20.144.122
+          title: localExternalIpAddress
+          type: string
+        localPtpIpAddress:
+          default: ""
+          description: Point-to-point Ip address of the VPN that connects with the
+            VPC. This address can be used by internal VM's/apps to connect with another
+            server/app.
+          example: 169.254.12.1
+          title: localPtpIpAddress
+          type: string
+        remotePtpIpAddress:
+          default: ""
+          description: The remote point-to-point ip address which a connecting tool
+            like Cisco Anyconnect can connect with to use the VPC.
+          example: 169.254.12.2
+          title: remotePtpIpAddress
+          type: string
+        psk:
+          default: ""
+          description: Pre-shared secret key, this is used for authentication the
+            VPN-tunnel.
+          example: 23847329fn3u__...
+          title: psk
+          type: string
+        status:
+          default: ""
+          description: The current status of the VPN tunnel
+          example: DOWN
+          title: status
+          type: string
+        statusMessage:
+          default: ""
+          description: Message of the status
+          example: IPSEC IS DOWN
+          title: statusMessage
+          type: string
+      required:
+      - acceptedRouteCount
+      - lastStatusChange
+      - localExternalIpAddress
+      - localPtpIpAddress
+      - psk
+      - remotePtpIpAddress
+      - status
+      - statusMessage
+      title: vpnTunnel
+      type: object
+    state:
+      properties:
+        vpnConnectionStatus:
+          default: ""
+          example: AVAILABLE
+          title: vpnConnectionStatus
+          type: string
+        createdAt:
+          default: ""
+          example: 2022-06-13T13:21:36.283Z
+          title: createdAt
+          type: string
+        remoteAsn:
+          default: 0
+          example: 65000
+          title: remoteAsn
+          type: integer
+        localAsn:
+          default: 0
+          example: 64512
+          title: localAsn
+          type: integer
+        vpnTunnels:
+          example:
+          - acceptedRouteCount: 0
+            lastStatusChange": 2022-06-13T13:25:41Z
+            localExternalIpAddress": 3.20.144.122
+            localPtpIpAddress": 169.254.12.1
+            remotePtpIpAddress": 169.254.12.2
+            psk": 23847329fn3u__...
+            status": DOWN
+            statusMessage": IPSEC IS DOWN
+          - acceptedRouteCount: 0
+            lastStatusChange: 2022-06-13T13:24:06Z
+            localExternalIpAddress: 13.59.129.13
+            localPtpIpAddress: 169.254.12.5
+            remotePtpIpAddress: 169.254.12.6
+            psk: nsdkjfnsauf23f2linf
+            status: DOWN
+            statusMessage: IPSEC IS DOWN
+          items:
+            $ref: '#/components/schemas/vpnTunnel'
+          title: vpnTunnels
+          type: array
+        failedReason:
+          default: ""
+          title: failedReason
+          type: string
+      required:
+      - vpnConnectionStatus
+      title: state
+      type: object
+    spec_1:
+      properties:
+        name:
+          example: myDatacenterVpn
+          title: name
+          type: string
+        remoteAsn:
+          example: 65000
+          title: remoteAsn
+          type: integer
+        remoteIpAddress:
+          example: 100.100.100.100
+          title: remoteIpAddress
+          type: string
+        tunnelConfigs:
+          example:
+          - psk: 23847329fn3u__...
+            ptpCidr: 169.254.12.0/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          - psk: nsdkjfnsauf23f2linf
+            ptpCidr: 169.254.12.4/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          items:
+            $ref: '#/components/schemas/tunnelConfig_1'
+          title: tunnelConfigs
+          type: array
+        remoteNetworks:
+          default: []
+          example:
+          - 10.0.0.0/24
+          items:
+            description: Remote network CIDR.
+            title: remoteNetwork
+            type: string
+          title: remoteNetworks
+          type: array
+      required:
+      - name
+      - remoteAsn
+      - remoteIpAddress
+      - tunnelConfigs
+      title: spec
+      type: object
+    state_1:
+      properties:
+        vpnConnectionStatus:
+          example: PENDING
+          title: vpnConnectionStatus
+          type: string
+      required:
+      - vpnConnectionStatus
+      title: state
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
