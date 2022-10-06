@@ -1,0 +1,404 @@
+openapi: 3.0.1
+info:
+  description: Description of the Connected App API
+  title: Connected App API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/cloudhub/api/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/cloudhub/api/
+security:
+- bearerAuth: []
+paths:
+  /accounts/api/connectedApplications:
+    get:
+      description: Returns all connected apps
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Success response
+    post:
+      description: create a Connected App
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectedAppCore'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectedAppRespExt'
+          description: Success post response
+  /accounts/api/connectedApplications/{connAppId}:
+    delete:
+      description: deletes a Connected App
+      parameters:
+      - description: The ID of the connected app
+        explode: false
+        in: path
+        name: connAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success delete response
+    get:
+      description: Returns all connected apps
+      parameters:
+      - description: The ID of the connected app
+        explode: false
+        in: path
+        name: connAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectedAppRespExt'
+          description: Success get response
+    patch:
+      description: patches a Connected App
+      parameters:
+      - description: The ID of the connected app
+        explode: false
+        in: path
+        name: connAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectedAppPatchExt'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectedAppRespExt'
+          description: Success patch response
+  /accounts/api/connectedApplications/{connAppId}/scopes:
+    get:
+      description: Returns all scopes of a Connected App
+      parameters:
+      - description: The ID of the connected app
+        explode: false
+        in: path
+        name: connAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: Success get scopes response
+    put:
+      description: replace a Connected App scopes
+      parameters:
+      - description: The ID of the connected app
+        explode: false
+        in: path
+        name: connAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectedAppScopesPutBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad request response
+        "204":
+          description: Success scopes put response
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_400'
+      description: Bad request response
+    SuccessListConnApps:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+      description: Success response
+    SuccessPostConnApps:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/connectedAppRespExt'
+      description: Success post response
+    SuccessGetConnApps:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/connectedAppRespExt'
+      description: Success get response
+    SuccessPatchConnApps:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/connectedAppRespExt'
+      description: Success patch response
+    SuccessDeleteConnApps:
+      description: Success delete response
+    SuccessGetConnAppScopes:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200_1'
+      description: Success get scopes response
+    SuccessPutConnAppsScopes:
+      description: Success scopes put response
+  schemas:
+    connectedAppCore:
+      properties:
+        client_name:
+          example: My Connected App
+          title: clientName
+          type: string
+        grant_types:
+          items:
+            title: grantType
+            type: string
+          title: grantTypes
+          type: array
+        redirect_uris:
+          items:
+            title: redirectUri
+            type: string
+          title: redirectUris
+          type: array
+        scopes:
+          items:
+            title: scope
+            type: string
+          title: scopes
+          type: array
+        public_keys:
+          description: Application public key (PEM format). Used to validate JWT authorization
+            grants.
+          items:
+            title: publicKey
+            type: string
+          title: publicKeys
+          type: array
+        client_uri:
+          example: http://myapp.com
+          title: clientUri
+          type: string
+        audience:
+          example: everyone
+          title: audience
+          type: string
+      title: connectedAppCore
+      type: object
+    connectedAppRespExt:
+      allOf:
+      - $ref: '#/components/schemas/connectedAppCore'
+      - $ref: '#/components/schemas/connectedAppRespExt_allOf'
+      title: connectedAppRespExt
+    connectedAppPatchExt:
+      allOf:
+      - $ref: '#/components/schemas/connectedAppCore'
+      - $ref: '#/components/schemas/connectedAppPatchExt_allOf'
+      title: connectedAppPatchExt
+    scopeCore:
+      example:
+        scope: admin:ang_governance_profiles
+        context_params:
+          org: 2xbb7865-45ac-3e35-65e0-8c83112480c0
+          envId: 8d2921e8-84f5-4700-914f-4bb360b82c9b
+      properties:
+        scope:
+          example: admin:ang_governance_profiles
+          title: scope
+          type: string
+        context_params:
+          $ref: '#/components/schemas/contextParams'
+      title: scopeCore
+      type: object
+    connectedAppScopesPutBody:
+      properties:
+        scopes:
+          items:
+            type: '#/components/schemas/scopeCore'
+          title: scopes
+          type: array
+      title: connectedAppScopesPutBody
+      type: object
+    inline_response_200:
+      example:
+        total: 0
+        data:
+        - null
+        - null
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/connectedAppRespExt'
+          title: connectedApps
+          type: array
+        total:
+          title: total
+          type: integer
+      type: object
+    inline_response_400:
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    inline_response_200_1:
+      example:
+        total: 0
+        data:
+        - scope: admin:ang_governance_profiles
+          context_params:
+            org: 2xbb7865-45ac-3e35-65e0-8c83112480c0
+            envId: 8d2921e8-84f5-4700-914f-4bb360b82c9b
+        - scope: admin:ang_governance_profiles
+          context_params:
+            org: 2xbb7865-45ac-3e35-65e0-8c83112480c0
+            envId: 8d2921e8-84f5-4700-914f-4bb360b82c9b
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/scopeCore'
+          title: connectedAppScopes
+          type: array
+        total:
+          title: total
+          type: integer
+      type: object
+    connectedAppRespExt_allOf:
+      properties:
+        client_id:
+          description: connected app client id
+          example: 7d72415f862044199be3b739848e6adb
+          title: clientId
+          type: string
+        client_secret:
+          description: connected app generated secret
+          example: c598FdC0d3A94B92BDc3527E63ebAb91
+          title: clientSecret
+          type: string
+        owner_org_id:
+          description: connected app owner organization id
+          example: 9exb9686-4e35-81e0-45ac-8c83662480c0
+          title: ownerOrgId
+          type: string
+        owner_user_id:
+          description: connected app owner user id
+          example: 9exb9686-4e35-81e0-45ac-8c83662480c0
+          title: ownerUserId
+          type: string
+        enabled:
+          example: false
+          title: enabled
+          type: boolean
+        policy_uri:
+          title: policyUri
+          type: string
+        tos_uri:
+          title: tosUri
+          type: string
+        cert_expiry:
+          title: certExpiry
+          type: string
+      type: object
+    connectedAppPatchExt_allOf:
+      properties:
+        client_id:
+          example: 1776a4555287421a81bc62059cuy765
+          title: clientId
+          type: string
+        client_secret:
+          example: 68B2679e72b34985484C81b9CA267D6871
+          title: clientSecret
+          type: string
+        enabled:
+          example: true
+          title: enabled
+          type: boolean
+      type: object
+    contextParams:
+      example:
+        org: 2xbb7865-45ac-3e35-65e0-8c83112480c0
+        envId: 8d2921e8-84f5-4700-914f-4bb360b82c9b
+      properties:
+        org:
+          example: 2xbb7865-45ac-3e35-65e0-8c83112480c0
+          title: orgId
+          type: string
+        envId:
+          example: 8d2921e8-84f5-4700-914f-4bb360b82c9b
+          title: envId
+          type: string
+      title: contextParams
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
