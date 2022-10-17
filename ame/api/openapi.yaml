@@ -8,6 +8,8 @@ servers:
   url: https://anypoint.mulesoft.com/mq/admin/api/v1/
 - description: Anypoint Cloudhub EU
   url: https://eu1.anypoint.mulesoft.com/mq/admin/api/v1/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/mq/admin/api/v1/
 security:
 - bearerAuth: []
 paths:
