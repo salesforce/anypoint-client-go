@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Scopes** | Pointer to [**[]ComponentsSchemasScopeCore**](ComponentsSchemasScopeCore.md) |  | [optional] 
+**Scopes** | Pointer to [**[]ScopeCore**](ScopeCore.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetScopes
 
-`func (o *ConnectedAppScopesPutBody) GetScopes() []ComponentsSchemasScopeCore`
+`func (o *ConnectedAppScopesPutBody) GetScopes() []ScopeCore`
 
 GetScopes returns the Scopes field if non-nil, zero value otherwise.
 
 ### GetScopesOk
 
-`func (o *ConnectedAppScopesPutBody) GetScopesOk() (*[]ComponentsSchemasScopeCore, bool)`
+`func (o *ConnectedAppScopesPutBody) GetScopesOk() (*[]ScopeCore, bool)`
 
 GetScopesOk returns a tuple with the Scopes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScopes
 
-`func (o *ConnectedAppScopesPutBody) SetScopes(v []ComponentsSchemasScopeCore)`
+`func (o *ConnectedAppScopesPutBody) SetScopes(v []ScopeCore)`
 
 SetScopes sets Scopes field to given value.
 
