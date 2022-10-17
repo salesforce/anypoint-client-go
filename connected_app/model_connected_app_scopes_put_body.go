@@ -16,7 +16,7 @@ import (
 
 // ConnectedAppScopesPutBody struct for ConnectedAppScopesPutBody
 type ConnectedAppScopesPutBody struct {
-	Scopes *[]ComponentsSchemasScopeCore `json:"scopes,omitempty"`
+	Scopes *[]ScopeCore `json:"scopes,omitempty"`
 }
 
 // NewConnectedAppScopesPutBody instantiates a new ConnectedAppScopesPutBody object
@@ -37,9 +37,9 @@ func NewConnectedAppScopesPutBodyWithDefaults() *ConnectedAppScopesPutBody {
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *ConnectedAppScopesPutBody) GetScopes() []ComponentsSchemasScopeCore {
+func (o *ConnectedAppScopesPutBody) GetScopes() []ScopeCore {
 	if o == nil || o.Scopes == nil {
-		var ret []ComponentsSchemasScopeCore
+		var ret []ScopeCore
 		return ret
 	}
 	return *o.Scopes
@@ -47,7 +47,7 @@ func (o *ConnectedAppScopesPutBody) GetScopes() []ComponentsSchemasScopeCore {
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConnectedAppScopesPutBody) GetScopesOk() (*[]ComponentsSchemasScopeCore, bool) {
+func (o *ConnectedAppScopesPutBody) GetScopesOk() (*[]ScopeCore, bool) {
 	if o == nil || o.Scopes == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *ConnectedAppScopesPutBody) HasScopes() bool {
 	return false
 }
 
-// SetScopes gets a reference to the given []ComponentsSchemasScopeCore and assigns it to the Scopes field.
-func (o *ConnectedAppScopesPutBody) SetScopes(v []ComponentsSchemasScopeCore) {
+// SetScopes gets a reference to the given []ScopeCore and assigns it to the Scopes field.
+func (o *ConnectedAppScopesPutBody) SetScopes(v []ScopeCore) {
 	o.Scopes = &v
 }
 

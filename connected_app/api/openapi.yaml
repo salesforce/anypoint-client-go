@@ -277,7 +277,7 @@ components:
       properties:
         scopes:
           items:
-            type: '#/components/schemas/scopeCore'
+            $ref: '#/components/schemas/scopeCore'
           title: scopes
           type: array
       title: connectedAppScopesPutBody
