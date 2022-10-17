@@ -112,6 +112,10 @@ func NewConfiguration() *Configuration {
 				URL: "https://eu1.anypoint.mulesoft.com/accounts",
 				Description: "Anypoint Cloudhub EU",
 			},
+			{
+				URL: "https://gov.anypoint.mulesoft.com/accounts",
+				Description: "Anypoint Cloudhub GOV",
+			},
 		},
 		OperationServers: map[string]ServerConfigurations{
 		},

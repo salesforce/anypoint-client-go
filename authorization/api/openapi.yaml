@@ -8,6 +8,8 @@ servers:
   url: https://anypoint.mulesoft.com/accounts/
 - description: Anypoint Cloudhub EU
   url: https://eu1.anypoint.mulesoft.com/accounts/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/accounts/
 paths:
   /api/v2/oauth2/token:
     post:
