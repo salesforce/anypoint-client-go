@@ -136,6 +136,9 @@ components:
           external_group_name:
             title: externalGroupName
             type: string
+          provider_id:
+            title: providerId
+            type: string
         title: teamGroupMappingPutBody
         type: object
       title: teamGroupMappingsPutBody
