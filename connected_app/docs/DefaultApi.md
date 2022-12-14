@@ -1,22 +1,22 @@
 # \DefaultApi
 
-All URIs are relative to *https://anypoint.mulesoft.com/cloudhub/api*
+All URIs are relative to *https://anypoint.mulesoft.com/accounts/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AccountsApiConnectedApplicationsConnAppIdDelete**](DefaultApi.md#AccountsApiConnectedApplicationsConnAppIdDelete) | **Delete** /accounts/api/connectedApplications/{connAppId} | 
-[**AccountsApiConnectedApplicationsConnAppIdGet**](DefaultApi.md#AccountsApiConnectedApplicationsConnAppIdGet) | **Get** /accounts/api/connectedApplications/{connAppId} | 
-[**AccountsApiConnectedApplicationsConnAppIdPatch**](DefaultApi.md#AccountsApiConnectedApplicationsConnAppIdPatch) | **Patch** /accounts/api/connectedApplications/{connAppId} | 
-[**AccountsApiConnectedApplicationsConnAppIdScopesGet**](DefaultApi.md#AccountsApiConnectedApplicationsConnAppIdScopesGet) | **Get** /accounts/api/connectedApplications/{connAppId}/scopes | 
-[**AccountsApiConnectedApplicationsConnAppIdScopesPut**](DefaultApi.md#AccountsApiConnectedApplicationsConnAppIdScopesPut) | **Put** /accounts/api/connectedApplications/{connAppId}/scopes | 
-[**AccountsApiConnectedApplicationsGet**](DefaultApi.md#AccountsApiConnectedApplicationsGet) | **Get** /accounts/api/connectedApplications | 
-[**AccountsApiConnectedApplicationsPost**](DefaultApi.md#AccountsApiConnectedApplicationsPost) | **Post** /accounts/api/connectedApplications | 
+[**ConnectedApplicationsConnAppIdDelete**](DefaultApi.md#ConnectedApplicationsConnAppIdDelete) | **Delete** /connectedApplications/{connAppId} | 
+[**ConnectedApplicationsConnAppIdGet**](DefaultApi.md#ConnectedApplicationsConnAppIdGet) | **Get** /connectedApplications/{connAppId} | 
+[**ConnectedApplicationsConnAppIdPatch**](DefaultApi.md#ConnectedApplicationsConnAppIdPatch) | **Patch** /connectedApplications/{connAppId} | 
+[**ConnectedApplicationsConnAppIdScopesGet**](DefaultApi.md#ConnectedApplicationsConnAppIdScopesGet) | **Get** /connectedApplications/{connAppId}/scopes | 
+[**ConnectedApplicationsConnAppIdScopesPut**](DefaultApi.md#ConnectedApplicationsConnAppIdScopesPut) | **Put** /connectedApplications/{connAppId}/scopes | 
+[**ConnectedApplicationsGet**](DefaultApi.md#ConnectedApplicationsGet) | **Get** /connectedApplications | 
+[**ConnectedApplicationsPost**](DefaultApi.md#ConnectedApplicationsPost) | **Post** /connectedApplications | 
 
 
 
-## AccountsApiConnectedApplicationsConnAppIdDelete
+## ConnectedApplicationsConnAppIdDelete
 
-> AccountsApiConnectedApplicationsConnAppIdDelete(ctx, connAppId).Execute()
+> ConnectedApplicationsConnAppIdDelete(ctx, connAppId).Execute()
 
 
 
@@ -39,9 +39,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsConnAppIdDelete(context.Background(), connAppId).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdDelete(context.Background(), connAppId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsConnAppIdDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsConnAppIdDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsConnAppIdDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -82,9 +82,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AccountsApiConnectedApplicationsConnAppIdGet
+## ConnectedApplicationsConnAppIdGet
 
-> ConnectedAppRespExt AccountsApiConnectedApplicationsConnAppIdGet(ctx, connAppId).Execute()
+> ConnectedAppRespExt ConnectedApplicationsConnAppIdGet(ctx, connAppId).Execute()
 
 
 
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsConnAppIdGet(context.Background(), connAppId).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdGet(context.Background(), connAppId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsConnAppIdGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AccountsApiConnectedApplicationsConnAppIdGet`: ConnectedAppRespExt
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AccountsApiConnectedApplicationsConnAppIdGet`: %v\n", resp)
+    // response from `ConnectedApplicationsConnAppIdGet`: ConnectedAppRespExt
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsConnAppIdGet`: %v\n", resp)
 }
 ```
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsConnAppIdGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsConnAppIdGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -152,9 +152,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AccountsApiConnectedApplicationsConnAppIdPatch
+## ConnectedApplicationsConnAppIdPatch
 
-> ConnectedAppRespExt AccountsApiConnectedApplicationsConnAppIdPatch(ctx, connAppId).ConnectedAppPatchExt(connectedAppPatchExt).Execute()
+> ConnectedAppRespExt ConnectedApplicationsConnAppIdPatch(ctx, connAppId).ConnectedAppPatchExt(connectedAppPatchExt).Execute()
 
 
 
@@ -178,13 +178,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsConnAppIdPatch(context.Background(), connAppId).ConnectedAppPatchExt(connectedAppPatchExt).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdPatch(context.Background(), connAppId).ConnectedAppPatchExt(connectedAppPatchExt).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsConnAppIdPatch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AccountsApiConnectedApplicationsConnAppIdPatch`: ConnectedAppRespExt
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AccountsApiConnectedApplicationsConnAppIdPatch`: %v\n", resp)
+    // response from `ConnectedApplicationsConnAppIdPatch`: ConnectedAppRespExt
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsConnAppIdPatch`: %v\n", resp)
 }
 ```
 
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsConnAppIdPatchRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsConnAppIdPatchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -224,9 +224,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AccountsApiConnectedApplicationsConnAppIdScopesGet
+## ConnectedApplicationsConnAppIdScopesGet
 
-> InlineResponse2001 AccountsApiConnectedApplicationsConnAppIdScopesGet(ctx, connAppId).Execute()
+> InlineResponse2001 ConnectedApplicationsConnAppIdScopesGet(ctx, connAppId).Execute()
 
 
 
@@ -249,13 +249,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsConnAppIdScopesGet(context.Background(), connAppId).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdScopesGet(context.Background(), connAppId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsConnAppIdScopesGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdScopesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AccountsApiConnectedApplicationsConnAppIdScopesGet`: InlineResponse2001
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AccountsApiConnectedApplicationsConnAppIdScopesGet`: %v\n", resp)
+    // response from `ConnectedApplicationsConnAppIdScopesGet`: InlineResponse2001
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsConnAppIdScopesGet`: %v\n", resp)
 }
 ```
 
@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsConnAppIdScopesGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -294,9 +294,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AccountsApiConnectedApplicationsConnAppIdScopesPut
+## ConnectedApplicationsConnAppIdScopesPut
 
-> AccountsApiConnectedApplicationsConnAppIdScopesPut(ctx, connAppId).ConnectedAppScopesPutBody(connectedAppScopesPutBody).Execute()
+> ConnectedApplicationsConnAppIdScopesPut(ctx, connAppId).ConnectedAppScopesPutBody(connectedAppScopesPutBody).Execute()
 
 
 
@@ -320,9 +320,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsConnAppIdScopesPut(context.Background(), connAppId).ConnectedAppScopesPutBody(connectedAppScopesPutBody).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdScopesPut(context.Background(), connAppId).ConnectedAppScopesPutBody(connectedAppScopesPutBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsConnAppIdScopesPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdScopesPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -338,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsConnAppIdScopesPutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -364,9 +364,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AccountsApiConnectedApplicationsGet
+## ConnectedApplicationsGet
 
-> InlineResponse200 AccountsApiConnectedApplicationsGet(ctx).Execute()
+> InlineResponse200 ConnectedApplicationsGet(ctx).Execute()
 
 
 
@@ -388,13 +388,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsGet(context.Background()).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsGet(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AccountsApiConnectedApplicationsGet`: InlineResponse200
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AccountsApiConnectedApplicationsGet`: %v\n", resp)
+    // response from `ConnectedApplicationsGet`: InlineResponse200
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsGet`: %v\n", resp)
 }
 ```
 
@@ -404,7 +404,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsGetRequest struct via the builder pattern
 
 
 ### Return type
@@ -425,9 +425,9 @@ Other parameters are passed through a pointer to a apiAccountsApiConnectedApplic
 [[Back to README]](../README.md)
 
 
-## AccountsApiConnectedApplicationsPost
+## ConnectedApplicationsPost
 
-> ConnectedAppRespExt AccountsApiConnectedApplicationsPost(ctx).ConnectedAppCore(connectedAppCore).Execute()
+> ConnectedAppRespExt ConnectedApplicationsPost(ctx).ConnectedAppCore(connectedAppCore).Execute()
 
 
 
@@ -450,13 +450,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AccountsApiConnectedApplicationsPost(context.Background()).ConnectedAppCore(connectedAppCore).Execute()
+    resp, r, err := api_client.DefaultApi.ConnectedApplicationsPost(context.Background()).ConnectedAppCore(connectedAppCore).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AccountsApiConnectedApplicationsPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AccountsApiConnectedApplicationsPost`: ConnectedAppRespExt
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AccountsApiConnectedApplicationsPost`: %v\n", resp)
+    // response from `ConnectedApplicationsPost`: ConnectedAppRespExt
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsPost`: %v\n", resp)
 }
 ```
 
@@ -466,7 +466,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAccountsApiConnectedApplicationsPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiConnectedApplicationsPostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
