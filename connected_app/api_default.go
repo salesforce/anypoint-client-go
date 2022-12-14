@@ -27,26 +27,26 @@ var (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type DefaultApiApiAccountsApiConnectedApplicationsConnAppIdDeleteRequest struct {
+type DefaultApiApiConnectedApplicationsConnAppIdDeleteRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	connAppId string
 }
 
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdDeleteRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsConnAppIdDeleteExecute(r)
+func (r DefaultApiApiConnectedApplicationsConnAppIdDeleteRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsConnAppIdDeleteExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsConnAppIdDelete Method for AccountsApiConnectedApplicationsConnAppIdDelete
+ * ConnectedApplicationsConnAppIdDelete Method for ConnectedApplicationsConnAppIdDelete
  * deletes a Connected App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param connAppId The ID of the connected app
- * @return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdDeleteRequest
+ * @return DefaultApiApiConnectedApplicationsConnAppIdDeleteRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdDelete(ctx _context.Context, connAppId string) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdDeleteRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdDeleteRequest{
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdDelete(ctx _context.Context, connAppId string) DefaultApiApiConnectedApplicationsConnAppIdDeleteRequest {
+	return DefaultApiApiConnectedApplicationsConnAppIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		connAppId: connAppId,
@@ -56,7 +56,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdDelete(ctx 
 /*
  * Execute executes the request
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdDeleteExecute(r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdDeleteRequest) (*_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdDeleteExecute(r DefaultApiApiConnectedApplicationsConnAppIdDeleteRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -65,12 +65,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdDeleteExecu
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsConnAppIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdDelete")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications/{connAppId}"
+	localVarPath := localBasePath + "/connectedApplications/{connAppId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", _neturl.PathEscape(parameterToString(r.connAppId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -122,26 +122,26 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdDeleteExecu
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiApiAccountsApiConnectedApplicationsConnAppIdGetRequest struct {
+type DefaultApiApiConnectedApplicationsConnAppIdGetRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	connAppId string
 }
 
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdGetRequest) Execute() (ConnectedAppRespExt, *_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsConnAppIdGetExecute(r)
+func (r DefaultApiApiConnectedApplicationsConnAppIdGetRequest) Execute() (ConnectedAppRespExt, *_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsConnAppIdGetExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsConnAppIdGet Method for AccountsApiConnectedApplicationsConnAppIdGet
+ * ConnectedApplicationsConnAppIdGet Method for ConnectedApplicationsConnAppIdGet
  * Returns all connected apps
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param connAppId The ID of the connected app
- * @return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdGetRequest
+ * @return DefaultApiApiConnectedApplicationsConnAppIdGetRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdGet(ctx _context.Context, connAppId string) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdGetRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdGetRequest{
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdGet(ctx _context.Context, connAppId string) DefaultApiApiConnectedApplicationsConnAppIdGetRequest {
+	return DefaultApiApiConnectedApplicationsConnAppIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		connAppId: connAppId,
@@ -152,7 +152,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdGet(ctx _co
  * Execute executes the request
  * @return ConnectedAppRespExt
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdGetExecute(r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdGetRequest) (ConnectedAppRespExt, *_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdGetExecute(r DefaultApiApiConnectedApplicationsConnAppIdGetRequest) (ConnectedAppRespExt, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -162,12 +162,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdGetExecute(
 		localVarReturnValue  ConnectedAppRespExt
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsConnAppIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications/{connAppId}"
+	localVarPath := localBasePath + "/connectedApplications/{connAppId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", _neturl.PathEscape(parameterToString(r.connAppId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -228,31 +228,31 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdGetExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest struct {
+type DefaultApiApiConnectedApplicationsConnAppIdPatchRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	connAppId string
 	connectedAppPatchExt *ConnectedAppPatchExt
 }
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest) ConnectedAppPatchExt(connectedAppPatchExt ConnectedAppPatchExt) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest {
+func (r DefaultApiApiConnectedApplicationsConnAppIdPatchRequest) ConnectedAppPatchExt(connectedAppPatchExt ConnectedAppPatchExt) DefaultApiApiConnectedApplicationsConnAppIdPatchRequest {
 	r.connectedAppPatchExt = &connectedAppPatchExt
 	return r
 }
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest) Execute() (ConnectedAppRespExt, *_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsConnAppIdPatchExecute(r)
+func (r DefaultApiApiConnectedApplicationsConnAppIdPatchRequest) Execute() (ConnectedAppRespExt, *_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsConnAppIdPatchExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsConnAppIdPatch Method for AccountsApiConnectedApplicationsConnAppIdPatch
+ * ConnectedApplicationsConnAppIdPatch Method for ConnectedApplicationsConnAppIdPatch
  * patches a Connected App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param connAppId The ID of the connected app
- * @return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest
+ * @return DefaultApiApiConnectedApplicationsConnAppIdPatchRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdPatch(ctx _context.Context, connAppId string) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest{
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatch(ctx _context.Context, connAppId string) DefaultApiApiConnectedApplicationsConnAppIdPatchRequest {
+	return DefaultApiApiConnectedApplicationsConnAppIdPatchRequest{
 		ApiService: a,
 		ctx: ctx,
 		connAppId: connAppId,
@@ -263,7 +263,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdPatch(ctx _
  * Execute executes the request
  * @return ConnectedAppRespExt
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdPatchExecute(r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdPatchRequest) (ConnectedAppRespExt, *_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatchExecute(r DefaultApiApiConnectedApplicationsConnAppIdPatchRequest) (ConnectedAppRespExt, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
@@ -273,12 +273,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdPatchExecut
 		localVarReturnValue  ConnectedAppRespExt
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsConnAppIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdPatch")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications/{connAppId}"
+	localVarPath := localBasePath + "/connectedApplications/{connAppId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", _neturl.PathEscape(parameterToString(r.connAppId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -351,26 +351,26 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdPatchExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest struct {
+type DefaultApiApiConnectedApplicationsConnAppIdScopesGetRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	connAppId string
 }
 
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsConnAppIdScopesGetExecute(r)
+func (r DefaultApiApiConnectedApplicationsConnAppIdScopesGetRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsConnAppIdScopesGetExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsConnAppIdScopesGet Method for AccountsApiConnectedApplicationsConnAppIdScopesGet
+ * ConnectedApplicationsConnAppIdScopesGet Method for ConnectedApplicationsConnAppIdScopesGet
  * Returns all scopes of a Connected App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param connAppId The ID of the connected app
- * @return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest
+ * @return DefaultApiApiConnectedApplicationsConnAppIdScopesGetRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesGet(ctx _context.Context, connAppId string) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest{
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesGet(ctx _context.Context, connAppId string) DefaultApiApiConnectedApplicationsConnAppIdScopesGetRequest {
+	return DefaultApiApiConnectedApplicationsConnAppIdScopesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		connAppId: connAppId,
@@ -381,7 +381,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesGet(c
  * Execute executes the request
  * @return InlineResponse2001
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesGetExecute(r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesGetRequest) (InlineResponse2001, *_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesGetExecute(r DefaultApiApiConnectedApplicationsConnAppIdScopesGetRequest) (InlineResponse2001, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -391,12 +391,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesGetEx
 		localVarReturnValue  InlineResponse2001
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsConnAppIdScopesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdScopesGet")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications/{connAppId}/scopes"
+	localVarPath := localBasePath + "/connectedApplications/{connAppId}/scopes"
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", _neturl.PathEscape(parameterToString(r.connAppId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -457,31 +457,31 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesGetEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest struct {
+type DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	connAppId string
 	connectedAppScopesPutBody *ConnectedAppScopesPutBody
 }
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest) ConnectedAppScopesPutBody(connectedAppScopesPutBody ConnectedAppScopesPutBody) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest {
+func (r DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest) ConnectedAppScopesPutBody(connectedAppScopesPutBody ConnectedAppScopesPutBody) DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest {
 	r.connectedAppScopesPutBody = &connectedAppScopesPutBody
 	return r
 }
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsConnAppIdScopesPutExecute(r)
+func (r DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsConnAppIdScopesPutExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsConnAppIdScopesPut Method for AccountsApiConnectedApplicationsConnAppIdScopesPut
+ * ConnectedApplicationsConnAppIdScopesPut Method for ConnectedApplicationsConnAppIdScopesPut
  * replace a Connected App scopes
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param connAppId The ID of the connected app
- * @return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest
+ * @return DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesPut(ctx _context.Context, connAppId string) DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest{
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesPut(ctx _context.Context, connAppId string) DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest {
+	return DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		connAppId: connAppId,
@@ -491,7 +491,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesPut(c
 /*
  * Execute executes the request
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesPutExecute(r DefaultApiApiAccountsApiConnectedApplicationsConnAppIdScopesPutRequest) (*_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesPutExecute(r DefaultApiApiConnectedApplicationsConnAppIdScopesPutRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -500,12 +500,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesPutEx
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsConnAppIdScopesPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdScopesPut")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications/{connAppId}/scopes"
+	localVarPath := localBasePath + "/connectedApplications/{connAppId}/scopes"
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", _neturl.PathEscape(parameterToString(r.connAppId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -569,24 +569,24 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsConnAppIdScopesPutEx
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiApiAccountsApiConnectedApplicationsGetRequest struct {
+type DefaultApiApiConnectedApplicationsGetRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 }
 
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsGetRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsGetExecute(r)
+func (r DefaultApiApiConnectedApplicationsGetRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsGetExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsGet Method for AccountsApiConnectedApplicationsGet
+ * ConnectedApplicationsGet Method for ConnectedApplicationsGet
  * Returns all connected apps
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return DefaultApiApiAccountsApiConnectedApplicationsGetRequest
+ * @return DefaultApiApiConnectedApplicationsGetRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsGet(ctx _context.Context) DefaultApiApiAccountsApiConnectedApplicationsGetRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsGetRequest{
+func (a *DefaultApiService) ConnectedApplicationsGet(ctx _context.Context) DefaultApiApiConnectedApplicationsGetRequest {
+	return DefaultApiApiConnectedApplicationsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -596,7 +596,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsGet(ctx _context.Con
  * Execute executes the request
  * @return InlineResponse200
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsGetExecute(r DefaultApiApiAccountsApiConnectedApplicationsGetRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsGetExecute(r DefaultApiApiConnectedApplicationsGetRequest) (InlineResponse200, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -606,12 +606,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsGetExecute(r Default
 		localVarReturnValue  InlineResponse200
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsGet")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications"
+	localVarPath := localBasePath + "/connectedApplications"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -671,29 +671,29 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsGetExecute(r Default
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiAccountsApiConnectedApplicationsPostRequest struct {
+type DefaultApiApiConnectedApplicationsPostRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	connectedAppCore *ConnectedAppCore
 }
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsPostRequest) ConnectedAppCore(connectedAppCore ConnectedAppCore) DefaultApiApiAccountsApiConnectedApplicationsPostRequest {
+func (r DefaultApiApiConnectedApplicationsPostRequest) ConnectedAppCore(connectedAppCore ConnectedAppCore) DefaultApiApiConnectedApplicationsPostRequest {
 	r.connectedAppCore = &connectedAppCore
 	return r
 }
 
-func (r DefaultApiApiAccountsApiConnectedApplicationsPostRequest) Execute() (ConnectedAppRespExt, *_nethttp.Response, error) {
-	return r.ApiService.AccountsApiConnectedApplicationsPostExecute(r)
+func (r DefaultApiApiConnectedApplicationsPostRequest) Execute() (ConnectedAppRespExt, *_nethttp.Response, error) {
+	return r.ApiService.ConnectedApplicationsPostExecute(r)
 }
 
 /*
- * AccountsApiConnectedApplicationsPost Method for AccountsApiConnectedApplicationsPost
+ * ConnectedApplicationsPost Method for ConnectedApplicationsPost
  * create a Connected App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return DefaultApiApiAccountsApiConnectedApplicationsPostRequest
+ * @return DefaultApiApiConnectedApplicationsPostRequest
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsPost(ctx _context.Context) DefaultApiApiAccountsApiConnectedApplicationsPostRequest {
-	return DefaultApiApiAccountsApiConnectedApplicationsPostRequest{
+func (a *DefaultApiService) ConnectedApplicationsPost(ctx _context.Context) DefaultApiApiConnectedApplicationsPostRequest {
+	return DefaultApiApiConnectedApplicationsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -703,7 +703,7 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsPost(ctx _context.Co
  * Execute executes the request
  * @return ConnectedAppRespExt
  */
-func (a *DefaultApiService) AccountsApiConnectedApplicationsPostExecute(r DefaultApiApiAccountsApiConnectedApplicationsPostRequest) (ConnectedAppRespExt, *_nethttp.Response, error) {
+func (a *DefaultApiService) ConnectedApplicationsPostExecute(r DefaultApiApiConnectedApplicationsPostRequest) (ConnectedAppRespExt, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -713,12 +713,12 @@ func (a *DefaultApiService) AccountsApiConnectedApplicationsPostExecute(r Defaul
 		localVarReturnValue  ConnectedAppRespExt
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AccountsApiConnectedApplicationsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsPost")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/accounts/api/connectedApplications"
+	localVarPath := localBasePath + "/connectedApplications"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

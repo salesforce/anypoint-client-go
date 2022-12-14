@@ -74,17 +74,17 @@ ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://anypoint.mulesoft.com/cloudhub/api*
+All URIs are relative to *https://anypoint.mulesoft.com/accounts/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**AccountsApiConnectedApplicationsConnAppIdDelete**](docs/DefaultApi.md#accountsapiconnectedapplicationsconnappiddelete) | **Delete** /accounts/api/connectedApplications/{connAppId} | 
-*DefaultApi* | [**AccountsApiConnectedApplicationsConnAppIdGet**](docs/DefaultApi.md#accountsapiconnectedapplicationsconnappidget) | **Get** /accounts/api/connectedApplications/{connAppId} | 
-*DefaultApi* | [**AccountsApiConnectedApplicationsConnAppIdPatch**](docs/DefaultApi.md#accountsapiconnectedapplicationsconnappidpatch) | **Patch** /accounts/api/connectedApplications/{connAppId} | 
-*DefaultApi* | [**AccountsApiConnectedApplicationsConnAppIdScopesGet**](docs/DefaultApi.md#accountsapiconnectedapplicationsconnappidscopesget) | **Get** /accounts/api/connectedApplications/{connAppId}/scopes | 
-*DefaultApi* | [**AccountsApiConnectedApplicationsConnAppIdScopesPut**](docs/DefaultApi.md#accountsapiconnectedapplicationsconnappidscopesput) | **Put** /accounts/api/connectedApplications/{connAppId}/scopes | 
-*DefaultApi* | [**AccountsApiConnectedApplicationsGet**](docs/DefaultApi.md#accountsapiconnectedapplicationsget) | **Get** /accounts/api/connectedApplications | 
-*DefaultApi* | [**AccountsApiConnectedApplicationsPost**](docs/DefaultApi.md#accountsapiconnectedapplicationspost) | **Post** /accounts/api/connectedApplications | 
+*DefaultApi* | [**ConnectedApplicationsConnAppIdDelete**](docs/DefaultApi.md#connectedapplicationsconnappiddelete) | **Delete** /connectedApplications/{connAppId} | 
+*DefaultApi* | [**ConnectedApplicationsConnAppIdGet**](docs/DefaultApi.md#connectedapplicationsconnappidget) | **Get** /connectedApplications/{connAppId} | 
+*DefaultApi* | [**ConnectedApplicationsConnAppIdPatch**](docs/DefaultApi.md#connectedapplicationsconnappidpatch) | **Patch** /connectedApplications/{connAppId} | 
+*DefaultApi* | [**ConnectedApplicationsConnAppIdScopesGet**](docs/DefaultApi.md#connectedapplicationsconnappidscopesget) | **Get** /connectedApplications/{connAppId}/scopes | 
+*DefaultApi* | [**ConnectedApplicationsConnAppIdScopesPut**](docs/DefaultApi.md#connectedapplicationsconnappidscopesput) | **Put** /connectedApplications/{connAppId}/scopes | 
+*DefaultApi* | [**ConnectedApplicationsGet**](docs/DefaultApi.md#connectedapplicationsget) | **Get** /connectedApplications | 
+*DefaultApi* | [**ConnectedApplicationsPost**](docs/DefaultApi.md#connectedapplicationspost) | **Post** /connectedApplications | 
 
 
 ## Documentation For Models
