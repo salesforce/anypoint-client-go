@@ -4,12 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultTtl** | Pointer to **int32** |  | [optional] 
-**DefaultLockTtl** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Encrypted** | Pointer to **bool** |  | [optional] 
-**DefaultDeliveryDelay** | Pointer to **int32** |  | [optional] 
-**Fifo** | Pointer to **bool** |  | [optional] 
+**DefaultTtl** | Pointer to **NullableInt32** |  | [optional] 
+**DefaultLockTtl** | Pointer to **NullableInt32** |  | [optional] 
+**Type** | Pointer to **NullableString** |  | [optional] 
+**Encrypted** | Pointer to **NullableBool** |  | [optional] 
+**DefaultDeliveryDelay** | Pointer to **NullableInt32** |  | [optional] 
+**DeadLetterQueueId** | Pointer to **NullableString** |  | [optional] 
+**MaxDeliveries** | Pointer to **NullableInt32** |  | [optional] 
+**Fifo** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -55,6 +57,16 @@ SetDefaultTtl sets DefaultTtl field to given value.
 
 HasDefaultTtl returns a boolean if a field has been set.
 
+### SetDefaultTtlNil
+
+`func (o *QueueBody) SetDefaultTtlNil(b bool)`
+
+ SetDefaultTtlNil sets the value for DefaultTtl to be an explicit nil
+
+### UnsetDefaultTtl
+`func (o *QueueBody) UnsetDefaultTtl()`
+
+UnsetDefaultTtl ensures that no value is present for DefaultTtl, not even an explicit nil
 ### GetDefaultLockTtl
 
 `func (o *QueueBody) GetDefaultLockTtl() int32`
@@ -80,6 +92,16 @@ SetDefaultLockTtl sets DefaultLockTtl field to given value.
 
 HasDefaultLockTtl returns a boolean if a field has been set.
 
+### SetDefaultLockTtlNil
+
+`func (o *QueueBody) SetDefaultLockTtlNil(b bool)`
+
+ SetDefaultLockTtlNil sets the value for DefaultLockTtl to be an explicit nil
+
+### UnsetDefaultLockTtl
+`func (o *QueueBody) UnsetDefaultLockTtl()`
+
+UnsetDefaultLockTtl ensures that no value is present for DefaultLockTtl, not even an explicit nil
 ### GetType
 
 `func (o *QueueBody) GetType() string`
@@ -105,6 +127,16 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
+### SetTypeNil
+
+`func (o *QueueBody) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *QueueBody) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetEncrypted
 
 `func (o *QueueBody) GetEncrypted() bool`
@@ -130,6 +162,16 @@ SetEncrypted sets Encrypted field to given value.
 
 HasEncrypted returns a boolean if a field has been set.
 
+### SetEncryptedNil
+
+`func (o *QueueBody) SetEncryptedNil(b bool)`
+
+ SetEncryptedNil sets the value for Encrypted to be an explicit nil
+
+### UnsetEncrypted
+`func (o *QueueBody) UnsetEncrypted()`
+
+UnsetEncrypted ensures that no value is present for Encrypted, not even an explicit nil
 ### GetDefaultDeliveryDelay
 
 `func (o *QueueBody) GetDefaultDeliveryDelay() int32`
@@ -155,6 +197,86 @@ SetDefaultDeliveryDelay sets DefaultDeliveryDelay field to given value.
 
 HasDefaultDeliveryDelay returns a boolean if a field has been set.
 
+### SetDefaultDeliveryDelayNil
+
+`func (o *QueueBody) SetDefaultDeliveryDelayNil(b bool)`
+
+ SetDefaultDeliveryDelayNil sets the value for DefaultDeliveryDelay to be an explicit nil
+
+### UnsetDefaultDeliveryDelay
+`func (o *QueueBody) UnsetDefaultDeliveryDelay()`
+
+UnsetDefaultDeliveryDelay ensures that no value is present for DefaultDeliveryDelay, not even an explicit nil
+### GetDeadLetterQueueId
+
+`func (o *QueueBody) GetDeadLetterQueueId() string`
+
+GetDeadLetterQueueId returns the DeadLetterQueueId field if non-nil, zero value otherwise.
+
+### GetDeadLetterQueueIdOk
+
+`func (o *QueueBody) GetDeadLetterQueueIdOk() (*string, bool)`
+
+GetDeadLetterQueueIdOk returns a tuple with the DeadLetterQueueId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeadLetterQueueId
+
+`func (o *QueueBody) SetDeadLetterQueueId(v string)`
+
+SetDeadLetterQueueId sets DeadLetterQueueId field to given value.
+
+### HasDeadLetterQueueId
+
+`func (o *QueueBody) HasDeadLetterQueueId() bool`
+
+HasDeadLetterQueueId returns a boolean if a field has been set.
+
+### SetDeadLetterQueueIdNil
+
+`func (o *QueueBody) SetDeadLetterQueueIdNil(b bool)`
+
+ SetDeadLetterQueueIdNil sets the value for DeadLetterQueueId to be an explicit nil
+
+### UnsetDeadLetterQueueId
+`func (o *QueueBody) UnsetDeadLetterQueueId()`
+
+UnsetDeadLetterQueueId ensures that no value is present for DeadLetterQueueId, not even an explicit nil
+### GetMaxDeliveries
+
+`func (o *QueueBody) GetMaxDeliveries() int32`
+
+GetMaxDeliveries returns the MaxDeliveries field if non-nil, zero value otherwise.
+
+### GetMaxDeliveriesOk
+
+`func (o *QueueBody) GetMaxDeliveriesOk() (*int32, bool)`
+
+GetMaxDeliveriesOk returns a tuple with the MaxDeliveries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxDeliveries
+
+`func (o *QueueBody) SetMaxDeliveries(v int32)`
+
+SetMaxDeliveries sets MaxDeliveries field to given value.
+
+### HasMaxDeliveries
+
+`func (o *QueueBody) HasMaxDeliveries() bool`
+
+HasMaxDeliveries returns a boolean if a field has been set.
+
+### SetMaxDeliveriesNil
+
+`func (o *QueueBody) SetMaxDeliveriesNil(b bool)`
+
+ SetMaxDeliveriesNil sets the value for MaxDeliveries to be an explicit nil
+
+### UnsetMaxDeliveries
+`func (o *QueueBody) UnsetMaxDeliveries()`
+
+UnsetMaxDeliveries ensures that no value is present for MaxDeliveries, not even an explicit nil
 ### GetFifo
 
 `func (o *QueueBody) GetFifo() bool`
@@ -180,6 +302,16 @@ SetFifo sets Fifo field to given value.
 
 HasFifo returns a boolean if a field has been set.
 
+### SetFifoNil
+
+`func (o *QueueBody) SetFifoNil(b bool)`
+
+ SetFifoNil sets the value for Fifo to be an explicit nil
+
+### UnsetFifo
+`func (o *QueueBody) UnsetFifo()`
+
+UnsetFifo ensures that no value is present for Fifo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

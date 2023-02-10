@@ -78,11 +78,11 @@ All URIs are relative to *https://anypoint.mulesoft.com/mq/admin/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGet**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsget) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDelete**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsqueuesqueueiddelete) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGet**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsqueuesqueueidget) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatch**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsqueuesqueueidpatch) | **Patch** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPut**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsqueuesqueueidput) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
+*DefaultApi* | [**CreateAMQ**](docs/DefaultApi.md#createamq) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
+*DefaultApi* | [**DeleteAMQ**](docs/DefaultApi.md#deleteamq) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
+*DefaultApi* | [**GetAMQ**](docs/DefaultApi.md#getamq) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
+*DefaultApi* | [**GetAMQList**](docs/DefaultApi.md#getamqlist) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations | 
+*DefaultApi* | [**UpdateAMQ**](docs/DefaultApi.md#updateamq) | **Patch** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId} | 
 
 
 ## Documentation For Models

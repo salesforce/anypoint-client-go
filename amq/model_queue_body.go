@@ -16,12 +16,14 @@ import (
 
 // QueueBody struct for QueueBody
 type QueueBody struct {
-	DefaultTtl *int32 `json:"defaultTtl,omitempty"`
-	DefaultLockTtl *int32 `json:"defaultLockTtl,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Encrypted *bool `json:"encrypted,omitempty"`
-	DefaultDeliveryDelay *int32 `json:"defaultDeliveryDelay,omitempty"`
-	Fifo *bool `json:"fifo,omitempty"`
+	DefaultTtl NullableInt32 `json:"defaultTtl,omitempty"`
+	DefaultLockTtl NullableInt32 `json:"defaultLockTtl,omitempty"`
+	Type NullableString `json:"type,omitempty"`
+	Encrypted NullableBool `json:"encrypted,omitempty"`
+	DefaultDeliveryDelay NullableInt32 `json:"defaultDeliveryDelay,omitempty"`
+	DeadLetterQueueId NullableString `json:"deadLetterQueueId,omitempty"`
+	MaxDeliveries NullableInt32 `json:"maxDeliveries,omitempty"`
+	Fifo NullableBool `json:"fifo,omitempty"`
 }
 
 // NewQueueBody instantiates a new QueueBody object
@@ -41,217 +43,367 @@ func NewQueueBodyWithDefaults() *QueueBody {
 	return &this
 }
 
-// GetDefaultTtl returns the DefaultTtl field value if set, zero value otherwise.
+// GetDefaultTtl returns the DefaultTtl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *QueueBody) GetDefaultTtl() int32 {
-	if o == nil || o.DefaultTtl == nil {
+	if o == nil || o.DefaultTtl.Get() == nil {
 		var ret int32
 		return ret
 	}
-	return *o.DefaultTtl
+	return *o.DefaultTtl.Get()
 }
 
 // GetDefaultTtlOk returns a tuple with the DefaultTtl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QueueBody) GetDefaultTtlOk() (*int32, bool) {
-	if o == nil || o.DefaultTtl == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.DefaultTtl, true
+	return o.DefaultTtl.Get(), o.DefaultTtl.IsSet()
 }
 
 // HasDefaultTtl returns a boolean if a field has been set.
 func (o *QueueBody) HasDefaultTtl() bool {
-	if o != nil && o.DefaultTtl != nil {
+	if o != nil && o.DefaultTtl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultTtl gets a reference to the given int32 and assigns it to the DefaultTtl field.
+// SetDefaultTtl gets a reference to the given NullableInt32 and assigns it to the DefaultTtl field.
 func (o *QueueBody) SetDefaultTtl(v int32) {
-	o.DefaultTtl = &v
+	o.DefaultTtl.Set(&v)
+}
+// SetDefaultTtlNil sets the value for DefaultTtl to be an explicit nil
+func (o *QueueBody) SetDefaultTtlNil() {
+	o.DefaultTtl.Set(nil)
 }
 
-// GetDefaultLockTtl returns the DefaultLockTtl field value if set, zero value otherwise.
+// UnsetDefaultTtl ensures that no value is present for DefaultTtl, not even an explicit nil
+func (o *QueueBody) UnsetDefaultTtl() {
+	o.DefaultTtl.Unset()
+}
+
+// GetDefaultLockTtl returns the DefaultLockTtl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *QueueBody) GetDefaultLockTtl() int32 {
-	if o == nil || o.DefaultLockTtl == nil {
+	if o == nil || o.DefaultLockTtl.Get() == nil {
 		var ret int32
 		return ret
 	}
-	return *o.DefaultLockTtl
+	return *o.DefaultLockTtl.Get()
 }
 
 // GetDefaultLockTtlOk returns a tuple with the DefaultLockTtl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QueueBody) GetDefaultLockTtlOk() (*int32, bool) {
-	if o == nil || o.DefaultLockTtl == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.DefaultLockTtl, true
+	return o.DefaultLockTtl.Get(), o.DefaultLockTtl.IsSet()
 }
 
 // HasDefaultLockTtl returns a boolean if a field has been set.
 func (o *QueueBody) HasDefaultLockTtl() bool {
-	if o != nil && o.DefaultLockTtl != nil {
+	if o != nil && o.DefaultLockTtl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultLockTtl gets a reference to the given int32 and assigns it to the DefaultLockTtl field.
+// SetDefaultLockTtl gets a reference to the given NullableInt32 and assigns it to the DefaultLockTtl field.
 func (o *QueueBody) SetDefaultLockTtl(v int32) {
-	o.DefaultLockTtl = &v
+	o.DefaultLockTtl.Set(&v)
+}
+// SetDefaultLockTtlNil sets the value for DefaultLockTtl to be an explicit nil
+func (o *QueueBody) SetDefaultLockTtlNil() {
+	o.DefaultLockTtl.Set(nil)
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// UnsetDefaultLockTtl ensures that no value is present for DefaultLockTtl, not even an explicit nil
+func (o *QueueBody) UnsetDefaultLockTtl() {
+	o.DefaultLockTtl.Unset()
+}
+
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *QueueBody) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || o.Type.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+	return *o.Type.Get()
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QueueBody) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Type, true
+	return o.Type.Get(), o.Type.IsSet()
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *QueueBody) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && o.Type.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
 func (o *QueueBody) SetType(v string) {
-	o.Type = &v
+	o.Type.Set(&v)
+}
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *QueueBody) SetTypeNil() {
+	o.Type.Set(nil)
 }
 
-// GetEncrypted returns the Encrypted field value if set, zero value otherwise.
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *QueueBody) UnsetType() {
+	o.Type.Unset()
+}
+
+// GetEncrypted returns the Encrypted field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *QueueBody) GetEncrypted() bool {
-	if o == nil || o.Encrypted == nil {
+	if o == nil || o.Encrypted.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Encrypted
+	return *o.Encrypted.Get()
 }
 
 // GetEncryptedOk returns a tuple with the Encrypted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QueueBody) GetEncryptedOk() (*bool, bool) {
-	if o == nil || o.Encrypted == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Encrypted, true
+	return o.Encrypted.Get(), o.Encrypted.IsSet()
 }
 
 // HasEncrypted returns a boolean if a field has been set.
 func (o *QueueBody) HasEncrypted() bool {
-	if o != nil && o.Encrypted != nil {
+	if o != nil && o.Encrypted.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEncrypted gets a reference to the given bool and assigns it to the Encrypted field.
+// SetEncrypted gets a reference to the given NullableBool and assigns it to the Encrypted field.
 func (o *QueueBody) SetEncrypted(v bool) {
-	o.Encrypted = &v
+	o.Encrypted.Set(&v)
+}
+// SetEncryptedNil sets the value for Encrypted to be an explicit nil
+func (o *QueueBody) SetEncryptedNil() {
+	o.Encrypted.Set(nil)
 }
 
-// GetDefaultDeliveryDelay returns the DefaultDeliveryDelay field value if set, zero value otherwise.
+// UnsetEncrypted ensures that no value is present for Encrypted, not even an explicit nil
+func (o *QueueBody) UnsetEncrypted() {
+	o.Encrypted.Unset()
+}
+
+// GetDefaultDeliveryDelay returns the DefaultDeliveryDelay field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *QueueBody) GetDefaultDeliveryDelay() int32 {
-	if o == nil || o.DefaultDeliveryDelay == nil {
+	if o == nil || o.DefaultDeliveryDelay.Get() == nil {
 		var ret int32
 		return ret
 	}
-	return *o.DefaultDeliveryDelay
+	return *o.DefaultDeliveryDelay.Get()
 }
 
 // GetDefaultDeliveryDelayOk returns a tuple with the DefaultDeliveryDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QueueBody) GetDefaultDeliveryDelayOk() (*int32, bool) {
-	if o == nil || o.DefaultDeliveryDelay == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.DefaultDeliveryDelay, true
+	return o.DefaultDeliveryDelay.Get(), o.DefaultDeliveryDelay.IsSet()
 }
 
 // HasDefaultDeliveryDelay returns a boolean if a field has been set.
 func (o *QueueBody) HasDefaultDeliveryDelay() bool {
-	if o != nil && o.DefaultDeliveryDelay != nil {
+	if o != nil && o.DefaultDeliveryDelay.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultDeliveryDelay gets a reference to the given int32 and assigns it to the DefaultDeliveryDelay field.
+// SetDefaultDeliveryDelay gets a reference to the given NullableInt32 and assigns it to the DefaultDeliveryDelay field.
 func (o *QueueBody) SetDefaultDeliveryDelay(v int32) {
-	o.DefaultDeliveryDelay = &v
+	o.DefaultDeliveryDelay.Set(&v)
+}
+// SetDefaultDeliveryDelayNil sets the value for DefaultDeliveryDelay to be an explicit nil
+func (o *QueueBody) SetDefaultDeliveryDelayNil() {
+	o.DefaultDeliveryDelay.Set(nil)
 }
 
-// GetFifo returns the Fifo field value if set, zero value otherwise.
+// UnsetDefaultDeliveryDelay ensures that no value is present for DefaultDeliveryDelay, not even an explicit nil
+func (o *QueueBody) UnsetDefaultDeliveryDelay() {
+	o.DefaultDeliveryDelay.Unset()
+}
+
+// GetDeadLetterQueueId returns the DeadLetterQueueId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueueBody) GetDeadLetterQueueId() string {
+	if o == nil || o.DeadLetterQueueId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeadLetterQueueId.Get()
+}
+
+// GetDeadLetterQueueIdOk returns a tuple with the DeadLetterQueueId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueueBody) GetDeadLetterQueueIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeadLetterQueueId.Get(), o.DeadLetterQueueId.IsSet()
+}
+
+// HasDeadLetterQueueId returns a boolean if a field has been set.
+func (o *QueueBody) HasDeadLetterQueueId() bool {
+	if o != nil && o.DeadLetterQueueId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeadLetterQueueId gets a reference to the given NullableString and assigns it to the DeadLetterQueueId field.
+func (o *QueueBody) SetDeadLetterQueueId(v string) {
+	o.DeadLetterQueueId.Set(&v)
+}
+// SetDeadLetterQueueIdNil sets the value for DeadLetterQueueId to be an explicit nil
+func (o *QueueBody) SetDeadLetterQueueIdNil() {
+	o.DeadLetterQueueId.Set(nil)
+}
+
+// UnsetDeadLetterQueueId ensures that no value is present for DeadLetterQueueId, not even an explicit nil
+func (o *QueueBody) UnsetDeadLetterQueueId() {
+	o.DeadLetterQueueId.Unset()
+}
+
+// GetMaxDeliveries returns the MaxDeliveries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueueBody) GetMaxDeliveries() int32 {
+	if o == nil || o.MaxDeliveries.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaxDeliveries.Get()
+}
+
+// GetMaxDeliveriesOk returns a tuple with the MaxDeliveries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueueBody) GetMaxDeliveriesOk() (*int32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MaxDeliveries.Get(), o.MaxDeliveries.IsSet()
+}
+
+// HasMaxDeliveries returns a boolean if a field has been set.
+func (o *QueueBody) HasMaxDeliveries() bool {
+	if o != nil && o.MaxDeliveries.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxDeliveries gets a reference to the given NullableInt32 and assigns it to the MaxDeliveries field.
+func (o *QueueBody) SetMaxDeliveries(v int32) {
+	o.MaxDeliveries.Set(&v)
+}
+// SetMaxDeliveriesNil sets the value for MaxDeliveries to be an explicit nil
+func (o *QueueBody) SetMaxDeliveriesNil() {
+	o.MaxDeliveries.Set(nil)
+}
+
+// UnsetMaxDeliveries ensures that no value is present for MaxDeliveries, not even an explicit nil
+func (o *QueueBody) UnsetMaxDeliveries() {
+	o.MaxDeliveries.Unset()
+}
+
+// GetFifo returns the Fifo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *QueueBody) GetFifo() bool {
-	if o == nil || o.Fifo == nil {
+	if o == nil || o.Fifo.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Fifo
+	return *o.Fifo.Get()
 }
 
 // GetFifoOk returns a tuple with the Fifo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *QueueBody) GetFifoOk() (*bool, bool) {
-	if o == nil || o.Fifo == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Fifo, true
+	return o.Fifo.Get(), o.Fifo.IsSet()
 }
 
 // HasFifo returns a boolean if a field has been set.
 func (o *QueueBody) HasFifo() bool {
-	if o != nil && o.Fifo != nil {
+	if o != nil && o.Fifo.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFifo gets a reference to the given bool and assigns it to the Fifo field.
+// SetFifo gets a reference to the given NullableBool and assigns it to the Fifo field.
 func (o *QueueBody) SetFifo(v bool) {
-	o.Fifo = &v
+	o.Fifo.Set(&v)
+}
+// SetFifoNil sets the value for Fifo to be an explicit nil
+func (o *QueueBody) SetFifoNil() {
+	o.Fifo.Set(nil)
+}
+
+// UnsetFifo ensures that no value is present for Fifo, not even an explicit nil
+func (o *QueueBody) UnsetFifo() {
+	o.Fifo.Unset()
 }
 
 func (o QueueBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.DefaultTtl != nil {
-		toSerialize["defaultTtl"] = o.DefaultTtl
+	if o.DefaultTtl.IsSet() {
+		toSerialize["defaultTtl"] = o.DefaultTtl.Get()
 	}
-	if o.DefaultLockTtl != nil {
-		toSerialize["defaultLockTtl"] = o.DefaultLockTtl
+	if o.DefaultLockTtl.IsSet() {
+		toSerialize["defaultLockTtl"] = o.DefaultLockTtl.Get()
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
 	}
-	if o.Encrypted != nil {
-		toSerialize["encrypted"] = o.Encrypted
+	if o.Encrypted.IsSet() {
+		toSerialize["encrypted"] = o.Encrypted.Get()
 	}
-	if o.DefaultDeliveryDelay != nil {
-		toSerialize["defaultDeliveryDelay"] = o.DefaultDeliveryDelay
+	if o.DefaultDeliveryDelay.IsSet() {
+		toSerialize["defaultDeliveryDelay"] = o.DefaultDeliveryDelay.Get()
 	}
-	if o.Fifo != nil {
-		toSerialize["fifo"] = o.Fifo
+	if o.DeadLetterQueueId.IsSet() {
+		toSerialize["deadLetterQueueId"] = o.DeadLetterQueueId.Get()
+	}
+	if o.MaxDeliveries.IsSet() {
+		toSerialize["maxDeliveries"] = o.MaxDeliveries.Get()
+	}
+	if o.Fifo.IsSet() {
+		toSerialize["fifo"] = o.Fifo.Get()
 	}
 	return json.Marshal(toSerialize)
 }

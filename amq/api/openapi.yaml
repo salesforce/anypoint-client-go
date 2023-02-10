@@ -16,6 +16,7 @@ paths:
   /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations:
     get:
       description: Get a list of queues in a region
+      operationId: GetAMQList
       parameters:
       - description: The organization Id
         explode: false
@@ -41,6 +42,66 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Defines what to fetch
+        explode: true
+        in: query
+        name: inclusion
+        required: false
+        schema:
+          enum:
+          - all
+          - minimal
+          type: string
+        style: form
+      - description: Defines what to fetch
+        explode: true
+        in: query
+        name: destinationType
+        required: false
+        schema:
+          enum:
+          - all
+          - queue
+          - exchange
+          type: string
+        style: form
+      - description: Skip over a number of elements by specifying an offset value
+          for the query.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      - description: Limit the number of elements in the response.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          type: integer
+        style: form
+      - description: Searchs the field from the left using the passed string.
+        explode: true
+        in: query
+        name: startsWith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Includes only results with the given Ids.
+        explode: true
+        in: query
+        name: destinationIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "401":
           description: Access token is missing or invalid
@@ -56,6 +117,7 @@ paths:
   /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId}:
     delete:
       description: Delete queue
+      operationId: DeleteAMQ
       parameters:
       - description: The organization Id
         explode: false
@@ -96,6 +158,7 @@ paths:
           description: Success response
     get:
       description: Get details about a queue
+      operationId: GetAMQ
       parameters:
       - description: The organization Id
         explode: false
@@ -140,6 +203,7 @@ paths:
           description: Success response
     patch:
       description: Modify a queue's properties
+      operationId: UpdateAMQ
       parameters:
       - description: The organization Id
         explode: false
@@ -195,6 +259,7 @@ paths:
           description: Success response
     put:
       description: Create queue
+      operationId: CreateAMQ
       parameters:
       - description: The organization Id
         explode: false
@@ -293,16 +358,22 @@ components:
   schemas:
     queue:
       example:
+        exchangeId: exchangeId
         queueId: queueId
         fifo: true
         defaultLockTtl: 6
         encrypted: true
         defaultTtl: 0
         defaultDeliveryDelay: 1
+        maxDeliveries: 5
         type: type
+        deadLetterQueueId: deadLetterQueueId
       properties:
         queueId:
           title: queueId
+          type: string
+        exchangeId:
+          title: exchangeId
           type: string
         defaultTtl:
           title: defaultTtl
@@ -318,6 +389,12 @@ components:
           type: boolean
         defaultDeliveryDelay:
           title: defaultDeliveryDelay
+          type: integer
+        deadLetterQueueId:
+          title: deadLetterQueueId
+          type: string
+        maxDeliveries:
+          title: maxDeliveries
           type: integer
         fifo:
           title: fifo
@@ -327,21 +404,35 @@ components:
     queueBody:
       properties:
         defaultTtl:
+          nullable: true
           title: defaultTtl
           type: integer
         defaultLockTtl:
+          nullable: true
           title: defaultLockTtl
           type: integer
         type:
+          nullable: true
           title: type
           type: string
         encrypted:
+          nullable: true
           title: encrypted
           type: boolean
         defaultDeliveryDelay:
+          nullable: true
           title: defaultDeliveryDelay
           type: integer
+        deadLetterQueueId:
+          nullable: true
+          title: deadLetterQueueId
+          type: string
+        maxDeliveries:
+          nullable: true
+          title: maxDeliveries
+          type: integer
         fifo:
+          nullable: true
           title: fifo
           type: boolean
       title: queueBody

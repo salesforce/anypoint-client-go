@@ -5,11 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **QueueId** | Pointer to **string** |  | [optional] 
+**ExchangeId** | Pointer to **string** |  | [optional] 
 **DefaultTtl** | Pointer to **int32** |  | [optional] 
 **DefaultLockTtl** | Pointer to **int32** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Encrypted** | Pointer to **bool** |  | [optional] 
 **DefaultDeliveryDelay** | Pointer to **int32** |  | [optional] 
+**DeadLetterQueueId** | Pointer to **string** |  | [optional] 
+**MaxDeliveries** | Pointer to **int32** |  | [optional] 
 **Fifo** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -55,6 +58,31 @@ SetQueueId sets QueueId field to given value.
 `func (o *Queue) HasQueueId() bool`
 
 HasQueueId returns a boolean if a field has been set.
+
+### GetExchangeId
+
+`func (o *Queue) GetExchangeId() string`
+
+GetExchangeId returns the ExchangeId field if non-nil, zero value otherwise.
+
+### GetExchangeIdOk
+
+`func (o *Queue) GetExchangeIdOk() (*string, bool)`
+
+GetExchangeIdOk returns a tuple with the ExchangeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExchangeId
+
+`func (o *Queue) SetExchangeId(v string)`
+
+SetExchangeId sets ExchangeId field to given value.
+
+### HasExchangeId
+
+`func (o *Queue) HasExchangeId() bool`
+
+HasExchangeId returns a boolean if a field has been set.
 
 ### GetDefaultTtl
 
@@ -180,6 +208,56 @@ SetDefaultDeliveryDelay sets DefaultDeliveryDelay field to given value.
 `func (o *Queue) HasDefaultDeliveryDelay() bool`
 
 HasDefaultDeliveryDelay returns a boolean if a field has been set.
+
+### GetDeadLetterQueueId
+
+`func (o *Queue) GetDeadLetterQueueId() string`
+
+GetDeadLetterQueueId returns the DeadLetterQueueId field if non-nil, zero value otherwise.
+
+### GetDeadLetterQueueIdOk
+
+`func (o *Queue) GetDeadLetterQueueIdOk() (*string, bool)`
+
+GetDeadLetterQueueIdOk returns a tuple with the DeadLetterQueueId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeadLetterQueueId
+
+`func (o *Queue) SetDeadLetterQueueId(v string)`
+
+SetDeadLetterQueueId sets DeadLetterQueueId field to given value.
+
+### HasDeadLetterQueueId
+
+`func (o *Queue) HasDeadLetterQueueId() bool`
+
+HasDeadLetterQueueId returns a boolean if a field has been set.
+
+### GetMaxDeliveries
+
+`func (o *Queue) GetMaxDeliveries() int32`
+
+GetMaxDeliveries returns the MaxDeliveries field if non-nil, zero value otherwise.
+
+### GetMaxDeliveriesOk
+
+`func (o *Queue) GetMaxDeliveriesOk() (*int32, bool)`
+
+GetMaxDeliveriesOk returns a tuple with the MaxDeliveries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxDeliveries
+
+`func (o *Queue) SetMaxDeliveries(v int32)`
+
+SetMaxDeliveries sets MaxDeliveries field to given value.
+
+### HasMaxDeliveries
+
+`func (o *Queue) HasMaxDeliveries() bool`
+
+HasMaxDeliveries returns a boolean if a field has been set.
 
 ### GetFifo
 
