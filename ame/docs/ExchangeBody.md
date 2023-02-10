@@ -5,8 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Encrypted** | Pointer to **bool** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**ExchangeId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,56 +49,6 @@ SetEncrypted sets Encrypted field to given value.
 `func (o *ExchangeBody) HasEncrypted() bool`
 
 HasEncrypted returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ExchangeBody) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ExchangeBody) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ExchangeBody) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *ExchangeBody) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### GetExchangeId
-
-`func (o *ExchangeBody) GetExchangeId() string`
-
-GetExchangeId returns the ExchangeId field if non-nil, zero value otherwise.
-
-### GetExchangeIdOk
-
-`func (o *ExchangeBody) GetExchangeIdOk() (*string, bool)`
-
-GetExchangeIdOk returns a tuple with the ExchangeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExchangeId
-
-`func (o *ExchangeBody) SetExchangeId(v string)`
-
-SetExchangeId sets ExchangeId field to given value.
-
-### HasExchangeId
-
-`func (o *ExchangeBody) HasExchangeId() bool`
-
-HasExchangeId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

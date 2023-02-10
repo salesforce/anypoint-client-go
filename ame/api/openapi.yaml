@@ -16,6 +16,7 @@ paths:
   /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId}:
     delete:
       description: Delete an exchange
+      operationId: DeleteAME
       parameters:
       - description: The organization Id
         explode: false
@@ -56,6 +57,7 @@ paths:
           description: Success response
     get:
       description: Get details about an exchange
+      operationId: GetAME
       parameters:
       - description: The organization Id
         explode: false
@@ -100,6 +102,7 @@ paths:
           description: Success response
     patch:
       description: Modify an exchange's properties
+      operationId: UpdateAME
       parameters:
       - description: The organization Id
         explode: false
@@ -155,6 +158,7 @@ paths:
           description: Successfully created exchange
     put:
       description: Create exchange
+      operationId: CreateAME
       parameters:
       - description: The organization Id
         explode: false
@@ -270,12 +274,6 @@ components:
         encrypted:
           title: encrypted
           type: boolean
-        type:
-          title: type
-          type: string
-        exchangeId:
-          title: exchangeId
-          type: string
       title: exchange
       type: object
     inline_response_404:

@@ -27,7 +27,132 @@ var (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteRequest struct {
+type DefaultApiApiCreateAMERequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	orgId string
+	envId string
+	regionId string
+	exchangeId string
+	exchangeBody *ExchangeBody
+}
+
+func (r DefaultApiApiCreateAMERequest) ExchangeBody(exchangeBody ExchangeBody) DefaultApiApiCreateAMERequest {
+	r.exchangeBody = &exchangeBody
+	return r
+}
+
+func (r DefaultApiApiCreateAMERequest) Execute() (Exchange, *_nethttp.Response, error) {
+	return r.ApiService.CreateAMEExecute(r)
+}
+
+/*
+ * CreateAME Method for CreateAME
+ * Create exchange
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param orgId The organization Id
+ * @param envId The environment id
+ * @param regionId The region id
+ * @param exchangeId The id of a specific exchange
+ * @return DefaultApiApiCreateAMERequest
+ */
+func (a *DefaultApiService) CreateAME(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiCreateAMERequest {
+	return DefaultApiApiCreateAMERequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		envId: envId,
+		regionId: regionId,
+		exchangeId: exchangeId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Exchange
+ */
+func (a *DefaultApiService) CreateAMEExecute(r DefaultApiApiCreateAMERequest) (Exchange, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Exchange
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAME")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", _neturl.PathEscape(parameterToString(r.envId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", _neturl.PathEscape(parameterToString(r.regionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"exchangeId"+"}", _neturl.PathEscape(parameterToString(r.exchangeId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.exchangeBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiApiDeleteAMERequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
@@ -37,22 +162,22 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinations
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteExecute(r)
+func (r DefaultApiApiDeleteAMERequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteAMEExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDelete Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDelete
+ * DeleteAME Method for DeleteAME
  * Delete an exchange
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
  * @param regionId The region id
  * @param exchangeId The id of a specific exchange
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteRequest
+ * @return DefaultApiApiDeleteAMERequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDelete(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteRequest{
+func (a *DefaultApiService) DeleteAME(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiDeleteAMERequest {
+	return DefaultApiApiDeleteAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -65,7 +190,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 /*
  * Execute executes the request
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDeleteRequest) (*_nethttp.Response, error) {
+func (a *DefaultApiService) DeleteAMEExecute(r DefaultApiApiDeleteAMERequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -74,7 +199,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAME")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -134,7 +259,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetRequest struct {
+type DefaultApiApiGetAMERequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
@@ -144,22 +269,22 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinations
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetRequest) Execute() (Exchange, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetExecute(r)
+func (r DefaultApiApiGetAMERequest) Execute() (Exchange, *_nethttp.Response, error) {
+	return r.ApiService.GetAMEExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGet Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGet
+ * GetAME Method for GetAME
  * Get details about an exchange
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
  * @param regionId The region id
  * @param exchangeId The id of a specific exchange
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetRequest
+ * @return DefaultApiApiGetAMERequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGet(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetRequest{
+func (a *DefaultApiService) GetAME(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiGetAMERequest {
+	return DefaultApiApiGetAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -173,7 +298,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
  * Execute executes the request
  * @return Exchange
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGetRequest) (Exchange, *_nethttp.Response, error) {
+func (a *DefaultApiService) GetAMEExecute(r DefaultApiApiGetAMERequest) (Exchange, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -183,7 +308,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 		localVarReturnValue  Exchange
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAME")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -252,7 +377,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest struct {
+type DefaultApiApiUpdateAMERequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
@@ -262,27 +387,27 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinations
 	exchangeBody *ExchangeBody
 }
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest) ExchangeBody(exchangeBody ExchangeBody) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest {
+func (r DefaultApiApiUpdateAMERequest) ExchangeBody(exchangeBody ExchangeBody) DefaultApiApiUpdateAMERequest {
 	r.exchangeBody = &exchangeBody
 	return r
 }
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest) Execute() (Exchange, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchExecute(r)
+func (r DefaultApiApiUpdateAMERequest) Execute() (Exchange, *_nethttp.Response, error) {
+	return r.ApiService.UpdateAMEExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatch Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatch
+ * UpdateAME Method for UpdateAME
  * Modify an exchange's properties
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
  * @param regionId The region id
  * @param exchangeId The id of a specific exchange
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest
+ * @return DefaultApiApiUpdateAMERequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatch(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest{
+func (a *DefaultApiService) UpdateAME(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiUpdateAMERequest {
+	return DefaultApiApiUpdateAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -296,7 +421,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
  * Execute executes the request
  * @return Exchange
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatchRequest) (Exchange, *_nethttp.Response, error) {
+func (a *DefaultApiService) UpdateAMEExecute(r DefaultApiApiUpdateAMERequest) (Exchange, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
@@ -306,7 +431,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 		localVarReturnValue  Exchange
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAME")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -371,131 +496,6 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	orgId string
-	envId string
-	regionId string
-	exchangeId string
-	exchangeBody *ExchangeBody
-}
-
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest) ExchangeBody(exchangeBody ExchangeBody) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest {
-	r.exchangeBody = &exchangeBody
-	return r
-}
-
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest) Execute() (Exchange, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutExecute(r)
-}
-
-/*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPut Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPut
- * Create exchange
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param orgId The organization Id
- * @param envId The environment id
- * @param regionId The region id
- * @param exchangeId The id of a specific exchange
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest
- */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPut(ctx _context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		regionId: regionId,
-		exchangeId: exchangeId,
-	}
-}
-
-/*
- * Execute executes the request
- * @return Exchange
- */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPutRequest) (Exchange, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Exchange
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPut")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", _neturl.PathEscape(parameterToString(r.envId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", _neturl.PathEscape(parameterToString(r.regionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"exchangeId"+"}", _neturl.PathEscape(parameterToString(r.exchangeId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.exchangeBody
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
