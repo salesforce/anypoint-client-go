@@ -78,10 +78,10 @@ All URIs are relative to *https://anypoint.mulesoft.com/mq/admin/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdDelete**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsexchangesexchangeiddelete) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdGet**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsexchangesexchangeidget) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPatch**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsexchangesexchangeidpatch) | **Patch** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsExchangesExchangeIdPut**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregioniddestinationsexchangesexchangeidput) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
+*DefaultApi* | [**CreateAME**](docs/DefaultApi.md#createame) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
+*DefaultApi* | [**DeleteAME**](docs/DefaultApi.md#deleteame) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
+*DefaultApi* | [**GetAME**](docs/DefaultApi.md#getame) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
+*DefaultApi* | [**UpdateAME**](docs/DefaultApi.md#updateame) | **Patch** /organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/exchanges/{exchangeId} | 
 
 
 ## Documentation For Models

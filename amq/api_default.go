@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -27,68 +28,77 @@ var (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetRequest struct {
+type DefaultApiApiCreateAMQRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
 	envId string
 	regionId string
+	queueId string
+	queueBody *QueueBody
 }
 
+func (r DefaultApiApiCreateAMQRequest) QueueBody(queueBody QueueBody) DefaultApiApiCreateAMQRequest {
+	r.queueBody = &queueBody
+	return r
+}
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetRequest) Execute() ([]Queue, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetExecute(r)
+func (r DefaultApiApiCreateAMQRequest) Execute() (Queue, *_nethttp.Response, error) {
+	return r.ApiService.CreateAMQExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGet Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGet
- * Get a list of queues in a region
+ * CreateAMQ Method for CreateAMQ
+ * Create queue
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
- * @param regionId The region id for MQ
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetRequest
+ * @param regionId The region id
+ * @param queueId The id of a specific queue
+ * @return DefaultApiApiCreateAMQRequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGet(ctx _context.Context, orgId string, envId string, regionId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetRequest{
+func (a *DefaultApiService) CreateAMQ(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiCreateAMQRequest {
+	return DefaultApiApiCreateAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
 		envId: envId,
 		regionId: regionId,
+		queueId: queueId,
 	}
 }
 
 /*
  * Execute executes the request
- * @return []Queue
+ * @return Queue
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGetRequest) ([]Queue, *_nethttp.Response, error) {
+func (a *DefaultApiService) CreateAMQExecute(r DefaultApiApiCreateAMQRequest) (Queue, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Queue
+		localVarReturnValue  Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAMQ")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations"
+	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", _neturl.PathEscape(parameterToString(r.envId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", _neturl.PathEscape(parameterToString(r.regionId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"queueId"+"}", _neturl.PathEscape(parameterToString(r.queueId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -104,6 +114,8 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.queueBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -141,7 +153,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteRequest struct {
+type DefaultApiApiDeleteAMQRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
@@ -151,22 +163,22 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinations
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteExecute(r)
+func (r DefaultApiApiDeleteAMQRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteAMQExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDelete Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDelete
+ * DeleteAMQ Method for DeleteAMQ
  * Delete queue
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
  * @param regionId The region id
  * @param queueId The id of a specific queue
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteRequest
+ * @return DefaultApiApiDeleteAMQRequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDelete(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteRequest{
+func (a *DefaultApiService) DeleteAMQ(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiDeleteAMQRequest {
+	return DefaultApiApiDeleteAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -179,7 +191,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 /*
  * Execute executes the request
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDeleteRequest) (*_nethttp.Response, error) {
+func (a *DefaultApiService) DeleteAMQExecute(r DefaultApiApiDeleteAMQRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -188,7 +200,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAMQ")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -248,7 +260,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetRequest struct {
+type DefaultApiApiGetAMQRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
@@ -258,22 +270,22 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinations
 }
 
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetRequest) Execute() (Queue, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetExecute(r)
+func (r DefaultApiApiGetAMQRequest) Execute() (Queue, *_nethttp.Response, error) {
+	return r.ApiService.GetAMQExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGet Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGet
+ * GetAMQ Method for GetAMQ
  * Get details about a queue
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
  * @param regionId The region id
  * @param queueId The id of a specific queue
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetRequest
+ * @return DefaultApiApiGetAMQRequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGet(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetRequest{
+func (a *DefaultApiService) GetAMQ(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiGetAMQRequest {
+	return DefaultApiApiGetAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -287,7 +299,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
  * Execute executes the request
  * @return Queue
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGetRequest) (Queue, *_nethttp.Response, error) {
+func (a *DefaultApiService) GetAMQExecute(r DefaultApiApiGetAMQRequest) (Queue, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -297,7 +309,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 		localVarReturnValue  Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAMQ")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -366,7 +378,177 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest struct {
+type DefaultApiApiGetAMQListRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	orgId string
+	envId string
+	regionId string
+	inclusion *string
+	destinationType *string
+	offset *int32
+	limit *int32
+	startsWith *string
+	destinationIds *[]string
+}
+
+func (r DefaultApiApiGetAMQListRequest) Inclusion(inclusion string) DefaultApiApiGetAMQListRequest {
+	r.inclusion = &inclusion
+	return r
+}
+func (r DefaultApiApiGetAMQListRequest) DestinationType(destinationType string) DefaultApiApiGetAMQListRequest {
+	r.destinationType = &destinationType
+	return r
+}
+func (r DefaultApiApiGetAMQListRequest) Offset(offset int32) DefaultApiApiGetAMQListRequest {
+	r.offset = &offset
+	return r
+}
+func (r DefaultApiApiGetAMQListRequest) Limit(limit int32) DefaultApiApiGetAMQListRequest {
+	r.limit = &limit
+	return r
+}
+func (r DefaultApiApiGetAMQListRequest) StartsWith(startsWith string) DefaultApiApiGetAMQListRequest {
+	r.startsWith = &startsWith
+	return r
+}
+func (r DefaultApiApiGetAMQListRequest) DestinationIds(destinationIds []string) DefaultApiApiGetAMQListRequest {
+	r.destinationIds = &destinationIds
+	return r
+}
+
+func (r DefaultApiApiGetAMQListRequest) Execute() ([]Queue, *_nethttp.Response, error) {
+	return r.ApiService.GetAMQListExecute(r)
+}
+
+/*
+ * GetAMQList Method for GetAMQList
+ * Get a list of queues in a region
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param orgId The organization Id
+ * @param envId The environment id
+ * @param regionId The region id for MQ
+ * @return DefaultApiApiGetAMQListRequest
+ */
+func (a *DefaultApiService) GetAMQList(ctx _context.Context, orgId string, envId string, regionId string) DefaultApiApiGetAMQListRequest {
+	return DefaultApiApiGetAMQListRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		envId: envId,
+		regionId: regionId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []Queue
+ */
+func (a *DefaultApiService) GetAMQListExecute(r DefaultApiApiGetAMQListRequest) ([]Queue, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []Queue
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAMQList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", _neturl.PathEscape(parameterToString(r.envId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", _neturl.PathEscape(parameterToString(r.regionId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.inclusion != nil {
+		localVarQueryParams.Add("inclusion", parameterToString(*r.inclusion, ""))
+	}
+	if r.destinationType != nil {
+		localVarQueryParams.Add("destinationType", parameterToString(*r.destinationType, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.startsWith != nil {
+		localVarQueryParams.Add("startsWith", parameterToString(*r.startsWith, ""))
+	}
+	if r.destinationIds != nil {
+		t := *r.destinationIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("destinationIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("destinationIds", parameterToString(t, "multi"))
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiApiUpdateAMQRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	orgId string
@@ -376,27 +558,27 @@ type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinations
 	queueBody *QueueBody
 }
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest) QueueBody(queueBody QueueBody) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest {
+func (r DefaultApiApiUpdateAMQRequest) QueueBody(queueBody QueueBody) DefaultApiApiUpdateAMQRequest {
 	r.queueBody = &queueBody
 	return r
 }
 
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest) Execute() (Queue, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchExecute(r)
+func (r DefaultApiApiUpdateAMQRequest) Execute() (Queue, *_nethttp.Response, error) {
+	return r.ApiService.UpdateAMQExecute(r)
 }
 
 /*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatch Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatch
+ * UpdateAMQ Method for UpdateAMQ
  * Modify a queue's properties
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param orgId The organization Id
  * @param envId The environment id
  * @param regionId The region id
  * @param queueId The id of a specific queue
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest
+ * @return DefaultApiApiUpdateAMQRequest
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatch(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest{
+func (a *DefaultApiService) UpdateAMQ(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiUpdateAMQRequest {
+	return DefaultApiApiUpdateAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -410,7 +592,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
  * Execute executes the request
  * @return Queue
  */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatchRequest) (Queue, *_nethttp.Response, error) {
+func (a *DefaultApiService) UpdateAMQExecute(r DefaultApiApiUpdateAMQRequest) (Queue, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
@@ -420,7 +602,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 		localVarReturnValue  Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAMQ")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -485,131 +667,6 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDe
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	orgId string
-	envId string
-	regionId string
-	queueId string
-	queueBody *QueueBody
-}
-
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest) QueueBody(queueBody QueueBody) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest {
-	r.queueBody = &queueBody
-	return r
-}
-
-func (r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest) Execute() (Queue, *_nethttp.Response, error) {
-	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutExecute(r)
-}
-
-/*
- * OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPut Method for OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPut
- * Create queue
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param orgId The organization Id
- * @param envId The environment id
- * @param regionId The region id
- * @param queueId The id of a specific queue
- * @return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest
- */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPut(ctx _context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest {
-	return DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		regionId: regionId,
-		queueId: queueId,
-	}
-}
-
-/*
- * Execute executes the request
- * @return Queue
- */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutExecute(r DefaultApiApiOrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPutRequest) (Queue, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Queue
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdDestinationsQueuesQueueIdPut")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/regions/{regionId}/destinations/queues/{queueId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", _neturl.PathEscape(parameterToString(r.orgId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", _neturl.PathEscape(parameterToString(r.envId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", _neturl.PathEscape(parameterToString(r.regionId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"queueId"+"}", _neturl.PathEscape(parameterToString(r.queueId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.queueBody
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

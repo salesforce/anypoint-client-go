@@ -16,6 +16,7 @@ paths:
   /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId}:
     delete:
       description: Delete an exchange queue binding
+      operationId: DeleteAMEBinding
       parameters:
       - description: The organization Id
         explode: false
@@ -64,6 +65,7 @@ paths:
           description: Success response
     get:
       description: Get details about a queue bound to an exchange
+      operationId: GetAMEBinding
       parameters:
       - description: The organization Id
         explode: false
@@ -105,6 +107,17 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Defines what to fetch
+        explode: true
+        in: query
+        name: inclusion
+        required: false
+        schema:
+          enum:
+          - all
+          - minimal
+          type: string
+        style: form
       responses:
         "401":
           description: Access token is missing or invalid
@@ -112,10 +125,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/exchangeBinding'
+                $ref: '#/components/schemas/exchangeBindingWithRules'
           description: Success response
     put:
       description: Create exchange queue binding
+      operationId: CreateAMEBinding
       parameters:
       - description: The organization Id
         explode: false
@@ -166,7 +180,134 @@ paths:
               schema:
                 $ref: '#/components/schemas/exchangeBinding'
           description: Successfully created exchange
+  /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId}/rules/routing:
+    delete:
+      description: Delete an exchange queue binding Rule
+      operationId: DeleteAMEBindingRule
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange queue binding
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Success response
+    put:
+      description: Create exchange queue binding rule
+      operationId: CreateAMEBindingRule
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region id
+        explode: false
+        in: path
+        name: regionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of a specific exchange queue binding
+        explode: false
+        in: path
+        name: queueId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AMEBindingRuleBody'
+        content:
+          application/json:
+            schema:
+              example:
+                routingRules:
+                - '{}'
+                - '{}'
+              properties:
+                routingRules:
+                  items:
+                    title: routingRule
+                    type: object
+                  title: routingRules
+                  type: array
+              title: AMEBindingRuleBody
+              type: object
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exchangeBindingRules'
+          description: Successfully created exchange binding rules
 components:
+  requestBodies:
+    AMEBindingRuleBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AMEBindingRuleBody'
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
@@ -204,7 +345,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/exchangeBinding'
+            $ref: '#/components/schemas/exchangeBindingWithRules'
       description: Success response
     SuccessCreateExchangeBinding:
       content:
@@ -213,6 +354,14 @@ components:
             $ref: '#/components/schemas/exchangeBinding'
       description: Successfully created exchange
     SuccessDeleteExchangeBinding:
+      description: Success response
+    SuccessCreateExchangeBindingRules:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exchangeBindingRules'
+      description: Successfully created exchange binding rules
+    SuccessDeleteExchangeBindingRules:
       description: Success response
   schemas:
     exchangeBinding:
@@ -228,6 +377,60 @@ components:
           type: string
       title: exchangeBinding
       type: object
+    exchangeBindingWithRules:
+      allOf:
+      - $ref: '#/components/schemas/exchangeBinding'
+      - $ref: '#/components/schemas/exchangeBindingWithRules_allOf'
+    exchangeBindingRules:
+      example:
+        exchangeId: exchangeId
+        queueId: queueId
+        routingRules:
+        - '{}'
+        - '{}'
+      properties:
+        queueId:
+          title: queueId
+          type: string
+        exchangeId:
+          title: exchangeId
+          type: string
+        routingRules:
+          items:
+            title: routingRule
+            type: object
+          title: routingRules
+          type: array
+      title: exchangeBinding
+      type: object
+    routingRules:
+      items:
+        title: routingRule
+        type: object
+      title: routingRules
+      type: array
+    AMEBindingRuleBody:
+      example:
+        routingRules:
+        - '{}'
+        - '{}'
+      properties:
+        routingRules:
+          items:
+            title: routingRule
+            type: object
+          title: routingRules
+          type: array
+      title: AMEBindingRuleBody
+      type: object
+    exchangeBindingWithRules_allOf:
+      properties:
+        rules:
+          items:
+            title: routingRule
+            type: object
+          title: routingRules
+          type: array
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

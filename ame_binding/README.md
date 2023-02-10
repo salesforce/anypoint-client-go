@@ -78,14 +78,20 @@ All URIs are relative to *https://anypoint.mulesoft.com/mq/admin/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdBindingsExchangesExchangeIdQueuesQueueIdDelete**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregionidbindingsexchangesexchangeidqueuesqueueiddelete) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdBindingsExchangesExchangeIdQueuesQueueIdGet**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregionidbindingsexchangesexchangeidqueuesqueueidget) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId} | 
-*DefaultApi* | [**OrganizationsOrgIdEnvironmentsEnvIdRegionsRegionIdBindingsExchangesExchangeIdQueuesQueueIdPut**](docs/DefaultApi.md#organizationsorgidenvironmentsenvidregionsregionidbindingsexchangesexchangeidqueuesqueueidput) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId} | 
+*DefaultApi* | [**CreateAMEBinding**](docs/DefaultApi.md#createamebinding) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId} | 
+*DefaultApi* | [**CreateAMEBindingRule**](docs/DefaultApi.md#createamebindingrule) | **Put** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId}/rules/routing | 
+*DefaultApi* | [**DeleteAMEBinding**](docs/DefaultApi.md#deleteamebinding) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId} | 
+*DefaultApi* | [**DeleteAMEBindingRule**](docs/DefaultApi.md#deleteamebindingrule) | **Delete** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId}/rules/routing | 
+*DefaultApi* | [**GetAMEBinding**](docs/DefaultApi.md#getamebinding) | **Get** /organizations/{orgId}/environments/{envId}/regions/{regionId}/bindings/exchanges/{exchangeId}/queues/{queueId} | 
 
 
 ## Documentation For Models
 
+ - [AMEBindingRuleBody](docs/AMEBindingRuleBody.md)
  - [ExchangeBinding](docs/ExchangeBinding.md)
+ - [ExchangeBindingRules](docs/ExchangeBindingRules.md)
+ - [ExchangeBindingWithRules](docs/ExchangeBindingWithRules.md)
+ - [ExchangeBindingWithRulesAllOf](docs/ExchangeBindingWithRulesAllOf.md)
 
 
 ## Documentation For Authorization

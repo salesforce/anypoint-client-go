@@ -17,11 +17,14 @@ import (
 // Queue struct for Queue
 type Queue struct {
 	QueueId *string `json:"queueId,omitempty"`
+	ExchangeId *string `json:"exchangeId,omitempty"`
 	DefaultTtl *int32 `json:"defaultTtl,omitempty"`
 	DefaultLockTtl *int32 `json:"defaultLockTtl,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Encrypted *bool `json:"encrypted,omitempty"`
 	DefaultDeliveryDelay *int32 `json:"defaultDeliveryDelay,omitempty"`
+	DeadLetterQueueId *string `json:"deadLetterQueueId,omitempty"`
+	MaxDeliveries *int32 `json:"maxDeliveries,omitempty"`
 	Fifo *bool `json:"fifo,omitempty"`
 }
 
@@ -72,6 +75,38 @@ func (o *Queue) HasQueueId() bool {
 // SetQueueId gets a reference to the given string and assigns it to the QueueId field.
 func (o *Queue) SetQueueId(v string) {
 	o.QueueId = &v
+}
+
+// GetExchangeId returns the ExchangeId field value if set, zero value otherwise.
+func (o *Queue) GetExchangeId() string {
+	if o == nil || o.ExchangeId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExchangeId
+}
+
+// GetExchangeIdOk returns a tuple with the ExchangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Queue) GetExchangeIdOk() (*string, bool) {
+	if o == nil || o.ExchangeId == nil {
+		return nil, false
+	}
+	return o.ExchangeId, true
+}
+
+// HasExchangeId returns a boolean if a field has been set.
+func (o *Queue) HasExchangeId() bool {
+	if o != nil && o.ExchangeId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExchangeId gets a reference to the given string and assigns it to the ExchangeId field.
+func (o *Queue) SetExchangeId(v string) {
+	o.ExchangeId = &v
 }
 
 // GetDefaultTtl returns the DefaultTtl field value if set, zero value otherwise.
@@ -234,6 +269,70 @@ func (o *Queue) SetDefaultDeliveryDelay(v int32) {
 	o.DefaultDeliveryDelay = &v
 }
 
+// GetDeadLetterQueueId returns the DeadLetterQueueId field value if set, zero value otherwise.
+func (o *Queue) GetDeadLetterQueueId() string {
+	if o == nil || o.DeadLetterQueueId == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeadLetterQueueId
+}
+
+// GetDeadLetterQueueIdOk returns a tuple with the DeadLetterQueueId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Queue) GetDeadLetterQueueIdOk() (*string, bool) {
+	if o == nil || o.DeadLetterQueueId == nil {
+		return nil, false
+	}
+	return o.DeadLetterQueueId, true
+}
+
+// HasDeadLetterQueueId returns a boolean if a field has been set.
+func (o *Queue) HasDeadLetterQueueId() bool {
+	if o != nil && o.DeadLetterQueueId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeadLetterQueueId gets a reference to the given string and assigns it to the DeadLetterQueueId field.
+func (o *Queue) SetDeadLetterQueueId(v string) {
+	o.DeadLetterQueueId = &v
+}
+
+// GetMaxDeliveries returns the MaxDeliveries field value if set, zero value otherwise.
+func (o *Queue) GetMaxDeliveries() int32 {
+	if o == nil || o.MaxDeliveries == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaxDeliveries
+}
+
+// GetMaxDeliveriesOk returns a tuple with the MaxDeliveries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Queue) GetMaxDeliveriesOk() (*int32, bool) {
+	if o == nil || o.MaxDeliveries == nil {
+		return nil, false
+	}
+	return o.MaxDeliveries, true
+}
+
+// HasMaxDeliveries returns a boolean if a field has been set.
+func (o *Queue) HasMaxDeliveries() bool {
+	if o != nil && o.MaxDeliveries != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxDeliveries gets a reference to the given int32 and assigns it to the MaxDeliveries field.
+func (o *Queue) SetMaxDeliveries(v int32) {
+	o.MaxDeliveries = &v
+}
+
 // GetFifo returns the Fifo field value if set, zero value otherwise.
 func (o *Queue) GetFifo() bool {
 	if o == nil || o.Fifo == nil {
@@ -271,6 +370,9 @@ func (o Queue) MarshalJSON() ([]byte, error) {
 	if o.QueueId != nil {
 		toSerialize["queueId"] = o.QueueId
 	}
+	if o.ExchangeId != nil {
+		toSerialize["exchangeId"] = o.ExchangeId
+	}
 	if o.DefaultTtl != nil {
 		toSerialize["defaultTtl"] = o.DefaultTtl
 	}
@@ -285,6 +387,12 @@ func (o Queue) MarshalJSON() ([]byte, error) {
 	}
 	if o.DefaultDeliveryDelay != nil {
 		toSerialize["defaultDeliveryDelay"] = o.DefaultDeliveryDelay
+	}
+	if o.DeadLetterQueueId != nil {
+		toSerialize["deadLetterQueueId"] = o.DeadLetterQueueId
+	}
+	if o.MaxDeliveries != nil {
+		toSerialize["maxDeliveries"] = o.MaxDeliveries
 	}
 	if o.Fifo != nil {
 		toSerialize["fifo"] = o.Fifo
