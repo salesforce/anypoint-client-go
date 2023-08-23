@@ -9,13 +9,13 @@ Each resource has its own module that was generated using [openapi-generator](ht
 Include each module separately from your go project using
 
 ```golang
-require github.com/mulesoft-consulting/cloudhub-client-go/[module_name] vx.x.x
+require github.com/mulesoft-anypoint/anypoint-client-go/[module_name] vx.x.x
 ```
 
 As an example, if you wanted to import the version 1.0.1 of the `vpc` module you would need to use the following syntax:
 
 ```golang
-require github.com/mulesoft-consulting/cloudhub-client-go/vpc v1.0.1
+require github.com/mulesoft-anypoint/anypoint-client-go/vpc v1.0.1
 ```
 
 ## Modules Versioning
