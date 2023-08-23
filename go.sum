@@ -103,6 +103,8 @@ github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+o
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
+github.com/mulesoft-anypoint/anypoint-client-go/authorization v0.3.0 h1:iMTR0yNne6csLF0OBa2snfLQvJSzi129k85Hq3EnkbE=
+github.com/mulesoft-anypoint/anypoint-client-go/authorization v0.3.0/go.mod h1:GyBcff4ALCgcHr85uzs+R0jzScwD2QIs8I7jZcM+o1M=
 github.com/mulesoft-consulting/anypoint-client-go/authorization v0.2.0 h1:cUTd2m8r7e3imt61i4vrIwg9tHdF+7bae2Vupo6SrLE=
 github.com/mulesoft-consulting/anypoint-client-go/authorization v0.2.0/go.mod h1:GyBcff4ALCgcHr85uzs+R0jzScwD2QIs8I7jZcM+o1M=
 github.com/mulesoft-consulting/anypoint-client-go/org v0.3.0 h1:uIVwClYi77y2qEFCkK053OCnpkp7XUq9auS1SJfXLjE=
