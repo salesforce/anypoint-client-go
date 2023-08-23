@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/anypoint-client-go/ame
+module github.com/mulesoft-anypoint/anypoint-client-go/ame
 
 go 1.13
 

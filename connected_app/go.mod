@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/anypoint-client-go/connected_app
+module github.com/mulesoft-anypoint/anypoint-client-go/connected_app
 
 go 1.13
 

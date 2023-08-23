@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/anypoint-client-go/rolegroup
+module github.com/mulesoft-anypoint/anypoint-client-go/rolegroup
 
 go 1.13
 
