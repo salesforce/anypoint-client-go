@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/anypoint-client-go/amq
+module github.com/mulesoft-anypoint/anypoint-client-go/amq
 
 go 1.13
 

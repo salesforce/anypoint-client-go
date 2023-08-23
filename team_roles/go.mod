@@ -1,4 +1,4 @@
-module github.com/mulesoft-consulting/anypoint-client-go/team_roles
+module github.com/mulesoft-anypoint/anypoint-client-go/team_roles
 
 go 1.13
 
