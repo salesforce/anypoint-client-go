@@ -28,9 +28,14 @@ type DlbPostBody struct {
 	Tlsv1 *bool `json:"tlsv1,omitempty"`
 	KeepUrlEncoding *bool `json:"keepUrlEncoding,omitempty"`
 	UpstreamTlsv12 *bool `json:"upstreamTlsv12,omitempty"`
+	StaticIPsDisabled *bool `json:"staticIPsDisabled,omitempty"`
 	DoubleStaticIps *bool `json:"doubleStaticIps,omitempty"`
 	EnableStreaming *bool `json:"enableStreaming,omitempty"`
 	ForwardClientCertificate *bool `json:"forwardClientCertificate,omitempty"`
+	// the dedicated load balancer's number of workers.
+	Workers *int32 `json:"workers,omitempty"`
+	// Sets the Mule application response timeout value.
+	ProxyReadTimeout *string `json:"proxyReadTimeout,omitempty"`
 	SslEndpoints *[]DlbPostBodySslEndpoints `json:"sslEndpoints,omitempty"`
 }
 
@@ -46,6 +51,10 @@ func NewDlbPostBody() *DlbPostBody {
 	this.HttpMode = &httpMode
 	var defaultSslEndpoint int32 = 0
 	this.DefaultSslEndpoint = &defaultSslEndpoint
+	var workers int32 = 2
+	this.Workers = &workers
+	var proxyReadTimeout string = "300"
+	this.ProxyReadTimeout = &proxyReadTimeout
 	return &this
 }
 
@@ -60,6 +69,10 @@ func NewDlbPostBodyWithDefaults() *DlbPostBody {
 	this.HttpMode = &httpMode
 	var defaultSslEndpoint int32 = 0
 	this.DefaultSslEndpoint = &defaultSslEndpoint
+	var workers int32 = 2
+	this.Workers = &workers
+	var proxyReadTimeout string = "300"
+	this.ProxyReadTimeout = &proxyReadTimeout
 	return &this
 }
 
@@ -383,6 +396,38 @@ func (o *DlbPostBody) SetUpstreamTlsv12(v bool) {
 	o.UpstreamTlsv12 = &v
 }
 
+// GetStaticIPsDisabled returns the StaticIPsDisabled field value if set, zero value otherwise.
+func (o *DlbPostBody) GetStaticIPsDisabled() bool {
+	if o == nil || o.StaticIPsDisabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.StaticIPsDisabled
+}
+
+// GetStaticIPsDisabledOk returns a tuple with the StaticIPsDisabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetStaticIPsDisabledOk() (*bool, bool) {
+	if o == nil || o.StaticIPsDisabled == nil {
+		return nil, false
+	}
+	return o.StaticIPsDisabled, true
+}
+
+// HasStaticIPsDisabled returns a boolean if a field has been set.
+func (o *DlbPostBody) HasStaticIPsDisabled() bool {
+	if o != nil && o.StaticIPsDisabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStaticIPsDisabled gets a reference to the given bool and assigns it to the StaticIPsDisabled field.
+func (o *DlbPostBody) SetStaticIPsDisabled(v bool) {
+	o.StaticIPsDisabled = &v
+}
+
 // GetDoubleStaticIps returns the DoubleStaticIps field value if set, zero value otherwise.
 func (o *DlbPostBody) GetDoubleStaticIps() bool {
 	if o == nil || o.DoubleStaticIps == nil {
@@ -479,6 +524,70 @@ func (o *DlbPostBody) SetForwardClientCertificate(v bool) {
 	o.ForwardClientCertificate = &v
 }
 
+// GetWorkers returns the Workers field value if set, zero value otherwise.
+func (o *DlbPostBody) GetWorkers() int32 {
+	if o == nil || o.Workers == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Workers
+}
+
+// GetWorkersOk returns a tuple with the Workers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetWorkersOk() (*int32, bool) {
+	if o == nil || o.Workers == nil {
+		return nil, false
+	}
+	return o.Workers, true
+}
+
+// HasWorkers returns a boolean if a field has been set.
+func (o *DlbPostBody) HasWorkers() bool {
+	if o != nil && o.Workers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkers gets a reference to the given int32 and assigns it to the Workers field.
+func (o *DlbPostBody) SetWorkers(v int32) {
+	o.Workers = &v
+}
+
+// GetProxyReadTimeout returns the ProxyReadTimeout field value if set, zero value otherwise.
+func (o *DlbPostBody) GetProxyReadTimeout() string {
+	if o == nil || o.ProxyReadTimeout == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProxyReadTimeout
+}
+
+// GetProxyReadTimeoutOk returns a tuple with the ProxyReadTimeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBody) GetProxyReadTimeoutOk() (*string, bool) {
+	if o == nil || o.ProxyReadTimeout == nil {
+		return nil, false
+	}
+	return o.ProxyReadTimeout, true
+}
+
+// HasProxyReadTimeout returns a boolean if a field has been set.
+func (o *DlbPostBody) HasProxyReadTimeout() bool {
+	if o != nil && o.ProxyReadTimeout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyReadTimeout gets a reference to the given string and assigns it to the ProxyReadTimeout field.
+func (o *DlbPostBody) SetProxyReadTimeout(v string) {
+	o.ProxyReadTimeout = &v
+}
+
 // GetSslEndpoints returns the SslEndpoints field value if set, zero value otherwise.
 func (o *DlbPostBody) GetSslEndpoints() []DlbPostBodySslEndpoints {
 	if o == nil || o.SslEndpoints == nil {
@@ -543,6 +652,9 @@ func (o DlbPostBody) MarshalJSON() ([]byte, error) {
 	if o.UpstreamTlsv12 != nil {
 		toSerialize["upstreamTlsv12"] = o.UpstreamTlsv12
 	}
+	if o.StaticIPsDisabled != nil {
+		toSerialize["staticIPsDisabled"] = o.StaticIPsDisabled
+	}
 	if o.DoubleStaticIps != nil {
 		toSerialize["doubleStaticIps"] = o.DoubleStaticIps
 	}
@@ -551,6 +663,12 @@ func (o DlbPostBody) MarshalJSON() ([]byte, error) {
 	}
 	if o.ForwardClientCertificate != nil {
 		toSerialize["forwardClientCertificate"] = o.ForwardClientCertificate
+	}
+	if o.Workers != nil {
+		toSerialize["workers"] = o.Workers
+	}
+	if o.ProxyReadTimeout != nil {
+		toSerialize["proxyReadTimeout"] = o.ProxyReadTimeout
 	}
 	if o.SslEndpoints != nil {
 		toSerialize["sslEndpoints"] = o.SslEndpoints

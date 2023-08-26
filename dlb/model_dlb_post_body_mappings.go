@@ -19,6 +19,7 @@ type DlbPostBodyMappings struct {
 	InputUri *string `json:"inputUri,omitempty"`
 	AppName *string `json:"appName,omitempty"`
 	AppUri *string `json:"appUri,omitempty"`
+	UpstreamProtocol *string `json:"upstreamProtocol,omitempty"`
 }
 
 // NewDlbPostBodyMappings instantiates a new DlbPostBodyMappings object
@@ -27,6 +28,8 @@ type DlbPostBodyMappings struct {
 // will change when the set of required properties is changed
 func NewDlbPostBodyMappings() *DlbPostBodyMappings {
 	this := DlbPostBodyMappings{}
+	var upstreamProtocol string = "http"
+	this.UpstreamProtocol = &upstreamProtocol
 	return &this
 }
 
@@ -35,6 +38,8 @@ func NewDlbPostBodyMappings() *DlbPostBodyMappings {
 // but it doesn't guarantee that properties required by API are set
 func NewDlbPostBodyMappingsWithDefaults() *DlbPostBodyMappings {
 	this := DlbPostBodyMappings{}
+	var upstreamProtocol string = "http"
+	this.UpstreamProtocol = &upstreamProtocol
 	return &this
 }
 
@@ -134,6 +139,38 @@ func (o *DlbPostBodyMappings) SetAppUri(v string) {
 	o.AppUri = &v
 }
 
+// GetUpstreamProtocol returns the UpstreamProtocol field value if set, zero value otherwise.
+func (o *DlbPostBodyMappings) GetUpstreamProtocol() string {
+	if o == nil || o.UpstreamProtocol == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpstreamProtocol
+}
+
+// GetUpstreamProtocolOk returns a tuple with the UpstreamProtocol field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBodyMappings) GetUpstreamProtocolOk() (*string, bool) {
+	if o == nil || o.UpstreamProtocol == nil {
+		return nil, false
+	}
+	return o.UpstreamProtocol, true
+}
+
+// HasUpstreamProtocol returns a boolean if a field has been set.
+func (o *DlbPostBodyMappings) HasUpstreamProtocol() bool {
+	if o != nil && o.UpstreamProtocol != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpstreamProtocol gets a reference to the given string and assigns it to the UpstreamProtocol field.
+func (o *DlbPostBodyMappings) SetUpstreamProtocol(v string) {
+	o.UpstreamProtocol = &v
+}
+
 func (o DlbPostBodyMappings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.InputUri != nil {
@@ -144,6 +181,9 @@ func (o DlbPostBodyMappings) MarshalJSON() ([]byte, error) {
 	}
 	if o.AppUri != nil {
 		toSerialize["appUri"] = o.AppUri
+	}
+	if o.UpstreamProtocol != nil {
+		toSerialize["upstreamProtocol"] = o.UpstreamProtocol
 	}
 	return json.Marshal(toSerialize)
 }
