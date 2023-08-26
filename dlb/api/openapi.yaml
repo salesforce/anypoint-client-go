@@ -403,6 +403,9 @@ components:
           example: false
           title: upstreamTlsv12
           type: boolean
+        staticIPsDisabled:
+          title: staticIPsDisabled
+          type: boolean
         doubleStaticIps:
           title: doubleStaticIps
           type: boolean
@@ -412,6 +415,23 @@ components:
         forwardClientCertificate:
           title: forwardClientCertificate
           type: boolean
+        workers:
+          default: 2
+          description: the dedicated load balancer's number of workers.
+          enum:
+          - 2
+          - 4
+          - 6
+          - 8
+          maximum: 8
+          minimum: 2
+          title: workers
+          type: integer
+        proxyReadTimeout:
+          default: "300"
+          description: Sets the Mule application response timeout value.
+          title: proxyReadTimeout
+          type: string
         sslEndpoints:
           items:
             $ref: '#/components/schemas/dlbPostBody_sslEndpoints'
@@ -472,9 +492,6 @@ components:
         privateKeyDigest:
           title: privateKeyDigest
           type: string
-        privateKey:
-          title: privateKey
-          type: string
         publicKeyLabel:
           title: publicKeyLabel
           type: string
@@ -484,8 +501,20 @@ components:
         publicKeyCN:
           title: publicKeyCN
           type: string
-        publicKey:
-          title: publicKey
+        clientCertLabel:
+          title: clientCertLabel
+          type: string
+        clientCertDigest:
+          title: clientCertDigest
+          type: string
+        clientCertCN:
+          title: clientCertCN
+          type: string
+        revocationListLabel:
+          title: revocationListLabel
+          type: string
+        revocationListDigest:
+          title: revocationListDigest
           type: string
         verifyClientMode:
           default: "off"
@@ -529,6 +558,16 @@ components:
           example: /
           title: appUri
           type: string
+        upstreamProtocol:
+          default: http
+          enum:
+          - http
+          - https
+          - ws
+          - wss
+          example: https
+          title: upstreamProtocol
+          type: string
       type: object
     dlbPostBody_sslEndpoints:
       properties:
@@ -536,17 +575,49 @@ components:
           title: privateKeyLabel
           type: string
         privateKey:
+          example: |
+            -----BEGIN PRIVATE KEY-----
+            MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQ
+            -----END PRIVATE KEY-----
           title: privateKey
           type: string
         publicKeyLabel:
           title: publicKeyLabel
           type: string
         publicKey:
+          example: |
+            -----BEGIN CERTIFICATE-----
+            MIIDMjCCAhoCCQCju+T7DvAhIzANBgkqhkiG9w0BAQsFADBbMQs
+            -----END CERTIFICATE-----
           title: publicKey
           type: string
         verifyClientMode:
           default: "off"
+          enum:
+          - "off"
+          - "on"
+          - optional
           title: verifyClientMode
+          type: string
+        clientCertLabel:
+          title: clientCertLabel
+          type: string
+        clientCert:
+          example: |-
+            -----BEGIN CERTIFICATE----
+            MIIF3TCCA8WgAwIBAgIUBFyq+
+            -----END CERTIFICATE-----
+          title: clientCert
+          type: string
+        revocationListLabel:
+          title: revocationListLabel
+          type: string
+        revocationList:
+          example: |
+            -----BEGIN X509 CRL-----
+            MIIDDzCB+AIBATANBgkqhkiG9w0BAQsFADB+MQswCQYDVQQ
+            -----END X509 CRL-----
+          title: revocationList
           type: string
         mappings:
           items:
