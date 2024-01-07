@@ -1,0 +1,307 @@
+openapi: 3.0.0
+info:
+  description: Description of the Flex Gateway API
+  title: Flex Gateway API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/apimanager/xapi/v1
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/apimanager/xapi/v1
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/apimanager/xapi/v1
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/flex-gateway-targets:
+    get:
+      description: Retrieves all flex gateway target within an organization and environment
+      operationId: GetFlexGatewayTargets
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment Id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlexGatewayTargets'
+          description: List of flex gateway targets
+      summary: Retrieves all flex gateways
+  /organizations/{orgId}/environments/{envId}/flex-gateway-targets/{flexGatewayTargetId}:
+    get:
+      description: Retrieves a flex gateway target using the given id within the given
+        organization and environment
+      operationId: GetFlexGatewayTargetById
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment Id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The flex gateway target Id
+        explode: false
+        in: path
+        name: flexGatewayTargetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlexGatewayTargetDetails'
+          description: flex gateway target details
+      summary: Retrieves a particular flex gateway by Id
+  /organizations/{orgId}/environments/{envId}/flex-gateway-targets/{flexGatewayTargetId}/apis:
+    get:
+      description: Retrieves all APIs within a particular flex gateway target within
+        a organization and environment
+      operationId: GetFlexGatewayTargetApis
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment Id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The flex gateway target Id
+        explode: false
+        in: path
+        name: flexGatewayTargetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlexGatewayTargetApis'
+          description: flex gateway target Apis
+      summary: Retrieves all APIs within a particular flex gateway target
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    SuccessGetFlexGatewayTargets:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FlexGatewayTargets'
+      description: List of flex gateway targets
+    SuccessGetFlexGatewayTargetDetails:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FlexGatewayTargetDetails'
+      description: flex gateway target details
+    SuccessGetFlexGatewayTargetApis:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FlexGatewayTargetApis'
+      description: flex gateway target Apis
+  schemas:
+    FlexGatewayTargets:
+      items:
+        $ref: '#/components/schemas/FlexGatewayTargetSummary'
+      type: array
+    FlexGatewayTargetSummary:
+      example:
+        organizationId: organizationId
+        replicas:
+          DISCONNECTED: 6
+          CONNECTED: 0
+        lastUpdate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: id
+        status: status
+        tags:
+        - tags
+        - tags
+      properties:
+        organizationId:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        replicas:
+          $ref: '#/components/schemas/FlexGatewayTargetSummary_replicas'
+        tags:
+          items:
+            type: string
+          type: array
+        lastUpdate:
+          format: date-time
+          type: string
+      title: FlexGatewayTargetSummary
+      type: object
+    FlexGatewayTargetDetails:
+      example:
+        organizationId: organizationId
+        versions:
+        - versions
+        - versions
+        replicas:
+        - certificateExpirationDates:
+          - 2000-01-23T04:56:07.000+00:00
+          - 2000-01-23T04:56:07.000+00:00
+          count: 0
+          status: CONNECTED
+        - certificateExpirationDates:
+          - 2000-01-23T04:56:07.000+00:00
+          - 2000-01-23T04:56:07.000+00:00
+          count: 0
+          status: CONNECTED
+        lastUpdate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: id
+        version: version
+        status: status
+        tags:
+        - tags
+        - tags
+      properties:
+        organizationId:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        replicas:
+          items:
+            $ref: '#/components/schemas/FlexGatewayTargetDetails_replicas'
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        lastUpdate:
+          format: date-time
+          type: string
+        versions:
+          items:
+            type: string
+          type: array
+        version:
+          type: string
+      title: FlexGatewayTargetDetails
+      type: object
+    FlexGatewayTargetApis:
+      example:
+        instances:
+        - path: path
+          port: port
+          id: 0
+        - path: path
+          port: port
+          id: 0
+        targetAllowsPortSharing: true
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/FlexGatewayTargetApis_instances'
+          type: array
+        targetAllowsPortSharing:
+          type: boolean
+      title: FlexGatewayTargetApis
+      type: object
+    FlexGatewayTargetSummary_replicas:
+      example:
+        DISCONNECTED: 6
+        CONNECTED: 0
+      properties:
+        CONNECTED:
+          type: integer
+        DISCONNECTED:
+          type: integer
+      type: object
+    FlexGatewayTargetDetails_replicas:
+      example:
+        certificateExpirationDates:
+        - 2000-01-23T04:56:07.000+00:00
+        - 2000-01-23T04:56:07.000+00:00
+        count: 0
+        status: CONNECTED
+      properties:
+        status:
+          enum:
+          - CONNECTED
+          - DISCONNECTED
+          type: string
+        count:
+          type: integer
+        certificateExpirationDates:
+          items:
+            format: date-time
+            type: string
+          type: array
+      type: object
+    FlexGatewayTargetApis_instances:
+      example:
+        path: path
+        port: port
+        id: 0
+      properties:
+        id:
+          type: integer
+        port:
+          type: string
+        path:
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
