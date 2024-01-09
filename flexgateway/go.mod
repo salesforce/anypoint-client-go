@@ -1,4 +1,4 @@
-module github.com/mulesoft-anypoint/anypoint-client-go/flex_gateway
+module github.com/mulesoft-anypoint/anypoint-client-go/flexgateway
 
 go 1.13
 

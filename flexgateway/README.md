@@ -1,4 +1,4 @@
-# Go API client for flex_gateway
+# Go API client for flexgateway
 
 Description of the Flex Gateway API
 
@@ -22,7 +22,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sw "./flex_gateway"
+import sw "./flexgateway"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
