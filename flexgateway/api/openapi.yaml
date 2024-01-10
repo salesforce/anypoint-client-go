@@ -2,18 +2,18 @@ openapi: 3.0.0
 info:
   description: Description of the Flex Gateway API
   title: Flex Gateway API
-  version: 1.0.0
+  version: 1.1.0
 servers:
 - description: Anypoint Cloudhub
-  url: https://anypoint.mulesoft.com/apimanager/xapi/v1
+  url: https://anypoint.mulesoft.com
 - description: Anypoint Cloudhub EU
-  url: https://eu1.anypoint.mulesoft.com/apimanager/xapi/v1
+  url: https://eu1.anypoint.mulesoft.com
 - description: Anypoint Cloudhub GOV
-  url: https://gov.anypoint.mulesoft.com/apimanager/xapi/v1
+  url: https://gov.anypoint.mulesoft.com
 security:
 - bearerAuth: []
 paths:
-  /organizations/{orgId}/environments/{envId}/flex-gateway-targets:
+  /apimanager/xapi/v1/organizations/{orgId}/environments/{envId}/flex-gateway-targets:
     get:
       description: Retrieves all flex gateway target within an organization and environment
       operationId: GetFlexGatewayTargets
@@ -44,7 +44,7 @@ paths:
                 $ref: '#/components/schemas/FlexGatewayTargets'
           description: List of flex gateway targets
       summary: Retrieves all flex gateways
-  /organizations/{orgId}/environments/{envId}/flex-gateway-targets/{flexGatewayTargetId}:
+  /apimanager/xapi/v1/organizations/{orgId}/environments/{envId}/flex-gateway-targets/{flexGatewayTargetId}:
     get:
       description: Retrieves a flex gateway target using the given id within the given
         organization and environment
@@ -84,7 +84,7 @@ paths:
                 $ref: '#/components/schemas/FlexGatewayTargetDetails'
           description: flex gateway target details
       summary: Retrieves a particular flex gateway by Id
-  /organizations/{orgId}/environments/{envId}/flex-gateway-targets/{flexGatewayTargetId}/apis:
+  /apimanager/xapi/v1/organizations/{orgId}/environments/{envId}/flex-gateway-targets/{flexGatewayTargetId}/apis:
     get:
       description: Retrieves all APIs within a particular flex gateway target within
         a organization and environment
@@ -124,6 +124,37 @@ paths:
                 $ref: '#/components/schemas/FlexGatewayTargetApis'
           description: flex gateway target Apis
       summary: Retrieves all APIs within a particular flex gateway target
+  /standalone/api/v1/organizations/{orgId}/environments/{envId}/gatewaytokens:
+    post:
+      description: Retrieves the flex gateway registration token.
+      operationId: GetFlexGatewayRegistrationToken
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment Id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlexGatewayRegistrationToken'
+          description: flex gateway registration token response
+      summary: Retrieves the flex gateway registration token.
 components:
   responses:
     UnauthorizedError:
@@ -146,6 +177,12 @@ components:
           schema:
             $ref: '#/components/schemas/FlexGatewayTargetApis'
       description: flex gateway target Apis
+    SuccessGetFlexGatewayRegistrationToken:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FlexGatewayRegistrationToken'
+      description: flex gateway registration token response
   schemas:
     FlexGatewayTargets:
       items:
@@ -255,6 +292,13 @@ components:
         targetAllowsPortSharing:
           type: boolean
       title: FlexGatewayTargetApis
+      type: object
+    FlexGatewayRegistrationToken:
+      example:
+        registrationToken: registrationToken
+      properties:
+        registrationToken:
+          type: string
       type: object
     FlexGatewayTargetSummary_replicas:
       example:
