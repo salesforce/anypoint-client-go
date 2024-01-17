@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Instances** | Pointer to [**[]FlexGatewayTargetApisInstances**](FlexGatewayTargetApisInstances.md) |  | [optional] 
+**Instances** | Pointer to [**[]FlexGatewayTargetApisInstancesInner**](FlexGatewayTargetApisInstancesInner.md) |  | [optional] 
 **TargetAllowsPortSharing** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInstances
 
-`func (o *FlexGatewayTargetApis) GetInstances() []FlexGatewayTargetApisInstances`
+`func (o *FlexGatewayTargetApis) GetInstances() []FlexGatewayTargetApisInstancesInner`
 
 GetInstances returns the Instances field if non-nil, zero value otherwise.
 
 ### GetInstancesOk
 
-`func (o *FlexGatewayTargetApis) GetInstancesOk() (*[]FlexGatewayTargetApisInstances, bool)`
+`func (o *FlexGatewayTargetApis) GetInstancesOk() (*[]FlexGatewayTargetApisInstancesInner, bool)`
 
 GetInstancesOk returns a tuple with the Instances field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstances
 
-`func (o *FlexGatewayTargetApis) SetInstances(v []FlexGatewayTargetApisInstances)`
+`func (o *FlexGatewayTargetApis) SetInstances(v []FlexGatewayTargetApisInstancesInner)`
 
 SetInstances sets Instances field to given value.
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**Replicas** | Pointer to [**[]FlexGatewayTargetDetailsReplicas**](FlexGatewayTargetDetailsReplicas.md) |  | [optional] 
+**Replicas** | Pointer to [**[]FlexGatewayTargetDetailsReplicasInner**](FlexGatewayTargetDetailsReplicasInner.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **LastUpdate** | Pointer to **time.Time** |  | [optional] 
 **Versions** | Pointer to **[]string** |  | [optional] 
@@ -135,20 +135,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetReplicas
 
-`func (o *FlexGatewayTargetDetails) GetReplicas() []FlexGatewayTargetDetailsReplicas`
+`func (o *FlexGatewayTargetDetails) GetReplicas() []FlexGatewayTargetDetailsReplicasInner`
 
 GetReplicas returns the Replicas field if non-nil, zero value otherwise.
 
 ### GetReplicasOk
 
-`func (o *FlexGatewayTargetDetails) GetReplicasOk() (*[]FlexGatewayTargetDetailsReplicas, bool)`
+`func (o *FlexGatewayTargetDetails) GetReplicasOk() (*[]FlexGatewayTargetDetailsReplicasInner, bool)`
 
 GetReplicasOk returns a tuple with the Replicas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReplicas
 
-`func (o *FlexGatewayTargetDetails) SetReplicas(v []FlexGatewayTargetDetailsReplicas)`
+`func (o *FlexGatewayTargetDetails) SetReplicas(v []FlexGatewayTargetDetailsReplicasInner)`
 
 SetReplicas sets Replicas field to given value.
 

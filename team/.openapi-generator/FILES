@@ -7,7 +7,9 @@ client.go
 configuration.go
 docs/DefaultApi.md
 docs/ErrorsResponse.md
-docs/ErrorsResponseErrors.md
+docs/ErrorsResponseErrorsInner.md
+docs/OrganizationsOrgIdTeamsTeamIdParentPut201Response.md
+docs/PreviousTeamState.md
 docs/Team.md
 docs/TeamCollection.md
 docs/TeamPatchBody.md
@@ -16,12 +18,15 @@ docs/TeamPutBody.md
 git_push.sh
 go.mod
 go.sum
+model__organizations__org_id__teams__team_id__parent_put_201_response.go
 model_errors_response.go
-model_errors_response_errors.go
+model_errors_response_errors_inner.go
+model_previous_team_state.go
 model_team.go
 model_team_collection.go
 model_team_patch_body.go
 model_team_post_body.go
 model_team_put_body.go
 response.go
+test/api_default_test.go
 utils.go

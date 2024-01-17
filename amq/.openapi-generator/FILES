@@ -6,14 +6,15 @@ api_default.go
 client.go
 configuration.go
 docs/DefaultApi.md
-docs/InlineResponse404.md
 docs/Queue.md
 docs/QueueBody.md
+docs/UpdateAMQ404Response.md
 git_push.sh
 go.mod
 go.sum
-model_inline_response_404.go
 model_queue.go
 model_queue_body.go
+model_update_amq_404_response.go
 response.go
+test/api_default_test.go
 utils.go

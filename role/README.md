@@ -15,14 +15,13 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sw "./role"
+import role "github.com/mulesoft-anypoint/anypoint-client-go/role"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -40,7 +39,7 @@ Default configuration comes with `Servers` field that contains server objects as
 For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), role.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
@@ -48,7 +47,7 @@ ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
 Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sw.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), role.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -58,14 +57,14 @@ Note, enum values are always validated and all unused variables are silently ign
 ### URLs Configuration per Operation
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
-An operation is uniquely identifield by `"{classname}Service.{nickname}"` string.
+An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
-ctx := context.WithValue(context.Background(), sw.ContextOperationServerIndices, map[string]int{
+```golang
+ctx := context.WithValue(context.Background(), role.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), role.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -88,16 +87,20 @@ Class | Method | HTTP request | Description
 
  - [AssignedRole](docs/AssignedRole.md)
  - [ContextParams](docs/ContextParams.md)
- - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse2001](docs/InlineResponse2001.md)
- - [InlineResponse400](docs/InlineResponse400.md)
+ - [ContextParamsJson](docs/ContextParamsJson.md)
+ - [OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response](docs/OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response.md)
+ - [OrganizationsOrgIdRolegroupsRolegroupIdRolesPost400Response](docs/OrganizationsOrgIdRolegroupsRolegroupIdRolesPost400Response.md)
  - [Role](docs/Role.md)
+ - [RolePostResponseItem](docs/RolePostResponseItem.md)
+ - [RoleToAssign](docs/RoleToAssign.md)
+ - [RoleToDelete](docs/RoleToDelete.md)
+ - [RolesGet200Response](docs/RolesGet200Response.md)
 
 
 ## Documentation For Authorization
 
 
-
+Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP Bearer token authentication
@@ -105,7 +108,7 @@ Class | Method | HTTP request | Description
 Example
 
 ```golang
-auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARERTOKENSTRING")
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
 

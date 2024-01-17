@@ -23,7 +23,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_connectedApplications_get_200_response'
           description: Success response
     post:
       description: create a Connected App
@@ -39,7 +39,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_connectedApplications_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -107,7 +107,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_connectedApplications_post_400_response'
           description: Bad request response
         "200":
           content:
@@ -134,7 +134,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/_connectedApplications__connAppId__scopes_get_200_response'
           description: Success get scopes response
     put:
       description: replace a Connected App scopes
@@ -159,7 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_connectedApplications_post_400_response'
           description: Bad request response
         "204":
           description: Success scopes put response
@@ -171,13 +171,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_connectedApplications_post_400_response'
       description: Bad request response
     SuccessListConnApps:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_connectedApplications_get_200_response'
       description: Success response
     SuccessPostConnApps:
       content:
@@ -203,7 +203,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200_1'
+            $ref: '#/components/schemas/_connectedApplications__connAppId__scopes_get_200_response'
       description: Success get scopes response
     SuccessPutConnAppsScopes:
       description: Success scopes put response
@@ -284,7 +284,7 @@ components:
           type: array
       title: connectedAppScopesPutBody
       type: object
-    inline_response_200:
+    _connectedApplications_get_200_response:
       example:
         total: 0
         data:
@@ -300,7 +300,7 @@ components:
           title: total
           type: integer
       type: object
-    inline_response_400:
+    _connectedApplications_post_400_response:
       properties:
         status:
           default: 400
@@ -311,7 +311,7 @@ components:
           title: the error message
           type: string
       type: object
-    inline_response_200_1:
+    _connectedApplications__connAppId__scopes_get_200_response:
       example:
         total: 0
         data:
@@ -369,6 +369,7 @@ components:
           title: certExpiry
           type: string
       type: object
+      example: null
     connectedAppPatchExt_allOf:
       properties:
         client_id:
@@ -384,6 +385,7 @@ components:
           title: enabled
           type: boolean
       type: object
+      example: null
     contextParams:
       example:
         org: 2xbb7865-45ac-3e35-65e0-8c83112480c0

@@ -1,0 +1,665 @@
+openapi: 3.0.0
+info:
+  description: Secret Group Certificate API
+  title: Secret Group Certificate API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/secrets-manager/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}/certificates:
+    get:
+      description: Retrieves a secret-groups' collection of certificates.
+      operationId: GetSecretGroupCertificates
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateSummaryCollection'
+          description: get secret-group certificates
+      summary: Retrieves a secret-groups' collection of certificates.
+    post:
+      description: Create a secret-groups' certificate.
+      operationId: PostSecretGroupCertificate
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: With 'true' to allow uploading expired certificates
+        explode: true
+        in: query
+        name: allowExpiredCert
+        required: true
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CertificatePostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostSecretGroupCertificate_201_response'
+          description: post secret-group certificates
+      summary: Create a secret-groups' certificate.
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}/certificates/{secretId}:
+    get:
+      description: Retrieves certificate details by id for a given secret group in
+        a given organization and environment
+      operationId: GetSecretGroupCertificateDetails
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The truststore id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupCertificateDetails_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+          description: get secret-group certificate response
+      summary: Retrieve certificate details
+    patch:
+      description: Update certificate details for a given secret-group in a given
+        organization and environment
+      operationId: PatchSecretGroupCertificate
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The truststore id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          'application/json:':
+            schema:
+              $ref: '#/components/schemas/CertificatePatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupCertificateDetails_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutSecretGroupCertificate_200_response'
+          description: patch secret-group certificates response
+      summary: Update a given secret-group certificate
+    put:
+      description: Update certificate details for a given secret-group in a given
+        organization and environment
+      operationId: PutSecretGroupCertificate
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The truststore id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: With 'true' to allow uploading expired certificates
+        explode: true
+        in: query
+        name: allowExpiredCert
+        required: true
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CertificatePutBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupCertificateDetails_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutSecretGroupCertificate_200_response'
+          description: put secret-group certificates response
+      summary: Update a given secret-group certificate
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetSecretGroupCertificateDetails_404_response'
+      description: resource not found
+    SuccessGetSecretGroupCertificatesCollection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CertificateSummaryCollection'
+      description: get secret-group certificates
+    SuccessPostSecretGroupCertificate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PostSecretGroupCertificate_201_response'
+      description: post secret-group certificates
+    SuccessGetSecretGroupCertificate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Certificate'
+      description: get secret-group certificate response
+    SuccessPutSecretGroupCertificate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PutSecretGroupCertificate_200_response'
+      description: put secret-group certificates response
+    SuccessPatchSecretGroupCertificate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PutSecretGroupCertificate_200_response'
+      description: patch secret-group certificates response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
+          type: array
+      title: errorsResponse
+      type: object
+    CertificateSummaryCollection:
+      items:
+        $ref: '#/components/schemas/CertificateSummary'
+      type: array
+    CertificateSummary:
+      example:
+        meta:
+          path: path
+          id: id
+        name: name
+        type: type
+        expirationDate: expirationDate
+      properties:
+        name:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        expirationDate:
+          type: string
+        type:
+          type: string
+      type: object
+    Certificate:
+      example:
+        certificateFileName: certificateFileName
+        meta:
+          path: path
+          id: id
+        name: name
+        details:
+          serialNumber: serialNumber
+          keyUsage:
+          - keyUsage
+          - keyUsage
+          subject:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            state: state
+            countryName: countryName
+          subjectAlternativeName:
+          - subjectAlternativeName
+          - subjectAlternativeName
+          publicKeyAlgorithm: publicKeyAlgorithm
+          basicConstraints:
+            certificateAuthority: true
+          extendedKeyUsage:
+          - extendedKeyUsage
+          - extendedKeyUsage
+          validity:
+            notAfter: notAfter
+            notBefore: notBefore
+          version: version
+          issuer:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            state: state
+            countryName: countryName
+          signatureAlgorithm: signatureAlgorithm
+          certificateType: certificateType
+        type: type
+        expirationDate: expirationDate
+      properties:
+        name:
+          type: string
+        expirationDate:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        type:
+          type: string
+        details:
+          $ref: '#/components/schemas/CertificateDetails'
+        certificateFileName:
+          type: string
+      type: object
+    CertificatePostBody:
+      properties:
+        expirationDate:
+          description: |
+            Date on which this secret should expire. If not set, by default, it will be set to notAfter date of this certificate.  Once the secret expires, a grant can not be requested for it.
+          type: string
+        certStore:
+          description: The file containing the certificate in PEM format
+          format: binary
+          type: string
+        type:
+          description: Type of certificate supported
+          enum:
+          - PEM
+          type: string
+        name:
+          description: The name of the certificate
+          type: string
+      type: object
+    CertificatePutBody:
+      properties:
+        expirationDate:
+          description: |
+            Date on which this secret should expire. If not set, by default, it will be set to notAfter date of this certificate.  Once the secret expires, a grant can not be requested for it.
+          type: string
+        certStore:
+          description: The file containing the certificate in PEM format
+          format: binary
+          type: string
+        type:
+          description: Type of certificate supported
+          enum:
+          - PEM
+          type: string
+        name:
+          description: The name of the certificate
+          type: string
+      type: object
+    CertificatePatchBody:
+      example: |
+        {
+          "name": "",
+          "expirationDate": ""
+        }
+      type: object
+    Meta:
+      example:
+        path: path
+        id: id
+      properties:
+        id:
+          type: string
+        path:
+          type: string
+      type: object
+    IssuerSubject:
+      example:
+        commonName: commonName
+        localityName: localityName
+        organizationName: organizationName
+        organizationUnit: organizationUnit
+        state: state
+        countryName: countryName
+      properties:
+        commonName:
+          type: string
+        organizationName:
+          type: string
+        localityName:
+          type: string
+        organizationUnit:
+          type: string
+        state:
+          type: string
+        countryName:
+          type: string
+      type: object
+    CertificateValidity:
+      example:
+        notAfter: notAfter
+        notBefore: notBefore
+      properties:
+        notBefore:
+          type: string
+        notAfter:
+          type: string
+      type: object
+    CertificateDetails:
+      example:
+        serialNumber: serialNumber
+        keyUsage:
+        - keyUsage
+        - keyUsage
+        subject:
+          commonName: commonName
+          localityName: localityName
+          organizationName: organizationName
+          organizationUnit: organizationUnit
+          state: state
+          countryName: countryName
+        subjectAlternativeName:
+        - subjectAlternativeName
+        - subjectAlternativeName
+        publicKeyAlgorithm: publicKeyAlgorithm
+        basicConstraints:
+          certificateAuthority: true
+        extendedKeyUsage:
+        - extendedKeyUsage
+        - extendedKeyUsage
+        validity:
+          notAfter: notAfter
+          notBefore: notBefore
+        version: version
+        issuer:
+          commonName: commonName
+          localityName: localityName
+          organizationName: organizationName
+          organizationUnit: organizationUnit
+          state: state
+          countryName: countryName
+        signatureAlgorithm: signatureAlgorithm
+        certificateType: certificateType
+      properties:
+        issuer:
+          $ref: '#/components/schemas/IssuerSubject'
+        subject:
+          $ref: '#/components/schemas/IssuerSubject'
+        subjectAlternativeName:
+          description: Collection of subject alternative names from the SubjectAltName
+            x509 extension
+          items:
+            type: string
+          type: array
+        version:
+          type: string
+        serialNumber:
+          description: "Serial number assigned by the CA to this certificate, in hex\
+            \ format"
+          type: string
+        signatureAlgorithm:
+          description: Name of the signature algorithm
+          type: string
+        publicKeyAlgorithm:
+          description: The standard algorithm name for the public key of this certificate
+          type: string
+        basicConstraints:
+          $ref: '#/components/schemas/CertificateDetails_basicConstraints'
+        validity:
+          $ref: '#/components/schemas/CertificateValidity'
+        keyUsage:
+          description: A list of values defining the purpose of the public key i.e.
+            the key usage extensions from this certificate
+          items:
+            type: string
+          type: array
+        extendedKeyUsage:
+          description: A list of values providing details about the extended key usage
+            extensions from this certificate.
+          items:
+            type: string
+          type: array
+        certificateType:
+          description: The type of this certificate
+          type: string
+      type: object
+    PostSecretGroupCertificate_201_response:
+      example:
+        id: id
+        message: message
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+      type: object
+    GetSecretGroupCertificateDetails_404_response:
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+      type: object
+    PutSecretGroupCertificate_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    errorsResponse_errors_inner:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+    CertificateDetails_basicConstraints:
+      description: This identifies if the subject of the certificate is a CA
+      example:
+        certificateAuthority: true
+      properties:
+        certificateAuthority:
+          description: "If set to true, indicates that this is a CA certificate."
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

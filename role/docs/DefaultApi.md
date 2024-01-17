@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete
 
-> []int32 OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(ctx, orgId, rolegroupId).RequestBody(requestBody).Execute()
+> []int32 OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(ctx, orgId, rolegroupId).RoleToDelete(roleToDelete).Execute()
 
 
 
@@ -28,17 +28,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/role"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     rolegroupId := "rolegroupId_example" // string | The id of a rolegroup
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    roleToDelete := []openapiclient.RoleToDelete{*openapiclient.NewRoleToDelete()} // []RoleToDelete |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(context.Background(), orgId, rolegroupId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete(context.Background(), orgId, rolegroupId).RoleToDelete(roleToDelete).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **roleToDelete** | [**[]RoleToDelete**](RoleToDelete.md) |  | 
 
 ### Return type
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdRolegroupsRolegroupIdRolesGet
 
-> InlineResponse2001 OrganizationsOrgIdRolegroupsRolegroupIdRolesGet(ctx, orgId, rolegroupId).Execute()
+> OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response OrganizationsOrgIdRolegroupsRolegroupIdRolesGet(ctx, orgId, rolegroupId).Execute()
 
 
 
@@ -103,7 +103,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/role"
 )
 
 func main() {
@@ -111,13 +111,13 @@ func main() {
     rolegroupId := "rolegroupId_example" // string | The id of a rolegroup
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesGet(context.Background(), orgId, rolegroupId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesGet(context.Background(), orgId, rolegroupId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdRolegroupsRolegroupIdRolesGet`: InlineResponse2001
+    // response from `OrganizationsOrgIdRolegroupsRolegroupIdRolesGet`: OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesGet`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response**](OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdRolegroupsRolegroupIdRolesPost
 
-> []map[string]interface{} OrganizationsOrgIdRolegroupsRolegroupIdRolesPost(ctx, orgId, rolegroupId).RequestBody(requestBody).Execute()
+> []RolePostResponseItem OrganizationsOrgIdRolegroupsRolegroupIdRolesPost(ctx, orgId, rolegroupId).RoleToAssign(roleToAssign).Execute()
 
 
 
@@ -176,22 +176,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/role"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     rolegroupId := "rolegroupId_example" // string | The id of a rolegroup
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    roleToAssign := []openapiclient.RoleToAssign{*openapiclient.NewRoleToAssign()} // []RoleToAssign |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesPost(context.Background(), orgId, rolegroupId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesPost(context.Background(), orgId, rolegroupId).RoleToAssign(roleToAssign).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdRolegroupsRolegroupIdRolesPost`: []map[string]interface{}
+    // response from `OrganizationsOrgIdRolegroupsRolegroupIdRolesPost`: []RolePostResponseItem
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdRolegroupsRolegroupIdRolesPost`: %v\n", resp)
 }
 ```
@@ -214,11 +214,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **roleToAssign** | [**[]RoleToAssign**](RoleToAssign.md) |  | 
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]RolePostResponseItem**](RolePostResponseItem.md)
 
 ### Authorization
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## RolesGet
 
-> InlineResponse200 RolesGet(ctx).Name(name).Description(description).IncludeInternal(includeInternal).Search(search).Offset(offset).Limit(limit).Ascending(ascending).Execute()
+> RolesGet200Response RolesGet(ctx).Name(name).Description(description).IncludeInternal(includeInternal).Search(search).Offset(offset).Limit(limit).Ascending(ascending).Execute()
 
 
 
@@ -251,7 +251,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/role"
 )
 
 func main() {
@@ -264,13 +264,13 @@ func main() {
     ascending := true // bool | Sort order for filtering (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.RolesGet(context.Background()).Name(name).Description(description).IncludeInternal(includeInternal).Search(search).Offset(offset).Limit(limit).Ascending(ascending).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.RolesGet(context.Background()).Name(name).Description(description).IncludeInternal(includeInternal).Search(search).Offset(offset).Limit(limit).Ascending(ascending).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.RolesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RolesGet`: InlineResponse200
+    // response from `RolesGet`: RolesGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.RolesGet`: %v\n", resp)
 }
 ```
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**RolesGet200Response**](RolesGet200Response.md)
 
 ### Authorization
 

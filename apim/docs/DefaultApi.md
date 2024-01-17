@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim"
 )
 
 func main() {
@@ -38,8 +38,8 @@ func main() {
     envApiId := "envApiId_example" // string | The api manager instance id for a given environment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteApimInstance(context.Background(), orgId, envId, envApiId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.DeleteApimInstance(context.Background(), orgId, envId, envApiId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteApimInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,7 +103,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim"
 )
 
 func main() {
@@ -115,8 +115,8 @@ func main() {
     includeTlsContexts := true // bool | Include the configured TLS contexts (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetApimInstanceDetails(context.Background(), orgId, envId, envApiId).IncludeProxyTemplate(includeProxyTemplate).IncludeValidation(includeValidation).IncludeTlsContexts(includeTlsContexts).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetApimInstanceDetails(context.Background(), orgId, envId, envApiId).IncludeProxyTemplate(includeProxyTemplate).IncludeValidation(includeValidation).IncludeTlsContexts(includeTlsContexts).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetApimInstanceDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -185,7 +185,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim"
 )
 
 func main() {
@@ -205,8 +205,8 @@ func main() {
     ascending := true // bool | To activate ascending sorting (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetEnvApimInstances(context.Background(), orgId, envId).Query(query).GroupId(groupId).AssetId(assetId).AssetVersion(assetVersion).InstanceLabel(instanceLabel).ProductVersion(productVersion).AutodiscoveryInstanceName(autodiscoveryInstanceName).Filters(filters).Limit(limit).Offset(offset).Sort(sort).Ascending(ascending).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetEnvApimInstances(context.Background(), orgId, envId).Query(query).GroupId(groupId).AssetId(assetId).AssetVersion(assetVersion).InstanceLabel(instanceLabel).ProductVersion(productVersion).AutodiscoveryInstanceName(autodiscoveryInstanceName).Filters(filters).Limit(limit).Offset(offset).Sort(sort).Ascending(ascending).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetEnvApimInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,7 +282,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim"
 )
 
 func main() {
@@ -291,11 +291,11 @@ func main() {
     envApiId := "envApiId_example" // string | The api manager instance id for a given environment
     force := true // bool | Allows patching the API autodiscoveryInstanceName. You may want to change the 'api.version' configuration on all Mule 2 & Mule 3 applications tracking this API. (optional)
     updateApisInSamePort := true // bool | For APIs deployed to Flex, if endpoint proxyUri or inbound TLS Contexts are being updated, apis in the same port are also updated (optional)
-    body := map[string]interface{}(Object) // map[string]interface{} | Patch API Manager Instance Body (optional)
+    body := map[string]interface{}{ ... } // map[string]interface{} | Patch API Manager Instance Body (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PatchApimInstance(context.Background(), orgId, envId, envApiId).Force(force).UpdateApisInSamePort(updateApisInSamePort).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.PatchApimInstance(context.Background(), orgId, envId, envApiId).Force(force).UpdateApisInSamePort(updateApisInSamePort).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PatchApimInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -364,7 +364,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim"
 )
 
 func main() {
@@ -373,8 +373,8 @@ func main() {
     apimInstancePostBody := *openapiclient.NewApimInstancePostBody() // ApimInstancePostBody | Post API Manager Instance Body (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PostApimInstance(context.Background(), orgId, envId).ApimInstancePostBody(apimInstancePostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.PostApimInstance(context.Background(), orgId, envId).ApimInstancePostBody(apimInstancePostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PostApimInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

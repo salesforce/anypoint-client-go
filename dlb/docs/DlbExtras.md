@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **KeepUrlEncoding** | Pointer to **bool** |  | [optional] 
 **UpstreamTlsv12** | Pointer to **bool** |  | [optional] 
 **ProxyReadTimeout** | Pointer to **int32** |  | [optional] 
-**IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfo**](DlbExtrasIpAddressesInfo.md) |  | [optional] 
+**IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfoInner**](DlbExtrasIpAddressesInfoInner.md) |  | [optional] 
 **DoubleStaticIps** | Pointer to **bool** |  | [optional] 
 **EnableStreaming** | Pointer to **bool** |  | [optional] 
 **ForwardClientCertificate** | Pointer to **bool** |  | [optional] 
@@ -342,20 +342,20 @@ HasProxyReadTimeout returns a boolean if a field has been set.
 
 ### GetIpAddressesInfo
 
-`func (o *DlbExtras) GetIpAddressesInfo() []DlbExtrasIpAddressesInfo`
+`func (o *DlbExtras) GetIpAddressesInfo() []DlbExtrasIpAddressesInfoInner`
 
 GetIpAddressesInfo returns the IpAddressesInfo field if non-nil, zero value otherwise.
 
 ### GetIpAddressesInfoOk
 
-`func (o *DlbExtras) GetIpAddressesInfoOk() (*[]DlbExtrasIpAddressesInfo, bool)`
+`func (o *DlbExtras) GetIpAddressesInfoOk() (*[]DlbExtrasIpAddressesInfoInner, bool)`
 
 GetIpAddressesInfoOk returns a tuple with the IpAddressesInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddressesInfo
 
-`func (o *DlbExtras) SetIpAddressesInfo(v []DlbExtrasIpAddressesInfo)`
+`func (o *DlbExtras) SetIpAddressesInfo(v []DlbExtrasIpAddressesInfoInner)`
 
 SetIpAddressesInfo sets IpAddressesInfo field to given value.
 

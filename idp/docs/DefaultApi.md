@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdIdentityProvidersGet
 
-> InlineResponse200 OrganizationsOrgIdIdentityProvidersGet(ctx, orgId).Execute()
+> OrganizationsOrgIdIdentityProvidersGet200Response OrganizationsOrgIdIdentityProvidersGet(ctx, orgId).Execute()
 
 
 
@@ -29,20 +29,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/idp"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdIdentityProvidersGet(context.Background(), orgId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdIdentityProvidersGet(context.Background(), orgId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdIdentityProvidersGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdIdentityProvidersGet`: InlineResponse200
+    // response from `OrganizationsOrgIdIdentityProvidersGet`: OrganizationsOrgIdIdentityProvidersGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdIdentityProvidersGet`: %v\n", resp)
 }
 ```
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdIdentityProvidersGet200Response**](OrganizationsOrgIdIdentityProvidersGet200Response.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/idp"
 )
 
 func main() {
@@ -107,8 +107,8 @@ func main() {
     idpId := "idpId_example" // string | The ID of the Identity Provider in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdDelete(context.Background(), orgId, idpId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdDelete(context.Background(), orgId, idpId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -170,7 +170,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/idp"
 )
 
 func main() {
@@ -178,8 +178,8 @@ func main() {
     idpId := "idpId_example" // string | The ID of the Identity Provider in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdGet(context.Background(), orgId, idpId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdGet(context.Background(), orgId, idpId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -243,7 +243,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/idp"
 )
 
 func main() {
@@ -252,8 +252,8 @@ func main() {
     idpPatchBody := *openapiclient.NewIdpPatchBody() // IdpPatchBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdPatch(context.Background(), orgId, idpId).IdpPatchBody(idpPatchBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdPatch(context.Background(), orgId, idpId).IdpPatchBody(idpPatchBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdIdentityProvidersIdpIdPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -318,7 +318,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/idp"
 )
 
 func main() {
@@ -326,8 +326,8 @@ func main() {
     idpPostBody := *openapiclient.NewIdpPostBody() // IdpPostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdIdentityProvidersPost(context.Background(), orgId).IdpPostBody(idpPostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdIdentityProvidersPost(context.Background(), orgId).IdpPostBody(idpPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdIdentityProvidersPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

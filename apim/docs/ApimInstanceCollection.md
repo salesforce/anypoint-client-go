@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Total** | Pointer to **int32** |  | [optional] 
-**Assets** | Pointer to [**[]ApimInstanceCollectionAssets**](ApimInstanceCollectionAssets.md) |  | [optional] 
+**Assets** | Pointer to [**[]ApimInstanceCollectionAssetsInner**](ApimInstanceCollectionAssetsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasTotal returns a boolean if a field has been set.
 
 ### GetAssets
 
-`func (o *ApimInstanceCollection) GetAssets() []ApimInstanceCollectionAssets`
+`func (o *ApimInstanceCollection) GetAssets() []ApimInstanceCollectionAssetsInner`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *ApimInstanceCollection) GetAssetsOk() (*[]ApimInstanceCollectionAssets, bool)`
+`func (o *ApimInstanceCollection) GetAssetsOk() (*[]ApimInstanceCollectionAssetsInner, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *ApimInstanceCollection) SetAssets(v []ApimInstanceCollectionAssets)`
+`func (o *ApimInstanceCollection) SetAssets(v []ApimInstanceCollectionAssetsInner)`
 
 SetAssets sets Assets field to given value.
 

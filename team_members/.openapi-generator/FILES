@@ -7,7 +7,7 @@ client.go
 configuration.go
 docs/DefaultApi.md
 docs/ErrorsResponse.md
-docs/ErrorsResponseErrors.md
+docs/ErrorsResponseErrorsInner.md
 docs/TeamMember.md
 docs/TeamMemberCollection.md
 docs/TeamMemberPutBody.md
@@ -15,9 +15,10 @@ git_push.sh
 go.mod
 go.sum
 model_errors_response.go
-model_errors_response_errors.go
+model_errors_response_errors_inner.go
 model_team_member.go
 model_team_member_collection.go
 model_team_member_put_body.go
 response.go
+test/api_default_test.go
 utils.go

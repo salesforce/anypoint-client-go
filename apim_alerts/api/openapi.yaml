@@ -87,6 +87,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/alertCore'
+        description: ""
       responses:
         "401":
           description: Access token is missing or invalid
@@ -392,6 +393,7 @@ components:
       - id
       title: alertId
       type: object
+      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

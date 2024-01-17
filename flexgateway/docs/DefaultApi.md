@@ -28,7 +28,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/flexgateway"
 )
 
 func main() {
@@ -36,8 +36,8 @@ func main() {
     envId := "envId_example" // string | The environment Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetFlexGatewayRegistrationToken(context.Background(), orgId, envId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetFlexGatewayRegistrationToken(context.Background(), orgId, envId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetFlexGatewayRegistrationToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -101,7 +101,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/flexgateway"
 )
 
 func main() {
@@ -110,8 +110,8 @@ func main() {
     flexGatewayTargetId := "flexGatewayTargetId_example" // string | The flex gateway target Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetFlexGatewayTargetApis(context.Background(), orgId, envId, flexGatewayTargetId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetFlexGatewayTargetApis(context.Background(), orgId, envId, flexGatewayTargetId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetFlexGatewayTargetApis``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -177,7 +177,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/flexgateway"
 )
 
 func main() {
@@ -186,8 +186,8 @@ func main() {
     flexGatewayTargetId := "flexGatewayTargetId_example" // string | The flex gateway target Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetFlexGatewayTargetById(context.Background(), orgId, envId, flexGatewayTargetId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetFlexGatewayTargetById(context.Background(), orgId, envId, flexGatewayTargetId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetFlexGatewayTargetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -253,7 +253,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/flexgateway"
 )
 
 func main() {
@@ -261,8 +261,8 @@ func main() {
     envId := "envId_example" // string | The environment Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetFlexGatewayTargets(context.Background(), orgId, envId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetFlexGatewayTargets(context.Background(), orgId, envId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetFlexGatewayTargets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

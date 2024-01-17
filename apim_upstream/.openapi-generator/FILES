@@ -9,8 +9,8 @@ docs/Audit.md
 docs/AuditCreated.md
 docs/DefaultApi.md
 docs/ErrorsResponse.md
-docs/ErrorsResponseErrors.md
-docs/InlineResponse404.md
+docs/ErrorsResponseErrorsInner.md
+docs/GetApimInstanceUpstreams404Response.md
 docs/Upstream.md
 docs/UpstreamCollection.md
 docs/UpstreamDetails.md
@@ -25,8 +25,8 @@ go.sum
 model_audit.go
 model_audit_created.go
 model_errors_response.go
-model_errors_response_errors.go
-model_inline_response_404.go
+model_errors_response_errors_inner.go
+model_get_apim_instance_upstreams_404_response.go
 model_upstream.go
 model_upstream_collection.go
 model_upstream_details.go
@@ -36,4 +36,5 @@ model_upstream_post_body.go
 model_upstream_post_body_tls_context.go
 model_upstream_tls_context.go
 response.go
+test/api_default_test.go
 utils.go

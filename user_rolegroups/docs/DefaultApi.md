@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdUsersUserIdRolegroupsGet
 
-> InlineResponse200 OrganizationsOrgIdUsersUserIdRolegroupsGet(ctx, orgId, userId).Limit(limit).Offset(offset).Execute()
+> OrganizationsOrgIdUsersUserIdRolegroupsGet200Response OrganizationsOrgIdUsersUserIdRolegroupsGet(ctx, orgId, userId).Limit(limit).Offset(offset).Execute()
 
 
 
@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user_rolegroups"
 )
 
 func main() {
@@ -37,13 +37,13 @@ func main() {
     offset := int32(56) // int32 | The number of records to omit from the response. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsGet(context.Background(), orgId, userId).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsGet(context.Background(), orgId, userId).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdUsersUserIdRolegroupsGet`: InlineResponse200
+    // response from `OrganizationsOrgIdUsersUserIdRolegroupsGet`: OrganizationsOrgIdUsersUserIdRolegroupsGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsGet`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdUsersUserIdRolegroupsGet200Response**](OrganizationsOrgIdUsersUserIdRolegroupsGet200Response.md)
 
 ### Authorization
 
@@ -104,7 +104,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user_rolegroups"
 )
 
 func main() {
@@ -113,8 +113,8 @@ func main() {
     rolegroupId := "rolegroupId_example" // string | The ID of the user's rolegroup
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsRolegroupIdDelete(context.Background(), orgId, userId, rolegroupId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsRolegroupIdDelete(context.Background(), orgId, userId, rolegroupId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsRolegroupIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -178,7 +178,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user_rolegroups"
 )
 
 func main() {
@@ -187,8 +187,8 @@ func main() {
     rolegroupId := "rolegroupId_example" // string | The ID of the user's rolegroup
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsRolegroupIdPost(context.Background(), orgId, userId, rolegroupId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsRolegroupIdPost(context.Background(), orgId, userId, rolegroupId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdRolegroupsRolegroupIdPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
