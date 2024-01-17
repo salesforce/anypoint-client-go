@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Technology** | Pointer to **string** |  | [optional] 
 **Endpoint** | Pointer to [**NullableEndpointPostBody**](EndpointPostBody.md) |  | [optional] 
 **Spec** | Pointer to [**Spec**](Spec.md) |  | [optional] 
-**Routing** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**Routing** | Pointer to [**[]RoutingPostBodyInner**](RoutingPostBodyInner.md) |  | [optional] 
 **Deployment** | Pointer to [**NullableDeploymentPostBody**](DeploymentPostBody.md) |  | [optional] 
 **InstanceLabel** | Pointer to **NullableString** |  | [optional] 
 
@@ -117,20 +117,20 @@ HasSpec returns a boolean if a field has been set.
 
 ### GetRouting
 
-`func (o *ApimInstancePostBody) GetRouting() []map[string]interface{}`
+`func (o *ApimInstancePostBody) GetRouting() []RoutingPostBodyInner`
 
 GetRouting returns the Routing field if non-nil, zero value otherwise.
 
 ### GetRoutingOk
 
-`func (o *ApimInstancePostBody) GetRoutingOk() (*[]map[string]interface{}, bool)`
+`func (o *ApimInstancePostBody) GetRoutingOk() (*[]RoutingPostBodyInner, bool)`
 
 GetRoutingOk returns a tuple with the Routing field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouting
 
-`func (o *ApimInstancePostBody) SetRouting(v []map[string]interface{})`
+`func (o *ApimInstancePostBody) SetRouting(v []RoutingPostBodyInner)`
 
 SetRouting sets Routing field to given value.
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdVpcsGet
 
-> InlineResponse200 OrganizationsOrgIdVpcsGet(ctx, orgId).Execute()
+> OrganizationsOrgIdVpcsGet200Response OrganizationsOrgIdVpcsGet(ctx, orgId).Execute()
 
 Returns a list of vpcs.
 
@@ -29,20 +29,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
 )
 
 func main() {
     orgId := "orgId_example" // string | The organization Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsGet(context.Background(), orgId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsGet(context.Background(), orgId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdVpcsGet`: InlineResponse200
+    // response from `OrganizationsOrgIdVpcsGet`: OrganizationsOrgIdVpcsGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdVpcsGet`: %v\n", resp)
 }
 ```
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdVpcsGet200Response**](OrganizationsOrgIdVpcsGet200Response.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
 )
 
 func main() {
@@ -107,8 +107,8 @@ func main() {
     vpcCore := *openapiclient.NewVpcCore() // VpcCore | VPC Object don't
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsPost(context.Background(), orgId).VpcCore(vpcCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsPost(context.Background(), orgId).VpcCore(vpcCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -171,7 +171,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
 )
 
 func main() {
@@ -179,8 +179,8 @@ func main() {
     vpcId := "vpcId_example" // string | The VPC Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdDelete(context.Background(), orgId, vpcId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdDelete(context.Background(), orgId, vpcId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -242,7 +242,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
 )
 
 func main() {
@@ -250,8 +250,8 @@ func main() {
     vpcId := "vpcId_example" // string | The VPC Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdGet(context.Background(), orgId, vpcId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdGet(context.Background(), orgId, vpcId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -315,7 +315,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
 )
 
 func main() {
@@ -324,8 +324,8 @@ func main() {
     vpcCore := *openapiclient.NewVpcCore() // VpcCore | VPC Object don't
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdPut(context.Background(), orgId, vpcId).VpcCore(vpcCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdPut(context.Background(), orgId, vpcId).VpcCore(vpcCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/dlb"
 )
 
 func main() {
@@ -38,8 +38,8 @@ func main() {
     dlbId := "dlbId_example" // string | The ID of the DLB in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete(context.Background(), orgId, vpcId, dlbId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete(context.Background(), orgId, vpcId, dlbId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -103,7 +103,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/dlb"
 )
 
 func main() {
@@ -112,8 +112,8 @@ func main() {
     dlbId := "dlbId_example" // string | The ID of the DLB in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet(context.Background(), orgId, vpcId, dlbId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet(context.Background(), orgId, vpcId, dlbId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch
 
-> Dlb OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(ctx, orgId, vpcId, dlbId).RequestBody(requestBody).Execute()
+> Dlb OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(ctx, orgId, vpcId, dlbId).UpdateObject(updateObject).Execute()
 
 
 
@@ -179,18 +179,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/dlb"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     vpcId := "vpcId_example" // string | The ID of the VPC in GUID format
     dlbId := "dlbId_example" // string | The ID of the DLB in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    updateObject := []openapiclient.UpdateObject{*openapiclient.NewUpdateObject()} // []UpdateObject |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(context.Background(), orgId, vpcId, dlbId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(context.Background(), orgId, vpcId, dlbId).UpdateObject(updateObject).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **updateObject** | [**[]UpdateObject**](UpdateObject.md) |  | 
 
 ### Return type
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdVpcsVpcIdLoadbalancersGet
 
-> InlineResponse200 OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(ctx, orgId, vpcId).Execute()
+> OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(ctx, orgId, vpcId).Execute()
 
 
 
@@ -257,7 +257,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/dlb"
 )
 
 func main() {
@@ -265,13 +265,13 @@ func main() {
     vpcId := "vpcId_example" // string | The ID of the VPC in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(context.Background(), orgId, vpcId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(context.Background(), orgId, vpcId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdVpcsVpcIdLoadbalancersGet`: InlineResponse200
+    // response from `OrganizationsOrgIdVpcsVpcIdLoadbalancersGet`: OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersGet`: %v\n", resp)
 }
 ```
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response**](OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response.md)
 
 ### Authorization
 
@@ -330,7 +330,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/dlb"
 )
 
 func main() {
@@ -339,8 +339,8 @@ func main() {
     dlbPostBody := *openapiclient.NewDlbPostBody() // DlbPostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(context.Background(), orgId, vpcId).DlbPostBody(dlbPostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(context.Background(), orgId, vpcId).DlbPostBody(dlbPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

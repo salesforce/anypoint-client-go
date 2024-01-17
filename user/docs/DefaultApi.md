@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdUsersGet
 
-> InlineResponse200 OrganizationsOrgIdUsersGet(ctx, orgId).Type_(type_).Limit(limit).Offset(offset).Execute()
+> OrganizationsOrgIdUsersGet200Response OrganizationsOrgIdUsersGet(ctx, orgId).Type_(type_).Limit(limit).Offset(offset).Execute()
 
 
 
@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user"
 )
 
 func main() {
@@ -39,13 +39,13 @@ func main() {
     offset := int32(56) // int32 | The number of records to omit from the response. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersGet(context.Background(), orgId).Type_(type_).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersGet(context.Background(), orgId).Type_(type_).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdUsersGet`: InlineResponse200
+    // response from `OrganizationsOrgIdUsersGet`: OrganizationsOrgIdUsersGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdUsersGet`: %v\n", resp)
 }
 ```
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdUsersGet200Response**](OrganizationsOrgIdUsersGet200Response.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user"
 )
 
 func main() {
@@ -113,8 +113,8 @@ func main() {
     userPostBody := *openapiclient.NewUserPostBody() // UserPostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersPost(context.Background(), orgId).UserPostBody(userPostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersPost(context.Background(), orgId).UserPostBody(userPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -177,7 +177,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user"
 )
 
 func main() {
@@ -185,8 +185,8 @@ func main() {
     userId := "userId_example" // string | The ID of the user
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdDelete(context.Background(), orgId, userId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersUserIdDelete(context.Background(), orgId, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -248,7 +248,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user"
 )
 
 func main() {
@@ -256,8 +256,8 @@ func main() {
     userId := "userId_example" // string | the ID of the user
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdGet(context.Background(), orgId, userId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersUserIdGet(context.Background(), orgId, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -321,7 +321,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/user"
 )
 
 func main() {
@@ -330,8 +330,8 @@ func main() {
     userPutBody := *openapiclient.NewUserPutBody() // UserPutBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdUsersUserIdPut(context.Background(), orgId, userId).UserPutBody(userPutBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdUsersUserIdPut(context.Background(), orgId, userId).UserPutBody(userPutBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdUsersUserIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

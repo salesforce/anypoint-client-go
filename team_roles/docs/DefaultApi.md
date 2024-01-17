@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdTeamsTeamIdRolesDelete
 
-> OrganizationsOrgIdTeamsTeamIdRolesDelete(ctx, orgId, teamId).RequestBody(requestBody).Execute()
+> OrganizationsOrgIdTeamsTeamIdRolesDelete(ctx, orgId, teamId).TeamRoleDeleteBody(teamRoleDeleteBody).Execute()
 
 
 
@@ -27,17 +27,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_roles"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     teamId := "teamId_example" // string | The ID of the team in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    teamRoleDeleteBody := []openapiclient.TeamRoleDeleteBody{*openapiclient.NewTeamRoleDeleteBody()} // []TeamRoleDeleteBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesDelete(context.Background(), orgId, teamId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesDelete(context.Background(), orgId, teamId).TeamRoleDeleteBody(teamRoleDeleteBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **teamRoleDeleteBody** | [**[]TeamRoleDeleteBody**](TeamRoleDeleteBody.md) |  | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_roles"
 )
 
 func main() {
@@ -112,8 +112,8 @@ func main() {
     offset := int32(56) // int32 | The number of records to omit from the response. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesGet(context.Background(), orgId, teamId).RoleId(roleId).Search(search).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesGet(context.Background(), orgId, teamId).RoleId(roleId).Search(search).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdTeamsTeamIdRolesPost
 
-> OrganizationsOrgIdTeamsTeamIdRolesPost(ctx, orgId, teamId).RequestBody(requestBody).Execute()
+> OrganizationsOrgIdTeamsTeamIdRolesPost(ctx, orgId, teamId).TeamRolePostBody(teamRolePostBody).Execute()
 
 
 
@@ -181,17 +181,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_roles"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     teamId := "teamId_example" // string | The ID of the team in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    teamRolePostBody := []openapiclient.TeamRolePostBody{*openapiclient.NewTeamRolePostBody()} // []TeamRolePostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesPost(context.Background(), orgId, teamId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesPost(context.Background(), orgId, teamId).TeamRolePostBody(teamRolePostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdRolesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **teamRolePostBody** | [**[]TeamRolePostBody**](TeamRolePostBody.md) |  | 
 
 ### Return type
 

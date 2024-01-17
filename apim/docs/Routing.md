@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** |  | [optional] 
 **Rules** | Pointer to [**RoutingRules**](RoutingRules.md) |  | [optional] 
-**Upstreams** | Pointer to [**[]RoutingUpstreams**](RoutingUpstreams.md) |  | [optional] 
+**Upstreams** | Pointer to [**[]RoutingUpstreamsInner**](RoutingUpstreamsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasRules returns a boolean if a field has been set.
 
 ### GetUpstreams
 
-`func (o *Routing) GetUpstreams() []RoutingUpstreams`
+`func (o *Routing) GetUpstreams() []RoutingUpstreamsInner`
 
 GetUpstreams returns the Upstreams field if non-nil, zero value otherwise.
 
 ### GetUpstreamsOk
 
-`func (o *Routing) GetUpstreamsOk() (*[]RoutingUpstreams, bool)`
+`func (o *Routing) GetUpstreamsOk() (*[]RoutingUpstreamsInner, bool)`
 
 GetUpstreamsOk returns a tuple with the Upstreams field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpstreams
 
-`func (o *Routing) SetUpstreams(v []RoutingUpstreams)`
+`func (o *Routing) SetUpstreams(v []RoutingUpstreamsInner)`
 
 SetUpstreams sets Upstreams field to given value.
 

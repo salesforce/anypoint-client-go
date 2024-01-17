@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **ForwardClientCertificate** | Pointer to **bool** |  | [optional] 
 **Workers** | Pointer to **int32** | the dedicated load balancer&#39;s number of workers. | [optional] [default to 2]
 **ProxyReadTimeout** | Pointer to **string** | Sets the Mule application response timeout value. | [optional] [default to "300"]
-**SslEndpoints** | Pointer to [**[]DlbPostBodySslEndpoints**](DlbPostBodySslEndpoints.md) |  | [optional] 
+**SslEndpoints** | Pointer to [**[]DlbPostBodySslEndpointsInner**](DlbPostBodySslEndpointsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -443,20 +443,20 @@ HasProxyReadTimeout returns a boolean if a field has been set.
 
 ### GetSslEndpoints
 
-`func (o *DlbPostBody) GetSslEndpoints() []DlbPostBodySslEndpoints`
+`func (o *DlbPostBody) GetSslEndpoints() []DlbPostBodySslEndpointsInner`
 
 GetSslEndpoints returns the SslEndpoints field if non-nil, zero value otherwise.
 
 ### GetSslEndpointsOk
 
-`func (o *DlbPostBody) GetSslEndpointsOk() (*[]DlbPostBodySslEndpoints, bool)`
+`func (o *DlbPostBody) GetSslEndpointsOk() (*[]DlbPostBodySslEndpointsInner, bool)`
 
 GetSslEndpointsOk returns a tuple with the SslEndpoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSslEndpoints
 
-`func (o *DlbPostBody) SetSslEndpoints(v []DlbPostBodySslEndpoints)`
+`func (o *DlbPostBody) SetSslEndpoints(v []DlbPostBodySslEndpointsInner)`
 
 SetSslEndpoints sets SslEndpoints field to given value.
 

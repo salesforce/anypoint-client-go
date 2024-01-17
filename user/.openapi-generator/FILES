@@ -6,10 +6,10 @@ api_default.go
 client.go
 configuration.go
 docs/DefaultApi.md
-docs/InlineResponse200.md
-docs/InlineResponse400.md
 docs/Org.md
 docs/Organization.md
+docs/OrganizationsOrgIdUsersGet200Response.md
+docs/OrganizationsOrgIdUsersPost400Response.md
 docs/PrimaryOrganization.md
 docs/Properties.md
 docs/Subscription.md
@@ -21,8 +21,8 @@ docs/UserPutBody.md
 git_push.sh
 go.mod
 go.sum
-model_inline_response_200.go
-model_inline_response_400.go
+model__organizations__org_id__users_get_200_response.go
+model__organizations__org_id__users_post_400_response.go
 model_org.go
 model_organization.go
 model_primary_organization.go
@@ -34,4 +34,5 @@ model_user_id.go
 model_user_post_body.go
 model_user_put_body.go
 response.go
+test/api_default_test.go
 utils.go

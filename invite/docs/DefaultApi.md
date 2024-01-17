@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdInvitesDelete
 
-> OrganizationsOrgIdInvitesDelete(ctx, orgId).RequestBody(requestBody).Execute()
+> OrganizationsOrgIdInvitesDelete(ctx, orgId).InviteDelete(inviteDelete).Execute()
 
 
 
@@ -27,16 +27,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/invite"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    inviteDelete := []openapiclient.InviteDelete{*openapiclient.NewInviteDelete()} // []InviteDelete |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdInvitesDelete(context.Background(), orgId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdInvitesDelete(context.Background(), orgId).InviteDelete(inviteDelete).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdInvitesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiOrganizationsOrgIdInvitesD
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **inviteDelete** | [**[]InviteDelete**](InviteDelete.md) |  | 
 
 ### Return type
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdInvitesGet
 
-> InlineResponse200 OrganizationsOrgIdInvitesGet(ctx, orgId).Search(search).Limit(limit).Offset(offset).Execute()
+> OrganizationsOrgIdInvitesGet200Response OrganizationsOrgIdInvitesGet(ctx, orgId).Search(search).Limit(limit).Offset(offset).Execute()
 
 
 
@@ -97,7 +97,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/invite"
 )
 
 func main() {
@@ -107,13 +107,13 @@ func main() {
     offset := int32(56) // int32 | Pagination parameter to start returning results from the specified position of matches (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdInvitesGet(context.Background(), orgId).Search(search).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdInvitesGet(context.Background(), orgId).Search(search).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdInvitesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdInvitesGet`: InlineResponse200
+    // response from `OrganizationsOrgIdInvitesGet`: OrganizationsOrgIdInvitesGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdInvitesGet`: %v\n", resp)
 }
 ```
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdInvitesGet200Response**](OrganizationsOrgIdInvitesGet200Response.md)
 
 ### Authorization
 
@@ -173,7 +173,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/invite"
 )
 
 func main() {
@@ -181,8 +181,8 @@ func main() {
     invitePostBody := *openapiclient.NewInvitePostBody() // InvitePostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdInvitesPost(context.Background(), orgId).InvitePostBody(invitePostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdInvitesPost(context.Background(), orgId).InvitePostBody(invitePostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdInvitesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

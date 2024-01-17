@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__environments_get_200_response'
           description: Success response
     post:
       description: Creates an environment
@@ -57,7 +57,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__environments_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -119,8 +119,8 @@ paths:
                 $ref: '#/components/schemas/env'
           description: Success response
     put:
-      description: Update an environment, implemented as a patch. Note that only the
-        name is allowed to be updated, isProduction and type can not.
+      description: "Update an environment, implemented as a patch. Note that only\
+        \ the name is allowed to be updated, isProduction and type can not."
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -150,7 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__environments_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -166,7 +166,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__environments_post_400_response'
       description: Bad request response
     SuccessGetENV:
       content:
@@ -192,7 +192,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__environments_get_200_response'
       description: Success response
   schemas:
     env:
@@ -224,7 +224,7 @@ components:
           type: string
       title: envCore
       type: object
-    inline_response_200:
+    _organizations__orgId__environments_get_200_response:
       example:
         total: 0
         data:
@@ -240,7 +240,7 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__environments_post_400_response:
       properties:
         status:
           default: 400
@@ -262,6 +262,7 @@ components:
       - id
       title: envId
       type: object
+      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

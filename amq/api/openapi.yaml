@@ -249,7 +249,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_404'
+                $ref: '#/components/schemas/UpdateAMQ_404_response'
           description: Queue not found
         "200":
           content:
@@ -330,7 +330,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_404'
+            $ref: '#/components/schemas/UpdateAMQ_404_response'
       description: Queue not found
     SuccessGetQueues:
       content:
@@ -437,7 +437,7 @@ components:
           type: boolean
       title: queueBody
       type: object
-    inline_response_404:
+    UpdateAMQ_404_response:
       properties:
         status:
           default: 404

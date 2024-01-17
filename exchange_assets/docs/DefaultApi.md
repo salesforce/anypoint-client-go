@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/exchange_assets"
 )
 
 func main() {
@@ -37,8 +37,8 @@ func main() {
     assetId := "assetId_example" // string | The ID of the asset
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AssetsOrgIdAssetIdAssetGet(context.Background(), orgId, assetId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.AssetsOrgIdAssetIdAssetGet(context.Background(), orgId, assetId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AssetsOrgIdAssetIdAssetGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -102,7 +102,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/exchange_assets"
 )
 
 func main() {
@@ -111,8 +111,8 @@ func main() {
     patchAssetNameAndDescr := *openapiclient.NewPatchAssetNameAndDescr() // PatchAssetNameAndDescr |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AssetsOrgIdAssetIdPatch(context.Background(), orgId, assetId).PatchAssetNameAndDescr(patchAssetNameAndDescr).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.AssetsOrgIdAssetIdPatch(context.Background(), orgId, assetId).PatchAssetNameAndDescr(patchAssetNameAndDescr).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AssetsOrgIdAssetIdPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -175,7 +175,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/exchange_assets"
 )
 
 func main() {
@@ -185,8 +185,8 @@ func main() {
     xDeleteType := "xDeleteType_example" // string | It could be 'soft-delete' or 'hard-delete', that mean the asset will be logical deleted or physical deleted It's supposed to if it is not specified, the type will be 'soft-delete' (optional) (default to "soft-delete")
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AssetsOrgIdAssetIdVersionDelete(context.Background(), orgId, assetId, version).XDeleteType(xDeleteType).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.AssetsOrgIdAssetIdVersionDelete(context.Background(), orgId, assetId, version).XDeleteType(xDeleteType).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AssetsOrgIdAssetIdVersionDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -251,7 +251,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/exchange_assets"
 )
 
 func main() {
@@ -273,8 +273,8 @@ func main() {
     assetLink := "assetLink_example" // string | The link of the asset. Required for \\\"wsdl\\\" or \\\"http\\\" assets (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AssetsPost(context.Background()).XStrictPackage(xStrictPackage).OrganizationId(organizationId).AssetId(assetId).Version(version).Name(name).Classifier(classifier).ApiVersion(apiVersion).Main(main).GroupId(groupId).Asset(asset).XAllowedApiSpecFormats(xAllowedApiSpecFormats).Dependencies(dependencies).OriginalFormatVersion(originalFormatVersion).Metadata(metadata).Tags(tags).AssetLink(assetLink).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.AssetsPost(context.Background()).XStrictPackage(xStrictPackage).OrganizationId(organizationId).AssetId(assetId).Version(version).Name(name).Classifier(classifier).ApiVersion(apiVersion).Main(main).GroupId(groupId).Asset(asset).XAllowedApiSpecFormats(xAllowedApiSpecFormats).Dependencies(dependencies).OriginalFormatVersion(originalFormatVersion).Metadata(metadata).Tags(tags).AssetLink(assetLink).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AssetsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -332,7 +332,7 @@ Name | Type | Description  | Notes
 
 ## AssetsSearchGet
 
-> []map[string]interface{} AssetsSearchGet(ctx).Types(types).Search(search).Domain(domain).MasterOrganizationId(masterOrganizationId).OrganizationId(organizationId).Offset(offset).Limit(limit).Sort(sort).Ascending(ascending).SharedWithMe(sharedWithMe).IncludeSnapshots(includeSnapshots).Execute()
+> []AssetSearchResultItem AssetsSearchGet(ctx).Types(types).Search(search).Domain(domain).MasterOrganizationId(masterOrganizationId).OrganizationId(organizationId).Offset(offset).Limit(limit).Sort(sort).Ascending(ascending).SharedWithMe(sharedWithMe).IncludeSnapshots(includeSnapshots).Execute()
 
 Search for assets
 
@@ -347,7 +347,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/exchange_assets"
 )
 
 func main() {
@@ -364,13 +364,13 @@ func main() {
     includeSnapshots := true // bool | Include snapshots in the results (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AssetsSearchGet(context.Background()).Types(types).Search(search).Domain(domain).MasterOrganizationId(masterOrganizationId).OrganizationId(organizationId).Offset(offset).Limit(limit).Sort(sort).Ascending(ascending).SharedWithMe(sharedWithMe).IncludeSnapshots(includeSnapshots).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.AssetsSearchGet(context.Background()).Types(types).Search(search).Domain(domain).MasterOrganizationId(masterOrganizationId).OrganizationId(organizationId).Offset(offset).Limit(limit).Sort(sort).Ascending(ascending).SharedWithMe(sharedWithMe).IncludeSnapshots(includeSnapshots).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AssetsSearchGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AssetsSearchGet`: []map[string]interface{}
+    // response from `AssetsSearchGet`: []AssetSearchResultItem
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AssetsSearchGet`: %v\n", resp)
 }
 ```
@@ -400,7 +400,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]AssetSearchResultItem**](AssetSearchResultItem.md)
 
 ### Authorization
 

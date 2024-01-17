@@ -1,7 +1,6 @@
 module github.com/mulesoft-anypoint/anypoint-client-go/connected_app
 
-go 1.13
+go 1.18
 
 require (
-	golang.org/x/oauth2 v0.0.0-20210218202405-ba52d332ba99
 )

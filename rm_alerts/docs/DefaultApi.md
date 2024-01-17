@@ -29,15 +29,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/rm_alerts"
 )
 
 func main() {
     alertId := "alertId_example" // string | the alert Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AlertsAlertIdDelete(context.Background(), alertId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.AlertsAlertIdDelete(context.Background(), alertId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AlertsAlertIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -97,15 +97,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/rm_alerts"
 )
 
 func main() {
     alertId := "alertId_example" // string | the alert Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AlertsAlertIdGet(context.Background(), alertId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.AlertsAlertIdGet(context.Background(), alertId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AlertsAlertIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -167,7 +167,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/rm_alerts"
 )
 
 func main() {
@@ -177,8 +177,8 @@ func main() {
     resource := "resource_example" // string | Only return alerts which are connected to this resource (application name) (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AlertsGet(context.Background()).XANYPNTENVID(xANYPNTENVID).Offset(offset).Limit(limit).Resource(resource).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.AlertsGet(context.Background()).XANYPNTENVID(xANYPNTENVID).Offset(offset).Limit(limit).Resource(resource).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AlertsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -239,7 +239,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/rm_alerts"
 )
 
 func main() {
@@ -247,8 +247,8 @@ func main() {
     xANYPNTENVID := "xANYPNTENVID_example" // string | The ID of your current environment (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.AlertsPost(context.Background()).AlertBody(alertBody).XANYPNTENVID(xANYPNTENVID).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.AlertsPost(context.Background()).AlertBody(alertBody).XANYPNTENVID(xANYPNTENVID).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AlertsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -307,7 +307,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/rm_alerts"
 )
 
 func main() {
@@ -315,8 +315,8 @@ func main() {
     alertBody := *openapiclient.NewAlertBody() // AlertBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ModifyOneAlert(context.Background(), alertId).AlertBody(alertBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ModifyOneAlert(context.Background(), alertId).AlertBody(alertBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ModifyOneAlert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -1,0 +1,860 @@
+openapi: 3.0.0
+info:
+  description: Secret Group Truststore API
+  title: Secret Group Truststore API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/secrets-manager/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}/truststores:
+    get:
+      description: Retrieves a secret-groups' collection of truststores.
+      operationId: GetSecretGroupTruststores
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Filter the elements on the response to be of a specific type\
+          \ from {PEM, JKS, JCEKS, PKCS12}"
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - PEM
+          - JKS
+          - JCEKS
+          - PKCS12
+          type: string
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TruststoreSummaryCollection'
+          description: get secret-group truststores collection
+      summary: Retrieves a secret-groups' collection of truststores.
+    post:
+      description: Create a secret-groups' truststore.
+      operationId: PostSecretGroupTruststore
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: With 'true' to allow uploading expired certificates
+        explode: true
+        in: query
+        name: allowExpiredCert
+        required: true
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TruststoreReqBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostSecretGroupTruststore_201_response'
+          description: post secret-group truststore response
+      summary: Create a secret-groups' truststore.
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}/truststores/{secretId}:
+    get:
+      description: Retrieves truststore details by id for a given secret group in
+        a given organization and environment
+      operationId: GetSecretGroupTruststoreDetails
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The truststore id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupTruststoreDetails_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Truststore'
+          description: get secret-group trustsotre details response
+      summary: Retrieve truststore details
+    patch:
+      description: Update truststore details for a given secret-group in a given organization
+        and environment
+      operationId: PatchSecretGroupTruststore
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The truststore id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          'application/json:':
+            schema:
+              $ref: '#/components/schemas/TruststorePatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupTruststoreDetails_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutSecretGroupTruststore_200_response'
+          description: patch secret-group truststore response
+      summary: Update a given secret-group truststore
+    put:
+      description: Update truststore details for a given secret-group in a given organization
+        and environment
+      operationId: PutSecretGroupTruststore
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The truststore id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: With 'true' to allow uploading expired certificates
+        explode: true
+        in: query
+        name: allowExpiredCert
+        required: true
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TruststoreReqBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupTruststoreDetails_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutSecretGroupTruststore_200_response'
+          description: put secret-group truststore response
+      summary: Update a given secret-group truststore
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetSecretGroupTruststoreDetails_404_response'
+      description: resource not found
+    SuccessGetSecretGroupTruststoresCollection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TruststoreSummaryCollection'
+      description: get secret-group truststores collection
+    SuccessPostSecretGroupTruststore:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PostSecretGroupTruststore_201_response'
+      description: post secret-group truststore response
+    SuccessGetSecretGroupTruststore:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Truststore'
+      description: get secret-group trustsotre details response
+    SuccessPutSecretGroupTruststore:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PutSecretGroupTruststore_200_response'
+      description: put secret-group truststore response
+    SuccessPatchSecretGroupTruststore:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PutSecretGroupTruststore_200_response'
+      description: patch secret-group truststore response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
+          type: array
+      title: errorsResponse
+      type: object
+    TruststoreReqBody:
+      oneOf:
+      - $ref: '#/components/schemas/TruststorePEMBody'
+      - $ref: '#/components/schemas/TruststoreOthersBody'
+    TruststorePEMBody:
+      properties:
+        expirationDate:
+          description: |
+            Date on which this secret should expire. If not set, by default, it will be set to notAfter date of the public certificate from this keystore. Once the secret expires, a grant can not be requested for it.
+          type: string
+        name:
+          description: The name of the truststore instance
+          type: string
+        type:
+          enum:
+          - PEM
+          type: string
+        trustStore:
+          description: File containing one or more concatenated certificates in PEM
+            format
+          format: binary
+          type: string
+      type: object
+    TruststoreOthersBody:
+      properties:
+        expirationDate:
+          description: |
+            Date on which this secret should expire. If not set, by default, it will be set to notAfter date of the public certificate from this keystore. Once the secret expires, a grant can not be requested for it.
+          type: string
+        name:
+          description: The name of the truststore instance
+          type: string
+        type:
+          enum:
+          - JKS
+          - JCEKS
+          - PKCS12
+          type: string
+        trustStore:
+          description: File containing one or more trusted certificate entries
+          format: binary
+          type: string
+        algorithm:
+          description: The algorithm used to initialize TrustManagerFactory
+          type: string
+        storePassphrase:
+          description: The passphrase with which the trustStore file is protected
+          type: string
+      type: object
+    TruststorePatchBody:
+      example: |
+        {
+          "name": "",
+          "expirationDate": ""
+        }
+      type: object
+    TruststoreSummaryCollection:
+      items:
+        $ref: '#/components/schemas/TruststoreSummary'
+      type: array
+    TruststoreSummary:
+      example:
+        meta:
+          path: path
+          id: id
+        name: name
+        type: type
+        expirationDate: expirationDate
+      properties:
+        name:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        expirationDate:
+          type: string
+        type:
+          type: string
+      type: object
+    Truststore:
+      example:
+        truststoreFileName: truststoreFileName
+        meta:
+          path: path
+          id: id
+        name: name
+        details:
+          certificateEntries:
+          - certificate:
+              serialNumber: serialNumber
+              keyUsage:
+              - keyUsage
+              - keyUsage
+              subject:
+                commonName: commonName
+                localityName: localityName
+                organizationName: organizationName
+                organizationUnit: organizationUnit
+                state: state
+                countryName: countryName
+              subjectAlternativeName:
+              - subjectAlternativeName
+              - subjectAlternativeName
+              publicKeyAlgorithm: publicKeyAlgorithm
+              basicConstraints:
+                certificateAuthority: true
+              extendedKeyUsage:
+              - extendedKeyUsage
+              - extendedKeyUsage
+              validity:
+                notAfter: notAfter
+                notBefore: notBefore
+              version: version
+              issuer:
+                commonName: commonName
+                localityName: localityName
+                organizationName: organizationName
+                organizationUnit: organizationUnit
+                state: state
+                countryName: countryName
+              signatureAlgorithm: signatureAlgorithm
+              certificateType: certificateType
+            alias: alias
+          - certificate:
+              serialNumber: serialNumber
+              keyUsage:
+              - keyUsage
+              - keyUsage
+              subject:
+                commonName: commonName
+                localityName: localityName
+                organizationName: organizationName
+                organizationUnit: organizationUnit
+                state: state
+                countryName: countryName
+              subjectAlternativeName:
+              - subjectAlternativeName
+              - subjectAlternativeName
+              publicKeyAlgorithm: publicKeyAlgorithm
+              basicConstraints:
+                certificateAuthority: true
+              extendedKeyUsage:
+              - extendedKeyUsage
+              - extendedKeyUsage
+              validity:
+                notAfter: notAfter
+                notBefore: notBefore
+              version: version
+              issuer:
+                commonName: commonName
+                localityName: localityName
+                organizationName: organizationName
+                organizationUnit: organizationUnit
+                state: state
+                countryName: countryName
+              signatureAlgorithm: signatureAlgorithm
+              certificateType: certificateType
+            alias: alias
+        type: type
+        expirationDate: expirationDate
+        algorithm: algorithm
+      properties:
+        name:
+          type: string
+        expirationDate:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        type:
+          description: Type of truststore supported
+          type: string
+        details:
+          $ref: '#/components/schemas/TruststoreDetails'
+        truststoreFileName:
+          description: File name of the truststore that is stored in this secret
+          type: string
+        algorithm:
+          description: Algorithm used to create the truststore manager factory which
+            will make use of this truststore
+          type: string
+      type: object
+    TruststoreDetails:
+      description: Details about each of the trusted certificate from the truststore
+      example:
+        certificateEntries:
+        - certificate:
+            serialNumber: serialNumber
+            keyUsage:
+            - keyUsage
+            - keyUsage
+            subject:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              state: state
+              countryName: countryName
+            subjectAlternativeName:
+            - subjectAlternativeName
+            - subjectAlternativeName
+            publicKeyAlgorithm: publicKeyAlgorithm
+            basicConstraints:
+              certificateAuthority: true
+            extendedKeyUsage:
+            - extendedKeyUsage
+            - extendedKeyUsage
+            validity:
+              notAfter: notAfter
+              notBefore: notBefore
+            version: version
+            issuer:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              state: state
+              countryName: countryName
+            signatureAlgorithm: signatureAlgorithm
+            certificateType: certificateType
+          alias: alias
+        - certificate:
+            serialNumber: serialNumber
+            keyUsage:
+            - keyUsage
+            - keyUsage
+            subject:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              state: state
+              countryName: countryName
+            subjectAlternativeName:
+            - subjectAlternativeName
+            - subjectAlternativeName
+            publicKeyAlgorithm: publicKeyAlgorithm
+            basicConstraints:
+              certificateAuthority: true
+            extendedKeyUsage:
+            - extendedKeyUsage
+            - extendedKeyUsage
+            validity:
+              notAfter: notAfter
+              notBefore: notBefore
+            version: version
+            issuer:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              state: state
+              countryName: countryName
+            signatureAlgorithm: signatureAlgorithm
+            certificateType: certificateType
+          alias: alias
+      properties:
+        certificateEntries:
+          items:
+            $ref: '#/components/schemas/CertificateEntry'
+          type: array
+      type: object
+    Meta:
+      example:
+        path: path
+        id: id
+      properties:
+        id:
+          type: string
+        path:
+          type: string
+      type: object
+    IssuerSubject:
+      example:
+        commonName: commonName
+        localityName: localityName
+        organizationName: organizationName
+        organizationUnit: organizationUnit
+        state: state
+        countryName: countryName
+      properties:
+        commonName:
+          type: string
+        organizationName:
+          type: string
+        localityName:
+          type: string
+        organizationUnit:
+          type: string
+        state:
+          type: string
+        countryName:
+          type: string
+      type: object
+    CertificateValidity:
+      description: Details about validity period of this certificate
+      example:
+        notAfter: notAfter
+        notBefore: notBefore
+      properties:
+        notBefore:
+          type: string
+        notAfter:
+          type: string
+      type: object
+    CertificateDetails:
+      example:
+        serialNumber: serialNumber
+        keyUsage:
+        - keyUsage
+        - keyUsage
+        subject:
+          commonName: commonName
+          localityName: localityName
+          organizationName: organizationName
+          organizationUnit: organizationUnit
+          state: state
+          countryName: countryName
+        subjectAlternativeName:
+        - subjectAlternativeName
+        - subjectAlternativeName
+        publicKeyAlgorithm: publicKeyAlgorithm
+        basicConstraints:
+          certificateAuthority: true
+        extendedKeyUsage:
+        - extendedKeyUsage
+        - extendedKeyUsage
+        validity:
+          notAfter: notAfter
+          notBefore: notBefore
+        version: version
+        issuer:
+          commonName: commonName
+          localityName: localityName
+          organizationName: organizationName
+          organizationUnit: organizationUnit
+          state: state
+          countryName: countryName
+        signatureAlgorithm: signatureAlgorithm
+        certificateType: certificateType
+      properties:
+        issuer:
+          $ref: '#/components/schemas/IssuerSubject'
+        subject:
+          $ref: '#/components/schemas/IssuerSubject'
+        subjectAlternativeName:
+          description: Collection of subject alternative names from the SubjectAltName
+            x509 extension
+          items:
+            type: string
+          type: array
+        version:
+          type: string
+        serialNumber:
+          description: "Serial number assigned by the CA to this certificate, in hex\
+            \ format"
+          type: string
+        signatureAlgorithm:
+          description: Name of the signature algorithm
+          type: string
+        publicKeyAlgorithm:
+          description: The standard algorithm name for the public key of this certificate
+          type: string
+        basicConstraints:
+          $ref: '#/components/schemas/CertificateDetails_basicConstraints'
+        validity:
+          $ref: '#/components/schemas/CertificateValidity'
+        keyUsage:
+          description: A list of values defining the purpose of the public key i.e.
+            the key usage extensions from this certificate
+          items:
+            type: string
+          type: array
+        extendedKeyUsage:
+          description: A list of values providing details about the extended key usage
+            extensions from this certificate.
+          items:
+            type: string
+          type: array
+        certificateType:
+          description: The type of this certificate
+          type: string
+      type: object
+    CertificateEntry:
+      example:
+        certificate:
+          serialNumber: serialNumber
+          keyUsage:
+          - keyUsage
+          - keyUsage
+          subject:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            state: state
+            countryName: countryName
+          subjectAlternativeName:
+          - subjectAlternativeName
+          - subjectAlternativeName
+          publicKeyAlgorithm: publicKeyAlgorithm
+          basicConstraints:
+            certificateAuthority: true
+          extendedKeyUsage:
+          - extendedKeyUsage
+          - extendedKeyUsage
+          validity:
+            notAfter: notAfter
+            notBefore: notBefore
+          version: version
+          issuer:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            state: state
+            countryName: countryName
+          signatureAlgorithm: signatureAlgorithm
+          certificateType: certificateType
+        alias: alias
+      properties:
+        alias:
+          description: Alias associated with the certificate entry
+          type: string
+        certificate:
+          $ref: '#/components/schemas/CertificateDetails'
+      type: object
+    PostSecretGroupTruststore_201_response:
+      example:
+        id: id
+        message: message
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+      type: object
+    GetSecretGroupTruststoreDetails_404_response:
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+      type: object
+    PutSecretGroupTruststore_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    errorsResponse_errors_inner:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+    CertificateDetails_basicConstraints:
+      description: This identifies if the subject of the certificate is a CA
+      example:
+        certificateAuthority: true
+      properties:
+        certificateAuthority:
+          description: "If set to true, indicates that this is a CA certificate."
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

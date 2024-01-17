@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_upstream"
 )
 
 func main() {
@@ -39,8 +39,8 @@ func main() {
     upstreamId := "upstreamId_example" // string | The upstream id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteApimInstanceUpstream(context.Background(), orgId, envId, envApiId, upstreamId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.DeleteApimInstanceUpstream(context.Background(), orgId, envId, envApiId, upstreamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteApimInstanceUpstream``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -106,7 +106,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_upstream"
 )
 
 func main() {
@@ -116,8 +116,8 @@ func main() {
     upstreamId := "upstreamId_example" // string | The upstream id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetApimInstanceUpstream(context.Background(), orgId, envId, envApiId, upstreamId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetApimInstanceUpstream(context.Background(), orgId, envId, envApiId, upstreamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetApimInstanceUpstream``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -185,7 +185,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_upstream"
 )
 
 func main() {
@@ -194,8 +194,8 @@ func main() {
     envApiId := "envApiId_example" // string | The api id specific to a given environment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetApimInstanceUpstreams(context.Background(), orgId, envId, envApiId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetApimInstanceUpstreams(context.Background(), orgId, envId, envApiId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetApimInstanceUpstreams``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,7 +261,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_upstream"
 )
 
 func main() {
@@ -272,8 +272,8 @@ func main() {
     upstreamPatchBody := *openapiclient.NewUpstreamPatchBody() // UpstreamPatchBody | Patch API Manager Instance Upstream Body (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PatchApimInstanceUpstream(context.Background(), orgId, envId, envApiId, upstreamId).UpstreamPatchBody(upstreamPatchBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.PatchApimInstanceUpstream(context.Background(), orgId, envId, envApiId, upstreamId).UpstreamPatchBody(upstreamPatchBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PatchApimInstanceUpstream``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -342,7 +342,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_upstream"
 )
 
 func main() {
@@ -352,8 +352,8 @@ func main() {
     upstreamPostBody := *openapiclient.NewUpstreamPostBody() // UpstreamPostBody | Post API Manager Instance Upstream Body (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PostApimInstanceUpstream(context.Background(), orgId, envId, envApiId).UpstreamPostBody(upstreamPostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.PostApimInstanceUpstream(context.Background(), orgId, envId, envApiId).UpstreamPostBody(upstreamPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PostApimInstanceUpstream``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

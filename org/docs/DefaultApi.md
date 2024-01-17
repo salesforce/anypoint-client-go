@@ -28,15 +28,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/org"
 )
 
 func main() {
     orgId := "orgId_example" // string | The organization Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdDelete(context.Background(), orgId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdDelete(context.Background(), orgId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -98,15 +98,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/org"
 )
 
 func main() {
     orgId := "orgId_example" // string | The organization Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdGet(context.Background(), orgId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdGet(context.Background(), orgId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -168,7 +168,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/org"
 )
 
 func main() {
@@ -176,8 +176,8 @@ func main() {
     bGPutReqBody := *openapiclient.NewBGPutReqBody() // BGPutReqBody | Business Group Request Body Object
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdPut(context.Background(), orgId).BGPutReqBody(bGPutReqBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdPut(context.Background(), orgId).BGPutReqBody(bGPutReqBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -240,15 +240,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/org"
 )
 
 func main() {
     bGPostReqBody := *openapiclient.NewBGPostReqBody(*openapiclient.NewEntitlementsCore(false, false, false, *openapiclient.NewLoadBalancer(int32(123)), *openapiclient.NewStaticIps(int32(123)), *openapiclient.NewVCoresDesign(float32(123)), *openapiclient.NewVCoresProduction(float32(123)), *openapiclient.NewVCoresSandbox(float32(123)), *openapiclient.NewVpcs(int32(123)), *openapiclient.NewVpns(int32(123))), "Name_example", "OwnerId_example", "ParentOrganizationId_example") // BGPostReqBody | Business Group Request Body Object
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsPost(context.Background()).BGPostReqBody(bGPostReqBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsPost(context.Background()).BGPostReqBody(bGPostReqBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -31,15 +31,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
     connAppId := "connAppId_example" // string | The ID of the connected app
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdDelete(context.Background(), connAppId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.ConnectedApplicationsConnAppIdDelete(context.Background(), connAppId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,15 +99,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
     connAppId := "connAppId_example" // string | The ID of the connected app
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdGet(context.Background(), connAppId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ConnectedApplicationsConnAppIdGet(context.Background(), connAppId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -169,7 +169,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
@@ -177,8 +177,8 @@ func main() {
     connectedAppPatchExt := *openapiclient.NewConnectedAppPatchExt() // ConnectedAppPatchExt |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdPatch(context.Background(), connAppId).ConnectedAppPatchExt(connectedAppPatchExt).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ConnectedApplicationsConnAppIdPatch(context.Background(), connAppId).ConnectedAppPatchExt(connectedAppPatchExt).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## ConnectedApplicationsConnAppIdScopesGet
 
-> InlineResponse2001 ConnectedApplicationsConnAppIdScopesGet(ctx, connAppId).Execute()
+> ConnectedApplicationsConnAppIdScopesGet200Response ConnectedApplicationsConnAppIdScopesGet(ctx, connAppId).Execute()
 
 
 
@@ -241,20 +241,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
     connAppId := "connAppId_example" // string | The ID of the connected app
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdScopesGet(context.Background(), connAppId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ConnectedApplicationsConnAppIdScopesGet(context.Background(), connAppId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdScopesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ConnectedApplicationsConnAppIdScopesGet`: InlineResponse2001
+    // response from `ConnectedApplicationsConnAppIdScopesGet`: ConnectedApplicationsConnAppIdScopesGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsConnAppIdScopesGet`: %v\n", resp)
 }
 ```
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**ConnectedApplicationsConnAppIdScopesGet200Response**](ConnectedApplicationsConnAppIdScopesGet200Response.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
@@ -319,8 +319,8 @@ func main() {
     connectedAppScopesPutBody := *openapiclient.NewConnectedAppScopesPutBody() // ConnectedAppScopesPutBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsConnAppIdScopesPut(context.Background(), connAppId).ConnectedAppScopesPutBody(connectedAppScopesPutBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.ConnectedApplicationsConnAppIdScopesPut(context.Background(), connAppId).ConnectedAppScopesPutBody(connectedAppScopesPutBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsConnAppIdScopesPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 ## ConnectedApplicationsGet
 
-> InlineResponse200 ConnectedApplicationsGet(ctx).Execute()
+> ConnectedApplicationsGet200Response ConnectedApplicationsGet(ctx).Execute()
 
 
 
@@ -381,19 +381,19 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsGet(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ConnectedApplicationsGet(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ConnectedApplicationsGet`: InlineResponse200
+    // response from `ConnectedApplicationsGet`: ConnectedApplicationsGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ConnectedApplicationsGet`: %v\n", resp)
 }
 ```
@@ -409,7 +409,7 @@ Other parameters are passed through a pointer to a apiConnectedApplicationsGetRe
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**ConnectedApplicationsGet200Response**](ConnectedApplicationsGet200Response.md)
 
 ### Authorization
 
@@ -442,15 +442,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/connected_app"
 )
 
 func main() {
     connectedAppCore := *openapiclient.NewConnectedAppCore() // ConnectedAppCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ConnectedApplicationsPost(context.Background()).ConnectedAppCore(connectedAppCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ConnectedApplicationsPost(context.Background()).ConnectedAppCore(connectedAppCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ConnectedApplicationsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

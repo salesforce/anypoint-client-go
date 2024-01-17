@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__identityProviders_get_200_response'
           description: Success response
     post:
       description: Creates an IDP connection through SAML or OIDC
@@ -153,7 +153,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__identityProviders__idpId__patch_400_response'
           description: Bad request response
         "401":
           description: Access token is missing or invalid
@@ -177,7 +177,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__identityProviders__idpId__patch_400_response'
       description: Bad request response
     NotFoundError:
       content:
@@ -209,7 +209,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__identityProviders_get_200_response'
       description: Success response
   schemas:
     idpSummary:
@@ -292,7 +292,7 @@ components:
           $ref: '#/components/schemas/service_provider_1'
       title: idpPatchBody
       type: object
-    inline_response_200:
+    _organizations__orgId__identityProviders_get_200_response:
       example:
         total: 0
         data:
@@ -318,21 +318,23 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__identityProviders__idpId__patch_400_response_errors_inner:
+      properties:
+        type:
+          type: string
+        keyword:
+          type: string
+        schemas:
+          type: string
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+    _organizations__orgId__identityProviders__idpId__patch_400_response:
       properties:
         errors:
           items:
-            properties:
-              type:
-                type: string
-              keyword:
-                type: string
-              schemas:
-                type: string
-              message:
-                example: A sample message here
-                title: the error message
-                type: string
+            $ref: '#/components/schemas/_organizations__orgId__identityProviders__idpId__patch_400_response_errors_inner'
           type: array
       type: object
     type:
@@ -464,18 +466,21 @@ components:
           type: string
       title: urls
       type: object
+      example: null
     service_provider:
       properties:
         urls:
           $ref: '#/components/schemas/urls_2'
       title: service_provider
       type: object
+      example: null
     idpCommonProps:
       properties:
         service_provider:
           $ref: '#/components/schemas/service_provider'
       title: idpCommonProps
       type: object
+      example: null
     idpPostBody_type:
       properties:
         description:
@@ -546,23 +551,23 @@ components:
     claims_mapping_2:
       properties:
         username_attribute:
-          description: Field name in the SAML AttributeStatements that maps to username.
-            By default, the NameID attribute in the SAML assertion is used.
+          description: "Field name in the SAML AttributeStatements that maps to username.\
+            \ By default, the NameID attribute in the SAML assertion is used."
           title: username_attribute
           type: string
         firstname_attribute:
-          description: Field name in the SAML AttributeStatements that maps to First
-            Name. By default, the firstname attribute in the SAML assertion is used.
+          description: "Field name in the SAML AttributeStatements that maps to First\
+            \ Name. By default, the firstname attribute in the SAML assertion is used."
           title: firstname_attribute
           type: string
         lastname_attribute:
-          description: Field name in the SAML AttributeStatements that maps to Last
-            Name. By default, the lastname attribute in the SAML assertion is used.
+          description: "Field name in the SAML AttributeStatements that maps to Last\
+            \ Name. By default, the lastname attribute in the SAML assertion is used."
           title: lastname_attribute
           type: string
         email_attribute:
-          description: Field name in the SAML AttributeStatements that maps to Email.
-            By default, the email attribute in the SAML assertion is used.
+          description: "Field name in the SAML AttributeStatements that maps to Email.\
+            \ By default, the email attribute in the SAML assertion is used."
           title: email_attribute
           type: string
         group_attribute:
@@ -604,9 +609,9 @@ components:
           title: sign_on
           type: string
         sign_out:
-          description: URL to redirect sign out requests, so users both sign out of
-            the Anypoint Platform and have their SAML user's status set to signed
-            out.
+          description: "URL to redirect sign out requests, so users both sign out\
+            \ of the Anypoint Platform and have their SAML user's status set to signed\
+            \ out."
           title: sign_out
           type: string
       title: urls

@@ -38,14 +38,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__ipsec_get_200_response'
           description: Success response
         "401":
           description: Access token is missing or invalid
       summary: Returns a list of vpns.
     post:
-      description: Create a VPN connection from a VPC, up to a limit of 10 total VPN
-        Connections per
+      description: "Create a VPN connection from a VPC, up to a limit of 10 total\
+        \ VPN Connections per"
       parameters:
       - description: The organization Id
         explode: false
@@ -118,10 +118,10 @@ paths:
         "401":
           description: Access token is missing or invalid
         "404":
-          description: The orgId, vpcId or vpnId was not found.
+          description: "The orgId, vpcId or vpnId was not found."
       summary: Delete a VPN connection
     get:
-      description: Returns a specific VPN for the given vpn, organization and VPC
+      description: "Returns a specific VPN for the given vpn, organization and VPC"
       parameters:
       - description: The organization Id
         explode: false
@@ -157,7 +157,7 @@ paths:
         "401":
           description: Access token is missing or invalid
         "404":
-          description: The orgId, vpcId or vpnId was not found.
+          description: "The orgId, vpcId or vpnId was not found."
       summary: Returns a a specific vpn
 components:
   responses:
@@ -165,7 +165,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__ipsec_get_200_response'
       description: Success response
     SuccesPostVpn:
       content:
@@ -188,7 +188,7 @@ components:
     NotFoundRequestError:
       description: There is no org or VPC with this id
     NotFoundRequestErrorVpn:
-      description: The orgId, vpcId or vpnId was not found.
+      description: "The orgId, vpcId or vpnId was not found."
   schemas:
     vpnPostReqBody:
       properties:
@@ -273,7 +273,7 @@ components:
           type: string
       title: vpnCorePost
       type: object
-    inline_response_200:
+    _organizations__orgId__vpcs__vpcId__ipsec_get_200_response:
       example:
         total: 1
         data:
@@ -294,8 +294,8 @@ components:
       properties:
         psk:
           default: ""
-          description: Pre-shared secret key, this is used for authentication the
-            VPN-tunnel.
+          description: "Pre-shared secret key, this is used for authentication the\
+            \ VPN-tunnel."
           example: 23847329fn3u__...
           title: psk
           type: string
@@ -321,12 +321,13 @@ components:
       - id
       title: vpnId
       type: object
+      example: null
     tunnelConfig_1:
       properties:
         psk:
           default: ""
-          description: Pre-shared secret key, this is used for authentication the
-            VPN-tunnel.
+          description: "Pre-shared secret key, this is used for authentication the\
+            \ VPN-tunnel."
           example: 23847329fn3u__...
           title: psk
           type: string
@@ -338,19 +339,19 @@ components:
           type: string
         rekeyMarginInSeconds:
           default: 0
-          description: The margin time in seconds before connection expiration or
-            keying-channel expiration, during which the local side of the VPN connection
-            attempts to negotiate a replacement. The exact time of the rekey is randomly
-            selected based on the value of Rekey fuzz. Relevant only locally, the
-            remote side does not need to agree on it.
+          description: "The margin time in seconds before connection expiration or\
+            \ keying-channel expiration, during which the local side of the VPN connection\
+            \ attempts to negotiate a replacement. The exact time of the rekey is\
+            \ randomly selected based on the value of Rekey fuzz. Relevant only locally,\
+            \ the remote side does not need to agree on it."
           example: 0
           title: rekeyMarginInSeconds
           type: integer
         rekeyFuzz:
           default: 0
-          description: The maximum percentage by which marginbytes, marginpackets
-            and margintime are randomly increased to randomize rekeying intervals
-            (important for hosts with many connections).
+          description: "The maximum percentage by which marginbytes, marginpackets\
+            \ and margintime are randomly increased to randomize rekeying intervals\
+            \ (important for hosts with many connections)."
           example: 0
           title: rekeyFuzz
           type: integer
@@ -442,8 +443,8 @@ components:
           type: string
         psk:
           default: ""
-          description: Pre-shared secret key, this is used for authentication the
-            VPN-tunnel.
+          description: "Pre-shared secret key, this is used for authentication the\
+            \ VPN-tunnel."
           example: 23847329fn3u__...
           title: psk
           type: string

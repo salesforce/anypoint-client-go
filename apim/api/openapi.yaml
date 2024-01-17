@@ -35,8 +35,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: A string that will be checked for a partial or similar matches
-          of the name, description, label and tags
+      - description: "A string that will be checked for a partial or similar matches\
+          \ of the name, description, label and tags"
         explode: true
         in: query
         name: query
@@ -92,8 +92,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Comma-separated list of filters, which can be "active" and/or
-          "pinned"
+      - description: "Comma-separated list of filters, which can be \"active\" and/or\
+          \ \"pinned\""
         explode: true
         in: query
         name: filters
@@ -236,7 +236,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_404'
+                $ref: '#/components/schemas/GetApimInstanceDetails_404_response'
           description: resource not found
         "204":
           description: API Instance Delete
@@ -307,7 +307,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_404'
+                $ref: '#/components/schemas/GetApimInstanceDetails_404_response'
           description: resource not found
         "200":
           content:
@@ -355,8 +355,8 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: For APIs deployed to Flex, if endpoint proxyUri or inbound TLS
-          Contexts are being updated, apis in the same port are also updated
+      - description: "For APIs deployed to Flex, if endpoint proxyUri or inbound TLS\
+          \ Contexts are being updated, apis in the same port are also updated"
         explode: true
         in: query
         name: updateApisInSamePort
@@ -383,7 +383,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_404'
+                $ref: '#/components/schemas/GetApimInstanceDetails_404_response'
           description: resource not found
         "200":
           content:
@@ -406,7 +406,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_404'
+            $ref: '#/components/schemas/GetApimInstanceDetails_404_response'
       description: resource not found
     SuccessGetApimInstanceCollection:
       content:
@@ -439,7 +439,7 @@ components:
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors'
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
           type: array
       title: errorsResponse
       type: object
@@ -470,7 +470,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -485,7 +485,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -550,7 +550,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -565,7 +565,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -645,7 +645,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -660,7 +660,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -725,7 +725,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -740,7 +740,7 @@ components:
                 uri: uri
               rules:
                 path: path
-                headers: '{}'
+                headers: "{}"
                 methods: methods
                 host: host
               label: label
@@ -802,14 +802,32 @@ components:
           type: integer
         assets:
           items:
-            $ref: '#/components/schemas/ApimInstanceCollection_assets'
+            $ref: '#/components/schemas/ApimInstanceCollection_assets_inner'
           type: array
       type: object
     ApimInstancePostBody:
       example:
         routing:
-        - '{}'
-        - '{}'
+        - upstreams:
+            weight: 0
+            label: label
+            uri: uri
+          rules:
+            path: path
+            headers: "{}"
+            methods: methods
+            host: host
+          label: label
+        - upstreams:
+            weight: 0
+            label: label
+            uri: uri
+          rules:
+            path: path
+            headers: "{}"
+            methods: methods
+            host: host
+          label: label
         endpoint:
           deploymentType: deploymentType
           referencesUserDomain: referencesUserDomain
@@ -853,31 +871,7 @@ components:
           $ref: '#/components/schemas/Spec'
         routing:
           items:
-            nullable: true
-            properties:
-              label:
-                type: string
-              rules:
-                properties:
-                  methods:
-                    type: string
-                  host:
-                    type: string
-                  path:
-                    type: string
-                  headers:
-                    type: object
-                type: object
-              upstreams:
-                properties:
-                  weight:
-                    type: integer
-                  uri:
-                    type: string
-                  label:
-                    type: string
-                type: object
-            type: object
+            $ref: '#/components/schemas/RoutingPostBody_inner'
           nullable: true
           title: RoutingPostBody
           type: array
@@ -929,7 +923,7 @@ components:
                 date: 2000-01-23T04:56:07.000+00:00
               updated:
                 date: 2000-01-23T04:56:07.000+00:00
-            outbound: '{}'
+            outbound: "{}"
           isCloudHub: isCloudHub
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
@@ -1008,7 +1002,7 @@ components:
             uri: uri
           rules:
             path: path
-            headers: '{}'
+            headers: "{}"
             methods: methods
             host: host
           label: label
@@ -1023,7 +1017,7 @@ components:
             uri: uri
           rules:
             path: path
-            headers: '{}'
+            headers: "{}"
             methods: methods
             host: host
           label: label
@@ -1058,7 +1052,7 @@ components:
                 date: 2000-01-23T04:56:07.000+00:00
               updated:
                 date: 2000-01-23T04:56:07.000+00:00
-            outbound: '{}'
+            outbound: "{}"
           isCloudHub: isCloudHub
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
@@ -1179,7 +1173,7 @@ components:
             uri: uri
           rules:
             path: path
-            headers: '{}'
+            headers: "{}"
             methods: methods
             host: host
           label: label
@@ -1194,7 +1188,7 @@ components:
             uri: uri
           rules:
             path: path
-            headers: '{}'
+            headers: "{}"
             methods: methods
             host: host
           label: label
@@ -1228,7 +1222,7 @@ components:
                 date: 2000-01-23T04:56:07.000+00:00
               updated:
                 date: 2000-01-23T04:56:07.000+00:00
-            outbound: '{}'
+            outbound: "{}"
           isCloudHub: isCloudHub
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
@@ -1378,7 +1372,7 @@ components:
               date: 2000-01-23T04:56:07.000+00:00
             updated:
               date: 2000-01-23T04:56:07.000+00:00
-          outbound: '{}'
+          outbound: "{}"
         isCloudHub: isCloudHub
         proxyRegistrationUri: proxyRegistrationUri
         responseTimeout: responseTimeout
@@ -1609,7 +1603,7 @@ components:
           uri: uri
         rules:
           path: path
-          headers: '{}'
+          headers: "{}"
           methods: methods
           host: host
         label: label
@@ -1621,7 +1615,7 @@ components:
           $ref: '#/components/schemas/Routing_rules'
         upstreams:
           items:
-            $ref: '#/components/schemas/Routing_upstreams'
+            $ref: '#/components/schemas/Routing_upstreams_inner'
           type: array
       title: Routing
       type: object
@@ -1632,42 +1626,18 @@ components:
       type: array
     RoutingPostBody:
       items:
-        nullable: true
-        properties:
-          label:
-            type: string
-          rules:
-            properties:
-              methods:
-                type: string
-              host:
-                type: string
-              path:
-                type: string
-              headers:
-                type: object
-            type: object
-          upstreams:
-            properties:
-              weight:
-                type: integer
-              uri:
-                type: string
-              label:
-                type: string
-            type: object
-        type: object
+        $ref: '#/components/schemas/RoutingPostBody_inner'
       nullable: true
       title: RoutingPostBody
       type: array
-    inline_response_404:
+    GetApimInstanceDetails_404_response:
       properties:
         name:
           type: string
         message:
           type: string
       type: object
-    errorsResponse_errors:
+    errorsResponse_errors_inner:
       properties:
         type:
           title: type
@@ -1688,7 +1658,7 @@ components:
           title: message
           type: string
       type: object
-    ApimInstanceCollection_apis:
+    ApimInstanceCollection_assets_inner_apis_inner:
       example:
         pinned: true
         autodiscoveryInstanceName: autodiscoveryInstanceName
@@ -1710,7 +1680,7 @@ components:
             uri: uri
           rules:
             path: path
-            headers: '{}'
+            headers: "{}"
             methods: methods
             host: host
           label: label
@@ -1725,7 +1695,7 @@ components:
             uri: uri
           rules:
             path: path
-            headers: '{}'
+            headers: "{}"
             methods: methods
             host: host
           label: label
@@ -1829,7 +1799,7 @@ components:
         autodiscoveryInstanceName:
           type: string
       type: object
-    ApimInstanceCollection_assets:
+    ApimInstanceCollection_assets_inner:
       example:
         organizationId: organizationId
         totalApis: 3
@@ -1854,7 +1824,7 @@ components:
               uri: uri
             rules:
               path: path
-              headers: '{}'
+              headers: "{}"
               methods: methods
               host: host
             label: label
@@ -1869,7 +1839,7 @@ components:
               uri: uri
             rules:
               path: path
-              headers: '{}'
+              headers: "{}"
               methods: methods
               host: host
             label: label
@@ -1934,7 +1904,7 @@ components:
               uri: uri
             rules:
               path: path
-              headers: '{}'
+              headers: "{}"
               methods: methods
               host: host
             label: label
@@ -1949,7 +1919,7 @@ components:
               uri: uri
             rules:
               path: path
-              headers: '{}'
+              headers: "{}"
               methods: methods
               host: host
             label: label
@@ -2025,7 +1995,7 @@ components:
           type: string
         apis:
           items:
-            $ref: '#/components/schemas/ApimInstanceCollection_apis'
+            $ref: '#/components/schemas/ApimInstanceCollection_assets_inner_apis_inner'
           type: array
         totalApis:
           type: integer
@@ -2061,7 +2031,7 @@ components:
             date: 2000-01-23T04:56:07.000+00:00
           updated:
             date: 2000-01-23T04:56:07.000+00:00
-        outbound: '{}'
+        outbound: "{}"
       properties:
         audit:
           $ref: '#/components/schemas/Audit'
@@ -2107,7 +2077,7 @@ components:
     Routing_rules:
       example:
         path: path
-        headers: '{}'
+        headers: "{}"
         methods: methods
         host: host
       properties:
@@ -2120,7 +2090,7 @@ components:
         headers:
           type: object
       type: object
-    Routing_upstreams:
+    Routing_upstreams_inner:
       example:
         weight: 7
         id: id
@@ -2135,6 +2105,40 @@ components:
           type: string
         label:
           type: string
+      type: object
+    RoutingPostBody_inner_upstreams:
+      example:
+        weight: 0
+        label: label
+        uri: uri
+      properties:
+        weight:
+          type: integer
+        uri:
+          type: string
+        label:
+          type: string
+      type: object
+    RoutingPostBody_inner:
+      example:
+        upstreams:
+          weight: 0
+          label: label
+          uri: uri
+        rules:
+          path: path
+          headers: "{}"
+          methods: methods
+          host: host
+        label: label
+      nullable: true
+      properties:
+        label:
+          type: string
+        rules:
+          $ref: '#/components/schemas/Routing_rules'
+        upstreams:
+          $ref: '#/components/schemas/RoutingPostBody_inner_upstreams'
       type: object
   securitySchemes:
     bearerAuth:

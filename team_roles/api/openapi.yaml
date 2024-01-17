@@ -168,48 +168,18 @@ components:
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors'
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
           type: array
       title: errorsResponse
       type: object
     teamRolesPostBody:
       items:
-        properties:
-          role_id:
-            title: roleId
-            type: string
-          context_params:
-            properties:
-              org:
-                title: org
-                type: string
-              envId:
-                title: envId
-                type: string
-            title: contextParams
-            type: object
-        title: teamRolePostBody
-        type: object
+        $ref: '#/components/schemas/teamRolePostBody'
       title: teamRolesPostBody
       type: array
     teamRolesDeleteBody:
       items:
-        properties:
-          role_id:
-            title: roleId
-            type: string
-          context_params:
-            properties:
-              org:
-                title: org
-                type: string
-              envId:
-                title: envId
-                type: string
-            title: contextParams
-            type: object
-        title: teamRoleDeleteBody
-        type: object
+        $ref: '#/components/schemas/teamRoleDeleteBody'
       title: teamRolesDeleteBody
       type: array
     teamRole:
@@ -255,7 +225,7 @@ components:
           type: integer
       title: teamRoleCollection
       type: object
-    errorsResponse_errors:
+    errorsResponse_errors_inner:
       properties:
         type:
           title: type
@@ -288,6 +258,24 @@ components:
           title: envId
           type: string
       title: contextParams
+      type: object
+    teamRolePostBody:
+      properties:
+        role_id:
+          title: roleId
+          type: string
+        context_params:
+          $ref: '#/components/schemas/contextParams'
+      title: teamRolePostBody
+      type: object
+    teamRoleDeleteBody:
+      properties:
+        role_id:
+          title: roleId
+          type: string
+        context_params:
+          $ref: '#/components/schemas/contextParams'
+      title: teamRoleDeleteBody
       type: object
   securitySchemes:
     bearerAuth:

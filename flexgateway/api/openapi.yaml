@@ -257,7 +257,7 @@ components:
           type: string
         replicas:
           items:
-            $ref: '#/components/schemas/FlexGatewayTargetDetails_replicas'
+            $ref: '#/components/schemas/FlexGatewayTargetDetails_replicas_inner'
           type: array
         tags:
           items:
@@ -287,7 +287,7 @@ components:
       properties:
         instances:
           items:
-            $ref: '#/components/schemas/FlexGatewayTargetApis_instances'
+            $ref: '#/components/schemas/FlexGatewayTargetApis_instances_inner'
           type: array
         targetAllowsPortSharing:
           type: boolean
@@ -310,7 +310,7 @@ components:
         DISCONNECTED:
           type: integer
       type: object
-    FlexGatewayTargetDetails_replicas:
+    FlexGatewayTargetDetails_replicas_inner:
       example:
         certificateExpirationDates:
         - 2000-01-23T04:56:07.000+00:00
@@ -331,7 +331,7 @@ components:
             type: string
           type: array
       type: object
-    FlexGatewayTargetApis_instances:
+    FlexGatewayTargetApis_instances_inner:
       example:
         path: path
         port: port

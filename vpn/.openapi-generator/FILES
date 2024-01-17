@@ -6,7 +6,7 @@ api_default.go
 client.go
 configuration.go
 docs/DefaultApi.md
-docs/InlineResponse200.md
+docs/OrganizationsOrgIdVpcsVpcIdIpsecGet200Response.md
 docs/Spec.md
 docs/Spec1.md
 docs/State.md
@@ -23,7 +23,7 @@ docs/VpnTunnel.md
 git_push.sh
 go.mod
 go.sum
-model_inline_response_200.go
+model__organizations__org_id__vpcs__vpc_id__ipsec_get_200_response.go
 model_spec.go
 model_spec_1.go
 model_state.go
@@ -38,4 +38,5 @@ model_vpn_post.go
 model_vpn_post_req_body.go
 model_vpn_tunnel.go
 response.go
+test/api_default_test.go
 utils.go

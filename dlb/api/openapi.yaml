@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__loadbalancers_get_200_response'
           description: Success response
     post:
       description: create a DLB
@@ -73,7 +73,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__loadbalancers_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -189,7 +189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__loadbalancers_post_400_response'
           description: Bad request response
         "200":
           content:
@@ -205,7 +205,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__loadbalancers_post_400_response'
       description: Bad request response
     SuccessGetDLB:
       content:
@@ -231,7 +231,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__vpcs__vpcId__loadbalancers_get_200_response'
       description: Success response
   schemas:
     dlb:
@@ -275,7 +275,7 @@ components:
           type: boolean
         sslEndpoints:
           items:
-            $ref: '#/components/schemas/dlbCore_sslEndpoints'
+            $ref: '#/components/schemas/dlbCore_sslEndpoints_inner'
           type: array
       title: dlbCore
       type: object
@@ -324,7 +324,7 @@ components:
           type: integer
         ipAddressesInfo:
           items:
-            $ref: '#/components/schemas/dlbExtras_ipAddressesInfo'
+            $ref: '#/components/schemas/dlbExtras_ipAddressesInfo_inner'
           type: array
         doubleStaticIps:
           title: doubleStaticIps
@@ -339,22 +339,7 @@ components:
       type: object
     jsonPatch:
       items:
-        properties:
-          op:
-            enum:
-            - replace
-            - add
-            - remove
-            title: op
-            type: string
-          path:
-            example: /state
-            title: path
-            type: string
-          value:
-            title: value
-        title: updateObject
-        type: object
+        $ref: '#/components/schemas/updateObject'
       title: jsonPatch
       type: array
     dlbPostBody:
@@ -434,11 +419,11 @@ components:
           type: string
         sslEndpoints:
           items:
-            $ref: '#/components/schemas/dlbPostBody_sslEndpoints'
+            $ref: '#/components/schemas/dlbPostBody_sslEndpoints_inner'
           type: array
       title: dlbPostBody
       type: object
-    inline_response_200:
+    _organizations__orgId__vpcs__vpcId__loadbalancers_get_200_response:
       example:
         total: 0
         data:
@@ -454,7 +439,7 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__vpcs__vpcId__loadbalancers_post_400_response:
       properties:
         status:
           default: 400
@@ -465,14 +450,14 @@ components:
           title: the error message
           type: string
       type: object
-    dlbCore_mappings:
+    dlbCore_sslEndpoints_inner_mappings_inner:
       properties:
         inputUri:
-          example: '{app}/'
+          example: "{app}/"
           title: inputUri
           type: string
         appName:
-          example: '{app}'
+          example: "{app}"
           title: appName
           type: string
         appUri:
@@ -484,7 +469,7 @@ components:
           title: upstreamProtocol
           type: string
       type: object
-    dlbCore_sslEndpoints:
+    dlbCore_sslEndpoints_inner:
       properties:
         privateKeyLabel:
           title: privateKeyLabel
@@ -522,7 +507,7 @@ components:
           type: string
         mappings:
           items:
-            $ref: '#/components/schemas/dlbCore_mappings'
+            $ref: '#/components/schemas/dlbCore_sslEndpoints_inner_mappings_inner'
           type: array
       type: object
     instanceConfig:
@@ -532,7 +517,7 @@ components:
           type: string
       title: instanceConfig
       type: object
-    dlbExtras_ipAddressesInfo:
+    dlbExtras_ipAddressesInfo_inner:
       properties:
         ip:
           title: ip
@@ -544,14 +529,31 @@ components:
           title: staticIp
           type: boolean
       type: object
-    dlbPostBody_mappings:
+    updateObject:
+      properties:
+        op:
+          enum:
+          - replace
+          - add
+          - remove
+          title: op
+          type: string
+        path:
+          example: /state
+          title: path
+          type: string
+        value:
+          title: value
+      title: updateObject
+      type: object
+    dlbPostBody_sslEndpoints_inner_mappings_inner:
       properties:
         inputUri:
-          example: '{app}/'
+          example: "{app}/"
           title: inputUri
           type: string
         appName:
-          example: '{app}'
+          example: "{app}"
           title: appName
           type: string
         appUri:
@@ -569,7 +571,7 @@ components:
           title: upstreamProtocol
           type: string
       type: object
-    dlbPostBody_sslEndpoints:
+    dlbPostBody_sslEndpoints_inner:
       properties:
         privateKeyLabel:
           title: privateKeyLabel
@@ -621,7 +623,7 @@ components:
           type: string
         mappings:
           items:
-            $ref: '#/components/schemas/dlbPostBody_mappings'
+            $ref: '#/components/schemas/dlbPostBody_sslEndpoints_inner_mappings_inner'
           type: array
       type: object
   securitySchemes:
