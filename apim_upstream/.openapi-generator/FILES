@@ -36,5 +36,4 @@ model_upstream_post_body.go
 model_upstream_post_body_tls_context.go
 model_upstream_tls_context.go
 response.go
-test/api_default_test.go
 utils.go

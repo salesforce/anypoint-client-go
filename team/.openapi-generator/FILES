@@ -28,5 +28,4 @@ model_team_patch_body.go
 model_team_post_body.go
 model_team_put_body.go
 response.go
-test/api_default_test.go
 utils.go

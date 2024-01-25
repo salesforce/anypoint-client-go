@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -31,5 +30,4 @@ model_post_secret_group_crl_distrib_cfgs_201_response.go
 model_put_secret_group_tls_context_200_response.go
 model_secret_path.go
 response.go
-test/api_default_test.go
 utils.go

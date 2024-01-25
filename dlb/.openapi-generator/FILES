@@ -36,5 +36,4 @@ model_dlb_post_body_ssl_endpoints_inner_mappings_inner.go
 model_instance_config.go
 model_update_object.go
 response.go
-test/api_default_test.go
 utils.go

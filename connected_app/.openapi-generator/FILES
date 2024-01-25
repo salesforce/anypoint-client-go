@@ -32,5 +32,4 @@ model_connected_app_scopes_put_body.go
 model_context_params.go
 model_scope_core.go
 response.go
-test/api_default_test.go
 utils.go

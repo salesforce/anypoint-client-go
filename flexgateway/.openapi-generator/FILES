@@ -24,5 +24,4 @@ model_flex_gateway_target_details_replicas_inner.go
 model_flex_gateway_target_summary.go
 model_flex_gateway_target_summary_replicas.go
 response.go
-test/api_default_test.go
 utils.go

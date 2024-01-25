@@ -30,5 +30,4 @@ model_role_post_response_item.go
 model_role_to_assign.go
 model_role_to_delete.go
 response.go
-test/api_default_test.go
 utils.go

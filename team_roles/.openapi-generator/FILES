@@ -24,5 +24,4 @@ model_team_role_collection.go
 model_team_role_delete_body.go
 model_team_role_post_body.go
 response.go
-test/api_default_test.go
 utils.go

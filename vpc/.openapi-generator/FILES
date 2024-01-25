@@ -26,5 +26,4 @@ model_vpc_core.go
 model_vpc_id.go
 model_vpc_route.go
 response.go
-test/api_default_test.go
 utils.go

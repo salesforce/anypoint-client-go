@@ -20,5 +20,4 @@ model_team_member.go
 model_team_member_collection.go
 model_team_member_put_body.go
 response.go
-test/api_default_test.go
 utils.go

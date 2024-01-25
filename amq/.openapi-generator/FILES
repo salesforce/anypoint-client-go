@@ -16,5 +16,4 @@ model_queue.go
 model_queue_body.go
 model_update_amq_404_response.go
 response.go
-test/api_default_test.go
 utils.go

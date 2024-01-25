@@ -26,5 +26,4 @@ model_invite_obj_id.go
 model_invite_post_body.go
 model_role_groups.go
 response.go
-test/api_default_test.go
 utils.go

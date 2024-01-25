@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -57,5 +56,4 @@ model_tls_context_put_body.go
 model_tls_context_sf_body.go
 model_tls_context_summary.go
 response.go
-test/api_default_test.go
 utils.go

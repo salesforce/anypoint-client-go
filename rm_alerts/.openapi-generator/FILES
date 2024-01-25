@@ -18,5 +18,4 @@ model_alert.go
 model_alert_body.go
 model_condition.go
 response.go
-test/api_default_test.go
 utils.go

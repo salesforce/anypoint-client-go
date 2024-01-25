@@ -18,5 +18,4 @@ model__login_post_200_response.go
 model_credentials.go
 model_user_pwd_credentials.go
 response.go
-test/api_default_test.go
 utils.go

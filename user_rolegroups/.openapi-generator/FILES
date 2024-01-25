@@ -14,5 +14,4 @@ go.sum
 model__organizations__org_id__users__user_id__rolegroups_get_200_response.go
 model_rolegroup.go
 response.go
-test/api_default_test.go
 utils.go
