@@ -38,5 +38,4 @@ model_vpn_post.go
 model_vpn_post_req_body.go
 model_vpn_tunnel.go
 response.go
-test/api_default_test.go
 utils.go

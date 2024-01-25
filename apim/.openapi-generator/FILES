@@ -62,5 +62,4 @@ model_routing_rules.go
 model_routing_upstreams_inner.go
 model_spec.go
 response.go
-test/api_default_test.go
 utils.go

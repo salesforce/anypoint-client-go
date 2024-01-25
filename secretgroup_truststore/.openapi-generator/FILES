@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -39,5 +38,4 @@ model_truststore.go
 model_truststore_details.go
 model_truststore_summary.go
 response.go
-test/api_default_test.go
 utils.go

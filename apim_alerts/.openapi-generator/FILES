@@ -24,5 +24,4 @@ model_duration.go
 model_period.go
 model_recipient.go
 response.go
-test/api_default_test.go
 utils.go

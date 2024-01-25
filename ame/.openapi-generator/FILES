@@ -16,5 +16,4 @@ model_exchange.go
 model_exchange_body.go
 model_update_ame_404_response.go
 response.go
-test/api_default_test.go
 utils.go

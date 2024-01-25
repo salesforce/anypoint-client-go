@@ -34,5 +34,4 @@ model_user_id.go
 model_user_post_body.go
 model_user_put_body.go
 response.go
-test/api_default_test.go
 utils.go

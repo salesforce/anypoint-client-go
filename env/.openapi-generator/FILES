@@ -20,5 +20,4 @@ model_env.go
 model_env_core.go
 model_env_id.go
 response.go
-test/api_default_test.go
 utils.go

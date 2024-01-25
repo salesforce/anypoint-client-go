@@ -20,5 +20,4 @@ model_rolegroup.go
 model_rolegroup_post_body.go
 model_rolegroup_put_body.go
 response.go
-test/api_default_test.go
 utils.go

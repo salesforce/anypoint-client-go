@@ -20,5 +20,4 @@ model_team_group_mapping.go
 model_team_group_mapping_put_body.go
 model_team_group_mappings_collection.go
 response.go
-test/api_default_test.go
 utils.go

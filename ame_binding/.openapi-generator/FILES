@@ -20,5 +20,4 @@ model_exchange_binding_rules.go
 model_exchange_binding_with_rules.go
 model_exchange_binding_with_rules_all_of.go
 response.go
-test/api_default_test.go
 utils.go

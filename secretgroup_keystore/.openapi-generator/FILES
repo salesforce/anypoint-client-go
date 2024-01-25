@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -37,5 +36,4 @@ model_meta.go
 model_post_secret_group_keystores_201_response.go
 model_put_secret_group_keystore_200_response.go
 response.go
-test/api_default_test.go
 utils.go

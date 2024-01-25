@@ -72,5 +72,4 @@ model_urls_2.go
 model_urls_3.go
 model_urls_4.go
 response.go
-test/api_default_test.go
 utils.go
