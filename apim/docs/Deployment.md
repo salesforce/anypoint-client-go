@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **TargetId** | Pointer to **string** |  | [optional] 
 **TargetName** | Pointer to **string** |  | [optional] 
 **DeploymentId** | Pointer to **NullableString** |  | [optional] 
-**UpdatedDate** | Pointer to **time.Time** |  | [optional] 
+**UpdatedDate** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **ExpectedStatus** | Pointer to **string** |  | [optional] 
 **ApiId** | Pointer to **int32** |  | [optional] 
@@ -340,20 +340,20 @@ HasDeploymentId returns a boolean if a field has been set.
 UnsetDeploymentId ensures that no value is present for DeploymentId, not even an explicit nil
 ### GetUpdatedDate
 
-`func (o *Deployment) GetUpdatedDate() time.Time`
+`func (o *Deployment) GetUpdatedDate() string`
 
 GetUpdatedDate returns the UpdatedDate field if non-nil, zero value otherwise.
 
 ### GetUpdatedDateOk
 
-`func (o *Deployment) GetUpdatedDateOk() (*time.Time, bool)`
+`func (o *Deployment) GetUpdatedDateOk() (*string, bool)`
 
 GetUpdatedDateOk returns a tuple with the UpdatedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedDate
 
-`func (o *Deployment) SetUpdatedDate(v time.Time)`
+`func (o *Deployment) SetUpdatedDate(v string)`
 
 SetUpdatedDate sets UpdatedDate field to given value.
 

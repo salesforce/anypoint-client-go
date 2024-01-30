@@ -12,7 +12,6 @@ package apim
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the Deployment type satisfies the MappedNullable interface at compile time
@@ -30,7 +29,7 @@ type Deployment struct {
 	TargetId *string `json:"targetId,omitempty"`
 	TargetName *string `json:"targetName,omitempty"`
 	DeploymentId NullableString `json:"deploymentId,omitempty"`
-	UpdatedDate *time.Time `json:"updatedDate,omitempty"`
+	UpdatedDate *string `json:"updatedDate,omitempty"`
 	Type *string `json:"type,omitempty"`
 	ExpectedStatus *string `json:"expectedStatus,omitempty"`
 	ApiId *int32 `json:"apiId,omitempty"`
@@ -424,9 +423,9 @@ func (o *Deployment) UnsetDeploymentId() {
 }
 
 // GetUpdatedDate returns the UpdatedDate field value if set, zero value otherwise.
-func (o *Deployment) GetUpdatedDate() time.Time {
+func (o *Deployment) GetUpdatedDate() string {
 	if o == nil || IsNil(o.UpdatedDate) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.UpdatedDate
@@ -434,7 +433,7 @@ func (o *Deployment) GetUpdatedDate() time.Time {
 
 // GetUpdatedDateOk returns a tuple with the UpdatedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Deployment) GetUpdatedDateOk() (*time.Time, bool) {
+func (o *Deployment) GetUpdatedDateOk() (*string, bool) {
 	if o == nil || IsNil(o.UpdatedDate) {
 		return nil, false
 	}
@@ -450,8 +449,8 @@ func (o *Deployment) HasUpdatedDate() bool {
 	return false
 }
 
-// SetUpdatedDate gets a reference to the given time.Time and assigns it to the UpdatedDate field.
-func (o *Deployment) SetUpdatedDate(v time.Time) {
+// SetUpdatedDate gets a reference to the given string and assigns it to the UpdatedDate field.
+func (o *Deployment) SetUpdatedDate(v string) {
 	o.UpdatedDate = &v
 }
 

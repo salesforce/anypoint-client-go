@@ -1,14 +1,14 @@
 # \DefaultApi
 
-All URIs are relative to *https://anypoint.mulesoft.com/apimanager/api/v1*
+All URIs are relative to *https://anypoint.mulesoft.com/apimanager*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteApimInstance**](DefaultApi.md#DeleteApimInstance) | **Delete** /organizations/{orgId}/environments/{envId}/apis/{envApiId} | Delete a specific API Manager Instance
-[**GetApimInstanceDetails**](DefaultApi.md#GetApimInstanceDetails) | **Get** /organizations/{orgId}/environments/{envId}/apis/{envApiId} | Retrieves a specific API Manager Instance
-[**GetEnvApimInstances**](DefaultApi.md#GetEnvApimInstances) | **Get** /organizations/{orgId}/environments/{envId}/apis | Retrieves a collection of API Manager Instances
-[**PatchApimInstance**](DefaultApi.md#PatchApimInstance) | **Patch** /organizations/{orgId}/environments/{envId}/apis/{envApiId} | Patches a specific API Manager Instance
-[**PostApimInstance**](DefaultApi.md#PostApimInstance) | **Post** /organizations/{orgId}/environments/{envId}/apis | Creates an API Manager Instance
+[**DeleteApimInstance**](DefaultApi.md#DeleteApimInstance) | **Delete** /api/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId} | Delete a specific API Manager Instance
+[**GetApimInstanceDetails**](DefaultApi.md#GetApimInstanceDetails) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId} | Retrieves a specific API Manager Instance
+[**GetEnvApimInstances**](DefaultApi.md#GetEnvApimInstances) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis | Retrieves a collection of API Manager Instances
+[**PatchApimInstance**](DefaultApi.md#PatchApimInstance) | **Patch** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId} | Patches a specific API Manager Instance
+[**PostApimInstance**](DefaultApi.md#PostApimInstance) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis | Creates an API Manager Instance
 
 
 

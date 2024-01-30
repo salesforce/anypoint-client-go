@@ -73,15 +73,15 @@ ctx = context.WithValue(context.Background(), apim.ContextOperationServerVariabl
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://anypoint.mulesoft.com/apimanager/api/v1*
+All URIs are relative to *https://anypoint.mulesoft.com/apimanager*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**DeleteApimInstance**](docs/DefaultApi.md#deleteapiminstance) | **Delete** /organizations/{orgId}/environments/{envId}/apis/{envApiId} | Delete a specific API Manager Instance
-*DefaultApi* | [**GetApimInstanceDetails**](docs/DefaultApi.md#getapiminstancedetails) | **Get** /organizations/{orgId}/environments/{envId}/apis/{envApiId} | Retrieves a specific API Manager Instance
-*DefaultApi* | [**GetEnvApimInstances**](docs/DefaultApi.md#getenvapiminstances) | **Get** /organizations/{orgId}/environments/{envId}/apis | Retrieves a collection of API Manager Instances
-*DefaultApi* | [**PatchApimInstance**](docs/DefaultApi.md#patchapiminstance) | **Patch** /organizations/{orgId}/environments/{envId}/apis/{envApiId} | Patches a specific API Manager Instance
-*DefaultApi* | [**PostApimInstance**](docs/DefaultApi.md#postapiminstance) | **Post** /organizations/{orgId}/environments/{envId}/apis | Creates an API Manager Instance
+*DefaultApi* | [**DeleteApimInstance**](docs/DefaultApi.md#deleteapiminstance) | **Delete** /api/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId} | Delete a specific API Manager Instance
+*DefaultApi* | [**GetApimInstanceDetails**](docs/DefaultApi.md#getapiminstancedetails) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId} | Retrieves a specific API Manager Instance
+*DefaultApi* | [**GetEnvApimInstances**](docs/DefaultApi.md#getenvapiminstances) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis | Retrieves a collection of API Manager Instances
+*DefaultApi* | [**PatchApimInstance**](docs/DefaultApi.md#patchapiminstance) | **Patch** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId} | Patches a specific API Manager Instance
+*DefaultApi* | [**PostApimInstance**](docs/DefaultApi.md#postapiminstance) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis | Creates an API Manager Instance
 
 
 ## Documentation For Models

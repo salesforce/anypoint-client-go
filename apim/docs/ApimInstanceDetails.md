@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Order** | Pointer to **int32** |  | [optional] 
 **ProviderId** | Pointer to **NullableString** |  | [optional] 
 **Deprecated** | Pointer to **bool** |  | [optional] 
-**LastActiveDate** | Pointer to **NullableTime** |  | [optional] 
+**LastActiveDate** | Pointer to **NullableString** |  | [optional] 
 **EndpointUri** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **IsPublic** | Pointer to **bool** |  | [optional] 
@@ -421,20 +421,20 @@ HasDeprecated returns a boolean if a field has been set.
 
 ### GetLastActiveDate
 
-`func (o *ApimInstanceDetails) GetLastActiveDate() time.Time`
+`func (o *ApimInstanceDetails) GetLastActiveDate() string`
 
 GetLastActiveDate returns the LastActiveDate field if non-nil, zero value otherwise.
 
 ### GetLastActiveDateOk
 
-`func (o *ApimInstanceDetails) GetLastActiveDateOk() (*time.Time, bool)`
+`func (o *ApimInstanceDetails) GetLastActiveDateOk() (*string, bool)`
 
 GetLastActiveDateOk returns a tuple with the LastActiveDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastActiveDate
 
-`func (o *ApimInstanceDetails) SetLastActiveDate(v time.Time)`
+`func (o *ApimInstanceDetails) SetLastActiveDate(v string)`
 
 SetLastActiveDate sets LastActiveDate field to given value.
 

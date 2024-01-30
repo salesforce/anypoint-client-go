@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **ApiGatewayVersion** | Pointer to **NullableString** |  | [optional] 
 **ProxyUri** | Pointer to **NullableString** |  | [optional] 
 **ProxyRegistrationUri** | Pointer to **NullableString** |  | [optional] 
-**LastActiveDate** | Pointer to **NullableTime** |  | [optional] 
+**LastActiveDate** | Pointer to **NullableString** |  | [optional] 
 **IsCloudHub** | Pointer to **NullableString** |  | [optional] 
 **DeploymentType** | Pointer to **string** |  | [optional] 
 **PoliciesVersion** | Pointer to **NullableString** |  | [optional] 
@@ -270,20 +270,20 @@ HasProxyRegistrationUri returns a boolean if a field has been set.
 UnsetProxyRegistrationUri ensures that no value is present for ProxyRegistrationUri, not even an explicit nil
 ### GetLastActiveDate
 
-`func (o *Endpoint) GetLastActiveDate() time.Time`
+`func (o *Endpoint) GetLastActiveDate() string`
 
 GetLastActiveDate returns the LastActiveDate field if non-nil, zero value otherwise.
 
 ### GetLastActiveDateOk
 
-`func (o *Endpoint) GetLastActiveDateOk() (*time.Time, bool)`
+`func (o *Endpoint) GetLastActiveDateOk() (*string, bool)`
 
 GetLastActiveDateOk returns a tuple with the LastActiveDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastActiveDate
 
-`func (o *Endpoint) SetLastActiveDate(v time.Time)`
+`func (o *Endpoint) SetLastActiveDate(v string)`
 
 SetLastActiveDate sets LastActiveDate field to given value.
 

@@ -12,7 +12,6 @@ package apim
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the AuditCreated type satisfies the MappedNullable interface at compile time
@@ -20,7 +19,7 @@ var _ MappedNullable = &AuditCreated{}
 
 // AuditCreated struct for AuditCreated
 type AuditCreated struct {
-	Date *time.Time `json:"date,omitempty"`
+	Date *string `json:"date,omitempty"`
 }
 
 // NewAuditCreated instantiates a new AuditCreated object
@@ -41,9 +40,9 @@ func NewAuditCreatedWithDefaults() *AuditCreated {
 }
 
 // GetDate returns the Date field value if set, zero value otherwise.
-func (o *AuditCreated) GetDate() time.Time {
+func (o *AuditCreated) GetDate() string {
 	if o == nil || IsNil(o.Date) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Date
@@ -51,7 +50,7 @@ func (o *AuditCreated) GetDate() time.Time {
 
 // GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuditCreated) GetDateOk() (*time.Time, bool) {
+func (o *AuditCreated) GetDateOk() (*string, bool) {
 	if o == nil || IsNil(o.Date) {
 		return nil, false
 	}
@@ -67,8 +66,8 @@ func (o *AuditCreated) HasDate() bool {
 	return false
 }
 
-// SetDate gets a reference to the given time.Time and assigns it to the Date field.
-func (o *AuditCreated) SetDate(v time.Time) {
+// SetDate gets a reference to the given string and assigns it to the Date field.
+func (o *AuditCreated) SetDate(v string) {
 	o.Date = &v
 }
 

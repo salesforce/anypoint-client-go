@@ -70,7 +70,7 @@ func (a *DefaultApiService) DeleteApimInstanceExecute(r DefaultApiDeleteApimInst
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/apis/{envApiId}"
+	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envApiId"+"}", url.PathEscape(parameterValueToString(r.envApiId, "envApiId")), -1)
@@ -204,7 +204,7 @@ func (a *DefaultApiService) GetApimInstanceDetailsExecute(r DefaultApiGetApimIns
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/apis/{envApiId}"
+	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envApiId"+"}", url.PathEscape(parameterValueToString(r.envApiId, "envApiId")), -1)
@@ -427,7 +427,7 @@ func (a *DefaultApiService) GetEnvApimInstancesExecute(r DefaultApiGetEnvApimIns
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/apis"
+	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 
@@ -613,7 +613,7 @@ func (a *DefaultApiService) PatchApimInstanceExecute(r DefaultApiPatchApimInstan
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/apis/{envApiId}"
+	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{envApiId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envApiId"+"}", url.PathEscape(parameterValueToString(r.envApiId, "envApiId")), -1)
@@ -758,7 +758,7 @@ func (a *DefaultApiService) PostApimInstanceExecute(r DefaultApiPostApimInstance
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{orgId}/environments/{envId}/apis"
+	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 
