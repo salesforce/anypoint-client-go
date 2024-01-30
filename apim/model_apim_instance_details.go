@@ -12,7 +12,6 @@ package apim
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the ApimInstanceDetails type satisfies the MappedNullable interface at compile time
@@ -34,7 +33,7 @@ type ApimInstanceDetails struct {
 	Order *int32 `json:"order,omitempty"`
 	ProviderId NullableString `json:"providerId,omitempty"`
 	Deprecated *bool `json:"deprecated,omitempty"`
-	LastActiveDate NullableTime `json:"lastActiveDate,omitempty"`
+	LastActiveDate NullableString `json:"lastActiveDate,omitempty"`
 	EndpointUri *string `json:"endpointUri,omitempty"`
 	EnvironmentId *string `json:"environmentId,omitempty"`
 	IsPublic *bool `json:"isPublic,omitempty"`
@@ -533,9 +532,9 @@ func (o *ApimInstanceDetails) SetDeprecated(v bool) {
 }
 
 // GetLastActiveDate returns the LastActiveDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApimInstanceDetails) GetLastActiveDate() time.Time {
+func (o *ApimInstanceDetails) GetLastActiveDate() string {
 	if o == nil || IsNil(o.LastActiveDate.Get()) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.LastActiveDate.Get()
@@ -544,7 +543,7 @@ func (o *ApimInstanceDetails) GetLastActiveDate() time.Time {
 // GetLastActiveDateOk returns a tuple with the LastActiveDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApimInstanceDetails) GetLastActiveDateOk() (*time.Time, bool) {
+func (o *ApimInstanceDetails) GetLastActiveDateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -560,8 +559,8 @@ func (o *ApimInstanceDetails) HasLastActiveDate() bool {
 	return false
 }
 
-// SetLastActiveDate gets a reference to the given NullableTime and assigns it to the LastActiveDate field.
-func (o *ApimInstanceDetails) SetLastActiveDate(v time.Time) {
+// SetLastActiveDate gets a reference to the given NullableString and assigns it to the LastActiveDate field.
+func (o *ApimInstanceDetails) SetLastActiveDate(v string) {
 	o.LastActiveDate.Set(&v)
 }
 // SetLastActiveDateNil sets the value for LastActiveDate to be an explicit nil

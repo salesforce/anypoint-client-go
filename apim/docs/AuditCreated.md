@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | Pointer to **time.Time** |  | [optional] 
+**Date** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDate
 
-`func (o *AuditCreated) GetDate() time.Time`
+`func (o *AuditCreated) GetDate() string`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *AuditCreated) GetDateOk() (*time.Time, bool)`
+`func (o *AuditCreated) GetDateOk() (*string, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *AuditCreated) SetDate(v time.Time)`
+`func (o *AuditCreated) SetDate(v string)`
 
 SetDate sets Date field to given value.
 

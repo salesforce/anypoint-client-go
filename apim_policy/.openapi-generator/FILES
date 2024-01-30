@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -53,5 +52,4 @@ model_pointcut_data_item.go
 model_policy_configuration.go
 model_policy_configuration_configuration_inner.go
 response.go
-test/api_default_test.go
 utils.go
