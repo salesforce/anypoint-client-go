@@ -77,13 +77,13 @@ All URIs are relative to *https://anypoint.mulesoft.com/accounts/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**ConnectedApplicationsConnAppIdDelete**](docs/DefaultApi.md#connectedapplicationsconnappiddelete) | **Delete** /connectedApplications/{connAppId} | 
-*DefaultApi* | [**ConnectedApplicationsConnAppIdGet**](docs/DefaultApi.md#connectedapplicationsconnappidget) | **Get** /connectedApplications/{connAppId} | 
-*DefaultApi* | [**ConnectedApplicationsConnAppIdPatch**](docs/DefaultApi.md#connectedapplicationsconnappidpatch) | **Patch** /connectedApplications/{connAppId} | 
-*DefaultApi* | [**ConnectedApplicationsConnAppIdScopesGet**](docs/DefaultApi.md#connectedapplicationsconnappidscopesget) | **Get** /connectedApplications/{connAppId}/scopes | 
-*DefaultApi* | [**ConnectedApplicationsConnAppIdScopesPut**](docs/DefaultApi.md#connectedapplicationsconnappidscopesput) | **Put** /connectedApplications/{connAppId}/scopes | 
-*DefaultApi* | [**ConnectedApplicationsGet**](docs/DefaultApi.md#connectedapplicationsget) | **Get** /connectedApplications | 
-*DefaultApi* | [**ConnectedApplicationsPost**](docs/DefaultApi.md#connectedapplicationspost) | **Post** /connectedApplications | 
+*DefaultApi* | [**CreateConnectedApp**](docs/DefaultApi.md#createconnectedapp) | **Post** /organizations/{orgId}/connectedApplications | 
+*DefaultApi* | [**DeleteConnectedApp**](docs/DefaultApi.md#deleteconnectedapp) | **Delete** /organizations/{orgId}/connectedApplications/{connAppId} | 
+*DefaultApi* | [**GetAllConnectedApps**](docs/DefaultApi.md#getallconnectedapps) | **Get** /connectedApplications | 
+*DefaultApi* | [**GetConnectedApp**](docs/DefaultApi.md#getconnectedapp) | **Get** /organizations/{orgId}/connectedApplications/{connAppId} | 
+*DefaultApi* | [**GetConnectedAppScopes**](docs/DefaultApi.md#getconnectedappscopes) | **Get** /organizations/{orgId}/connectedApplications/{connAppId}/scopes | 
+*DefaultApi* | [**UpdateConnectedApp**](docs/DefaultApi.md#updateconnectedapp) | **Patch** /organizations/{orgId}/connectedApplications/{connAppId} | 
+*DefaultApi* | [**UpdateConnectedAppScopes**](docs/DefaultApi.md#updateconnectedappscopes) | **Put** /organizations/{orgId}/connectedApplications/{connAppId}/scopes | 
 
 
 ## Documentation For Models
@@ -94,10 +94,10 @@ Class | Method | HTTP request | Description
  - [ConnectedAppRespExt](docs/ConnectedAppRespExt.md)
  - [ConnectedAppRespExtAllOf](docs/ConnectedAppRespExtAllOf.md)
  - [ConnectedAppScopesPutBody](docs/ConnectedAppScopesPutBody.md)
- - [ConnectedApplicationsConnAppIdScopesGet200Response](docs/ConnectedApplicationsConnAppIdScopesGet200Response.md)
- - [ConnectedApplicationsGet200Response](docs/ConnectedApplicationsGet200Response.md)
- - [ConnectedApplicationsPost400Response](docs/ConnectedApplicationsPost400Response.md)
  - [ContextParams](docs/ContextParams.md)
+ - [CreateConnectedApp400Response](docs/CreateConnectedApp400Response.md)
+ - [GetAllConnectedApps200Response](docs/GetAllConnectedApps200Response.md)
+ - [GetConnectedAppScopes200Response](docs/GetConnectedAppScopes200Response.md)
  - [ScopeCore](docs/ScopeCore.md)
 
 

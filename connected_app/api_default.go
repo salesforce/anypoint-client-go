@@ -23,47 +23,173 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type DefaultApiConnectedApplicationsConnAppIdDeleteRequest struct {
+type DefaultApiCreateConnectedAppRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
-	connAppId string
+	orgId string
+	connectedAppCore *ConnectedAppCore
 }
 
-func (r DefaultApiConnectedApplicationsConnAppIdDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ConnectedApplicationsConnAppIdDeleteExecute(r)
+func (r DefaultApiCreateConnectedAppRequest) ConnectedAppCore(connectedAppCore ConnectedAppCore) DefaultApiCreateConnectedAppRequest {
+	r.connectedAppCore = &connectedAppCore
+	return r
+}
+
+func (r DefaultApiCreateConnectedAppRequest) Execute() (*ConnectedAppRespExt, *http.Response, error) {
+	return r.ApiService.CreateConnectedAppExecute(r)
 }
 
 /*
-ConnectedApplicationsConnAppIdDelete Method for ConnectedApplicationsConnAppIdDelete
+CreateConnectedApp Method for CreateConnectedApp
 
-deletes a Connected App
+Create a new connected application
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connAppId The ID of the connected app
- @return DefaultApiConnectedApplicationsConnAppIdDeleteRequest
+ @param orgId The ID of the organization
+ @return DefaultApiCreateConnectedAppRequest
 */
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdDelete(ctx context.Context, connAppId string) DefaultApiConnectedApplicationsConnAppIdDeleteRequest {
-	return DefaultApiConnectedApplicationsConnAppIdDeleteRequest{
+func (a *DefaultApiService) CreateConnectedApp(ctx context.Context, orgId string) DefaultApiCreateConnectedAppRequest {
+	return DefaultApiCreateConnectedAppRequest{
 		ApiService: a,
 		ctx: ctx,
+		orgId: orgId,
+	}
+}
+
+// Execute executes the request
+//  @return ConnectedAppRespExt
+func (a *DefaultApiService) CreateConnectedAppExecute(r DefaultApiCreateConnectedAppRequest) (*ConnectedAppRespExt, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ConnectedAppRespExt
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateConnectedApp")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/connectedApplications"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.connectedAppCore
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CreateConnectedApp400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiDeleteConnectedAppRequest struct {
+	ctx context.Context
+	ApiService *DefaultApiService
+	orgId string
+	connAppId string
+}
+
+func (r DefaultApiDeleteConnectedAppRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteConnectedAppExecute(r)
+}
+
+/*
+DeleteConnectedApp Method for DeleteConnectedApp
+
+Deletes a single connected application
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization
+ @param connAppId The ID of the connected app
+ @return DefaultApiDeleteConnectedAppRequest
+*/
+func (a *DefaultApiService) DeleteConnectedApp(ctx context.Context, orgId string, connAppId string) DefaultApiDeleteConnectedAppRequest {
+	return DefaultApiDeleteConnectedAppRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
 		connAppId: connAppId,
 	}
 }
 
 // Execute executes the request
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdDeleteExecute(r DefaultApiConnectedApplicationsConnAppIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultApiService) DeleteConnectedAppExecute(r DefaultApiDeleteConnectedAppRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteConnectedApp")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/connectedApplications/{connAppId}"
+	localVarPath := localBasePath + "/organizations/{orgId}/connectedApplications/{connAppId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -115,55 +241,101 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdDeleteExecute(r Defaul
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiConnectedApplicationsConnAppIdGetRequest struct {
+type DefaultApiGetAllConnectedAppsRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
-	connAppId string
+	includeUsage *bool
+	orgId *string
+	offset *int32
+	limit *int32
+	search *string
 }
 
-func (r DefaultApiConnectedApplicationsConnAppIdGetRequest) Execute() (*ConnectedAppRespExt, *http.Response, error) {
-	return r.ApiService.ConnectedApplicationsConnAppIdGetExecute(r)
+// flag to indicate whether to return usage statistics
+func (r DefaultApiGetAllConnectedAppsRequest) IncludeUsage(includeUsage bool) DefaultApiGetAllConnectedAppsRequest {
+	r.includeUsage = &includeUsage
+	return r
+}
+
+// Provide an orgId to get all clients from other organization
+func (r DefaultApiGetAllConnectedAppsRequest) OrgId(orgId string) DefaultApiGetAllConnectedAppsRequest {
+	r.orgId = &orgId
+	return r
+}
+
+// The number of records to omit from the response.
+func (r DefaultApiGetAllConnectedAppsRequest) Offset(offset int32) DefaultApiGetAllConnectedAppsRequest {
+	r.offset = &offset
+	return r
+}
+
+// Maximum records to retrieve per request.
+func (r DefaultApiGetAllConnectedAppsRequest) Limit(limit int32) DefaultApiGetAllConnectedAppsRequest {
+	r.limit = &limit
+	return r
+}
+
+// A search string to use for case-insensitive partial matches on all object properties.
+func (r DefaultApiGetAllConnectedAppsRequest) Search(search string) DefaultApiGetAllConnectedAppsRequest {
+	r.search = &search
+	return r
+}
+
+func (r DefaultApiGetAllConnectedAppsRequest) Execute() (*GetAllConnectedApps200Response, *http.Response, error) {
+	return r.ApiService.GetAllConnectedAppsExecute(r)
 }
 
 /*
-ConnectedApplicationsConnAppIdGet Method for ConnectedApplicationsConnAppIdGet
+GetAllConnectedApps Method for GetAllConnectedApps
 
-Returns all connected apps
+Get all connected applications for the organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connAppId The ID of the connected app
- @return DefaultApiConnectedApplicationsConnAppIdGetRequest
+ @return DefaultApiGetAllConnectedAppsRequest
 */
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdGet(ctx context.Context, connAppId string) DefaultApiConnectedApplicationsConnAppIdGetRequest {
-	return DefaultApiConnectedApplicationsConnAppIdGetRequest{
+func (a *DefaultApiService) GetAllConnectedApps(ctx context.Context) DefaultApiGetAllConnectedAppsRequest {
+	return DefaultApiGetAllConnectedAppsRequest{
 		ApiService: a,
 		ctx: ctx,
-		connAppId: connAppId,
 	}
 }
 
 // Execute executes the request
-//  @return ConnectedAppRespExt
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdGetExecute(r DefaultApiConnectedApplicationsConnAppIdGetRequest) (*ConnectedAppRespExt, *http.Response, error) {
+//  @return GetAllConnectedApps200Response
+func (a *DefaultApiService) GetAllConnectedAppsExecute(r DefaultApiGetAllConnectedAppsRequest) (*GetAllConnectedApps200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectedAppRespExt
+		localVarReturnValue  *GetAllConnectedApps200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAllConnectedApps")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/connectedApplications/{connAppId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
+	localVarPath := localBasePath + "/connectedApplications"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.includeUsage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeUsage", r.includeUsage, "")
+	}
+	if r.orgId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orgId", r.orgId, "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -218,42 +390,296 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdGetExecute(r DefaultAp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiConnectedApplicationsConnAppIdPatchRequest struct {
+type DefaultApiGetConnectedAppRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
+	orgId string
 	connAppId string
-	connectedAppPatchExt *ConnectedAppPatchExt
+	includeUsage *bool
 }
 
-func (r DefaultApiConnectedApplicationsConnAppIdPatchRequest) ConnectedAppPatchExt(connectedAppPatchExt ConnectedAppPatchExt) DefaultApiConnectedApplicationsConnAppIdPatchRequest {
-	r.connectedAppPatchExt = &connectedAppPatchExt
+// flag to indicate whether to return usage statistics
+func (r DefaultApiGetConnectedAppRequest) IncludeUsage(includeUsage bool) DefaultApiGetConnectedAppRequest {
+	r.includeUsage = &includeUsage
 	return r
 }
 
-func (r DefaultApiConnectedApplicationsConnAppIdPatchRequest) Execute() (*ConnectedAppRespExt, *http.Response, error) {
-	return r.ApiService.ConnectedApplicationsConnAppIdPatchExecute(r)
+func (r DefaultApiGetConnectedAppRequest) Execute() (*ConnectedAppRespExt, *http.Response, error) {
+	return r.ApiService.GetConnectedAppExecute(r)
 }
 
 /*
-ConnectedApplicationsConnAppIdPatch Method for ConnectedApplicationsConnAppIdPatch
+GetConnectedApp Method for GetConnectedApp
 
-patches a Connected App
+Get a single connected application
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization
  @param connAppId The ID of the connected app
- @return DefaultApiConnectedApplicationsConnAppIdPatchRequest
+ @return DefaultApiGetConnectedAppRequest
 */
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatch(ctx context.Context, connAppId string) DefaultApiConnectedApplicationsConnAppIdPatchRequest {
-	return DefaultApiConnectedApplicationsConnAppIdPatchRequest{
+func (a *DefaultApiService) GetConnectedApp(ctx context.Context, orgId string, connAppId string) DefaultApiGetConnectedAppRequest {
+	return DefaultApiGetConnectedAppRequest{
 		ApiService: a,
 		ctx: ctx,
+		orgId: orgId,
 		connAppId: connAppId,
 	}
 }
 
 // Execute executes the request
 //  @return ConnectedAppRespExt
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatchExecute(r DefaultApiConnectedApplicationsConnAppIdPatchRequest) (*ConnectedAppRespExt, *http.Response, error) {
+func (a *DefaultApiService) GetConnectedAppExecute(r DefaultApiGetConnectedAppRequest) (*ConnectedAppRespExt, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ConnectedAppRespExt
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetConnectedApp")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/connectedApplications/{connAppId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.includeUsage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeUsage", r.includeUsage, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiGetConnectedAppScopesRequest struct {
+	ctx context.Context
+	ApiService *DefaultApiService
+	orgId string
+	connAppId string
+	offset *int32
+	limit *int32
+}
+
+// The number of records to omit from the response.
+func (r DefaultApiGetConnectedAppScopesRequest) Offset(offset int32) DefaultApiGetConnectedAppScopesRequest {
+	r.offset = &offset
+	return r
+}
+
+// Maximum records to retrieve per request.
+func (r DefaultApiGetConnectedAppScopesRequest) Limit(limit int32) DefaultApiGetConnectedAppScopesRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r DefaultApiGetConnectedAppScopesRequest) Execute() (*GetConnectedAppScopes200Response, *http.Response, error) {
+	return r.ApiService.GetConnectedAppScopesExecute(r)
+}
+
+/*
+GetConnectedAppScopes Method for GetConnectedAppScopes
+
+Retrieves context-aware scopes assigned to the connected application
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization
+ @param connAppId The ID of the connected app
+ @return DefaultApiGetConnectedAppScopesRequest
+*/
+func (a *DefaultApiService) GetConnectedAppScopes(ctx context.Context, orgId string, connAppId string) DefaultApiGetConnectedAppScopesRequest {
+	return DefaultApiGetConnectedAppScopesRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		connAppId: connAppId,
+	}
+}
+
+// Execute executes the request
+//  @return GetConnectedAppScopes200Response
+func (a *DefaultApiService) GetConnectedAppScopesExecute(r DefaultApiGetConnectedAppScopesRequest) (*GetConnectedAppScopes200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetConnectedAppScopes200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetConnectedAppScopes")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/connectedApplications/{connAppId}/scopes"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultApiUpdateConnectedAppRequest struct {
+	ctx context.Context
+	ApiService *DefaultApiService
+	orgId string
+	connAppId string
+	resetSecret *bool
+	connectedAppPatchExt *ConnectedAppPatchExt
+}
+
+// Asks service to reset secret as part of this operation
+func (r DefaultApiUpdateConnectedAppRequest) ResetSecret(resetSecret bool) DefaultApiUpdateConnectedAppRequest {
+	r.resetSecret = &resetSecret
+	return r
+}
+
+func (r DefaultApiUpdateConnectedAppRequest) ConnectedAppPatchExt(connectedAppPatchExt ConnectedAppPatchExt) DefaultApiUpdateConnectedAppRequest {
+	r.connectedAppPatchExt = &connectedAppPatchExt
+	return r
+}
+
+func (r DefaultApiUpdateConnectedAppRequest) Execute() (*ConnectedAppRespExt, *http.Response, error) {
+	return r.ApiService.UpdateConnectedAppExecute(r)
+}
+
+/*
+UpdateConnectedApp Method for UpdateConnectedApp
+
+Patches a single connected application
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization
+ @param connAppId The ID of the connected app
+ @return DefaultApiUpdateConnectedAppRequest
+*/
+func (a *DefaultApiService) UpdateConnectedApp(ctx context.Context, orgId string, connAppId string) DefaultApiUpdateConnectedAppRequest {
+	return DefaultApiUpdateConnectedAppRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		connAppId: connAppId,
+	}
+}
+
+// Execute executes the request
+//  @return ConnectedAppRespExt
+func (a *DefaultApiService) UpdateConnectedAppExecute(r DefaultApiUpdateConnectedAppRequest) (*ConnectedAppRespExt, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -261,18 +687,22 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatchExecute(r Default
 		localVarReturnValue  *ConnectedAppRespExt
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateConnectedApp")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/connectedApplications/{connAppId}"
+	localVarPath := localBasePath + "/organizations/{orgId}/connectedApplications/{connAppId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.resetSecret != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resetSecret", r.resetSecret, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -315,7 +745,7 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatchExecute(r Default
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ConnectedApplicationsPost400Response
+			var v CreateConnectedApp400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -340,156 +770,57 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdPatchExecute(r Default
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiConnectedApplicationsConnAppIdScopesGetRequest struct {
+type DefaultApiUpdateConnectedAppScopesRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
-	connAppId string
-}
-
-func (r DefaultApiConnectedApplicationsConnAppIdScopesGetRequest) Execute() (*ConnectedApplicationsConnAppIdScopesGet200Response, *http.Response, error) {
-	return r.ApiService.ConnectedApplicationsConnAppIdScopesGetExecute(r)
-}
-
-/*
-ConnectedApplicationsConnAppIdScopesGet Method for ConnectedApplicationsConnAppIdScopesGet
-
-Returns all scopes of a Connected App
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connAppId The ID of the connected app
- @return DefaultApiConnectedApplicationsConnAppIdScopesGetRequest
-*/
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesGet(ctx context.Context, connAppId string) DefaultApiConnectedApplicationsConnAppIdScopesGetRequest {
-	return DefaultApiConnectedApplicationsConnAppIdScopesGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		connAppId: connAppId,
-	}
-}
-
-// Execute executes the request
-//  @return ConnectedApplicationsConnAppIdScopesGet200Response
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesGetExecute(r DefaultApiConnectedApplicationsConnAppIdScopesGetRequest) (*ConnectedApplicationsConnAppIdScopesGet200Response, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConnectedApplicationsConnAppIdScopesGet200Response
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdScopesGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/connectedApplications/{connAppId}/scopes"
-	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DefaultApiConnectedApplicationsConnAppIdScopesPutRequest struct {
-	ctx context.Context
-	ApiService *DefaultApiService
+	orgId string
 	connAppId string
 	connectedAppScopesPutBody *ConnectedAppScopesPutBody
 }
 
-func (r DefaultApiConnectedApplicationsConnAppIdScopesPutRequest) ConnectedAppScopesPutBody(connectedAppScopesPutBody ConnectedAppScopesPutBody) DefaultApiConnectedApplicationsConnAppIdScopesPutRequest {
+func (r DefaultApiUpdateConnectedAppScopesRequest) ConnectedAppScopesPutBody(connectedAppScopesPutBody ConnectedAppScopesPutBody) DefaultApiUpdateConnectedAppScopesRequest {
 	r.connectedAppScopesPutBody = &connectedAppScopesPutBody
 	return r
 }
 
-func (r DefaultApiConnectedApplicationsConnAppIdScopesPutRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ConnectedApplicationsConnAppIdScopesPutExecute(r)
+func (r DefaultApiUpdateConnectedAppScopesRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UpdateConnectedAppScopesExecute(r)
 }
 
 /*
-ConnectedApplicationsConnAppIdScopesPut Method for ConnectedApplicationsConnAppIdScopesPut
+UpdateConnectedAppScopes Method for UpdateConnectedAppScopes
 
-replace a Connected App scopes
+Replaces the entire list of context-aware scopes assigned to the connected application
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization
  @param connAppId The ID of the connected app
- @return DefaultApiConnectedApplicationsConnAppIdScopesPutRequest
+ @return DefaultApiUpdateConnectedAppScopesRequest
 */
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesPut(ctx context.Context, connAppId string) DefaultApiConnectedApplicationsConnAppIdScopesPutRequest {
-	return DefaultApiConnectedApplicationsConnAppIdScopesPutRequest{
+func (a *DefaultApiService) UpdateConnectedAppScopes(ctx context.Context, orgId string, connAppId string) DefaultApiUpdateConnectedAppScopesRequest {
+	return DefaultApiUpdateConnectedAppScopesRequest{
 		ApiService: a,
 		ctx: ctx,
+		orgId: orgId,
 		connAppId: connAppId,
 	}
 }
 
 // Execute executes the request
-func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesPutExecute(r DefaultApiConnectedApplicationsConnAppIdScopesPutRequest) (*http.Response, error) {
+func (a *DefaultApiService) UpdateConnectedAppScopesExecute(r DefaultApiUpdateConnectedAppScopesRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsConnAppIdScopesPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateConnectedAppScopes")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/connectedApplications/{connAppId}/scopes"
+	localVarPath := localBasePath + "/organizations/{orgId}/connectedApplications/{connAppId}/scopes"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"connAppId"+"}", url.PathEscape(parameterValueToString(r.connAppId, "connAppId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -538,7 +869,7 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesPutExecute(r Def
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ConnectedApplicationsPost400Response
+			var v CreateConnectedApp400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -552,221 +883,4 @@ func (a *DefaultApiService) ConnectedApplicationsConnAppIdScopesPutExecute(r Def
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type DefaultApiConnectedApplicationsGetRequest struct {
-	ctx context.Context
-	ApiService *DefaultApiService
-}
-
-func (r DefaultApiConnectedApplicationsGetRequest) Execute() (*ConnectedApplicationsGet200Response, *http.Response, error) {
-	return r.ApiService.ConnectedApplicationsGetExecute(r)
-}
-
-/*
-ConnectedApplicationsGet Method for ConnectedApplicationsGet
-
-Returns all connected apps
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiConnectedApplicationsGetRequest
-*/
-func (a *DefaultApiService) ConnectedApplicationsGet(ctx context.Context) DefaultApiConnectedApplicationsGetRequest {
-	return DefaultApiConnectedApplicationsGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return ConnectedApplicationsGet200Response
-func (a *DefaultApiService) ConnectedApplicationsGetExecute(r DefaultApiConnectedApplicationsGetRequest) (*ConnectedApplicationsGet200Response, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConnectedApplicationsGet200Response
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/connectedApplications"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DefaultApiConnectedApplicationsPostRequest struct {
-	ctx context.Context
-	ApiService *DefaultApiService
-	connectedAppCore *ConnectedAppCore
-}
-
-func (r DefaultApiConnectedApplicationsPostRequest) ConnectedAppCore(connectedAppCore ConnectedAppCore) DefaultApiConnectedApplicationsPostRequest {
-	r.connectedAppCore = &connectedAppCore
-	return r
-}
-
-func (r DefaultApiConnectedApplicationsPostRequest) Execute() (*ConnectedAppRespExt, *http.Response, error) {
-	return r.ApiService.ConnectedApplicationsPostExecute(r)
-}
-
-/*
-ConnectedApplicationsPost Method for ConnectedApplicationsPost
-
-create a Connected App
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiConnectedApplicationsPostRequest
-*/
-func (a *DefaultApiService) ConnectedApplicationsPost(ctx context.Context) DefaultApiConnectedApplicationsPostRequest {
-	return DefaultApiConnectedApplicationsPostRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return ConnectedAppRespExt
-func (a *DefaultApiService) ConnectedApplicationsPostExecute(r DefaultApiConnectedApplicationsPostRequest) (*ConnectedAppRespExt, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ConnectedAppRespExt
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ConnectedApplicationsPost")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/connectedApplications"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.connectedAppCore
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ConnectedApplicationsPost400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }
