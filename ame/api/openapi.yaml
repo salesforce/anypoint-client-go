@@ -148,7 +148,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_404'
+                $ref: '#/components/schemas/UpdateAME_404_response'
           description: Exchange not found
         "200":
           content:
@@ -229,7 +229,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_404'
+            $ref: '#/components/schemas/UpdateAME_404_response'
       description: Exchange not found
     SuccessGetExchange:
       content:
@@ -276,7 +276,7 @@ components:
           type: boolean
       title: exchange
       type: object
-    inline_response_404:
+    UpdateAME_404_response:
       properties:
         status:
           default: 404

@@ -6,6 +6,8 @@ api_default.go
 client.go
 configuration.go
 docs/Asset.md
+docs/AssetSearchResultItem.md
+docs/AssetsPost400Response.md
 docs/Attribute.md
 docs/Category.md
 docs/CreatedBy.md
@@ -14,7 +16,6 @@ docs/DefaultApi.md
 docs/Dependency.md
 docs/ExternalFile.md
 docs/File.md
-docs/InlineResponse400.md
 docs/Metadata.md
 docs/Organization.md
 docs/PatchAssetNameAndDescr.md
@@ -22,7 +23,9 @@ docs/PostAssetResponse.md
 git_push.sh
 go.mod
 go.sum
+model__assets_post_400_response.go
 model_asset.go
+model_asset_search_result_item.go
 model_attribute.go
 model_category.go
 model_created_by.go
@@ -30,7 +33,6 @@ model_custom_field.go
 model_dependency.go
 model_external_file.go
 model_file.go
-model_inline_response_400.go
 model_metadata.go
 model_organization.go
 model_patch_asset_name_and_descr.go

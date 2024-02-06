@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## OrganizationsOrgIdVpcsVpcIdIpsecGet
 
-> InlineResponse200 OrganizationsOrgIdVpcsVpcIdIpsecGet(ctx, orgId, vpcId).Execute()
+> OrganizationsOrgIdVpcsVpcIdIpsecGet200Response OrganizationsOrgIdVpcsVpcIdIpsecGet(ctx, orgId, vpcId).Execute()
 
 Returns a list of vpns.
 
@@ -28,7 +28,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpn"
 )
 
 func main() {
@@ -36,13 +36,13 @@ func main() {
     vpcId := "vpcId_example" // string | The vpc Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecGet(context.Background(), orgId, vpcId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecGet(context.Background(), orgId, vpcId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdVpcsVpcIdIpsecGet`: InlineResponse200
+    // response from `OrganizationsOrgIdVpcsVpcIdIpsecGet`: OrganizationsOrgIdVpcsVpcIdIpsecGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecGet`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdVpcsVpcIdIpsecGet200Response**](OrganizationsOrgIdVpcsVpcIdIpsecGet200Response.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpn"
 )
 
 func main() {
@@ -110,8 +110,8 @@ func main() {
     vpnPostReqBody := *openapiclient.NewVpnPostReqBody() // VpnPostReqBody | VPN request body
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecPost(context.Background(), orgId, vpcId).VpnPostReqBody(vpnPostReqBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecPost(context.Background(), orgId, vpcId).VpnPostReqBody(vpnPostReqBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -176,7 +176,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpn"
 )
 
 func main() {
@@ -185,8 +185,8 @@ func main() {
     vpnId := "vpnId_example" // string | The vpn Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete(context.Background(), orgId, vpcId, vpnId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete(context.Background(), orgId, vpcId, vpnId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -250,7 +250,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpn"
 )
 
 func main() {
@@ -259,8 +259,8 @@ func main() {
     vpnId := "vpnId_example" // string | The vpn Id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet(context.Background(), orgId, vpcId, vpnId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet(context.Background(), orgId, vpcId, vpnId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

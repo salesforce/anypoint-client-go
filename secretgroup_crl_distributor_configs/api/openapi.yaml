@@ -1,0 +1,432 @@
+openapi: 3.0.0
+info:
+  description: Secret Group CRL Distributor Configs API
+  title: Secret Group CRL Distributor Configs API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/secrets-manager/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}/crlDistributorConfigs:
+    get:
+      description: Retrieves a secret-groups' collection of crl-distributor-configs.
+      operationId: GetSecretGroupCrlDistribCfgsList
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrlDistribCfgSummaryCollection'
+          description: get secret-groups crl-distributor-configs collection response
+      summary: Retrieves a secret-groups' collection of crl-distributor-configs.
+    post:
+      description: Create a secret-groups' crl-distributor-configs.
+      operationId: PostSecretGroupCrlDistribCfgs
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrlDistribCfgsReqBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostSecretGroupCrlDistribCfgs_201_response'
+          description: post secret-group crl-distributor-configs response
+      summary: Create a secret-groups' crl-distributor-configs.
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}/crlDistributorConfigs/{secretId}:
+    get:
+      description: Retrieves crl-distributor-configs details by id for a given secret
+        group in a given organization and environment
+      operationId: GetSecretGroupCrlDistribCfgsDetails
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The crl distributor configurations id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupCrlDistribCfgsDetails_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrlDistribCfgsDetails'
+          description: get secret-group crl-distributor-configs details response
+      summary: Retrieve crl-distributor-configs details
+    put:
+      description: Update tls-context details for a given secret-group in a given
+        organization and environment
+      operationId: PutSecretGroupTlsContext
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The crl distributor configurations id
+        explode: false
+        in: path
+        name: secretId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrlDistribCfgsReqBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSecretGroupCrlDistribCfgsDetails_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutSecretGroupTlsContext_200_response'
+          description: put secret-group crl-distributor-configs response
+      summary: Update a given secret-group tls-context
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetSecretGroupCrlDistribCfgsDetails_404_response'
+      description: resource not found
+    SuccessGetSecretGroupCrlDitribCfgCollection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CrlDistribCfgSummaryCollection'
+      description: get secret-groups crl-distributor-configs collection response
+    SuccessPostSecretGroupCrlDistribCfgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PostSecretGroupCrlDistribCfgs_201_response'
+      description: post secret-group crl-distributor-configs response
+    SuccessGetSecretGroupCrlDitribCfgDetails:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CrlDistribCfgsDetails'
+      description: get secret-group crl-distributor-configs details response
+    SuccessPutSecretGroupCrlDitribCfg:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PutSecretGroupTlsContext_200_response'
+      description: put secret-group crl-distributor-configs response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
+          type: array
+      title: errorsResponse
+      type: object
+    CrlDistribCfgSummaryCollection:
+      items:
+        $ref: '#/components/schemas/CrlDistribCfgSummary'
+      type: array
+    CrlDistribCfgSummary:
+      example:
+        meta:
+          path: path
+          id: id
+        name: name
+        expirationDate: 2000-01-23
+      properties:
+        name:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        expirationDate:
+          format: date
+          type: string
+      type: object
+    CrlDistribCfgsDetails:
+      example:
+        deltaCrlIssuerUrl: deltaCrlIssuerUrl
+        completeCrlIssuerUrl: completeCrlIssuerUrl
+        meta:
+          path: path
+          id: id
+        distributorCertificate:
+          path: path
+        name: name
+        caCertificate:
+          path: path
+        frequency: 0
+        expirationDate: expirationDate
+      properties:
+        completeCrlIssuerUrl:
+          description: URL from where complete CRL file is retrieved
+          type: string
+        frequency:
+          description: How frequently should the distributor site be checked for new
+            crl files(in minutes)
+          type: integer
+        expirationDate:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        name:
+          type: string
+        distributorCertificate:
+          $ref: '#/components/schemas/SecretPath'
+        deltaCrlIssuerUrl:
+          description: URL from where the changes in CRL file can be retrieved
+          type: string
+        caCertificate:
+          $ref: '#/components/schemas/SecretPath'
+      type: object
+    CrlDistribCfgsReqBody:
+      example:
+        deltaCrlIssuerUrl: deltaCrlIssuerUrl
+        completeCrlIssuerUrl: completeCrlIssuerUrl
+        distributorCertificate:
+          path: path
+        name: name
+        caCertificate:
+          path: path
+        expirationDate: expirationDate
+        frequency: 0
+      properties:
+        expirationDate:
+          description: |
+            Date on which this secret should expire. If not set, by default, it will be set to one year from the date on which this secret is created/updated. Once the secret expires, a grant can not be requested for it.
+          type: string
+        completeCrlIssuerUrl:
+          description: URL where complete CRL file should be retrieved
+          type: string
+        frequency:
+          description: How frequently should the distributor site be checked for new
+            crl files(in minutes)
+          type: integer
+        name:
+          type: string
+        distributorCertificate:
+          $ref: '#/components/schemas/SecretPath'
+        deltaCrlIssuerUrl:
+          type: string
+        caCertificate:
+          $ref: '#/components/schemas/SecretPath'
+      type: object
+    Meta:
+      example:
+        path: path
+        id: id
+      properties:
+        id:
+          type: string
+        path:
+          type: string
+      type: object
+    SecretPath:
+      example:
+        path: path
+      properties:
+        path:
+          description: Relative path of the secret to be referenced.
+          type: string
+      type: object
+    PostSecretGroupCrlDistribCfgs_201_response:
+      example:
+        id: id
+        message: message
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+      type: object
+    GetSecretGroupCrlDistribCfgsDetails_404_response:
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+      type: object
+    PutSecretGroupTlsContext_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    errorsResponse_errors_inner:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

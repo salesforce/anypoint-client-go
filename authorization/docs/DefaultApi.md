@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ApiV2Oauth2TokenPost
 
-> InlineResponse200 ApiV2Oauth2TokenPost(ctx).Credentials(credentials).Execute()
+> ApiV2Oauth2TokenPost200Response ApiV2Oauth2TokenPost(ctx).Credentials(credentials).Execute()
 
 Returns access token
 
@@ -26,20 +26,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/authorization"
 )
 
 func main() {
     credentials := *openapiclient.NewCredentials() // Credentials | Request body containing credentials
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ApiV2Oauth2TokenPost(context.Background()).Credentials(credentials).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ApiV2Oauth2TokenPost(context.Background()).Credentials(credentials).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV2Oauth2TokenPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApiV2Oauth2TokenPost`: InlineResponse200
+    // response from `ApiV2Oauth2TokenPost`: ApiV2Oauth2TokenPost200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ApiV2Oauth2TokenPost`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**ApiV2Oauth2TokenPost200Response**](ApiV2Oauth2TokenPost200Response.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ No authorization required
 
 ## LoginPost
 
-> InlineResponse2001 LoginPost(ctx).UserPwdCredentials(userPwdCredentials).Execute()
+> LoginPost200Response LoginPost(ctx).UserPwdCredentials(userPwdCredentials).Execute()
 
 Returns access token
 
@@ -92,20 +92,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/authorization"
 )
 
 func main() {
     userPwdCredentials := *openapiclient.NewUserPwdCredentials() // UserPwdCredentials | Request body containing credentials
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.LoginPost(context.Background()).UserPwdCredentials(userPwdCredentials).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.LoginPost(context.Background()).UserPwdCredentials(userPwdCredentials).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.LoginPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LoginPost`: InlineResponse2001
+    // response from `LoginPost`: LoginPost200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.LoginPost`: %v\n", resp)
 }
 ```
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**LoginPost200Response**](LoginPost200Response.md)
 
 ### Authorization
 

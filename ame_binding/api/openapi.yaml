@@ -275,23 +275,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/AMEBindingRuleBody'
         content:
           application/json:
             schema:
-              example:
-                routingRules:
-                - '{}'
-                - '{}'
-              properties:
-                routingRules:
-                  items:
-                    title: routingRule
-                    type: object
-                  title: routingRules
-                  type: array
-              title: AMEBindingRuleBody
-              type: object
+              $ref: '#/components/schemas/AMEBindingRuleBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -302,12 +289,6 @@ paths:
                 $ref: '#/components/schemas/exchangeBindingRules'
           description: Successfully created exchange binding rules
 components:
-  requestBodies:
-    AMEBindingRuleBody:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AMEBindingRuleBody'
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
@@ -386,8 +367,8 @@ components:
         exchangeId: exchangeId
         queueId: queueId
         routingRules:
-        - '{}'
-        - '{}'
+        - "{}"
+        - "{}"
       properties:
         queueId:
           title: queueId
@@ -412,8 +393,8 @@ components:
     AMEBindingRuleBody:
       example:
         routingRules:
-        - '{}'
-        - '{}'
+        - "{}"
+        - "{}"
       properties:
         routingRules:
           items:
@@ -431,6 +412,7 @@ components:
             type: object
           title: routingRules
           type: array
+      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

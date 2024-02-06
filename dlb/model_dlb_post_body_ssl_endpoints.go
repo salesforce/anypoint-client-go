@@ -21,6 +21,10 @@ type DlbPostBodySslEndpoints struct {
 	PublicKeyLabel *string `json:"publicKeyLabel,omitempty"`
 	PublicKey *string `json:"publicKey,omitempty"`
 	VerifyClientMode *string `json:"verifyClientMode,omitempty"`
+	ClientCertLabel *string `json:"clientCertLabel,omitempty"`
+	ClientCert *string `json:"clientCert,omitempty"`
+	RevocationListLabel *string `json:"revocationListLabel,omitempty"`
+	RevocationList *string `json:"revocationList,omitempty"`
 	Mappings *[]DlbPostBodyMappings `json:"mappings,omitempty"`
 }
 
@@ -205,6 +209,134 @@ func (o *DlbPostBodySslEndpoints) SetVerifyClientMode(v string) {
 	o.VerifyClientMode = &v
 }
 
+// GetClientCertLabel returns the ClientCertLabel field value if set, zero value otherwise.
+func (o *DlbPostBodySslEndpoints) GetClientCertLabel() string {
+	if o == nil || o.ClientCertLabel == nil {
+		var ret string
+		return ret
+	}
+	return *o.ClientCertLabel
+}
+
+// GetClientCertLabelOk returns a tuple with the ClientCertLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBodySslEndpoints) GetClientCertLabelOk() (*string, bool) {
+	if o == nil || o.ClientCertLabel == nil {
+		return nil, false
+	}
+	return o.ClientCertLabel, true
+}
+
+// HasClientCertLabel returns a boolean if a field has been set.
+func (o *DlbPostBodySslEndpoints) HasClientCertLabel() bool {
+	if o != nil && o.ClientCertLabel != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientCertLabel gets a reference to the given string and assigns it to the ClientCertLabel field.
+func (o *DlbPostBodySslEndpoints) SetClientCertLabel(v string) {
+	o.ClientCertLabel = &v
+}
+
+// GetClientCert returns the ClientCert field value if set, zero value otherwise.
+func (o *DlbPostBodySslEndpoints) GetClientCert() string {
+	if o == nil || o.ClientCert == nil {
+		var ret string
+		return ret
+	}
+	return *o.ClientCert
+}
+
+// GetClientCertOk returns a tuple with the ClientCert field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBodySslEndpoints) GetClientCertOk() (*string, bool) {
+	if o == nil || o.ClientCert == nil {
+		return nil, false
+	}
+	return o.ClientCert, true
+}
+
+// HasClientCert returns a boolean if a field has been set.
+func (o *DlbPostBodySslEndpoints) HasClientCert() bool {
+	if o != nil && o.ClientCert != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientCert gets a reference to the given string and assigns it to the ClientCert field.
+func (o *DlbPostBodySslEndpoints) SetClientCert(v string) {
+	o.ClientCert = &v
+}
+
+// GetRevocationListLabel returns the RevocationListLabel field value if set, zero value otherwise.
+func (o *DlbPostBodySslEndpoints) GetRevocationListLabel() string {
+	if o == nil || o.RevocationListLabel == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevocationListLabel
+}
+
+// GetRevocationListLabelOk returns a tuple with the RevocationListLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBodySslEndpoints) GetRevocationListLabelOk() (*string, bool) {
+	if o == nil || o.RevocationListLabel == nil {
+		return nil, false
+	}
+	return o.RevocationListLabel, true
+}
+
+// HasRevocationListLabel returns a boolean if a field has been set.
+func (o *DlbPostBodySslEndpoints) HasRevocationListLabel() bool {
+	if o != nil && o.RevocationListLabel != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRevocationListLabel gets a reference to the given string and assigns it to the RevocationListLabel field.
+func (o *DlbPostBodySslEndpoints) SetRevocationListLabel(v string) {
+	o.RevocationListLabel = &v
+}
+
+// GetRevocationList returns the RevocationList field value if set, zero value otherwise.
+func (o *DlbPostBodySslEndpoints) GetRevocationList() string {
+	if o == nil || o.RevocationList == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevocationList
+}
+
+// GetRevocationListOk returns a tuple with the RevocationList field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbPostBodySslEndpoints) GetRevocationListOk() (*string, bool) {
+	if o == nil || o.RevocationList == nil {
+		return nil, false
+	}
+	return o.RevocationList, true
+}
+
+// HasRevocationList returns a boolean if a field has been set.
+func (o *DlbPostBodySslEndpoints) HasRevocationList() bool {
+	if o != nil && o.RevocationList != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRevocationList gets a reference to the given string and assigns it to the RevocationList field.
+func (o *DlbPostBodySslEndpoints) SetRevocationList(v string) {
+	o.RevocationList = &v
+}
+
 // GetMappings returns the Mappings field value if set, zero value otherwise.
 func (o *DlbPostBodySslEndpoints) GetMappings() []DlbPostBodyMappings {
 	if o == nil || o.Mappings == nil {
@@ -253,6 +385,18 @@ func (o DlbPostBodySslEndpoints) MarshalJSON() ([]byte, error) {
 	}
 	if o.VerifyClientMode != nil {
 		toSerialize["verifyClientMode"] = o.VerifyClientMode
+	}
+	if o.ClientCertLabel != nil {
+		toSerialize["clientCertLabel"] = o.ClientCertLabel
+	}
+	if o.ClientCert != nil {
+		toSerialize["clientCert"] = o.ClientCert
+	}
+	if o.RevocationListLabel != nil {
+		toSerialize["revocationListLabel"] = o.RevocationListLabel
+	}
+	if o.RevocationList != nil {
+		toSerialize["revocationList"] = o.RevocationList
 	}
 	if o.Mappings != nil {
 		toSerialize["mappings"] = o.Mappings

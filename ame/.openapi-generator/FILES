@@ -8,12 +8,12 @@ configuration.go
 docs/DefaultApi.md
 docs/Exchange.md
 docs/ExchangeBody.md
-docs/InlineResponse404.md
+docs/UpdateAME404Response.md
 git_push.sh
 go.mod
 go.sum
 model_exchange.go
 model_exchange_body.go
-model_inline_response_404.go
+model_update_ame_404_response.go
 response.go
 utils.go

@@ -269,16 +269,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/team'
-                - properties:
-                    previous_ancestor_team_ids:
-                      items:
-                        type: string
-                      title: previousAncestorTeamIds
-                      type: array
-                  title: previousTeamState
-                  type: object
+                $ref: '#/components/schemas/_organizations__orgId__teams__teamId__parent_put_201_response'
           description: Success response
 components:
   responses:
@@ -320,16 +311,7 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-            - $ref: '#/components/schemas/team'
-            - properties:
-                previous_ancestor_team_ids:
-                  items:
-                    type: string
-                  title: previousAncestorTeamIds
-                  type: array
-              title: previousTeamState
-              type: object
+            $ref: '#/components/schemas/_organizations__orgId__teams__teamId__parent_put_201_response'
       description: Success response
     SuccessDeleteTeam:
       description: Success response
@@ -338,7 +320,7 @@ components:
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors'
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
           type: array
       title: errorsResponse
       type: object
@@ -444,7 +426,20 @@ components:
           type: integer
       title: teamCollection
       type: object
-    errorsResponse_errors:
+    previousTeamState:
+      properties:
+        previous_ancestor_team_ids:
+          items:
+            type: string
+          title: previousAncestorTeamIds
+          type: array
+      title: previousTeamState
+      type: object
+    _organizations__orgId__teams__teamId__parent_put_201_response:
+      allOf:
+      - $ref: '#/components/schemas/team'
+      - $ref: '#/components/schemas/previousTeamState'
+    errorsResponse_errors_inner:
       properties:
         type:
           title: type

@@ -18,11 +18,14 @@ import (
 type DlbCoreSslEndpoints struct {
 	PrivateKeyLabel *string `json:"privateKeyLabel,omitempty"`
 	PrivateKeyDigest *string `json:"privateKeyDigest,omitempty"`
-	PrivateKey *string `json:"privateKey,omitempty"`
 	PublicKeyLabel *string `json:"publicKeyLabel,omitempty"`
 	PublicKeyDigest *string `json:"publicKeyDigest,omitempty"`
 	PublicKeyCN *string `json:"publicKeyCN,omitempty"`
-	PublicKey *string `json:"publicKey,omitempty"`
+	ClientCertLabel *string `json:"clientCertLabel,omitempty"`
+	ClientCertDigest *string `json:"clientCertDigest,omitempty"`
+	ClientCertCN *string `json:"clientCertCN,omitempty"`
+	RevocationListLabel *string `json:"revocationListLabel,omitempty"`
+	RevocationListDigest *string `json:"revocationListDigest,omitempty"`
 	VerifyClientMode *string `json:"verifyClientMode,omitempty"`
 	Mappings *[]DlbCoreMappings `json:"mappings,omitempty"`
 }
@@ -110,38 +113,6 @@ func (o *DlbCoreSslEndpoints) HasPrivateKeyDigest() bool {
 // SetPrivateKeyDigest gets a reference to the given string and assigns it to the PrivateKeyDigest field.
 func (o *DlbCoreSslEndpoints) SetPrivateKeyDigest(v string) {
 	o.PrivateKeyDigest = &v
-}
-
-// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
-func (o *DlbCoreSslEndpoints) GetPrivateKey() string {
-	if o == nil || o.PrivateKey == nil {
-		var ret string
-		return ret
-	}
-	return *o.PrivateKey
-}
-
-// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DlbCoreSslEndpoints) GetPrivateKeyOk() (*string, bool) {
-	if o == nil || o.PrivateKey == nil {
-		return nil, false
-	}
-	return o.PrivateKey, true
-}
-
-// HasPrivateKey returns a boolean if a field has been set.
-func (o *DlbCoreSslEndpoints) HasPrivateKey() bool {
-	if o != nil && o.PrivateKey != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
-func (o *DlbCoreSslEndpoints) SetPrivateKey(v string) {
-	o.PrivateKey = &v
 }
 
 // GetPublicKeyLabel returns the PublicKeyLabel field value if set, zero value otherwise.
@@ -240,36 +211,164 @@ func (o *DlbCoreSslEndpoints) SetPublicKeyCN(v string) {
 	o.PublicKeyCN = &v
 }
 
-// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
-func (o *DlbCoreSslEndpoints) GetPublicKey() string {
-	if o == nil || o.PublicKey == nil {
+// GetClientCertLabel returns the ClientCertLabel field value if set, zero value otherwise.
+func (o *DlbCoreSslEndpoints) GetClientCertLabel() string {
+	if o == nil || o.ClientCertLabel == nil {
 		var ret string
 		return ret
 	}
-	return *o.PublicKey
+	return *o.ClientCertLabel
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
+// GetClientCertLabelOk returns a tuple with the ClientCertLabel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DlbCoreSslEndpoints) GetPublicKeyOk() (*string, bool) {
-	if o == nil || o.PublicKey == nil {
+func (o *DlbCoreSslEndpoints) GetClientCertLabelOk() (*string, bool) {
+	if o == nil || o.ClientCertLabel == nil {
 		return nil, false
 	}
-	return o.PublicKey, true
+	return o.ClientCertLabel, true
 }
 
-// HasPublicKey returns a boolean if a field has been set.
-func (o *DlbCoreSslEndpoints) HasPublicKey() bool {
-	if o != nil && o.PublicKey != nil {
+// HasClientCertLabel returns a boolean if a field has been set.
+func (o *DlbCoreSslEndpoints) HasClientCertLabel() bool {
+	if o != nil && o.ClientCertLabel != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
-func (o *DlbCoreSslEndpoints) SetPublicKey(v string) {
-	o.PublicKey = &v
+// SetClientCertLabel gets a reference to the given string and assigns it to the ClientCertLabel field.
+func (o *DlbCoreSslEndpoints) SetClientCertLabel(v string) {
+	o.ClientCertLabel = &v
+}
+
+// GetClientCertDigest returns the ClientCertDigest field value if set, zero value otherwise.
+func (o *DlbCoreSslEndpoints) GetClientCertDigest() string {
+	if o == nil || o.ClientCertDigest == nil {
+		var ret string
+		return ret
+	}
+	return *o.ClientCertDigest
+}
+
+// GetClientCertDigestOk returns a tuple with the ClientCertDigest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbCoreSslEndpoints) GetClientCertDigestOk() (*string, bool) {
+	if o == nil || o.ClientCertDigest == nil {
+		return nil, false
+	}
+	return o.ClientCertDigest, true
+}
+
+// HasClientCertDigest returns a boolean if a field has been set.
+func (o *DlbCoreSslEndpoints) HasClientCertDigest() bool {
+	if o != nil && o.ClientCertDigest != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientCertDigest gets a reference to the given string and assigns it to the ClientCertDigest field.
+func (o *DlbCoreSslEndpoints) SetClientCertDigest(v string) {
+	o.ClientCertDigest = &v
+}
+
+// GetClientCertCN returns the ClientCertCN field value if set, zero value otherwise.
+func (o *DlbCoreSslEndpoints) GetClientCertCN() string {
+	if o == nil || o.ClientCertCN == nil {
+		var ret string
+		return ret
+	}
+	return *o.ClientCertCN
+}
+
+// GetClientCertCNOk returns a tuple with the ClientCertCN field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbCoreSslEndpoints) GetClientCertCNOk() (*string, bool) {
+	if o == nil || o.ClientCertCN == nil {
+		return nil, false
+	}
+	return o.ClientCertCN, true
+}
+
+// HasClientCertCN returns a boolean if a field has been set.
+func (o *DlbCoreSslEndpoints) HasClientCertCN() bool {
+	if o != nil && o.ClientCertCN != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientCertCN gets a reference to the given string and assigns it to the ClientCertCN field.
+func (o *DlbCoreSslEndpoints) SetClientCertCN(v string) {
+	o.ClientCertCN = &v
+}
+
+// GetRevocationListLabel returns the RevocationListLabel field value if set, zero value otherwise.
+func (o *DlbCoreSslEndpoints) GetRevocationListLabel() string {
+	if o == nil || o.RevocationListLabel == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevocationListLabel
+}
+
+// GetRevocationListLabelOk returns a tuple with the RevocationListLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbCoreSslEndpoints) GetRevocationListLabelOk() (*string, bool) {
+	if o == nil || o.RevocationListLabel == nil {
+		return nil, false
+	}
+	return o.RevocationListLabel, true
+}
+
+// HasRevocationListLabel returns a boolean if a field has been set.
+func (o *DlbCoreSslEndpoints) HasRevocationListLabel() bool {
+	if o != nil && o.RevocationListLabel != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRevocationListLabel gets a reference to the given string and assigns it to the RevocationListLabel field.
+func (o *DlbCoreSslEndpoints) SetRevocationListLabel(v string) {
+	o.RevocationListLabel = &v
+}
+
+// GetRevocationListDigest returns the RevocationListDigest field value if set, zero value otherwise.
+func (o *DlbCoreSslEndpoints) GetRevocationListDigest() string {
+	if o == nil || o.RevocationListDigest == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevocationListDigest
+}
+
+// GetRevocationListDigestOk returns a tuple with the RevocationListDigest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DlbCoreSslEndpoints) GetRevocationListDigestOk() (*string, bool) {
+	if o == nil || o.RevocationListDigest == nil {
+		return nil, false
+	}
+	return o.RevocationListDigest, true
+}
+
+// HasRevocationListDigest returns a boolean if a field has been set.
+func (o *DlbCoreSslEndpoints) HasRevocationListDigest() bool {
+	if o != nil && o.RevocationListDigest != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRevocationListDigest gets a reference to the given string and assigns it to the RevocationListDigest field.
+func (o *DlbCoreSslEndpoints) SetRevocationListDigest(v string) {
+	o.RevocationListDigest = &v
 }
 
 // GetVerifyClientMode returns the VerifyClientMode field value if set, zero value otherwise.
@@ -344,9 +443,6 @@ func (o DlbCoreSslEndpoints) MarshalJSON() ([]byte, error) {
 	if o.PrivateKeyDigest != nil {
 		toSerialize["privateKeyDigest"] = o.PrivateKeyDigest
 	}
-	if o.PrivateKey != nil {
-		toSerialize["privateKey"] = o.PrivateKey
-	}
 	if o.PublicKeyLabel != nil {
 		toSerialize["publicKeyLabel"] = o.PublicKeyLabel
 	}
@@ -356,8 +452,20 @@ func (o DlbCoreSslEndpoints) MarshalJSON() ([]byte, error) {
 	if o.PublicKeyCN != nil {
 		toSerialize["publicKeyCN"] = o.PublicKeyCN
 	}
-	if o.PublicKey != nil {
-		toSerialize["publicKey"] = o.PublicKey
+	if o.ClientCertLabel != nil {
+		toSerialize["clientCertLabel"] = o.ClientCertLabel
+	}
+	if o.ClientCertDigest != nil {
+		toSerialize["clientCertDigest"] = o.ClientCertDigest
+	}
+	if o.ClientCertCN != nil {
+		toSerialize["clientCertCN"] = o.ClientCertCN
+	}
+	if o.RevocationListLabel != nil {
+		toSerialize["revocationListLabel"] = o.RevocationListLabel
+	}
+	if o.RevocationListDigest != nil {
+		toSerialize["revocationListDigest"] = o.RevocationListDigest
 	}
 	if o.VerifyClientMode != nil {
 		toSerialize["verifyClientMode"] = o.VerifyClientMode

@@ -22,11 +22,12 @@ docs/IdpPostBody.md
 docs/IdpPostBodyType.md
 docs/IdpSAML.md
 docs/IdpSummary.md
-docs/InlineResponse200.md
-docs/InlineResponse400.md
 docs/ModelType.md
 docs/OidcProvider.md
 docs/OidcProvider1.md
+docs/OrganizationsOrgIdIdentityProvidersGet200Response.md
+docs/OrganizationsOrgIdIdentityProvidersIdpIdPatch400Response.md
+docs/OrganizationsOrgIdIdentityProvidersIdpIdPatch400ResponseErrorsInner.md
 docs/Saml.md
 docs/Saml1.md
 docs/ServiceProvider.md
@@ -39,6 +40,9 @@ docs/Urls4.md
 git_push.sh
 go.mod
 go.sum
+model__organizations__org_id__identity_providers__idp_id__patch_400_response.go
+model__organizations__org_id__identity_providers__idp_id__patch_400_response_errors_inner.go
+model__organizations__org_id__identity_providers_get_200_response.go
 model_claims_mapping.go
 model_claims_mapping_1.go
 model_claims_mapping_2.go
@@ -55,8 +59,6 @@ model_idp_post_body.go
 model_idp_post_body_type.go
 model_idp_saml.go
 model_idp_summary.go
-model_inline_response_200.go
-model_inline_response_400.go
 model_oidc_provider.go
 model_oidc_provider_1.go
 model_saml.go

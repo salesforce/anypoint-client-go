@@ -79,7 +79,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__invites_get_200_response'
           description: Success response
     post:
       description: Creates an invite
@@ -104,7 +104,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__invites_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -120,7 +120,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__invites_post_400_response'
       description: Bad request response
     SuccessPostInvite:
       content:
@@ -134,7 +134,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__invites_get_200_response'
       description: Success response
   schemas:
     invitePostBody:
@@ -148,12 +148,7 @@ components:
       type: object
     invitesDeleteBody:
       items:
-        properties:
-          inviteId:
-            title: inviteId
-            type: string
-        title: inviteDelete
-        type: object
+        $ref: '#/components/schemas/inviteDelete'
       title: invitesDeleteBody
       type: array
     invite:
@@ -180,7 +175,7 @@ components:
           type: string
       title: inviteCore
       type: object
-    inline_response_200:
+    _organizations__orgId__invites_get_200_response:
       example:
         total: 0
         data:
@@ -196,7 +191,7 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__invites_post_400_response:
       properties:
         status:
           default: 400
@@ -217,6 +212,13 @@ components:
           type: string
       title: roleGroups
       type: object
+    inviteDelete:
+      properties:
+        inviteId:
+          title: inviteId
+          type: string
+      title: inviteDelete
+      type: object
     inviteObjId:
       properties:
         id:
@@ -226,6 +228,7 @@ components:
       - id
       title: inviteObjId
       type: object
+      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

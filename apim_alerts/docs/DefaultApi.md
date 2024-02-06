@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_alerts"
 )
 
 func main() {
@@ -39,8 +39,8 @@ func main() {
     alertCore := *openapiclient.NewAlertCore("ApiAlertsVersion_example", "Name_example", "Type_example", false, "Severity_example", []openapiclient.Recipient{*openapiclient.NewRecipient("Type_example", "Value_example", "FirstName_example", "LastName_example")}, *openapiclient.NewCondition("ResourceType_example", "Aggregate_example", "Operator_example", int32(123)), *openapiclient.NewPeriod(*openapiclient.NewDuration(int32(123), "Weight_example"), int32(123))) // AlertCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.CreateAlertForAPIManagerInstance(context.Background(), orgId, envId, apiVersion).AlertCore(alertCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateAlertForAPIManagerInstance(context.Background(), orgId, envId, apiVersion).AlertCore(alertCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateAlertForAPIManagerInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -107,7 +107,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_alerts"
 )
 
 func main() {
@@ -117,8 +117,8 @@ func main() {
     alertId := "alertId_example" // string | the id of the alert
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteanAlertfromAPImanager(context.Background(), orgId, envId, apiVersion, alertId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.DeleteanAlertfromAPImanager(context.Background(), orgId, envId, apiVersion, alertId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteanAlertfromAPImanager``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,7 +184,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_alerts"
 )
 
 func main() {
@@ -195,8 +195,8 @@ func main() {
     alertCore := *openapiclient.NewAlertCore("ApiAlertsVersion_example", "Name_example", "Type_example", false, "Severity_example", []openapiclient.Recipient{*openapiclient.NewRecipient("Type_example", "Value_example", "FirstName_example", "LastName_example")}, *openapiclient.NewCondition("ResourceType_example", "Aggregate_example", "Operator_example", int32(123)), *openapiclient.NewPeriod(*openapiclient.NewDuration(int32(123), "Weight_example"), int32(123))) // AlertCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ModifyonealertfromAPImanger(context.Background(), orgId, envId, apiVersion, alertId).AlertCore(alertCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ModifyonealertfromAPImanger(context.Background(), orgId, envId, apiVersion, alertId).AlertCore(alertCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ModifyonealertfromAPImanger``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,7 +265,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_alerts"
 )
 
 func main() {
@@ -275,8 +275,8 @@ func main() {
     alertId := "alertId_example" // string | the id of the alert
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet(context.Background(), orgId, envId, apiVersion, alertId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet(context.Background(), orgId, envId, apiVersion, alertId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -344,7 +344,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_alerts"
 )
 
 func main() {
@@ -353,8 +353,8 @@ func main() {
     apiVersion := "apiVersion_example" // string | The api version
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet(context.Background(), orgId, envId, apiVersion).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet(context.Background(), orgId, envId, apiVersion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

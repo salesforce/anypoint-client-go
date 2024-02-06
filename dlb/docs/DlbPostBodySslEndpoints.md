@@ -9,6 +9,10 @@ Name | Type | Description | Notes
 **PublicKeyLabel** | Pointer to **string** |  | [optional] 
 **PublicKey** | Pointer to **string** |  | [optional] 
 **VerifyClientMode** | Pointer to **string** |  | [optional] [default to "off"]
+**ClientCertLabel** | Pointer to **string** |  | [optional] 
+**ClientCert** | Pointer to **string** |  | [optional] 
+**RevocationListLabel** | Pointer to **string** |  | [optional] 
+**RevocationList** | Pointer to **string** |  | [optional] 
 **Mappings** | Pointer to [**[]DlbPostBodyMappings**](DlbPostBodyMappings.md) |  | [optional] 
 
 ## Methods
@@ -154,6 +158,106 @@ SetVerifyClientMode sets VerifyClientMode field to given value.
 `func (o *DlbPostBodySslEndpoints) HasVerifyClientMode() bool`
 
 HasVerifyClientMode returns a boolean if a field has been set.
+
+### GetClientCertLabel
+
+`func (o *DlbPostBodySslEndpoints) GetClientCertLabel() string`
+
+GetClientCertLabel returns the ClientCertLabel field if non-nil, zero value otherwise.
+
+### GetClientCertLabelOk
+
+`func (o *DlbPostBodySslEndpoints) GetClientCertLabelOk() (*string, bool)`
+
+GetClientCertLabelOk returns a tuple with the ClientCertLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientCertLabel
+
+`func (o *DlbPostBodySslEndpoints) SetClientCertLabel(v string)`
+
+SetClientCertLabel sets ClientCertLabel field to given value.
+
+### HasClientCertLabel
+
+`func (o *DlbPostBodySslEndpoints) HasClientCertLabel() bool`
+
+HasClientCertLabel returns a boolean if a field has been set.
+
+### GetClientCert
+
+`func (o *DlbPostBodySslEndpoints) GetClientCert() string`
+
+GetClientCert returns the ClientCert field if non-nil, zero value otherwise.
+
+### GetClientCertOk
+
+`func (o *DlbPostBodySslEndpoints) GetClientCertOk() (*string, bool)`
+
+GetClientCertOk returns a tuple with the ClientCert field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientCert
+
+`func (o *DlbPostBodySslEndpoints) SetClientCert(v string)`
+
+SetClientCert sets ClientCert field to given value.
+
+### HasClientCert
+
+`func (o *DlbPostBodySslEndpoints) HasClientCert() bool`
+
+HasClientCert returns a boolean if a field has been set.
+
+### GetRevocationListLabel
+
+`func (o *DlbPostBodySslEndpoints) GetRevocationListLabel() string`
+
+GetRevocationListLabel returns the RevocationListLabel field if non-nil, zero value otherwise.
+
+### GetRevocationListLabelOk
+
+`func (o *DlbPostBodySslEndpoints) GetRevocationListLabelOk() (*string, bool)`
+
+GetRevocationListLabelOk returns a tuple with the RevocationListLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevocationListLabel
+
+`func (o *DlbPostBodySslEndpoints) SetRevocationListLabel(v string)`
+
+SetRevocationListLabel sets RevocationListLabel field to given value.
+
+### HasRevocationListLabel
+
+`func (o *DlbPostBodySslEndpoints) HasRevocationListLabel() bool`
+
+HasRevocationListLabel returns a boolean if a field has been set.
+
+### GetRevocationList
+
+`func (o *DlbPostBodySslEndpoints) GetRevocationList() string`
+
+GetRevocationList returns the RevocationList field if non-nil, zero value otherwise.
+
+### GetRevocationListOk
+
+`func (o *DlbPostBodySslEndpoints) GetRevocationListOk() (*string, bool)`
+
+GetRevocationListOk returns a tuple with the RevocationList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevocationList
+
+`func (o *DlbPostBodySslEndpoints) SetRevocationList(v string)`
+
+SetRevocationList sets RevocationList field to given value.
+
+### HasRevocationList
+
+`func (o *DlbPostBodySslEndpoints) HasRevocationList() bool`
+
+HasRevocationList returns a boolean if a field has been set.
 
 ### GetMappings
 

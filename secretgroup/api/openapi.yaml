@@ -1,0 +1,421 @@
+openapi: 3.0.0
+info:
+  description: Secret Group API
+  title: Secret Group API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/secrets-manager/api/v1/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/secrets-manager/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/secretGroups:
+    get:
+      description: Retrieves collection of secret groups.
+      operationId: GetEnvSecretGroups
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter and fetch list of secret groups based on value of 'downloadable'
+          flag.
+        explode: true
+        in: query
+        name: downloadable
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnvSecretGroups_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretGroupCollection'
+          description: get list secret groups
+      summary: Retrieves a collection of secret groups
+    post:
+      description: Creates a secret group.
+      operationId: PostSecretGroup
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretGroupPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnvSecretGroups_404_response'
+          description: resource not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretGroupPostResponse'
+          description: post secret group response
+      summary: Creates a secret group
+  /organizations/{orgId}/environments/{envId}/secretGroups/{secretGroupId}:
+    delete:
+      description: Delete a secret group by id.
+      operationId: DeleteSecretGroup
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnvSecretGroups_404_response'
+          description: resource not found
+        "204":
+          description: delete secret group response
+      summary: Delete a secret group
+    get:
+      description: Retrieve a secret group by id.
+      operationId: GetSecretGroup
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnvSecretGroups_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretGroup'
+          description: get secret group response
+      summary: Retrieve a secret group
+    patch:
+      description: Update a secret group by id.
+      operationId: PatchSecretGroup
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The secret group id
+        explode: false
+        in: path
+        name: secretGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecretGroupPatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnvSecretGroups_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretGroupPatchResponse'
+          description: patch secret group response
+      summary: Update a secret group
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorsResponse'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetEnvSecretGroups_404_response'
+      description: resource not found
+    SuccessGetSecretGroupsCollection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SecretGroupCollection'
+      description: get list secret groups
+    SuccessPostSecretGroup:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SecretGroupPostResponse'
+      description: post secret group response
+    SuccessGetSecretGroup:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SecretGroup'
+      description: get secret group response
+    SuccessPatchSecretGroup:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SecretGroupPatchResponse'
+      description: patch secret group response
+    SuccessDeleteSecretGroup:
+      description: delete secret group response
+  schemas:
+    errorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
+          type: array
+      title: errorsResponse
+      type: object
+    SecretGroupCollection:
+      items:
+        $ref: '#/components/schemas/SecretGroup'
+      type: array
+    SecretGroup:
+      example:
+        downloadable: true
+        meta:
+          createdAt: createdAt
+          lockedBy: lockedBy
+          modifiedAt: modifiedAt
+          modifiedBy: modifiedBy
+          id: id
+          locked: true
+          currentState: currentState
+        name: name
+      properties:
+        name:
+          type: string
+        downloadable:
+          type: boolean
+        meta:
+          $ref: '#/components/schemas/Meta'
+      type: object
+    SecretGroupPostBody:
+      example:
+        downloadable: true
+        name: name
+      properties:
+        name:
+          type: string
+        downloadable:
+          type: boolean
+      type: object
+    SecretGroupPatchBody:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    SecretGroupPostResponse:
+      example:
+        id: id
+        message: message
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+      type: object
+    SecretGroupPatchResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    Meta:
+      example:
+        createdAt: createdAt
+        lockedBy: lockedBy
+        modifiedAt: modifiedAt
+        modifiedBy: modifiedBy
+        id: id
+        locked: true
+        currentState: currentState
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+        modifiedAt:
+          type: string
+        modifiedBy:
+          type: string
+        locked:
+          type: boolean
+        lockedBy:
+          type: string
+        currentState:
+          type: string
+      type: object
+    GetEnvSecretGroups_404_response:
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+      type: object
+    errorsResponse_errors_inner:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

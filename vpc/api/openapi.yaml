@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs_get_200_response'
           description: Success response
       summary: Returns a list of vpcs.
     post:
@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -125,10 +125,10 @@ paths:
           description: Success response
       summary: Returns the vpc instance with the given id.
     put:
-      description: Changes the configuration of the VPC by overriding the values of
-        the properties passed in the JSON. ownerId, region and cidrBlock cannot be
-        overriden. Organizations that do not own the VPC can only update isDefault
-        and associatedEnvironments.
+      description: "Changes the configuration of the VPC by overriding the values\
+        \ of the properties passed in the JSON. ownerId, region and cidrBlock cannot\
+        \ be overriden. Organizations that do not own the VPC can only update isDefault\
+        \ and associatedEnvironments."
       parameters:
       - description: The organization Id
         explode: false
@@ -160,7 +160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__vpcs_post_400_response'
           description: Bad request response
         "200":
           content:
@@ -177,7 +177,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__vpcs_post_400_response'
       description: Bad request response
     SuccessGetVPC:
       content:
@@ -203,7 +203,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__vpcs_get_200_response'
       description: Success response
   schemas:
     vpc:
@@ -282,7 +282,7 @@ components:
           type: array
       title: vpcCore
       type: object
-    inline_response_200:
+    _organizations__orgId__vpcs_get_200_response:
       example:
         total: 0
         data:
@@ -298,14 +298,14 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__vpcs_post_400_response:
       properties:
         status:
           default: 400
           title: the response status code
           type: integer
         message:
-          example: vpcs limit has been reached (max=1, use=1) for the organization
+          example: "vpcs limit has been reached (max=1, use=1) for the organization"
           title: the error message
           type: string
       type: object
@@ -320,6 +320,7 @@ components:
       - id
       title: vpcId
       type: object
+      example: null
     firewallRule:
       properties:
         cidrBlock:
@@ -350,6 +351,9 @@ components:
       title: firewallRule
       type: object
     internalDns:
+      default:
+        dnsServers: []
+        specialDomains: []
       properties:
         dnsServers:
           default: []

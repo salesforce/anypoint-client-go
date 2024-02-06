@@ -14,10 +14,13 @@ Name | Type | Description | Notes
 **Tlsv1** | Pointer to **bool** |  | [optional] 
 **KeepUrlEncoding** | Pointer to **bool** |  | [optional] 
 **UpstreamTlsv12** | Pointer to **bool** |  | [optional] 
+**StaticIPsDisabled** | Pointer to **bool** |  | [optional] 
 **DoubleStaticIps** | Pointer to **bool** |  | [optional] 
 **EnableStreaming** | Pointer to **bool** |  | [optional] 
 **ForwardClientCertificate** | Pointer to **bool** |  | [optional] 
-**SslEndpoints** | Pointer to [**[]DlbPostBodySslEndpoints**](DlbPostBodySslEndpoints.md) |  | [optional] 
+**Workers** | Pointer to **int32** | the dedicated load balancer&#39;s number of workers. | [optional] [default to 2]
+**ProxyReadTimeout** | Pointer to **string** | Sets the Mule application response timeout value. | [optional] [default to "300"]
+**SslEndpoints** | Pointer to [**[]DlbPostBodySslEndpointsInner**](DlbPostBodySslEndpointsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -288,6 +291,31 @@ SetUpstreamTlsv12 sets UpstreamTlsv12 field to given value.
 
 HasUpstreamTlsv12 returns a boolean if a field has been set.
 
+### GetStaticIPsDisabled
+
+`func (o *DlbPostBody) GetStaticIPsDisabled() bool`
+
+GetStaticIPsDisabled returns the StaticIPsDisabled field if non-nil, zero value otherwise.
+
+### GetStaticIPsDisabledOk
+
+`func (o *DlbPostBody) GetStaticIPsDisabledOk() (*bool, bool)`
+
+GetStaticIPsDisabledOk returns a tuple with the StaticIPsDisabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStaticIPsDisabled
+
+`func (o *DlbPostBody) SetStaticIPsDisabled(v bool)`
+
+SetStaticIPsDisabled sets StaticIPsDisabled field to given value.
+
+### HasStaticIPsDisabled
+
+`func (o *DlbPostBody) HasStaticIPsDisabled() bool`
+
+HasStaticIPsDisabled returns a boolean if a field has been set.
+
 ### GetDoubleStaticIps
 
 `func (o *DlbPostBody) GetDoubleStaticIps() bool`
@@ -363,22 +391,72 @@ SetForwardClientCertificate sets ForwardClientCertificate field to given value.
 
 HasForwardClientCertificate returns a boolean if a field has been set.
 
+### GetWorkers
+
+`func (o *DlbPostBody) GetWorkers() int32`
+
+GetWorkers returns the Workers field if non-nil, zero value otherwise.
+
+### GetWorkersOk
+
+`func (o *DlbPostBody) GetWorkersOk() (*int32, bool)`
+
+GetWorkersOk returns a tuple with the Workers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkers
+
+`func (o *DlbPostBody) SetWorkers(v int32)`
+
+SetWorkers sets Workers field to given value.
+
+### HasWorkers
+
+`func (o *DlbPostBody) HasWorkers() bool`
+
+HasWorkers returns a boolean if a field has been set.
+
+### GetProxyReadTimeout
+
+`func (o *DlbPostBody) GetProxyReadTimeout() string`
+
+GetProxyReadTimeout returns the ProxyReadTimeout field if non-nil, zero value otherwise.
+
+### GetProxyReadTimeoutOk
+
+`func (o *DlbPostBody) GetProxyReadTimeoutOk() (*string, bool)`
+
+GetProxyReadTimeoutOk returns a tuple with the ProxyReadTimeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyReadTimeout
+
+`func (o *DlbPostBody) SetProxyReadTimeout(v string)`
+
+SetProxyReadTimeout sets ProxyReadTimeout field to given value.
+
+### HasProxyReadTimeout
+
+`func (o *DlbPostBody) HasProxyReadTimeout() bool`
+
+HasProxyReadTimeout returns a boolean if a field has been set.
+
 ### GetSslEndpoints
 
-`func (o *DlbPostBody) GetSslEndpoints() []DlbPostBodySslEndpoints`
+`func (o *DlbPostBody) GetSslEndpoints() []DlbPostBodySslEndpointsInner`
 
 GetSslEndpoints returns the SslEndpoints field if non-nil, zero value otherwise.
 
 ### GetSslEndpointsOk
 
-`func (o *DlbPostBody) GetSslEndpointsOk() (*[]DlbPostBodySslEndpoints, bool)`
+`func (o *DlbPostBody) GetSslEndpointsOk() (*[]DlbPostBodySslEndpointsInner, bool)`
 
 GetSslEndpointsOk returns a tuple with the SslEndpoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSslEndpoints
 
-`func (o *DlbPostBody) SetSslEndpoints(v []DlbPostBodySslEndpoints)`
+`func (o *DlbPostBody) SetSslEndpoints(v []DlbPostBodySslEndpointsInner)`
 
 SetSslEndpoints sets SslEndpoints field to given value.
 

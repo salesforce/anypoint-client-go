@@ -1,0 +1,564 @@
+openapi: 3.0.0
+info:
+  description: API Manager Upstream API
+  title: API Manager Upstream API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/apimanager/api/v1/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/apimanager/api/v1/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/apimanager/api/v1/
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/environments/{envId}/apis/{envApiId}/upstreams:
+    get:
+      description: Retrieves all upstreams for a given API Manager instance in a given
+        environment. Connected App requires the scope "View APIs Configuration"
+      operationId: GetApimInstanceUpstreams
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api id specific to a given environment
+        explode: false
+        in: path
+        name: envApiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApimInstanceUpstreams_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpstreamCollection'
+          description: Collection of upstreams in a given api manager instance
+      summary: Retrieve all upstreams of a given API Manager instance
+    post:
+      description: Creates an upstream for a given API Manager instance in a given
+        environment. Connected App requires the scope "Manage APIs Configuration"
+      operationId: PostApimInstanceUpstream
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api id specific to a given environment
+        explode: false
+        in: path
+        name: envApiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpstreamPostBody'
+        description: Post API Manager Instance Upstream Body
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpstreamDetails'
+          description: Upstream post response
+      summary: Creates an upstream for a given API Manager instance
+  /organizations/{orgId}/environments/{envId}/apis/{envApiId}/upstreams/{upstreamId}:
+    delete:
+      description: Delete a specific Upstream in a API Manager Instance  in a specific
+        environment and organization. Connected Apps require the scope "Manage APIs
+        Configuration".
+      operationId: DeleteApimInstanceUpstream
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api id specific to a given environment
+        explode: false
+        in: path
+        name: envApiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The upstream id
+        explode: false
+        in: path
+        name: upstreamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApimInstanceUpstreams_404_response'
+          description: resource not found
+        "204":
+          description: delete upstream response
+      summary: Delete a specific Upstream of the given API Manager Instance
+    get:
+      description: Retrieve a specific upstream for a given API Manager instance in
+        a given environment. Connected App requires the scope "View APIs Configuration"
+      operationId: GetApimInstanceUpstream
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api id specific to a given environment
+        explode: false
+        in: path
+        name: envApiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The upstream id
+        explode: false
+        in: path
+        name: upstreamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApimInstanceUpstreams_404_response'
+          description: resource not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpstreamDetails'
+          description: single upstream in a given api manager instance
+      summary: Retrieve a specific upstream for a given API Manager instance
+    patch:
+      description: Update a specific upstream in a given API Manager instance in a
+        given environment. Connected App requires the scope "Manage APIs Configuration"
+      operationId: PatchApimInstanceUpstream
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api id specific to a given environment
+        explode: false
+        in: path
+        name: envApiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The upstream id
+        explode: false
+        in: path
+        name: upstreamId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpstreamPatchBody'
+        description: Patch API Manager Instance Upstream Body
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Upstream'
+          description: Upstream patch response
+      summary: Update a specific upstream in a given API Manager instance
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorsResponse'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetApimInstanceUpstreams_404_response'
+      description: resource not found
+    SuccessGetApimInstanceUpstreams:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpstreamCollection'
+      description: Collection of upstreams in a given api manager instance
+    SuccessPostApimInstanceUpstream:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpstreamDetails'
+      description: Upstream post response
+    SuccessGetApimInstanceUpstream:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpstreamDetails'
+      description: single upstream in a given api manager instance
+    SuccessPatchApimInstanceUpstream:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Upstream'
+      description: Upstream patch response
+    SuccessDeleteApimInstanceUpstream:
+      description: delete upstream response
+  schemas:
+    ErrorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorsResponse_errors_inner'
+          type: array
+      title: errorsResponse
+      type: object
+    UpstreamCollection:
+      example:
+        total: 0
+        upstreams:
+        - audit:
+            created:
+              date: 2000-01-23T04:56:07.000+00:00
+            updated:
+              date: 2000-01-23T04:56:07.000+00:00
+          tlsContext:
+            tlsContextId: tlsContextId
+            audit:
+              created:
+                date: 2000-01-23T04:56:07.000+00:00
+              updated:
+                date: 2000-01-23T04:56:07.000+00:00
+            authorized: true
+            name: name
+            secretGroupId: secretGroupId
+          id: id
+          label: label
+          uri: uri
+        - audit:
+            created:
+              date: 2000-01-23T04:56:07.000+00:00
+            updated:
+              date: 2000-01-23T04:56:07.000+00:00
+          tlsContext:
+            tlsContextId: tlsContextId
+            audit:
+              created:
+                date: 2000-01-23T04:56:07.000+00:00
+              updated:
+                date: 2000-01-23T04:56:07.000+00:00
+            authorized: true
+            name: name
+            secretGroupId: secretGroupId
+          id: id
+          label: label
+          uri: uri
+      properties:
+        total:
+          type: integer
+        upstreams:
+          items:
+            $ref: '#/components/schemas/UpstreamDetails'
+          type: array
+      type: object
+    UpstreamDetails:
+      example:
+        audit:
+          created:
+            date: 2000-01-23T04:56:07.000+00:00
+          updated:
+            date: 2000-01-23T04:56:07.000+00:00
+        tlsContext:
+          tlsContextId: tlsContextId
+          audit:
+            created:
+              date: 2000-01-23T04:56:07.000+00:00
+            updated:
+              date: 2000-01-23T04:56:07.000+00:00
+          authorized: true
+          name: name
+          secretGroupId: secretGroupId
+        id: id
+        label: label
+        uri: uri
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        id:
+          type: string
+        label:
+          type: string
+        uri:
+          type: string
+        tlsContext:
+          $ref: '#/components/schemas/UpstreamDetails_tlsContext'
+      type: object
+    Upstream:
+      example:
+        tlsContext:
+          tlsContextId: tlsContextId
+          audit:
+            created:
+              date: 2000-01-23T04:56:07.000+00:00
+            updated:
+              date: 2000-01-23T04:56:07.000+00:00
+          secretGroupId: secretGroupId
+        id: id
+        label: label
+        uri: uri
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        uri:
+          type: string
+        tlsContext:
+          $ref: '#/components/schemas/Upstream_tlsContext'
+      type: object
+    UpstreamPostBody:
+      example:
+        tlsContext:
+          tlsContextId: tlsContextId
+          secretGroupId: secretGroupId
+        label: label
+        uri: uri
+      properties:
+        label:
+          type: string
+        uri:
+          type: string
+        tlsContext:
+          $ref: '#/components/schemas/UpstreamPostBody_tlsContext'
+      type: object
+    UpstreamPatchBody:
+      example:
+        tlsContext:
+          tlsContextId: tlsContextId
+          secretGroupId: secretGroupId
+        label: label
+        uri: uri
+      properties:
+        label:
+          type: string
+        uri:
+          type: string
+        tlsContext:
+          $ref: '#/components/schemas/UpstreamPostBody_tlsContext'
+      type: object
+    Audit:
+      example:
+        created:
+          date: 2000-01-23T04:56:07.000+00:00
+        updated:
+          date: 2000-01-23T04:56:07.000+00:00
+      properties:
+        created:
+          $ref: '#/components/schemas/Audit_created'
+        updated:
+          $ref: '#/components/schemas/Audit_created'
+      type: object
+    GetApimInstanceUpstreams_404_response:
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+      type: object
+    ErrorsResponse_errors_inner:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+    UpstreamDetails_tlsContext:
+      example:
+        tlsContextId: tlsContextId
+        audit:
+          created:
+            date: 2000-01-23T04:56:07.000+00:00
+          updated:
+            date: 2000-01-23T04:56:07.000+00:00
+        authorized: true
+        name: name
+        secretGroupId: secretGroupId
+      nullable: true
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        secretGroupId:
+          type: string
+        tlsContextId:
+          type: string
+        name:
+          type: string
+        authorized:
+          type: boolean
+      type: object
+    Upstream_tlsContext:
+      example:
+        tlsContextId: tlsContextId
+        audit:
+          created:
+            date: 2000-01-23T04:56:07.000+00:00
+          updated:
+            date: 2000-01-23T04:56:07.000+00:00
+        secretGroupId: secretGroupId
+      properties:
+        secretGroupId:
+          type: string
+        tlsContextId:
+          type: string
+        audit:
+          $ref: '#/components/schemas/Audit'
+      type: object
+    UpstreamPostBody_tlsContext:
+      example:
+        tlsContextId: tlsContextId
+        secretGroupId: secretGroupId
+      nullable: true
+      properties:
+        secretGroupId:
+          type: string
+        tlsContextId:
+          type: string
+      type: object
+    Audit_created:
+      example:
+        date: 2000-01-23T04:56:07.000+00:00
+      properties:
+        date:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

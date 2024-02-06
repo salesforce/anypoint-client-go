@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to [**[]ErrorsResponseErrors**](ErrorsResponseErrors.md) |  | [optional] 
+**Errors** | Pointer to [**[]ErrorsResponseErrorsInner**](ErrorsResponseErrorsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetErrors
 
-`func (o *ErrorsResponse) GetErrors() []ErrorsResponseErrors`
+`func (o *ErrorsResponse) GetErrors() []ErrorsResponseErrorsInner`
 
 GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *ErrorsResponse) GetErrorsOk() (*[]ErrorsResponseErrors, bool)`
+`func (o *ErrorsResponse) GetErrorsOk() (*[]ErrorsResponseErrorsInner, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrors
 
-`func (o *ErrorsResponse) SetErrors(v []ErrorsResponseErrors)`
+`func (o *ErrorsResponse) SetErrors(v []ErrorsResponseErrorsInner)`
 
 SetErrors sets Errors field to given value.
 

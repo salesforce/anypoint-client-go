@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **AssociatedEnvironments** | Pointer to **[]string** |  | [optional] [default to []]
 **CidrBlock** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to "10.0.0.0/20"]
 **FirewallRules** | Pointer to [**[]FirewallRule**](FirewallRule.md) |  | [optional] [default to []]
-**InternalDns** | Pointer to [**InternalDns**](InternalDns.md) |  | [optional] 
+**InternalDns** | Pointer to [**InternalDns**](InternalDns.md) |  | [optional] [default to {"dnsServers":[],"specialDomains":[]}]
 **VpcRoutes** | Pointer to [**[]VpcRoute**](VpcRoute.md) |  | [optional] [default to []]
 
 ## Methods
