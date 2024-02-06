@@ -6,11 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrivateKeyLabel** | Pointer to **string** |  | [optional] 
 **PrivateKeyDigest** | Pointer to **string** |  | [optional] 
-**PrivateKey** | Pointer to **string** |  | [optional] 
 **PublicKeyLabel** | Pointer to **string** |  | [optional] 
 **PublicKeyDigest** | Pointer to **string** |  | [optional] 
 **PublicKeyCN** | Pointer to **string** |  | [optional] 
-**PublicKey** | Pointer to **string** |  | [optional] 
+**ClientCertLabel** | Pointer to **string** |  | [optional] 
+**ClientCertDigest** | Pointer to **string** |  | [optional] 
+**ClientCertCN** | Pointer to **string** |  | [optional] 
+**RevocationListLabel** | Pointer to **string** |  | [optional] 
+**RevocationListDigest** | Pointer to **string** |  | [optional] 
 **VerifyClientMode** | Pointer to **string** |  | [optional] [default to "off"]
 **Mappings** | Pointer to [**[]DlbCoreMappings**](DlbCoreMappings.md) |  | [optional] 
 
@@ -82,31 +85,6 @@ SetPrivateKeyDigest sets PrivateKeyDigest field to given value.
 `func (o *DlbCoreSslEndpoints) HasPrivateKeyDigest() bool`
 
 HasPrivateKeyDigest returns a boolean if a field has been set.
-
-### GetPrivateKey
-
-`func (o *DlbCoreSslEndpoints) GetPrivateKey() string`
-
-GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
-
-### GetPrivateKeyOk
-
-`func (o *DlbCoreSslEndpoints) GetPrivateKeyOk() (*string, bool)`
-
-GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrivateKey
-
-`func (o *DlbCoreSslEndpoints) SetPrivateKey(v string)`
-
-SetPrivateKey sets PrivateKey field to given value.
-
-### HasPrivateKey
-
-`func (o *DlbCoreSslEndpoints) HasPrivateKey() bool`
-
-HasPrivateKey returns a boolean if a field has been set.
 
 ### GetPublicKeyLabel
 
@@ -183,30 +161,130 @@ SetPublicKeyCN sets PublicKeyCN field to given value.
 
 HasPublicKeyCN returns a boolean if a field has been set.
 
-### GetPublicKey
+### GetClientCertLabel
 
-`func (o *DlbCoreSslEndpoints) GetPublicKey() string`
+`func (o *DlbCoreSslEndpoints) GetClientCertLabel() string`
 
-GetPublicKey returns the PublicKey field if non-nil, zero value otherwise.
+GetClientCertLabel returns the ClientCertLabel field if non-nil, zero value otherwise.
 
-### GetPublicKeyOk
+### GetClientCertLabelOk
 
-`func (o *DlbCoreSslEndpoints) GetPublicKeyOk() (*string, bool)`
+`func (o *DlbCoreSslEndpoints) GetClientCertLabelOk() (*string, bool)`
 
-GetPublicKeyOk returns a tuple with the PublicKey field if it's non-nil, zero value otherwise
+GetClientCertLabelOk returns a tuple with the ClientCertLabel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPublicKey
+### SetClientCertLabel
 
-`func (o *DlbCoreSslEndpoints) SetPublicKey(v string)`
+`func (o *DlbCoreSslEndpoints) SetClientCertLabel(v string)`
 
-SetPublicKey sets PublicKey field to given value.
+SetClientCertLabel sets ClientCertLabel field to given value.
 
-### HasPublicKey
+### HasClientCertLabel
 
-`func (o *DlbCoreSslEndpoints) HasPublicKey() bool`
+`func (o *DlbCoreSslEndpoints) HasClientCertLabel() bool`
 
-HasPublicKey returns a boolean if a field has been set.
+HasClientCertLabel returns a boolean if a field has been set.
+
+### GetClientCertDigest
+
+`func (o *DlbCoreSslEndpoints) GetClientCertDigest() string`
+
+GetClientCertDigest returns the ClientCertDigest field if non-nil, zero value otherwise.
+
+### GetClientCertDigestOk
+
+`func (o *DlbCoreSslEndpoints) GetClientCertDigestOk() (*string, bool)`
+
+GetClientCertDigestOk returns a tuple with the ClientCertDigest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientCertDigest
+
+`func (o *DlbCoreSslEndpoints) SetClientCertDigest(v string)`
+
+SetClientCertDigest sets ClientCertDigest field to given value.
+
+### HasClientCertDigest
+
+`func (o *DlbCoreSslEndpoints) HasClientCertDigest() bool`
+
+HasClientCertDigest returns a boolean if a field has been set.
+
+### GetClientCertCN
+
+`func (o *DlbCoreSslEndpoints) GetClientCertCN() string`
+
+GetClientCertCN returns the ClientCertCN field if non-nil, zero value otherwise.
+
+### GetClientCertCNOk
+
+`func (o *DlbCoreSslEndpoints) GetClientCertCNOk() (*string, bool)`
+
+GetClientCertCNOk returns a tuple with the ClientCertCN field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientCertCN
+
+`func (o *DlbCoreSslEndpoints) SetClientCertCN(v string)`
+
+SetClientCertCN sets ClientCertCN field to given value.
+
+### HasClientCertCN
+
+`func (o *DlbCoreSslEndpoints) HasClientCertCN() bool`
+
+HasClientCertCN returns a boolean if a field has been set.
+
+### GetRevocationListLabel
+
+`func (o *DlbCoreSslEndpoints) GetRevocationListLabel() string`
+
+GetRevocationListLabel returns the RevocationListLabel field if non-nil, zero value otherwise.
+
+### GetRevocationListLabelOk
+
+`func (o *DlbCoreSslEndpoints) GetRevocationListLabelOk() (*string, bool)`
+
+GetRevocationListLabelOk returns a tuple with the RevocationListLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevocationListLabel
+
+`func (o *DlbCoreSslEndpoints) SetRevocationListLabel(v string)`
+
+SetRevocationListLabel sets RevocationListLabel field to given value.
+
+### HasRevocationListLabel
+
+`func (o *DlbCoreSslEndpoints) HasRevocationListLabel() bool`
+
+HasRevocationListLabel returns a boolean if a field has been set.
+
+### GetRevocationListDigest
+
+`func (o *DlbCoreSslEndpoints) GetRevocationListDigest() string`
+
+GetRevocationListDigest returns the RevocationListDigest field if non-nil, zero value otherwise.
+
+### GetRevocationListDigestOk
+
+`func (o *DlbCoreSslEndpoints) GetRevocationListDigestOk() (*string, bool)`
+
+GetRevocationListDigestOk returns a tuple with the RevocationListDigest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevocationListDigest
+
+`func (o *DlbCoreSslEndpoints) SetRevocationListDigest(v string)`
+
+SetRevocationListDigest sets RevocationListDigest field to given value.
+
+### HasRevocationListDigest
+
+`func (o *DlbCoreSslEndpoints) HasRevocationListDigest() bool`
+
+HasRevocationListDigest returns a boolean if a field has been set.
 
 ### GetVerifyClientMode
 

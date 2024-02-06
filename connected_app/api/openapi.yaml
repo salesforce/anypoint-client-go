@@ -15,7 +15,50 @@ security:
 paths:
   /connectedApplications:
     get:
-      description: Returns all connected apps
+      description: Get all connected applications for the organization
+      operationId: GetAllConnectedApps
+      parameters:
+      - description: flag to indicate whether to return usage statistics
+        explode: true
+        in: query
+        name: includeUsage
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Provide an orgId to get all clients from other organization
+        explode: true
+        in: query
+        name: orgId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to omit from the response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Maximum records to retrieve per request.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: A search string to use for case-insensitive partial matches on
+          all object properties.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "401":
           description: Access token is missing or invalid
@@ -23,10 +66,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/GetAllConnectedApps_200_response'
           description: Success response
+  /organizations/{orgId}/connectedApplications:
     post:
-      description: create a Connected App
+      description: Create a new connected application
+      operationId: CreateConnectedApp
+      parameters:
+      - description: The ID of the organization
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -39,7 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/CreateConnectedApp_400_response'
           description: Bad request response
         "201":
           content:
@@ -47,10 +101,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/connectedAppRespExt'
           description: Success post response
-  /connectedApplications/{connAppId}:
+  /organizations/{orgId}/connectedApplications/{connAppId}:
     delete:
-      description: deletes a Connected App
+      description: Deletes a single connected application
+      operationId: DeleteConnectedApp
       parameters:
+      - description: The ID of the organization
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The ID of the connected app
         explode: false
         in: path
@@ -65,8 +128,17 @@ paths:
         "204":
           description: Success delete response
     get:
-      description: Returns all connected apps
+      description: Get a single connected application
+      operationId: GetConnectedApp
       parameters:
+      - description: The ID of the organization
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The ID of the connected app
         explode: false
         in: path
@@ -75,6 +147,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: flag to indicate whether to return usage statistics
+        explode: true
+        in: query
+        name: includeUsage
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "401":
           description: Access token is missing or invalid
@@ -85,8 +165,17 @@ paths:
                 $ref: '#/components/schemas/connectedAppRespExt'
           description: Success get response
     patch:
-      description: patches a Connected App
+      description: Patches a single connected application
+      operationId: UpdateConnectedApp
       parameters:
+      - description: The ID of the organization
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The ID of the connected app
         explode: false
         in: path
@@ -95,6 +184,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Asks service to reset secret as part of this operation
+        explode: true
+        in: query
+        name: resetSecret
+        required: false
+        schema:
+          type: boolean
+        style: form
       requestBody:
         content:
           application/json:
@@ -107,7 +204,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/CreateConnectedApp_400_response'
           description: Bad request response
         "200":
           content:
@@ -115,10 +212,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/connectedAppRespExt'
           description: Success patch response
-  /connectedApplications/{connAppId}/scopes:
+  /organizations/{orgId}/connectedApplications/{connAppId}/scopes:
     get:
-      description: Returns all scopes of a Connected App
+      description: Retrieves context-aware scopes assigned to the connected application
+      operationId: GetConnectedAppScopes
       parameters:
+      - description: The ID of the organization
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The ID of the connected app
         explode: false
         in: path
@@ -127,6 +233,22 @@ paths:
         schema:
           type: string
         style: simple
+      - description: The number of records to omit from the response.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Maximum records to retrieve per request.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
       responses:
         "401":
           description: Access token is missing or invalid
@@ -134,11 +256,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/GetConnectedAppScopes_200_response'
           description: Success get scopes response
     put:
-      description: replace a Connected App scopes
+      description: Replaces the entire list of context-aware scopes assigned to the
+        connected application
+      operationId: UpdateConnectedAppScopes
       parameters:
+      - description: The ID of the organization
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: The ID of the connected app
         explode: false
         in: path
@@ -159,7 +291,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/CreateConnectedApp_400_response'
           description: Bad request response
         "204":
           description: Success scopes put response
@@ -171,13 +303,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/CreateConnectedApp_400_response'
       description: Bad request response
     SuccessListConnApps:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/GetAllConnectedApps_200_response'
       description: Success response
     SuccessPostConnApps:
       content:
@@ -203,7 +335,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200_1'
+            $ref: '#/components/schemas/GetConnectedAppScopes_200_response'
       description: Success get scopes response
     SuccessPutConnAppsScopes:
       description: Success scopes put response
@@ -284,7 +416,7 @@ components:
           type: array
       title: connectedAppScopesPutBody
       type: object
-    inline_response_200:
+    GetAllConnectedApps_200_response:
       example:
         total: 0
         data:
@@ -300,7 +432,7 @@ components:
           title: total
           type: integer
       type: object
-    inline_response_400:
+    CreateConnectedApp_400_response:
       properties:
         status:
           default: 400
@@ -311,7 +443,7 @@ components:
           title: the error message
           type: string
       type: object
-    inline_response_200_1:
+    GetConnectedAppScopes_200_response:
       example:
         total: 0
         data:
@@ -369,6 +501,7 @@ components:
           title: certExpiry
           type: string
       type: object
+      example: null
     connectedAppPatchExt_allOf:
       properties:
         client_id:
@@ -384,6 +517,7 @@ components:
           title: enabled
           type: boolean
       type: object
+      example: null
     contextParams:
       example:
         org: 2xbb7865-45ac-3e35-65e0-8c83112480c0

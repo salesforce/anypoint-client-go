@@ -12,10 +12,10 @@ docs/ConnectedAppRespExt.md
 docs/ConnectedAppRespExtAllOf.md
 docs/ConnectedAppScopesPutBody.md
 docs/ContextParams.md
+docs/CreateConnectedApp400Response.md
 docs/DefaultApi.md
-docs/InlineResponse200.md
-docs/InlineResponse2001.md
-docs/InlineResponse400.md
+docs/GetAllConnectedApps200Response.md
+docs/GetConnectedAppScopes200Response.md
 docs/ScopeCore.md
 git_push.sh
 go.mod
@@ -27,9 +27,9 @@ model_connected_app_resp_ext.go
 model_connected_app_resp_ext_all_of.go
 model_connected_app_scopes_put_body.go
 model_context_params.go
-model_inline_response_200.go
-model_inline_response_200_1.go
-model_inline_response_400.go
+model_create_connected_app_400_response.go
+model_get_all_connected_apps_200_response.go
+model_get_connected_app_scopes_200_response.go
 model_scope_core.go
 response.go
 utils.go

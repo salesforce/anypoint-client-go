@@ -28,7 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_api_v2_oauth2_token_post_200_response'
           description: Success response
       summary: Returns access token
   /login:
@@ -48,7 +48,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/_login_post_200_response'
           description: Success response
       summary: Returns access token
 components:
@@ -59,13 +59,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_api_v2_oauth2_token_post_200_response'
       description: Success response
     SuccessAuthUserPwd:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200_1'
+            $ref: '#/components/schemas/_login_post_200_response'
       description: Success response
   schemas:
     credentials:
@@ -94,7 +94,7 @@ components:
           title: password
           type: string
       type: object
-    inline_response_200:
+    _api_v2_oauth2_token_post_200_response:
       example:
         access_token: e4abe472725d-93b3-426e-8ca7-5a45636b
         token_type: brearer
@@ -113,7 +113,7 @@ components:
           title: token type
           type: string
       type: object
-    inline_response_200_1:
+    _login_post_200_response:
       example:
         access_token: e4abe472725d-93b3-426e-8ca7-5a45636b
         redirectUrl: /home/

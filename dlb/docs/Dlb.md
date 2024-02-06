@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **KeepUrlEncoding** | Pointer to **bool** |  | [optional] 
 **UpstreamTlsv12** | Pointer to **bool** |  | [optional] 
 **ProxyReadTimeout** | Pointer to **int32** |  | [optional] 
-**IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfo**](DlbExtrasIpAddressesInfo.md) |  | [optional] 
+**IpAddressesInfo** | Pointer to [**[]DlbExtrasIpAddressesInfoInner**](DlbExtrasIpAddressesInfoInner.md) |  | [optional] 
 **DoubleStaticIps** | Pointer to **bool** |  | [optional] 
 **EnableStreaming** | Pointer to **bool** |  | [optional] 
 **ForwardClientCertificate** | Pointer to **bool** |  | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **HttpMode** | Pointer to **string** |  | [optional] [default to "redirect"]
 **DefaultSslEndpoint** | Pointer to **int32** |  | [optional] [default to 0]
 **Tlsv1** | Pointer to **bool** |  | [optional] 
-**SslEndpoints** | Pointer to [**[]DlbCoreSslEndpoints**](DlbCoreSslEndpoints.md) |  | [optional] 
+**SslEndpoints** | Pointer to [**[]DlbCoreSslEndpointsInner**](DlbCoreSslEndpointsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -350,20 +350,20 @@ HasProxyReadTimeout returns a boolean if a field has been set.
 
 ### GetIpAddressesInfo
 
-`func (o *Dlb) GetIpAddressesInfo() []DlbExtrasIpAddressesInfo`
+`func (o *Dlb) GetIpAddressesInfo() []DlbExtrasIpAddressesInfoInner`
 
 GetIpAddressesInfo returns the IpAddressesInfo field if non-nil, zero value otherwise.
 
 ### GetIpAddressesInfoOk
 
-`func (o *Dlb) GetIpAddressesInfoOk() (*[]DlbExtrasIpAddressesInfo, bool)`
+`func (o *Dlb) GetIpAddressesInfoOk() (*[]DlbExtrasIpAddressesInfoInner, bool)`
 
 GetIpAddressesInfoOk returns a tuple with the IpAddressesInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAddressesInfo
 
-`func (o *Dlb) SetIpAddressesInfo(v []DlbExtrasIpAddressesInfo)`
+`func (o *Dlb) SetIpAddressesInfo(v []DlbExtrasIpAddressesInfoInner)`
 
 SetIpAddressesInfo sets IpAddressesInfo field to given value.
 
@@ -625,20 +625,20 @@ HasTlsv1 returns a boolean if a field has been set.
 
 ### GetSslEndpoints
 
-`func (o *Dlb) GetSslEndpoints() []DlbCoreSslEndpoints`
+`func (o *Dlb) GetSslEndpoints() []DlbCoreSslEndpointsInner`
 
 GetSslEndpoints returns the SslEndpoints field if non-nil, zero value otherwise.
 
 ### GetSslEndpointsOk
 
-`func (o *Dlb) GetSslEndpointsOk() (*[]DlbCoreSslEndpoints, bool)`
+`func (o *Dlb) GetSslEndpointsOk() (*[]DlbCoreSslEndpointsInner, bool)`
 
 GetSslEndpointsOk returns a tuple with the SslEndpoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSslEndpoints
 
-`func (o *Dlb) SetSslEndpoints(v []DlbCoreSslEndpoints)`
+`func (o *Dlb) SetSslEndpoints(v []DlbCoreSslEndpointsInner)`
 
 SetSslEndpoints sets SslEndpoints field to given value.
 

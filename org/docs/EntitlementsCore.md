@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **GlobalDeployment** | **bool** | An explanation about the purpose of this instance. | [default to false]
 **CreateEnvironments** | **bool** | An explanation about the purpose of this instance. | [default to false]
 **CreateSubOrgs** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**LoadBalancer** | [**LoadBalancer**](LoadBalancer.md) |  | 
-**StaticIps** | [**StaticIps**](StaticIps.md) |  | 
-**VCoresDesign** | [**VCoresDesign**](VCoresDesign.md) |  | 
-**VCoresProduction** | [**VCoresProduction**](VCoresProduction.md) |  | 
-**VCoresSandbox** | [**VCoresSandbox**](VCoresSandbox.md) |  | 
-**Vpcs** | [**Vpcs**](Vpcs.md) |  | 
-**Vpns** | [**Vpns**](Vpns.md) |  | 
+**LoadBalancer** | [**LoadBalancer**](LoadBalancer.md) |  | [default to {}]
+**StaticIps** | [**StaticIps**](StaticIps.md) |  | [default to {}]
+**VCoresDesign** | [**VCoresDesign**](VCoresDesign.md) |  | [default to {}]
+**VCoresProduction** | [**VCoresProduction**](VCoresProduction.md) |  | [default to {}]
+**VCoresSandbox** | [**VCoresSandbox**](VCoresSandbox.md) |  | [default to {}]
+**Vpcs** | [**Vpcs**](Vpcs.md) |  | [default to {}]
+**Vpns** | [**Vpns**](Vpns.md) |  | [default to {}]
 
 ## Methods
 

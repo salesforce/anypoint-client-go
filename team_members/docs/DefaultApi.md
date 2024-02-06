@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_members"
 )
 
 func main() {
@@ -43,8 +43,8 @@ func main() {
     ascending := true // bool | Whether to sort ascending or descending. Default true (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersGet(context.Background(), orgId, teamId).MembershipType(membershipType).IdentityType(identityType).MemberIds(memberIds).Search(search).Limit(limit).Offset(offset).Sort(sort).Ascending(ascending).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersGet(context.Background(), orgId, teamId).MembershipType(membershipType).IdentityType(identityType).MemberIds(memberIds).Search(search).Limit(limit).Offset(offset).Sort(sort).Ascending(ascending).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -116,7 +116,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_members"
 )
 
 func main() {
@@ -125,8 +125,8 @@ func main() {
     userId := "userId_example" // string | The ID of the user in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersUserIdDelete(context.Background(), orgId, teamId, userId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersUserIdDelete(context.Background(), orgId, teamId, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersUserIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_members"
 )
 
 func main() {
@@ -200,8 +200,8 @@ func main() {
     teamMemberPutBody := *openapiclient.NewTeamMemberPutBody() // TeamMemberPutBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersUserIdPut(context.Background(), orgId, teamId, userId).TeamMemberPutBody(teamMemberPutBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersUserIdPut(context.Background(), orgId, teamId, userId).TeamMemberPutBody(teamMemberPutBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdMembersUserIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

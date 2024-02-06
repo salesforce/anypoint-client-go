@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/amq"
 )
 
 func main() {
@@ -40,8 +40,8 @@ func main() {
     queueBody := *openapiclient.NewQueueBody() // QueueBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.CreateAMQ(context.Background(), orgId, envId, regionId, queueId).QueueBody(queueBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateAMQ(context.Background(), orgId, envId, regionId, queueId).QueueBody(queueBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateAMQ``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -110,7 +110,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/amq"
 )
 
 func main() {
@@ -120,8 +120,8 @@ func main() {
     queueId := "queueId_example" // string | The id of a specific queue
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteAMQ(context.Background(), orgId, envId, regionId, queueId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.DeleteAMQ(context.Background(), orgId, envId, regionId, queueId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteAMQ``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -187,7 +187,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/amq"
 )
 
 func main() {
@@ -197,8 +197,8 @@ func main() {
     queueId := "queueId_example" // string | The id of a specific queue
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetAMQ(context.Background(), orgId, envId, regionId, queueId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetAMQ(context.Background(), orgId, envId, regionId, queueId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetAMQ``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,7 +266,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/amq"
 )
 
 func main() {
@@ -281,8 +281,8 @@ func main() {
     destinationIds := []string{"Inner_example"} // []string | Includes only results with the given Ids. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetAMQList(context.Background(), orgId, envId, regionId).Inclusion(inclusion).DestinationType(destinationType).Offset(offset).Limit(limit).StartsWith(startsWith).DestinationIds(destinationIds).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetAMQList(context.Background(), orgId, envId, regionId).Inclusion(inclusion).DestinationType(destinationType).Offset(offset).Limit(limit).StartsWith(startsWith).DestinationIds(destinationIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetAMQList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -354,7 +354,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/amq"
 )
 
 func main() {
@@ -365,8 +365,8 @@ func main() {
     queueBody := *openapiclient.NewQueueBody() // QueueBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.UpdateAMQ(context.Background(), orgId, envId, regionId, queueId).QueueBody(queueBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.UpdateAMQ(context.Background(), orgId, envId, regionId, queueId).QueueBody(queueBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdateAMQ``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_organizations__orgId__rolegroups_get_200_response'
           description: Success response
     post:
       description: Creates an rolegroup. Name must be unique.
@@ -57,7 +57,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__rolegroups_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -126,8 +126,8 @@ paths:
                 $ref: '#/components/schemas/rolegroup'
           description: Success response
     put:
-      description: Update a role gorup, implemented as a patch. Note that only the
-        name (must be unique) and description is allowed to be updated.
+      description: "Update a role gorup, implemented as a patch. Note that only the\
+        \ name (must be unique) and description is allowed to be updated."
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -157,7 +157,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__rolegroups_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -173,7 +173,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__rolegroups_post_400_response'
       description: Bad request response
     SuccessGetRoleGroup:
       content:
@@ -206,7 +206,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_organizations__orgId__rolegroups_get_200_response'
       description: Success response
   schemas:
     rolegroupPostBody:
@@ -294,7 +294,7 @@ components:
           type: integer
       title: rolegroup
       type: object
-    inline_response_200:
+    _organizations__orgId__rolegroups_get_200_response:
       example:
         total: 0
         data:
@@ -330,7 +330,7 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__rolegroups_post_400_response:
       properties:
         status:
           default: 400

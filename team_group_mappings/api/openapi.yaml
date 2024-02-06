@@ -120,27 +120,13 @@ components:
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors'
+            $ref: '#/components/schemas/errorsResponse_errors_inner'
           type: array
       title: errorsResponse
       type: object
     teamGroupMappingsPutBody:
       items:
-        properties:
-          membership_type:
-            enum:
-            - member
-            - maintainer
-            title: membershipType
-            type: string
-          external_group_name:
-            title: externalGroupName
-            type: string
-          provider_id:
-            title: providerId
-            type: string
-        title: teamGroupMappingPutBody
-        type: object
+        $ref: '#/components/schemas/teamGroupMappingPutBody'
       title: teamGroupMappingsPutBody
       type: array
     teamGroupMapping:
@@ -181,7 +167,7 @@ components:
           type: integer
       title: teamGroupMappingsCollection
       type: object
-    errorsResponse_errors:
+    errorsResponse_errors_inner:
       properties:
         type:
           title: type
@@ -201,6 +187,22 @@ components:
         message:
           title: message
           type: string
+      type: object
+    teamGroupMappingPutBody:
+      properties:
+        membership_type:
+          enum:
+          - member
+          - maintainer
+          title: membershipType
+          type: string
+        external_group_name:
+          title: externalGroupName
+          type: string
+        provider_id:
+          title: providerId
+          type: string
+      title: teamGroupMappingPutBody
       type: object
   securitySchemes:
     bearerAuth:

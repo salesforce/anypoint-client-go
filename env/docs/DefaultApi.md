@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/env"
 )
 
 func main() {
@@ -37,8 +37,8 @@ func main() {
     environmentId := "environmentId_example" // string | The id of an environment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdDelete(context.Background(), orgId, environmentId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdDelete(context.Background(), orgId, environmentId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -100,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/env"
 )
 
 func main() {
@@ -108,8 +108,8 @@ func main() {
     environmentId := "environmentId_example" // string | The id of an environment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdGet(context.Background(), orgId, environmentId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdGet(context.Background(), orgId, environmentId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,7 +173,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/env"
 )
 
 func main() {
@@ -182,8 +182,8 @@ func main() {
     envCore := *openapiclient.NewEnvCore() // EnvCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdPut(context.Background(), orgId, environmentId).EnvCore(envCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdPut(context.Background(), orgId, environmentId).EnvCore(envCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsEnvironmentIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdEnvironmentsGet
 
-> InlineResponse200 OrganizationsOrgIdEnvironmentsGet(ctx, orgId).Execute()
+> OrganizationsOrgIdEnvironmentsGet200Response OrganizationsOrgIdEnvironmentsGet(ctx, orgId).Execute()
 
 
 
@@ -248,20 +248,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/env"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsGet(context.Background(), orgId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsGet(context.Background(), orgId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdEnvironmentsGet`: InlineResponse200
+    // response from `OrganizationsOrgIdEnvironmentsGet`: OrganizationsOrgIdEnvironmentsGet200Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdEnvironmentsGet`: %v\n", resp)
 }
 ```
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**OrganizationsOrgIdEnvironmentsGet200Response**](OrganizationsOrgIdEnvironmentsGet200Response.md)
 
 ### Authorization
 
@@ -318,7 +318,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/env"
 )
 
 func main() {
@@ -326,8 +326,8 @@ func main() {
     envCore := *openapiclient.NewEnvCore() // EnvCore |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdEnvironmentsPost(context.Background(), orgId).EnvCore(envCore).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdEnvironmentsPost(context.Background(), orgId).EnvCore(envCore).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdEnvironmentsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

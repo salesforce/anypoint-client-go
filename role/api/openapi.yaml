@@ -81,7 +81,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/_roles_get_200_response'
           description: Success response
   /organizations/{orgId}/rolegroups/{rolegroupId}/roles:
     delete:
@@ -146,7 +146,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/_organizations__orgId__rolegroups__rolegroupId__roles_get_200_response'
           description: Success response
     post:
       description: Assigns a role to a rolegroup.
@@ -179,7 +179,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/_organizations__orgId__rolegroups__rolegroupId__roles_post_400_response'
           description: Bad request response
         "201":
           content:
@@ -195,13 +195,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_400'
+            $ref: '#/components/schemas/_organizations__orgId__rolegroups__rolegroupId__roles_post_400_response'
       description: Bad request response
     SuccessListRoles:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200'
+            $ref: '#/components/schemas/_roles_get_200_response'
       description: Success response
     SuccessAssignRoles:
       content:
@@ -222,77 +222,22 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/inline_response_200_1'
+            $ref: '#/components/schemas/_organizations__orgId__rolegroups__rolegroupId__roles_get_200_response'
       description: Success response
   schemas:
     rolePostBody:
       items:
-        properties:
-          context_params:
-            properties:
-              org:
-                title: org
-                type: string
-            title: context_params
-            type: object
-          role_id:
-            title: roleId
-            type: string
-        title: roleToAssign
-        type: object
+        $ref: '#/components/schemas/roleToAssign'
       title: rolePostBody
       type: array
     rolePostResponseBody:
       items:
-        properties:
-          role_group_id:
-            title: rolegroupId
-            type: string
-          role_id:
-            title: roleId
-            type: string
-          role_group_assignment_id:
-            title: roleGroupAssignmentId
-            type: string
-          context_params_json:
-            properties:
-              org:
-                title: org
-                type: string
-            title: contextParamsJson
-            type: object
-          context_params:
-            properties:
-              org:
-                title: org
-                type: string
-            title: contextParams
-            type: object
-        title: rolePostResponseItem
-        type: object
+        $ref: '#/components/schemas/rolePostResponseItem'
       title: rolePostResponseBody
       type: array
     roleDeleteBody:
       items:
-        properties:
-          context_params:
-            properties:
-              org:
-                title: org
-                type: string
-            title: contextParams
-            type: object
-          role_group_assignment_id:
-            title: roleGroupAssignmentId
-            type: string
-          role_group_id:
-            title: roleGroupId
-            type: string
-          role_id:
-            title: roleId
-            type: string
-        title: roleToDelete
-        type: object
+        $ref: '#/components/schemas/roleToDelete'
       title: roleDeleteBody
       type: array
     role:
@@ -376,7 +321,7 @@ components:
           type: boolean
       title: assignedRole
       type: object
-    inline_response_200:
+    _roles_get_200_response:
       example:
         total: 0
         data:
@@ -408,7 +353,7 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_200_1:
+    _organizations__orgId__rolegroups__rolegroupId__roles_get_200_response:
       example:
         total: 0
         data:
@@ -442,7 +387,7 @@ components:
           title: Total number of results
           type: integer
       type: object
-    inline_response_400:
+    _organizations__orgId__rolegroups__rolegroupId__roles_post_400_response:
       properties:
         status:
           default: 400
@@ -453,6 +398,31 @@ components:
           title: the error message
           type: string
       type: object
+    context_params:
+      properties:
+        org:
+          title: org
+          type: string
+      title: context_params
+      type: object
+    roleToAssign:
+      properties:
+        context_params:
+          $ref: '#/components/schemas/context_params'
+        role_id:
+          title: roleId
+          type: string
+      title: roleToAssign
+      type: object
+    contextParamsJson:
+      example:
+        org: org
+      properties:
+        org:
+          title: org
+          type: string
+      title: contextParamsJson
+      type: object
     contextParams:
       example:
         org: org
@@ -461,6 +431,46 @@ components:
           title: org
           type: string
       title: contextParams
+      type: object
+    rolePostResponseItem:
+      example:
+        role_group_assignment_id: role_group_assignment_id
+        role_id: role_id
+        role_group_id: role_group_id
+        context_params_json:
+          org: org
+        context_params:
+          org: org
+      properties:
+        role_group_id:
+          title: rolegroupId
+          type: string
+        role_id:
+          title: roleId
+          type: string
+        role_group_assignment_id:
+          title: roleGroupAssignmentId
+          type: string
+        context_params_json:
+          $ref: '#/components/schemas/contextParamsJson'
+        context_params:
+          $ref: '#/components/schemas/contextParams'
+      title: rolePostResponseItem
+      type: object
+    roleToDelete:
+      properties:
+        context_params:
+          $ref: '#/components/schemas/contextParams'
+        role_group_assignment_id:
+          title: roleGroupAssignmentId
+          type: string
+        role_group_id:
+          title: roleGroupId
+          type: string
+        role_id:
+          title: roleId
+          type: string
+      title: roleToDelete
       type: object
   securitySchemes:
     bearerAuth:

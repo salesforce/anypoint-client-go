@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/ame_binding"
 )
 
 func main() {
@@ -40,8 +40,8 @@ func main() {
     queueId := "queueId_example" // string | The id of a specific exchange queue binding
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.CreateAMEBinding(context.Background(), orgId, envId, regionId, exchangeId, queueId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateAMEBinding(context.Background(), orgId, envId, regionId, exchangeId, queueId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateAMEBinding``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -111,7 +111,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/ame_binding"
 )
 
 func main() {
@@ -123,8 +123,8 @@ func main() {
     aMEBindingRuleBody := *openapiclient.NewAMEBindingRuleBody() // AMEBindingRuleBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.CreateAMEBindingRule(context.Background(), orgId, envId, regionId, exchangeId, queueId).AMEBindingRuleBody(aMEBindingRuleBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateAMEBindingRule(context.Background(), orgId, envId, regionId, exchangeId, queueId).AMEBindingRuleBody(aMEBindingRuleBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateAMEBindingRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -195,7 +195,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/ame_binding"
 )
 
 func main() {
@@ -206,8 +206,8 @@ func main() {
     queueId := "queueId_example" // string | The id of a specific exchange queue binding
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteAMEBinding(context.Background(), orgId, envId, regionId, exchangeId, queueId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.DeleteAMEBinding(context.Background(), orgId, envId, regionId, exchangeId, queueId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteAMEBinding``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/ame_binding"
 )
 
 func main() {
@@ -286,8 +286,8 @@ func main() {
     queueId := "queueId_example" // string | The id of a specific exchange queue binding
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteAMEBindingRule(context.Background(), orgId, envId, regionId, exchangeId, queueId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.DeleteAMEBindingRule(context.Background(), orgId, envId, regionId, exchangeId, queueId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteAMEBindingRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -355,7 +355,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/ame_binding"
 )
 
 func main() {
@@ -367,8 +367,8 @@ func main() {
     inclusion := "inclusion_example" // string | Defines what to fetch (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetAMEBinding(context.Background(), orgId, envId, regionId, exchangeId, queueId).Inclusion(inclusion).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetAMEBinding(context.Background(), orgId, envId, regionId, exchangeId, queueId).Inclusion(inclusion).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetAMEBinding``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

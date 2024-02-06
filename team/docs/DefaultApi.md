@@ -30,7 +30,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team"
 )
 
 func main() {
@@ -46,8 +46,8 @@ func main() {
     ascending := true // bool | Whether to sort ascending or descending. Default true (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsGet(context.Background(), orgId).AncestorTeamId(ancestorTeamId).ParentTeamId(parentTeamId).TeamId(teamId).TeamType(teamType).Search(search).Limit(limit).Offset(offset).Sort(sort).Ascending(ascending).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsGet(context.Background(), orgId).AncestorTeamId(ancestorTeamId).ParentTeamId(parentTeamId).TeamId(teamId).TeamType(teamType).Search(search).Limit(limit).Offset(offset).Sort(sort).Ascending(ascending).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +118,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team"
 )
 
 func main() {
@@ -126,8 +126,8 @@ func main() {
     teamPostBody := *openapiclient.NewTeamPostBody() // TeamPostBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsPost(context.Background(), orgId).TeamPostBody(teamPostBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsPost(context.Background(), orgId).TeamPostBody(teamPostBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team"
 )
 
 func main() {
@@ -198,8 +198,8 @@ func main() {
     teamId := "teamId_example" // string | The ID of the team in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdDelete(context.Background(), orgId, teamId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdDelete(context.Background(), orgId, teamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,7 +261,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team"
 )
 
 func main() {
@@ -269,8 +269,8 @@ func main() {
     teamId := "teamId_example" // string | The ID of the team in GUID format
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdGet(context.Background(), orgId, teamId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdGet(context.Background(), orgId, teamId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdTeamsTeamIdParentPut
 
-> Team OrganizationsOrgIdTeamsTeamIdParentPut(ctx, orgId, teamId).TeamPutBody(teamPutBody).Execute()
+> OrganizationsOrgIdTeamsTeamIdParentPut201Response OrganizationsOrgIdTeamsTeamIdParentPut(ctx, orgId, teamId).TeamPutBody(teamPutBody).Execute()
 
 
 
@@ -334,7 +334,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team"
 )
 
 func main() {
@@ -343,13 +343,13 @@ func main() {
     teamPutBody := *openapiclient.NewTeamPutBody() // TeamPutBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut(context.Background(), orgId, teamId).TeamPutBody(teamPutBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut(context.Background(), orgId, teamId).TeamPutBody(teamPutBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsOrgIdTeamsTeamIdParentPut`: Team
+    // response from `OrganizationsOrgIdTeamsTeamIdParentPut`: OrganizationsOrgIdTeamsTeamIdParentPut201Response
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrganizationsOrgIdTeamsTeamIdParentPut`: %v\n", resp)
 }
 ```
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Team**](team.md)
+[**OrganizationsOrgIdTeamsTeamIdParentPut201Response**](OrganizationsOrgIdTeamsTeamIdParentPut201Response.md)
 
 ### Authorization
 
@@ -409,7 +409,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team"
 )
 
 func main() {
@@ -418,8 +418,8 @@ func main() {
     teamPatchBody := *openapiclient.NewTeamPatchBody() // TeamPatchBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdPatch(context.Background(), orgId, teamId).TeamPatchBody(teamPatchBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdPatch(context.Background(), orgId, teamId).TeamPatchBody(teamPatchBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

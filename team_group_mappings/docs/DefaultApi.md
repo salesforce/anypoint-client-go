@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_group_mappings"
 )
 
 func main() {
@@ -36,8 +36,8 @@ func main() {
     offset := int32(56) // int32 | The number of records to omit from the response. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsGet(context.Background(), orgId, teamId).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsGet(context.Background(), orgId, teamId).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrgIdTeamsTeamIdGroupmappingsPut
 
-> OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(ctx, orgId, teamId).RequestBody(requestBody).Execute()
+> OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(ctx, orgId, teamId).TeamGroupMappingPutBody(teamGroupMappingPutBody).Execute()
 
 
 
@@ -103,17 +103,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/team_group_mappings"
 )
 
 func main() {
     orgId := "orgId_example" // string | The ID of the organization in GUID format
     teamId := "teamId_example" // string | The ID of the team in GUID format
-    requestBody := []map[string]interface{}{map[string]interface{}(123)} // []map[string]interface{} |  (optional)
+    teamGroupMappingPutBody := []openapiclient.TeamGroupMappingPutBody{*openapiclient.NewTeamGroupMappingPutBody()} // []TeamGroupMappingPutBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(context.Background(), orgId, teamId).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsPut(context.Background(), orgId, teamId).TeamGroupMappingPutBody(teamGroupMappingPutBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrganizationsOrgIdTeamsTeamIdGroupmappingsPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **requestBody** | **[]map[string]interface{}** |  | 
+ **teamGroupMappingPutBody** | [**[]TeamGroupMappingPutBody**](TeamGroupMappingPutBody.md) |  | 
 
 ### Return type
 

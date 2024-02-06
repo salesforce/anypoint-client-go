@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **HttpMode** | Pointer to **string** |  | [optional] [default to "redirect"]
 **DefaultSslEndpoint** | Pointer to **int32** |  | [optional] [default to 0]
 **Tlsv1** | Pointer to **bool** |  | [optional] 
-**SslEndpoints** | Pointer to [**[]DlbCoreSslEndpoints**](DlbCoreSslEndpoints.md) |  | [optional] 
+**SslEndpoints** | Pointer to [**[]DlbCoreSslEndpointsInner**](DlbCoreSslEndpointsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -209,20 +209,20 @@ HasTlsv1 returns a boolean if a field has been set.
 
 ### GetSslEndpoints
 
-`func (o *DlbCore) GetSslEndpoints() []DlbCoreSslEndpoints`
+`func (o *DlbCore) GetSslEndpoints() []DlbCoreSslEndpointsInner`
 
 GetSslEndpoints returns the SslEndpoints field if non-nil, zero value otherwise.
 
 ### GetSslEndpointsOk
 
-`func (o *DlbCore) GetSslEndpointsOk() (*[]DlbCoreSslEndpoints, bool)`
+`func (o *DlbCore) GetSslEndpointsOk() (*[]DlbCoreSslEndpointsInner, bool)`
 
 GetSslEndpointsOk returns a tuple with the SslEndpoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSslEndpoints
 
-`func (o *DlbCore) SetSslEndpoints(v []DlbCoreSslEndpoints)`
+`func (o *DlbCore) SetSslEndpoints(v []DlbCoreSslEndpointsInner)`
 
 SetSslEndpoints sets SslEndpoints field to given value.
 
