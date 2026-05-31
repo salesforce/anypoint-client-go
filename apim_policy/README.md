@@ -78,16 +78,23 @@ All URIs are relative to *https://anypoint.mulesoft.com/apimanager*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultAPI* | [**DeleteApimOutboundPolicy**](docs/DefaultAPI.md#deleteapimoutboundpolicy) | **Delete** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId} | Delete a specific api manager instance outbound policy.
 *DefaultAPI* | [**DeleteApimPolicy**](docs/DefaultAPI.md#deleteapimpolicy) | **Delete** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId} | Delete a specific api manager instance policy.
+*DefaultAPI* | [**DisableApimOutboundPolicy**](docs/DefaultAPI.md#disableapimoutboundpolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/disable | Disable a specific api manager instance outbound policy.
 *DefaultAPI* | [**DisableApimPolicy**](docs/DefaultAPI.md#disableapimpolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId}/disable | Disable a specific api manager instance policy.
+*DefaultAPI* | [**EnableApimOutboundPolicy**](docs/DefaultAPI.md#enableapimoutboundpolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/enable | Enable a specific api manager instance outbound policy.
 *DefaultAPI* | [**EnableApimPolicy**](docs/DefaultAPI.md#enableapimpolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId}/enable | Enable a specific api manager instance policy.
+*DefaultAPI* | [**GetApimOutboundPolicies**](docs/DefaultAPI.md#getapimoutboundpolicies) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies | Retrieve all of api manager instance outbound policies.
+*DefaultAPI* | [**GetApimOutboundPolicy**](docs/DefaultAPI.md#getapimoutboundpolicy) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId} | Retrieve a specific api manager instance outbound policy.
 *DefaultAPI* | [**GetApimPolicies**](docs/DefaultAPI.md#getapimpolicies) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies | Retrieve all of api manager instance policies.
 *DefaultAPI* | [**GetApimPolicy**](docs/DefaultAPI.md#getapimpolicy) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId} | Retrieve a specific api manager instance policy.
 *DefaultAPI* | [**GetOrgAutomatedPolicies**](docs/DefaultAPI.md#getorgautomatedpolicies) | **Get** /api/v1/organizations/{orgId}/automated-policies | Retrieve all automated policies of a given organization
 *DefaultAPI* | [**GetOrgCustomPolicyTemplates**](docs/DefaultAPI.md#getorgcustompolicytemplates) | **Get** /api/v1/organizations/{orgId}/custom-policy-templates | Retrieve all or part of custom policy templates of a given organization
 *DefaultAPI* | [**GetOrgExchangePolicyTemplateDetails**](docs/DefaultAPI.md#getorgexchangepolicytemplatedetails) | **Get** /xapi/v1/organizations/{orgId}/exchange-policy-templates/{groupId}/{assetId}/{assetVersion} | Retrieve details of exchange policy template of a given organization
 *DefaultAPI* | [**GetOrgExchangePolicyTemplates**](docs/DefaultAPI.md#getorgexchangepolicytemplates) | **Get** /xapi/v1/organizations/{orgId}/exchange-policy-templates | Retrieve all or part of exchange policy templates of a given organization
+*DefaultAPI* | [**PatchApimOutboundPolicy**](docs/DefaultAPI.md#patchapimoutboundpolicy) | **Patch** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId} | Update a specific api manager instance outbound policy.
 *DefaultAPI* | [**PatchApimPolicy**](docs/DefaultAPI.md#patchapimpolicy) | **Patch** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId} | Update a specific api manager instance policy.
+*DefaultAPI* | [**PostApimOutboundPolicy**](docs/DefaultAPI.md#postapimoutboundpolicy) | **Post** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies | Create an api manager instance outbound policy.
 *DefaultAPI* | [**PostApimPolicy**](docs/DefaultAPI.md#postapimpolicy) | **Post** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies | Create an api manager instance policy.
 
 

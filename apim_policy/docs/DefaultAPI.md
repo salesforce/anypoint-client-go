@@ -4,18 +4,102 @@ All URIs are relative to *https://anypoint.mulesoft.com/apimanager*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteApimOutboundPolicy**](DefaultAPI.md#DeleteApimOutboundPolicy) | **Delete** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId} | Delete a specific api manager instance outbound policy.
 [**DeleteApimPolicy**](DefaultAPI.md#DeleteApimPolicy) | **Delete** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId} | Delete a specific api manager instance policy.
+[**DisableApimOutboundPolicy**](DefaultAPI.md#DisableApimOutboundPolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/disable | Disable a specific api manager instance outbound policy.
 [**DisableApimPolicy**](DefaultAPI.md#DisableApimPolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId}/disable | Disable a specific api manager instance policy.
+[**EnableApimOutboundPolicy**](DefaultAPI.md#EnableApimOutboundPolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/enable | Enable a specific api manager instance outbound policy.
 [**EnableApimPolicy**](DefaultAPI.md#EnableApimPolicy) | **Post** /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId}/enable | Enable a specific api manager instance policy.
+[**GetApimOutboundPolicies**](DefaultAPI.md#GetApimOutboundPolicies) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies | Retrieve all of api manager instance outbound policies.
+[**GetApimOutboundPolicy**](DefaultAPI.md#GetApimOutboundPolicy) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId} | Retrieve a specific api manager instance outbound policy.
 [**GetApimPolicies**](DefaultAPI.md#GetApimPolicies) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies | Retrieve all of api manager instance policies.
 [**GetApimPolicy**](DefaultAPI.md#GetApimPolicy) | **Get** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId} | Retrieve a specific api manager instance policy.
 [**GetOrgAutomatedPolicies**](DefaultAPI.md#GetOrgAutomatedPolicies) | **Get** /api/v1/organizations/{orgId}/automated-policies | Retrieve all automated policies of a given organization
 [**GetOrgCustomPolicyTemplates**](DefaultAPI.md#GetOrgCustomPolicyTemplates) | **Get** /api/v1/organizations/{orgId}/custom-policy-templates | Retrieve all or part of custom policy templates of a given organization
 [**GetOrgExchangePolicyTemplateDetails**](DefaultAPI.md#GetOrgExchangePolicyTemplateDetails) | **Get** /xapi/v1/organizations/{orgId}/exchange-policy-templates/{groupId}/{assetId}/{assetVersion} | Retrieve details of exchange policy template of a given organization
 [**GetOrgExchangePolicyTemplates**](DefaultAPI.md#GetOrgExchangePolicyTemplates) | **Get** /xapi/v1/organizations/{orgId}/exchange-policy-templates | Retrieve all or part of exchange policy templates of a given organization
+[**PatchApimOutboundPolicy**](DefaultAPI.md#PatchApimOutboundPolicy) | **Patch** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId} | Update a specific api manager instance outbound policy.
 [**PatchApimPolicy**](DefaultAPI.md#PatchApimPolicy) | **Patch** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId} | Update a specific api manager instance policy.
+[**PostApimOutboundPolicy**](DefaultAPI.md#PostApimOutboundPolicy) | **Post** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies | Create an api manager instance outbound policy.
 [**PostApimPolicy**](DefaultAPI.md#PostApimPolicy) | **Post** /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies | Create an api manager instance policy.
 
+
+
+## DeleteApimOutboundPolicy
+
+> DeleteApimOutboundPolicy(ctx, orgId, envId, apiId, apiPolicyId).Execute()
+
+Delete a specific api manager instance outbound policy.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	apiPolicyId := "apiPolicyId_example" // string | The api manager instance outbound policy Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.DeleteApimOutboundPolicy(context.Background(), orgId, envId, apiId, apiPolicyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.DeleteApimOutboundPolicy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+**apiPolicyId** | **string** | The api manager instance outbound policy Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteApimOutboundPolicyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DeleteApimPolicy
@@ -80,6 +164,85 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DisableApimOutboundPolicy
+
+> ApimPolicy DisableApimOutboundPolicy(ctx, orgId, envId, apiId, apiPolicyId).Execute()
+
+Disable a specific api manager instance outbound policy.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	apiPolicyId := "apiPolicyId_example" // string | The api manager instance outbound policy Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.DisableApimOutboundPolicy(context.Background(), orgId, envId, apiId, apiPolicyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.DisableApimOutboundPolicy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DisableApimOutboundPolicy`: ApimPolicy
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.DisableApimOutboundPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+**apiPolicyId** | **string** | The api manager instance outbound policy Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDisableApimOutboundPolicyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**ApimPolicy**](ApimPolicy.md)
 
 ### Authorization
 
@@ -174,6 +337,85 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EnableApimOutboundPolicy
+
+> ApimPolicy EnableApimOutboundPolicy(ctx, orgId, envId, apiId, apiPolicyId).Execute()
+
+Enable a specific api manager instance outbound policy.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	apiPolicyId := "apiPolicyId_example" // string | The api manager instance outbound policy Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.EnableApimOutboundPolicy(context.Background(), orgId, envId, apiId, apiPolicyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.EnableApimOutboundPolicy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EnableApimOutboundPolicy`: ApimPolicy
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.EnableApimOutboundPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+**apiPolicyId** | **string** | The api manager instance outbound policy Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableApimOutboundPolicyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**ApimPolicy**](ApimPolicy.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## EnableApimPolicy
 
 > ApimPolicy EnableApimPolicy(ctx, orgId, envId, apiId, apiPolicyId).Execute()
@@ -226,6 +468,163 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiEnableApimPolicyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+### Return type
+
+[**ApimPolicy**](ApimPolicy.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetApimOutboundPolicies
+
+> ApimPolicyCollection GetApimOutboundPolicies(ctx, orgId, envId, apiId).FullInfo(fullInfo).Execute()
+
+Retrieve all of api manager instance outbound policies.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	fullInfo := true // bool |  (optional) (default to false)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetApimOutboundPolicies(context.Background(), orgId, envId, apiId).FullInfo(fullInfo).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetApimOutboundPolicies``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetApimOutboundPolicies`: ApimPolicyCollection
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetApimOutboundPolicies`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetApimOutboundPoliciesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **fullInfo** | **bool** |  | [default to false]
+
+### Return type
+
+[**ApimPolicyCollection**](ApimPolicyCollection.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetApimOutboundPolicy
+
+> ApimPolicy GetApimOutboundPolicy(ctx, orgId, envId, apiId, apiPolicyId).Execute()
+
+Retrieve a specific api manager instance outbound policy.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	apiPolicyId := "apiPolicyId_example" // string | The api manager instance outbound policy Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetApimOutboundPolicy(context.Background(), orgId, envId, apiId, apiPolicyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetApimOutboundPolicy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetApimOutboundPolicy`: ApimPolicy
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetApimOutboundPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+**apiPolicyId** | **string** | The api manager instance outbound policy Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetApimOutboundPolicyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -729,6 +1128,87 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PatchApimOutboundPolicy
+
+> ApimPolicy PatchApimOutboundPolicy(ctx, orgId, envId, apiId, apiPolicyId).Body(body).Execute()
+
+Update a specific api manager instance outbound policy.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	apiPolicyId := "apiPolicyId_example" // string | The api manager instance outbound policy Id
+	body := map[string]interface{}{ ... } // map[string]interface{} | outbound policy content (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.PatchApimOutboundPolicy(context.Background(), orgId, envId, apiId, apiPolicyId).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.PatchApimOutboundPolicy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchApimOutboundPolicy`: ApimPolicy
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.PatchApimOutboundPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+**apiPolicyId** | **string** | The api manager instance outbound policy Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchApimOutboundPolicyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+ **body** | **map[string]interface{}** | outbound policy content | 
+
+### Return type
+
+[**ApimPolicy**](ApimPolicy.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PatchApimPolicy
 
 > ApimPolicy PatchApimPolicy(ctx, orgId, envId, apiId, apiPolicyId).Body(body).Execute()
@@ -791,6 +1271,84 @@ Name | Type | Description  | Notes
 
 
  **body** | **map[string]interface{}** | policy content | 
+
+### Return type
+
+[**ApimPolicy**](ApimPolicy.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostApimOutboundPolicy
+
+> ApimPolicy PostApimOutboundPolicy(ctx, orgId, envId, apiId).ApimPolicyBody(apimPolicyBody).Execute()
+
+Create an api manager instance outbound policy.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/apim_policy"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	envId := "envId_example" // string | The environment Id
+	apiId := "apiId_example" // string | The api manager instance Id
+	apimPolicyBody := *openapiclient.NewApimPolicyBody() // ApimPolicyBody | outbound policy content (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.PostApimOutboundPolicy(context.Background(), orgId, envId, apiId).ApimPolicyBody(apimPolicyBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.PostApimOutboundPolicy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostApimOutboundPolicy`: ApimPolicy
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.PostApimOutboundPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**envId** | **string** | The environment Id | 
+**apiId** | **string** | The api manager instance Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostApimOutboundPolicyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **apimPolicyBody** | [**ApimPolicyBody**](ApimPolicyBody.md) | outbound policy content | 
 
 ### Return type
 
