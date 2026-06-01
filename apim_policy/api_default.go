@@ -23,121 +23,6 @@ import (
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
 
-type DefaultAPIDeleteApimOutboundPolicyRequest struct {
-	ctx context.Context
-	ApiService *DefaultAPIService
-	orgId string
-	envId string
-	apiId string
-	apiPolicyId string
-}
-
-func (r DefaultAPIDeleteApimOutboundPolicyRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteApimOutboundPolicyExecute(r)
-}
-
-/*
-DeleteApimOutboundPolicy Delete a specific api manager instance outbound policy.
-
-Delete a specific api manager instance outbound policy in a given organization and environment.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId The organization Id
- @param envId The environment Id
- @param apiId The api manager instance Id
- @param apiPolicyId The api manager instance outbound policy Id
- @return DefaultAPIDeleteApimOutboundPolicyRequest
-*/
-func (a *DefaultAPIService) DeleteApimOutboundPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIDeleteApimOutboundPolicyRequest {
-	return DefaultAPIDeleteApimOutboundPolicyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		apiId: apiId,
-		apiPolicyId: apiPolicyId,
-	}
-}
-
-// Execute executes the request
-func (a *DefaultAPIService) DeleteApimOutboundPolicyExecute(r DefaultAPIDeleteApimOutboundPolicyRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteApimOutboundPolicy")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiPolicyId"+"}", url.PathEscape(parameterValueToString(r.apiPolicyId, "apiPolicyId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetOrgAutomatedPolicies404Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type DefaultAPIDeleteApimPolicyRequest struct {
 	ctx context.Context
 	ApiService *DefaultAPIService
@@ -251,132 +136,6 @@ func (a *DefaultAPIService) DeleteApimPolicyExecute(r DefaultAPIDeleteApimPolicy
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type DefaultAPIDisableApimOutboundPolicyRequest struct {
-	ctx context.Context
-	ApiService *DefaultAPIService
-	orgId string
-	envId string
-	apiId string
-	apiPolicyId string
-}
-
-func (r DefaultAPIDisableApimOutboundPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
-	return r.ApiService.DisableApimOutboundPolicyExecute(r)
-}
-
-/*
-DisableApimOutboundPolicy Disable a specific api manager instance outbound policy.
-
-Disable a specific api manager instance outbound policy in a given organization and environment.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId The organization Id
- @param envId The environment Id
- @param apiId The api manager instance Id
- @param apiPolicyId The api manager instance outbound policy Id
- @return DefaultAPIDisableApimOutboundPolicyRequest
-*/
-func (a *DefaultAPIService) DisableApimOutboundPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIDisableApimOutboundPolicyRequest {
-	return DefaultAPIDisableApimOutboundPolicyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		apiId: apiId,
-		apiPolicyId: apiPolicyId,
-	}
-}
-
-// Execute executes the request
-//  @return ApimPolicy
-func (a *DefaultAPIService) DisableApimOutboundPolicyExecute(r DefaultAPIDisableApimOutboundPolicyRequest) (*ApimPolicy, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApimPolicy
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableApimOutboundPolicy")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/disable"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiPolicyId"+"}", url.PathEscape(parameterValueToString(r.apiPolicyId, "apiPolicyId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetOrgAutomatedPolicies404Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type DefaultAPIDisableApimPolicyRequest struct {
@@ -505,132 +264,6 @@ func (a *DefaultAPIService) DisableApimPolicyExecute(r DefaultAPIDisableApimPoli
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultAPIEnableApimOutboundPolicyRequest struct {
-	ctx context.Context
-	ApiService *DefaultAPIService
-	orgId string
-	envId string
-	apiId string
-	apiPolicyId string
-}
-
-func (r DefaultAPIEnableApimOutboundPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
-	return r.ApiService.EnableApimOutboundPolicyExecute(r)
-}
-
-/*
-EnableApimOutboundPolicy Enable a specific api manager instance outbound policy.
-
-Enable a specific api manager instance outbound policy in a given organization and environment.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId The organization Id
- @param envId The environment Id
- @param apiId The api manager instance Id
- @param apiPolicyId The api manager instance outbound policy Id
- @return DefaultAPIEnableApimOutboundPolicyRequest
-*/
-func (a *DefaultAPIService) EnableApimOutboundPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIEnableApimOutboundPolicyRequest {
-	return DefaultAPIEnableApimOutboundPolicyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		apiId: apiId,
-		apiPolicyId: apiPolicyId,
-	}
-}
-
-// Execute executes the request
-//  @return ApimPolicy
-func (a *DefaultAPIService) EnableApimOutboundPolicyExecute(r DefaultAPIEnableApimOutboundPolicyRequest) (*ApimPolicy, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApimPolicy
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableApimOutboundPolicy")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/enable"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiPolicyId"+"}", url.PathEscape(parameterValueToString(r.apiPolicyId, "apiPolicyId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetOrgAutomatedPolicies404Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type DefaultAPIEnableApimPolicyRequest struct {
 	ctx context.Context
 	ApiService *DefaultAPIService
@@ -683,266 +316,6 @@ func (a *DefaultAPIService) EnableApimPolicyExecute(r DefaultAPIEnableApimPolicy
 	}
 
 	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/{apiPolicyId}/enable"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiPolicyId"+"}", url.PathEscape(parameterValueToString(r.apiPolicyId, "apiPolicyId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetOrgAutomatedPolicies404Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DefaultAPIGetApimOutboundPoliciesRequest struct {
-	ctx context.Context
-	ApiService *DefaultAPIService
-	orgId string
-	envId string
-	apiId string
-	fullInfo *bool
-}
-
-func (r DefaultAPIGetApimOutboundPoliciesRequest) FullInfo(fullInfo bool) DefaultAPIGetApimOutboundPoliciesRequest {
-	r.fullInfo = &fullInfo
-	return r
-}
-
-func (r DefaultAPIGetApimOutboundPoliciesRequest) Execute() (*ApimPolicyCollection, *http.Response, error) {
-	return r.ApiService.GetApimOutboundPoliciesExecute(r)
-}
-
-/*
-GetApimOutboundPolicies Retrieve all of api manager instance outbound policies.
-
-Retrieve all of api manager instance outbound policies in a given organization and environment.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId The organization Id
- @param envId The environment Id
- @param apiId The api manager instance Id
- @return DefaultAPIGetApimOutboundPoliciesRequest
-*/
-func (a *DefaultAPIService) GetApimOutboundPolicies(ctx context.Context, orgId string, envId string, apiId string) DefaultAPIGetApimOutboundPoliciesRequest {
-	return DefaultAPIGetApimOutboundPoliciesRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		apiId: apiId,
-	}
-}
-
-// Execute executes the request
-//  @return ApimPolicyCollection
-func (a *DefaultAPIService) GetApimOutboundPoliciesExecute(r DefaultAPIGetApimOutboundPoliciesRequest) (*ApimPolicyCollection, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApimPolicyCollection
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimOutboundPolicies")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.fullInfo != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fullInfo", r.fullInfo, "form", "")
-	} else {
-		var defaultValue bool = false
-		r.fullInfo = &defaultValue
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetOrgAutomatedPolicies404Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type DefaultAPIGetApimOutboundPolicyRequest struct {
-	ctx context.Context
-	ApiService *DefaultAPIService
-	orgId string
-	envId string
-	apiId string
-	apiPolicyId string
-}
-
-func (r DefaultAPIGetApimOutboundPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
-	return r.ApiService.GetApimOutboundPolicyExecute(r)
-}
-
-/*
-GetApimOutboundPolicy Retrieve a specific api manager instance outbound policy.
-
-Retrieve a specific api manager instance outbound policy in a given organization and environment.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId The organization Id
- @param envId The environment Id
- @param apiId The api manager instance Id
- @param apiPolicyId The api manager instance outbound policy Id
- @return DefaultAPIGetApimOutboundPolicyRequest
-*/
-func (a *DefaultAPIService) GetApimOutboundPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIGetApimOutboundPolicyRequest {
-	return DefaultAPIGetApimOutboundPolicyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		apiId: apiId,
-		apiPolicyId: apiPolicyId,
-	}
-}
-
-// Execute executes the request
-//  @return ApimPolicy
-func (a *DefaultAPIService) GetApimOutboundPolicyExecute(r DefaultAPIGetApimOutboundPolicyRequest) (*ApimPolicy, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApimPolicy
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimOutboundPolicy")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
@@ -1894,141 +1267,6 @@ func (a *DefaultAPIService) GetOrgExchangePolicyTemplatesExecute(r DefaultAPIGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultAPIPatchApimOutboundPolicyRequest struct {
-	ctx context.Context
-	ApiService *DefaultAPIService
-	orgId string
-	envId string
-	apiId string
-	apiPolicyId string
-	body *map[string]interface{}
-}
-
-// outbound policy content
-func (r DefaultAPIPatchApimOutboundPolicyRequest) Body(body map[string]interface{}) DefaultAPIPatchApimOutboundPolicyRequest {
-	r.body = &body
-	return r
-}
-
-func (r DefaultAPIPatchApimOutboundPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
-	return r.ApiService.PatchApimOutboundPolicyExecute(r)
-}
-
-/*
-PatchApimOutboundPolicy Update a specific api manager instance outbound policy.
-
-Update a specific api manager instance outbound policy in a given organization and environment.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgId The organization Id
- @param envId The environment Id
- @param apiId The api manager instance Id
- @param apiPolicyId The api manager instance outbound policy Id
- @return DefaultAPIPatchApimOutboundPolicyRequest
-*/
-func (a *DefaultAPIService) PatchApimOutboundPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIPatchApimOutboundPolicyRequest {
-	return DefaultAPIPatchApimOutboundPolicyRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgId: orgId,
-		envId: envId,
-		apiId: apiId,
-		apiPolicyId: apiPolicyId,
-	}
-}
-
-// Execute executes the request
-//  @return ApimPolicy
-func (a *DefaultAPIService) PatchApimOutboundPolicyExecute(r DefaultAPIPatchApimOutboundPolicyRequest) (*ApimPolicy, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ApimPolicy
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchApimOutboundPolicy")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"apiPolicyId"+"}", url.PathEscape(parameterValueToString(r.apiPolicyId, "apiPolicyId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetOrgAutomatedPolicies404Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type DefaultAPIPatchApimPolicyRequest struct {
 	ctx context.Context
 	ApiService *DefaultAPIService
@@ -2170,23 +1408,24 @@ type DefaultAPIPostApimOutboundPolicyRequest struct {
 	orgId string
 	envId string
 	apiId string
-	apimPolicyBody *ApimPolicyBody
+	apimOutboundPolicyBody *ApimOutboundPolicyBody
 }
 
 // outbound policy content
-func (r DefaultAPIPostApimOutboundPolicyRequest) ApimPolicyBody(apimPolicyBody ApimPolicyBody) DefaultAPIPostApimOutboundPolicyRequest {
-	r.apimPolicyBody = &apimPolicyBody
+func (r DefaultAPIPostApimOutboundPolicyRequest) ApimOutboundPolicyBody(apimOutboundPolicyBody ApimOutboundPolicyBody) DefaultAPIPostApimOutboundPolicyRequest {
+	r.apimOutboundPolicyBody = &apimOutboundPolicyBody
 	return r
 }
 
-func (r DefaultAPIPostApimOutboundPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
+func (r DefaultAPIPostApimOutboundPolicyRequest) Execute() ([]ApimPolicy, *http.Response, error) {
 	return r.ApiService.PostApimOutboundPolicyExecute(r)
 }
 
 /*
 PostApimOutboundPolicy Create an api manager instance outbound policy.
 
-Create an api manager instance outbound policy in a given organization and environment.
+Create an api manager instance outbound policy in a given organization and environment. The request body must include `upstreamIds` (one or more existing upstream ids). The API creates one policy record per upstream id and returns the array of created policy records. Read/Update/Delete/Enable/Disable use the singular policy endpoints (`PatchApimPolicy` / `DeleteApimPolicy` / `EnableApimPolicy` / `DisableApimPolicy`) with the integer `id` returned here.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
@@ -2205,13 +1444,13 @@ func (a *DefaultAPIService) PostApimOutboundPolicy(ctx context.Context, orgId st
 }
 
 // Execute executes the request
-//  @return ApimPolicy
-func (a *DefaultAPIService) PostApimOutboundPolicyExecute(r DefaultAPIPostApimOutboundPolicyRequest) (*ApimPolicy, *http.Response, error) {
+//  @return []ApimPolicy
+func (a *DefaultAPIService) PostApimOutboundPolicyExecute(r DefaultAPIPostApimOutboundPolicyRequest) ([]ApimPolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApimPolicy
+		localVarReturnValue  []ApimPolicy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostApimOutboundPolicy")
@@ -2219,7 +1458,7 @@ func (a *DefaultAPIService) PostApimOutboundPolicyExecute(r DefaultAPIPostApimOu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies"
+	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
@@ -2246,7 +1485,7 @@ func (a *DefaultAPIService) PostApimOutboundPolicyExecute(r DefaultAPIPostApimOu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.apimPolicyBody
+	localVarPostBody = r.apimOutboundPolicyBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

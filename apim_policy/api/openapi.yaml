@@ -657,63 +657,10 @@ paths:
                 $ref: '#/components/schemas/ApimPolicy'
           description: enable specific api manager policy
       summary: Enable a specific api manager instance policy.
-  /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies:
-    get:
-      description: Retrieve all of api manager instance outbound policies in a given
-        organization and environment.
-      operationId: GetApimOutboundPolicies
-      parameters:
-      - description: The organization Id
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The environment Id
-        explode: false
-        in: path
-        name: envId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance Id
-        explode: false
-        in: path
-        name: apiId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: fullInfo
-        required: false
-        schema:
-          default: false
-          type: boolean
-        style: form
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
-          description: resource not found
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApimPolicyCollection'
-          description: list api manager outbound policies
-      summary: Retrieve all of api manager instance outbound policies.
+  /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies:
     post:
-      description: Create an api manager instance outbound policy in a given organization
-        and environment.
+      description: |
+        Create an api manager instance outbound policy in a given organization and environment. The request body must include `upstreamIds` (one or more existing upstream ids). The API creates one policy record per upstream id and returns the array of created policy records. Read/Update/Delete/Enable/Disable use the singular policy endpoints (`PatchApimPolicy` / `DeleteApimPolicy` / `EnableApimPolicy` / `DisableApimPolicy`) with the integer `id` returned here.
       operationId: PostApimOutboundPolicy
       parameters:
       - description: The organization Id
@@ -744,7 +691,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ApimPolicyBody'
+              $ref: '#/components/schemas/ApimOutboundPolicyBody'
         description: outbound policy content
       responses:
         "401":
@@ -759,279 +706,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApimPolicy'
-          description: create api manager outbound policy
+                $ref: '#/components/schemas/ApimOutboundPolicyCollection'
+          description: |
+            create api manager outbound policy — returns an array of policy records, one per upstream id in the request body.
       summary: Create an api manager instance outbound policy.
-  /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}:
-    delete:
-      description: Delete a specific api manager instance outbound policy in a given
-        organization and environment.
-      operationId: DeleteApimOutboundPolicy
-      parameters:
-      - description: The organization Id
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The environment Id
-        explode: false
-        in: path
-        name: envId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance Id
-        explode: false
-        in: path
-        name: apiId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance outbound policy Id
-        explode: false
-        in: path
-        name: apiPolicyId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
-          description: resource not found
-        "204":
-          description: delete specific api manager outbound policy
-      summary: Delete a specific api manager instance outbound policy.
-    get:
-      description: Retrieve a specific api manager instance outbound policy in a given
-        organization and environment.
-      operationId: GetApimOutboundPolicy
-      parameters:
-      - description: The organization Id
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The environment Id
-        explode: false
-        in: path
-        name: envId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance Id
-        explode: false
-        in: path
-        name: apiId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance outbound policy Id
-        explode: false
-        in: path
-        name: apiPolicyId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
-          description: resource not found
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApimPolicy'
-          description: get specific api manager outbound policy
-      summary: Retrieve a specific api manager instance outbound policy.
-    patch:
-      description: Update a specific api manager instance outbound policy in a given
-        organization and environment.
-      operationId: PatchApimOutboundPolicy
-      parameters:
-      - description: The organization Id
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The environment Id
-        explode: false
-        in: path
-        name: envId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance Id
-        explode: false
-        in: path
-        name: apiId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance outbound policy Id
-        explode: false
-        in: path
-        name: apiPolicyId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ApimPolicyPatchBody'
-        description: outbound policy content
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
-          description: resource not found
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApimPolicy'
-          description: patch specific api manager outbound policy
-      summary: Update a specific api manager instance outbound policy.
-  /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/disable:
-    post:
-      description: Disable a specific api manager instance outbound policy in a given
-        organization and environment.
-      operationId: DisableApimOutboundPolicy
-      parameters:
-      - description: The organization Id
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The environment Id
-        explode: false
-        in: path
-        name: envId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance Id
-        explode: false
-        in: path
-        name: apiId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance outbound policy Id
-        explode: false
-        in: path
-        name: apiPolicyId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
-          description: resource not found
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApimPolicy'
-          description: disable specific api manager outbound policy
-      summary: Disable a specific api manager instance outbound policy.
-  /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies/{apiPolicyId}/enable:
-    post:
-      description: Enable a specific api manager instance outbound policy in a given
-        organization and environment.
-      operationId: EnableApimOutboundPolicy
-      parameters:
-      - description: The organization Id
-        explode: false
-        in: path
-        name: orgId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The environment Id
-        explode: false
-        in: path
-        name: envId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance Id
-        explode: false
-        in: path
-        name: apiId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The api manager instance outbound policy Id
-        explode: false
-        in: path
-        name: apiPolicyId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "401":
-          description: Access token is missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
-          description: resource not found
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApimPolicy'
-          description: enable specific api manager outbound policy
-      summary: Enable a specific api manager instance outbound policy.
 components:
   responses:
     UnauthorizedError:
@@ -1106,44 +784,13 @@ components:
           schema:
             $ref: '#/components/schemas/ApimPolicy'
       description: enable specific api manager policy
-    SuccessGetApimOutboundPolicies:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApimPolicyCollection'
-      description: list api manager outbound policies
     SuccessPostApimOutboundPolicy:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApimPolicy'
-      description: create api manager outbound policy
-    SuccessGetApimOutboundPolicy:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApimPolicy'
-      description: get specific api manager outbound policy
-    SuccessPatchApimOutboundPolicy:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApimPolicy'
-      description: patch specific api manager outbound policy
-    SuccessDeleteApimOutboundPolicy:
-      description: delete specific api manager outbound policy
-    SuccessDisableApimOutboundPolicy:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApimPolicy'
-      description: disable specific api manager outbound policy
-    SuccessEnableApimOutboundPolicy:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApimPolicy'
-      description: enable specific api manager outbound policy
+            $ref: '#/components/schemas/ApimOutboundPolicyCollection'
+      description: |
+        create api manager outbound policy — returns an array of policy records, one per upstream id in the request body.
   schemas:
     ErrorsResponse:
       properties:
@@ -1503,6 +1150,7 @@ components:
       example:
         configurationData: "{}"
         groupId: groupId
+        label: label
         type: type
         masterOrganizationId: masterOrganizationId
         organizationId: organizationId
@@ -1512,6 +1160,7 @@ components:
           updated:
             date: date
         assetId: assetId
+        upstreamId: upstreamId
         assetVersion: assetVersion
         pointcutData:
         - methodRegex: methodRegex
@@ -1556,6 +1205,15 @@ components:
           type: string
         apiId:
           type: integer
+        label:
+          description: Optional label applied to this policy instance.
+          nullable: true
+          type: string
+        upstreamId:
+          description: |
+            Identifier of the upstream this policy is bound to. Populated only when the policy was created via the outbound endpoint (`PostApimOutboundPolicy`). Absent for inbound policies.
+          nullable: true
+          type: string
       type: object
     ApimPolicyFull:
       properties:
@@ -1610,6 +1268,54 @@ components:
           title: PointcutDataArray
           type: array
       type: object
+    ApimOutboundPolicyBody:
+      description: |
+        Request body for creating an outbound policy. Differs from `ApimPolicyBody` in two ways: it carries `apiVersionId` + `upstreamIds` (required, one or more upstream identifiers), and it does NOT carry `pointcutData` — outbound policies apply at the upstream binding level rather than via URL pointcuts.
+      example:
+        configurationData: "{}"
+        assetId: assetId
+        groupId: groupId
+        assetVersion: assetVersion
+        apiVersionId: 0
+        label: label
+        upstreamIds:
+        - upstreamIds
+        - upstreamIds
+      properties:
+        configurationData:
+          type: object
+        apiVersionId:
+          description: The numeric API instance id (same as `apiId` in `ApimPolicy`).
+          type: integer
+        groupId:
+          type: string
+        assetId:
+          type: string
+        assetVersion:
+          type: string
+        label:
+          nullable: true
+          type: string
+        upstreamIds:
+          description: |
+            Upstream identifiers (UUID strings) the policy must bind to. The API creates one policy record per id and returns them all in the response array.
+          items:
+            type: string
+          type: array
+      required:
+      - apiVersionId
+      - assetId
+      - assetVersion
+      - configurationData
+      - groupId
+      - upstreamIds
+      type: object
+    ApimOutboundPolicyCollection:
+      description: One policy record per upstream id in the create request body.
+      items:
+        $ref: '#/components/schemas/ApimPolicy'
+      title: ApimOutboundPolicyCollection
+      type: array
     ApimPolicyPatchBody:
       description: |
         is the same as ApimPolicyBody, but since we had some issue generating a struct that puts nil to pointcutData. We chose to leave this unspecified for an optimum coverage.

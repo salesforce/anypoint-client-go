@@ -33,6 +33,10 @@ type ApimPolicy struct {
 	AssetVersion *string `json:"assetVersion,omitempty"`
 	Type *string `json:"type,omitempty"`
 	ApiId *int32 `json:"apiId,omitempty"`
+	// Optional label applied to this policy instance.
+	Label NullableString `json:"label,omitempty"`
+	// Identifier of the upstream this policy is bound to. Populated only when the policy was created via the outbound endpoint (`PostApimOutboundPolicy`). Absent for inbound policies. 
+	UpstreamId NullableString `json:"upstreamId,omitempty"`
 }
 
 // NewApimPolicy instantiates a new ApimPolicy object
@@ -501,6 +505,90 @@ func (o *ApimPolicy) SetApiId(v int32) {
 	o.ApiId = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApimPolicy) GetLabel() string {
+	if o == nil || IsNil(o.Label.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Label.Get()
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApimPolicy) GetLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Label.Get(), o.Label.IsSet()
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *ApimPolicy) HasLabel() bool {
+	if o != nil && o.Label.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given NullableString and assigns it to the Label field.
+func (o *ApimPolicy) SetLabel(v string) {
+	o.Label.Set(&v)
+}
+// SetLabelNil sets the value for Label to be an explicit nil
+func (o *ApimPolicy) SetLabelNil() {
+	o.Label.Set(nil)
+}
+
+// UnsetLabel ensures that no value is present for Label, not even an explicit nil
+func (o *ApimPolicy) UnsetLabel() {
+	o.Label.Unset()
+}
+
+// GetUpstreamId returns the UpstreamId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApimPolicy) GetUpstreamId() string {
+	if o == nil || IsNil(o.UpstreamId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.UpstreamId.Get()
+}
+
+// GetUpstreamIdOk returns a tuple with the UpstreamId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApimPolicy) GetUpstreamIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UpstreamId.Get(), o.UpstreamId.IsSet()
+}
+
+// HasUpstreamId returns a boolean if a field has been set.
+func (o *ApimPolicy) HasUpstreamId() bool {
+	if o != nil && o.UpstreamId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUpstreamId gets a reference to the given NullableString and assigns it to the UpstreamId field.
+func (o *ApimPolicy) SetUpstreamId(v string) {
+	o.UpstreamId.Set(&v)
+}
+// SetUpstreamIdNil sets the value for UpstreamId to be an explicit nil
+func (o *ApimPolicy) SetUpstreamIdNil() {
+	o.UpstreamId.Set(nil)
+}
+
+// UnsetUpstreamId ensures that no value is present for UpstreamId, not even an explicit nil
+func (o *ApimPolicy) UnsetUpstreamId() {
+	o.UpstreamId.Unset()
+}
+
 func (o ApimPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -552,6 +640,12 @@ func (o ApimPolicy) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ApiId) {
 		toSerialize["apiId"] = o.ApiId
+	}
+	if o.Label.IsSet() {
+		toSerialize["label"] = o.Label.Get()
+	}
+	if o.UpstreamId.IsSet() {
+		toSerialize["upstreamId"] = o.UpstreamId.Get()
 	}
 	return toSerialize, nil
 }
