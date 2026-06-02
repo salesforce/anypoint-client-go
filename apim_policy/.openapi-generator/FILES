@@ -5,6 +5,7 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
+docs/ApimOutboundPolicyBody.md
 docs/ApimPolicy.md
 docs/ApimPolicyBody.md
 docs/ApimPolicyCollection.md
@@ -34,6 +35,7 @@ docs/PolicyConfigurationConfigurationInner.md
 git_push.sh
 go.mod
 go.sum
+model_apim_outbound_policy_body.go
 model_apim_policy.go
 model_apim_policy_body.go
 model_apim_policy_collection.go

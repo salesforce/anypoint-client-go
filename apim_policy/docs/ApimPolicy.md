@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **AssetVersion** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **ApiId** | Pointer to **int32** |  | [optional] 
+**Label** | Pointer to **NullableString** | Optional label applied to this policy instance. | [optional] 
+**UpstreamId** | Pointer to **NullableString** | Identifier of the upstream this policy is bound to. Populated only when the policy was created via the outbound endpoint (&#x60;PostApimOutboundPolicy&#x60;). Absent for inbound policies.  | [optional] 
 
 ## Methods
 
@@ -398,6 +400,76 @@ SetApiId sets ApiId field to given value.
 
 HasApiId returns a boolean if a field has been set.
 
+### GetLabel
+
+`func (o *ApimPolicy) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ApimPolicy) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ApimPolicy) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *ApimPolicy) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
+
+### SetLabelNil
+
+`func (o *ApimPolicy) SetLabelNil(b bool)`
+
+ SetLabelNil sets the value for Label to be an explicit nil
+
+### UnsetLabel
+`func (o *ApimPolicy) UnsetLabel()`
+
+UnsetLabel ensures that no value is present for Label, not even an explicit nil
+### GetUpstreamId
+
+`func (o *ApimPolicy) GetUpstreamId() string`
+
+GetUpstreamId returns the UpstreamId field if non-nil, zero value otherwise.
+
+### GetUpstreamIdOk
+
+`func (o *ApimPolicy) GetUpstreamIdOk() (*string, bool)`
+
+GetUpstreamIdOk returns a tuple with the UpstreamId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamId
+
+`func (o *ApimPolicy) SetUpstreamId(v string)`
+
+SetUpstreamId sets UpstreamId field to given value.
+
+### HasUpstreamId
+
+`func (o *ApimPolicy) HasUpstreamId() bool`
+
+HasUpstreamId returns a boolean if a field has been set.
+
+### SetUpstreamIdNil
+
+`func (o *ApimPolicy) SetUpstreamIdNil(b bool)`
+
+ SetUpstreamIdNil sets the value for UpstreamId to be an explicit nil
+
+### UnsetUpstreamId
+`func (o *ApimPolicy) UnsetUpstreamId()`
+
+UnsetUpstreamId ensures that no value is present for UpstreamId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
