@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**AssetsOrgIdAssetIdVersionDelete**](docs/DefaultAPI.md#assetsorgidassetidversiondelete) | **Delete** /assets/{orgId}/{assetId}/{version} | Delete an asset
 *DefaultAPI* | [**AssetsPost**](docs/DefaultAPI.md#assetspost) | **Post** /assets | Create a new asset
 *DefaultAPI* | [**AssetsSearchGet**](docs/DefaultAPI.md#assetssearchget) | **Get** /assets/search | Search for assets
+*DefaultAPI* | [**PostLLMAsset**](docs/DefaultAPI.md#postllmasset) | **Post** /organizations/{orgId}/assets/{groupId}/{assetId}/{version} | Publish an LLM-typed Exchange asset
 
 
 ## Documentation For Models
@@ -102,6 +103,7 @@ Class | Method | HTTP request | Description
  - [Organization](docs/Organization.md)
  - [PatchAssetNameAndDescr](docs/PatchAssetNameAndDescr.md)
  - [PostAssetResponse](docs/PostAssetResponse.md)
+ - [PostLLMAssetResponse](docs/PostLLMAssetResponse.md)
  - [TagsInner](docs/TagsInner.md)
 
 
