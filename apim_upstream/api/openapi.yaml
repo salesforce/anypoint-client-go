@@ -317,6 +317,20 @@ components:
       description: delete upstream response
   schemas:
     ErrorsResponse:
+      example:
+        errors:
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
       properties:
         errors:
           items:
@@ -470,6 +484,9 @@ components:
           $ref: '#/components/schemas/Audit_created'
       type: object
     GetApimInstanceUpstreams_404_response:
+      example:
+        name: name
+        message: message
       properties:
         name:
           type: string
@@ -477,6 +494,13 @@ components:
           type: string
       type: object
     ErrorsResponse_errors_inner:
+      example:
+        schema: schema
+        data: data
+        type: type
+        keyword: keyword
+        message: message
+        dataPath: dataPath
       properties:
         type:
           title: type

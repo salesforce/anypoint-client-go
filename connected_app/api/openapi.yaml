@@ -68,6 +68,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAllConnectedApps_200_response'
           description: Success response
+  /connectedApplications/{connAppId}:
+    get:
+      description: Get a single connected application with connected app id and without
+        organization id
+      operationId: GetConnectedAppByIdOnly
+      parameters:
+      - description: The ID of the connected app
+        explode: false
+        in: path
+        name: connAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: flag to indicate whether to return usage statistics
+        explode: true
+        in: query
+        name: includeUsage
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectedAppRespExt'
+          description: Success get response
   /organizations/{orgId}/connectedApplications:
     post:
       description: Create a new connected application
@@ -385,12 +416,94 @@ components:
     connectedAppRespExt:
       allOf:
       - $ref: '#/components/schemas/connectedAppCore'
-      - $ref: '#/components/schemas/connectedAppRespExt_allOf'
+      - properties:
+          org_id:
+            description: the organization where the connected app is created
+            example: bb1f55d6-563z-4f60-845c-207286484re1
+            title: org_id
+            type: string
+          client_id:
+            description: connected app client id
+            example: 7d72415f862044199be3b739848e6adb
+            title: clientId
+            type: string
+          client_secret:
+            description: connected app generated secret
+            example: c598FdC0d3A94B92BDc3527E63ebAb91
+            title: clientSecret
+            type: string
+          owner_org_id:
+            description: connected app owner organization id
+            example: 9exb9686-4e35-81e0-45ac-8c83662480c0
+            title: ownerOrgId
+            type: string
+          owner_user_id:
+            description: connected app owner user id
+            example: 9exb9686-4e35-81e0-45ac-8c83662480c0
+            title: ownerUserId
+            type: string
+          enabled:
+            example: false
+            title: enabled
+            type: boolean
+          policy_uri:
+            title: policyUri
+            type: string
+          tos_uri:
+            title: tosUri
+            type: string
+          cert_expiry:
+            title: certExpiry
+            type: string
+        type: object
+      example:
+        audience: everyone
+        client_uri: http://myapp.com
+        grant_types:
+        - grant_types
+        - grant_types
+        owner_user_id: 9exb9686-4e35-81e0-45ac-8c83662480c0
+        redirect_uris:
+        - redirect_uris
+        - redirect_uris
+        cert_expiry: cert_expiry
+        client_id: 7d72415f862044199be3b739848e6adb
+        enabled: false
+        public_keys:
+        - public_keys
+        - public_keys
+        org_id: bb1f55d6-563z-4f60-845c-207286484re1
+        owner_org_id: 9exb9686-4e35-81e0-45ac-8c83662480c0
+        scopes:
+        - scopes
+        - scopes
+        client_secret: c598FdC0d3A94B92BDc3527E63ebAb91
+        tos_uri: tos_uri
+        client_name: My Connected App
+        policy_uri: policy_uri
       title: connectedAppRespExt
     connectedAppPatchExt:
       allOf:
       - $ref: '#/components/schemas/connectedAppCore'
-      - $ref: '#/components/schemas/connectedAppPatchExt_allOf'
+      - properties:
+          client_id:
+            example: 1776a4555287421a81bc62059cuy765
+            title: clientId
+            type: string
+          client_secret:
+            example: 68B2679e72b34985484C81b9CA267D6871
+            title: clientSecret
+            type: string
+          enabled:
+            example: true
+            title: enabled
+            type: boolean
+          owner_user_id:
+            description: User id of the connected app owner. Set to transfer ownership.
+            example: 9exb9686-4e35-81e0-45ac-8c83662480c0
+            title: ownerUserId
+            type: string
+        type: object
       title: connectedAppPatchExt
     scopeCore:
       example:
@@ -420,8 +533,54 @@ components:
       example:
         total: 0
         data:
-        - null
-        - null
+        - audience: everyone
+          client_uri: http://myapp.com
+          grant_types:
+          - grant_types
+          - grant_types
+          owner_user_id: 9exb9686-4e35-81e0-45ac-8c83662480c0
+          redirect_uris:
+          - redirect_uris
+          - redirect_uris
+          cert_expiry: cert_expiry
+          client_id: 7d72415f862044199be3b739848e6adb
+          enabled: false
+          public_keys:
+          - public_keys
+          - public_keys
+          org_id: bb1f55d6-563z-4f60-845c-207286484re1
+          owner_org_id: 9exb9686-4e35-81e0-45ac-8c83662480c0
+          scopes:
+          - scopes
+          - scopes
+          client_secret: c598FdC0d3A94B92BDc3527E63ebAb91
+          tos_uri: tos_uri
+          client_name: My Connected App
+          policy_uri: policy_uri
+        - audience: everyone
+          client_uri: http://myapp.com
+          grant_types:
+          - grant_types
+          - grant_types
+          owner_user_id: 9exb9686-4e35-81e0-45ac-8c83662480c0
+          redirect_uris:
+          - redirect_uris
+          - redirect_uris
+          cert_expiry: cert_expiry
+          client_id: 7d72415f862044199be3b739848e6adb
+          enabled: false
+          public_keys:
+          - public_keys
+          - public_keys
+          org_id: bb1f55d6-563z-4f60-845c-207286484re1
+          owner_org_id: 9exb9686-4e35-81e0-45ac-8c83662480c0
+          scopes:
+          - scopes
+          - scopes
+          client_secret: c598FdC0d3A94B92BDc3527E63ebAb91
+          tos_uri: tos_uri
+          client_name: My Connected App
+          policy_uri: policy_uri
       properties:
         data:
           items:
@@ -433,6 +592,9 @@ components:
           type: integer
       type: object
     CreateConnectedApp_400_response:
+      example:
+        message: A sample message here
+        status: 0
       properties:
         status:
           default: 400
@@ -465,59 +627,6 @@ components:
           title: total
           type: integer
       type: object
-    connectedAppRespExt_allOf:
-      properties:
-        client_id:
-          description: connected app client id
-          example: 7d72415f862044199be3b739848e6adb
-          title: clientId
-          type: string
-        client_secret:
-          description: connected app generated secret
-          example: c598FdC0d3A94B92BDc3527E63ebAb91
-          title: clientSecret
-          type: string
-        owner_org_id:
-          description: connected app owner organization id
-          example: 9exb9686-4e35-81e0-45ac-8c83662480c0
-          title: ownerOrgId
-          type: string
-        owner_user_id:
-          description: connected app owner user id
-          example: 9exb9686-4e35-81e0-45ac-8c83662480c0
-          title: ownerUserId
-          type: string
-        enabled:
-          example: false
-          title: enabled
-          type: boolean
-        policy_uri:
-          title: policyUri
-          type: string
-        tos_uri:
-          title: tosUri
-          type: string
-        cert_expiry:
-          title: certExpiry
-          type: string
-      type: object
-      example: null
-    connectedAppPatchExt_allOf:
-      properties:
-        client_id:
-          example: 1776a4555287421a81bc62059cuy765
-          title: clientId
-          type: string
-        client_secret:
-          example: 68B2679e72b34985484C81b9CA267D6871
-          title: clientSecret
-          type: string
-        enabled:
-          example: true
-          title: enabled
-          type: boolean
-      type: object
-      example: null
     contextParams:
       example:
         org: 2xbb7865-45ac-3e35-65e0-8c83112480c0

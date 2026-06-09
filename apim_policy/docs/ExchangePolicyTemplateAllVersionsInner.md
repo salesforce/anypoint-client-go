@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **GroupId** | Pointer to **string** |  | [optional] 
 **AssetId** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | Lifecycle status of the version (e.g. published, deprecated, development). | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetVersion sets Version field to given value.
 `func (o *ExchangePolicyTemplateAllVersionsInner) HasVersion() bool`
 
 HasVersion returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *ExchangePolicyTemplateAllVersionsInner) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ExchangePolicyTemplateAllVersionsInner) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ExchangePolicyTemplateAllVersionsInner) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *ExchangePolicyTemplateAllVersionsInner) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

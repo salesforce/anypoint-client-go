@@ -12,6 +12,8 @@ package vpc
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Vpc type satisfies the MappedNullable interface at compile time
@@ -19,8 +21,6 @@ var _ MappedNullable = &Vpc{}
 
 // Vpc struct for Vpc
 type Vpc struct {
-	// The vpc Id
-	Id string `json:"id"`
 	IsDefault *bool `json:"isDefault,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OwnerId *string `json:"ownerId,omitempty"`
@@ -32,7 +32,11 @@ type Vpc struct {
 	FirewallRules []FirewallRule `json:"firewallRules,omitempty"`
 	InternalDns *InternalDns `json:"internalDns,omitempty"`
 	VpcRoutes []VpcRoute `json:"vpcRoutes,omitempty"`
+	// The vpc Id
+	Id string `json:"id"`
 }
+
+type _Vpc Vpc
 
 // NewVpc instantiates a new Vpc object
 // This constructor will assign default values to properties that have it defined,
@@ -40,13 +44,13 @@ type Vpc struct {
 // will change when the set of required properties is changed
 func NewVpc(id string) *Vpc {
 	this := Vpc{}
-	this.Id = id
 	var isDefault bool = false
 	this.IsDefault = &isDefault
 	var cidrBlock string = "10.0.0.0/20"
 	this.CidrBlock = &cidrBlock
 	var internalDns InternalDns = {"dnsServers":[],"specialDomains":[]}
 	this.InternalDns = &internalDns
+	this.Id = id
 	return &this
 }
 
@@ -62,30 +66,6 @@ func NewVpcWithDefaults() *Vpc {
 	var internalDns InternalDns = {"dnsServers":[],"specialDomains":[]}
 	this.InternalDns = &internalDns
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *Vpc) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Vpc) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Vpc) SetId(v string) {
-	o.Id = v
 }
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
@@ -408,6 +388,30 @@ func (o *Vpc) SetVpcRoutes(v []VpcRoute) {
 	o.VpcRoutes = v
 }
 
+// GetId returns the Id field value
+func (o *Vpc) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Vpc) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Vpc) SetId(v string) {
+	o.Id = v
+}
+
 func (o Vpc) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -418,7 +422,6 @@ func (o Vpc) MarshalJSON() ([]byte, error) {
 
 func (o Vpc) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
 	if !IsNil(o.IsDefault) {
 		toSerialize["isDefault"] = o.IsDefault
 	}
@@ -449,7 +452,45 @@ func (o Vpc) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VpcRoutes) {
 		toSerialize["vpcRoutes"] = o.VpcRoutes
 	}
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
+}
+
+func (o *Vpc) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVpc := _Vpc{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVpc)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Vpc(varVpc)
+
+	return err
 }
 
 type NullableVpc struct {

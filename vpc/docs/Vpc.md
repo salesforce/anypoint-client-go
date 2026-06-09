@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The vpc Id | 
 **IsDefault** | Pointer to **bool** |  | [optional] [default to false]
 **Name** | Pointer to **string** |  | [optional] 
 **OwnerId** | Pointer to **string** |  | [optional] 
@@ -15,6 +14,7 @@ Name | Type | Description | Notes
 **FirewallRules** | Pointer to [**[]FirewallRule**](FirewallRule.md) |  | [optional] [default to []]
 **InternalDns** | Pointer to [**InternalDns**](InternalDns.md) |  | [optional] [default to {"dnsServers":[],"specialDomains":[]}]
 **VpcRoutes** | Pointer to [**[]VpcRoute**](VpcRoute.md) |  | [optional] [default to []]
+**Id** | **string** | The vpc Id | 
 
 ## Methods
 
@@ -34,26 +34,6 @@ will change when the set of required properties is changed
 NewVpcWithDefaults instantiates a new Vpc object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Vpc) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Vpc) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Vpc) SetId(v string)`
-
-SetId sets Id field to given value.
-
 
 ### GetIsDefault
 
@@ -304,6 +284,26 @@ SetVpcRoutes sets VpcRoutes field to given value.
 `func (o *Vpc) HasVpcRoutes() bool`
 
 HasVpcRoutes returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Vpc) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Vpc) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Vpc) SetId(v string)`
+
+SetId sets Id field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

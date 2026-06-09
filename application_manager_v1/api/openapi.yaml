@@ -1,0 +1,2052 @@
+openapi: 3.0.0
+info:
+  description: |
+    The Application Manager API exists to provide Mule Application management operations from Anypoint Control Planes to any Runtime Plane, with capabilities that include:
+      - Deploying a Mule Application or API to a Mule Runtime
+      - Scaling up or down a running application
+      - Managing application settings (ie: properties)
+      - Deleting a Mule Application Deployment
+      - Changing artifact version or configurations of a deployment
+      - Starting, Stopping or Restarting applications
+      - etc.
+    This API currently supports deployments to Cloudhub 1.0 targets only.
+  title: Application Manager v1
+  version: 2.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com
+security:
+- bearerAuth: []
+paths:
+  /armui/api/v1/applications:
+    get:
+      description: "Retrieves a list of deployments for the specified query. If the\
+        \ query returns no results, then an empty list is returned."
+      operationId: GetAllDeployments
+      parameters:
+      - description: The environment id where the applications are deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the applications are deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllDeploymentsResponse'
+          description: Response of a list of deployments
+      summary: List deployments
+  /cloudhub/api/v2/applications:
+    get:
+      description: "Retrieves a list of Cloudhub1 deployments for the specified query.\
+        \ If the query returns no results, then an empty list is returned."
+      operationId: GetCH1Deployments
+      parameters:
+      - description: The environment id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Include statistics for each application in the response.
+        explode: true
+        in: query
+        name: retrieveStatistics
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Number of milliseconds of statistics to gather.
+        explode: true
+        in: query
+        name: period
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Include log levels for each application in the response.
+        explode: true
+        in: query
+        name: retrieveLogLevels
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include tracking settings for each application in the response.
+        explode: true
+        in: query
+        name: retrieveTrackingSettings
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include ip address allocations for each application in the response.
+        explode: true
+        in: query
+        name: retrieveIpAddresses
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCH1DeploymentsResponse'
+          description: Response of a list of deployments
+      summary: List Cloudhub1 deployments
+    post:
+      description: Deploys a new Mule Application to Cloudhub (CH1).
+      operationId: PostDeployment
+      parameters:
+      - description: The environment id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DeployAppBodyFormData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeployAppBodyJSON'
+        description: Application deployment body containing configuration and artifact
+          file.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentCH1Details'
+          description: Response of the create deployment
+        "400":
+          description: Bad request.
+        "401":
+          description: Access token is missing or invalid
+        "500":
+          description: Server error.
+      summary: Create a new deployment
+    put:
+      description: |
+        Bulk Action (UPDATE, START, STOP, RESTART, DELETE) for Applications. The threshold for number of domains in the bulk actions is 100. These actions cannot be stopped. Requires 'Manage Settings' role.
+      operationId: PutDeployments
+      parameters:
+      - description: The environment id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeploymentBulkBody'
+        description: Application deployment body containing configuration and artifact
+          file.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json: {}
+          description: Deployment successful.
+        "400":
+          description: Bad request.
+        "401":
+          description: Access token is missing or invalid
+        "500":
+          description: Server error.
+      summary: Updates deployment states in bulk
+  /cloudhub/api/v2/applications/{domain}:
+    delete:
+      description: Delete a single application
+      operationId: DeleteDeployment
+      parameters:
+      - description: The environment id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The application domain in the path
+        explode: false
+        in: path
+        name: domain
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Response of the put deployment
+        "401":
+          description: Access token is missing or invalid
+      summary: Delete a single application
+    get:
+      description: Retrieve a single application by name. Requires 'Read Applications'
+        role.
+      operationId: GetDeploymentCH1Details
+      parameters:
+      - description: The environment id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The application domain in the path
+        explode: false
+        in: path
+        name: domain
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentCH1Details'
+          description: Response of the get deployment
+        "400":
+          description: Bad request.
+        "401":
+          description: Access token is missing or invalid
+        "500":
+          description: Server error.
+      summary: Read deployment details
+    put:
+      description: Update a single application. Requires 'Manage Settings' role.
+      operationId: PutDeployment
+      parameters:
+      - description: The environment id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-env-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The org id where the application is deployed
+        explode: false
+        in: header
+        name: x-anypnt-org-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The application domain in the path
+        explode: false
+        in: path
+        name: domain
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateDeploymentBodyFormData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeploymentBodyJSON'
+        description: Application deployment body containing configuration and artifact
+          file.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentCH1Details'
+          description: Response of the put deployment
+        "400":
+          description: Bad request.
+        "401":
+          description: Access token is missing or invalid
+        "500":
+          description: Server error.
+      summary: Update a single application.
+  /cloudhub/api/mule-versions:
+    get:
+      description: Read available mule versions.
+      operationId: GetMuleVersions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeCollection'
+          description: Response of the get deployment
+        "401":
+          description: Access token is missing or invalid
+      summary: Read available mule versions
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    DeploymentNotFoundError:
+      description: Deployment not found
+    GetAllDeployments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetAllDeploymentsResponse'
+      description: Response of a list of deployments
+    GetCH1Deployments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetCH1DeploymentsResponse'
+      description: Response of a list of deployments
+    PostDeploymentResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeploymentCH1Details'
+      description: Response of the create deployment
+    GetDeploymentResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeploymentCH1Details'
+      description: Response of the get deployment
+    PutDeploymentResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeploymentCH1Details'
+      description: Response of the put deployment
+    DeleteDeploymentResponse:
+      description: Response of the put deployment
+    GetMuleVersionsResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RuntimeCollection'
+      description: Response of the get deployment
+  schemas:
+    DeploymentList:
+      items:
+        $ref: '#/components/schemas/Deployment'
+      type: array
+    GetAllDeploymentsResponse:
+      example:
+        total: 5
+        data:
+        - artifact:
+            fileName: fileName
+            createTime: 6
+            name: name
+            lastUpdateTime: 0
+          lastReportedStatus: lastReportedStatus
+          muleVersion:
+            updateId: updateId
+            latestUpdateId: latestUpdateId
+            endOfSupportDate: 1
+            version: version
+          application:
+            status: status
+          details:
+            deploymentUpdateStatus: deploymentUpdateStatus
+            domain: domain
+          id: id
+          target:
+            subtype: subtype
+            provider: provider
+            name: name
+            id: id
+            type: type
+            status: status
+        - artifact:
+            fileName: fileName
+            createTime: 6
+            name: name
+            lastUpdateTime: 0
+          lastReportedStatus: lastReportedStatus
+          muleVersion:
+            updateId: updateId
+            latestUpdateId: latestUpdateId
+            endOfSupportDate: 1
+            version: version
+          application:
+            status: status
+          details:
+            deploymentUpdateStatus: deploymentUpdateStatus
+            domain: domain
+          id: id
+          target:
+            subtype: subtype
+            provider: provider
+            name: name
+            id: id
+            type: type
+            status: status
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Deployment'
+          type: array
+        total:
+          type: integer
+      type: object
+    GetCH1DeploymentsResponse:
+      items:
+        $ref: '#/components/schemas/DeploymentCH1Summary'
+      type: array
+    DeployAppBodyFormData:
+      description: Application deployment body to deploy from file.
+      properties:
+        appInfoJson:
+          description: |
+            A JSON string representing the deployment configuration. Look at "NewDeploymentStruct" for structure.
+          type: string
+        file:
+          description: The Mule application artifact to be deployed.
+          format: binary
+          type: string
+        autoStart:
+          description: Indicates whether the application should be automatically started
+            after deployment.
+          type: boolean
+      type: object
+    DeployAppBodyJSON:
+      description: Application deployment body to deploy from exchange.
+      properties:
+        applicationInfo:
+          $ref: '#/components/schemas/NewDeploymentStruct'
+        applicationSource:
+          $ref: '#/components/schemas/ExchangeApplicationSource'
+        autoStart:
+          description: Indicates whether the application should be automatically started
+            after deployment.
+          type: boolean
+      type: object
+    UpdateDeploymentBodyFormData:
+      description: Application deployment body to update a deployment from file.
+      properties:
+        appInfoJson:
+          description: |
+            A JSON string representing the deployment configuration. Look at "NewDeploymentStruct" for structure.
+          type: string
+        file:
+          description: The Mule application artifact to be deployed.
+          format: binary
+          type: string
+      type: object
+    UpdateDeploymentBodyJSON:
+      description: Application deployment body to update a deployment from exchange.
+      properties:
+        applicationInfo:
+          $ref: '#/components/schemas/NewDeploymentStruct'
+        applicationSource:
+          $ref: '#/components/schemas/ExchangeApplicationSource'
+      type: object
+    NewDeploymentStruct:
+      properties:
+        domain:
+          type: string
+        muleVersion:
+          $ref: '#/components/schemas/NewDeploymentStruct_muleVersion'
+        region:
+          type: string
+        monitoringEnabled:
+          type: boolean
+        monitoringAutoRestart:
+          type: boolean
+        workers:
+          $ref: '#/components/schemas/NewDeploymentStruct_workers'
+        properties:
+          description: Application properties
+          type: object
+        propertiesOptions:
+          additionalProperties:
+            $ref: '#/components/schemas/NewDeploymentStruct_propertiesOptions_value'
+          description: "Additional option on the properties, like security configuratoin\
+            \ for each prop"
+          type: object
+        logLevels:
+          items:
+            $ref: '#/components/schemas/NewDeploymentStruct_logLevels_inner'
+          type: array
+        secureDataGatewayEnabled:
+          type: boolean
+        staticIPsEnabled:
+          type: boolean
+        ipAddresses:
+          items:
+            type: string
+          type: array
+        loggingCustomLog4JEnabled:
+          type: boolean
+        loggingNgEnabled:
+          type: boolean
+        persistentQueues:
+          type: boolean
+        persistentQueuesEncrypted:
+          type: boolean
+        objectStoreV1:
+          description: "if set to false, Object Store v2 will be used."
+          type: boolean
+        runtime:
+          $ref: '#/components/schemas/NewDeploymentStruct_runtime'
+      type: object
+    UpdateDeploymentBulkBody:
+      example:
+        action: UPDATE
+        domains:
+        - domains
+        - domains
+        - domains
+        - domains
+        - domains
+      properties:
+        action:
+          description: |
+            * UPDATE: Update all applications in the provided list to the latest update of the Mule Version that the application is currently using * START: Start all applications in the provided list if they are stopped * STOP: Stop all applications in the provided list if they are started * RESTART: Restart all applications in the provided list with zero downtime * DELETE: Delete all applications in the provided list
+          enum:
+          - UPDATE
+          - START
+          - STOP
+          - RESTART
+          - DELETE
+          type: string
+        domains:
+          description: The list of application domains
+          items:
+            type: string
+          maxItems: 100
+          type: array
+      type: object
+    DeploymentCH1Details:
+      description: Response schema for deploying an app to CH1
+      example:
+        fileName: fileName
+        description: description
+        logLevels:
+        - level: level
+          packageName: packageName
+        - level: level
+          packageName: packageName
+        secureDataGatewayEnabled: true
+        propertiesOptions: "{}"
+        staticIPsEnabled: true
+        persistentQueuesEncryptionEnabled: true
+        monitoringAutoRestart: true
+        previousMuleVersion:
+          updateId: updateId
+          releaseChannel: releaseChannel
+          latestUpdateId: latestUpdateId
+          updateVersion: updateVersion
+          javaVersion: javaVersion
+          endOfSupportDate: 7
+          endOfLifeDate: 9
+          version: version
+        workers:
+          amount: 6
+          remainingOrgWorkers: 1.4658129805029452
+          totalOrgWorkers: 5.962133916683182
+          type:
+            memory: memory
+            name: name
+            weight: 0.8008281904610115
+            cpu: cpu
+          recentStatistics:
+            cpu: 2
+            transactions: 5
+        tenants: 6
+        muleVersion:
+          updateId: updateId
+          releaseChannel: releaseChannel
+          latestUpdateId: latestUpdateId
+          updateVersion: updateVersion
+          javaVersion: javaVersion
+          endOfSupportDate: 7
+          endOfLifeDate: 9
+          version: version
+        deploymentGroup:
+          name: name
+          id: id
+        multitenanted: true
+        userName: userName
+        userId: userId
+        monitoringEnabled: true
+        fullDomain: fullDomain
+        hasFile: true
+        vpnConfig:
+          network: network
+          mask: mask
+        domain: domain
+        persistentQueues: true
+        vpnEnabled: true
+        ipAddresses:
+        - address: address
+          regionId: regionId
+          regionName: regionName
+          state: state
+          type: type
+        - address: address
+          regionId: regionId
+          regionName: regionName
+          state: state
+          type: type
+        persistentQueuesEncrypted: true
+        properties: "{}"
+        trackingSettings:
+          trackingLevel: trackingLevel
+        status: status
+        lastUpdateTime: 0
+      properties:
+        domain:
+          description: The short domain name of the application.
+          type: string
+        fullDomain:
+          description: The full domain name including the CH1 suffix.
+          type: string
+        description:
+          description: A description of the application.
+          type: string
+        properties:
+          description: Deployment properties specific to the app configuration.
+          type: object
+        propertiesOptions:
+          description: "Options for the deployment properties, such as security flags."
+          type: object
+        status:
+          description: Current status of the deployed application (e.g. STARTED).
+          type: string
+        workers:
+          $ref: '#/components/schemas/Workers'
+        lastUpdateTime:
+          description: Timestamp (in milliseconds) when the application was last updated.
+          format: int64
+          type: integer
+        fileName:
+          description: The name of the deployed application file.
+          type: string
+        muleVersion:
+          $ref: '#/components/schemas/MuleVersion'
+        previousMuleVersion:
+          $ref: '#/components/schemas/MuleVersion'
+        tenants:
+          description: The number of tenants associated with the deployment.
+          type: integer
+        userId:
+          description: Identifier of the user who deployed the application.
+          type: string
+        userName:
+          description: Username of the deploying user.
+          type: string
+        vpnConfig:
+          $ref: '#/components/schemas/DeploymentCH1Details_vpnConfig'
+        deploymentGroup:
+          $ref: '#/components/schemas/DeploymentGroup'
+        persistentQueues:
+          description: Indicates whether persistent queues are enabled.
+          type: boolean
+        persistentQueuesEncryptionEnabled:
+          description: Indicates whether encryption for persistent queues is enabled.
+          type: boolean
+        persistentQueuesEncrypted:
+          description: Indicates whether the persistent queues are encrypted.
+          type: boolean
+        monitoringEnabled:
+          description: Specifies if monitoring is enabled for the application.
+          type: boolean
+        monitoringAutoRestart:
+          description: Specifies if the application is set to auto-restart when monitoring
+            triggers.
+          type: boolean
+        staticIPsEnabled:
+          description: Indicates whether static IPs are enabled for the deployment.
+          type: boolean
+        multitenanted:
+          description: Indicates if the deployment supports multiple tenants.
+          type: boolean
+        hasFile:
+          description: Indicates whether a deployment file exists for the application.
+          type: boolean
+        secureDataGatewayEnabled:
+          description: Specifies if a secure data gateway is enabled for the deployment.
+          type: boolean
+        vpnEnabled:
+          description: Indicates if VPN is enabled for the deployment.
+          type: boolean
+        trackingSettings:
+          $ref: '#/components/schemas/TrackingSettings'
+        logLevels:
+          description: List of log level configurations for the application.
+          items:
+            $ref: '#/components/schemas/LogLevel'
+          title: logLevels
+          type: array
+        ipAddresses:
+          description: List of IP addresses associated with the deployment.
+          items:
+            $ref: '#/components/schemas/IpAddress'
+          type: array
+      type: object
+    RuntimeCollection:
+      example:
+        total: 5
+        data:
+        - releaseChannel: releaseChannel
+          default: true
+          displayName: displayName
+          javaVersion: javaVersion
+          state: state
+          endOfSupportDate: 0.8008281904610115
+          endOfLifeDate: 6.027456183070403
+          version: version
+          recommended: true
+          latestUpdate:
+            releaseNotes: releaseNotes
+            releaseDate: 1.4658129805029452
+            name: name
+            flags:
+              amiVersionData:
+                ch,extension: "ch,extension"
+                mule,version: "mule,version"
+                objectstore,plugin,artifact: "objectstore,plugin,artifact"
+                ning,version: "ning,version"
+                mule,distro,artifactId: "mule,distro,artifactId"
+                mozart,monitoring,service,version: "mozart,monitoring,service,version"
+                mule,agent,metrics,collector,version: "mule,agent,metrics,collector,version"
+                mule,distro,version: "mule,distro,version"
+                httpcomponents,httpclient,version: "httpcomponents,httpclient,version"
+                mule,agent,extension,version: "mule,agent,extension,version"
+                outputDirectory,plugins,agent,ch: "outputDirectory,plugins,agent,ch"
+                munit,version: "munit,version"
+                outputDirectory,lib,mule: "outputDirectory,lib,mule"
+                objectstore,plugin,mule3,version: "objectstore,plugin,mule3,version"
+                cloudhub,mule,agent,extension,version: "cloudhub,mule,agent,extension,version"
+                mule,distro,groupId: "mule,distro,groupId"
+                netty,typesafe,version: "netty,typesafe,version"
+                hawtjournal,version: "hawtjournal,version"
+                licm,version: "licm,version"
+                cloudhub-common,version: "cloudhub-common,version"
+                mule,extension,version: "mule,extension,version"
+                clm,serverId: "clm,serverId"
+                cloudhub-platform,artifact: "cloudhub-platform,artifact"
+                cloudhub-log-appender,version: "cloudhub-log-appender,version"
+                mule,patch,version: "mule,patch,version"
+                outputDirectory,ch,logging: "outputDirectory,ch,logging"
+                aws-java-sdk,version: "aws-java-sdk,version"
+                outputDirectory,services: "outputDirectory,services"
+                outputDirectory,lib,patches: "outputDirectory,lib,patches"
+                agw,s3,provider,version: "agw,s3,provider,version"
+                quartz,version: "quartz,version"
+                netty,version: "netty,version"
+                mozart,agent,service,version: "mozart,agent,service,version"
+                outputDirectory,lib,alternative: "outputDirectory,lib,alternative"
+                branchFullName: branchFullName
+                mule,version,folder: "mule,version,folder"
+                distro,version,extension: "distro,version,extension"
+                common-jackson,version: "common-jackson,version"
+                licensePath: licensePath
+                objectstore,plugin,mule4,version: "objectstore,plugin,mule4,version"
+                outputDirectory,lib,boot: "outputDirectory,lib,boot"
+                hawtbuf,version: "hawtbuf,version"
+                outputDirectory,lib,artifact-patches: "outputDirectory,lib,artifact-patches"
+                branchType: branchType
+                jasypt,version: "jasypt,version"
+                munit,agent,service,version: "munit,agent,service,version"
+                mule,distro,target,directory: "mule,distro,target,directory"
+                mule,agent,version: "mule,agent,version"
+                branchDetail: branchDetail
+                httpcomponents,httpcore,version: "httpcomponents,httpcore,version"
+                outputDirectory,lib,user: "outputDirectory,lib,user"
+                objectstore,plugin,version: "objectstore,plugin,version"
+                objectstore,plugin,type: "objectstore,plugin,type"
+                objectstore,plugin,classifier: "objectstore,plugin,classifier"
+                outputDirectory,bin: "outputDirectory,bin"
+                mule,version,suffix: "mule,version,suffix"
+                outputDirectory,lib,opt: "outputDirectory,lib,opt"
+                outputDirectory,plugins: "outputDirectory,plugins"
+                clm,serverUrl: "clm,serverUrl"
+                mule,unpack,directory: "mule,unpack,directory"
+                clm,applicationId: "clm,applicationId"
+              asyncScheduleSupported: true
+              usingMuleAgent: true
+              skipMMCPairing: true
+              muleLivenessSupported: true
+              persistentQueuesSupported: true
+              loggingNgSupported: true
+              ocsServiceSupported: true
+              injectLog4j2Supported: true
+              performLog4jReplacement: true
+              log4j1Used: true
+              muleReadinessCheckSupported: true
+              vpnSupported: true
+              monitoringSupported: true
+              objectStoreV1: true
+              injectMuleLogsWhenFail: true
+              diagnosticsSupported: true
+            id: id
+        - releaseChannel: releaseChannel
+          default: true
+          displayName: displayName
+          javaVersion: javaVersion
+          state: state
+          endOfSupportDate: 0.8008281904610115
+          endOfLifeDate: 6.027456183070403
+          version: version
+          recommended: true
+          latestUpdate:
+            releaseNotes: releaseNotes
+            releaseDate: 1.4658129805029452
+            name: name
+            flags:
+              amiVersionData:
+                ch,extension: "ch,extension"
+                mule,version: "mule,version"
+                objectstore,plugin,artifact: "objectstore,plugin,artifact"
+                ning,version: "ning,version"
+                mule,distro,artifactId: "mule,distro,artifactId"
+                mozart,monitoring,service,version: "mozart,monitoring,service,version"
+                mule,agent,metrics,collector,version: "mule,agent,metrics,collector,version"
+                mule,distro,version: "mule,distro,version"
+                httpcomponents,httpclient,version: "httpcomponents,httpclient,version"
+                mule,agent,extension,version: "mule,agent,extension,version"
+                outputDirectory,plugins,agent,ch: "outputDirectory,plugins,agent,ch"
+                munit,version: "munit,version"
+                outputDirectory,lib,mule: "outputDirectory,lib,mule"
+                objectstore,plugin,mule3,version: "objectstore,plugin,mule3,version"
+                cloudhub,mule,agent,extension,version: "cloudhub,mule,agent,extension,version"
+                mule,distro,groupId: "mule,distro,groupId"
+                netty,typesafe,version: "netty,typesafe,version"
+                hawtjournal,version: "hawtjournal,version"
+                licm,version: "licm,version"
+                cloudhub-common,version: "cloudhub-common,version"
+                mule,extension,version: "mule,extension,version"
+                clm,serverId: "clm,serverId"
+                cloudhub-platform,artifact: "cloudhub-platform,artifact"
+                cloudhub-log-appender,version: "cloudhub-log-appender,version"
+                mule,patch,version: "mule,patch,version"
+                outputDirectory,ch,logging: "outputDirectory,ch,logging"
+                aws-java-sdk,version: "aws-java-sdk,version"
+                outputDirectory,services: "outputDirectory,services"
+                outputDirectory,lib,patches: "outputDirectory,lib,patches"
+                agw,s3,provider,version: "agw,s3,provider,version"
+                quartz,version: "quartz,version"
+                netty,version: "netty,version"
+                mozart,agent,service,version: "mozart,agent,service,version"
+                outputDirectory,lib,alternative: "outputDirectory,lib,alternative"
+                branchFullName: branchFullName
+                mule,version,folder: "mule,version,folder"
+                distro,version,extension: "distro,version,extension"
+                common-jackson,version: "common-jackson,version"
+                licensePath: licensePath
+                objectstore,plugin,mule4,version: "objectstore,plugin,mule4,version"
+                outputDirectory,lib,boot: "outputDirectory,lib,boot"
+                hawtbuf,version: "hawtbuf,version"
+                outputDirectory,lib,artifact-patches: "outputDirectory,lib,artifact-patches"
+                branchType: branchType
+                jasypt,version: "jasypt,version"
+                munit,agent,service,version: "munit,agent,service,version"
+                mule,distro,target,directory: "mule,distro,target,directory"
+                mule,agent,version: "mule,agent,version"
+                branchDetail: branchDetail
+                httpcomponents,httpcore,version: "httpcomponents,httpcore,version"
+                outputDirectory,lib,user: "outputDirectory,lib,user"
+                objectstore,plugin,version: "objectstore,plugin,version"
+                objectstore,plugin,type: "objectstore,plugin,type"
+                objectstore,plugin,classifier: "objectstore,plugin,classifier"
+                outputDirectory,bin: "outputDirectory,bin"
+                mule,version,suffix: "mule,version,suffix"
+                outputDirectory,lib,opt: "outputDirectory,lib,opt"
+                outputDirectory,plugins: "outputDirectory,plugins"
+                clm,serverUrl: "clm,serverUrl"
+                mule,unpack,directory: "mule,unpack,directory"
+                clm,applicationId: "clm,applicationId"
+              asyncScheduleSupported: true
+              usingMuleAgent: true
+              skipMMCPairing: true
+              muleLivenessSupported: true
+              persistentQueuesSupported: true
+              loggingNgSupported: true
+              ocsServiceSupported: true
+              injectLog4j2Supported: true
+              performLog4jReplacement: true
+              log4j1Used: true
+              muleReadinessCheckSupported: true
+              vpnSupported: true
+              monitoringSupported: true
+              objectStoreV1: true
+              injectMuleLogsWhenFail: true
+              diagnosticsSupported: true
+            id: id
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Runtime'
+          type: array
+        total:
+          type: integer
+      type: object
+    Runtime:
+      example:
+        releaseChannel: releaseChannel
+        default: true
+        displayName: displayName
+        javaVersion: javaVersion
+        state: state
+        endOfSupportDate: 0.8008281904610115
+        endOfLifeDate: 6.027456183070403
+        version: version
+        recommended: true
+        latestUpdate:
+          releaseNotes: releaseNotes
+          releaseDate: 1.4658129805029452
+          name: name
+          flags:
+            amiVersionData:
+              ch,extension: "ch,extension"
+              mule,version: "mule,version"
+              objectstore,plugin,artifact: "objectstore,plugin,artifact"
+              ning,version: "ning,version"
+              mule,distro,artifactId: "mule,distro,artifactId"
+              mozart,monitoring,service,version: "mozart,monitoring,service,version"
+              mule,agent,metrics,collector,version: "mule,agent,metrics,collector,version"
+              mule,distro,version: "mule,distro,version"
+              httpcomponents,httpclient,version: "httpcomponents,httpclient,version"
+              mule,agent,extension,version: "mule,agent,extension,version"
+              outputDirectory,plugins,agent,ch: "outputDirectory,plugins,agent,ch"
+              munit,version: "munit,version"
+              outputDirectory,lib,mule: "outputDirectory,lib,mule"
+              objectstore,plugin,mule3,version: "objectstore,plugin,mule3,version"
+              cloudhub,mule,agent,extension,version: "cloudhub,mule,agent,extension,version"
+              mule,distro,groupId: "mule,distro,groupId"
+              netty,typesafe,version: "netty,typesafe,version"
+              hawtjournal,version: "hawtjournal,version"
+              licm,version: "licm,version"
+              cloudhub-common,version: "cloudhub-common,version"
+              mule,extension,version: "mule,extension,version"
+              clm,serverId: "clm,serverId"
+              cloudhub-platform,artifact: "cloudhub-platform,artifact"
+              cloudhub-log-appender,version: "cloudhub-log-appender,version"
+              mule,patch,version: "mule,patch,version"
+              outputDirectory,ch,logging: "outputDirectory,ch,logging"
+              aws-java-sdk,version: "aws-java-sdk,version"
+              outputDirectory,services: "outputDirectory,services"
+              outputDirectory,lib,patches: "outputDirectory,lib,patches"
+              agw,s3,provider,version: "agw,s3,provider,version"
+              quartz,version: "quartz,version"
+              netty,version: "netty,version"
+              mozart,agent,service,version: "mozart,agent,service,version"
+              outputDirectory,lib,alternative: "outputDirectory,lib,alternative"
+              branchFullName: branchFullName
+              mule,version,folder: "mule,version,folder"
+              distro,version,extension: "distro,version,extension"
+              common-jackson,version: "common-jackson,version"
+              licensePath: licensePath
+              objectstore,plugin,mule4,version: "objectstore,plugin,mule4,version"
+              outputDirectory,lib,boot: "outputDirectory,lib,boot"
+              hawtbuf,version: "hawtbuf,version"
+              outputDirectory,lib,artifact-patches: "outputDirectory,lib,artifact-patches"
+              branchType: branchType
+              jasypt,version: "jasypt,version"
+              munit,agent,service,version: "munit,agent,service,version"
+              mule,distro,target,directory: "mule,distro,target,directory"
+              mule,agent,version: "mule,agent,version"
+              branchDetail: branchDetail
+              httpcomponents,httpcore,version: "httpcomponents,httpcore,version"
+              outputDirectory,lib,user: "outputDirectory,lib,user"
+              objectstore,plugin,version: "objectstore,plugin,version"
+              objectstore,plugin,type: "objectstore,plugin,type"
+              objectstore,plugin,classifier: "objectstore,plugin,classifier"
+              outputDirectory,bin: "outputDirectory,bin"
+              mule,version,suffix: "mule,version,suffix"
+              outputDirectory,lib,opt: "outputDirectory,lib,opt"
+              outputDirectory,plugins: "outputDirectory,plugins"
+              clm,serverUrl: "clm,serverUrl"
+              mule,unpack,directory: "mule,unpack,directory"
+              clm,applicationId: "clm,applicationId"
+            asyncScheduleSupported: true
+            usingMuleAgent: true
+            skipMMCPairing: true
+            muleLivenessSupported: true
+            persistentQueuesSupported: true
+            loggingNgSupported: true
+            ocsServiceSupported: true
+            injectLog4j2Supported: true
+            performLog4jReplacement: true
+            log4j1Used: true
+            muleReadinessCheckSupported: true
+            vpnSupported: true
+            monitoringSupported: true
+            objectStoreV1: true
+            injectMuleLogsWhenFail: true
+            diagnosticsSupported: true
+          id: id
+      properties:
+        version:
+          description: The runtime version identifier.
+          type: string
+        displayName:
+          description: The display name for the runtime.
+          type: string
+        recommended:
+          description: Indicates whether this runtime is recommended.
+          type: boolean
+        endOfSupportDate:
+          description: The timestamp (in milliseconds) when support ends for this
+            runtime.
+          type: number
+        endOfLifeDate:
+          description: The timestamp (in milliseconds) when this runtime reaches end
+            of life.
+          type: number
+        latestUpdate:
+          $ref: '#/components/schemas/Runtime_latestUpdate'
+        state:
+          description: "The state of the runtime (for example, ACTIVE)."
+          type: string
+        releaseChannel:
+          description: "The release channel of the runtime (for example, EDGE, LTS)."
+          type: string
+        javaVersion:
+          description: The Java version used by the runtime.
+          type: string
+        default:
+          description: Indicates whether this runtime is the default.
+          type: boolean
+      type: object
+    Deployment:
+      example:
+        artifact:
+          fileName: fileName
+          createTime: 6
+          name: name
+          lastUpdateTime: 0
+        lastReportedStatus: lastReportedStatus
+        muleVersion:
+          updateId: updateId
+          latestUpdateId: latestUpdateId
+          endOfSupportDate: 1
+          version: version
+        application:
+          status: status
+        details:
+          deploymentUpdateStatus: deploymentUpdateStatus
+          domain: domain
+        id: id
+        target:
+          subtype: subtype
+          provider: provider
+          name: name
+          id: id
+          type: type
+          status: status
+      properties:
+        id:
+          description: A unique identifier for the deployment.
+          type: string
+        artifact:
+          $ref: '#/components/schemas/Deployment_artifact'
+        lastReportedStatus:
+          description: "The last reported status of the deployment (e.g., STARTED,\
+            \ UNDEPLOYED)."
+          type: string
+        details:
+          $ref: '#/components/schemas/Deployment_details'
+        target:
+          $ref: '#/components/schemas/Deployment_target'
+        application:
+          $ref: '#/components/schemas/Deployment_application'
+        muleVersion:
+          $ref: '#/components/schemas/Deployment_muleVersion'
+      type: object
+    DeploymentCH1Summary:
+      example:
+        fileName: proc-communication-api-1.22.99-mule-application.jar
+        loggingCustomLog4JEnabled: true
+        logLevels:
+        - level: level
+          packageName: packageName
+        - level: level
+          packageName: packageName
+        secureDataGatewayEnabled: true
+        propertiesOptions:
+          key:
+            secure: true
+        staticIPsEnabled: true
+        persistentQueuesEncryptionEnabled: true
+        monitoringAutoRestart: true
+        previousMuleVersion:
+          updateId: updateId
+          releaseChannel: releaseChannel
+          latestUpdateId: latestUpdateId
+          updateVersion: updateVersion
+          javaVersion: javaVersion
+          endOfSupportDate: 7
+          endOfLifeDate: 9
+          version: version
+        workers:
+          amount: 6
+          remainingOrgWorkers: 1.4658129805029452
+          totalOrgWorkers: 5.962133916683182
+          type:
+            memory: memory
+            name: name
+            weight: 0.8008281904610115
+            cpu: cpu
+          recentStatistics:
+            cpu: 2
+            transactions: 5
+        loggingNgEnabled: true
+        muleVersion:
+          updateId: updateId
+          releaseChannel: releaseChannel
+          latestUpdateId: latestUpdateId
+          updateVersion: updateVersion
+          javaVersion: javaVersion
+          endOfSupportDate: 7
+          endOfLifeDate: 9
+          version: version
+        deploymentGroup:
+          name: name
+          id: id
+        deploymentErrorMessage: deploymentErrorMessage
+        monitoringEnabled: true
+        updateRuntimeConfig: true
+        fullDomain: proc-communication-dev-eu-v1.de-c1.cloudhub.io
+        versionId: 5cc1d92e2660b11343296d0b
+        hasFile: true
+        domain: proc-communication-dev-eu-v1
+        persistentQueues: true
+        ipAddresses:
+        - address: address
+          regionId: regionId
+          regionName: regionName
+          state: state
+          type: type
+        - address: address
+          regionId: regionId
+          regionName: regionName
+          state: state
+          type: type
+        region: eu-central-1
+        persistentQueuesEncrypted: true
+        properties:
+          securePlaceholder.key: uUKmva7DCqvqFu8B
+          anypoint.platform.client_id: 6d5ca2c2581b4cabad893c265c87f0fc
+        trackingSettings:
+          trackingLevel: trackingLevel
+        status: STARTED
+        lastUpdateTime: 1742834921019
+      properties:
+        region:
+          example: eu-central-1
+          type: string
+        versionId:
+          example: 5cc1d92e2660b11343296d0b
+          type: string
+        loggingNgEnabled:
+          type: boolean
+        loggingCustomLog4JEnabled:
+          type: boolean
+        updateRuntimeConfig:
+          type: boolean
+        deploymentErrorMessage:
+          type: string
+        domain:
+          example: proc-communication-dev-eu-v1
+          type: string
+        fullDomain:
+          example: proc-communication-dev-eu-v1.de-c1.cloudhub.io
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          example:
+            securePlaceholder.key: uUKmva7DCqvqFu8B
+            anypoint.platform.client_id: 6d5ca2c2581b4cabad893c265c87f0fc
+          type: object
+        propertiesOptions:
+          additionalProperties:
+            $ref: '#/components/schemas/NewDeploymentStruct_propertiesOptions_value'
+          type: object
+        status:
+          enum:
+          - STARTED
+          - UNDEPLOYED
+          type: string
+        workers:
+          $ref: '#/components/schemas/Workers'
+        lastUpdateTime:
+          example: 1742834921019
+          format: int64
+          type: integer
+        fileName:
+          example: proc-communication-api-1.22.99-mule-application.jar
+          type: string
+        persistentQueues:
+          type: boolean
+        persistentQueuesEncryptionEnabled:
+          type: boolean
+        persistentQueuesEncrypted:
+          type: boolean
+        monitoringEnabled:
+          type: boolean
+        monitoringAutoRestart:
+          type: boolean
+        staticIPsEnabled:
+          type: boolean
+        hasFile:
+          type: boolean
+        secureDataGatewayEnabled:
+          type: boolean
+        deploymentGroup:
+          $ref: '#/components/schemas/DeploymentGroup'
+        trackingSettings:
+          $ref: '#/components/schemas/TrackingSettings'
+        logLevels:
+          items:
+            $ref: '#/components/schemas/LogLevel'
+          type: array
+        ipAddresses:
+          items:
+            $ref: '#/components/schemas/IpAddress'
+          type: array
+        muleVersion:
+          $ref: '#/components/schemas/MuleVersion'
+        previousMuleVersion:
+          $ref: '#/components/schemas/MuleVersion'
+      type: object
+    Workers:
+      description: Worker configuration for the application deployment.
+      example:
+        amount: 6
+        remainingOrgWorkers: 1.4658129805029452
+        totalOrgWorkers: 5.962133916683182
+        type:
+          memory: memory
+          name: name
+          weight: 0.8008281904610115
+          cpu: cpu
+        recentStatistics:
+          cpu: 2
+          transactions: 5
+      properties:
+        type:
+          $ref: '#/components/schemas/WorkerType'
+        amount:
+          description: The number of worker instances allocated.
+          type: integer
+        remainingOrgWorkers:
+          description: Remaining worker count available to the organization.
+          type: number
+        totalOrgWorkers:
+          description: Total number of workers allocated to the organization.
+          type: number
+        recentStatistics:
+          $ref: '#/components/schemas/Workers_recentStatistics'
+      type: object
+    WorkerType:
+      description: Worker type configuration for the application deployment.
+      example:
+        memory: memory
+        name: name
+        weight: 0.8008281904610115
+        cpu: cpu
+      properties:
+        name:
+          description: The name of the worker type.
+          type: string
+        weight:
+          description: The weight factor for the worker type.
+          type: number
+        cpu:
+          description: "The CPU allocation description (e.g., '1 vCore')."
+          type: string
+        memory:
+          description: "The memory allocation description (e.g., '1.5 GB memory')."
+          type: string
+      type: object
+    MuleVersion:
+      example:
+        updateId: updateId
+        releaseChannel: releaseChannel
+        latestUpdateId: latestUpdateId
+        updateVersion: updateVersion
+        javaVersion: javaVersion
+        endOfSupportDate: 7
+        endOfLifeDate: 9
+        version: version
+      properties:
+        version:
+          description: The Mule runtime version.
+          type: string
+        updateId:
+          description: Identifier for the current update.
+          type: string
+        latestUpdateId:
+          description: Identifier for the latest available update.
+          type: string
+        endOfSupportDate:
+          description: Timestamp (in milliseconds) representing the end-of-support
+            date.
+          format: int64
+          type: integer
+        endOfLifeDate:
+          description: Timestamp (in milliseconds) representing the end-of-life date.
+          format: int64
+          type: integer
+        updateVersion:
+          description: The update version string.
+          type: string
+        releaseChannel:
+          description: The release channel for the runtime.
+          type: string
+        javaVersion:
+          description: The version of Java used by the runtime.
+          type: string
+      type: object
+    DeploymentGroup:
+      description: Information about the deployment group to which this app belongs.
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Unique identifier for the deployment group.
+          type: string
+        name:
+          description: The name of the deployment group.
+          type: string
+      type: object
+    TrackingSettings:
+      description: Settings for tracking application performance or usage.
+      example:
+        trackingLevel: trackingLevel
+      properties:
+        trackingLevel:
+          description: "The level of tracking applied (e.g., DISABLED, BASIC, FULL)."
+          type: string
+      type: object
+    LogLevel:
+      description: Configuration for log levels in the application.
+      example:
+        level: level
+        packageName: packageName
+      properties:
+        packageName:
+          type: string
+        level:
+          type: string
+      type: object
+    IpAddress:
+      example:
+        address: address
+        regionId: regionId
+        regionName: regionName
+        state: state
+        type: type
+      properties:
+        regionId:
+          description: The region identifier for the IP address.
+          type: string
+        regionName:
+          description: The region name for the IP address.
+          type: string
+        type:
+          description: The type of IP address (ex. vpc)
+          type: string
+        address:
+          description: The IP address.
+          type: string
+        state:
+          description: "The state of the IP address (ex. available, in use)."
+          type: string
+      type: object
+    ExchangeApplicationSource:
+      description: The source of the application in Exchange.
+      properties:
+        source:
+          description: The source of the application in Exchange.
+          enum:
+          - EXCHANGE
+          type: string
+        groupId:
+          description: The group ID of the application in Exchange.
+          type: string
+        artifactId:
+          description: The artifact ID of the application in Exchange.
+          type: string
+        version:
+          description: The version of the application in Exchange.
+          type: string
+        organizationId:
+          description: The organization ID of the application in Exchange.
+          type: string
+      type: object
+    NewDeploymentStruct_muleVersion:
+      properties:
+        version:
+          type: string
+      type: object
+    NewDeploymentStruct_workers_type:
+      properties:
+        name:
+          description: The size of the worker
+          enum:
+          - MICRO
+          - SMALL
+          - MEDIUM
+          - LARGE
+          - XLARGE
+          - XXLARGE
+          - 4XLARGE
+          type: string
+      type: object
+    NewDeploymentStruct_workers:
+      properties:
+        amount:
+          description: The number or replicas
+          type: integer
+        type:
+          $ref: '#/components/schemas/NewDeploymentStruct_workers_type'
+      type: object
+    NewDeploymentStruct_propertiesOptions_value:
+      example:
+        secure: true
+      properties:
+        secure:
+          type: boolean
+      type: object
+    NewDeploymentStruct_logLevels_inner:
+      properties:
+        level:
+          enum:
+          - DEBUG
+          - INFO
+          - WARN
+          - ERROR
+          type: string
+        packageName:
+          type: string
+      type: object
+    NewDeploymentStruct_runtime:
+      properties:
+        version:
+          type: string
+        releaseChannel:
+          type: string
+        java:
+          type: string
+      type: object
+    DeploymentCH1Details_vpnConfig:
+      description: VPN configuration details if applicable.
+      example:
+        network: network
+        mask: mask
+      properties:
+        network:
+          description: The VPN network address.
+          type: string
+        mask:
+          description: The subnet mask for the VPN configuration.
+          type: string
+      type: object
+    Runtime_latestUpdate_flags_amiVersionData:
+      example:
+        ch,extension: "ch,extension"
+        mule,version: "mule,version"
+        objectstore,plugin,artifact: "objectstore,plugin,artifact"
+        ning,version: "ning,version"
+        mule,distro,artifactId: "mule,distro,artifactId"
+        mozart,monitoring,service,version: "mozart,monitoring,service,version"
+        mule,agent,metrics,collector,version: "mule,agent,metrics,collector,version"
+        mule,distro,version: "mule,distro,version"
+        httpcomponents,httpclient,version: "httpcomponents,httpclient,version"
+        mule,agent,extension,version: "mule,agent,extension,version"
+        outputDirectory,plugins,agent,ch: "outputDirectory,plugins,agent,ch"
+        munit,version: "munit,version"
+        outputDirectory,lib,mule: "outputDirectory,lib,mule"
+        objectstore,plugin,mule3,version: "objectstore,plugin,mule3,version"
+        cloudhub,mule,agent,extension,version: "cloudhub,mule,agent,extension,version"
+        mule,distro,groupId: "mule,distro,groupId"
+        netty,typesafe,version: "netty,typesafe,version"
+        hawtjournal,version: "hawtjournal,version"
+        licm,version: "licm,version"
+        cloudhub-common,version: "cloudhub-common,version"
+        mule,extension,version: "mule,extension,version"
+        clm,serverId: "clm,serverId"
+        cloudhub-platform,artifact: "cloudhub-platform,artifact"
+        cloudhub-log-appender,version: "cloudhub-log-appender,version"
+        mule,patch,version: "mule,patch,version"
+        outputDirectory,ch,logging: "outputDirectory,ch,logging"
+        aws-java-sdk,version: "aws-java-sdk,version"
+        outputDirectory,services: "outputDirectory,services"
+        outputDirectory,lib,patches: "outputDirectory,lib,patches"
+        agw,s3,provider,version: "agw,s3,provider,version"
+        quartz,version: "quartz,version"
+        netty,version: "netty,version"
+        mozart,agent,service,version: "mozart,agent,service,version"
+        outputDirectory,lib,alternative: "outputDirectory,lib,alternative"
+        branchFullName: branchFullName
+        mule,version,folder: "mule,version,folder"
+        distro,version,extension: "distro,version,extension"
+        common-jackson,version: "common-jackson,version"
+        licensePath: licensePath
+        objectstore,plugin,mule4,version: "objectstore,plugin,mule4,version"
+        outputDirectory,lib,boot: "outputDirectory,lib,boot"
+        hawtbuf,version: "hawtbuf,version"
+        outputDirectory,lib,artifact-patches: "outputDirectory,lib,artifact-patches"
+        branchType: branchType
+        jasypt,version: "jasypt,version"
+        munit,agent,service,version: "munit,agent,service,version"
+        mule,distro,target,directory: "mule,distro,target,directory"
+        mule,agent,version: "mule,agent,version"
+        branchDetail: branchDetail
+        httpcomponents,httpcore,version: "httpcomponents,httpcore,version"
+        outputDirectory,lib,user: "outputDirectory,lib,user"
+        objectstore,plugin,version: "objectstore,plugin,version"
+        objectstore,plugin,type: "objectstore,plugin,type"
+        objectstore,plugin,classifier: "objectstore,plugin,classifier"
+        outputDirectory,bin: "outputDirectory,bin"
+        mule,version,suffix: "mule,version,suffix"
+        outputDirectory,lib,opt: "outputDirectory,lib,opt"
+        outputDirectory,plugins: "outputDirectory,plugins"
+        clm,serverUrl: "clm,serverUrl"
+        mule,unpack,directory: "mule,unpack,directory"
+        clm,applicationId: "clm,applicationId"
+      properties:
+        ch,extension:
+          type: string
+        mule,version:
+          type: string
+        objectstore,plugin,artifact:
+          type: string
+        ning,version:
+          type: string
+        mule,distro,artifactId:
+          type: string
+        mozart,monitoring,service,version:
+          type: string
+        mule,agent,metrics,collector,version:
+          type: string
+        mule,distro,version:
+          type: string
+        httpcomponents,httpclient,version:
+          type: string
+        mule,agent,extension,version:
+          type: string
+        outputDirectory,plugins,agent,ch:
+          type: string
+        munit,version:
+          type: string
+        outputDirectory,lib,mule:
+          type: string
+        objectstore,plugin,mule3,version:
+          type: string
+        cloudhub,mule,agent,extension,version:
+          type: string
+        mule,distro,groupId:
+          type: string
+        netty,typesafe,version:
+          type: string
+        hawtjournal,version:
+          type: string
+        licm,version:
+          type: string
+        cloudhub-common,version:
+          type: string
+        mule,extension,version:
+          type: string
+        clm,serverId:
+          type: string
+        cloudhub-platform,artifact:
+          type: string
+        cloudhub-log-appender,version:
+          type: string
+        mule,patch,version:
+          type: string
+        outputDirectory,ch,logging:
+          type: string
+        aws-java-sdk,version:
+          type: string
+        outputDirectory,services:
+          type: string
+        outputDirectory,lib,patches:
+          type: string
+        agw,s3,provider,version:
+          type: string
+        quartz,version:
+          type: string
+        netty,version:
+          type: string
+        mozart,agent,service,version:
+          type: string
+        outputDirectory,lib,alternative:
+          type: string
+        branchFullName:
+          type: string
+        mule,version,folder:
+          type: string
+        distro,version,extension:
+          type: string
+        common-jackson,version:
+          type: string
+        licensePath:
+          type: string
+        objectstore,plugin,mule4,version:
+          type: string
+        outputDirectory,lib,boot:
+          type: string
+        hawtbuf,version:
+          type: string
+        outputDirectory,lib,artifact-patches:
+          type: string
+        branchType:
+          type: string
+        jasypt,version:
+          type: string
+        munit,agent,service,version:
+          type: string
+        mule,distro,target,directory:
+          type: string
+        mule,agent,version:
+          type: string
+        branchDetail:
+          type: string
+        httpcomponents,httpcore,version:
+          type: string
+        outputDirectory,lib,user:
+          type: string
+        objectstore,plugin,version:
+          type: string
+        objectstore,plugin,type:
+          type: string
+        objectstore,plugin,classifier:
+          type: string
+        outputDirectory,bin:
+          type: string
+        mule,version,suffix:
+          type: string
+        outputDirectory,lib,opt:
+          type: string
+        outputDirectory,plugins:
+          type: string
+        clm,serverUrl:
+          type: string
+        mule,unpack,directory:
+          type: string
+        clm,applicationId:
+          type: string
+      type: object
+    Runtime_latestUpdate_flags:
+      example:
+        amiVersionData:
+          ch,extension: "ch,extension"
+          mule,version: "mule,version"
+          objectstore,plugin,artifact: "objectstore,plugin,artifact"
+          ning,version: "ning,version"
+          mule,distro,artifactId: "mule,distro,artifactId"
+          mozart,monitoring,service,version: "mozart,monitoring,service,version"
+          mule,agent,metrics,collector,version: "mule,agent,metrics,collector,version"
+          mule,distro,version: "mule,distro,version"
+          httpcomponents,httpclient,version: "httpcomponents,httpclient,version"
+          mule,agent,extension,version: "mule,agent,extension,version"
+          outputDirectory,plugins,agent,ch: "outputDirectory,plugins,agent,ch"
+          munit,version: "munit,version"
+          outputDirectory,lib,mule: "outputDirectory,lib,mule"
+          objectstore,plugin,mule3,version: "objectstore,plugin,mule3,version"
+          cloudhub,mule,agent,extension,version: "cloudhub,mule,agent,extension,version"
+          mule,distro,groupId: "mule,distro,groupId"
+          netty,typesafe,version: "netty,typesafe,version"
+          hawtjournal,version: "hawtjournal,version"
+          licm,version: "licm,version"
+          cloudhub-common,version: "cloudhub-common,version"
+          mule,extension,version: "mule,extension,version"
+          clm,serverId: "clm,serverId"
+          cloudhub-platform,artifact: "cloudhub-platform,artifact"
+          cloudhub-log-appender,version: "cloudhub-log-appender,version"
+          mule,patch,version: "mule,patch,version"
+          outputDirectory,ch,logging: "outputDirectory,ch,logging"
+          aws-java-sdk,version: "aws-java-sdk,version"
+          outputDirectory,services: "outputDirectory,services"
+          outputDirectory,lib,patches: "outputDirectory,lib,patches"
+          agw,s3,provider,version: "agw,s3,provider,version"
+          quartz,version: "quartz,version"
+          netty,version: "netty,version"
+          mozart,agent,service,version: "mozart,agent,service,version"
+          outputDirectory,lib,alternative: "outputDirectory,lib,alternative"
+          branchFullName: branchFullName
+          mule,version,folder: "mule,version,folder"
+          distro,version,extension: "distro,version,extension"
+          common-jackson,version: "common-jackson,version"
+          licensePath: licensePath
+          objectstore,plugin,mule4,version: "objectstore,plugin,mule4,version"
+          outputDirectory,lib,boot: "outputDirectory,lib,boot"
+          hawtbuf,version: "hawtbuf,version"
+          outputDirectory,lib,artifact-patches: "outputDirectory,lib,artifact-patches"
+          branchType: branchType
+          jasypt,version: "jasypt,version"
+          munit,agent,service,version: "munit,agent,service,version"
+          mule,distro,target,directory: "mule,distro,target,directory"
+          mule,agent,version: "mule,agent,version"
+          branchDetail: branchDetail
+          httpcomponents,httpcore,version: "httpcomponents,httpcore,version"
+          outputDirectory,lib,user: "outputDirectory,lib,user"
+          objectstore,plugin,version: "objectstore,plugin,version"
+          objectstore,plugin,type: "objectstore,plugin,type"
+          objectstore,plugin,classifier: "objectstore,plugin,classifier"
+          outputDirectory,bin: "outputDirectory,bin"
+          mule,version,suffix: "mule,version,suffix"
+          outputDirectory,lib,opt: "outputDirectory,lib,opt"
+          outputDirectory,plugins: "outputDirectory,plugins"
+          clm,serverUrl: "clm,serverUrl"
+          mule,unpack,directory: "mule,unpack,directory"
+          clm,applicationId: "clm,applicationId"
+        asyncScheduleSupported: true
+        usingMuleAgent: true
+        skipMMCPairing: true
+        muleLivenessSupported: true
+        persistentQueuesSupported: true
+        loggingNgSupported: true
+        ocsServiceSupported: true
+        injectLog4j2Supported: true
+        performLog4jReplacement: true
+        log4j1Used: true
+        muleReadinessCheckSupported: true
+        vpnSupported: true
+        monitoringSupported: true
+        objectStoreV1: true
+        injectMuleLogsWhenFail: true
+        diagnosticsSupported: true
+      properties:
+        performLog4jReplacement:
+          type: boolean
+        skipMMCPairing:
+          type: boolean
+        log4j1Used:
+          type: boolean
+        usingMuleAgent:
+          type: boolean
+        vpnSupported:
+          type: boolean
+        monitoringSupported:
+          type: boolean
+        objectStoreV1:
+          type: boolean
+        loggingNgSupported:
+          type: boolean
+        diagnosticsSupported:
+          type: boolean
+        persistentQueuesSupported:
+          type: boolean
+        asyncScheduleSupported:
+          type: boolean
+        muleLivenessSupported:
+          type: boolean
+        muleReadinessCheckSupported:
+          type: boolean
+        ocsServiceSupported:
+          type: boolean
+        injectLog4j2Supported:
+          type: boolean
+        injectMuleLogsWhenFail:
+          type: boolean
+        amiVersionData:
+          $ref: '#/components/schemas/Runtime_latestUpdate_flags_amiVersionData'
+      type: object
+    Runtime_latestUpdate:
+      example:
+        releaseNotes: releaseNotes
+        releaseDate: 1.4658129805029452
+        name: name
+        flags:
+          amiVersionData:
+            ch,extension: "ch,extension"
+            mule,version: "mule,version"
+            objectstore,plugin,artifact: "objectstore,plugin,artifact"
+            ning,version: "ning,version"
+            mule,distro,artifactId: "mule,distro,artifactId"
+            mozart,monitoring,service,version: "mozart,monitoring,service,version"
+            mule,agent,metrics,collector,version: "mule,agent,metrics,collector,version"
+            mule,distro,version: "mule,distro,version"
+            httpcomponents,httpclient,version: "httpcomponents,httpclient,version"
+            mule,agent,extension,version: "mule,agent,extension,version"
+            outputDirectory,plugins,agent,ch: "outputDirectory,plugins,agent,ch"
+            munit,version: "munit,version"
+            outputDirectory,lib,mule: "outputDirectory,lib,mule"
+            objectstore,plugin,mule3,version: "objectstore,plugin,mule3,version"
+            cloudhub,mule,agent,extension,version: "cloudhub,mule,agent,extension,version"
+            mule,distro,groupId: "mule,distro,groupId"
+            netty,typesafe,version: "netty,typesafe,version"
+            hawtjournal,version: "hawtjournal,version"
+            licm,version: "licm,version"
+            cloudhub-common,version: "cloudhub-common,version"
+            mule,extension,version: "mule,extension,version"
+            clm,serverId: "clm,serverId"
+            cloudhub-platform,artifact: "cloudhub-platform,artifact"
+            cloudhub-log-appender,version: "cloudhub-log-appender,version"
+            mule,patch,version: "mule,patch,version"
+            outputDirectory,ch,logging: "outputDirectory,ch,logging"
+            aws-java-sdk,version: "aws-java-sdk,version"
+            outputDirectory,services: "outputDirectory,services"
+            outputDirectory,lib,patches: "outputDirectory,lib,patches"
+            agw,s3,provider,version: "agw,s3,provider,version"
+            quartz,version: "quartz,version"
+            netty,version: "netty,version"
+            mozart,agent,service,version: "mozart,agent,service,version"
+            outputDirectory,lib,alternative: "outputDirectory,lib,alternative"
+            branchFullName: branchFullName
+            mule,version,folder: "mule,version,folder"
+            distro,version,extension: "distro,version,extension"
+            common-jackson,version: "common-jackson,version"
+            licensePath: licensePath
+            objectstore,plugin,mule4,version: "objectstore,plugin,mule4,version"
+            outputDirectory,lib,boot: "outputDirectory,lib,boot"
+            hawtbuf,version: "hawtbuf,version"
+            outputDirectory,lib,artifact-patches: "outputDirectory,lib,artifact-patches"
+            branchType: branchType
+            jasypt,version: "jasypt,version"
+            munit,agent,service,version: "munit,agent,service,version"
+            mule,distro,target,directory: "mule,distro,target,directory"
+            mule,agent,version: "mule,agent,version"
+            branchDetail: branchDetail
+            httpcomponents,httpcore,version: "httpcomponents,httpcore,version"
+            outputDirectory,lib,user: "outputDirectory,lib,user"
+            objectstore,plugin,version: "objectstore,plugin,version"
+            objectstore,plugin,type: "objectstore,plugin,type"
+            objectstore,plugin,classifier: "objectstore,plugin,classifier"
+            outputDirectory,bin: "outputDirectory,bin"
+            mule,version,suffix: "mule,version,suffix"
+            outputDirectory,lib,opt: "outputDirectory,lib,opt"
+            outputDirectory,plugins: "outputDirectory,plugins"
+            clm,serverUrl: "clm,serverUrl"
+            mule,unpack,directory: "mule,unpack,directory"
+            clm,applicationId: "clm,applicationId"
+          asyncScheduleSupported: true
+          usingMuleAgent: true
+          skipMMCPairing: true
+          muleLivenessSupported: true
+          persistentQueuesSupported: true
+          loggingNgSupported: true
+          ocsServiceSupported: true
+          injectLog4j2Supported: true
+          performLog4jReplacement: true
+          log4j1Used: true
+          muleReadinessCheckSupported: true
+          vpnSupported: true
+          monitoringSupported: true
+          objectStoreV1: true
+          injectMuleLogsWhenFail: true
+          diagnosticsSupported: true
+        id: id
+      properties:
+        id:
+          description: The unique identifier of the update.
+          type: string
+        name:
+          description: The name of the update.
+          type: string
+        releaseDate:
+          description: The release date as a timestamp (in milliseconds).
+          type: number
+        releaseNotes:
+          description: URL or text of the release notes.
+          type: string
+        flags:
+          $ref: '#/components/schemas/Runtime_latestUpdate_flags'
+      type: object
+    Deployment_artifact:
+      description: Details about the artifact associated with the deployment.
+      example:
+        fileName: fileName
+        createTime: 6
+        name: name
+        lastUpdateTime: 0
+      properties:
+        lastUpdateTime:
+          description: The timestamp (in milliseconds) when the artifact was last
+            updated.
+          format: int64
+          nullable: true
+          type: integer
+        createTime:
+          description: The creation timestamp (in milliseconds); may be null.
+          format: int64
+          nullable: true
+          type: integer
+        name:
+          description: The name of the artifact.
+          type: string
+        fileName:
+          description: The file name of the artifact.
+          type: string
+      type: object
+    Deployment_details:
+      description: Additional details about the deployment.
+      example:
+        deploymentUpdateStatus: deploymentUpdateStatus
+        domain: domain
+      properties:
+        domain:
+          description: The domain name associated with the deployment. only present
+            for CH1.
+          type: string
+        deploymentUpdateStatus:
+          description: "The deployment update status, only present for CH1."
+          type: string
+      type: object
+    Deployment_target:
+      description: Information about the target environment where the deployment is
+        hosted.
+      example:
+        subtype: subtype
+        provider: provider
+        name: name
+        id: id
+        type: type
+        status: status
+      properties:
+        type:
+          description: "The target type (e.g., CLOUDHUB, MC)."
+          type: string
+        subtype:
+          description: The target subtype (if applicable).
+          type: string
+        provider:
+          description: The provider of the target platform.
+          type: string
+        id:
+          description: The identifier of the target.
+          type: string
+        name:
+          description: The name of the target.
+          type: string
+        status:
+          description: The current status of the target.
+          type: string
+      type: object
+    Deployment_application:
+      description: Application-specific information for the deployment.
+      example:
+        status: status
+      properties:
+        status:
+          description: The status of the application.
+          type: string
+      type: object
+    Deployment_muleVersion:
+      description: Details regarding the Mule runtime version.
+      example:
+        updateId: updateId
+        latestUpdateId: latestUpdateId
+        endOfSupportDate: 1
+        version: version
+      properties:
+        version:
+          description: The Mule runtime version.
+          type: string
+        updateId:
+          description: The identifier for the runtime update.
+          type: string
+        latestUpdateId:
+          description: The identifier for the latest runtime update.
+          type: string
+        endOfSupportDate:
+          description: The timestamp (in milliseconds) representing the end-of-support
+            date.
+          format: int64
+          type: integer
+      type: object
+    Workers_recentStatistics:
+      description: Recent performance statistics for the workers.
+      example:
+        cpu: 2
+        transactions: 5
+      properties:
+        transactions:
+          description: The number of transactions processed.
+          type: integer
+        cpu:
+          description: The current CPU usage percentage.
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

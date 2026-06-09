@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
 **Code** | Pointer to **string** |  | [optional] 
 **InvitedAt** | Pointer to **string** |  | [optional] 
 **InvitedEmail** | Pointer to **string** |  | [optional] 
 **ExpiresAt** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
+**Id** | **string** |  | 
 
 ## Methods
 
@@ -29,26 +29,6 @@ will change when the set of required properties is changed
 NewInviteWithDefaults instantiates a new Invite object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Invite) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Invite) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Invite) SetId(v string)`
-
-SetId sets Id field to given value.
-
 
 ### GetCode
 
@@ -174,6 +154,26 @@ SetStatus sets Status field to given value.
 `func (o *Invite) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Invite) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Invite) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Invite) SetId(v string)`
+
+SetId sets Id field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,8 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
+**SessionTimeout** | Pointer to **int32** | The session timeout in minutes. | [optional] [default to 0]
 **Subscription** | Pointer to [**Subscription**](Subscription.md) |  | [optional] 
+**GdotId** | Pointer to **string** | The gdot id of the organization | [optional] [default to ""]
+**DeletedAt** | Pointer to **NullableString** | The deleted date of the organization | [optional] 
+**OrgType** | Pointer to **string** | The type of the organization | [optional] [default to ""]
 
 ## Methods
 
@@ -75,6 +78,91 @@ SetSubscription sets Subscription field to given value.
 `func (o *MasterBGSpecificDetails) HasSubscription() bool`
 
 HasSubscription returns a boolean if a field has been set.
+
+### GetGdotId
+
+`func (o *MasterBGSpecificDetails) GetGdotId() string`
+
+GetGdotId returns the GdotId field if non-nil, zero value otherwise.
+
+### GetGdotIdOk
+
+`func (o *MasterBGSpecificDetails) GetGdotIdOk() (*string, bool)`
+
+GetGdotIdOk returns a tuple with the GdotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGdotId
+
+`func (o *MasterBGSpecificDetails) SetGdotId(v string)`
+
+SetGdotId sets GdotId field to given value.
+
+### HasGdotId
+
+`func (o *MasterBGSpecificDetails) HasGdotId() bool`
+
+HasGdotId returns a boolean if a field has been set.
+
+### GetDeletedAt
+
+`func (o *MasterBGSpecificDetails) GetDeletedAt() string`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *MasterBGSpecificDetails) GetDeletedAtOk() (*string, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *MasterBGSpecificDetails) SetDeletedAt(v string)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *MasterBGSpecificDetails) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### SetDeletedAtNil
+
+`func (o *MasterBGSpecificDetails) SetDeletedAtNil(b bool)`
+
+ SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
+
+### UnsetDeletedAt
+`func (o *MasterBGSpecificDetails) UnsetDeletedAt()`
+
+UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
+### GetOrgType
+
+`func (o *MasterBGSpecificDetails) GetOrgType() string`
+
+GetOrgType returns the OrgType field if non-nil, zero value otherwise.
+
+### GetOrgTypeOk
+
+`func (o *MasterBGSpecificDetails) GetOrgTypeOk() (*string, bool)`
+
+GetOrgTypeOk returns a tuple with the OrgType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgType
+
+`func (o *MasterBGSpecificDetails) SetOrgType(v string)`
+
+SetOrgType sets OrgType field to given value.
+
+### HasOrgType
+
+`func (o *MasterBGSpecificDetails) HasOrgType() bool`
+
+HasOrgType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

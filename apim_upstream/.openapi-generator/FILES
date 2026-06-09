@@ -7,7 +7,7 @@ client.go
 configuration.go
 docs/Audit.md
 docs/AuditCreated.md
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/ErrorsResponse.md
 docs/ErrorsResponseErrorsInner.md
 docs/GetApimInstanceUpstreams404Response.md

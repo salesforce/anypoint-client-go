@@ -5,7 +5,7 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/Dlb.md
 docs/DlbCore.md
 docs/DlbCoreSslEndpointsInner.md

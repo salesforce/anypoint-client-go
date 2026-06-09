@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Environments** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**HideApiManagerDesigner** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**HideFormerApiPlatform** | **bool** | An explanation about the purpose of this instance. | [default to false]
+**Environments** | Pointer to **bool** | Crowd environments | [optional] [default to false]
+**HideApiManagerDesigner** | Pointer to **bool** | Crowd Hide API Manager Designer | [optional] [default to false]
+**HideFormerApiPlatform** | Pointer to **bool** | Crowd Hide Former API Platform | [optional] [default to false]
 
 ## Methods
 
 ### NewCrowd
 
-`func NewCrowd(environments bool, hideApiManagerDesigner bool, hideFormerApiPlatform bool, ) *Crowd`
+`func NewCrowd() *Crowd`
 
 NewCrowd instantiates a new Crowd object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetEnvironments sets Environments field to given value.
 
+### HasEnvironments
+
+`func (o *Crowd) HasEnvironments() bool`
+
+HasEnvironments returns a boolean if a field has been set.
 
 ### GetHideApiManagerDesigner
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetHideApiManagerDesigner sets HideApiManagerDesigner field to given value.
 
+### HasHideApiManagerDesigner
+
+`func (o *Crowd) HasHideApiManagerDesigner() bool`
+
+HasHideApiManagerDesigner returns a boolean if a field has been set.
 
 ### GetHideFormerApiPlatform
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetHideFormerApiPlatform sets HideFormerApiPlatform field to given value.
 
+### HasHideFormerApiPlatform
+
+`func (o *Crowd) HasHideFormerApiPlatform() bool`
+
+HasHideFormerApiPlatform returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

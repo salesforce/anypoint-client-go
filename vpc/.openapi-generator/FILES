@@ -5,14 +5,13 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/FirewallRule.md
 docs/InternalDns.md
 docs/OrganizationsOrgIdVpcsGet200Response.md
 docs/OrganizationsOrgIdVpcsPost400Response.md
 docs/Vpc.md
 docs/VpcCore.md
-docs/VpcId.md
 docs/VpcRoute.md
 git_push.sh
 go.mod
@@ -23,7 +22,6 @@ model_firewall_rule.go
 model_internal_dns.go
 model_vpc.go
 model_vpc_core.go
-model_vpc_id.go
 model_vpc_route.go
 response.go
 utils.go

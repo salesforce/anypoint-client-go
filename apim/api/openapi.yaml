@@ -394,6 +394,51 @@ paths:
                 $ref: '#/components/schemas/ApimInstancePatchResponse'
           description: API Instance Patch
       summary: Patches a specific API Manager Instance
+  /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/apiAsset:
+    get:
+      description: Get API Asset
+      operationId: GetApiAsset
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The API id
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorsResponse'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApimAsset'
+          description: API Asset
+      summary: Get API Asset
 components:
   responses:
     UnauthorizedError:
@@ -436,8 +481,28 @@ components:
       description: API Instance Patch
     SuccessDeleteApimInstance:
       description: API Instance Delete
+    SuccessGetApiAsset:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApimAsset'
+      description: API Asset
   schemas:
     errorsResponse:
+      example:
+        errors:
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
       properties:
         errors:
           items:
@@ -841,7 +906,7 @@ components:
               name: name
               secretGroupId: secretGroupId
           type: type
-          isCloudHub: isCloudHub
+          isCloudHub: true
           uri: uri
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
@@ -896,7 +961,9 @@ components:
         organizationId: organizationId
         productVersion: productVersion
         endpoint:
-          console: console
+          console:
+            path: path
+            enabled: true
           referencesUserDomain: referencesUserDomain
           lastActiveDate: lastActiveDate
           apiVersionId: 5
@@ -926,7 +993,7 @@ components:
               updated:
                 date: date
             outbound: "{}"
-          isCloudHub: isCloudHub
+          isCloudHub: true
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
           validation: validation
@@ -1025,7 +1092,9 @@ components:
           label: label
         productVersion: productVersion
         endpoint:
-          console: console
+          console:
+            path: path
+            enabled: true
           referencesUserDomain: referencesUserDomain
           lastActiveDate: lastActiveDate
           apiVersionId: 5
@@ -1055,7 +1124,7 @@ components:
               updated:
                 date: date
             outbound: "{}"
-          isCloudHub: isCloudHub
+          isCloudHub: true
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
           validation: validation
@@ -1194,7 +1263,9 @@ components:
             host: host
           label: label
         endpoint:
-          console: console
+          console:
+            path: path
+            enabled: true
           referencesUserDomain: referencesUserDomain
           lastActiveDate: lastActiveDate
           apiVersionId: 5
@@ -1224,7 +1295,7 @@ components:
               updated:
                 date: date
             outbound: "{}"
-          isCloudHub: isCloudHub
+          isCloudHub: true
           proxyRegistrationUri: proxyRegistrationUri
           responseTimeout: responseTimeout
           validation: validation
@@ -1342,9 +1413,43 @@ components:
         }
       title: ApimInstancePatchBody
       type: object
+    ApimAsset:
+      example:
+        organizationId: organizationId
+        audit:
+          created:
+            date: date
+          updated:
+            date: date
+        assetId: assetId
+        groupId: groupId
+        name: name
+        id: 0
+        exchangeAssetName: exchangeAssetName
+        masterOrganizationId: masterOrganizationId
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        masterOrganizationId:
+          type: string
+        organizationId:
+          type: string
+        id:
+          type: integer
+        name:
+          type: string
+        exchangeAssetName:
+          type: string
+        groupId:
+          type: string
+        assetId:
+          type: string
+      type: object
     Endpoint:
       example:
-        console: console
+        console:
+          path: path
+          enabled: true
         referencesUserDomain: referencesUserDomain
         lastActiveDate: lastActiveDate
         apiVersionId: 5
@@ -1374,7 +1479,7 @@ components:
             updated:
               date: date
           outbound: "{}"
-        isCloudHub: isCloudHub
+        isCloudHub: true
         proxyRegistrationUri: proxyRegistrationUri
         responseTimeout: responseTimeout
         validation: validation
@@ -1403,7 +1508,7 @@ components:
           type: string
         isCloudHub:
           nullable: true
-          type: string
+          type: boolean
         deploymentType:
           type: string
         policiesVersion:
@@ -1427,8 +1532,7 @@ components:
           nullable: true
           type: string
         console:
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/Console'
         tlsContexts:
           $ref: '#/components/schemas/Endpoint_tlsContexts'
       title: Endpoint
@@ -1445,7 +1549,7 @@ components:
             name: name
             secretGroupId: secretGroupId
         type: type
-        isCloudHub: isCloudHub
+        isCloudHub: true
         uri: uri
         proxyRegistrationUri: proxyRegistrationUri
         responseTimeout: responseTimeout
@@ -1461,7 +1565,7 @@ components:
           type: string
         isCloudHub:
           nullable: true
-          type: string
+          type: boolean
         proxyUri:
           nullable: true
           type: string
@@ -1562,6 +1666,18 @@ components:
           type: integer
       title: Deployment
       type: object
+    Console:
+      example:
+        path: path
+        enabled: true
+      nullable: true
+      properties:
+        enabled:
+          type: boolean
+        path:
+          type: string
+      title: Console
+      type: object
     DeploymentPostBody:
       example:
         targetName: targetName
@@ -1630,6 +1746,9 @@ components:
       title: RoutingPostBody
       type: array
     GetApimInstanceDetails_404_response:
+      example:
+        name: name
+        message: message
       properties:
         name:
           type: string
@@ -1637,6 +1756,13 @@ components:
           type: string
       type: object
     errorsResponse_errors_inner:
+      example:
+        schema: schema
+        data: data
+        type: type
+        keyword: keyword
+        message: message
+        dataPath: dataPath
       properties:
         type:
           title: type

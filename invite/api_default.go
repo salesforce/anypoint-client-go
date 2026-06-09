@@ -20,22 +20,22 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdInvitesDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdInvitesDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	inviteDelete *[]InviteDelete
 }
 
-func (r DefaultApiOrganizationsOrgIdInvitesDeleteRequest) InviteDelete(inviteDelete []InviteDelete) DefaultApiOrganizationsOrgIdInvitesDeleteRequest {
+func (r DefaultAPIOrganizationsOrgIdInvitesDeleteRequest) InviteDelete(inviteDelete []InviteDelete) DefaultAPIOrganizationsOrgIdInvitesDeleteRequest {
 	r.inviteDelete = &inviteDelete
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdInvitesDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdInvitesDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdInvitesDeleteExecute(r)
 }
 
@@ -46,10 +46,10 @@ Delete one or more invites
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdInvitesDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdInvitesDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdInvitesDelete(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdInvitesDeleteRequest {
-	return DefaultApiOrganizationsOrgIdInvitesDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdInvitesDelete(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdInvitesDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdInvitesDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -57,14 +57,14 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesDelete(ctx context.Context,
 }
 
 // Execute executes the request
-func (a *DefaultApiService) OrganizationsOrgIdInvitesDeleteExecute(r DefaultApiOrganizationsOrgIdInvitesDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdInvitesDeleteExecute(r DefaultAPIOrganizationsOrgIdInvitesDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdInvitesDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdInvitesDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -123,9 +123,9 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesDeleteExecute(r DefaultApiO
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdInvitesGetRequest struct {
+type DefaultAPIOrganizationsOrgIdInvitesGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	search *string
 	limit *int32
@@ -133,24 +133,24 @@ type DefaultApiOrganizationsOrgIdInvitesGetRequest struct {
 }
 
 // A search string to use for partial matches of invited emails
-func (r DefaultApiOrganizationsOrgIdInvitesGetRequest) Search(search string) DefaultApiOrganizationsOrgIdInvitesGetRequest {
+func (r DefaultAPIOrganizationsOrgIdInvitesGetRequest) Search(search string) DefaultAPIOrganizationsOrgIdInvitesGetRequest {
 	r.search = &search
 	return r
 }
 
 // Pagination parameter for choosing how many results include in the response
-func (r DefaultApiOrganizationsOrgIdInvitesGetRequest) Limit(limit int32) DefaultApiOrganizationsOrgIdInvitesGetRequest {
+func (r DefaultAPIOrganizationsOrgIdInvitesGetRequest) Limit(limit int32) DefaultAPIOrganizationsOrgIdInvitesGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // Pagination parameter to start returning results from the specified position of matches
-func (r DefaultApiOrganizationsOrgIdInvitesGetRequest) Offset(offset int32) DefaultApiOrganizationsOrgIdInvitesGetRequest {
+func (r DefaultAPIOrganizationsOrgIdInvitesGetRequest) Offset(offset int32) DefaultAPIOrganizationsOrgIdInvitesGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdInvitesGetRequest) Execute() (*OrganizationsOrgIdInvitesGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdInvitesGetRequest) Execute() (*OrganizationsOrgIdInvitesGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdInvitesGetExecute(r)
 }
 
@@ -161,10 +161,10 @@ Returns outstanding or expired invites
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdInvitesGetRequest
+ @return DefaultAPIOrganizationsOrgIdInvitesGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdInvitesGet(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdInvitesGetRequest {
-	return DefaultApiOrganizationsOrgIdInvitesGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdInvitesGet(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdInvitesGetRequest {
+	return DefaultAPIOrganizationsOrgIdInvitesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -173,7 +173,7 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesGet(ctx context.Context, or
 
 // Execute executes the request
 //  @return OrganizationsOrgIdInvitesGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdInvitesGetExecute(r DefaultApiOrganizationsOrgIdInvitesGetRequest) (*OrganizationsOrgIdInvitesGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdInvitesGetExecute(r DefaultAPIOrganizationsOrgIdInvitesGetRequest) (*OrganizationsOrgIdInvitesGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -181,7 +181,7 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesGetExecute(r DefaultApiOrga
 		localVarReturnValue  *OrganizationsOrgIdInvitesGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdInvitesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdInvitesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -194,13 +194,13 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesGetExecute(r DefaultApiOrga
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -256,19 +256,19 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesGetExecute(r DefaultApiOrga
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdInvitesPostRequest struct {
+type DefaultAPIOrganizationsOrgIdInvitesPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	invitePostBody *InvitePostBody
 }
 
-func (r DefaultApiOrganizationsOrgIdInvitesPostRequest) InvitePostBody(invitePostBody InvitePostBody) DefaultApiOrganizationsOrgIdInvitesPostRequest {
+func (r DefaultAPIOrganizationsOrgIdInvitesPostRequest) InvitePostBody(invitePostBody InvitePostBody) DefaultAPIOrganizationsOrgIdInvitesPostRequest {
 	r.invitePostBody = &invitePostBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdInvitesPostRequest) Execute() (*Invite, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdInvitesPostRequest) Execute() (*Invite, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdInvitesPostExecute(r)
 }
 
@@ -279,10 +279,10 @@ Creates an invite
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdInvitesPostRequest
+ @return DefaultAPIOrganizationsOrgIdInvitesPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdInvitesPost(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdInvitesPostRequest {
-	return DefaultApiOrganizationsOrgIdInvitesPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdInvitesPost(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdInvitesPostRequest {
+	return DefaultAPIOrganizationsOrgIdInvitesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -291,7 +291,7 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesPost(ctx context.Context, o
 
 // Execute executes the request
 //  @return Invite
-func (a *DefaultApiService) OrganizationsOrgIdInvitesPostExecute(r DefaultApiOrganizationsOrgIdInvitesPostRequest) (*Invite, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdInvitesPostExecute(r DefaultAPIOrganizationsOrgIdInvitesPostRequest) (*Invite, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -299,7 +299,7 @@ func (a *DefaultApiService) OrganizationsOrgIdInvitesPostExecute(r DefaultApiOrg
 		localVarReturnValue  *Invite
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdInvitesPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdInvitesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

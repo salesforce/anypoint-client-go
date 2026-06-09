@@ -1,0 +1,2411 @@
+openapi: 3.0.0
+info:
+  description: Description of the Private Space API
+  title: Private Space API
+  version: 1.0.1
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/runtimefabric/api
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/runtimefabric/api
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/runtimefabric/api
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/privatespaces:
+    get:
+      description: retrieves private spaces for the given organization
+      operationId: getPrivateSpaces
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The offset specifies the offset of the first row to return
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Amount of objects retrieved in the response
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Property to sort by
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Order for sorting
+        explode: true
+        in: query
+        name: ascending
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "415":
+          description: Unsupported media type
+        "429":
+          description: Too many requests
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceSummary'
+          description: List of private spaces
+    post:
+      description: creates a private space for the given organization
+      operationId: createPrivateSpace
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateSpacePostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "409":
+          description: Conflict
+        "415":
+          description: Unsupported media type
+        "429":
+          description: Too many requests
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpace'
+          description: Private space created
+  /organizations/{orgId}/privatespaces/{privateSpaceId}:
+    delete:
+      description: deletes a private space for the given organization
+      operationId: deletePrivateSpace
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "204":
+          description: Private space deleted
+    get:
+      description: retrieves a private space for the given organization
+      operationId: getPrivateSpace
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpace'
+          description: Private space details
+    patch:
+      description: updates a private space for the given organization
+      operationId: updatePrivateSpace
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateSpacePatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpace'
+          description: Private space updated
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/iamroles:
+    get:
+      description: gets the IAM roles for the given private space
+      operationId: getPrivateSpaceIamRoles
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceIamRoles'
+          description: IAM roles for the given private space
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/transitgateways:
+    get:
+      description: lists transit gateway attachments for the given private space
+      operationId: getPrivateSpaceTransitGateways
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TransitGateway'
+                type: array
+          description: List of transit gateways
+    post:
+      description: creates a transit gateway attachment on the given private space
+      operationId: createPrivateSpaceTransitGateway
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransitGatewayPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitGateway'
+          description: Transit gateway attachment created
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/transitgateways/{transitGatewayId}:
+    delete:
+      description: deletes a transit gateway attachment from the given private space
+      operationId: deletePrivateSpaceTransitGateway
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The transit gateway id (AWS tgw-...).
+        explode: false
+        in: path
+        name: transitGatewayId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "204":
+          description: Transit gateway attachment deleted
+    patch:
+      description: updates the static routes of a transit gateway attachment
+      operationId: updatePrivateSpaceTransitGatewayRoutes
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The transit gateway id (AWS tgw-...).
+        explode: false
+        in: path
+        name: transitGatewayId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransitGatewayPatchRoutesBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TransitGatewayPatchRoutesResult'
+                type: array
+          description: Transit gateway routes updated (truncated array wrap)
+  /organizations/{orgId}/transitgateways:
+    get:
+      description: "lists transit gateways across the organization, optionally filtered\
+        \ by region and private space id"
+      operationId: getOrgTransitGateways
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: AWS region filter.
+        explode: true
+        in: query
+        name: region
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Private space id filter (GUID).
+        explode: true
+        in: query
+        name: privateSpaceId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TransitGateway'
+                type: array
+          description: List of transit gateways
+  /organizations/{orgId}/transitgateways/{transitGatewayId}:
+    patch:
+      description: updates the name of a transit gateway
+      operationId: updateOrgTransitGatewayName
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The transit gateway id (AWS tgw-...).
+        explode: false
+        in: path
+        name: transitGatewayId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransitGatewayPatchNameBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TransitGateway'
+                type: array
+          description: Transit gateway name updated (full array wrap)
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/connections:
+    get:
+      description: lists VPN connections for the given private space
+      operationId: getPrivateSpaceVpnConnections
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+                type: array
+          description: List of VPN connections on the private space
+    post:
+      description: creates a VPN connection on the given private space
+      operationId: createPrivateSpaceVpnConnection
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateSpaceVpnConnectionPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "409":
+          description: Conflict
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN connection created
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN connection created
+  /organizations/{orgId}/privatespaces/supportedVpnConfigs:
+    get:
+      description: returns the matrix of vendors / models / firmware versions supported
+        by Anypoint VPN connections
+      operationId: getPrivateSpaceSupportedVpnConfigs
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceSupportedVpnConfigs'
+          description: Matrix of supported VPN vendor / model / firmware combinations
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/connections/{connectionId}:
+    delete:
+      description: deletes a VPN connection from the given private space
+      operationId: deletePrivateSpaceVpnConnection
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN connection in GUID format
+        explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "204":
+          description: VPN connection deleted
+    get:
+      description: retrieves a VPN connection for the given private space
+      operationId: getPrivateSpaceVpnConnection
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN connection in GUID format
+        explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN connection details
+    patch:
+      description: updates the VPN connection. Currently only the connection display
+        name is mutable.
+      operationId: updatePrivateSpaceVpnConnection
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN connection in GUID format
+        explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateSpaceVpnConnectionPatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN connection updated
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/connections/{connectionId}/vpns:
+    post:
+      description: adds a new VPN member to an existing VPN connection
+      operationId: addPrivateSpaceVpnConnectionMember
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN connection in GUID format
+        explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateSpaceVpnPostBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN member added to the connection (returns the updated full
+            connection)
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN member added to the connection (returns the updated full
+            connection)
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/connections/{connectionId}/vpns/{vpnId}:
+    delete:
+      description: deletes a single VPN member from a VPN connection
+      operationId: deletePrivateSpaceVpnConnectionMember
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN connection in GUID format
+        explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN member in GUID format
+        explode: false
+        in: path
+        name: vpnId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "204":
+          description: VPN member deleted
+    patch:
+      description: updates a single VPN member. Currently only the VPN display name
+        and per-tunnel startupAction are mutable.
+      operationId: updatePrivateSpaceVpnConnectionMember
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN connection in GUID format
+        explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the VPN member in GUID format
+        explode: false
+        in: path
+        name: vpnId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateSpaceVpnPatchBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+          description: VPN member updated (returns the updated full connection)
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/accounts:
+    get:
+      description: returns the MuleSoft AWS account id (region-bound to the private
+        space) to whitelist as RAM share principal
+      operationId: getPrivateSpaceMulesoftAccount
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: "MuleSoft AWS account id, region-bound (raw string body)"
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/routes:
+    get:
+      description: lists static routes for the private space network
+      operationId: getPrivateSpaceRoutes
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the private space in GUID format
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PrivateSpaceRoute'
+                type: array
+          description: Private space route table
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    ForbiddenError:
+      description: Forbidden
+    BadRequestError:
+      description: Bad request
+    NotFoundError:
+      description: Not found
+    ConflictError:
+      description: Conflict
+    UnsupportedMediaTypeError:
+      description: Unsupported media type
+    TooManyRequestsError:
+      description: Too many requests
+    SuccessListPrivateSpaces:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceSummary'
+      description: List of private spaces
+    SuccessCreatePrivateSpace:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpace'
+      description: Private space created
+    SuccessGetPrivateSpace:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpace'
+      description: Private space details
+    SuccessUpdatePrivateSpace:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpace'
+      description: Private space updated
+    SuccessDeletePrivateSpace:
+      description: Private space deleted
+    SuccessGetPrivateSpaceIamRoles:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceIamRoles'
+      description: IAM roles for the given private space
+    SuccessListTransitGateways:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/TransitGateway'
+            type: array
+      description: List of transit gateways
+    SuccessCreateTransitGateway:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TransitGateway'
+      description: Transit gateway attachment created
+    SuccessUpdateTransitGatewayRoutes:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/TransitGatewayPatchRoutesResult'
+            type: array
+      description: Transit gateway routes updated (truncated array wrap)
+    SuccessUpdateTransitGatewayName:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/TransitGateway'
+            type: array
+      description: Transit gateway name updated (full array wrap)
+    SuccessGetPrivateSpaceMulesoftAccount:
+      content:
+        application/json:
+          schema:
+            type: string
+      description: "MuleSoft AWS account id, region-bound (raw string body)"
+    SuccessListPrivateSpaceRoutes:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/PrivateSpaceRoute'
+            type: array
+      description: Private space route table
+    SuccessCreatePrivateSpaceVpnConnection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+      description: VPN connection created
+    SuccessGetPrivateSpaceVpnConnection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+      description: VPN connection details
+    SuccessListPrivateSpaceVpnConnections:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+            type: array
+      description: List of VPN connections on the private space
+    SuccessUpdatePrivateSpaceVpnConnection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+      description: VPN connection updated
+    SuccessAddPrivateSpaceVpnConnectionMember:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+      description: VPN member added to the connection (returns the updated full connection)
+    SuccessUpdatePrivateSpaceVpnConnectionMember:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceVpnConnection'
+      description: VPN member updated (returns the updated full connection)
+    SuccessGetPrivateSpaceSupportedVpnConfigs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrivateSpaceSupportedVpnConfigs'
+      description: Matrix of supported VPN vendor / model / firmware combinations
+  schemas:
+    PrivateSpaceSummary:
+      example:
+        number: 7
+        last: true
+        size: 2
+        numberOfElements: 9
+        totalPages: 5
+        pageable:
+          paged: true
+          pageNumber: 0
+          offset: 6
+          pageSize: 1
+          unpaged: true
+          sort:
+            unsorted: true
+            sorted: true
+            empty: true
+        sort:
+          unsorted: true
+          sorted: true
+          empty: true
+        content:
+        - organizationId: organizationId
+          name: name
+          id: id
+          rootOrganizationId: rootOrganizationId
+          status: status
+        - organizationId: organizationId
+          name: name
+          id: id
+          rootOrganizationId: rootOrganizationId
+          status: status
+        first: true
+        totalElements: 5
+        empty: true
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/PrivateSpaceSummaryContentItem'
+          type: array
+        pageable:
+          $ref: '#/components/schemas/PrivateSpaceSummary_pageable'
+        last:
+          type: boolean
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        first:
+          type: boolean
+        size:
+          type: integer
+        number:
+          type: integer
+        sort:
+          $ref: '#/components/schemas/PrivateSpaceSummary_pageable_sort'
+        numberOfElements:
+          type: integer
+        empty:
+          type: boolean
+      type: object
+    PrivateSpace:
+      example:
+        globalSpaceStatus:
+          cluster:
+          - ingress:
+              lastSeenTimeStamp: 5
+              message: message
+              status: status
+            fabric:
+              lastSeenTimeStamp: 5
+              message: message
+              status: status
+            infra:
+              lastSeenTimeStamp: 5
+              message: message
+              status: status
+          - ingress:
+              lastSeenTimeStamp: 5
+              message: message
+              status: status
+            fabric:
+              lastSeenTimeStamp: 5
+              message: message
+              status: status
+            infra:
+              lastSeenTimeStamp: 5
+              message: message
+              status: status
+          space:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+          network:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+        daysLeftForRelaxedQuota: 7
+        environments:
+          type: type
+          businessGroups:
+          - businessGroups
+          - businessGroups
+        muleAppDeploymentCount: 2
+        enableNetworkIsolation: true
+        enableEgress: true
+        vpcMigrationInProgress: true
+        version: version
+        statusMessage: statusMessage
+        network:
+          inboundStaticIps:
+          - inboundStaticIps
+          - inboundStaticIps
+          reservedCidrs:
+          - reservedCidrs
+          - reservedCidrs
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+          dnsTarget: dnsTarget
+          cidrBlock: cidrBlock
+          outboundStaticIps:
+          - outboundStaticIps
+          - outboundStaticIps
+          internalDnsTarget: internalDnsTarget
+          region: region
+        organizationId: organizationId
+        name: name
+        provisioning:
+          message: message
+          status: status
+        id: id
+        region: region
+        firewallRules:
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+          type: type
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+          type: type
+        rootOrganizationId: rootOrganizationId
+        ingressConfiguration:
+          protocol: protocol
+          readResponseTimeout: 1
+          logs:
+            portLogLevel: portLogLevel
+            filters:
+            - level: level
+              ip: ip
+            - level: level
+              ip: ip
+          deployment:
+            lastSeenTimestamp: 5
+            status: status
+        status: status
+        enableIAMRole: true
+      properties:
+        id:
+          description: The ID of the private space in GUID format.
+          type: string
+        name:
+          description: The name of the private space.
+          type: string
+        version:
+          description: The version of the private space.
+          type: string
+        organizationId:
+          description: The ID of the organization in GUID format.
+          type: string
+        rootOrganizationId:
+          description: The root organization ID of the private space in GUID format.
+          type: string
+        status:
+          description: The status of the private space.
+          type: string
+        statusMessage:
+          description: The last reported infra status message.
+          type: string
+        provisioning:
+          $ref: '#/components/schemas/PrivateSpace_provisioning'
+        region:
+          description: The region of the private space.
+          type: string
+        environments:
+          $ref: '#/components/schemas/PrivateSpaceAssociatedEnvironments'
+        network:
+          $ref: '#/components/schemas/PrivateSpaceNetwork'
+        firewallRules:
+          description: The list of firewall rules for the Private Space network.
+          items:
+            $ref: '#/components/schemas/FirewallRule'
+          type: array
+        ingressConfiguration:
+          $ref: '#/components/schemas/IngressConfiguration'
+        enableIAMRole:
+          description: "If true, application deployed to this space will have the\
+            \ Private Space IAM role attached to the service account."
+          type: boolean
+        enableEgress:
+          description: "If true, egress is enabled for the private space."
+          type: boolean
+        enableNetworkIsolation:
+          description: "If true, network isolation is enabled for the private space."
+          type: boolean
+        globalSpaceStatus:
+          $ref: '#/components/schemas/GlobalSpaceStatus'
+        muleAppDeploymentCount:
+          description: The number of MuleSoft applications deployed to the private
+            space.
+          type: integer
+        daysLeftForRelaxedQuota:
+          description: The number of days left for the relaxed quota.
+          type: integer
+        vpcMigrationInProgress:
+          description: "If true, a VPC migration is in progress for the private space."
+          type: boolean
+      title: PrivateSpace
+      type: object
+    PrivateSpaceIamRoles:
+      example:
+        organizationId: organizationId
+        spaceId: spaceId
+        roles:
+        - roles
+        - roles
+      properties:
+        roles:
+          items:
+            description: The IAM role.
+            type: string
+          type: array
+        organizationId:
+          description: The ID of the organization in GUID format.
+          type: string
+        spaceId:
+          description: The ID of the private space in GUID format.
+          type: string
+      type: object
+    PrivateSpacePostBody:
+      example:
+        environments:
+          type: type
+          businessGroups:
+          - businessGroups
+          - businessGroups
+        name: name
+        firewallRules:
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+          type: type
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+          type: type
+        network:
+          reservedCidrs:
+          - 192.168.0.0/16
+          - 172.16.0.0/12
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+          cidrBlock: cidrBlock
+          region: region
+      properties:
+        name:
+          description: The name of the private space.
+          type: string
+        environments:
+          $ref: '#/components/schemas/PrivateSpaceAssociatedEnvironments'
+        network:
+          $ref: '#/components/schemas/PrivateSpaceNetworkCreate'
+        firewallRules:
+          description: The list of firewall rules for the Private Space network.
+          items:
+            $ref: '#/components/schemas/FirewallRule'
+          type: array
+      title: PrivateSpacePostBody
+      type: object
+    PrivateSpacePatchBody:
+      example:
+        environments:
+          type: type
+          businessGroups:
+          - businessGroups
+          - businessGroups
+        logForwarding:
+          anypointMonitoring: true
+        enableNetworkIsolation: true
+        enableEgress: true
+        firewallRules:
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+          type: type
+        - protocol: protocol
+          fromPort: 0
+          cidrBlock: cidrBlock
+          toPort: 6
+          type: type
+        ingressConfiguration:
+          protocol: protocol
+          readResponseTimeout: 1
+          logs:
+            portLogLevel: portLogLevel
+            filters:
+            - level: level
+              ip: ip
+            - level: level
+              ip: ip
+          deployment:
+            lastSeenTimestamp: 5
+            status: status
+        network:
+          reservedCidrs:
+          - 192.168.0.0/16
+          - 172.16.0.0/12
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+        enableIAMRole: true
+      properties:
+        environments:
+          $ref: '#/components/schemas/PrivateSpaceAssociatedEnvironments'
+        network:
+          $ref: '#/components/schemas/PrivateSpaceNetworkEditable'
+        firewallRules:
+          description: The list of firewall rules for the Private Space network.
+          items:
+            $ref: '#/components/schemas/FirewallRule'
+          type: array
+        logForwarding:
+          $ref: '#/components/schemas/PrivateSpacePatchBody_logForwarding'
+        ingressConfiguration:
+          $ref: '#/components/schemas/IngressConfiguration'
+        enableIAMRole:
+          description: "If true, application deployed to this space will have the\
+            \ Private Space IAM role attached to the service account."
+          type: boolean
+        enableEgress:
+          description: "If true, egress is enabled for the private space."
+          type: boolean
+        enableNetworkIsolation:
+          description: "If true, network isolation is enabled for the private space."
+          type: boolean
+      title: PrivateSpacePatchBody
+      type: object
+    PrivateSpaceAssociatedEnvironments:
+      description: Environment association for the Private Space.
+      example:
+        type: type
+        businessGroups:
+        - businessGroups
+        - businessGroups
+      properties:
+        type:
+          description: "The type of environments. Possible values are all, sandbox,\
+            \ production."
+          type: string
+        businessGroups:
+          items:
+            description: The business group of the environment.
+            type: string
+          type: array
+      type: object
+    PrivateSpaceNetworkCreate:
+      example:
+        reservedCidrs:
+        - 192.168.0.0/16
+        - 172.16.0.0/12
+        internalDns:
+          specialDomains:
+          - specialDomains
+          - specialDomains
+          dnsServers:
+          - dnsServers
+          - dnsServers
+        cidrBlock: cidrBlock
+        region: region
+      properties:
+        region:
+          description: The region of the Private Space. Required when create a Private
+            Space network.
+          type: string
+        cidrBlock:
+          description: The CIDR block of the VPC where the Private Space will be created.
+            Required when create a Private Space in a new VPC. Default is 10.0.0.0/16.
+          type: string
+        internalDns:
+          $ref: '#/components/schemas/PrivateSpaceNetworkCreate_internalDns'
+        reservedCidrs:
+          description: |
+            The list of reserved CIDR blocks for your private space to prevent IP address overlap. Required when you want to connect your private space to your corporate network (either on-premises or in the cloud). Use CIDR notation and commas.
+          example:
+          - 192.168.0.0/16
+          - 172.16.0.0/12
+          items:
+            description: The reserved CIDR of the Private Space network.
+            type: string
+          type: array
+      type: object
+    PrivateSpaceNetworkEditable:
+      example:
+        reservedCidrs:
+        - 192.168.0.0/16
+        - 172.16.0.0/12
+        internalDns:
+          specialDomains:
+          - specialDomains
+          - specialDomains
+          dnsServers:
+          - dnsServers
+          - dnsServers
+      properties:
+        internalDns:
+          $ref: '#/components/schemas/PrivateSpaceNetworkCreate_internalDns'
+        reservedCidrs:
+          description: |
+            The list of reserved CIDR blocks for your private space to prevent IP address overlap. Required when you want to connect your private space to your corporate network (either on-premises or in the cloud). Use CIDR notation and commas.
+          example:
+          - 192.168.0.0/16
+          - 172.16.0.0/12
+          items:
+            description: The reserved CIDR of the Private Space network.
+            type: string
+          type: array
+      type: object
+    PrivateSpaceNetwork:
+      description: Private space network configuration
+      example:
+        inboundStaticIps:
+        - inboundStaticIps
+        - inboundStaticIps
+        reservedCidrs:
+        - reservedCidrs
+        - reservedCidrs
+        internalDns:
+          specialDomains:
+          - specialDomains
+          - specialDomains
+          dnsServers:
+          - dnsServers
+          - dnsServers
+        dnsTarget: dnsTarget
+        cidrBlock: cidrBlock
+        outboundStaticIps:
+        - outboundStaticIps
+        - outboundStaticIps
+        internalDnsTarget: internalDnsTarget
+        region: region
+      properties:
+        region:
+          description: The region of the Private Space. Required when create a Private
+            Space network.
+          type: string
+        cidrBlock:
+          description: The CIDR block of the VPC where the Private Space will be created.
+            Required when create a Private Space in a new VPC. Default is 10.0.0.0/16.
+          type: string
+        internalDns:
+          $ref: '#/components/schemas/PrivateSpaceNetworkCreate_internalDns'
+        inboundStaticIps:
+          description: The inbound static IPs of the Private Space network.
+          items:
+            description: The inbound static IP of the Private Space network.
+            type: string
+          type: array
+        outboundStaticIps:
+          description: The outbound static IPs of the Private Space network.
+          items:
+            description: The outbound static IP of the Private Space network.
+            type: string
+          type: array
+        dnsTarget:
+          description: The DNS target of the Private Space network.
+          type: string
+        internalDnsTarget:
+          description: The internal DNS target of the Private Space network.
+          type: string
+        reservedCidrs:
+          description: The list of reserved CIDR blocks for your private space to
+            prevent IP address overlap when you connect your private space to your
+            corporate network.
+          items:
+            description: The reserved CIDR of the Private Space network.
+            type: string
+          type: array
+      type: object
+    FirewallRule:
+      example:
+        protocol: protocol
+        fromPort: 0
+        cidrBlock: cidrBlock
+        toPort: 6
+        type: type
+      properties:
+        cidrBlock:
+          description: The CIDR block of the firewall rule.
+          type: string
+        protocol:
+          description: The protocol of the firewall rule.
+          type: string
+        fromPort:
+          description: The from port of the firewall rule.
+          type: integer
+        toPort:
+          description: The to port of the firewall rule.
+          type: integer
+        type:
+          description: "Type of the firewall rule. Allowed values are [inbound, outbound]."
+          type: string
+      title: FirewallRule
+      type: object
+    IngressConfiguration:
+      description: Ingress configuration for the Private Space.
+      example:
+        protocol: protocol
+        readResponseTimeout: 1
+        logs:
+          portLogLevel: portLogLevel
+          filters:
+          - level: level
+            ip: ip
+          - level: level
+            ip: ip
+        deployment:
+          lastSeenTimestamp: 5
+          status: status
+      properties:
+        readResponseTimeout:
+          description: The read response timeout of the ingress configuration.
+          type: integer
+        logs:
+          $ref: '#/components/schemas/IngressConfiguration_logs'
+        protocol:
+          description: The protocol of the ingress configuration.
+          type: string
+        deployment:
+          $ref: '#/components/schemas/IngressConfiguration_deployment'
+      type: object
+    GlobalSpaceStatus:
+      description: Global Status object for the space.
+      example:
+        cluster:
+        - ingress:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+          fabric:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+          infra:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+        - ingress:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+          fabric:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+          infra:
+            lastSeenTimeStamp: 5
+            message: message
+            status: status
+        space:
+          lastSeenTimeStamp: 5
+          message: message
+          status: status
+        network:
+          lastSeenTimeStamp: 5
+          message: message
+          status: status
+      properties:
+        space:
+          $ref: '#/components/schemas/PrivateSpaceComponentStatus'
+        cluster:
+          description: The status of the space cluster component.
+          items:
+            $ref: '#/components/schemas/GlobalSpaceStatus_cluster_inner'
+          type: array
+        network:
+          $ref: '#/components/schemas/PrivateSpaceComponentStatus'
+      type: object
+    PrivateSpaceComponentStatus:
+      example:
+        lastSeenTimeStamp: 5
+        message: message
+        status: status
+      properties:
+        status:
+          description: The last known status.
+          type: string
+        message:
+          description: Message describing the last known status.
+          type: string
+        lastSeenTimeStamp:
+          description: Last known timestamp of the status in EPOCH.
+          format: int64
+          type: integer
+      title: PrivateSpaceComponentStatus
+      type: object
+    TransitGateway:
+      example:
+        accountId: accountId
+        name: name
+        id: id
+        spec:
+          spaceName: spaceName
+          resourceShare:
+            id: id
+            account: account
+          region: region
+        status:
+          tgwResource: tgwResource
+          routes:
+          - routes
+          - routes
+          attachment: attachment
+          gateway: gateway
+      properties:
+        id:
+          description: AWS transit gateway id (e.g. tgw-017e20b9ce00c865c).
+          type: string
+        name:
+          description: User-chosen display name for the attachment.
+          type: string
+        accountId:
+          description: MuleSoft AWS account id (region-bound to the private space).
+          type: string
+        spec:
+          $ref: '#/components/schemas/TransitGateway_spec'
+        status:
+          $ref: '#/components/schemas/TransitGateway_status'
+      title: TransitGateway
+      type: object
+    TransitGatewayPostBody:
+      example:
+        routes:
+        - routes
+        - routes
+        resourceShareId: resourceShareId
+        name: name
+        resourceShareAccount: resourceShareAccount
+      properties:
+        name:
+          description: Display name for the transit gateway attachment.
+          type: string
+        resourceShareId:
+          description: "RAM resource share UUID (trailing GUID of the ARN, NOT the\
+            \ full ARN)."
+          type: string
+        resourceShareAccount:
+          description: "AWS account id that owns the RAM share (your AWS account,\
+            \ NOT MuleSoft's account)."
+          type: string
+        routes:
+          description: Static routes (CIDR strings) to push into the private space
+            route table. Must not equal or be more specific than the private space
+            CIDR.
+          items:
+            type: string
+          type: array
+      required:
+      - name
+      - resourceShareAccount
+      - resourceShareId
+      - routes
+      title: TransitGatewayPostBody
+      type: object
+    TransitGatewayPatchRoutesBody:
+      example:
+        routes:
+        - routes
+        - routes
+      properties:
+        routes:
+          description: Replacement set of static routes (CIDR strings).
+          items:
+            type: string
+          type: array
+      required:
+      - routes
+      title: TransitGatewayPatchRoutesBody
+      type: object
+    TransitGatewayPatchNameBody:
+      example:
+        name: name
+      properties:
+        name:
+          description: New display name.
+          type: string
+      required:
+      - name
+      title: TransitGatewayPatchNameBody
+      type: object
+    TransitGatewayPatchRoutesResult:
+      description: Truncated transit gateway shape returned by the routes PATCH endpoint.
+      example:
+        routes:
+        - routes
+        - routes
+        resourceShareId: resourceShareId
+        deploymentId: deploymentId
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        deploymentId:
+          type: string
+        resourceShareId:
+          type: string
+        routes:
+          items:
+            type: string
+          type: array
+      title: TransitGatewayPatchRoutesResult
+      type: object
+    PrivateSpaceRoute:
+      example:
+        destination: destination
+        status: status
+        target: target
+      properties:
+        destination:
+          description: Destination CIDR.
+          type: string
+        status:
+          description: Route status.
+          type: string
+        target:
+          description: "Route target (transit gateway id, VPN id, etc.)."
+          type: string
+      title: PrivateSpaceRoute
+      type: object
+    PrivateSpaceVpnConnection:
+      description: A VPN connection attached to a private space. A connection groups
+        one or more VPN tunnels under a single display name.
+      example:
+        name: name
+        vpns:
+        - vpnConnectionStatus: vpnConnectionStatus
+          staticRoutes:
+          - staticRoutes
+          - staticRoutes
+          remoteAsn: 6
+          vpnTunnels:
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            isLogsEnabled: true
+            psk: psk
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            isLogsEnabled: true
+            psk: psk
+          name: name
+          connectionId: connectionId
+          localAsn: 0
+          connectionName: connectionName
+          vpnId: vpnId
+          remoteIpAddress: remoteIpAddress
+        - vpnConnectionStatus: vpnConnectionStatus
+          staticRoutes:
+          - staticRoutes
+          - staticRoutes
+          remoteAsn: 6
+          vpnTunnels:
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            isLogsEnabled: true
+            psk: psk
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            isLogsEnabled: true
+            psk: psk
+          name: name
+          connectionId: connectionId
+          localAsn: 0
+          connectionName: connectionName
+          vpnId: vpnId
+          remoteIpAddress: remoteIpAddress
+        id: id
+      properties:
+        id:
+          description: Connection id (GUID).
+          type: string
+        name:
+          description: User-chosen display name for the VPN connection.
+          type: string
+        vpns:
+          description: VPN members composing the connection.
+          items:
+            $ref: '#/components/schemas/PrivateSpaceVpn'
+          type: array
+      title: PrivateSpaceVpnConnection
+      type: object
+    PrivateSpaceVpn:
+      description: A single VPN member inside a VPN connection.
+      example:
+        vpnConnectionStatus: vpnConnectionStatus
+        staticRoutes:
+        - staticRoutes
+        - staticRoutes
+        remoteAsn: 6
+        vpnTunnels:
+        - startupAction: startupAction
+          ptpCidr: ptpCidr
+          isLogsEnabled: true
+          psk: psk
+        - startupAction: startupAction
+          ptpCidr: ptpCidr
+          isLogsEnabled: true
+          psk: psk
+        name: name
+        connectionId: connectionId
+        localAsn: 0
+        connectionName: connectionName
+        vpnId: vpnId
+        remoteIpAddress: remoteIpAddress
+      properties:
+        name:
+          description: User-chosen display name for the VPN member.
+          type: string
+        vpnId:
+          description: VPN member id (GUID).
+          type: string
+        connectionId:
+          description: Parent connection id (GUID).
+          type: string
+        connectionName:
+          description: Parent connection display name.
+          type: string
+        vpnConnectionStatus:
+          description: Current status of this VPN member.
+          type: string
+        localAsn:
+          description: Local BGP ASN announced by Anypoint.
+          type: integer
+        remoteAsn:
+          description: Remote BGP ASN announced by the customer endpoint.
+          type: integer
+        remoteIpAddress:
+          description: Public IP address of the customer VPN endpoint.
+          type: string
+        staticRoutes:
+          description: Static routes carried over the tunnel (CIDR strings). Empty
+            when BGP is used.
+          items:
+            type: string
+          type: array
+        vpnTunnels:
+          description: IPsec tunnels composing the VPN member (typically two for high
+            availability).
+          items:
+            $ref: '#/components/schemas/PrivateSpaceVpnTunnel'
+          type: array
+      title: PrivateSpaceVpn
+      type: object
+    PrivateSpaceVpnTunnel:
+      description: A single IPsec tunnel inside a VPN member.
+      example:
+        startupAction: startupAction
+        ptpCidr: ptpCidr
+        isLogsEnabled: true
+        psk: psk
+      properties:
+        psk:
+          description: Pre-shared key used to authenticate the IPsec tunnel.
+          type: string
+        ptpCidr:
+          description: Point-to-point /30 CIDR used for the inside-tunnel addresses.
+          type: string
+        startupAction:
+          description: Tunnel startup action. Allowed values are 'start' or 'add'.
+          type: string
+        isLogsEnabled:
+          description: True when tunnel logs are enabled.
+          type: boolean
+      title: PrivateSpaceVpnTunnel
+      type: object
+    PrivateSpaceVpnConnectionPostBody:
+      example:
+        name: name
+        vpns:
+        - staticRoutes:
+          - staticRoutes
+          - staticRoutes
+          remoteAsn: remoteAsn
+          vpnTunnels:
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            psk: psk
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            psk: psk
+          name: name
+          localAsn: localAsn
+          remoteIpAddress: remoteIpAddress
+        - staticRoutes:
+          - staticRoutes
+          - staticRoutes
+          remoteAsn: remoteAsn
+          vpnTunnels:
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            psk: psk
+          - startupAction: startupAction
+            ptpCidr: ptpCidr
+            psk: psk
+          name: name
+          localAsn: localAsn
+          remoteIpAddress: remoteIpAddress
+      properties:
+        name:
+          description: Display name for the VPN connection.
+          type: string
+        vpns:
+          description: VPN members to create under this connection.
+          items:
+            $ref: '#/components/schemas/PrivateSpaceVpnPostBody'
+          type: array
+      required:
+      - name
+      - vpns
+      title: PrivateSpaceVpnConnectionPostBody
+      type: object
+    PrivateSpaceVpnPostBody:
+      example:
+        staticRoutes:
+        - staticRoutes
+        - staticRoutes
+        remoteAsn: remoteAsn
+        vpnTunnels:
+        - startupAction: startupAction
+          ptpCidr: ptpCidr
+          psk: psk
+        - startupAction: startupAction
+          ptpCidr: ptpCidr
+          psk: psk
+        name: name
+        localAsn: localAsn
+        remoteIpAddress: remoteIpAddress
+      properties:
+        name:
+          description: Optional display name for the VPN member.
+          type: string
+        localAsn:
+          description: Local BGP ASN announced by Anypoint (string-encoded integer).
+          type: string
+        remoteAsn:
+          description: Remote BGP ASN announced by the customer endpoint (string-encoded
+            integer). Omit when using static routes.
+          type: string
+        remoteIpAddress:
+          description: Public IP address of the customer VPN endpoint.
+          type: string
+        staticRoutes:
+          description: Static routes carried over the tunnel (CIDR strings). Mutually
+            exclusive with BGP.
+          items:
+            type: string
+          type: array
+        vpnTunnels:
+          description: IPsec tunnels composing the VPN member.
+          items:
+            $ref: '#/components/schemas/PrivateSpaceVpnTunnelPostBody'
+          type: array
+      required:
+      - localAsn
+      - remoteIpAddress
+      - vpnTunnels
+      title: PrivateSpaceVpnPostBody
+      type: object
+    PrivateSpaceVpnTunnelPostBody:
+      example:
+        startupAction: startupAction
+        ptpCidr: ptpCidr
+        psk: psk
+      properties:
+        psk:
+          description: Pre-shared key used to authenticate the IPsec tunnel.
+          type: string
+        ptpCidr:
+          description: Point-to-point /30 CIDR used for the inside-tunnel addresses.
+          type: string
+        startupAction:
+          description: Tunnel startup action. Allowed values are 'start' or 'add'.
+          type: string
+      required:
+      - psk
+      - startupAction
+      title: PrivateSpaceVpnTunnelPostBody
+      type: object
+    PrivateSpaceVpnConnectionPatchBody:
+      description: Patch body for renaming an existing VPN connection.
+      example:
+        name: name
+      properties:
+        name:
+          description: New display name for the VPN connection.
+          type: string
+      title: PrivateSpaceVpnConnectionPatchBody
+      type: object
+    PrivateSpaceVpnPatchBody:
+      description: "Patch body for an existing VPN member. Supports renaming, replacing\
+        \ the static routes, and replacing per-tunnel startupAction."
+      example:
+        staticRoutes:
+        - staticRoutes
+        - staticRoutes
+        vpnTunnels:
+        - startupAction: startupAction
+        - startupAction: startupAction
+        name: name
+      properties:
+        name:
+          description: New display name for the VPN member.
+          type: string
+        staticRoutes:
+          description: Replacement set of static routes (CIDR strings).
+          items:
+            type: string
+          type: array
+        vpnTunnels:
+          description: Replacement startupAction for each tunnel position. Order must
+            match the existing tunnel order.
+          items:
+            $ref: '#/components/schemas/PrivateSpaceVpnTunnelPatchBody'
+          type: array
+      title: PrivateSpaceVpnPatchBody
+      type: object
+    PrivateSpaceVpnTunnelPatchBody:
+      description: Patch body fragment for a single tunnel. Only startupAction is
+        mutable.
+      example:
+        startupAction: startupAction
+      properties:
+        startupAction:
+          description: Tunnel startup action. Allowed values are 'start' or 'add'.
+          type: string
+      title: PrivateSpaceVpnTunnelPatchBody
+      type: object
+    PrivateSpaceSupportedVpnConfigs:
+      additionalProperties:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+      description: |
+        Matrix of supported VPN configurations keyed by vendor name. Each vendor maps to a map of model names, which in turn maps to a list of supported firmware version strings.
+      title: PrivateSpaceSupportedVpnConfigs
+      type: object
+    PrivateSpaceSummaryContentItem:
+      example:
+        organizationId: organizationId
+        name: name
+        id: id
+        rootOrganizationId: rootOrganizationId
+        status: status
+      properties:
+        id:
+          description: private space id
+          type: string
+        name:
+          description: private space name
+          type: string
+        organizationId:
+          description: private space organization id
+          type: string
+        rootOrganizationId:
+          description: private space root organization id
+          type: string
+        status:
+          description: private space status
+          type: string
+      title: PrivateSpaceSummaryContentItem
+      type: object
+    PrivateSpaceSummary_pageable_sort:
+      example:
+        unsorted: true
+        sorted: true
+        empty: true
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+      type: object
+    PrivateSpaceSummary_pageable:
+      example:
+        paged: true
+        pageNumber: 0
+        offset: 6
+        pageSize: 1
+        unpaged: true
+        sort:
+          unsorted: true
+          sorted: true
+          empty: true
+      properties:
+        sort:
+          $ref: '#/components/schemas/PrivateSpaceSummary_pageable_sort'
+        pageNumber:
+          type: integer
+        offset:
+          type: integer
+        pageSize:
+          type: integer
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+      type: object
+    PrivateSpace_provisioning:
+      example:
+        message: message
+        status: status
+      properties:
+        status:
+          description: The status of the private space provisioning.
+          type: string
+        message:
+          description: Message describing the last known infra's status
+          type: string
+      type: object
+    PrivateSpacePatchBody_logForwarding:
+      example:
+        anypointMonitoring: true
+      properties:
+        anypointMonitoring:
+          description: The desired action to push logs to Anypoint monitoring.
+          type: boolean
+      type: object
+    PrivateSpaceNetworkCreate_internalDns:
+      description: The internal DNS config of the VPC that the Private Space uses.
+      example:
+        specialDomains:
+        - specialDomains
+        - specialDomains
+        dnsServers:
+        - dnsServers
+        - dnsServers
+      properties:
+        dnsServers:
+          items:
+            description: The DNS server of the VPC.
+            type: string
+          type: array
+        specialDomains:
+          items:
+            description: The special domain of the VPC.
+            type: string
+          type: array
+      type: object
+    Filter:
+      example:
+        level: level
+        ip: ip
+      properties:
+        ip:
+          description: The IP of the filter.
+          type: string
+        level:
+          description: The level of the filter.
+          type: string
+      title: Filter
+      type: object
+    IngressConfiguration_logs:
+      description: The logs configuration of the ingress configuration.
+      example:
+        portLogLevel: portLogLevel
+        filters:
+        - level: level
+          ip: ip
+        - level: level
+          ip: ip
+      properties:
+        filters:
+          description: The filters of the logs configuration.
+          items:
+            $ref: '#/components/schemas/Filter'
+          type: array
+        portLogLevel:
+          description: The port log level of the ingress configuration.
+          type: string
+      type: object
+    IngressConfiguration_deployment:
+      description: The deployment configuration of the ingress configuration.
+      example:
+        lastSeenTimestamp: 5
+        status: status
+      properties:
+        status:
+          description: The status of the deployment configuration.
+          type: string
+        lastSeenTimestamp:
+          description: The last seen timestamp of the deployment configuration.
+          format: int64
+          type: integer
+      type: object
+    GlobalSpaceStatus_cluster_inner:
+      example:
+        ingress:
+          lastSeenTimeStamp: 5
+          message: message
+          status: status
+        fabric:
+          lastSeenTimeStamp: 5
+          message: message
+          status: status
+        infra:
+          lastSeenTimeStamp: 5
+          message: message
+          status: status
+      properties:
+        infra:
+          $ref: '#/components/schemas/PrivateSpaceComponentStatus'
+        fabric:
+          $ref: '#/components/schemas/PrivateSpaceComponentStatus'
+        ingress:
+          $ref: '#/components/schemas/PrivateSpaceComponentStatus'
+      type: object
+    TransitGateway_spec_resourceShare:
+      example:
+        id: id
+        account: account
+      properties:
+        id:
+          description: RAM resource share UUID (trailing GUID of the ARN).
+          type: string
+        account:
+          description: AWS account id that owns the RAM share.
+          type: string
+      type: object
+    TransitGateway_spec:
+      example:
+        spaceName: spaceName
+        resourceShare:
+          id: id
+          account: account
+        region: region
+      properties:
+        resourceShare:
+          $ref: '#/components/schemas/TransitGateway_spec_resourceShare'
+        region:
+          description: AWS region (inherits the private space region).
+          type: string
+        spaceName:
+          description: Private space display name.
+          type: string
+      type: object
+    TransitGateway_status:
+      example:
+        tgwResource: tgwResource
+        routes:
+        - routes
+        - routes
+        attachment: attachment
+        gateway: gateway
+      properties:
+        gateway:
+          description: "Gateway status (e.g. refreshing, available)."
+          type: string
+        attachment:
+          description: "Attachment status (e.g. refreshing, available)."
+          type: string
+        tgwResource:
+          description: AWS console URL pointing at the transit gateway resource.
+          type: string
+        routes:
+          description: Static routes pushed into the private space route table.
+          items:
+            type: string
+          type: array
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

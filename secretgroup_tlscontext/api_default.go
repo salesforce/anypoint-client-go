@@ -20,19 +20,19 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiGetSecretGroupTlsContextDetailsRequest struct {
+type DefaultAPIGetSecretGroupTlsContextDetailsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	secretId string
 }
 
-func (r DefaultApiGetSecretGroupTlsContextDetailsRequest) Execute() (*TlsContextDetails, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupTlsContextDetailsRequest) Execute() (*TlsContextDetails, *http.Response, error) {
 	return r.ApiService.GetSecretGroupTlsContextDetailsExecute(r)
 }
 
@@ -46,10 +46,10 @@ Retrieves tls-context details by id for a given secret group in a given organiza
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The keystore id
- @return DefaultApiGetSecretGroupTlsContextDetailsRequest
+ @return DefaultAPIGetSecretGroupTlsContextDetailsRequest
 */
-func (a *DefaultApiService) GetSecretGroupTlsContextDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiGetSecretGroupTlsContextDetailsRequest {
-	return DefaultApiGetSecretGroupTlsContextDetailsRequest{
+func (a *DefaultAPIService) GetSecretGroupTlsContextDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIGetSecretGroupTlsContextDetailsRequest {
+	return DefaultAPIGetSecretGroupTlsContextDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -61,7 +61,7 @@ func (a *DefaultApiService) GetSecretGroupTlsContextDetails(ctx context.Context,
 
 // Execute executes the request
 //  @return TlsContextDetails
-func (a *DefaultApiService) GetSecretGroupTlsContextDetailsExecute(r DefaultApiGetSecretGroupTlsContextDetailsRequest) (*TlsContextDetails, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupTlsContextDetailsExecute(r DefaultAPIGetSecretGroupTlsContextDetailsRequest) (*TlsContextDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -69,7 +69,7 @@ func (a *DefaultApiService) GetSecretGroupTlsContextDetailsExecute(r DefaultApiG
 		localVarReturnValue  *TlsContextDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupTlsContextDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupTlsContextDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -149,15 +149,15 @@ func (a *DefaultApiService) GetSecretGroupTlsContextDetailsExecute(r DefaultApiG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetSecretGroupTlsContextsRequest struct {
+type DefaultAPIGetSecretGroupTlsContextsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 }
 
-func (r DefaultApiGetSecretGroupTlsContextsRequest) Execute() ([]TlsContextSummary, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupTlsContextsRequest) Execute() ([]TlsContextSummary, *http.Response, error) {
 	return r.ApiService.GetSecretGroupTlsContextsExecute(r)
 }
 
@@ -170,10 +170,10 @@ Retrieves a secret-groups' collection of tls-contexts.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiGetSecretGroupTlsContextsRequest
+ @return DefaultAPIGetSecretGroupTlsContextsRequest
 */
-func (a *DefaultApiService) GetSecretGroupTlsContexts(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiGetSecretGroupTlsContextsRequest {
-	return DefaultApiGetSecretGroupTlsContextsRequest{
+func (a *DefaultAPIService) GetSecretGroupTlsContexts(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIGetSecretGroupTlsContextsRequest {
+	return DefaultAPIGetSecretGroupTlsContextsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -184,7 +184,7 @@ func (a *DefaultApiService) GetSecretGroupTlsContexts(ctx context.Context, orgId
 
 // Execute executes the request
 //  @return []TlsContextSummary
-func (a *DefaultApiService) GetSecretGroupTlsContextsExecute(r DefaultApiGetSecretGroupTlsContextsRequest) ([]TlsContextSummary, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupTlsContextsExecute(r DefaultAPIGetSecretGroupTlsContextsRequest) ([]TlsContextSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -192,7 +192,7 @@ func (a *DefaultApiService) GetSecretGroupTlsContextsExecute(r DefaultApiGetSecr
 		localVarReturnValue  []TlsContextSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupTlsContexts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupTlsContexts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -271,9 +271,9 @@ func (a *DefaultApiService) GetSecretGroupTlsContextsExecute(r DefaultApiGetSecr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchSecretGroupTlsContextRequest struct {
+type DefaultAPIPatchSecretGroupTlsContextRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -281,12 +281,12 @@ type DefaultApiPatchSecretGroupTlsContextRequest struct {
 	body *map[string]interface{}
 }
 
-func (r DefaultApiPatchSecretGroupTlsContextRequest) Body(body map[string]interface{}) DefaultApiPatchSecretGroupTlsContextRequest {
+func (r DefaultAPIPatchSecretGroupTlsContextRequest) Body(body map[string]interface{}) DefaultAPIPatchSecretGroupTlsContextRequest {
 	r.body = &body
 	return r
 }
 
-func (r DefaultApiPatchSecretGroupTlsContextRequest) Execute() (*PutSecretGroupTlsContext200Response, *http.Response, error) {
+func (r DefaultAPIPatchSecretGroupTlsContextRequest) Execute() (*PutSecretGroupTlsContext200Response, *http.Response, error) {
 	return r.ApiService.PatchSecretGroupTlsContextExecute(r)
 }
 
@@ -300,10 +300,10 @@ Update tls-context details for a given secret-group in a given organization and 
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The keystore id
- @return DefaultApiPatchSecretGroupTlsContextRequest
+ @return DefaultAPIPatchSecretGroupTlsContextRequest
 */
-func (a *DefaultApiService) PatchSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPatchSecretGroupTlsContextRequest {
-	return DefaultApiPatchSecretGroupTlsContextRequest{
+func (a *DefaultAPIService) PatchSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPatchSecretGroupTlsContextRequest {
+	return DefaultAPIPatchSecretGroupTlsContextRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -315,7 +315,7 @@ func (a *DefaultApiService) PatchSecretGroupTlsContext(ctx context.Context, orgI
 
 // Execute executes the request
 //  @return PutSecretGroupTlsContext200Response
-func (a *DefaultApiService) PatchSecretGroupTlsContextExecute(r DefaultApiPatchSecretGroupTlsContextRequest) (*PutSecretGroupTlsContext200Response, *http.Response, error) {
+func (a *DefaultAPIService) PatchSecretGroupTlsContextExecute(r DefaultAPIPatchSecretGroupTlsContextRequest) (*PutSecretGroupTlsContext200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -323,7 +323,7 @@ func (a *DefaultApiService) PatchSecretGroupTlsContextExecute(r DefaultApiPatchS
 		localVarReturnValue  *PutSecretGroupTlsContext200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchSecretGroupTlsContext")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchSecretGroupTlsContext")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -416,21 +416,21 @@ func (a *DefaultApiService) PatchSecretGroupTlsContextExecute(r DefaultApiPatchS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostSecretGroupTlsContextRequest struct {
+type DefaultAPIPostSecretGroupTlsContextRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	tlsContextPostBody *TlsContextPostBody
 }
 
-func (r DefaultApiPostSecretGroupTlsContextRequest) TlsContextPostBody(tlsContextPostBody TlsContextPostBody) DefaultApiPostSecretGroupTlsContextRequest {
+func (r DefaultAPIPostSecretGroupTlsContextRequest) TlsContextPostBody(tlsContextPostBody TlsContextPostBody) DefaultAPIPostSecretGroupTlsContextRequest {
 	r.tlsContextPostBody = &tlsContextPostBody
 	return r
 }
 
-func (r DefaultApiPostSecretGroupTlsContextRequest) Execute() (*PostSecretGroupTlsContext201Response, *http.Response, error) {
+func (r DefaultAPIPostSecretGroupTlsContextRequest) Execute() (*PostSecretGroupTlsContext201Response, *http.Response, error) {
 	return r.ApiService.PostSecretGroupTlsContextExecute(r)
 }
 
@@ -443,10 +443,10 @@ Create a secret-groups' tls-context.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiPostSecretGroupTlsContextRequest
+ @return DefaultAPIPostSecretGroupTlsContextRequest
 */
-func (a *DefaultApiService) PostSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiPostSecretGroupTlsContextRequest {
-	return DefaultApiPostSecretGroupTlsContextRequest{
+func (a *DefaultAPIService) PostSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIPostSecretGroupTlsContextRequest {
+	return DefaultAPIPostSecretGroupTlsContextRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -457,7 +457,7 @@ func (a *DefaultApiService) PostSecretGroupTlsContext(ctx context.Context, orgId
 
 // Execute executes the request
 //  @return PostSecretGroupTlsContext201Response
-func (a *DefaultApiService) PostSecretGroupTlsContextExecute(r DefaultApiPostSecretGroupTlsContextRequest) (*PostSecretGroupTlsContext201Response, *http.Response, error) {
+func (a *DefaultAPIService) PostSecretGroupTlsContextExecute(r DefaultAPIPostSecretGroupTlsContextRequest) (*PostSecretGroupTlsContext201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -465,7 +465,7 @@ func (a *DefaultApiService) PostSecretGroupTlsContextExecute(r DefaultApiPostSec
 		localVarReturnValue  *PostSecretGroupTlsContext201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostSecretGroupTlsContext")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostSecretGroupTlsContext")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -546,9 +546,9 @@ func (a *DefaultApiService) PostSecretGroupTlsContextExecute(r DefaultApiPostSec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPutSecretGroupTlsContextRequest struct {
+type DefaultAPIPutSecretGroupTlsContextRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -556,12 +556,12 @@ type DefaultApiPutSecretGroupTlsContextRequest struct {
 	tlsContextPutBody *TlsContextPutBody
 }
 
-func (r DefaultApiPutSecretGroupTlsContextRequest) TlsContextPutBody(tlsContextPutBody TlsContextPutBody) DefaultApiPutSecretGroupTlsContextRequest {
+func (r DefaultAPIPutSecretGroupTlsContextRequest) TlsContextPutBody(tlsContextPutBody TlsContextPutBody) DefaultAPIPutSecretGroupTlsContextRequest {
 	r.tlsContextPutBody = &tlsContextPutBody
 	return r
 }
 
-func (r DefaultApiPutSecretGroupTlsContextRequest) Execute() (*PutSecretGroupTlsContext200Response, *http.Response, error) {
+func (r DefaultAPIPutSecretGroupTlsContextRequest) Execute() (*PutSecretGroupTlsContext200Response, *http.Response, error) {
 	return r.ApiService.PutSecretGroupTlsContextExecute(r)
 }
 
@@ -575,10 +575,10 @@ Update tls-context details for a given secret-group in a given organization and 
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The keystore id
- @return DefaultApiPutSecretGroupTlsContextRequest
+ @return DefaultAPIPutSecretGroupTlsContextRequest
 */
-func (a *DefaultApiService) PutSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPutSecretGroupTlsContextRequest {
-	return DefaultApiPutSecretGroupTlsContextRequest{
+func (a *DefaultAPIService) PutSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPutSecretGroupTlsContextRequest {
+	return DefaultAPIPutSecretGroupTlsContextRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -590,7 +590,7 @@ func (a *DefaultApiService) PutSecretGroupTlsContext(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return PutSecretGroupTlsContext200Response
-func (a *DefaultApiService) PutSecretGroupTlsContextExecute(r DefaultApiPutSecretGroupTlsContextRequest) (*PutSecretGroupTlsContext200Response, *http.Response, error) {
+func (a *DefaultAPIService) PutSecretGroupTlsContextExecute(r DefaultAPIPutSecretGroupTlsContextRequest) (*PutSecretGroupTlsContext200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -598,7 +598,7 @@ func (a *DefaultApiService) PutSecretGroupTlsContextExecute(r DefaultApiPutSecre
 		localVarReturnValue  *PutSecretGroupTlsContext200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutSecretGroupTlsContext")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PutSecretGroupTlsContext")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -7,9 +7,8 @@ client.go
 configuration.go
 docs/Alert.md
 docs/AlertCore.md
-docs/AlertId.md
 docs/Condition.md
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/Duration.md
 docs/Period.md
 docs/Recipient.md
@@ -18,7 +17,6 @@ go.mod
 go.sum
 model_alert.go
 model_alert_core.go
-model_alert_id.go
 model_condition.go
 model_duration.go
 model_period.go

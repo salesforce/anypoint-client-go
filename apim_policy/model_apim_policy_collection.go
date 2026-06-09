@@ -12,19 +12,20 @@ package apim_policy
 
 import (
 	"encoding/json"
+	"gopkg.in/validator.v2"
 	"fmt"
 )
 
 // ApimPolicyCollection - struct for ApimPolicyCollection
 type ApimPolicyCollection struct {
-	ApimPolicyFullCollecion *ApimPolicyFullCollecion
+	ApimPolicyFullData *ApimPolicyFullData
 	ArrayOfApimPolicy *[]ApimPolicy
 }
 
-// ApimPolicyFullCollecionAsApimPolicyCollection is a convenience function that returns ApimPolicyFullCollecion wrapped in ApimPolicyCollection
-func ApimPolicyFullCollecionAsApimPolicyCollection(v *ApimPolicyFullCollecion) ApimPolicyCollection {
+// ApimPolicyFullDataAsApimPolicyCollection is a convenience function that returns ApimPolicyFullData wrapped in ApimPolicyCollection
+func ApimPolicyFullDataAsApimPolicyCollection(v *ApimPolicyFullData) ApimPolicyCollection {
 	return ApimPolicyCollection{
-		ApimPolicyFullCollecion: v,
+		ApimPolicyFullData: v,
 	}
 }
 
@@ -40,17 +41,21 @@ func ArrayOfApimPolicyAsApimPolicyCollection(v *[]ApimPolicy) ApimPolicyCollecti
 func (dst *ApimPolicyCollection) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ApimPolicyFullCollecion
-	err = newStrictDecoder(data).Decode(&dst.ApimPolicyFullCollecion)
+	// try to unmarshal data into ApimPolicyFullData
+	err = newStrictDecoder(data).Decode(&dst.ApimPolicyFullData)
 	if err == nil {
-		jsonApimPolicyFullCollecion, _ := json.Marshal(dst.ApimPolicyFullCollecion)
-		if string(jsonApimPolicyFullCollecion) == "{}" { // empty struct
-			dst.ApimPolicyFullCollecion = nil
+		jsonApimPolicyFullData, _ := json.Marshal(dst.ApimPolicyFullData)
+		if string(jsonApimPolicyFullData) == "{}" { // empty struct
+			dst.ApimPolicyFullData = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.ApimPolicyFullData); err != nil {
+				dst.ApimPolicyFullData = nil
+			} else {
+				match++
+			}
 		}
 	} else {
-		dst.ApimPolicyFullCollecion = nil
+		dst.ApimPolicyFullData = nil
 	}
 
 	// try to unmarshal data into ArrayOfApimPolicy
@@ -60,7 +65,11 @@ func (dst *ApimPolicyCollection) UnmarshalJSON(data []byte) error {
 		if string(jsonArrayOfApimPolicy) == "{}" { // empty struct
 			dst.ArrayOfApimPolicy = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.ArrayOfApimPolicy); err != nil {
+				dst.ArrayOfApimPolicy = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.ArrayOfApimPolicy = nil
@@ -68,7 +77,7 @@ func (dst *ApimPolicyCollection) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ApimPolicyFullCollecion = nil
+		dst.ApimPolicyFullData = nil
 		dst.ArrayOfApimPolicy = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ApimPolicyCollection)")
@@ -81,8 +90,8 @@ func (dst *ApimPolicyCollection) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ApimPolicyCollection) MarshalJSON() ([]byte, error) {
-	if src.ApimPolicyFullCollecion != nil {
-		return json.Marshal(&src.ApimPolicyFullCollecion)
+	if src.ApimPolicyFullData != nil {
+		return json.Marshal(&src.ApimPolicyFullData)
 	}
 
 	if src.ArrayOfApimPolicy != nil {
@@ -97,8 +106,8 @@ func (obj *ApimPolicyCollection) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.ApimPolicyFullCollecion != nil {
-		return obj.ApimPolicyFullCollecion
+	if obj.ApimPolicyFullData != nil {
+		return obj.ApimPolicyFullData
 	}
 
 	if obj.ArrayOfApimPolicy != nil {

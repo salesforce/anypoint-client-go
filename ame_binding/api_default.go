@@ -20,12 +20,12 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiCreateAMEBindingRequest struct {
+type DefaultAPICreateAMEBindingRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -33,7 +33,7 @@ type DefaultApiCreateAMEBindingRequest struct {
 	queueId string
 }
 
-func (r DefaultApiCreateAMEBindingRequest) Execute() (*ExchangeBinding, *http.Response, error) {
+func (r DefaultAPICreateAMEBindingRequest) Execute() (*ExchangeBinding, *http.Response, error) {
 	return r.ApiService.CreateAMEBindingExecute(r)
 }
 
@@ -48,10 +48,10 @@ Create exchange queue binding
  @param regionId The region id
  @param exchangeId The id of a specific exchange
  @param queueId The id of a specific exchange queue binding
- @return DefaultApiCreateAMEBindingRequest
+ @return DefaultAPICreateAMEBindingRequest
 */
-func (a *DefaultApiService) CreateAMEBinding(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultApiCreateAMEBindingRequest {
-	return DefaultApiCreateAMEBindingRequest{
+func (a *DefaultAPIService) CreateAMEBinding(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultAPICreateAMEBindingRequest {
+	return DefaultAPICreateAMEBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -64,7 +64,7 @@ func (a *DefaultApiService) CreateAMEBinding(ctx context.Context, orgId string, 
 
 // Execute executes the request
 //  @return ExchangeBinding
-func (a *DefaultApiService) CreateAMEBindingExecute(r DefaultApiCreateAMEBindingRequest) (*ExchangeBinding, *http.Response, error) {
+func (a *DefaultAPIService) CreateAMEBindingExecute(r DefaultAPICreateAMEBindingRequest) (*ExchangeBinding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -72,7 +72,7 @@ func (a *DefaultApiService) CreateAMEBindingExecute(r DefaultApiCreateAMEBinding
 		localVarReturnValue  *ExchangeBinding
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAMEBinding")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAMEBinding")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -142,9 +142,9 @@ func (a *DefaultApiService) CreateAMEBindingExecute(r DefaultApiCreateAMEBinding
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiCreateAMEBindingRuleRequest struct {
+type DefaultAPICreateAMEBindingRuleRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -153,12 +153,12 @@ type DefaultApiCreateAMEBindingRuleRequest struct {
 	aMEBindingRuleBody *AMEBindingRuleBody
 }
 
-func (r DefaultApiCreateAMEBindingRuleRequest) AMEBindingRuleBody(aMEBindingRuleBody AMEBindingRuleBody) DefaultApiCreateAMEBindingRuleRequest {
+func (r DefaultAPICreateAMEBindingRuleRequest) AMEBindingRuleBody(aMEBindingRuleBody AMEBindingRuleBody) DefaultAPICreateAMEBindingRuleRequest {
 	r.aMEBindingRuleBody = &aMEBindingRuleBody
 	return r
 }
 
-func (r DefaultApiCreateAMEBindingRuleRequest) Execute() (*ExchangeBindingRules, *http.Response, error) {
+func (r DefaultAPICreateAMEBindingRuleRequest) Execute() (*ExchangeBindingRules, *http.Response, error) {
 	return r.ApiService.CreateAMEBindingRuleExecute(r)
 }
 
@@ -173,10 +173,10 @@ Create exchange queue binding rule
  @param regionId The region id
  @param exchangeId The id of a specific exchange
  @param queueId The id of a specific exchange queue binding
- @return DefaultApiCreateAMEBindingRuleRequest
+ @return DefaultAPICreateAMEBindingRuleRequest
 */
-func (a *DefaultApiService) CreateAMEBindingRule(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultApiCreateAMEBindingRuleRequest {
-	return DefaultApiCreateAMEBindingRuleRequest{
+func (a *DefaultAPIService) CreateAMEBindingRule(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultAPICreateAMEBindingRuleRequest {
+	return DefaultAPICreateAMEBindingRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -189,7 +189,7 @@ func (a *DefaultApiService) CreateAMEBindingRule(ctx context.Context, orgId stri
 
 // Execute executes the request
 //  @return ExchangeBindingRules
-func (a *DefaultApiService) CreateAMEBindingRuleExecute(r DefaultApiCreateAMEBindingRuleRequest) (*ExchangeBindingRules, *http.Response, error) {
+func (a *DefaultAPIService) CreateAMEBindingRuleExecute(r DefaultAPICreateAMEBindingRuleRequest) (*ExchangeBindingRules, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -197,7 +197,7 @@ func (a *DefaultApiService) CreateAMEBindingRuleExecute(r DefaultApiCreateAMEBin
 		localVarReturnValue  *ExchangeBindingRules
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAMEBindingRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAMEBindingRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -269,9 +269,9 @@ func (a *DefaultApiService) CreateAMEBindingRuleExecute(r DefaultApiCreateAMEBin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiDeleteAMEBindingRequest struct {
+type DefaultAPIDeleteAMEBindingRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -279,7 +279,7 @@ type DefaultApiDeleteAMEBindingRequest struct {
 	queueId string
 }
 
-func (r DefaultApiDeleteAMEBindingRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteAMEBindingRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAMEBindingExecute(r)
 }
 
@@ -294,10 +294,10 @@ Delete an exchange queue binding
  @param regionId The region id
  @param exchangeId The id of a specific exchange
  @param queueId The id of a specific exchange queue binding
- @return DefaultApiDeleteAMEBindingRequest
+ @return DefaultAPIDeleteAMEBindingRequest
 */
-func (a *DefaultApiService) DeleteAMEBinding(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultApiDeleteAMEBindingRequest {
-	return DefaultApiDeleteAMEBindingRequest{
+func (a *DefaultAPIService) DeleteAMEBinding(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultAPIDeleteAMEBindingRequest {
+	return DefaultAPIDeleteAMEBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -309,14 +309,14 @@ func (a *DefaultApiService) DeleteAMEBinding(ctx context.Context, orgId string, 
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteAMEBindingExecute(r DefaultApiDeleteAMEBindingRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteAMEBindingExecute(r DefaultAPIDeleteAMEBindingRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAMEBinding")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAMEBinding")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -377,9 +377,9 @@ func (a *DefaultApiService) DeleteAMEBindingExecute(r DefaultApiDeleteAMEBinding
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiDeleteAMEBindingRuleRequest struct {
+type DefaultAPIDeleteAMEBindingRuleRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -387,7 +387,7 @@ type DefaultApiDeleteAMEBindingRuleRequest struct {
 	queueId string
 }
 
-func (r DefaultApiDeleteAMEBindingRuleRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteAMEBindingRuleRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAMEBindingRuleExecute(r)
 }
 
@@ -402,10 +402,10 @@ Delete an exchange queue binding Rule
  @param regionId The region id
  @param exchangeId The id of a specific exchange
  @param queueId The id of a specific exchange queue binding
- @return DefaultApiDeleteAMEBindingRuleRequest
+ @return DefaultAPIDeleteAMEBindingRuleRequest
 */
-func (a *DefaultApiService) DeleteAMEBindingRule(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultApiDeleteAMEBindingRuleRequest {
-	return DefaultApiDeleteAMEBindingRuleRequest{
+func (a *DefaultAPIService) DeleteAMEBindingRule(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultAPIDeleteAMEBindingRuleRequest {
+	return DefaultAPIDeleteAMEBindingRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -417,14 +417,14 @@ func (a *DefaultApiService) DeleteAMEBindingRule(ctx context.Context, orgId stri
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteAMEBindingRuleExecute(r DefaultApiDeleteAMEBindingRuleRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteAMEBindingRuleExecute(r DefaultAPIDeleteAMEBindingRuleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAMEBindingRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAMEBindingRule")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -485,9 +485,9 @@ func (a *DefaultApiService) DeleteAMEBindingRuleExecute(r DefaultApiDeleteAMEBin
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetAMEBindingRequest struct {
+type DefaultAPIGetAMEBindingRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -497,12 +497,12 @@ type DefaultApiGetAMEBindingRequest struct {
 }
 
 // Defines what to fetch
-func (r DefaultApiGetAMEBindingRequest) Inclusion(inclusion string) DefaultApiGetAMEBindingRequest {
+func (r DefaultAPIGetAMEBindingRequest) Inclusion(inclusion string) DefaultAPIGetAMEBindingRequest {
 	r.inclusion = &inclusion
 	return r
 }
 
-func (r DefaultApiGetAMEBindingRequest) Execute() (*ExchangeBindingWithRules, *http.Response, error) {
+func (r DefaultAPIGetAMEBindingRequest) Execute() (*ExchangeBindingWithRules, *http.Response, error) {
 	return r.ApiService.GetAMEBindingExecute(r)
 }
 
@@ -517,10 +517,10 @@ Get details about a queue bound to an exchange
  @param regionId The region id
  @param exchangeId The id of a specific exchange
  @param queueId The id of a specific exchange queue binding
- @return DefaultApiGetAMEBindingRequest
+ @return DefaultAPIGetAMEBindingRequest
 */
-func (a *DefaultApiService) GetAMEBinding(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultApiGetAMEBindingRequest {
-	return DefaultApiGetAMEBindingRequest{
+func (a *DefaultAPIService) GetAMEBinding(ctx context.Context, orgId string, envId string, regionId string, exchangeId string, queueId string) DefaultAPIGetAMEBindingRequest {
+	return DefaultAPIGetAMEBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -533,7 +533,7 @@ func (a *DefaultApiService) GetAMEBinding(ctx context.Context, orgId string, env
 
 // Execute executes the request
 //  @return ExchangeBindingWithRules
-func (a *DefaultApiService) GetAMEBindingExecute(r DefaultApiGetAMEBindingRequest) (*ExchangeBindingWithRules, *http.Response, error) {
+func (a *DefaultAPIService) GetAMEBindingExecute(r DefaultAPIGetAMEBindingRequest) (*ExchangeBindingWithRules, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -541,7 +541,7 @@ func (a *DefaultApiService) GetAMEBindingExecute(r DefaultApiGetAMEBindingReques
 		localVarReturnValue  *ExchangeBindingWithRules
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAMEBinding")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetAMEBinding")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -558,7 +558,7 @@ func (a *DefaultApiService) GetAMEBindingExecute(r DefaultApiGetAMEBindingReques
 	localVarFormParams := url.Values{}
 
 	if r.inclusion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "inclusion", r.inclusion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "inclusion", r.inclusion, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

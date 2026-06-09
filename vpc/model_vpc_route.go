@@ -12,6 +12,8 @@ package vpc
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the VpcRoute type satisfies the MappedNullable interface at compile time
@@ -22,6 +24,8 @@ type VpcRoute struct {
 	CIDR string `json:"CIDR"`
 	NextHop string `json:"Next Hop"`
 }
+
+type _VpcRoute VpcRoute
 
 // NewVpcRoute instantiates a new VpcRoute object
 // This constructor will assign default values to properties that have it defined,
@@ -107,6 +111,44 @@ func (o VpcRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize["CIDR"] = o.CIDR
 	toSerialize["Next Hop"] = o.NextHop
 	return toSerialize, nil
+}
+
+func (o *VpcRoute) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"CIDR",
+		"Next Hop",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVpcRoute := _VpcRoute{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVpcRoute)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VpcRoute(varVpcRoute)
+
+	return err
 }
 
 type NullableVpcRoute struct {

@@ -1,0 +1,1179 @@
+openapi: 3.0.3
+info:
+  description: API Manager Contract API
+  title: API Manager Contract API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/apimanager/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/apimanager/
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/apimanager/
+security:
+- bearerAuth: []
+paths:
+  /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/contracts:
+    get:
+      description: |
+        Retrieves all contracts for a given API in a given organization and environment Connected Apps require the following scopes: - View Contracts
+      operationId: GetApiContracts
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance id for a given environment
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The maximum number of contracts to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The offset of the first contract to return
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The field to sort by
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The order to sort by
+        explode: true
+        in: query
+        name: order
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The order to sort by
+        explode: true
+        in: query
+        name: ascending
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The status of the contract
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A string that will be checked for a partial or similar matches\
+          \ of the name, description, label and tags"
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Whether to include extra application data
+        explode: true
+        in: query
+        name: includeExtraApplicationData
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractsResponse'
+          description: Successful response
+      summary: Retrieves all contracts for a given API in a given organization and
+        environment
+    post:
+      description: |
+        Creates a new contract for a given API in a given organization and environment Connected Apps require the following scopes: - Manage Contracts - Exchange Viewer
+      operationId: CreateApiContract
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance id for a given environment
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostApiContract'
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractResponse'
+          description: Successful response
+      summary: Creates a new contract for a given API in a given organization and
+        environment
+  /api/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/contracts/{contractId}:
+    delete:
+      description: |
+        Deletes a contract for a given API in a given organization and environment Connected Apps require the following scopes: - Manage Contracts
+      operationId: DeleteApiContract
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance id for a given environment
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The contract id
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "204":
+          description: Successful response
+      summary: Deletes a contract for a given API in a given organization and environment
+    get:
+      description: |
+        Retrieves a contract for a given API in a given organization and environment Connected Apps require the following scopes: - View Contracts
+      operationId: GetApiContract
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance id for a given environment
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The contract id
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractResponse'
+          description: Successful response
+      summary: Retrieves a contract for a given API in a given organization and environment
+    patch:
+      description: |
+        Updates a contract for a given API in a given organization and environment Connected Apps require the following scopes: - Manage Contracts - Exchange Viewer
+      operationId: UpdateApiContract
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance id for a given environment
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The contract id
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchApiContract'
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractResponse'
+          description: Successful response
+      summary: Updates a contract for a given API in a given organization and environment
+  /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/contracts/{contractId}/{action}:
+    post:
+      description: |
+        Performs an action on a contract for a given API in a given organization and environment Connected Apps require the following scopes: - Manage Contracts
+      operationId: UpdateApiContractStatus
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance id for a given environment
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The contract id
+        explode: false
+        in: path
+        name: contractId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The action to be performed on the contract
+        explode: false
+        in: path
+        name: action
+        required: true
+        schema:
+          enum:
+          - approve
+          - reject
+          - revoke
+          - restore
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractResponse'
+          description: Successful response
+      summary: Performs an action on a contract for a given API in a given organization
+        and environment
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorsResponse'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            properties:
+              name:
+                type: string
+              message:
+                type: string
+            type: object
+      description: resource not found
+    SuccessGetApiContracts:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetContractsResponse'
+      description: Successful response
+    SuccessGetApiContract:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetContractResponse'
+      description: Successful response
+    SuccessCreateApiContract:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetContractResponse'
+      description: Successful response
+    SuccessDeleteApiContract:
+      description: Successful response
+  schemas:
+    ErrorsResponse:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorsResponse_errors_inner'
+          type: array
+      title: errorsResponse
+      type: object
+    GetContractsResponse:
+      example:
+        total: 4
+        contracts:
+        - requestedTierId: 0
+          groupInstanceId: groupInstanceId
+          rejectedDate: rejectedDate
+          masterOrganizationId: 9a5c9842-3e68-452a-aa88-d100c3bdefba
+          organizationId: f02a5569-24ac-491a-964a-0950ab318728
+          approvedDate: approvedDate
+          application:
+            audit:
+              created:
+                date: 2024-08-06T10:55:50.073Z
+              updated:
+                date: 2024-08-06T10:55:50.073Z
+            coreServicesId: babdf66b11cf463d9f012af5ef2cd221
+            name: XPClient-AT-Extranet
+            description: description
+            id: 2349040
+            clientProvider: "{}"
+            url: url
+          tierId: 1797161
+          tier:
+            audit:
+              created:
+                date: 2024-08-06T10:55:50.073Z
+              updated:
+                date: 2024-08-06T10:55:50.073Z
+            name: Trusted client SLA
+            description: description
+            id: 1797161
+            limits:
+            - visible: true
+              timePeriodInMilliseconds: 1000
+              maximumRequests: 120
+            - visible: true
+              timePeriodInMilliseconds: 1000
+              maximumRequests: 120
+            autoApprove: true
+            status: status
+          terms: terms
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          revokedDate: revokedDate
+          partyName: partyName
+          id: 6273842
+          groupInstance: "{}"
+          api:
+            organizationId: f02a5569-24ac-491a-964a-0950ab318728
+            audit:
+              created:
+                date: 2024-08-06T10:55:50.073Z
+              updated:
+                date: 2024-08-06T10:55:50.073Z
+            id: 18972610
+          applicationId: 2349040
+          partyId: partyId
+          requestedTier: "{}"
+          apiId: 18972610
+          status: status
+        - requestedTierId: 0
+          groupInstanceId: groupInstanceId
+          rejectedDate: rejectedDate
+          masterOrganizationId: 9a5c9842-3e68-452a-aa88-d100c3bdefba
+          organizationId: f02a5569-24ac-491a-964a-0950ab318728
+          approvedDate: approvedDate
+          application:
+            audit:
+              created:
+                date: 2024-08-06T10:55:50.073Z
+              updated:
+                date: 2024-08-06T10:55:50.073Z
+            coreServicesId: babdf66b11cf463d9f012af5ef2cd221
+            name: XPClient-AT-Extranet
+            description: description
+            id: 2349040
+            clientProvider: "{}"
+            url: url
+          tierId: 1797161
+          tier:
+            audit:
+              created:
+                date: 2024-08-06T10:55:50.073Z
+              updated:
+                date: 2024-08-06T10:55:50.073Z
+            name: Trusted client SLA
+            description: description
+            id: 1797161
+            limits:
+            - visible: true
+              timePeriodInMilliseconds: 1000
+              maximumRequests: 120
+            - visible: true
+              timePeriodInMilliseconds: 1000
+              maximumRequests: 120
+            autoApprove: true
+            status: status
+          terms: terms
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          revokedDate: revokedDate
+          partyName: partyName
+          id: 6273842
+          groupInstance: "{}"
+          api:
+            organizationId: f02a5569-24ac-491a-964a-0950ab318728
+            audit:
+              created:
+                date: 2024-08-06T10:55:50.073Z
+              updated:
+                date: 2024-08-06T10:55:50.073Z
+            id: 18972610
+          applicationId: 2349040
+          partyId: partyId
+          requestedTier: "{}"
+          apiId: 18972610
+          status: status
+      properties:
+        total:
+          example: 4
+          type: integer
+        contracts:
+          items:
+            $ref: '#/components/schemas/Contract'
+          type: array
+      type: object
+    GetContractResponse:
+      $ref: '#/components/schemas/ContractDetails'
+    PostApiContract:
+      example:
+        requestedTierId: 6
+        requestAccessInfo:
+          reason: reason
+        applicationId: 0
+      properties:
+        applicationId:
+          type: integer
+        requestedTierId:
+          type: integer
+        requestAccessInfo:
+          $ref: '#/components/schemas/PostApiContract_requestAccessInfo'
+      type: object
+    PatchApiContract:
+      example:
+        requestedTierId: 0
+        tierId: 6
+      properties:
+        requestedTierId:
+          type: integer
+        tierId:
+          type: integer
+      type: object
+    ContractDetails:
+      example:
+        requestedTierId: 9
+        rejectedDate: rejectedDate
+        masterOrganizationId: masterOrganizationId
+        organizationId: organizationId
+        approvedDate: approvedDate
+        condition: APPLIED
+        application:
+          owner: owner
+          redirectUri:
+          - redirectUri
+          - redirectUri
+          clientId: clientId
+          description: description
+          owners:
+          - organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            firstName: firstName
+            lastName: lastName
+            entityType: entityType
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            email: email
+            username: username
+          - organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            firstName: firstName
+            lastName: lastName
+            entityType: entityType
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            email: email
+            username: username
+          clientProvider:
+            providerId: providerId
+          url: url
+          masterOrganizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          grantTypes:
+          - grantTypes
+          - grantTypes
+          coreServicesId: coreServicesId
+          name: name
+          id: 1
+          email: email
+        tierId: 5
+        tier:
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          name: name
+          description: description
+          id: 5
+          limits:
+          - visible: true
+            timePeriodInMilliseconds: 7.061401241503109
+            maximumRequests: 2.3021358869347655
+          - visible: true
+            timePeriodInMilliseconds: 7.061401241503109
+            maximumRequests: 2.3021358869347655
+          autoApprove: true
+          status: status
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        revokedDate: revokedDate
+        id: 0
+        api:
+          organizationId: organizationId
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          id: 2
+        applicationId: 6
+        requestedTier:
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          name: name
+          description: description
+          id: 5
+          limits:
+          - visible: true
+            timePeriodInMilliseconds: 7.061401241503109
+            maximumRequests: 2.3021358869347655
+          - visible: true
+            timePeriodInMilliseconds: 7.061401241503109
+            maximumRequests: 2.3021358869347655
+          autoApprove: true
+          status: status
+        apiId: 3
+        status: status
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        masterOrganizationId:
+          type: string
+        organizationId:
+          type: string
+        id:
+          type: integer
+        status:
+          type: string
+        approvedDate:
+          nullable: true
+          type: string
+        rejectedDate:
+          nullable: true
+          type: string
+        revokedDate:
+          nullable: true
+          type: string
+        applicationId:
+          type: integer
+        application:
+          $ref: '#/components/schemas/ApplicationContractResponse'
+        tierId:
+          type: integer
+        tier:
+          $ref: '#/components/schemas/TierContractResponse'
+        requestedTierId:
+          nullable: true
+          type: integer
+        requestedTier:
+          $ref: '#/components/schemas/TierContractResponse'
+        condition:
+          default: APPLIED
+          type: string
+        apiId:
+          type: integer
+        api:
+          $ref: '#/components/schemas/ContractDetails_api'
+      type: object
+    Contract:
+      example:
+        requestedTierId: 0
+        groupInstanceId: groupInstanceId
+        rejectedDate: rejectedDate
+        masterOrganizationId: 9a5c9842-3e68-452a-aa88-d100c3bdefba
+        organizationId: f02a5569-24ac-491a-964a-0950ab318728
+        approvedDate: approvedDate
+        application:
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          coreServicesId: babdf66b11cf463d9f012af5ef2cd221
+          name: XPClient-AT-Extranet
+          description: description
+          id: 2349040
+          clientProvider: "{}"
+          url: url
+        tierId: 1797161
+        tier:
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          name: Trusted client SLA
+          description: description
+          id: 1797161
+          limits:
+          - visible: true
+            timePeriodInMilliseconds: 1000
+            maximumRequests: 120
+          - visible: true
+            timePeriodInMilliseconds: 1000
+            maximumRequests: 120
+          autoApprove: true
+          status: status
+        terms: terms
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        revokedDate: revokedDate
+        partyName: partyName
+        id: 6273842
+        groupInstance: "{}"
+        api:
+          organizationId: f02a5569-24ac-491a-964a-0950ab318728
+          audit:
+            created:
+              date: 2024-08-06T10:55:50.073Z
+            updated:
+              date: 2024-08-06T10:55:50.073Z
+          id: 18972610
+        applicationId: 2349040
+        partyId: partyId
+        requestedTier: "{}"
+        apiId: 18972610
+        status: status
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        masterOrganizationId:
+          example: 9a5c9842-3e68-452a-aa88-d100c3bdefba
+          type: string
+        organizationId:
+          example: f02a5569-24ac-491a-964a-0950ab318728
+          type: string
+        id:
+          example: 6273842
+          type: integer
+        status:
+          type: string
+        approvedDate:
+          nullable: true
+          type: string
+        rejectedDate:
+          nullable: true
+          type: string
+        revokedDate:
+          nullable: true
+          type: string
+        applicationId:
+          example: 2349040
+          type: integer
+        application:
+          $ref: '#/components/schemas/Application'
+        tierId:
+          example: 1797161
+          nullable: true
+          type: integer
+        tier:
+          $ref: '#/components/schemas/Tier'
+        requestedTierId:
+          nullable: true
+          type: integer
+        requestedTier:
+          nullable: true
+          type: object
+        terms:
+          nullable: true
+          type: string
+        groupInstanceId:
+          nullable: true
+          type: string
+        groupInstance:
+          nullable: true
+          type: object
+        partyId:
+          nullable: true
+          type: string
+        partyName:
+          nullable: true
+          type: string
+        apiId:
+          example: 18972610
+          type: integer
+        api:
+          $ref: '#/components/schemas/ApiReference'
+      type: object
+    Audit:
+      example:
+        created:
+          date: 2024-08-06T10:55:50.073Z
+        updated:
+          date: 2024-08-06T10:55:50.073Z
+      properties:
+        created:
+          $ref: '#/components/schemas/AuditDate'
+        updated:
+          $ref: '#/components/schemas/AuditDate'
+      type: object
+    AuditDate:
+      example:
+        date: 2024-08-06T10:55:50.073Z
+      properties:
+        date:
+          example: 2024-08-06T10:55:50.073Z
+          type: string
+      type: object
+    Application:
+      example:
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        coreServicesId: babdf66b11cf463d9f012af5ef2cd221
+        name: XPClient-AT-Extranet
+        description: description
+        id: 2349040
+        clientProvider: "{}"
+        url: url
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        id:
+          example: 2349040
+          type: integer
+        name:
+          example: XPClient-AT-Extranet
+          type: string
+        description:
+          nullable: true
+          type: string
+        clientProvider:
+          type: object
+        coreServicesId:
+          example: babdf66b11cf463d9f012af5ef2cd221
+          type: string
+        url:
+          nullable: true
+          type: string
+      type: object
+    Tier:
+      example:
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        name: Trusted client SLA
+        description: description
+        id: 1797161
+        limits:
+        - visible: true
+          timePeriodInMilliseconds: 1000
+          maximumRequests: 120
+        - visible: true
+          timePeriodInMilliseconds: 1000
+          maximumRequests: 120
+        autoApprove: true
+        status: status
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        id:
+          example: 1797161
+          type: integer
+        name:
+          example: Trusted client SLA
+          type: string
+        description:
+          nullable: true
+          type: string
+        limits:
+          items:
+            $ref: '#/components/schemas/Limit'
+          type: array
+        status:
+          type: string
+        autoApprove:
+          type: boolean
+      type: object
+    Limit:
+      example:
+        visible: true
+        timePeriodInMilliseconds: 1000
+        maximumRequests: 120
+      properties:
+        maximumRequests:
+          example: 120
+          format: int64
+          type: integer
+        timePeriodInMilliseconds:
+          example: 1000
+          format: int64
+          type: integer
+        visible:
+          type: boolean
+      type: object
+    ApiReference:
+      example:
+        organizationId: f02a5569-24ac-491a-964a-0950ab318728
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        id: 18972610
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        organizationId:
+          example: f02a5569-24ac-491a-964a-0950ab318728
+          type: string
+        id:
+          example: 18972610
+          type: integer
+      type: object
+    ApplicationContractResponse:
+      example:
+        owner: owner
+        redirectUri:
+        - redirectUri
+        - redirectUri
+        clientId: clientId
+        description: description
+        owners:
+        - organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          firstName: firstName
+          lastName: lastName
+          entityType: entityType
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          username: username
+        - organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          firstName: firstName
+          lastName: lastName
+          entityType: entityType
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          username: username
+        clientProvider:
+          providerId: providerId
+        url: url
+        masterOrganizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        grantTypes:
+        - grantTypes
+        - grantTypes
+        coreServicesId: coreServicesId
+        name: name
+        id: 1
+        email: email
+      properties:
+        masterOrganizationId:
+          format: uuid
+          type: string
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          nullable: true
+          type: string
+        coreServicesId:
+          type: string
+        clientId:
+          type: string
+        clientProvider:
+          $ref: '#/components/schemas/ApplicationContractResponse_clientProvider'
+        owner:
+          type: string
+        email:
+          type: string
+        redirectUri:
+          items:
+            type: string
+          type: array
+        grantTypes:
+          items:
+            type: string
+          type: array
+        url:
+          nullable: true
+          type: string
+        owners:
+          items:
+            $ref: '#/components/schemas/ApplicationOwner'
+          type: array
+      type: object
+    TierContractResponse:
+      example:
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        name: name
+        description: description
+        id: 5
+        limits:
+        - visible: true
+          timePeriodInMilliseconds: 7.061401241503109
+          maximumRequests: 2.3021358869347655
+        - visible: true
+          timePeriodInMilliseconds: 7.061401241503109
+          maximumRequests: 2.3021358869347655
+        autoApprove: true
+        status: status
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          nullable: true
+          type: string
+        limits:
+          items:
+            $ref: '#/components/schemas/TierContractResponse_limits_inner'
+          type: array
+        status:
+          type: string
+        autoApprove:
+          type: boolean
+      type: object
+    ApplicationOwner:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        firstName: firstName
+        lastName: lastName
+        entityType: entityType
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+        username: username
+      properties:
+        id:
+          format: uuid
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        entityType:
+          type: string
+      type: object
+    ErrorsResponse_errors_inner:
+      properties:
+        type:
+          title: type
+          type: string
+        dataPath:
+          title: dataPath
+          type: string
+        keyword:
+          title: keyword
+          type: string
+        schema:
+          title: schema
+          type: string
+        data:
+          title: data
+          type: string
+        message:
+          title: message
+          type: string
+      type: object
+    PostApiContract_requestAccessInfo:
+      example:
+        reason: reason
+      properties:
+        reason:
+          type: string
+      type: object
+    ContractDetails_api:
+      example:
+        organizationId: organizationId
+        audit:
+          created:
+            date: 2024-08-06T10:55:50.073Z
+          updated:
+            date: 2024-08-06T10:55:50.073Z
+        id: 2
+      properties:
+        audit:
+          $ref: '#/components/schemas/Audit'
+        organizationId:
+          type: string
+        id:
+          type: integer
+      type: object
+    ApplicationContractResponse_clientProvider:
+      example:
+        providerId: providerId
+      properties:
+        providerId:
+          nullable: true
+          type: string
+      type: object
+    TierContractResponse_limits_inner:
+      example:
+        visible: true
+        timePeriodInMilliseconds: 7.061401241503109
+        maximumRequests: 2.3021358869347655
+      properties:
+        maximumRequests:
+          type: number
+        timePeriodInMilliseconds:
+          type: number
+        visible:
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

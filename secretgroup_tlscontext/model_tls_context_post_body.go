@@ -12,6 +12,7 @@ package secretgroup_tlscontext
 
 import (
 	"encoding/json"
+	"gopkg.in/validator.v2"
 	"fmt"
 )
 
@@ -55,7 +56,11 @@ func (dst *TlsContextPostBody) UnmarshalJSON(data []byte) error {
 		if string(jsonTlsContextFlexGatewayBody) == "{}" { // empty struct
 			dst.TlsContextFlexGatewayBody = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.TlsContextFlexGatewayBody); err != nil {
+				dst.TlsContextFlexGatewayBody = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.TlsContextFlexGatewayBody = nil
@@ -68,7 +73,11 @@ func (dst *TlsContextPostBody) UnmarshalJSON(data []byte) error {
 		if string(jsonTlsContextMuleBody) == "{}" { // empty struct
 			dst.TlsContextMuleBody = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.TlsContextMuleBody); err != nil {
+				dst.TlsContextMuleBody = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.TlsContextMuleBody = nil
@@ -81,7 +90,11 @@ func (dst *TlsContextPostBody) UnmarshalJSON(data []byte) error {
 		if string(jsonTlsContextSfBody) == "{}" { // empty struct
 			dst.TlsContextSfBody = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.TlsContextSfBody); err != nil {
+				dst.TlsContextSfBody = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.TlsContextSfBody = nil

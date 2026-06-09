@@ -21,17 +21,17 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiAssetsOrgIdAssetIdAssetGetRequest struct {
+type DefaultAPIAssetsOrgIdAssetIdAssetGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	assetId string
 }
 
-func (r DefaultApiAssetsOrgIdAssetIdAssetGetRequest) Execute() (*Asset, *http.Response, error) {
+func (r DefaultAPIAssetsOrgIdAssetIdAssetGetRequest) Execute() (*Asset, *http.Response, error) {
 	return r.ApiService.AssetsOrgIdAssetIdAssetGetExecute(r)
 }
 
@@ -43,10 +43,10 @@ Get one specific Asset
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param assetId The ID of the asset
- @return DefaultApiAssetsOrgIdAssetIdAssetGetRequest
+ @return DefaultAPIAssetsOrgIdAssetIdAssetGetRequest
 */
-func (a *DefaultApiService) AssetsOrgIdAssetIdAssetGet(ctx context.Context, orgId string, assetId string) DefaultApiAssetsOrgIdAssetIdAssetGetRequest {
-	return DefaultApiAssetsOrgIdAssetIdAssetGetRequest{
+func (a *DefaultAPIService) AssetsOrgIdAssetIdAssetGet(ctx context.Context, orgId string, assetId string) DefaultAPIAssetsOrgIdAssetIdAssetGetRequest {
+	return DefaultAPIAssetsOrgIdAssetIdAssetGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -56,7 +56,7 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdAssetGet(ctx context.Context, orgI
 
 // Execute executes the request
 //  @return Asset
-func (a *DefaultApiService) AssetsOrgIdAssetIdAssetGetExecute(r DefaultApiAssetsOrgIdAssetIdAssetGetRequest) (*Asset, *http.Response, error) {
+func (a *DefaultAPIService) AssetsOrgIdAssetIdAssetGetExecute(r DefaultAPIAssetsOrgIdAssetIdAssetGetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -64,7 +64,7 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdAssetGetExecute(r DefaultApiAssets
 		localVarReturnValue  *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AssetsOrgIdAssetIdAssetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AssetsOrgIdAssetIdAssetGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -142,20 +142,20 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdAssetGetExecute(r DefaultApiAssets
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiAssetsOrgIdAssetIdPatchRequest struct {
+type DefaultAPIAssetsOrgIdAssetIdPatchRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	assetId string
 	patchAssetNameAndDescr *PatchAssetNameAndDescr
 }
 
-func (r DefaultApiAssetsOrgIdAssetIdPatchRequest) PatchAssetNameAndDescr(patchAssetNameAndDescr PatchAssetNameAndDescr) DefaultApiAssetsOrgIdAssetIdPatchRequest {
+func (r DefaultAPIAssetsOrgIdAssetIdPatchRequest) PatchAssetNameAndDescr(patchAssetNameAndDescr PatchAssetNameAndDescr) DefaultAPIAssetsOrgIdAssetIdPatchRequest {
 	r.patchAssetNameAndDescr = &patchAssetNameAndDescr
 	return r
 }
 
-func (r DefaultApiAssetsOrgIdAssetIdPatchRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIAssetsOrgIdAssetIdPatchRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AssetsOrgIdAssetIdPatchExecute(r)
 }
 
@@ -167,10 +167,10 @@ Modify an asset
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param assetId The ID of the asset
- @return DefaultApiAssetsOrgIdAssetIdPatchRequest
+ @return DefaultAPIAssetsOrgIdAssetIdPatchRequest
 */
-func (a *DefaultApiService) AssetsOrgIdAssetIdPatch(ctx context.Context, orgId string, assetId string) DefaultApiAssetsOrgIdAssetIdPatchRequest {
-	return DefaultApiAssetsOrgIdAssetIdPatchRequest{
+func (a *DefaultAPIService) AssetsOrgIdAssetIdPatch(ctx context.Context, orgId string, assetId string) DefaultAPIAssetsOrgIdAssetIdPatchRequest {
+	return DefaultAPIAssetsOrgIdAssetIdPatchRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -179,14 +179,14 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdPatch(ctx context.Context, orgId s
 }
 
 // Execute executes the request
-func (a *DefaultApiService) AssetsOrgIdAssetIdPatchExecute(r DefaultApiAssetsOrgIdAssetIdPatchRequest) (*http.Response, error) {
+func (a *DefaultAPIService) AssetsOrgIdAssetIdPatchExecute(r DefaultAPIAssetsOrgIdAssetIdPatchRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AssetsOrgIdAssetIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AssetsOrgIdAssetIdPatch")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -257,38 +257,31 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdPatchExecute(r DefaultApiAssetsOrg
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest struct {
+type DefaultAPIAssetsOrgIdAssetIdVersionAssetGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	assetId string
 	version string
-	xDeleteType *string
 }
 
-// It could be &#39;soft-delete&#39; or &#39;hard-delete&#39;, that mean the asset will be logical deleted or physical deleted It&#39;s supposed to if it is not specified, the type will be &#39;soft-delete&#39;
-func (r DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest) XDeleteType(xDeleteType string) DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest {
-	r.xDeleteType = &xDeleteType
-	return r
-}
-
-func (r DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AssetsOrgIdAssetIdVersionDeleteExecute(r)
+func (r DefaultAPIAssetsOrgIdAssetIdVersionAssetGetRequest) Execute() (*Asset, *http.Response, error) {
+	return r.ApiService.AssetsOrgIdAssetIdVersionAssetGetExecute(r)
 }
 
 /*
-AssetsOrgIdAssetIdVersionDelete Delete an asset
+AssetsOrgIdAssetIdVersionAssetGet Get Asset by Version
 
-Delete an asset
+Get one specific Asset by version
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param assetId The ID of the asset
  @param version The version of the asset
- @return DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest
+ @return DefaultAPIAssetsOrgIdAssetIdVersionAssetGetRequest
 */
-func (a *DefaultApiService) AssetsOrgIdAssetIdVersionDelete(ctx context.Context, orgId string, assetId string, version string) DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest {
-	return DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest{
+func (a *DefaultAPIService) AssetsOrgIdAssetIdVersionAssetGet(ctx context.Context, orgId string, assetId string, version string) DefaultAPIAssetsOrgIdAssetIdVersionAssetGetRequest {
+	return DefaultAPIAssetsOrgIdAssetIdVersionAssetGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -298,19 +291,21 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdVersionDelete(ctx context.Context,
 }
 
 // Execute executes the request
-func (a *DefaultApiService) AssetsOrgIdAssetIdVersionDeleteExecute(r DefaultApiAssetsOrgIdAssetIdVersionDeleteRequest) (*http.Response, error) {
+//  @return Asset
+func (a *DefaultAPIService) AssetsOrgIdAssetIdVersionAssetGetExecute(r DefaultAPIAssetsOrgIdAssetIdVersionAssetGetRequest) (*Asset, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AssetsOrgIdAssetIdVersionDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AssetsOrgIdAssetIdVersionAssetGet")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/assets/{orgId}/{assetId}/{version}"
+	localVarPath := localBasePath + "/assets/{orgId}/{assetId}/{version}/asset"
 	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"assetId"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", url.PathEscape(parameterValueToString(r.version, "version")), -1)
@@ -329,302 +324,12 @@ func (a *DefaultApiService) AssetsOrgIdAssetIdVersionDeleteExecute(r DefaultApiA
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xDeleteType != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Delete-Type", r.xDeleteType, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v AssetsPost400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type DefaultApiAssetsPostRequest struct {
-	ctx context.Context
-	ApiService *DefaultApiService
-	xStrictPackage *bool
-	organizationId *string
-	assetId *string
-	version *string
-	name *string
-	classifier *string
-	apiVersion *string
-	main *string
-	groupId *string
-	asset *os.File
-	xAllowedApiSpecFormats *string
-	dependencies *string
-	originalFormatVersion *string
-	metadata *string
-	tags *string
-	assetLink *string
-}
-
-// Indicates if file is immutable.
-func (r DefaultApiAssetsPostRequest) XStrictPackage(xStrictPackage bool) DefaultApiAssetsPostRequest {
-	r.xStrictPackage = &xStrictPackage
-	return r
-}
-
-// The id of the organization the asset will belong to
-func (r DefaultApiAssetsPostRequest) OrganizationId(organizationId string) DefaultApiAssetsPostRequest {
-	r.organizationId = &organizationId
-	return r
-}
-
-// The id of the asset
-func (r DefaultApiAssetsPostRequest) AssetId(assetId string) DefaultApiAssetsPostRequest {
-	r.assetId = &assetId
-	return r
-}
-
-// The version of the asset being created (must follow Semver syntax)
-func (r DefaultApiAssetsPostRequest) Version(version string) DefaultApiAssetsPostRequest {
-	r.version = &version
-	return r
-}
-
-// The visible name of the asset
-func (r DefaultApiAssetsPostRequest) Name(name string) DefaultApiAssetsPostRequest {
-	r.name = &name
-	return r
-}
-
-// The type of the asset to be created
-func (r DefaultApiAssetsPostRequest) Classifier(classifier string) DefaultApiAssetsPostRequest {
-	r.classifier = &classifier
-	return r
-}
-
-// The product version of API assets. Required for \\\&quot;raml\\\&quot;, \\\&quot;oas\\\&quot;, \\\&quot;wsdl\\\&quot; and \\\&quot;http\\\&quot; assets
-func (r DefaultApiAssetsPostRequest) ApiVersion(apiVersion string) DefaultApiAssetsPostRequest {
-	r.apiVersion = &apiVersion
-	return r
-}
-
-// The main file of the asset. Required for \\\&quot;raml\\\&quot;, \\\&quot;raml-fragment\\\&quot;, \\\&quot;oas\\\&quot; and \\\&quot;wsdl\\\&quot;.
-func (r DefaultApiAssetsPostRequest) Main(main string) DefaultApiAssetsPostRequest {
-	r.main = &main
-	return r
-}
-
-// The id of the business group the asset will belong to
-func (r DefaultApiAssetsPostRequest) GroupId(groupId string) DefaultApiAssetsPostRequest {
-	r.groupId = &groupId
-	return r
-}
-
-// The asset file. Required for \\\&quot;raml\\\&quot;, \\\&quot;raml-fragment\\\&quot;, \\\&quot;oas\\\&quot; and \\\&quot;wsdl\\\&quot;. Maximum size of 5 MB. This field must be the last field of the multipart.
-func (r DefaultApiAssetsPostRequest) Asset(asset *os.File) DefaultApiAssetsPostRequest {
-	r.asset = asset
-	return r
-}
-
-// Specify API Spec formats that assets are allowed to use
-func (r DefaultApiAssetsPostRequest) XAllowedApiSpecFormats(xAllowedApiSpecFormats string) DefaultApiAssetsPostRequest {
-	r.xAllowedApiSpecFormats = &xAllowedApiSpecFormats
-	return r
-}
-
-// Required for \\\&quot;api-group\\\&quot; classifier only, They are APIs included in it, as a JSON array of objects. Because the field must be of String type, the stringified value of the JSON array must be passed as parameter.
-func (r DefaultApiAssetsPostRequest) Dependencies(dependencies string) DefaultApiAssetsPostRequest {
-	r.dependencies = &dependencies
-	return r
-}
-
-// The version of the format of the api specification. ie ‘2.0’ for OAS 2.0
-func (r DefaultApiAssetsPostRequest) OriginalFormatVersion(originalFormatVersion string) DefaultApiAssetsPostRequest {
-	r.originalFormatVersion = &originalFormatVersion
-	return r
-}
-
-// A design center object describing asset projectId, branchId and commitId. Because the field must be of String type, the stringified value of the JSON object must be passed as parameter.
-func (r DefaultApiAssetsPostRequest) Metadata(metadata string) DefaultApiAssetsPostRequest {
-	r.metadata = &metadata
-	return r
-}
-
-// An array of strings to be saved as asset&#39;s tags. Because the field must be of String type, the stringified value of the JSON array must be passed as parameter.
-func (r DefaultApiAssetsPostRequest) Tags(tags string) DefaultApiAssetsPostRequest {
-	r.tags = &tags
-	return r
-}
-
-// The link of the asset. Required for \\\&quot;wsdl\\\&quot; or \\\&quot;http\\\&quot; assets
-func (r DefaultApiAssetsPostRequest) AssetLink(assetLink string) DefaultApiAssetsPostRequest {
-	r.assetLink = &assetLink
-	return r
-}
-
-func (r DefaultApiAssetsPostRequest) Execute() (*PostAssetResponse, *http.Response, error) {
-	return r.ApiService.AssetsPostExecute(r)
-}
-
-/*
-AssetsPost Create a new asset
-
-Create a new asset
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiAssetsPostRequest
-*/
-func (a *DefaultApiService) AssetsPost(ctx context.Context) DefaultApiAssetsPostRequest {
-	return DefaultApiAssetsPostRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return PostAssetResponse
-func (a *DefaultApiService) AssetsPostExecute(r DefaultApiAssetsPostRequest) (*PostAssetResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PostAssetResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AssetsPost")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/assets"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.xStrictPackage == nil {
-		return localVarReturnValue, nil, reportError("xStrictPackage is required and must be specified")
-	}
-	if r.organizationId == nil {
-		return localVarReturnValue, nil, reportError("organizationId is required and must be specified")
-	}
-	if r.assetId == nil {
-		return localVarReturnValue, nil, reportError("assetId is required and must be specified")
-	}
-	if r.version == nil {
-		return localVarReturnValue, nil, reportError("version is required and must be specified")
-	}
-	if r.name == nil {
-		return localVarReturnValue, nil, reportError("name is required and must be specified")
-	}
-	if r.classifier == nil {
-		return localVarReturnValue, nil, reportError("classifier is required and must be specified")
-	}
-	if r.apiVersion == nil {
-		return localVarReturnValue, nil, reportError("apiVersion is required and must be specified")
-	}
-	if r.main == nil {
-		return localVarReturnValue, nil, reportError("main is required and must be specified")
-	}
-	if r.groupId == nil {
-		return localVarReturnValue, nil, reportError("groupId is required and must be specified")
-	}
-	if r.asset == nil {
-		return localVarReturnValue, nil, reportError("asset is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAllowedApiSpecFormats != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "x-allowed-api-spec-formats", r.xAllowedApiSpecFormats, "")
-	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "x-strict-package", r.xStrictPackage, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "organizationId", r.organizationId, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "assetId", r.assetId, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "version", r.version, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "classifier", r.classifier, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "apiVersion", r.apiVersion, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "main", r.main, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "groupId", r.groupId, "")
-	var assetLocalVarFormFileName string
-	var assetLocalVarFileName     string
-	var assetLocalVarFileBytes    []byte
-
-	assetLocalVarFormFileName = "asset"
-
-
-	assetLocalVarFile := r.asset
-
-	if assetLocalVarFile != nil {
-		fbs, _ := io.ReadAll(assetLocalVarFile)
-
-		assetLocalVarFileBytes = fbs
-		assetLocalVarFileName = assetLocalVarFile.Name()
-		assetLocalVarFile.Close()
-		formFiles = append(formFiles, formFile{fileBytes: assetLocalVarFileBytes, fileName: assetLocalVarFileName, formFileName: assetLocalVarFormFileName})
-	}
-	if r.dependencies != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "dependencies", r.dependencies, "")
-	}
-	if r.originalFormatVersion != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "originalFormatVersion", r.originalFormatVersion, "")
-	}
-	if r.metadata != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "metadata", r.metadata, "")
-	}
-	if r.tags != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "tags", r.tags, "")
-	}
-	if r.assetLink != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "assetLink", r.assetLink, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -674,9 +379,419 @@ func (a *DefaultApiService) AssetsPostExecute(r DefaultApiAssetsPostRequest) (*P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiAssetsSearchGetRequest struct {
+type DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
+	orgId string
+	assetId string
+	version string
+	xDeleteType *string
+}
+
+// It could be &#39;soft-delete&#39; or &#39;hard-delete&#39;, that mean the asset will be logical deleted or physical deleted It&#39;s supposed to if it is not specified, the type will be &#39;soft-delete&#39;
+func (r DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest) XDeleteType(xDeleteType string) DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest {
+	r.xDeleteType = &xDeleteType
+	return r
+}
+
+func (r DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AssetsOrgIdAssetIdVersionDeleteExecute(r)
+}
+
+/*
+AssetsOrgIdAssetIdVersionDelete Delete an asset
+
+Delete an asset
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization in GUID format
+ @param assetId The ID of the asset
+ @param version The version of the asset
+ @return DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest
+*/
+func (a *DefaultAPIService) AssetsOrgIdAssetIdVersionDelete(ctx context.Context, orgId string, assetId string, version string) DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest {
+	return DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		assetId: assetId,
+		version: version,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) AssetsOrgIdAssetIdVersionDeleteExecute(r DefaultAPIAssetsOrgIdAssetIdVersionDeleteRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AssetsOrgIdAssetIdVersionDelete")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets/{orgId}/{assetId}/{version}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"assetId"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", url.PathEscape(parameterValueToString(r.version, "version")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xDeleteType != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Delete-Type", r.xDeleteType, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v AssetsPost400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type DefaultAPIAssetsPostRequest struct {
+	ctx context.Context
+	ApiService *DefaultAPIService
+	xStrictPackage *bool
+	organizationId *string
+	assetId *string
+	version *string
+	name *string
+	classifier *string
+	groupId *string
+	xAllowedApiSpecFormats *string
+	apiVersion *string
+	main *string
+	asset *os.File
+	dependencies *string
+	originalFormatVersion *string
+	metadata *string
+	tags *string
+	assetLink *string
+}
+
+// Indicates if file is immutable.
+func (r DefaultAPIAssetsPostRequest) XStrictPackage(xStrictPackage bool) DefaultAPIAssetsPostRequest {
+	r.xStrictPackage = &xStrictPackage
+	return r
+}
+
+// The id of the organization the asset will belong to
+func (r DefaultAPIAssetsPostRequest) OrganizationId(organizationId string) DefaultAPIAssetsPostRequest {
+	r.organizationId = &organizationId
+	return r
+}
+
+// The id of the asset
+func (r DefaultAPIAssetsPostRequest) AssetId(assetId string) DefaultAPIAssetsPostRequest {
+	r.assetId = &assetId
+	return r
+}
+
+// The version of the asset being created (must follow Semver syntax)
+func (r DefaultAPIAssetsPostRequest) Version(version string) DefaultAPIAssetsPostRequest {
+	r.version = &version
+	return r
+}
+
+// The visible name of the asset
+func (r DefaultAPIAssetsPostRequest) Name(name string) DefaultAPIAssetsPostRequest {
+	r.name = &name
+	return r
+}
+
+// The type of the asset to be created
+func (r DefaultAPIAssetsPostRequest) Classifier(classifier string) DefaultAPIAssetsPostRequest {
+	r.classifier = &classifier
+	return r
+}
+
+// The id of the business group the asset will belong to
+func (r DefaultAPIAssetsPostRequest) GroupId(groupId string) DefaultAPIAssetsPostRequest {
+	r.groupId = &groupId
+	return r
+}
+
+// Specify API Spec formats that assets are allowed to use
+func (r DefaultAPIAssetsPostRequest) XAllowedApiSpecFormats(xAllowedApiSpecFormats string) DefaultAPIAssetsPostRequest {
+	r.xAllowedApiSpecFormats = &xAllowedApiSpecFormats
+	return r
+}
+
+// The product version of API assets. Required for \\\&quot;raml\\\&quot;, \\\&quot;oas\\\&quot;, \\\&quot;wsdl\\\&quot; and \\\&quot;http\\\&quot; assets
+func (r DefaultAPIAssetsPostRequest) ApiVersion(apiVersion string) DefaultAPIAssetsPostRequest {
+	r.apiVersion = &apiVersion
+	return r
+}
+
+// The main file of the asset. Required for \\\&quot;raml\\\&quot;, \\\&quot;raml-fragment\\\&quot;, \\\&quot;oas\\\&quot; and \\\&quot;wsdl\\\&quot;.
+func (r DefaultAPIAssetsPostRequest) Main(main string) DefaultAPIAssetsPostRequest {
+	r.main = &main
+	return r
+}
+
+// The asset file. Required for \\\&quot;raml\\\&quot;, \\\&quot;raml-fragment\\\&quot;, \\\&quot;oas\\\&quot; and \\\&quot;wsdl\\\&quot;. Maximum size of 5 MB. This field must be the last field of the multipart.
+func (r DefaultAPIAssetsPostRequest) Asset(asset *os.File) DefaultAPIAssetsPostRequest {
+	r.asset = asset
+	return r
+}
+
+// Required for \\\&quot;api-group\\\&quot; classifier only, They are APIs included in it, as a JSON array of objects. Because the field must be of String type, the stringified value of the JSON array must be passed as parameter.
+func (r DefaultAPIAssetsPostRequest) Dependencies(dependencies string) DefaultAPIAssetsPostRequest {
+	r.dependencies = &dependencies
+	return r
+}
+
+// The version of the format of the api specification. ie ‘2.0’ for OAS 2.0
+func (r DefaultAPIAssetsPostRequest) OriginalFormatVersion(originalFormatVersion string) DefaultAPIAssetsPostRequest {
+	r.originalFormatVersion = &originalFormatVersion
+	return r
+}
+
+// A design center object describing asset projectId, branchId and commitId. Because the field must be of String type, the stringified value of the JSON object must be passed as parameter.
+func (r DefaultAPIAssetsPostRequest) Metadata(metadata string) DefaultAPIAssetsPostRequest {
+	r.metadata = &metadata
+	return r
+}
+
+// An array of strings to be saved as asset&#39;s tags. Because the field must be of String type, the stringified value of the JSON array must be passed as parameter.
+func (r DefaultAPIAssetsPostRequest) Tags(tags string) DefaultAPIAssetsPostRequest {
+	r.tags = &tags
+	return r
+}
+
+// The link of the asset. Required for \\\&quot;wsdl\\\&quot; or \\\&quot;http\\\&quot; assets
+func (r DefaultAPIAssetsPostRequest) AssetLink(assetLink string) DefaultAPIAssetsPostRequest {
+	r.assetLink = &assetLink
+	return r
+}
+
+func (r DefaultAPIAssetsPostRequest) Execute() (*PostAssetResponse, *http.Response, error) {
+	return r.ApiService.AssetsPostExecute(r)
+}
+
+/*
+AssetsPost Create a new asset
+
+Create a new asset
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return DefaultAPIAssetsPostRequest
+*/
+func (a *DefaultAPIService) AssetsPost(ctx context.Context) DefaultAPIAssetsPostRequest {
+	return DefaultAPIAssetsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return PostAssetResponse
+func (a *DefaultAPIService) AssetsPostExecute(r DefaultAPIAssetsPostRequest) (*PostAssetResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PostAssetResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AssetsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.xStrictPackage == nil {
+		return localVarReturnValue, nil, reportError("xStrictPackage is required and must be specified")
+	}
+	if r.organizationId == nil {
+		return localVarReturnValue, nil, reportError("organizationId is required and must be specified")
+	}
+	if r.assetId == nil {
+		return localVarReturnValue, nil, reportError("assetId is required and must be specified")
+	}
+	if r.version == nil {
+		return localVarReturnValue, nil, reportError("version is required and must be specified")
+	}
+	if r.name == nil {
+		return localVarReturnValue, nil, reportError("name is required and must be specified")
+	}
+	if r.classifier == nil {
+		return localVarReturnValue, nil, reportError("classifier is required and must be specified")
+	}
+	if r.groupId == nil {
+		return localVarReturnValue, nil, reportError("groupId is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAllowedApiSpecFormats != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "x-allowed-api-spec-formats", r.xAllowedApiSpecFormats, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "x-strict-package", r.xStrictPackage, "simple", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "organizationId", r.organizationId, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "assetId", r.assetId, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "version", r.version, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "classifier", r.classifier, "", "")
+	if r.apiVersion != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "apiVersion", r.apiVersion, "", "")
+	}
+	if r.main != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "main", r.main, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "groupId", r.groupId, "", "")
+	var assetLocalVarFormFileName string
+	var assetLocalVarFileName     string
+	var assetLocalVarFileBytes    []byte
+
+	assetLocalVarFormFileName = "asset"
+	assetLocalVarFile := r.asset
+
+	if assetLocalVarFile != nil {
+		fbs, _ := io.ReadAll(assetLocalVarFile)
+
+		assetLocalVarFileBytes = fbs
+		assetLocalVarFileName = assetLocalVarFile.Name()
+		assetLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: assetLocalVarFileBytes, fileName: assetLocalVarFileName, formFileName: assetLocalVarFormFileName})
+	}
+	if r.dependencies != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "dependencies", r.dependencies, "", "")
+	}
+	if r.originalFormatVersion != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "originalFormatVersion", r.originalFormatVersion, "", "")
+	}
+	if r.metadata != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "metadata", r.metadata, "", "")
+	}
+	if r.tags != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "tags", r.tags, "", "")
+	}
+	if r.assetLink != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "assetLink", r.assetLink, "", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v AssetsPost400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultAPIAssetsSearchGetRequest struct {
+	ctx context.Context
+	ApiService *DefaultAPIService
 	types *string
 	search *string
 	domain *string
@@ -691,72 +806,72 @@ type DefaultApiAssetsSearchGetRequest struct {
 }
 
 // Filter results that matches the input with the asset type
-func (r DefaultApiAssetsSearchGetRequest) Types(types string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Types(types string) DefaultAPIAssetsSearchGetRequest {
 	r.types = &types
 	return r
 }
 
 // Filter results that partially match the input with the asset name
-func (r DefaultApiAssetsSearchGetRequest) Search(search string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Search(search string) DefaultAPIAssetsSearchGetRequest {
 	r.search = &search
 	return r
 }
 
 // Filter results by organization using its domain
-func (r DefaultApiAssetsSearchGetRequest) Domain(domain string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Domain(domain string) DefaultAPIAssetsSearchGetRequest {
 	r.domain = &domain
 	return r
 }
 
 // Filter results by master organization id.
-func (r DefaultApiAssetsSearchGetRequest) MasterOrganizationId(masterOrganizationId string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) MasterOrganizationId(masterOrganizationId string) DefaultAPIAssetsSearchGetRequest {
 	r.masterOrganizationId = &masterOrganizationId
 	return r
 }
 
 // Filter results by organizations. For more than one organization, &amp; organizationId&#x3D;1&amp; organizationId&#x3D;2, etc...
-func (r DefaultApiAssetsSearchGetRequest) OrganizationId(organizationId string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) OrganizationId(organizationId string) DefaultAPIAssetsSearchGetRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
 // The offset specifies the offset of the first row to return
-func (r DefaultApiAssetsSearchGetRequest) Offset(offset int32) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Offset(offset int32) DefaultAPIAssetsSearchGetRequest {
 	r.offset = &offset
 	return r
 }
 
 // Amount of objects retrieved in the response
-func (r DefaultApiAssetsSearchGetRequest) Limit(limit int32) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Limit(limit int32) DefaultAPIAssetsSearchGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // Property to sort by
-func (r DefaultApiAssetsSearchGetRequest) Sort(sort string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Sort(sort string) DefaultAPIAssetsSearchGetRequest {
 	r.sort = &sort
 	return r
 }
 
 // Order for sorting
-func (r DefaultApiAssetsSearchGetRequest) Ascending(ascending string) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) Ascending(ascending string) DefaultAPIAssetsSearchGetRequest {
 	r.ascending = &ascending
 	return r
 }
 
 // Retrieve only the assets that has been shared with you
-func (r DefaultApiAssetsSearchGetRequest) SharedWithMe(sharedWithMe bool) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) SharedWithMe(sharedWithMe bool) DefaultAPIAssetsSearchGetRequest {
 	r.sharedWithMe = &sharedWithMe
 	return r
 }
 
 // Include snapshots in the results
-func (r DefaultApiAssetsSearchGetRequest) IncludeSnapshots(includeSnapshots bool) DefaultApiAssetsSearchGetRequest {
+func (r DefaultAPIAssetsSearchGetRequest) IncludeSnapshots(includeSnapshots bool) DefaultAPIAssetsSearchGetRequest {
 	r.includeSnapshots = &includeSnapshots
 	return r
 }
 
-func (r DefaultApiAssetsSearchGetRequest) Execute() ([]AssetSearchResultItem, *http.Response, error) {
+func (r DefaultAPIAssetsSearchGetRequest) Execute() ([]AssetSearchResultItem, *http.Response, error) {
 	return r.ApiService.AssetsSearchGetExecute(r)
 }
 
@@ -766,10 +881,10 @@ AssetsSearchGet Search for assets
 Search for assets
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiAssetsSearchGetRequest
+ @return DefaultAPIAssetsSearchGetRequest
 */
-func (a *DefaultApiService) AssetsSearchGet(ctx context.Context) DefaultApiAssetsSearchGetRequest {
-	return DefaultApiAssetsSearchGetRequest{
+func (a *DefaultAPIService) AssetsSearchGet(ctx context.Context) DefaultAPIAssetsSearchGetRequest {
+	return DefaultAPIAssetsSearchGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -777,7 +892,7 @@ func (a *DefaultApiService) AssetsSearchGet(ctx context.Context) DefaultApiAsset
 
 // Execute executes the request
 //  @return []AssetSearchResultItem
-func (a *DefaultApiService) AssetsSearchGetExecute(r DefaultApiAssetsSearchGetRequest) ([]AssetSearchResultItem, *http.Response, error) {
+func (a *DefaultAPIService) AssetsSearchGetExecute(r DefaultAPIAssetsSearchGetRequest) ([]AssetSearchResultItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -785,7 +900,7 @@ func (a *DefaultApiService) AssetsSearchGetExecute(r DefaultApiAssetsSearchGetRe
 		localVarReturnValue  []AssetSearchResultItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AssetsSearchGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AssetsSearchGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -800,35 +915,35 @@ func (a *DefaultApiService) AssetsSearchGetExecute(r DefaultApiAssetsSearchGetRe
 	}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "form", "")
 	if r.domain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "form", "")
 	}
 	if r.masterOrganizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "masterOrganizationId", r.masterOrganizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "masterOrganizationId", r.masterOrganizationId, "form", "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
 	if r.ascending != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ascending", r.ascending, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ascending", r.ascending, "form", "")
 	}
 	if r.sharedWithMe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sharedWithMe", r.sharedWithMe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sharedWithMe", r.sharedWithMe, "form", "")
 	}
 	if r.includeSnapshots != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeSnapshots", r.includeSnapshots, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeSnapshots", r.includeSnapshots, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -846,6 +961,199 @@ func (a *DefaultApiService) AssetsSearchGetExecute(r DefaultApiAssetsSearchGetRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v AssetsPost400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultAPIPostLLMAssetRequest struct {
+	ctx context.Context
+	ApiService *DefaultAPIService
+	orgId string
+	groupId string
+	assetId string
+	version string
+	name *string
+	type_ *string
+	status *string
+	xStrictPackage *bool
+	propertiesPlatform *string
+	tags *string
+}
+
+// The visible name of the asset.
+func (r DefaultAPIPostLLMAssetRequest) Name(name string) DefaultAPIPostLLMAssetRequest {
+	r.name = &name
+	return r
+}
+
+// Always \\\&quot;llm\\\&quot; for this resource.
+func (r DefaultAPIPostLLMAssetRequest) Type_(type_ string) DefaultAPIPostLLMAssetRequest {
+	r.type_ = &type_
+	return r
+}
+
+// Publication status. Defaults to \\\&quot;published\\\&quot;.
+func (r DefaultAPIPostLLMAssetRequest) Status(status string) DefaultAPIPostLLMAssetRequest {
+	r.status = &status
+	return r
+}
+
+// Indicates if the asset package is immutable.
+func (r DefaultAPIPostLLMAssetRequest) XStrictPackage(xStrictPackage bool) DefaultAPIPostLLMAssetRequest {
+	r.xStrictPackage = &xStrictPackage
+	return r
+}
+
+// The LLM vendor identifier. Free string — Anypoint does not enforce an enum. Known values include \\\&quot;openai\\\&quot;, \\\&quot;bedrock\\\&quot;, \\\&quot;anthropic\\\&quot;, \\\&quot;azure-openai\\\&quot;, \\\&quot;gemini\\\&quot;, \\\&quot;other\\\&quot;. Defaults server-side to \\\&quot;other\\\&quot; if omitted.
+func (r DefaultAPIPostLLMAssetRequest) PropertiesPlatform(propertiesPlatform string) DefaultAPIPostLLMAssetRequest {
+	r.propertiesPlatform = &propertiesPlatform
+	return r
+}
+
+// Stringified JSON array of asset tags. Optional. The field must be sent as a String; pass the stringified value.
+func (r DefaultAPIPostLLMAssetRequest) Tags(tags string) DefaultAPIPostLLMAssetRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r DefaultAPIPostLLMAssetRequest) Execute() (*PostLLMAssetResponse, *http.Response, error) {
+	return r.ApiService.PostLLMAssetExecute(r)
+}
+
+/*
+PostLLMAsset Publish an LLM-typed Exchange asset
+
+Publish an Exchange asset of type "llm". This is the metadata-only variant
+used by the Anypoint AI Gateway: no spec file is uploaded — Anypoint
+generates the LLM metadata artifacts server-side. Returns 202 with the
+publication status link; the resource is queryable immediately
+(Exchange publish is synchronous from the caller's perspective).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization in GUID format
+ @param groupId The business group id (often equals orgId for root-level assets)
+ @param assetId The asset slug
+ @param version The asset version (must follow Semver, e.g. 1.0.0)
+ @return DefaultAPIPostLLMAssetRequest
+*/
+func (a *DefaultAPIService) PostLLMAsset(ctx context.Context, orgId string, groupId string, assetId string, version string) DefaultAPIPostLLMAssetRequest {
+	return DefaultAPIPostLLMAssetRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		groupId: groupId,
+		assetId: assetId,
+		version: version,
+	}
+}
+
+// Execute executes the request
+//  @return PostLLMAssetResponse
+func (a *DefaultAPIService) PostLLMAssetExecute(r DefaultAPIPostLLMAssetRequest) (*PostLLMAssetResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PostLLMAssetResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostLLMAsset")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/assets/{groupId}/{assetId}/{version}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"assetId"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", url.PathEscape(parameterValueToString(r.version, "version")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.name == nil {
+		return localVarReturnValue, nil, reportError("name is required and must be specified")
+	}
+	if r.type_ == nil {
+		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
+	}
+	if r.status == nil {
+		return localVarReturnValue, nil, reportError("status is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xStrictPackage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "x-strict-package", r.xStrictPackage, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "status", r.status, "", "")
+	if r.propertiesPlatform != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "properties.platform", r.propertiesPlatform, "", "")
+	}
+	if r.tags != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "tags", r.tags, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

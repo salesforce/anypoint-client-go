@@ -20,18 +20,18 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiDeleteSecretGroupRequest struct {
+type DefaultAPIDeleteSecretGroupRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 }
 
-func (r DefaultApiDeleteSecretGroupRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteSecretGroupRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteSecretGroupExecute(r)
 }
 
@@ -44,10 +44,10 @@ Delete a secret group by id.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiDeleteSecretGroupRequest
+ @return DefaultAPIDeleteSecretGroupRequest
 */
-func (a *DefaultApiService) DeleteSecretGroup(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiDeleteSecretGroupRequest {
-	return DefaultApiDeleteSecretGroupRequest{
+func (a *DefaultAPIService) DeleteSecretGroup(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIDeleteSecretGroupRequest {
+	return DefaultAPIDeleteSecretGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -57,14 +57,14 @@ func (a *DefaultApiService) DeleteSecretGroup(ctx context.Context, orgId string,
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteSecretGroupExecute(r DefaultApiDeleteSecretGroupRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteSecretGroupExecute(r DefaultAPIDeleteSecretGroupRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteSecretGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteSecretGroup")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -134,21 +134,21 @@ func (a *DefaultApiService) DeleteSecretGroupExecute(r DefaultApiDeleteSecretGro
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetEnvSecretGroupsRequest struct {
+type DefaultAPIGetEnvSecretGroupsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	downloadable *bool
 }
 
 // Filter and fetch list of secret groups based on value of &#39;downloadable&#39; flag.
-func (r DefaultApiGetEnvSecretGroupsRequest) Downloadable(downloadable bool) DefaultApiGetEnvSecretGroupsRequest {
+func (r DefaultAPIGetEnvSecretGroupsRequest) Downloadable(downloadable bool) DefaultAPIGetEnvSecretGroupsRequest {
 	r.downloadable = &downloadable
 	return r
 }
 
-func (r DefaultApiGetEnvSecretGroupsRequest) Execute() ([]SecretGroup, *http.Response, error) {
+func (r DefaultAPIGetEnvSecretGroupsRequest) Execute() ([]SecretGroup, *http.Response, error) {
 	return r.ApiService.GetEnvSecretGroupsExecute(r)
 }
 
@@ -160,10 +160,10 @@ Retrieves collection of secret groups.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param envId The environment id
- @return DefaultApiGetEnvSecretGroupsRequest
+ @return DefaultAPIGetEnvSecretGroupsRequest
 */
-func (a *DefaultApiService) GetEnvSecretGroups(ctx context.Context, orgId string, envId string) DefaultApiGetEnvSecretGroupsRequest {
-	return DefaultApiGetEnvSecretGroupsRequest{
+func (a *DefaultAPIService) GetEnvSecretGroups(ctx context.Context, orgId string, envId string) DefaultAPIGetEnvSecretGroupsRequest {
+	return DefaultAPIGetEnvSecretGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -173,7 +173,7 @@ func (a *DefaultApiService) GetEnvSecretGroups(ctx context.Context, orgId string
 
 // Execute executes the request
 //  @return []SecretGroup
-func (a *DefaultApiService) GetEnvSecretGroupsExecute(r DefaultApiGetEnvSecretGroupsRequest) ([]SecretGroup, *http.Response, error) {
+func (a *DefaultAPIService) GetEnvSecretGroupsExecute(r DefaultAPIGetEnvSecretGroupsRequest) ([]SecretGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -181,7 +181,7 @@ func (a *DefaultApiService) GetEnvSecretGroupsExecute(r DefaultApiGetEnvSecretGr
 		localVarReturnValue  []SecretGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetEnvSecretGroups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetEnvSecretGroups")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -195,7 +195,7 @@ func (a *DefaultApiService) GetEnvSecretGroupsExecute(r DefaultApiGetEnvSecretGr
 	localVarFormParams := url.Values{}
 
 	if r.downloadable != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "downloadable", r.downloadable, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "downloadable", r.downloadable, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -273,15 +273,15 @@ func (a *DefaultApiService) GetEnvSecretGroupsExecute(r DefaultApiGetEnvSecretGr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetSecretGroupRequest struct {
+type DefaultAPIGetSecretGroupRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 }
 
-func (r DefaultApiGetSecretGroupRequest) Execute() (*SecretGroup, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupRequest) Execute() (*SecretGroup, *http.Response, error) {
 	return r.ApiService.GetSecretGroupExecute(r)
 }
 
@@ -294,10 +294,10 @@ Retrieve a secret group by id.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiGetSecretGroupRequest
+ @return DefaultAPIGetSecretGroupRequest
 */
-func (a *DefaultApiService) GetSecretGroup(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiGetSecretGroupRequest {
-	return DefaultApiGetSecretGroupRequest{
+func (a *DefaultAPIService) GetSecretGroup(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIGetSecretGroupRequest {
+	return DefaultAPIGetSecretGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -308,7 +308,7 @@ func (a *DefaultApiService) GetSecretGroup(ctx context.Context, orgId string, en
 
 // Execute executes the request
 //  @return SecretGroup
-func (a *DefaultApiService) GetSecretGroupExecute(r DefaultApiGetSecretGroupRequest) (*SecretGroup, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupExecute(r DefaultAPIGetSecretGroupRequest) (*SecretGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -316,7 +316,7 @@ func (a *DefaultApiService) GetSecretGroupExecute(r DefaultApiGetSecretGroupRequ
 		localVarReturnValue  *SecretGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -395,21 +395,21 @@ func (a *DefaultApiService) GetSecretGroupExecute(r DefaultApiGetSecretGroupRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchSecretGroupRequest struct {
+type DefaultAPIPatchSecretGroupRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	secretGroupPatchBody *SecretGroupPatchBody
 }
 
-func (r DefaultApiPatchSecretGroupRequest) SecretGroupPatchBody(secretGroupPatchBody SecretGroupPatchBody) DefaultApiPatchSecretGroupRequest {
+func (r DefaultAPIPatchSecretGroupRequest) SecretGroupPatchBody(secretGroupPatchBody SecretGroupPatchBody) DefaultAPIPatchSecretGroupRequest {
 	r.secretGroupPatchBody = &secretGroupPatchBody
 	return r
 }
 
-func (r DefaultApiPatchSecretGroupRequest) Execute() (*SecretGroupPatchResponse, *http.Response, error) {
+func (r DefaultAPIPatchSecretGroupRequest) Execute() (*SecretGroupPatchResponse, *http.Response, error) {
 	return r.ApiService.PatchSecretGroupExecute(r)
 }
 
@@ -422,10 +422,10 @@ Update a secret group by id.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiPatchSecretGroupRequest
+ @return DefaultAPIPatchSecretGroupRequest
 */
-func (a *DefaultApiService) PatchSecretGroup(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiPatchSecretGroupRequest {
-	return DefaultApiPatchSecretGroupRequest{
+func (a *DefaultAPIService) PatchSecretGroup(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIPatchSecretGroupRequest {
+	return DefaultAPIPatchSecretGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -436,7 +436,7 @@ func (a *DefaultApiService) PatchSecretGroup(ctx context.Context, orgId string, 
 
 // Execute executes the request
 //  @return SecretGroupPatchResponse
-func (a *DefaultApiService) PatchSecretGroupExecute(r DefaultApiPatchSecretGroupRequest) (*SecretGroupPatchResponse, *http.Response, error) {
+func (a *DefaultAPIService) PatchSecretGroupExecute(r DefaultAPIPatchSecretGroupRequest) (*SecretGroupPatchResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -444,7 +444,7 @@ func (a *DefaultApiService) PatchSecretGroupExecute(r DefaultApiPatchSecretGroup
 		localVarReturnValue  *SecretGroupPatchResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchSecretGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchSecretGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -536,20 +536,20 @@ func (a *DefaultApiService) PatchSecretGroupExecute(r DefaultApiPatchSecretGroup
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostSecretGroupRequest struct {
+type DefaultAPIPostSecretGroupRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupPostBody *SecretGroupPostBody
 }
 
-func (r DefaultApiPostSecretGroupRequest) SecretGroupPostBody(secretGroupPostBody SecretGroupPostBody) DefaultApiPostSecretGroupRequest {
+func (r DefaultAPIPostSecretGroupRequest) SecretGroupPostBody(secretGroupPostBody SecretGroupPostBody) DefaultAPIPostSecretGroupRequest {
 	r.secretGroupPostBody = &secretGroupPostBody
 	return r
 }
 
-func (r DefaultApiPostSecretGroupRequest) Execute() (*SecretGroupPostResponse, *http.Response, error) {
+func (r DefaultAPIPostSecretGroupRequest) Execute() (*SecretGroupPostResponse, *http.Response, error) {
 	return r.ApiService.PostSecretGroupExecute(r)
 }
 
@@ -561,10 +561,10 @@ Creates a secret group.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param envId The environment id
- @return DefaultApiPostSecretGroupRequest
+ @return DefaultAPIPostSecretGroupRequest
 */
-func (a *DefaultApiService) PostSecretGroup(ctx context.Context, orgId string, envId string) DefaultApiPostSecretGroupRequest {
-	return DefaultApiPostSecretGroupRequest{
+func (a *DefaultAPIService) PostSecretGroup(ctx context.Context, orgId string, envId string) DefaultAPIPostSecretGroupRequest {
+	return DefaultAPIPostSecretGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -574,7 +574,7 @@ func (a *DefaultApiService) PostSecretGroup(ctx context.Context, orgId string, e
 
 // Execute executes the request
 //  @return SecretGroupPostResponse
-func (a *DefaultApiService) PostSecretGroupExecute(r DefaultApiPostSecretGroupRequest) (*SecretGroupPostResponse, *http.Response, error) {
+func (a *DefaultAPIService) PostSecretGroupExecute(r DefaultAPIPostSecretGroupRequest) (*SecretGroupPostResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -582,7 +582,7 @@ func (a *DefaultApiService) PostSecretGroupExecute(r DefaultApiPostSecretGroupRe
 		localVarReturnValue  *SecretGroupPostResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostSecretGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostSecretGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

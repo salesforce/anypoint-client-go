@@ -1,0 +1,374 @@
+# \DefaultAPI
+
+All URIs are relative to *https://anypoint.mulesoft.com/cloudhub/api*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**OrganizationsOrgIdVpcsGet**](DefaultAPI.md#OrganizationsOrgIdVpcsGet) | **Get** /organizations/{orgId}/vpcs | Returns a list of vpcs.
+[**OrganizationsOrgIdVpcsPost**](DefaultAPI.md#OrganizationsOrgIdVpcsPost) | **Post** /organizations/{orgId}/vpcs | Creates a new VPC in the provided organization.
+[**OrganizationsOrgIdVpcsVpcIdDelete**](DefaultAPI.md#OrganizationsOrgIdVpcsVpcIdDelete) | **Delete** /organizations/{orgId}/vpcs/{vpcId} | Delete a VPC by its id.
+[**OrganizationsOrgIdVpcsVpcIdGet**](DefaultAPI.md#OrganizationsOrgIdVpcsVpcIdGet) | **Get** /organizations/{orgId}/vpcs/{vpcId} | Returns the vpc instance with the given id.
+[**OrganizationsOrgIdVpcsVpcIdPut**](DefaultAPI.md#OrganizationsOrgIdVpcsVpcIdPut) | **Put** /organizations/{orgId}/vpcs/{vpcId} | Update the VPC configuration
+
+
+
+## OrganizationsOrgIdVpcsGet
+
+> OrganizationsOrgIdVpcsGet200Response OrganizationsOrgIdVpcsGet(ctx, orgId).Execute()
+
+Returns a list of vpcs.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.OrganizationsOrgIdVpcsGet(context.Background(), orgId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.OrganizationsOrgIdVpcsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrganizationsOrgIdVpcsGet`: OrganizationsOrgIdVpcsGet200Response
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.OrganizationsOrgIdVpcsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdVpcsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**OrganizationsOrgIdVpcsGet200Response**](OrganizationsOrgIdVpcsGet200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsOrgIdVpcsPost
+
+> Vpc OrganizationsOrgIdVpcsPost(ctx, orgId).VpcCore(vpcCore).Execute()
+
+Creates a new VPC in the provided organization.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	vpcCore := *openapiclient.NewVpcCore() // VpcCore | VPC Object don't
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.OrganizationsOrgIdVpcsPost(context.Background(), orgId).VpcCore(vpcCore).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.OrganizationsOrgIdVpcsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrganizationsOrgIdVpcsPost`: Vpc
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.OrganizationsOrgIdVpcsPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdVpcsPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **vpcCore** | [**VpcCore**](VpcCore.md) | VPC Object don&#39;t | 
+
+### Return type
+
+[**Vpc**](Vpc.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsOrgIdVpcsVpcIdDelete
+
+> OrganizationsOrgIdVpcsVpcIdDelete(ctx, orgId, vpcId).Execute()
+
+Delete a VPC by its id.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	vpcId := "vpcId_example" // string | The VPC Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.OrganizationsOrgIdVpcsVpcIdDelete(context.Background(), orgId, vpcId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.OrganizationsOrgIdVpcsVpcIdDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**vpcId** | **string** | The VPC Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdVpcsVpcIdDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsOrgIdVpcsVpcIdGet
+
+> Vpc OrganizationsOrgIdVpcsVpcIdGet(ctx, orgId, vpcId).Execute()
+
+Returns the vpc instance with the given id.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	vpcId := "vpcId_example" // string | The VPC Id
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.OrganizationsOrgIdVpcsVpcIdGet(context.Background(), orgId, vpcId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.OrganizationsOrgIdVpcsVpcIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrganizationsOrgIdVpcsVpcIdGet`: Vpc
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.OrganizationsOrgIdVpcsVpcIdGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**vpcId** | **string** | The VPC Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdVpcsVpcIdGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**Vpc**](Vpc.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsOrgIdVpcsVpcIdPut
+
+> Vpc OrganizationsOrgIdVpcsVpcIdPut(ctx, orgId, vpcId).VpcCore(vpcCore).Execute()
+
+Update the VPC configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/vpc"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The organization Id
+	vpcId := "vpcId_example" // string | The VPC Id
+	vpcCore := *openapiclient.NewVpcCore() // VpcCore | VPC Object don't
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.OrganizationsOrgIdVpcsVpcIdPut(context.Background(), orgId, vpcId).VpcCore(vpcCore).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.OrganizationsOrgIdVpcsVpcIdPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrganizationsOrgIdVpcsVpcIdPut`: Vpc
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.OrganizationsOrgIdVpcsVpcIdPut`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The organization Id | 
+**vpcId** | **string** | The VPC Id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsOrgIdVpcsVpcIdPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **vpcCore** | [**VpcCore**](VpcCore.md) | VPC Object don&#39;t | 
+
+### Return type
+
+[**Vpc**](Vpc.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+

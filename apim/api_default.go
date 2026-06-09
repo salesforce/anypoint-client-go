@@ -21,18 +21,18 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiDeleteApimInstanceRequest struct {
+type DefaultAPIDeleteApimInstanceRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
 }
 
-func (r DefaultApiDeleteApimInstanceRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteApimInstanceRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteApimInstanceExecute(r)
 }
 
@@ -45,10 +45,10 @@ Delete a specific API Manager Instance in a specific environment and organizatio
  @param orgId The organization Id
  @param envId The environment id
  @param envApiId The api manager instance id for a given environment
- @return DefaultApiDeleteApimInstanceRequest
+ @return DefaultAPIDeleteApimInstanceRequest
 */
-func (a *DefaultApiService) DeleteApimInstance(ctx context.Context, orgId string, envId string, envApiId string) DefaultApiDeleteApimInstanceRequest {
-	return DefaultApiDeleteApimInstanceRequest{
+func (a *DefaultAPIService) DeleteApimInstance(ctx context.Context, orgId string, envId string, envApiId string) DefaultAPIDeleteApimInstanceRequest {
+	return DefaultAPIDeleteApimInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -58,14 +58,14 @@ func (a *DefaultApiService) DeleteApimInstance(ctx context.Context, orgId string
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteApimInstanceExecute(r DefaultApiDeleteApimInstanceRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteApimInstanceExecute(r DefaultAPIDeleteApimInstanceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteApimInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteApimInstance")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -135,9 +135,131 @@ func (a *DefaultApiService) DeleteApimInstanceExecute(r DefaultApiDeleteApimInst
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetApimInstanceDetailsRequest struct {
+type DefaultAPIGetApiAssetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
+	orgId string
+	envId string
+	apiId string
+}
+
+func (r DefaultAPIGetApiAssetRequest) Execute() (*ApimAsset, *http.Response, error) {
+	return r.ApiService.GetApiAssetExecute(r)
+}
+
+/*
+GetApiAsset Get API Asset
+
+Get API Asset
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The organization Id
+ @param envId The environment id
+ @param apiId The API id
+ @return DefaultAPIGetApiAssetRequest
+*/
+func (a *DefaultAPIService) GetApiAsset(ctx context.Context, orgId string, envId string, apiId string) DefaultAPIGetApiAssetRequest {
+	return DefaultAPIGetApiAssetRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		envId: envId,
+		apiId: apiId,
+	}
+}
+
+// Execute executes the request
+//  @return ApimAsset
+func (a *DefaultAPIService) GetApiAssetExecute(r DefaultAPIGetApiAssetRequest) (*ApimAsset, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApimAsset
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApiAsset")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/apiAsset"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultAPIGetApimInstanceDetailsRequest struct {
+	ctx context.Context
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
@@ -147,24 +269,24 @@ type DefaultApiGetApimInstanceDetailsRequest struct {
 }
 
 // Include the configured proxyTemplate to its associated endpoint
-func (r DefaultApiGetApimInstanceDetailsRequest) IncludeProxyTemplate(includeProxyTemplate bool) DefaultApiGetApimInstanceDetailsRequest {
+func (r DefaultAPIGetApimInstanceDetailsRequest) IncludeProxyTemplate(includeProxyTemplate bool) DefaultAPIGetApimInstanceDetailsRequest {
 	r.includeProxyTemplate = &includeProxyTemplate
 	return r
 }
 
 // Include the configured validation to its associated endpoint
-func (r DefaultApiGetApimInstanceDetailsRequest) IncludeValidation(includeValidation bool) DefaultApiGetApimInstanceDetailsRequest {
+func (r DefaultAPIGetApimInstanceDetailsRequest) IncludeValidation(includeValidation bool) DefaultAPIGetApimInstanceDetailsRequest {
 	r.includeValidation = &includeValidation
 	return r
 }
 
 // Include the configured TLS contexts
-func (r DefaultApiGetApimInstanceDetailsRequest) IncludeTlsContexts(includeTlsContexts bool) DefaultApiGetApimInstanceDetailsRequest {
+func (r DefaultAPIGetApimInstanceDetailsRequest) IncludeTlsContexts(includeTlsContexts bool) DefaultAPIGetApimInstanceDetailsRequest {
 	r.includeTlsContexts = &includeTlsContexts
 	return r
 }
 
-func (r DefaultApiGetApimInstanceDetailsRequest) Execute() (*ApimInstanceDetails, *http.Response, error) {
+func (r DefaultAPIGetApimInstanceDetailsRequest) Execute() (*ApimInstanceDetails, *http.Response, error) {
 	return r.ApiService.GetApimInstanceDetailsExecute(r)
 }
 
@@ -177,10 +299,10 @@ Retrieves a specific API Manager Instance for a specific environment and organiz
  @param orgId The organization Id
  @param envId The environment id
  @param envApiId The api manager instance id for a given environment
- @return DefaultApiGetApimInstanceDetailsRequest
+ @return DefaultAPIGetApimInstanceDetailsRequest
 */
-func (a *DefaultApiService) GetApimInstanceDetails(ctx context.Context, orgId string, envId string, envApiId string) DefaultApiGetApimInstanceDetailsRequest {
-	return DefaultApiGetApimInstanceDetailsRequest{
+func (a *DefaultAPIService) GetApimInstanceDetails(ctx context.Context, orgId string, envId string, envApiId string) DefaultAPIGetApimInstanceDetailsRequest {
+	return DefaultAPIGetApimInstanceDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -191,7 +313,7 @@ func (a *DefaultApiService) GetApimInstanceDetails(ctx context.Context, orgId st
 
 // Execute executes the request
 //  @return ApimInstanceDetails
-func (a *DefaultApiService) GetApimInstanceDetailsExecute(r DefaultApiGetApimInstanceDetailsRequest) (*ApimInstanceDetails, *http.Response, error) {
+func (a *DefaultAPIService) GetApimInstanceDetailsExecute(r DefaultAPIGetApimInstanceDetailsRequest) (*ApimInstanceDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -199,7 +321,7 @@ func (a *DefaultApiService) GetApimInstanceDetailsExecute(r DefaultApiGetApimIns
 		localVarReturnValue  *ApimInstanceDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetApimInstanceDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimInstanceDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -214,13 +336,13 @@ func (a *DefaultApiService) GetApimInstanceDetailsExecute(r DefaultApiGetApimIns
 	localVarFormParams := url.Values{}
 
 	if r.includeProxyTemplate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeProxyTemplate", r.includeProxyTemplate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeProxyTemplate", r.includeProxyTemplate, "form", "")
 	}
 	if r.includeValidation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeValidation", r.includeValidation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeValidation", r.includeValidation, "form", "")
 	}
 	if r.includeTlsContexts != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeTlsContexts", r.includeTlsContexts, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeTlsContexts", r.includeTlsContexts, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -298,9 +420,9 @@ func (a *DefaultApiService) GetApimInstanceDetailsExecute(r DefaultApiGetApimIns
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetEnvApimInstancesRequest struct {
+type DefaultAPIGetEnvApimInstancesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	query *string
@@ -318,78 +440,78 @@ type DefaultApiGetEnvApimInstancesRequest struct {
 }
 
 // A string that will be checked for a partial or similar matches of the name, description, label and tags
-func (r DefaultApiGetEnvApimInstancesRequest) Query(query string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) Query(query string) DefaultAPIGetEnvApimInstancesRequest {
 	r.query = &query
 	return r
 }
 
 // A string that will be checked for an exact match of the groupId
-func (r DefaultApiGetEnvApimInstancesRequest) GroupId(groupId string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) GroupId(groupId string) DefaultAPIGetEnvApimInstancesRequest {
 	r.groupId = &groupId
 	return r
 }
 
 // A string that will be checked for an exact match of the assetId
-func (r DefaultApiGetEnvApimInstancesRequest) AssetId(assetId string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) AssetId(assetId string) DefaultAPIGetEnvApimInstancesRequest {
 	r.assetId = &assetId
 	return r
 }
 
 // A string that will be checked for an exact match of the assetVersion
-func (r DefaultApiGetEnvApimInstancesRequest) AssetVersion(assetVersion string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) AssetVersion(assetVersion string) DefaultAPIGetEnvApimInstancesRequest {
 	r.assetVersion = &assetVersion
 	return r
 }
 
 // A string that will be checked for an exact match of the instanceLabel
-func (r DefaultApiGetEnvApimInstancesRequest) InstanceLabel(instanceLabel string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) InstanceLabel(instanceLabel string) DefaultAPIGetEnvApimInstancesRequest {
 	r.instanceLabel = &instanceLabel
 	return r
 }
 
 // A string that will be checked for an exact match of the productVersion
-func (r DefaultApiGetEnvApimInstancesRequest) ProductVersion(productVersion string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) ProductVersion(productVersion string) DefaultAPIGetEnvApimInstancesRequest {
 	r.productVersion = &productVersion
 	return r
 }
 
 // A string that will be checked for an exact match of the autodiscoveryInstanceName
-func (r DefaultApiGetEnvApimInstancesRequest) AutodiscoveryInstanceName(autodiscoveryInstanceName string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) AutodiscoveryInstanceName(autodiscoveryInstanceName string) DefaultAPIGetEnvApimInstancesRequest {
 	r.autodiscoveryInstanceName = &autodiscoveryInstanceName
 	return r
 }
 
 // Comma-separated list of filters, which can be \&quot;active\&quot; and/or \&quot;pinned\&quot;
-func (r DefaultApiGetEnvApimInstancesRequest) Filters(filters []string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) Filters(filters []string) DefaultAPIGetEnvApimInstancesRequest {
 	r.filters = &filters
 	return r
 }
 
 // Maximum number of rolegroups to retrieve per request.
-func (r DefaultApiGetEnvApimInstancesRequest) Limit(limit int32) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) Limit(limit int32) DefaultAPIGetEnvApimInstancesRequest {
 	r.limit = &limit
 	return r
 }
 
 // The number of records to omit from the response.
-func (r DefaultApiGetEnvApimInstancesRequest) Offset(offset int32) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) Offset(offset int32) DefaultAPIGetEnvApimInstancesRequest {
 	r.offset = &offset
 	return r
 }
 
 // Default value is name
-func (r DefaultApiGetEnvApimInstancesRequest) Sort(sort string) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) Sort(sort string) DefaultAPIGetEnvApimInstancesRequest {
 	r.sort = &sort
 	return r
 }
 
 // To activate ascending sorting
-func (r DefaultApiGetEnvApimInstancesRequest) Ascending(ascending bool) DefaultApiGetEnvApimInstancesRequest {
+func (r DefaultAPIGetEnvApimInstancesRequest) Ascending(ascending bool) DefaultAPIGetEnvApimInstancesRequest {
 	r.ascending = &ascending
 	return r
 }
 
-func (r DefaultApiGetEnvApimInstancesRequest) Execute() (*ApimInstanceCollection, *http.Response, error) {
+func (r DefaultAPIGetEnvApimInstancesRequest) Execute() (*ApimInstanceCollection, *http.Response, error) {
 	return r.ApiService.GetEnvApimInstancesExecute(r)
 }
 
@@ -401,10 +523,10 @@ Retrieves collection of API Manager Instances that meets the given criteria. Con
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param envId The environment id
- @return DefaultApiGetEnvApimInstancesRequest
+ @return DefaultAPIGetEnvApimInstancesRequest
 */
-func (a *DefaultApiService) GetEnvApimInstances(ctx context.Context, orgId string, envId string) DefaultApiGetEnvApimInstancesRequest {
-	return DefaultApiGetEnvApimInstancesRequest{
+func (a *DefaultAPIService) GetEnvApimInstances(ctx context.Context, orgId string, envId string) DefaultAPIGetEnvApimInstancesRequest {
+	return DefaultAPIGetEnvApimInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -414,7 +536,7 @@ func (a *DefaultApiService) GetEnvApimInstances(ctx context.Context, orgId strin
 
 // Execute executes the request
 //  @return ApimInstanceCollection
-func (a *DefaultApiService) GetEnvApimInstancesExecute(r DefaultApiGetEnvApimInstancesRequest) (*ApimInstanceCollection, *http.Response, error) {
+func (a *DefaultAPIService) GetEnvApimInstancesExecute(r DefaultAPIGetEnvApimInstancesRequest) (*ApimInstanceCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -422,7 +544,7 @@ func (a *DefaultApiService) GetEnvApimInstancesExecute(r DefaultApiGetEnvApimIns
 		localVarReturnValue  *ApimInstanceCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetEnvApimInstances")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetEnvApimInstances")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -436,48 +558,48 @@ func (a *DefaultApiService) GetEnvApimInstancesExecute(r DefaultApiGetEnvApimIns
 	localVarFormParams := url.Values{}
 
 	if r.query != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "form", "")
 	}
 	if r.groupId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "groupId", r.groupId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "groupId", r.groupId, "form", "")
 	}
 	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "form", "")
 	}
 	if r.assetVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetVersion", r.assetVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetVersion", r.assetVersion, "form", "")
 	}
 	if r.instanceLabel != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "instanceLabel", r.instanceLabel, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "instanceLabel", r.instanceLabel, "form", "")
 	}
 	if r.productVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "productVersion", r.productVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "productVersion", r.productVersion, "form", "")
 	}
 	if r.autodiscoveryInstanceName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "autodiscoveryInstanceName", r.autodiscoveryInstanceName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "autodiscoveryInstanceName", r.autodiscoveryInstanceName, "form", "")
 	}
 	if r.filters != nil {
 		t := *r.filters
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filters", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filters", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filters", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filters", t, "form", "multi")
 		}
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
 	if r.ascending != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ascending", r.ascending, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ascending", r.ascending, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -544,9 +666,9 @@ func (a *DefaultApiService) GetEnvApimInstancesExecute(r DefaultApiGetEnvApimIns
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchApimInstanceRequest struct {
+type DefaultAPIPatchApimInstanceRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
@@ -556,24 +678,24 @@ type DefaultApiPatchApimInstanceRequest struct {
 }
 
 // Allows patching the API autodiscoveryInstanceName. You may want to change the &#39;api.version&#39; configuration on all Mule 2 &amp; Mule 3 applications tracking this API.
-func (r DefaultApiPatchApimInstanceRequest) Force(force bool) DefaultApiPatchApimInstanceRequest {
+func (r DefaultAPIPatchApimInstanceRequest) Force(force bool) DefaultAPIPatchApimInstanceRequest {
 	r.force = &force
 	return r
 }
 
 // For APIs deployed to Flex, if endpoint proxyUri or inbound TLS Contexts are being updated, apis in the same port are also updated
-func (r DefaultApiPatchApimInstanceRequest) UpdateApisInSamePort(updateApisInSamePort bool) DefaultApiPatchApimInstanceRequest {
+func (r DefaultAPIPatchApimInstanceRequest) UpdateApisInSamePort(updateApisInSamePort bool) DefaultAPIPatchApimInstanceRequest {
 	r.updateApisInSamePort = &updateApisInSamePort
 	return r
 }
 
 // Patch API Manager Instance Body
-func (r DefaultApiPatchApimInstanceRequest) Body(body map[string]interface{}) DefaultApiPatchApimInstanceRequest {
+func (r DefaultAPIPatchApimInstanceRequest) Body(body map[string]interface{}) DefaultAPIPatchApimInstanceRequest {
 	r.body = &body
 	return r
 }
 
-func (r DefaultApiPatchApimInstanceRequest) Execute() (*ApimInstancePatchResponse, *http.Response, error) {
+func (r DefaultAPIPatchApimInstanceRequest) Execute() (*ApimInstancePatchResponse, *http.Response, error) {
 	return r.ApiService.PatchApimInstanceExecute(r)
 }
 
@@ -586,10 +708,10 @@ Patches a specific API Manager Instance in a specific environment and organizati
  @param orgId The organization Id
  @param envId The environment id
  @param envApiId The api manager instance id for a given environment
- @return DefaultApiPatchApimInstanceRequest
+ @return DefaultAPIPatchApimInstanceRequest
 */
-func (a *DefaultApiService) PatchApimInstance(ctx context.Context, orgId string, envId string, envApiId string) DefaultApiPatchApimInstanceRequest {
-	return DefaultApiPatchApimInstanceRequest{
+func (a *DefaultAPIService) PatchApimInstance(ctx context.Context, orgId string, envId string, envApiId string) DefaultAPIPatchApimInstanceRequest {
+	return DefaultAPIPatchApimInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -600,7 +722,7 @@ func (a *DefaultApiService) PatchApimInstance(ctx context.Context, orgId string,
 
 // Execute executes the request
 //  @return ApimInstancePatchResponse
-func (a *DefaultApiService) PatchApimInstanceExecute(r DefaultApiPatchApimInstanceRequest) (*ApimInstancePatchResponse, *http.Response, error) {
+func (a *DefaultAPIService) PatchApimInstanceExecute(r DefaultAPIPatchApimInstanceRequest) (*ApimInstancePatchResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -608,7 +730,7 @@ func (a *DefaultApiService) PatchApimInstanceExecute(r DefaultApiPatchApimInstan
 		localVarReturnValue  *ApimInstancePatchResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchApimInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchApimInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -623,10 +745,10 @@ func (a *DefaultApiService) PatchApimInstanceExecute(r DefaultApiPatchApimInstan
 	localVarFormParams := url.Values{}
 
 	if r.force != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "form", "")
 	}
 	if r.updateApisInSamePort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "updateApisInSamePort", r.updateApisInSamePort, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updateApisInSamePort", r.updateApisInSamePort, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -706,21 +828,21 @@ func (a *DefaultApiService) PatchApimInstanceExecute(r DefaultApiPatchApimInstan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostApimInstanceRequest struct {
+type DefaultAPIPostApimInstanceRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apimInstancePostBody *ApimInstancePostBody
 }
 
 // Post API Manager Instance Body
-func (r DefaultApiPostApimInstanceRequest) ApimInstancePostBody(apimInstancePostBody ApimInstancePostBody) DefaultApiPostApimInstanceRequest {
+func (r DefaultAPIPostApimInstanceRequest) ApimInstancePostBody(apimInstancePostBody ApimInstancePostBody) DefaultAPIPostApimInstanceRequest {
 	r.apimInstancePostBody = &apimInstancePostBody
 	return r
 }
 
-func (r DefaultApiPostApimInstanceRequest) Execute() (*ApimInstancePostResponse, *http.Response, error) {
+func (r DefaultAPIPostApimInstanceRequest) Execute() (*ApimInstancePostResponse, *http.Response, error) {
 	return r.ApiService.PostApimInstanceExecute(r)
 }
 
@@ -732,10 +854,10 @@ Creates an API Manager Instance in a given environment. Connected Apps require t
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param envId The environment id
- @return DefaultApiPostApimInstanceRequest
+ @return DefaultAPIPostApimInstanceRequest
 */
-func (a *DefaultApiService) PostApimInstance(ctx context.Context, orgId string, envId string) DefaultApiPostApimInstanceRequest {
-	return DefaultApiPostApimInstanceRequest{
+func (a *DefaultAPIService) PostApimInstance(ctx context.Context, orgId string, envId string) DefaultAPIPostApimInstanceRequest {
+	return DefaultAPIPostApimInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -745,7 +867,7 @@ func (a *DefaultApiService) PostApimInstance(ctx context.Context, orgId string, 
 
 // Execute executes the request
 //  @return ApimInstancePostResponse
-func (a *DefaultApiService) PostApimInstanceExecute(r DefaultApiPostApimInstanceRequest) (*ApimInstancePostResponse, *http.Response, error) {
+func (a *DefaultAPIService) PostApimInstanceExecute(r DefaultAPIPostApimInstanceRequest) (*ApimInstancePostResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -753,7 +875,7 @@ func (a *DefaultApiService) PostApimInstanceExecute(r DefaultApiPostApimInstance
 		localVarReturnValue  *ApimInstancePostResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostApimInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostApimInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

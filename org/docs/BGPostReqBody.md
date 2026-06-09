@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Entitlements** | [**EntitlementsCore**](EntitlementsCore.md) |  | 
-**Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**OwnerId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**ParentOrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**Name** | **string** | The name of the organization | [default to ""]
+**OwnerId** | **string** | The id of the owner of the organization. | [default to ""]
+**ParentOrganizationId** | **string** | a reference to the parent organization | [default to ""]
 
 ## Methods
 

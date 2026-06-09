@@ -20,17 +20,17 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecGetRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecGetRequest) Execute() (*OrganizationsOrgIdVpcsVpcIdIpsecGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecGetRequest) Execute() (*OrganizationsOrgIdVpcsVpcIdIpsecGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdIpsecGetExecute(r)
 }
 
@@ -42,10 +42,10 @@ Returns a list of VPNs for the given organization and VPC
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param vpcId The vpc Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecGetRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecGet(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecGetRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecGet(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecGetRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -55,7 +55,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecGet(ctx context.Cont
 
 // Execute executes the request
 //  @return OrganizationsOrgIdVpcsVpcIdIpsecGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecGetExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecGetRequest) (*OrganizationsOrgIdVpcsVpcIdIpsecGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecGetExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecGetRequest) (*OrganizationsOrgIdVpcsVpcIdIpsecGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -63,7 +63,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecGetExecute(r Default
 		localVarReturnValue  *OrganizationsOrgIdVpcsVpcIdIpsecGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdIpsecGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdIpsecGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -130,21 +130,21 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecGetExecute(r Default
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	vpnPostReqBody *VpnPostReqBody
 }
 
 // VPN request body
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest) VpnPostReqBody(vpnPostReqBody VpnPostReqBody) DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest) VpnPostReqBody(vpnPostReqBody VpnPostReqBody) DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest {
 	r.vpnPostReqBody = &vpnPostReqBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest) Execute() (*VpnPost, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest) Execute() (*VpnPost, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdIpsecPostExecute(r)
 }
 
@@ -156,10 +156,10 @@ Create a VPN connection from a VPC, up to a limit of 10 total VPN Connections pe
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param vpcId The vpc Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecPost(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecPost(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -169,7 +169,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecPost(ctx context.Con
 
 // Execute executes the request
 //  @return VpnPost
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecPostExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecPostRequest) (*VpnPost, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecPostExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecPostRequest) (*VpnPost, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -177,7 +177,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecPostExecute(r Defaul
 		localVarReturnValue  *VpnPost
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdIpsecPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdIpsecPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -249,15 +249,15 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecPostExecute(r Defaul
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	vpnId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteExecute(r)
 }
 
@@ -270,10 +270,10 @@ The VPN connection from a VPC.
  @param orgId The organization Id
  @param vpcId The vpc Id
  @param vpnId The vpn Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete(ctx context.Context, orgId string, vpcId string, vpnId string) DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete(ctx context.Context, orgId string, vpcId string, vpnId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -283,14 +283,14 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete(ctx cont
 }
 
 // Execute executes the request
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -349,15 +349,15 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdDeleteExecute(r
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	vpnId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest) Execute() (*VpnGet, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest) Execute() (*VpnGet, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetExecute(r)
 }
 
@@ -370,10 +370,10 @@ Returns a specific VPN for the given vpn, organization and VPC
  @param orgId The organization Id
  @param vpcId The vpc Id
  @param vpnId The vpn Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet(ctx context.Context, orgId string, vpcId string, vpnId string) DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet(ctx context.Context, orgId string, vpcId string, vpnId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -384,7 +384,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet(ctx context
 
 // Execute executes the request
 //  @return VpnGet
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest) (*VpnGet, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetRequest) (*VpnGet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -392,7 +392,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGetExecute(r De
 		localVarReturnValue  *VpnGet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdIpsecVpnIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

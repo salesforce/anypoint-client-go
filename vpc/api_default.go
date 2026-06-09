@@ -20,16 +20,16 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdVpcsGetRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsGetRequest) Execute() (*OrganizationsOrgIdVpcsGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsGetRequest) Execute() (*OrganizationsOrgIdVpcsGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsGetExecute(r)
 }
 
@@ -40,10 +40,10 @@ Returns a list of VPCs for the given organization id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
- @return DefaultApiOrganizationsOrgIdVpcsGetRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsGet(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdVpcsGetRequest {
-	return DefaultApiOrganizationsOrgIdVpcsGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsGet(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdVpcsGetRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -52,7 +52,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsGet(ctx context.Context, orgId
 
 // Execute executes the request
 //  @return OrganizationsOrgIdVpcsGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdVpcsGetExecute(r DefaultApiOrganizationsOrgIdVpcsGetRequest) (*OrganizationsOrgIdVpcsGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsGetExecute(r DefaultAPIOrganizationsOrgIdVpcsGetRequest) (*OrganizationsOrgIdVpcsGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -60,7 +60,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsGetExecute(r DefaultApiOrganiz
 		localVarReturnValue  *OrganizationsOrgIdVpcsGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -126,20 +126,20 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsGetExecute(r DefaultApiOrganiz
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsPostRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcCore *VpcCore
 }
 
 // VPC Object don&#39;t
-func (r DefaultApiOrganizationsOrgIdVpcsPostRequest) VpcCore(vpcCore VpcCore) DefaultApiOrganizationsOrgIdVpcsPostRequest {
+func (r DefaultAPIOrganizationsOrgIdVpcsPostRequest) VpcCore(vpcCore VpcCore) DefaultAPIOrganizationsOrgIdVpcsPostRequest {
 	r.vpcCore = &vpcCore
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsPostRequest) Execute() (*Vpc, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsPostRequest) Execute() (*Vpc, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsPostExecute(r)
 }
 
@@ -150,10 +150,10 @@ Creates a new VPC for the probided organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
- @return DefaultApiOrganizationsOrgIdVpcsPostRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsPost(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdVpcsPostRequest {
-	return DefaultApiOrganizationsOrgIdVpcsPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsPost(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdVpcsPostRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -162,7 +162,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsPost(ctx context.Context, orgI
 
 // Execute executes the request
 //  @return Vpc
-func (a *DefaultApiService) OrganizationsOrgIdVpcsPostExecute(r DefaultApiOrganizationsOrgIdVpcsPostRequest) (*Vpc, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsPostExecute(r DefaultAPIOrganizationsOrgIdVpcsPostRequest) (*Vpc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -170,7 +170,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsPostExecute(r DefaultApiOrgani
 		localVarReturnValue  *Vpc
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -252,14 +252,14 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsPostExecute(r DefaultApiOrgani
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdDeleteExecute(r)
 }
 
@@ -271,10 +271,10 @@ Delete a VPC by its given id for the given organization id.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param vpcId The VPC Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdDelete(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdDeleteRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdDelete(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -283,14 +283,14 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdDelete(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdDeleteExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdDeleteExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -348,14 +348,14 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdDeleteExecute(r DefaultAp
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdGetRequest) Execute() (*Vpc, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdGetRequest) Execute() (*Vpc, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdGetExecute(r)
 }
 
@@ -367,10 +367,10 @@ Returns the vpc with the given id in the given organization id
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param vpcId The VPC Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdGet(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdGetRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdGet(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -380,7 +380,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdGet(ctx context.Context, 
 
 // Execute executes the request
 //  @return Vpc
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdGetExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdGetRequest) (*Vpc, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdGetExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdGetRequest) (*Vpc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -388,7 +388,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdGetExecute(r DefaultApiOr
 		localVarReturnValue  *Vpc
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -455,21 +455,21 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdGetExecute(r DefaultApiOr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	vpcCore *VpcCore
 }
 
 // VPC Object don&#39;t
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest) VpcCore(vpcCore VpcCore) DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest) VpcCore(vpcCore VpcCore) DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest {
 	r.vpcCore = &vpcCore
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest) Execute() (*Vpc, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest) Execute() (*Vpc, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdPutExecute(r)
 }
 
@@ -481,10 +481,10 @@ Changes the configuration of the VPC by overriding the values of the properties 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param vpcId The VPC Id
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPut(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdPut(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -494,7 +494,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPut(ctx context.Context, 
 
 // Execute executes the request
 //  @return Vpc
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdPutRequest) (*Vpc, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdPutRequest) (*Vpc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -502,7 +502,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdPutExecute(r DefaultApiOr
 		localVarReturnValue  *Vpc
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

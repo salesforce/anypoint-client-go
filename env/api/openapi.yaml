@@ -197,8 +197,24 @@ components:
   schemas:
     env:
       allOf:
-      - $ref: '#/components/schemas/envId'
+      - properties:
+          id:
+            description: The env Id
+            example: 9149aec2-f882-4d36-b419-3fb07f
+            title: id
+            type: string
+        required:
+        - id
+        title: envId
+        type: object
       - $ref: '#/components/schemas/envCore'
+      example:
+        organizationId: 0000-1111-2222-3333-4444
+        clientId: 11-2222-3333-4445
+        isProduction: false
+        name: myAwesomeENV
+        id: 9149aec2-f882-4d36-b419-3fb07f
+        type: sandbox
       title: env
     envCore:
       properties:
@@ -228,8 +244,18 @@ components:
       example:
         total: 0
         data:
-        - null
-        - null
+        - organizationId: 0000-1111-2222-3333-4444
+          clientId: 11-2222-3333-4445
+          isProduction: false
+          name: myAwesomeENV
+          id: 9149aec2-f882-4d36-b419-3fb07f
+          type: sandbox
+        - organizationId: 0000-1111-2222-3333-4444
+          clientId: 11-2222-3333-4445
+          isProduction: false
+          name: myAwesomeENV
+          id: 9149aec2-f882-4d36-b419-3fb07f
+          type: sandbox
       properties:
         data:
           items:
@@ -241,6 +267,9 @@ components:
           type: integer
       type: object
     _organizations__orgId__environments_post_400_response:
+      example:
+        message: A sample message here
+        status: 0
       properties:
         status:
           default: 400
@@ -251,18 +280,6 @@ components:
           title: the error message
           type: string
       type: object
-    envId:
-      properties:
-        id:
-          description: The env Id
-          example: 9149aec2-f882-4d36-b419-3fb07f
-          title: id
-          type: string
-      required:
-      - id
-      title: envId
-      type: object
-      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

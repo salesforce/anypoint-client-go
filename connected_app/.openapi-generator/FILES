@@ -7,13 +7,11 @@ client.go
 configuration.go
 docs/ConnectedAppCore.md
 docs/ConnectedAppPatchExt.md
-docs/ConnectedAppPatchExtAllOf.md
 docs/ConnectedAppRespExt.md
-docs/ConnectedAppRespExtAllOf.md
 docs/ConnectedAppScopesPutBody.md
 docs/ContextParams.md
 docs/CreateConnectedApp400Response.md
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/GetAllConnectedApps200Response.md
 docs/GetConnectedAppScopes200Response.md
 docs/ScopeCore.md
@@ -22,9 +20,7 @@ go.mod
 go.sum
 model_connected_app_core.go
 model_connected_app_patch_ext.go
-model_connected_app_patch_ext_all_of.go
 model_connected_app_resp_ext.go
-model_connected_app_resp_ext_all_of.go
 model_connected_app_scopes_put_body.go
 model_context_params.go
 model_create_connected_app_400_response.go

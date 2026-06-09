@@ -1,0 +1,460 @@
+openapi: 3.0.0
+info:
+  description: Description of the Exchange Client Applications API
+  title: Exchange Client Apps
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/exchange/api/v2/
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/exchange/api/v2
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/exchange/api/v2
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/applications:
+    get:
+      description: |
+        Read All or partial Exchange Client Apps. If you need to get all the available exchange apps on your organization (not just the client apps created by the user making the Query). You need to use this call with your Master Org id, a bearer token for an Admin user, and the query parameter 'targetAdminSite' set to 'true'. This call will return every application (with pagination if more than the set limit) for this particular Anypoint Account.
+      operationId: GetExchangeClientApps
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "MUST be set to true in order to get the Client ID and Secret.\
+          \ Without this query parameter, the same call will return all the Client\
+          \ Applications but not the Client ID and Secret (and other info)."
+        explode: true
+        in: query
+        name: targetAdminSite
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results that matches the input
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The offset specifies the offset of the first row to return
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Amount of objects retrieved in the response
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApps_400_response'
+          description: Bad request response
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clientAppList'
+          description: Response for reading applications
+      summary: Read Exchange Client Apps
+    post:
+      description: Create a new Exchange Client App
+      operationId: PostExchangeClientApp
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The API Manager Instance Id
+        explode: true
+        in: query
+        name: apiInstanceId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postExchangeAppsBody'
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApps_400_response'
+          description: Bad request response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clientApp'
+          description: Response for creating application
+      summary: Create a new Exchange Client App
+  /organizations/{orgId}/applications/{appId}:
+    delete:
+      description: Delete Exchange Client Apps
+      operationId: DeleteExchangeClientApp
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the Exchange App
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApps_400_response'
+          description: Bad request response
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApp_404_response'
+          description: Not Found Error
+        "204":
+          description: Response for deleting an exchange client application
+      summary: Delete Exchange Client App by ID
+    get:
+      description: Read a specific Exchange Client App by ID.
+      operationId: GetExchangeClientApp
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the Exchange App
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApps_400_response'
+          description: Bad request response
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApp_404_response'
+          description: Not Found Error
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clientApp'
+          description: Response for reading a specific exchange client application
+      summary: Get Exchange Client App by ID
+  /organizations/{orgId}/applications/{appId}/contracts:
+    get:
+      description: Get Exchange Client Application Contracts
+      operationId: GetExchangeClientAppContracts
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the Exchange App
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: This field is used to filter by API version
+        explode: true
+        in: query
+        name: includeContractsForApiVersion
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExchangeClientApps_400_response'
+          description: Bad request response
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clientAppContractList'
+          description: Response for getting exchange client app contracts
+      summary: Get Exchange Client Application Contracts
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequestError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetExchangeClientApps_400_response'
+      description: Bad request response
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetExchangeClientApp_404_response'
+      description: Not Found Error
+    SuccessPostApp:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientApp'
+      description: Response for creating application
+    SuccessListApps:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientAppList'
+      description: Response for reading applications
+    SuccessGetApp:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientApp'
+      description: Response for reading a specific exchange client application
+    SuccessDeleteApp:
+      description: Response for deleting an exchange client application
+    SuccessGetAppContracts:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientAppContractList'
+      description: Response for getting exchange client app contracts
+  schemas:
+    postExchangeAppsBody:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        redirectUri:
+          items:
+            type: string
+          type: array
+        grantTypes:
+          items:
+            type: string
+          type: array
+        apiEndpoints:
+          type: boolean
+        url:
+          type: string
+      type: object
+    clientApp:
+      example:
+        redirectUri:
+        - redirectUri
+        - redirectUri
+        grantTypes:
+        - grantTypes
+        - grantTypes
+        clientId: clientId
+        name: name
+        description: description
+        clientSecret: clientSecret
+        id: 6
+        url: url
+        clientProvider:
+          providerId: providerId
+          name: name
+          type: type
+        masterOrganizationId: masterOrganizationId
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        url:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        masterOrganizationId:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        grantTypes:
+          items:
+            type: string
+          type: array
+        redirectUri:
+          items:
+            type: string
+          type: array
+        clientProvider:
+          $ref: '#/components/schemas/clientApp_clientProvider'
+      type: object
+    clientAppList:
+      items:
+        $ref: '#/components/schemas/clientApp'
+      type: array
+    clientAppContract:
+      example:
+        id: 0
+        requestedTier:
+          name: name
+          description: description
+          id: 6
+          limits:
+          - timePeriodInMilliseconds: 5
+            maximumRequests: 1
+          - timePeriodInMilliseconds: 5
+            maximumRequests: 1
+        status: status
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        requestedTier:
+          $ref: '#/components/schemas/clientAppContract_requestedTier'
+      type: object
+    clientAppContractList:
+      items:
+        $ref: '#/components/schemas/clientAppContract'
+      type: array
+    GetExchangeClientApps_400_response:
+      example:
+        message: A sample message here
+        status: 0
+      properties:
+        status:
+          default: 400
+          title: the response status code
+          type: integer
+        message:
+          example: A sample message here
+          title: the error message
+          type: string
+      type: object
+    GetExchangeClientApp_404_response:
+      example:
+        message: message
+        status: 0
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+      type: object
+    clientApp_clientProvider:
+      example:
+        providerId: providerId
+        name: name
+        type: type
+      properties:
+        providerId:
+          nullable: true
+          type: string
+        name:
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    clientAppContract_requestedTier_limits_inner:
+      example:
+        timePeriodInMilliseconds: 5
+        maximumRequests: 1
+      properties:
+        maximumRequests:
+          type: integer
+        timePeriodInMilliseconds:
+          type: integer
+      type: object
+    clientAppContract_requestedTier:
+      example:
+        name: name
+        description: description
+        id: 6
+        limits:
+        - timePeriodInMilliseconds: 5
+          maximumRequests: 1
+        - timePeriodInMilliseconds: 5
+          maximumRequests: 1
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        limits:
+          items:
+            $ref: '#/components/schemas/clientAppContract_requestedTier_limits_inner'
+          type: array
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -12,6 +12,8 @@ package apim_alerts
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Alert type satisfies the MappedNullable interface at compile time
@@ -19,7 +21,6 @@ var _ MappedNullable = &Alert{}
 
 // Alert struct for Alert
 type Alert struct {
-	Id string `json:"id"`
 	ApiAlertsVersion string `json:"apiAlertsVersion"`
 	Name string `json:"name"`
 	Type string `json:"type"`
@@ -28,15 +29,17 @@ type Alert struct {
 	Recipients []Recipient `json:"recipients"`
 	Condition Condition `json:"condition"`
 	Period Period `json:"period"`
+	Id string `json:"id"`
 }
+
+type _Alert Alert
 
 // NewAlert instantiates a new Alert object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlert(id string, apiAlertsVersion string, name string, type_ string, enabled bool, severity string, recipients []Recipient, condition Condition, period Period) *Alert {
+func NewAlert(apiAlertsVersion string, name string, type_ string, enabled bool, severity string, recipients []Recipient, condition Condition, period Period, id string) *Alert {
 	this := Alert{}
-	this.Id = id
 	this.ApiAlertsVersion = apiAlertsVersion
 	this.Name = name
 	this.Type = type_
@@ -45,6 +48,7 @@ func NewAlert(id string, apiAlertsVersion string, name string, type_ string, ena
 	this.Recipients = recipients
 	this.Condition = condition
 	this.Period = period
+	this.Id = id
 	return &this
 }
 
@@ -54,30 +58,6 @@ func NewAlert(id string, apiAlertsVersion string, name string, type_ string, ena
 func NewAlertWithDefaults() *Alert {
 	this := Alert{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *Alert) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Alert) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Alert) SetId(v string) {
-	o.Id = v
 }
 
 // GetApiAlertsVersion returns the ApiAlertsVersion field value
@@ -272,6 +252,30 @@ func (o *Alert) SetPeriod(v Period) {
 	o.Period = v
 }
 
+// GetId returns the Id field value
+func (o *Alert) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Alert) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Alert) SetId(v string) {
+	o.Id = v
+}
+
 func (o Alert) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -282,7 +286,6 @@ func (o Alert) MarshalJSON() ([]byte, error) {
 
 func (o Alert) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
 	toSerialize["apiAlertsVersion"] = o.ApiAlertsVersion
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
@@ -291,7 +294,53 @@ func (o Alert) ToMap() (map[string]interface{}, error) {
 	toSerialize["recipients"] = o.Recipients
 	toSerialize["condition"] = o.Condition
 	toSerialize["period"] = o.Period
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
+}
+
+func (o *Alert) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"apiAlertsVersion",
+		"name",
+		"type",
+		"enabled",
+		"severity",
+		"recipients",
+		"condition",
+		"period",
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAlert := _Alert{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAlert)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Alert(varAlert)
+
+	return err
 }
 
 type NullableAlert struct {

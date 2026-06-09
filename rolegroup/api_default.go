@@ -20,16 +20,16 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdRolegroupsGetRequest struct {
+type DefaultAPIOrganizationsOrgIdRolegroupsGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsGetRequest) Execute() (*OrganizationsOrgIdRolegroupsGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsGetRequest) Execute() (*OrganizationsOrgIdRolegroupsGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdRolegroupsGetExecute(r)
 }
 
@@ -40,10 +40,10 @@ Returns all rolegroups within the organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdRolegroupsGetRequest
+ @return DefaultAPIOrganizationsOrgIdRolegroupsGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsGet(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdRolegroupsGetRequest {
-	return DefaultApiOrganizationsOrgIdRolegroupsGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsGet(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdRolegroupsGetRequest {
+	return DefaultAPIOrganizationsOrgIdRolegroupsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -52,7 +52,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsGet(ctx context.Context,
 
 // Execute executes the request
 //  @return OrganizationsOrgIdRolegroupsGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsGetExecute(r DefaultApiOrganizationsOrgIdRolegroupsGetRequest) (*OrganizationsOrgIdRolegroupsGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsGetExecute(r DefaultAPIOrganizationsOrgIdRolegroupsGetRequest) (*OrganizationsOrgIdRolegroupsGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -60,7 +60,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsGetExecute(r DefaultApiO
 		localVarReturnValue  *OrganizationsOrgIdRolegroupsGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdRolegroupsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdRolegroupsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -126,19 +126,19 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsGetExecute(r DefaultApiO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdRolegroupsPostRequest struct {
+type DefaultAPIOrganizationsOrgIdRolegroupsPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	rolegroupPostBody *RolegroupPostBody
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsPostRequest) RolegroupPostBody(rolegroupPostBody RolegroupPostBody) DefaultApiOrganizationsOrgIdRolegroupsPostRequest {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsPostRequest) RolegroupPostBody(rolegroupPostBody RolegroupPostBody) DefaultAPIOrganizationsOrgIdRolegroupsPostRequest {
 	r.rolegroupPostBody = &rolegroupPostBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsPostRequest) Execute() (*Rolegroup, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsPostRequest) Execute() (*Rolegroup, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdRolegroupsPostExecute(r)
 }
 
@@ -149,10 +149,10 @@ Creates an rolegroup. Name must be unique.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdRolegroupsPostRequest
+ @return DefaultAPIOrganizationsOrgIdRolegroupsPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsPost(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdRolegroupsPostRequest {
-	return DefaultApiOrganizationsOrgIdRolegroupsPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsPost(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdRolegroupsPostRequest {
+	return DefaultAPIOrganizationsOrgIdRolegroupsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -161,7 +161,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsPost(ctx context.Context
 
 // Execute executes the request
 //  @return Rolegroup
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsPostExecute(r DefaultApiOrganizationsOrgIdRolegroupsPostRequest) (*Rolegroup, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsPostExecute(r DefaultAPIOrganizationsOrgIdRolegroupsPostRequest) (*Rolegroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -169,7 +169,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsPostExecute(r DefaultApi
 		localVarReturnValue  *Rolegroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdRolegroupsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdRolegroupsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -248,14 +248,14 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsPostExecute(r DefaultApi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	rolegroupId string
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest) Execute() ([]string, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest) Execute() ([]string, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdRolegroupsRolegroupIdDeleteExecute(r)
 }
 
@@ -267,10 +267,10 @@ Delete a rolegroup
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param rolegroupId The id of a rolegroup
- @return DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdDelete(ctx context.Context, orgId string, rolegroupId string) DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest {
-	return DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsRolegroupIdDelete(ctx context.Context, orgId string, rolegroupId string) DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -280,7 +280,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdDelete(ctx co
 
 // Execute executes the request
 //  @return []string
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdDeleteExecute(r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest) ([]string, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsRolegroupIdDeleteExecute(r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdDeleteRequest) ([]string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -288,7 +288,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdDeleteExecute
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdRolegroupsRolegroupIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdRolegroupsRolegroupIdDelete")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -355,14 +355,14 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdDeleteExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	rolegroupId string
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdGetRequest) Execute() (*Rolegroup, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdGetRequest) Execute() (*Rolegroup, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdRolegroupsRolegroupIdGetExecute(r)
 }
 
@@ -374,10 +374,10 @@ Retrieves a rolegroup by id
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param rolegroupId The id of rolegroup
- @return DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdGet(ctx context.Context, orgId string, rolegroupId string) DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdGetRequest {
-	return DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsRolegroupIdGet(ctx context.Context, orgId string, rolegroupId string) DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -387,7 +387,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdGet(ctx conte
 
 // Execute executes the request
 //  @return Rolegroup
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdGetExecute(r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdGetRequest) (*Rolegroup, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsRolegroupIdGetExecute(r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdGetRequest) (*Rolegroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -395,7 +395,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdGetExecute(r 
 		localVarReturnValue  *Rolegroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdRolegroupsRolegroupIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdRolegroupsRolegroupIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -462,20 +462,20 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdGetExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest struct {
+type DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	rolegroupId string
 	rolegroupPutBody *RolegroupPutBody
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest) RolegroupPutBody(rolegroupPutBody RolegroupPutBody) DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest) RolegroupPutBody(rolegroupPutBody RolegroupPutBody) DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest {
 	r.rolegroupPutBody = &rolegroupPutBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest) Execute() (*Rolegroup, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest) Execute() (*Rolegroup, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdRolegroupsRolegroupIdPutExecute(r)
 }
 
@@ -487,10 +487,10 @@ Update a role gorup, implemented as a patch. Note that only the name (must be un
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param rolegroupId The id of an rolegroup
- @return DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest
+ @return DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdPut(ctx context.Context, orgId string, rolegroupId string) DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest {
-	return DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsRolegroupIdPut(ctx context.Context, orgId string, rolegroupId string) DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest {
+	return DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -500,7 +500,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdPut(ctx conte
 
 // Execute executes the request
 //  @return Rolegroup
-func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdPutExecute(r DefaultApiOrganizationsOrgIdRolegroupsRolegroupIdPutRequest) (*Rolegroup, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdRolegroupsRolegroupIdPutExecute(r DefaultAPIOrganizationsOrgIdRolegroupsRolegroupIdPutRequest) (*Rolegroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -508,7 +508,7 @@ func (a *DefaultApiService) OrganizationsOrgIdRolegroupsRolegroupIdPutExecute(r 
 		localVarReturnValue  *Rolegroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdRolegroupsRolegroupIdPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdRolegroupsRolegroupIdPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -9,7 +9,7 @@ docs/Action.md
 docs/Alert.md
 docs/AlertBody.md
 docs/Condition.md
-docs/DefaultApi.md
+docs/DefaultAPI.md
 git_push.sh
 go.mod
 go.sum

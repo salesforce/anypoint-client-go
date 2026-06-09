@@ -5,6 +5,7 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
+docs/ApimAsset.md
 docs/ApimInstanceCollection.md
 docs/ApimInstanceCollectionAssetsInner.md
 docs/ApimInstanceCollectionAssetsInnerApisInner.md
@@ -14,7 +15,8 @@ docs/ApimInstancePostBody.md
 docs/ApimInstancePostResponse.md
 docs/Audit.md
 docs/AuditCreated.md
-docs/DefaultApi.md
+docs/Console.md
+docs/DefaultAPI.md
 docs/Deployment.md
 docs/DeploymentPostBody.md
 docs/Endpoint.md
@@ -35,6 +37,7 @@ docs/Spec.md
 git_push.sh
 go.mod
 go.sum
+model_apim_asset.go
 model_apim_instance_collection.go
 model_apim_instance_collection_assets_inner.go
 model_apim_instance_collection_assets_inner_apis_inner.go
@@ -44,6 +47,7 @@ model_apim_instance_post_body.go
 model_apim_instance_post_response.go
 model_audit.go
 model_audit_created.go
+model_console.go
 model_deployment.go
 model_deployment_post_body.go
 model_endpoint.go

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Id** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**IsProduction** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**Name** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**OrganizationId** | **string** | An explanation about the purpose of this instance. | [default to ""]
-**Type** | **string** | An explanation about the purpose of this instance. | [default to ""]
+**ClientId** | Pointer to **string** | The client id of the environment. | [optional] [default to ""]
+**Id** | Pointer to **string** | The id of the environment. | [optional] [default to ""]
+**IsProduction** | Pointer to **bool** | Whether the environment is a production environment. | [optional] [default to false]
+**Name** | Pointer to **string** | The name of the environment. | [optional] [default to ""]
+**OrganizationId** | Pointer to **string** | The id of the organization. | [optional] [default to ""]
+**Type** | Pointer to **string** | The type of the environment. | [optional] [default to ""]
 
 ## Methods
 
 ### NewEnvironment
 
-`func NewEnvironment(clientId string, id string, isProduction bool, name string, organizationId string, type_ string, ) *Environment`
+`func NewEnvironment() *Environment`
 
 NewEnvironment instantiates a new Environment object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetClientId sets ClientId field to given value.
 
+### HasClientId
+
+`func (o *Environment) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
 
 ### GetId
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Environment) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetIsProduction
 
@@ -89,6 +99,11 @@ and a boolean to check if the value has been set.
 
 SetIsProduction sets IsProduction field to given value.
 
+### HasIsProduction
+
+`func (o *Environment) HasIsProduction() bool`
+
+HasIsProduction returns a boolean if a field has been set.
 
 ### GetName
 
@@ -109,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *Environment) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetOrganizationId
 
@@ -129,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetOrganizationId sets OrganizationId field to given value.
 
+### HasOrganizationId
+
+`func (o *Environment) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 ### GetType
 
@@ -149,6 +174,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *Environment) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

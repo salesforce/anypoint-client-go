@@ -20,17 +20,17 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiGetFlexGatewayRegistrationTokenRequest struct {
+type DefaultAPIGetFlexGatewayRegistrationTokenRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 }
 
-func (r DefaultApiGetFlexGatewayRegistrationTokenRequest) Execute() (*FlexGatewayRegistrationToken, *http.Response, error) {
+func (r DefaultAPIGetFlexGatewayRegistrationTokenRequest) Execute() (*FlexGatewayRegistrationToken, *http.Response, error) {
 	return r.ApiService.GetFlexGatewayRegistrationTokenExecute(r)
 }
 
@@ -42,10 +42,10 @@ Retrieves the flex gateway registration token.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param envId The environment Id
- @return DefaultApiGetFlexGatewayRegistrationTokenRequest
+ @return DefaultAPIGetFlexGatewayRegistrationTokenRequest
 */
-func (a *DefaultApiService) GetFlexGatewayRegistrationToken(ctx context.Context, orgId string, envId string) DefaultApiGetFlexGatewayRegistrationTokenRequest {
-	return DefaultApiGetFlexGatewayRegistrationTokenRequest{
+func (a *DefaultAPIService) GetFlexGatewayRegistrationToken(ctx context.Context, orgId string, envId string) DefaultAPIGetFlexGatewayRegistrationTokenRequest {
+	return DefaultAPIGetFlexGatewayRegistrationTokenRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -55,7 +55,7 @@ func (a *DefaultApiService) GetFlexGatewayRegistrationToken(ctx context.Context,
 
 // Execute executes the request
 //  @return FlexGatewayRegistrationToken
-func (a *DefaultApiService) GetFlexGatewayRegistrationTokenExecute(r DefaultApiGetFlexGatewayRegistrationTokenRequest) (*FlexGatewayRegistrationToken, *http.Response, error) {
+func (a *DefaultAPIService) GetFlexGatewayRegistrationTokenExecute(r DefaultAPIGetFlexGatewayRegistrationTokenRequest) (*FlexGatewayRegistrationToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -63,7 +63,7 @@ func (a *DefaultApiService) GetFlexGatewayRegistrationTokenExecute(r DefaultApiG
 		localVarReturnValue  *FlexGatewayRegistrationToken
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFlexGatewayRegistrationToken")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFlexGatewayRegistrationToken")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -130,15 +130,15 @@ func (a *DefaultApiService) GetFlexGatewayRegistrationTokenExecute(r DefaultApiG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetFlexGatewayTargetApisRequest struct {
+type DefaultAPIGetFlexGatewayTargetApisRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	flexGatewayTargetId string
 }
 
-func (r DefaultApiGetFlexGatewayTargetApisRequest) Execute() (*FlexGatewayTargetApis, *http.Response, error) {
+func (r DefaultAPIGetFlexGatewayTargetApisRequest) Execute() (*FlexGatewayTargetApis, *http.Response, error) {
 	return r.ApiService.GetFlexGatewayTargetApisExecute(r)
 }
 
@@ -151,10 +151,10 @@ Retrieves all APIs within a particular flex gateway target within a organization
  @param orgId The organization Id
  @param envId The environment Id
  @param flexGatewayTargetId The flex gateway target Id
- @return DefaultApiGetFlexGatewayTargetApisRequest
+ @return DefaultAPIGetFlexGatewayTargetApisRequest
 */
-func (a *DefaultApiService) GetFlexGatewayTargetApis(ctx context.Context, orgId string, envId string, flexGatewayTargetId string) DefaultApiGetFlexGatewayTargetApisRequest {
-	return DefaultApiGetFlexGatewayTargetApisRequest{
+func (a *DefaultAPIService) GetFlexGatewayTargetApis(ctx context.Context, orgId string, envId string, flexGatewayTargetId string) DefaultAPIGetFlexGatewayTargetApisRequest {
+	return DefaultAPIGetFlexGatewayTargetApisRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -165,7 +165,7 @@ func (a *DefaultApiService) GetFlexGatewayTargetApis(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return FlexGatewayTargetApis
-func (a *DefaultApiService) GetFlexGatewayTargetApisExecute(r DefaultApiGetFlexGatewayTargetApisRequest) (*FlexGatewayTargetApis, *http.Response, error) {
+func (a *DefaultAPIService) GetFlexGatewayTargetApisExecute(r DefaultAPIGetFlexGatewayTargetApisRequest) (*FlexGatewayTargetApis, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -173,7 +173,7 @@ func (a *DefaultApiService) GetFlexGatewayTargetApisExecute(r DefaultApiGetFlexG
 		localVarReturnValue  *FlexGatewayTargetApis
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFlexGatewayTargetApis")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFlexGatewayTargetApis")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -241,15 +241,15 @@ func (a *DefaultApiService) GetFlexGatewayTargetApisExecute(r DefaultApiGetFlexG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetFlexGatewayTargetByIdRequest struct {
+type DefaultAPIGetFlexGatewayTargetByIdRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	flexGatewayTargetId string
 }
 
-func (r DefaultApiGetFlexGatewayTargetByIdRequest) Execute() (*FlexGatewayTargetDetails, *http.Response, error) {
+func (r DefaultAPIGetFlexGatewayTargetByIdRequest) Execute() (*FlexGatewayTargetDetails, *http.Response, error) {
 	return r.ApiService.GetFlexGatewayTargetByIdExecute(r)
 }
 
@@ -262,10 +262,10 @@ Retrieves a flex gateway target using the given id within the given organization
  @param orgId The organization Id
  @param envId The environment Id
  @param flexGatewayTargetId The flex gateway target Id
- @return DefaultApiGetFlexGatewayTargetByIdRequest
+ @return DefaultAPIGetFlexGatewayTargetByIdRequest
 */
-func (a *DefaultApiService) GetFlexGatewayTargetById(ctx context.Context, orgId string, envId string, flexGatewayTargetId string) DefaultApiGetFlexGatewayTargetByIdRequest {
-	return DefaultApiGetFlexGatewayTargetByIdRequest{
+func (a *DefaultAPIService) GetFlexGatewayTargetById(ctx context.Context, orgId string, envId string, flexGatewayTargetId string) DefaultAPIGetFlexGatewayTargetByIdRequest {
+	return DefaultAPIGetFlexGatewayTargetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -276,7 +276,7 @@ func (a *DefaultApiService) GetFlexGatewayTargetById(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return FlexGatewayTargetDetails
-func (a *DefaultApiService) GetFlexGatewayTargetByIdExecute(r DefaultApiGetFlexGatewayTargetByIdRequest) (*FlexGatewayTargetDetails, *http.Response, error) {
+func (a *DefaultAPIService) GetFlexGatewayTargetByIdExecute(r DefaultAPIGetFlexGatewayTargetByIdRequest) (*FlexGatewayTargetDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -284,7 +284,7 @@ func (a *DefaultApiService) GetFlexGatewayTargetByIdExecute(r DefaultApiGetFlexG
 		localVarReturnValue  *FlexGatewayTargetDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFlexGatewayTargetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFlexGatewayTargetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -352,14 +352,14 @@ func (a *DefaultApiService) GetFlexGatewayTargetByIdExecute(r DefaultApiGetFlexG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetFlexGatewayTargetsRequest struct {
+type DefaultAPIGetFlexGatewayTargetsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 }
 
-func (r DefaultApiGetFlexGatewayTargetsRequest) Execute() ([]FlexGatewayTargetSummary, *http.Response, error) {
+func (r DefaultAPIGetFlexGatewayTargetsRequest) Execute() ([]FlexGatewayTargetSummary, *http.Response, error) {
 	return r.ApiService.GetFlexGatewayTargetsExecute(r)
 }
 
@@ -371,10 +371,10 @@ Retrieves all flex gateway target within an organization and environment
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
  @param envId The environment Id
- @return DefaultApiGetFlexGatewayTargetsRequest
+ @return DefaultAPIGetFlexGatewayTargetsRequest
 */
-func (a *DefaultApiService) GetFlexGatewayTargets(ctx context.Context, orgId string, envId string) DefaultApiGetFlexGatewayTargetsRequest {
-	return DefaultApiGetFlexGatewayTargetsRequest{
+func (a *DefaultAPIService) GetFlexGatewayTargets(ctx context.Context, orgId string, envId string) DefaultAPIGetFlexGatewayTargetsRequest {
+	return DefaultAPIGetFlexGatewayTargetsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -384,7 +384,7 @@ func (a *DefaultApiService) GetFlexGatewayTargets(ctx context.Context, orgId str
 
 // Execute executes the request
 //  @return []FlexGatewayTargetSummary
-func (a *DefaultApiService) GetFlexGatewayTargetsExecute(r DefaultApiGetFlexGatewayTargetsRequest) ([]FlexGatewayTargetSummary, *http.Response, error) {
+func (a *DefaultAPIService) GetFlexGatewayTargetsExecute(r DefaultAPIGetFlexGatewayTargetsRequest) ([]FlexGatewayTargetSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -392,7 +392,7 @@ func (a *DefaultApiService) GetFlexGatewayTargetsExecute(r DefaultApiGetFlexGate
 		localVarReturnValue  []FlexGatewayTargetSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFlexGatewayTargets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFlexGatewayTargets")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

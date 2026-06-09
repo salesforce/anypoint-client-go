@@ -23,7 +23,7 @@ type EndpointPostBody struct {
 	MuleVersion4OrAbove *bool `json:"muleVersion4OrAbove,omitempty"`
 	Uri *string `json:"uri,omitempty"`
 	Type *string `json:"type,omitempty"`
-	IsCloudHub NullableString `json:"isCloudHub,omitempty"`
+	IsCloudHub NullableBool `json:"isCloudHub,omitempty"`
 	ProxyUri NullableString `json:"proxyUri,omitempty"`
 	ProxyRegistrationUri NullableString `json:"proxyRegistrationUri,omitempty"`
 	ReferencesUserDomain NullableString `json:"referencesUserDomain,omitempty"`
@@ -177,9 +177,9 @@ func (o *EndpointPostBody) SetType(v string) {
 }
 
 // GetIsCloudHub returns the IsCloudHub field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EndpointPostBody) GetIsCloudHub() string {
+func (o *EndpointPostBody) GetIsCloudHub() bool {
 	if o == nil || IsNil(o.IsCloudHub.Get()) {
-		var ret string
+		var ret bool
 		return ret
 	}
 	return *o.IsCloudHub.Get()
@@ -188,7 +188,7 @@ func (o *EndpointPostBody) GetIsCloudHub() string {
 // GetIsCloudHubOk returns a tuple with the IsCloudHub field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EndpointPostBody) GetIsCloudHubOk() (*string, bool) {
+func (o *EndpointPostBody) GetIsCloudHubOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *EndpointPostBody) HasIsCloudHub() bool {
 	return false
 }
 
-// SetIsCloudHub gets a reference to the given NullableString and assigns it to the IsCloudHub field.
-func (o *EndpointPostBody) SetIsCloudHub(v string) {
+// SetIsCloudHub gets a reference to the given NullableBool and assigns it to the IsCloudHub field.
+func (o *EndpointPostBody) SetIsCloudHub(v bool) {
 	o.IsCloudHub.Set(&v)
 }
 // SetIsCloudHubNil sets the value for IsCloudHub to be an explicit nil

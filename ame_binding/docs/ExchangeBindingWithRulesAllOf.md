@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rules** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**RoutingRules** | Pointer to **[]map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewExchangeBindingWithRulesAllOfWithDefaults instantiates a new ExchangeBindingW
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRules
+### GetRoutingRules
 
-`func (o *ExchangeBindingWithRulesAllOf) GetRules() []map[string]interface{}`
+`func (o *ExchangeBindingWithRulesAllOf) GetRoutingRules() []map[string]interface{}`
 
-GetRules returns the Rules field if non-nil, zero value otherwise.
+GetRoutingRules returns the RoutingRules field if non-nil, zero value otherwise.
 
-### GetRulesOk
+### GetRoutingRulesOk
 
-`func (o *ExchangeBindingWithRulesAllOf) GetRulesOk() (*[]map[string]interface{}, bool)`
+`func (o *ExchangeBindingWithRulesAllOf) GetRoutingRulesOk() (*[]map[string]interface{}, bool)`
 
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+GetRoutingRulesOk returns a tuple with the RoutingRules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRules
+### SetRoutingRules
 
-`func (o *ExchangeBindingWithRulesAllOf) SetRules(v []map[string]interface{})`
+`func (o *ExchangeBindingWithRulesAllOf) SetRoutingRules(v []map[string]interface{})`
 
-SetRules sets Rules field to given value.
+SetRoutingRules sets RoutingRules field to given value.
 
-### HasRules
+### HasRoutingRules
 
-`func (o *ExchangeBindingWithRulesAllOf) HasRules() bool`
+`func (o *ExchangeBindingWithRulesAllOf) HasRoutingRules() bool`
 
-HasRules returns a boolean if a field has been set.
+HasRoutingRules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -136,7 +136,7 @@ func (o *EndpointTlsContexts) GetOutboundOk() (map[string]interface{}, bool) {
 
 // HasOutbound returns a boolean if a field has been set.
 func (o *EndpointTlsContexts) HasOutbound() bool {
-	if o != nil && IsNil(o.Outbound) {
+	if o != nil && !IsNil(o.Outbound) {
 		return true
 	}
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **MuleVersion4OrAbove** | Pointer to **bool** |  | [optional] 
 **Uri** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**IsCloudHub** | Pointer to **NullableString** |  | [optional] 
+**IsCloudHub** | Pointer to **NullableBool** |  | [optional] 
 **ProxyUri** | Pointer to **NullableString** |  | [optional] 
 **ProxyRegistrationUri** | Pointer to **NullableString** |  | [optional] 
 **ReferencesUserDomain** | Pointer to **NullableString** |  | [optional] 
@@ -136,20 +136,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetIsCloudHub
 
-`func (o *EndpointPostBody) GetIsCloudHub() string`
+`func (o *EndpointPostBody) GetIsCloudHub() bool`
 
 GetIsCloudHub returns the IsCloudHub field if non-nil, zero value otherwise.
 
 ### GetIsCloudHubOk
 
-`func (o *EndpointPostBody) GetIsCloudHubOk() (*string, bool)`
+`func (o *EndpointPostBody) GetIsCloudHubOk() (*bool, bool)`
 
 GetIsCloudHubOk returns a tuple with the IsCloudHub field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsCloudHub
 
-`func (o *EndpointPostBody) SetIsCloudHub(v string)`
+`func (o *EndpointPostBody) SetIsCloudHub(v bool)`
 
 SetIsCloudHub sets IsCloudHub field to given value.
 

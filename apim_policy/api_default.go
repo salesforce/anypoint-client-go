@@ -20,19 +20,19 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiDeleteApimPolicyRequest struct {
+type DefaultAPIDeleteApimPolicyRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
 	apiPolicyId string
 }
 
-func (r DefaultApiDeleteApimPolicyRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteApimPolicyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteApimPolicyExecute(r)
 }
 
@@ -46,10 +46,10 @@ Delete a specific api manager instance policy in a given organization and enviro
  @param envId The environment Id
  @param apiId The api manager instance Id
  @param apiPolicyId The api manager instance policy Id
- @return DefaultApiDeleteApimPolicyRequest
+ @return DefaultAPIDeleteApimPolicyRequest
 */
-func (a *DefaultApiService) DeleteApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultApiDeleteApimPolicyRequest {
-	return DefaultApiDeleteApimPolicyRequest{
+func (a *DefaultAPIService) DeleteApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIDeleteApimPolicyRequest {
+	return DefaultAPIDeleteApimPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -60,14 +60,14 @@ func (a *DefaultApiService) DeleteApimPolicy(ctx context.Context, orgId string, 
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteApimPolicyExecute(r DefaultApiDeleteApimPolicyRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteApimPolicyExecute(r DefaultAPIDeleteApimPolicyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteApimPolicy")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteApimPolicy")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -138,16 +138,16 @@ func (a *DefaultApiService) DeleteApimPolicyExecute(r DefaultApiDeleteApimPolicy
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiDisableApimPolicyRequest struct {
+type DefaultAPIDisableApimPolicyRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
 	apiPolicyId string
 }
 
-func (r DefaultApiDisableApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
+func (r DefaultAPIDisableApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
 	return r.ApiService.DisableApimPolicyExecute(r)
 }
 
@@ -161,10 +161,10 @@ Disable a specific api manager instance policy in a given organization and envir
  @param envId The environment Id
  @param apiId The api manager instance Id
  @param apiPolicyId The api manager instance policy Id
- @return DefaultApiDisableApimPolicyRequest
+ @return DefaultAPIDisableApimPolicyRequest
 */
-func (a *DefaultApiService) DisableApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultApiDisableApimPolicyRequest {
-	return DefaultApiDisableApimPolicyRequest{
+func (a *DefaultAPIService) DisableApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIDisableApimPolicyRequest {
+	return DefaultAPIDisableApimPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -176,7 +176,7 @@ func (a *DefaultApiService) DisableApimPolicy(ctx context.Context, orgId string,
 
 // Execute executes the request
 //  @return ApimPolicy
-func (a *DefaultApiService) DisableApimPolicyExecute(r DefaultApiDisableApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
+func (a *DefaultAPIService) DisableApimPolicyExecute(r DefaultAPIDisableApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -184,7 +184,7 @@ func (a *DefaultApiService) DisableApimPolicyExecute(r DefaultApiDisableApimPoli
 		localVarReturnValue  *ApimPolicy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableApimPolicy")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableApimPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -264,16 +264,16 @@ func (a *DefaultApiService) DisableApimPolicyExecute(r DefaultApiDisableApimPoli
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiEnableApimPolicyRequest struct {
+type DefaultAPIEnableApimPolicyRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
 	apiPolicyId string
 }
 
-func (r DefaultApiEnableApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
+func (r DefaultAPIEnableApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
 	return r.ApiService.EnableApimPolicyExecute(r)
 }
 
@@ -287,10 +287,10 @@ Enable a specific api manager instance policy in a given organization and enviro
  @param envId The environment Id
  @param apiId The api manager instance Id
  @param apiPolicyId The api manager instance policy Id
- @return DefaultApiEnableApimPolicyRequest
+ @return DefaultAPIEnableApimPolicyRequest
 */
-func (a *DefaultApiService) EnableApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultApiEnableApimPolicyRequest {
-	return DefaultApiEnableApimPolicyRequest{
+func (a *DefaultAPIService) EnableApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIEnableApimPolicyRequest {
+	return DefaultAPIEnableApimPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -302,7 +302,7 @@ func (a *DefaultApiService) EnableApimPolicy(ctx context.Context, orgId string, 
 
 // Execute executes the request
 //  @return ApimPolicy
-func (a *DefaultApiService) EnableApimPolicyExecute(r DefaultApiEnableApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
+func (a *DefaultAPIService) EnableApimPolicyExecute(r DefaultAPIEnableApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -310,7 +310,7 @@ func (a *DefaultApiService) EnableApimPolicyExecute(r DefaultApiEnableApimPolicy
 		localVarReturnValue  *ApimPolicy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableApimPolicy")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableApimPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -390,21 +390,21 @@ func (a *DefaultApiService) EnableApimPolicyExecute(r DefaultApiEnableApimPolicy
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetApimPoliciesRequest struct {
+type DefaultAPIGetApimPoliciesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
 	fullInfo *bool
 }
 
-func (r DefaultApiGetApimPoliciesRequest) FullInfo(fullInfo bool) DefaultApiGetApimPoliciesRequest {
+func (r DefaultAPIGetApimPoliciesRequest) FullInfo(fullInfo bool) DefaultAPIGetApimPoliciesRequest {
 	r.fullInfo = &fullInfo
 	return r
 }
 
-func (r DefaultApiGetApimPoliciesRequest) Execute() (*ApimPolicyCollection, *http.Response, error) {
+func (r DefaultAPIGetApimPoliciesRequest) Execute() (*ApimPolicyCollection, *http.Response, error) {
 	return r.ApiService.GetApimPoliciesExecute(r)
 }
 
@@ -417,10 +417,10 @@ Retrieve all of api manager instance policies in a given organization and enviro
  @param orgId The organization Id
  @param envId The environment Id
  @param apiId The api manager instance Id
- @return DefaultApiGetApimPoliciesRequest
+ @return DefaultAPIGetApimPoliciesRequest
 */
-func (a *DefaultApiService) GetApimPolicies(ctx context.Context, orgId string, envId string, apiId string) DefaultApiGetApimPoliciesRequest {
-	return DefaultApiGetApimPoliciesRequest{
+func (a *DefaultAPIService) GetApimPolicies(ctx context.Context, orgId string, envId string, apiId string) DefaultAPIGetApimPoliciesRequest {
+	return DefaultAPIGetApimPoliciesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -431,7 +431,7 @@ func (a *DefaultApiService) GetApimPolicies(ctx context.Context, orgId string, e
 
 // Execute executes the request
 //  @return ApimPolicyCollection
-func (a *DefaultApiService) GetApimPoliciesExecute(r DefaultApiGetApimPoliciesRequest) (*ApimPolicyCollection, *http.Response, error) {
+func (a *DefaultAPIService) GetApimPoliciesExecute(r DefaultAPIGetApimPoliciesRequest) (*ApimPolicyCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -439,7 +439,7 @@ func (a *DefaultApiService) GetApimPoliciesExecute(r DefaultApiGetApimPoliciesRe
 		localVarReturnValue  *ApimPolicyCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetApimPolicies")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimPolicies")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -454,7 +454,10 @@ func (a *DefaultApiService) GetApimPoliciesExecute(r DefaultApiGetApimPoliciesRe
 	localVarFormParams := url.Values{}
 
 	if r.fullInfo != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fullInfo", r.fullInfo, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fullInfo", r.fullInfo, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.fullInfo = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -521,16 +524,16 @@ func (a *DefaultApiService) GetApimPoliciesExecute(r DefaultApiGetApimPoliciesRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetApimPolicyRequest struct {
+type DefaultAPIGetApimPolicyRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
 	apiPolicyId string
 }
 
-func (r DefaultApiGetApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
+func (r DefaultAPIGetApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
 	return r.ApiService.GetApimPolicyExecute(r)
 }
 
@@ -544,10 +547,10 @@ Retrieve a specific api manager instance policy in a given organization and envi
  @param envId The environment Id
  @param apiId The api manager instance Id
  @param apiPolicyId The api manager instance policy Id
- @return DefaultApiGetApimPolicyRequest
+ @return DefaultAPIGetApimPolicyRequest
 */
-func (a *DefaultApiService) GetApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultApiGetApimPolicyRequest {
-	return DefaultApiGetApimPolicyRequest{
+func (a *DefaultAPIService) GetApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIGetApimPolicyRequest {
+	return DefaultAPIGetApimPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -559,7 +562,7 @@ func (a *DefaultApiService) GetApimPolicy(ctx context.Context, orgId string, env
 
 // Execute executes the request
 //  @return ApimPolicy
-func (a *DefaultApiService) GetApimPolicyExecute(r DefaultApiGetApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
+func (a *DefaultAPIService) GetApimPolicyExecute(r DefaultAPIGetApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -567,7 +570,7 @@ func (a *DefaultApiService) GetApimPolicyExecute(r DefaultApiGetApimPolicyReques
 		localVarReturnValue  *ApimPolicy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetApimPolicy")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -647,20 +650,20 @@ func (a *DefaultApiService) GetApimPolicyExecute(r DefaultApiGetApimPolicyReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetOrgAutomatedPoliciesRequest struct {
+type DefaultAPIGetOrgAutomatedPoliciesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	environmentId *string
 }
 
 // A environment id
-func (r DefaultApiGetOrgAutomatedPoliciesRequest) EnvironmentId(environmentId string) DefaultApiGetOrgAutomatedPoliciesRequest {
+func (r DefaultAPIGetOrgAutomatedPoliciesRequest) EnvironmentId(environmentId string) DefaultAPIGetOrgAutomatedPoliciesRequest {
 	r.environmentId = &environmentId
 	return r
 }
 
-func (r DefaultApiGetOrgAutomatedPoliciesRequest) Execute() (*AutomatedPolicyCollection, *http.Response, error) {
+func (r DefaultAPIGetOrgAutomatedPoliciesRequest) Execute() (*AutomatedPolicyCollection, *http.Response, error) {
 	return r.ApiService.GetOrgAutomatedPoliciesExecute(r)
 }
 
@@ -671,10 +674,10 @@ Retrieves all automated policies of a given organization and optionally environm
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
- @return DefaultApiGetOrgAutomatedPoliciesRequest
+ @return DefaultAPIGetOrgAutomatedPoliciesRequest
 */
-func (a *DefaultApiService) GetOrgAutomatedPolicies(ctx context.Context, orgId string) DefaultApiGetOrgAutomatedPoliciesRequest {
-	return DefaultApiGetOrgAutomatedPoliciesRequest{
+func (a *DefaultAPIService) GetOrgAutomatedPolicies(ctx context.Context, orgId string) DefaultAPIGetOrgAutomatedPoliciesRequest {
+	return DefaultAPIGetOrgAutomatedPoliciesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -683,7 +686,7 @@ func (a *DefaultApiService) GetOrgAutomatedPolicies(ctx context.Context, orgId s
 
 // Execute executes the request
 //  @return AutomatedPolicyCollection
-func (a *DefaultApiService) GetOrgAutomatedPoliciesExecute(r DefaultApiGetOrgAutomatedPoliciesRequest) (*AutomatedPolicyCollection, *http.Response, error) {
+func (a *DefaultAPIService) GetOrgAutomatedPoliciesExecute(r DefaultAPIGetOrgAutomatedPoliciesRequest) (*AutomatedPolicyCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -691,7 +694,7 @@ func (a *DefaultApiService) GetOrgAutomatedPoliciesExecute(r DefaultApiGetOrgAut
 		localVarReturnValue  *AutomatedPolicyCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrgAutomatedPolicies")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetOrgAutomatedPolicies")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -704,7 +707,7 @@ func (a *DefaultApiService) GetOrgAutomatedPoliciesExecute(r DefaultApiGetOrgAut
 	localVarFormParams := url.Values{}
 
 	if r.environmentId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "environmentId", r.environmentId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "environmentId", r.environmentId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -771,9 +774,9 @@ func (a *DefaultApiService) GetOrgAutomatedPoliciesExecute(r DefaultApiGetOrgAut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetOrgCustomPolicyTemplatesRequest struct {
+type DefaultAPIGetOrgCustomPolicyTemplatesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	query *string
 	offset *int32
@@ -783,36 +786,36 @@ type DefaultApiGetOrgCustomPolicyTemplatesRequest struct {
 }
 
 // Search criteria.
-func (r DefaultApiGetOrgCustomPolicyTemplatesRequest) Query(query string) DefaultApiGetOrgCustomPolicyTemplatesRequest {
+func (r DefaultAPIGetOrgCustomPolicyTemplatesRequest) Query(query string) DefaultAPIGetOrgCustomPolicyTemplatesRequest {
 	r.query = &query
 	return r
 }
 
 // Skip over a number of elements by specifying an offset value for the query.
-func (r DefaultApiGetOrgCustomPolicyTemplatesRequest) Offset(offset int32) DefaultApiGetOrgCustomPolicyTemplatesRequest {
+func (r DefaultAPIGetOrgCustomPolicyTemplatesRequest) Offset(offset int32) DefaultAPIGetOrgCustomPolicyTemplatesRequest {
 	r.offset = &offset
 	return r
 }
 
 // Order for sorting.
-func (r DefaultApiGetOrgCustomPolicyTemplatesRequest) Ascending(ascending bool) DefaultApiGetOrgCustomPolicyTemplatesRequest {
+func (r DefaultAPIGetOrgCustomPolicyTemplatesRequest) Ascending(ascending bool) DefaultAPIGetOrgCustomPolicyTemplatesRequest {
 	r.ascending = &ascending
 	return r
 }
 
 // Property to sort by.
-func (r DefaultApiGetOrgCustomPolicyTemplatesRequest) Sort(sort string) DefaultApiGetOrgCustomPolicyTemplatesRequest {
+func (r DefaultAPIGetOrgCustomPolicyTemplatesRequest) Sort(sort string) DefaultAPIGetOrgCustomPolicyTemplatesRequest {
 	r.sort = &sort
 	return r
 }
 
 // Limit the number of elements on the response.
-func (r DefaultApiGetOrgCustomPolicyTemplatesRequest) Limit(limit int32) DefaultApiGetOrgCustomPolicyTemplatesRequest {
+func (r DefaultAPIGetOrgCustomPolicyTemplatesRequest) Limit(limit int32) DefaultAPIGetOrgCustomPolicyTemplatesRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r DefaultApiGetOrgCustomPolicyTemplatesRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIGetOrgCustomPolicyTemplatesRequest) Execute() (*http.Response, error) {
 	return r.ApiService.GetOrgCustomPolicyTemplatesExecute(r)
 }
 
@@ -823,10 +826,10 @@ Retrieves all or part of custom policy templates of a given organization.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
- @return DefaultApiGetOrgCustomPolicyTemplatesRequest
+ @return DefaultAPIGetOrgCustomPolicyTemplatesRequest
 */
-func (a *DefaultApiService) GetOrgCustomPolicyTemplates(ctx context.Context, orgId string) DefaultApiGetOrgCustomPolicyTemplatesRequest {
-	return DefaultApiGetOrgCustomPolicyTemplatesRequest{
+func (a *DefaultAPIService) GetOrgCustomPolicyTemplates(ctx context.Context, orgId string) DefaultAPIGetOrgCustomPolicyTemplatesRequest {
+	return DefaultAPIGetOrgCustomPolicyTemplatesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -834,14 +837,14 @@ func (a *DefaultApiService) GetOrgCustomPolicyTemplates(ctx context.Context, org
 }
 
 // Execute executes the request
-func (a *DefaultApiService) GetOrgCustomPolicyTemplatesExecute(r DefaultApiGetOrgCustomPolicyTemplatesRequest) (*http.Response, error) {
+func (a *DefaultAPIService) GetOrgCustomPolicyTemplatesExecute(r DefaultAPIGetOrgCustomPolicyTemplatesRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrgCustomPolicyTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetOrgCustomPolicyTemplates")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -854,19 +857,19 @@ func (a *DefaultApiService) GetOrgCustomPolicyTemplatesExecute(r DefaultApiGetOr
 	localVarFormParams := url.Values{}
 
 	if r.query != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ascending != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ascending", r.ascending, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ascending", r.ascending, "form", "")
 	}
 	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -924,30 +927,37 @@ func (a *DefaultApiService) GetOrgCustomPolicyTemplatesExecute(r DefaultApiGetOr
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetOrgExchangePolicyTemplateDetailsRequest struct {
+type DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	groupId string
 	assetId string
 	assetVersion string
 	includeAllVersions *bool
 	splitModel *bool
+	apiInstanceId *string
 }
 
 // Whether to include all versions of the asset.
-func (r DefaultApiGetOrgExchangePolicyTemplateDetailsRequest) IncludeAllVersions(includeAllVersions bool) DefaultApiGetOrgExchangePolicyTemplateDetailsRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest) IncludeAllVersions(includeAllVersions bool) DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest {
 	r.includeAllVersions = &includeAllVersions
 	return r
 }
 
 // Whether to include asset split model.
-func (r DefaultApiGetOrgExchangePolicyTemplateDetailsRequest) SplitModel(splitModel bool) DefaultApiGetOrgExchangePolicyTemplateDetailsRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest) SplitModel(splitModel bool) DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest {
 	r.splitModel = &splitModel
 	return r
 }
 
-func (r DefaultApiGetOrgExchangePolicyTemplateDetailsRequest) Execute() (*ExchangePolicyTemplate, *http.Response, error) {
+// Filter applicability against a specific api instance id.
+func (r DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest) ApiInstanceId(apiInstanceId string) DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest {
+	r.apiInstanceId = &apiInstanceId
+	return r
+}
+
+func (r DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest) Execute() (*ExchangePolicyTemplate, *http.Response, error) {
 	return r.ApiService.GetOrgExchangePolicyTemplateDetailsExecute(r)
 }
 
@@ -961,10 +971,10 @@ Retrieve details of exchange policy template of a given organization.
  @param groupId The group Id
  @param assetId The asset Id
  @param assetVersion The asset version
- @return DefaultApiGetOrgExchangePolicyTemplateDetailsRequest
+ @return DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest
 */
-func (a *DefaultApiService) GetOrgExchangePolicyTemplateDetails(ctx context.Context, orgId string, groupId string, assetId string, assetVersion string) DefaultApiGetOrgExchangePolicyTemplateDetailsRequest {
-	return DefaultApiGetOrgExchangePolicyTemplateDetailsRequest{
+func (a *DefaultAPIService) GetOrgExchangePolicyTemplateDetails(ctx context.Context, orgId string, groupId string, assetId string, assetVersion string) DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest {
+	return DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -976,7 +986,7 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplateDetails(ctx context.Cont
 
 // Execute executes the request
 //  @return ExchangePolicyTemplate
-func (a *DefaultApiService) GetOrgExchangePolicyTemplateDetailsExecute(r DefaultApiGetOrgExchangePolicyTemplateDetailsRequest) (*ExchangePolicyTemplate, *http.Response, error) {
+func (a *DefaultAPIService) GetOrgExchangePolicyTemplateDetailsExecute(r DefaultAPIGetOrgExchangePolicyTemplateDetailsRequest) (*ExchangePolicyTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -984,7 +994,7 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplateDetailsExecute(r Default
 		localVarReturnValue  *ExchangePolicyTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrgExchangePolicyTemplateDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetOrgExchangePolicyTemplateDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1000,10 +1010,13 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplateDetailsExecute(r Default
 	localVarFormParams := url.Values{}
 
 	if r.includeAllVersions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeAllVersions", r.includeAllVersions, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeAllVersions", r.includeAllVersions, "form", "")
 	}
 	if r.splitModel != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "splitModel", r.splitModel, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "splitModel", r.splitModel, "form", "")
+	}
+	if r.apiInstanceId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "apiInstanceId", r.apiInstanceId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1070,9 +1083,9 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplateDetailsExecute(r Default
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetOrgExchangePolicyTemplatesRequest struct {
+type DefaultAPIGetOrgExchangePolicyTemplatesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	environmentId *string
 	splitModel *bool
@@ -1080,45 +1093,52 @@ type DefaultApiGetOrgExchangePolicyTemplatesRequest struct {
 	apiInstanceId *string
 	includeConfiguration *bool
 	automatedOnly *bool
+	injectionPoint *string
 }
 
 // The environment id.
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) EnvironmentId(environmentId string) DefaultApiGetOrgExchangePolicyTemplatesRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) EnvironmentId(environmentId string) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
 	r.environmentId = &environmentId
 	return r
 }
 
 // Whether to include asset split model.
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) SplitModel(splitModel bool) DefaultApiGetOrgExchangePolicyTemplatesRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) SplitModel(splitModel bool) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
 	r.splitModel = &splitModel
 	return r
 }
 
 // include only latest versions.
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) Latest(latest bool) DefaultApiGetOrgExchangePolicyTemplatesRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) Latest(latest bool) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
 	r.latest = &latest
 	return r
 }
 
 // include only templates used for api instance id.
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) ApiInstanceId(apiInstanceId string) DefaultApiGetOrgExchangePolicyTemplatesRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) ApiInstanceId(apiInstanceId string) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
 	r.apiInstanceId = &apiInstanceId
 	return r
 }
 
 // whether to include configuration.
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) IncludeConfiguration(includeConfiguration bool) DefaultApiGetOrgExchangePolicyTemplatesRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) IncludeConfiguration(includeConfiguration bool) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
 	r.includeConfiguration = &includeConfiguration
 	return r
 }
 
 // whether to include automated policies only.
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) AutomatedOnly(automatedOnly bool) DefaultApiGetOrgExchangePolicyTemplatesRequest {
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) AutomatedOnly(automatedOnly bool) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
 	r.automatedOnly = &automatedOnly
 	return r
 }
 
-func (r DefaultApiGetOrgExchangePolicyTemplatesRequest) Execute() ([]ExchangePolicyTemplate, *http.Response, error) {
+// Filter by policy injection point.
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) InjectionPoint(injectionPoint string) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
+	r.injectionPoint = &injectionPoint
+	return r
+}
+
+func (r DefaultAPIGetOrgExchangePolicyTemplatesRequest) Execute() ([]ExchangePolicyTemplate, *http.Response, error) {
 	return r.ApiService.GetOrgExchangePolicyTemplatesExecute(r)
 }
 
@@ -1129,10 +1149,10 @@ Retrieves all or part of exchange policy templates of a given organization.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The organization Id
- @return DefaultApiGetOrgExchangePolicyTemplatesRequest
+ @return DefaultAPIGetOrgExchangePolicyTemplatesRequest
 */
-func (a *DefaultApiService) GetOrgExchangePolicyTemplates(ctx context.Context, orgId string) DefaultApiGetOrgExchangePolicyTemplatesRequest {
-	return DefaultApiGetOrgExchangePolicyTemplatesRequest{
+func (a *DefaultAPIService) GetOrgExchangePolicyTemplates(ctx context.Context, orgId string) DefaultAPIGetOrgExchangePolicyTemplatesRequest {
+	return DefaultAPIGetOrgExchangePolicyTemplatesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1141,7 +1161,7 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplates(ctx context.Context, o
 
 // Execute executes the request
 //  @return []ExchangePolicyTemplate
-func (a *DefaultApiService) GetOrgExchangePolicyTemplatesExecute(r DefaultApiGetOrgExchangePolicyTemplatesRequest) ([]ExchangePolicyTemplate, *http.Response, error) {
+func (a *DefaultAPIService) GetOrgExchangePolicyTemplatesExecute(r DefaultAPIGetOrgExchangePolicyTemplatesRequest) ([]ExchangePolicyTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1149,7 +1169,7 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplatesExecute(r DefaultApiGet
 		localVarReturnValue  []ExchangePolicyTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrgExchangePolicyTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetOrgExchangePolicyTemplates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1162,22 +1182,25 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplatesExecute(r DefaultApiGet
 	localVarFormParams := url.Values{}
 
 	if r.environmentId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "environmentId", r.environmentId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "environmentId", r.environmentId, "form", "")
 	}
 	if r.splitModel != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "splitModel", r.splitModel, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "splitModel", r.splitModel, "form", "")
 	}
 	if r.latest != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "latest", r.latest, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "latest", r.latest, "form", "")
 	}
 	if r.apiInstanceId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "apiInstanceId", r.apiInstanceId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "apiInstanceId", r.apiInstanceId, "form", "")
 	}
 	if r.includeConfiguration != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeConfiguration", r.includeConfiguration, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeConfiguration", r.includeConfiguration, "form", "")
 	}
 	if r.automatedOnly != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "automatedOnly", r.automatedOnly, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "automatedOnly", r.automatedOnly, "form", "")
+	}
+	if r.injectionPoint != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "injectionPoint", r.injectionPoint, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1244,9 +1267,9 @@ func (a *DefaultApiService) GetOrgExchangePolicyTemplatesExecute(r DefaultApiGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchApimPolicyRequest struct {
+type DefaultAPIPatchApimPolicyRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
@@ -1255,12 +1278,12 @@ type DefaultApiPatchApimPolicyRequest struct {
 }
 
 // policy content
-func (r DefaultApiPatchApimPolicyRequest) Body(body map[string]interface{}) DefaultApiPatchApimPolicyRequest {
+func (r DefaultAPIPatchApimPolicyRequest) Body(body map[string]interface{}) DefaultAPIPatchApimPolicyRequest {
 	r.body = &body
 	return r
 }
 
-func (r DefaultApiPatchApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
+func (r DefaultAPIPatchApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
 	return r.ApiService.PatchApimPolicyExecute(r)
 }
 
@@ -1274,10 +1297,10 @@ Update a specific api manager instance policy in a given organization and enviro
  @param envId The environment Id
  @param apiId The api manager instance Id
  @param apiPolicyId The api manager instance policy Id
- @return DefaultApiPatchApimPolicyRequest
+ @return DefaultAPIPatchApimPolicyRequest
 */
-func (a *DefaultApiService) PatchApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultApiPatchApimPolicyRequest {
-	return DefaultApiPatchApimPolicyRequest{
+func (a *DefaultAPIService) PatchApimPolicy(ctx context.Context, orgId string, envId string, apiId string, apiPolicyId string) DefaultAPIPatchApimPolicyRequest {
+	return DefaultAPIPatchApimPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1289,7 +1312,7 @@ func (a *DefaultApiService) PatchApimPolicy(ctx context.Context, orgId string, e
 
 // Execute executes the request
 //  @return ApimPolicy
-func (a *DefaultApiService) PatchApimPolicyExecute(r DefaultApiPatchApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
+func (a *DefaultAPIService) PatchApimPolicyExecute(r DefaultAPIPatchApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1297,7 +1320,7 @@ func (a *DefaultApiService) PatchApimPolicyExecute(r DefaultApiPatchApimPolicyRe
 		localVarReturnValue  *ApimPolicy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchApimPolicy")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchApimPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1379,9 +1402,141 @@ func (a *DefaultApiService) PatchApimPolicyExecute(r DefaultApiPatchApimPolicyRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostApimPolicyRequest struct {
+type DefaultAPIPostApimOutboundPolicyRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
+	orgId string
+	envId string
+	apiId string
+	apimOutboundPolicyBody *ApimOutboundPolicyBody
+}
+
+// outbound policy content
+func (r DefaultAPIPostApimOutboundPolicyRequest) ApimOutboundPolicyBody(apimOutboundPolicyBody ApimOutboundPolicyBody) DefaultAPIPostApimOutboundPolicyRequest {
+	r.apimOutboundPolicyBody = &apimOutboundPolicyBody
+	return r
+}
+
+func (r DefaultAPIPostApimOutboundPolicyRequest) Execute() ([]ApimPolicy, *http.Response, error) {
+	return r.ApiService.PostApimOutboundPolicyExecute(r)
+}
+
+/*
+PostApimOutboundPolicy Create an api manager instance outbound policy.
+
+Create an api manager instance outbound policy in a given organization and environment. The request body must include `upstreamIds` (one or more existing upstream ids). The API creates one policy record per upstream id and returns the array of created policy records. Read/Update/Delete/Enable/Disable use the singular policy endpoints (`PatchApimPolicy` / `DeleteApimPolicy` / `EnableApimPolicy` / `DisableApimPolicy`) with the integer `id` returned here.
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The organization Id
+ @param envId The environment Id
+ @param apiId The api manager instance Id
+ @return DefaultAPIPostApimOutboundPolicyRequest
+*/
+func (a *DefaultAPIService) PostApimOutboundPolicy(ctx context.Context, orgId string, envId string, apiId string) DefaultAPIPostApimOutboundPolicyRequest {
+	return DefaultAPIPostApimOutboundPolicyRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		envId: envId,
+		apiId: apiId,
+	}
+}
+
+// Execute executes the request
+//  @return []ApimPolicy
+func (a *DefaultAPIService) PostApimOutboundPolicyExecute(r DefaultAPIPostApimOutboundPolicyRequest) ([]ApimPolicy, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ApimPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostApimOutboundPolicy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"envId"+"}", url.PathEscape(parameterValueToString(r.envId, "envId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"apiId"+"}", url.PathEscape(parameterValueToString(r.apiId, "apiId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.apimOutboundPolicyBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetOrgAutomatedPolicies404Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DefaultAPIPostApimPolicyRequest struct {
+	ctx context.Context
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiId string
@@ -1389,12 +1544,12 @@ type DefaultApiPostApimPolicyRequest struct {
 }
 
 // policy content
-func (r DefaultApiPostApimPolicyRequest) ApimPolicyBody(apimPolicyBody ApimPolicyBody) DefaultApiPostApimPolicyRequest {
+func (r DefaultAPIPostApimPolicyRequest) ApimPolicyBody(apimPolicyBody ApimPolicyBody) DefaultAPIPostApimPolicyRequest {
 	r.apimPolicyBody = &apimPolicyBody
 	return r
 }
 
-func (r DefaultApiPostApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
+func (r DefaultAPIPostApimPolicyRequest) Execute() (*ApimPolicy, *http.Response, error) {
 	return r.ApiService.PostApimPolicyExecute(r)
 }
 
@@ -1407,10 +1562,10 @@ Create an api manager instance policy in a given organization and environment.
  @param orgId The organization Id
  @param envId The environment Id
  @param apiId The api manager instance Id
- @return DefaultApiPostApimPolicyRequest
+ @return DefaultAPIPostApimPolicyRequest
 */
-func (a *DefaultApiService) PostApimPolicy(ctx context.Context, orgId string, envId string, apiId string) DefaultApiPostApimPolicyRequest {
-	return DefaultApiPostApimPolicyRequest{
+func (a *DefaultAPIService) PostApimPolicy(ctx context.Context, orgId string, envId string, apiId string) DefaultAPIPostApimPolicyRequest {
+	return DefaultAPIPostApimPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -1421,7 +1576,7 @@ func (a *DefaultApiService) PostApimPolicy(ctx context.Context, orgId string, en
 
 // Execute executes the request
 //  @return ApimPolicy
-func (a *DefaultApiService) PostApimPolicyExecute(r DefaultApiPostApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
+func (a *DefaultAPIService) PostApimPolicyExecute(r DefaultAPIPostApimPolicyRequest) (*ApimPolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1429,7 +1584,7 @@ func (a *DefaultApiService) PostApimPolicyExecute(r DefaultApiPostApimPolicyRequ
 		localVarReturnValue  *ApimPolicy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostApimPolicy")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostApimPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

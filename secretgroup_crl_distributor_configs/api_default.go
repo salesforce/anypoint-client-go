@@ -20,19 +20,19 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiGetSecretGroupCrlDistribCfgsDetailsRequest struct {
+type DefaultAPIGetSecretGroupCrlDistribCfgsDetailsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	secretId string
 }
 
-func (r DefaultApiGetSecretGroupCrlDistribCfgsDetailsRequest) Execute() (*CrlDistribCfgsDetails, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupCrlDistribCfgsDetailsRequest) Execute() (*CrlDistribCfgsDetails, *http.Response, error) {
 	return r.ApiService.GetSecretGroupCrlDistribCfgsDetailsExecute(r)
 }
 
@@ -46,10 +46,10 @@ Retrieves crl-distributor-configs details by id for a given secret group in a gi
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The crl distributor configurations id
- @return DefaultApiGetSecretGroupCrlDistribCfgsDetailsRequest
+ @return DefaultAPIGetSecretGroupCrlDistribCfgsDetailsRequest
 */
-func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiGetSecretGroupCrlDistribCfgsDetailsRequest {
-	return DefaultApiGetSecretGroupCrlDistribCfgsDetailsRequest{
+func (a *DefaultAPIService) GetSecretGroupCrlDistribCfgsDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIGetSecretGroupCrlDistribCfgsDetailsRequest {
+	return DefaultAPIGetSecretGroupCrlDistribCfgsDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -61,7 +61,7 @@ func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsDetails(ctx context.Cont
 
 // Execute executes the request
 //  @return CrlDistribCfgsDetails
-func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsDetailsExecute(r DefaultApiGetSecretGroupCrlDistribCfgsDetailsRequest) (*CrlDistribCfgsDetails, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupCrlDistribCfgsDetailsExecute(r DefaultAPIGetSecretGroupCrlDistribCfgsDetailsRequest) (*CrlDistribCfgsDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -69,7 +69,7 @@ func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsDetailsExecute(r Default
 		localVarReturnValue  *CrlDistribCfgsDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupCrlDistribCfgsDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupCrlDistribCfgsDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -149,15 +149,15 @@ func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsDetailsExecute(r Default
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetSecretGroupCrlDistribCfgsListRequest struct {
+type DefaultAPIGetSecretGroupCrlDistribCfgsListRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 }
 
-func (r DefaultApiGetSecretGroupCrlDistribCfgsListRequest) Execute() ([]CrlDistribCfgSummary, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupCrlDistribCfgsListRequest) Execute() ([]CrlDistribCfgSummary, *http.Response, error) {
 	return r.ApiService.GetSecretGroupCrlDistribCfgsListExecute(r)
 }
 
@@ -170,10 +170,10 @@ Retrieves a secret-groups' collection of crl-distributor-configs.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiGetSecretGroupCrlDistribCfgsListRequest
+ @return DefaultAPIGetSecretGroupCrlDistribCfgsListRequest
 */
-func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsList(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiGetSecretGroupCrlDistribCfgsListRequest {
-	return DefaultApiGetSecretGroupCrlDistribCfgsListRequest{
+func (a *DefaultAPIService) GetSecretGroupCrlDistribCfgsList(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIGetSecretGroupCrlDistribCfgsListRequest {
+	return DefaultAPIGetSecretGroupCrlDistribCfgsListRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -184,7 +184,7 @@ func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsList(ctx context.Context
 
 // Execute executes the request
 //  @return []CrlDistribCfgSummary
-func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsListExecute(r DefaultApiGetSecretGroupCrlDistribCfgsListRequest) ([]CrlDistribCfgSummary, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupCrlDistribCfgsListExecute(r DefaultAPIGetSecretGroupCrlDistribCfgsListRequest) ([]CrlDistribCfgSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -192,7 +192,7 @@ func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsListExecute(r DefaultApi
 		localVarReturnValue  []CrlDistribCfgSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupCrlDistribCfgsList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupCrlDistribCfgsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -271,21 +271,21 @@ func (a *DefaultApiService) GetSecretGroupCrlDistribCfgsListExecute(r DefaultApi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostSecretGroupCrlDistribCfgsRequest struct {
+type DefaultAPIPostSecretGroupCrlDistribCfgsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	crlDistribCfgsReqBody *CrlDistribCfgsReqBody
 }
 
-func (r DefaultApiPostSecretGroupCrlDistribCfgsRequest) CrlDistribCfgsReqBody(crlDistribCfgsReqBody CrlDistribCfgsReqBody) DefaultApiPostSecretGroupCrlDistribCfgsRequest {
+func (r DefaultAPIPostSecretGroupCrlDistribCfgsRequest) CrlDistribCfgsReqBody(crlDistribCfgsReqBody CrlDistribCfgsReqBody) DefaultAPIPostSecretGroupCrlDistribCfgsRequest {
 	r.crlDistribCfgsReqBody = &crlDistribCfgsReqBody
 	return r
 }
 
-func (r DefaultApiPostSecretGroupCrlDistribCfgsRequest) Execute() (*PostSecretGroupCrlDistribCfgs201Response, *http.Response, error) {
+func (r DefaultAPIPostSecretGroupCrlDistribCfgsRequest) Execute() (*PostSecretGroupCrlDistribCfgs201Response, *http.Response, error) {
 	return r.ApiService.PostSecretGroupCrlDistribCfgsExecute(r)
 }
 
@@ -298,10 +298,10 @@ Create a secret-groups' crl-distributor-configs.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiPostSecretGroupCrlDistribCfgsRequest
+ @return DefaultAPIPostSecretGroupCrlDistribCfgsRequest
 */
-func (a *DefaultApiService) PostSecretGroupCrlDistribCfgs(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiPostSecretGroupCrlDistribCfgsRequest {
-	return DefaultApiPostSecretGroupCrlDistribCfgsRequest{
+func (a *DefaultAPIService) PostSecretGroupCrlDistribCfgs(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIPostSecretGroupCrlDistribCfgsRequest {
+	return DefaultAPIPostSecretGroupCrlDistribCfgsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -312,7 +312,7 @@ func (a *DefaultApiService) PostSecretGroupCrlDistribCfgs(ctx context.Context, o
 
 // Execute executes the request
 //  @return PostSecretGroupCrlDistribCfgs201Response
-func (a *DefaultApiService) PostSecretGroupCrlDistribCfgsExecute(r DefaultApiPostSecretGroupCrlDistribCfgsRequest) (*PostSecretGroupCrlDistribCfgs201Response, *http.Response, error) {
+func (a *DefaultAPIService) PostSecretGroupCrlDistribCfgsExecute(r DefaultAPIPostSecretGroupCrlDistribCfgsRequest) (*PostSecretGroupCrlDistribCfgs201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -320,7 +320,7 @@ func (a *DefaultApiService) PostSecretGroupCrlDistribCfgsExecute(r DefaultApiPos
 		localVarReturnValue  *PostSecretGroupCrlDistribCfgs201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostSecretGroupCrlDistribCfgs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostSecretGroupCrlDistribCfgs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -401,9 +401,9 @@ func (a *DefaultApiService) PostSecretGroupCrlDistribCfgsExecute(r DefaultApiPos
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPutSecretGroupTlsContextRequest struct {
+type DefaultAPIPutSecretGroupTlsContextRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -411,12 +411,12 @@ type DefaultApiPutSecretGroupTlsContextRequest struct {
 	crlDistribCfgsReqBody *CrlDistribCfgsReqBody
 }
 
-func (r DefaultApiPutSecretGroupTlsContextRequest) CrlDistribCfgsReqBody(crlDistribCfgsReqBody CrlDistribCfgsReqBody) DefaultApiPutSecretGroupTlsContextRequest {
+func (r DefaultAPIPutSecretGroupTlsContextRequest) CrlDistribCfgsReqBody(crlDistribCfgsReqBody CrlDistribCfgsReqBody) DefaultAPIPutSecretGroupTlsContextRequest {
 	r.crlDistribCfgsReqBody = &crlDistribCfgsReqBody
 	return r
 }
 
-func (r DefaultApiPutSecretGroupTlsContextRequest) Execute() (*PutSecretGroupTlsContext200Response, *http.Response, error) {
+func (r DefaultAPIPutSecretGroupTlsContextRequest) Execute() (*PutSecretGroupTlsContext200Response, *http.Response, error) {
 	return r.ApiService.PutSecretGroupTlsContextExecute(r)
 }
 
@@ -430,10 +430,10 @@ Update tls-context details for a given secret-group in a given organization and 
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The crl distributor configurations id
- @return DefaultApiPutSecretGroupTlsContextRequest
+ @return DefaultAPIPutSecretGroupTlsContextRequest
 */
-func (a *DefaultApiService) PutSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPutSecretGroupTlsContextRequest {
-	return DefaultApiPutSecretGroupTlsContextRequest{
+func (a *DefaultAPIService) PutSecretGroupTlsContext(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPutSecretGroupTlsContextRequest {
+	return DefaultAPIPutSecretGroupTlsContextRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -445,7 +445,7 @@ func (a *DefaultApiService) PutSecretGroupTlsContext(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return PutSecretGroupTlsContext200Response
-func (a *DefaultApiService) PutSecretGroupTlsContextExecute(r DefaultApiPutSecretGroupTlsContextRequest) (*PutSecretGroupTlsContext200Response, *http.Response, error) {
+func (a *DefaultAPIService) PutSecretGroupTlsContextExecute(r DefaultAPIPutSecretGroupTlsContextRequest) (*PutSecretGroupTlsContext200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -453,7 +453,7 @@ func (a *DefaultApiService) PutSecretGroupTlsContextExecute(r DefaultApiPutSecre
 		localVarReturnValue  *PutSecretGroupTlsContext200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutSecretGroupTlsContext")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PutSecretGroupTlsContext")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

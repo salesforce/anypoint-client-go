@@ -178,6 +178,17 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Filter by policy injection point.
+        explode: true
+        in: query
+        name: injectionPoint
+        required: false
+        schema:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        style: form
       responses:
         "401":
           description: Access token is missing or invalid
@@ -246,6 +257,14 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: Filter applicability against a specific api instance id.
+        explode: true
+        in: query
+        name: apiInstanceId
+        required: false
+        schema:
+          type: string
         style: form
       responses:
         "401":
@@ -638,6 +657,59 @@ paths:
                 $ref: '#/components/schemas/ApimPolicy'
           description: enable specific api manager policy
       summary: Enable a specific api manager instance policy.
+  /xapi/v1/organizations/{orgId}/environments/{envId}/apis/{apiId}/policies/outbound-policies:
+    post:
+      description: |
+        Create an api manager instance outbound policy in a given organization and environment. The request body must include `upstreamIds` (one or more existing upstream ids). The API creates one policy record per upstream id and returns the array of created policy records. Read/Update/Delete/Enable/Disable use the singular policy endpoints (`PatchApimPolicy` / `DeleteApimPolicy` / `EnableApimPolicy` / `DisableApimPolicy`) with the integer `id` returned here.
+      operationId: PostApimOutboundPolicy
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The environment Id
+        explode: false
+        in: path
+        name: envId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The api manager instance Id
+        explode: false
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApimOutboundPolicyBody'
+        description: outbound policy content
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrgAutomatedPolicies_404_response'
+          description: resource not found
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApimOutboundPolicyCollection'
+          description: |
+            create api manager outbound policy — returns an array of policy records, one per upstream id in the request body.
+      summary: Create an api manager instance outbound policy.
 components:
   responses:
     UnauthorizedError:
@@ -712,6 +784,13 @@ components:
           schema:
             $ref: '#/components/schemas/ApimPolicy'
       description: enable specific api manager policy
+    SuccessPostApimOutboundPolicy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApimOutboundPolicyCollection'
+      description: |
+        create api manager outbound policy — returns an array of policy records, one per upstream id in the request body.
   schemas:
     ErrorsResponse:
       properties:
@@ -888,37 +967,7 @@ components:
         identityManagement:
           type: type
         ramlV1Snippet: ramlV1Snippet
-        configuration:
-        - allowMultiple: true
-          propertyName: propertyName
-          configuration:
-          - propertyName: propertyName
-            type: type
-          - propertyName: propertyName
-            type: type
-          name: name
-          options:
-          - "{}"
-          - "{}"
-          description: description
-          optional: true
-          sensitive: true
-          type: type
-        - allowMultiple: true
-          propertyName: propertyName
-          configuration:
-          - propertyName: propertyName
-            type: type
-          - propertyName: propertyName
-            type: type
-          name: name
-          options:
-          - "{}"
-          - "{}"
-          description: description
-          optional: true
-          sensitive: true
-          type: type
+        configuration: ""
         groupId: groupId
         description: description
         ramlSnippet: ramlSnippet
@@ -936,11 +985,18 @@ components:
         - assetId: assetId
           groupId: groupId
           version: version
+          status: status
         - assetId: assetId
           groupId: groupId
           version: version
+          status: status
         oasV2Snippet: oasV2Snippet
         id: 0
+        interfaceTransformation:
+        - language: language
+          transformation: transformation
+        - language: language
+          transformation: transformation
         yamlMd5: yamlMd5
         isOOTB: true
         violationCategory: violationCategory
@@ -952,12 +1008,21 @@ components:
         encryptionSupported: true
         applicable: true
         version: version
+        interfaceScope:
+        - interfaceScope
+        - interfaceScope
+        splitAssetModel: true
         stage: stage
+        schemaId: schemaId
         name: name
+        ootbUpgradeableImpl: true
         minMuleVersion: minMuleVersion
         category: category
         status: status
         supportedPoliciesVersions: supportedPoliciesVersions
+        supportedJavaVersions:
+        - supportedJavaVersions
+        - supportedJavaVersions
       properties:
         audit:
           $ref: '#/components/schemas/Audit'
@@ -1022,8 +1087,42 @@ components:
         applicable:
           type: boolean
         configuration:
+          description: |
+            Policy configuration. Legacy policies (mule3/older mule4) return an array
+            of PolicyConfiguration items describing each configurable property. Modern
+            policies (AI/MCP/A2A and newer mule4) return a JSON Schema object
+            (draft-2019-09) describing the same structure with richer validation
+            (if/then/else, oneOf, etc.). Consumer code must check the runtime type
+            and parse accordingly.
+        schemaId:
+          description: Identifier of the underlying JSON schema for modern policies.
+          type: string
+        splitAssetModel:
+          description: Whether the policy uses the split asset model.
+          type: boolean
+        ootbUpgradeableImpl:
+          description: Whether the OOTB implementation supports in-place upgrades.
+          type: boolean
+        supportedJavaVersions:
+          description: Java runtime versions this policy implementation is compatible
+            with.
           items:
-            $ref: '#/components/schemas/PolicyConfiguration'
+            nullable: true
+            type: string
+          type: array
+        interfaceScope:
+          description: "Scopes at which the policy can be applied (e.g. \"api\", \"\
+            resource\")."
+          items:
+            type: string
+          type: array
+        interfaceTransformation:
+          description: |
+            Modern replacement for the flat ramlSnippet/oasV2Snippet/oasV3Snippet
+            fields. Each entry pairs a language identifier with a transformation
+            snippet to apply to the API definition.
+          items:
+            $ref: '#/components/schemas/ExchangePolicyTemplate_interfaceTransformation_inner'
           type: array
         allVersions:
           items:
@@ -1034,13 +1133,24 @@ components:
       oneOf:
       - items:
           $ref: '#/components/schemas/ApimPolicy'
-        title: ApimPolicyCollecion
+        title: ApimPolicyCollection
         type: array
-      - $ref: '#/components/schemas/ApimPolicyFullCollecion'
+      - $ref: '#/components/schemas/ApimPolicyFullData'
+    ApimPolicyFullData:
+      properties:
+        policies:
+          items:
+            $ref: '#/components/schemas/ApimPolicyFull'
+          type: array
+        tiers:
+          $ref: '#/components/schemas/ApimPolicyFullData_tiers'
+      title: ApimPolicyFullData
+      type: object
     ApimPolicy:
       example:
         configurationData: "{}"
         groupId: groupId
+        label: label
         type: type
         masterOrganizationId: masterOrganizationId
         organizationId: organizationId
@@ -1050,6 +1160,7 @@ components:
           updated:
             date: date
         assetId: assetId
+        upstreamId: upstreamId
         assetVersion: assetVersion
         pointcutData:
         - methodRegex: methodRegex
@@ -1094,6 +1205,15 @@ components:
           type: string
         apiId:
           type: integer
+        label:
+          description: Optional label applied to this policy instance.
+          nullable: true
+          type: string
+        upstreamId:
+          description: |
+            Identifier of the upstream this policy is bound to. Populated only when the policy was created via the outbound endpoint (`PostApimOutboundPolicy`). Absent for inbound policies.
+          nullable: true
+          type: string
       type: object
     ApimPolicyFull:
       properties:
@@ -1148,6 +1268,54 @@ components:
           title: PointcutDataArray
           type: array
       type: object
+    ApimOutboundPolicyBody:
+      description: |
+        Request body for creating an outbound policy. Differs from `ApimPolicyBody` in two ways: it carries `apiVersionId` + `upstreamIds` (required, one or more upstream identifiers), and it does NOT carry `pointcutData` — outbound policies apply at the upstream binding level rather than via URL pointcuts.
+      example:
+        configurationData: "{}"
+        assetId: assetId
+        groupId: groupId
+        assetVersion: assetVersion
+        apiVersionId: 0
+        label: label
+        upstreamIds:
+        - upstreamIds
+        - upstreamIds
+      properties:
+        configurationData:
+          type: object
+        apiVersionId:
+          description: The numeric API instance id (same as `apiId` in `ApimPolicy`).
+          type: integer
+        groupId:
+          type: string
+        assetId:
+          type: string
+        assetVersion:
+          type: string
+        label:
+          nullable: true
+          type: string
+        upstreamIds:
+          description: |
+            Upstream identifiers (UUID strings) the policy must bind to. The API creates one policy record per id and returns them all in the response array.
+          items:
+            type: string
+          type: array
+      required:
+      - apiVersionId
+      - assetId
+      - assetVersion
+      - configurationData
+      - groupId
+      - upstreamIds
+      type: object
+    ApimOutboundPolicyCollection:
+      description: One policy record per upstream id in the create request body.
+      items:
+        $ref: '#/components/schemas/ApimPolicy'
+      title: ApimOutboundPolicyCollection
+      type: array
     ApimPolicyPatchBody:
       description: |
         is the same as ApimPolicyBody, but since we had some issue generating a struct that puts nil to pointcutData. We chose to leave this unspecified for an optimum coverage.
@@ -1159,22 +1327,6 @@ components:
       title: PointcutDataArray
       type: array
     PolicyConfiguration:
-      example:
-        allowMultiple: true
-        propertyName: propertyName
-        configuration:
-        - propertyName: propertyName
-          type: type
-        - propertyName: propertyName
-          type: type
-        name: name
-        options:
-        - "{}"
-        - "{}"
-        description: description
-        optional: true
-        sensitive: true
-        type: type
       properties:
         propertyName:
           type: string
@@ -1240,6 +1392,9 @@ components:
           $ref: '#/components/schemas/Audit_created'
       type: object
     GetOrgAutomatedPolicies_404_response:
+      example:
+        name: name
+        message: message
       properties:
         name:
           type: string
@@ -1284,11 +1439,25 @@ components:
         type:
           type: string
       type: object
+    ExchangePolicyTemplate_interfaceTransformation_inner:
+      example:
+        language: language
+        transformation: transformation
+      properties:
+        language:
+          description: "Snippet language (e.g. ramlSnippet, ramlV1Snippet, oasV2Snippet,\
+            \ oasV3Snippet)."
+          type: string
+        transformation:
+          description: The snippet body to merge into the API definition.
+          type: string
+      type: object
     ExchangePolicyTemplate_allVersions_inner:
       example:
         assetId: assetId
         groupId: groupId
         version: version
+        status: status
       properties:
         groupId:
           type: string
@@ -1296,14 +1465,39 @@ components:
           type: string
         version:
           type: string
+        status:
+          description: "Lifecycle status of the version (e.g. published, deprecated,\
+            \ development)."
+          type: string
       type: object
-    ApimPolicyFullCollecion:
+    ApimPolicyFullData_tiers_values_inner_limits_inner:
       properties:
-        policies:
+        maximumRequests:
+          type: integer
+        timePeriodInMilliseconds:
+          format: int64
+          type: integer
+        visible:
+          type: boolean
+      type: object
+    ApimPolicyFullData_tiers_values_inner:
+      properties:
+        id:
+          type: integer
+        limits:
           items:
-            $ref: '#/components/schemas/ApimPolicyFull'
+            $ref: '#/components/schemas/ApimPolicyFullData_tiers_values_inner_limits_inner'
           type: array
-      title: ApimPolicyFullCollecion
+      type: object
+    ApimPolicyFullData_tiers:
+      properties:
+        values:
+          items:
+            $ref: '#/components/schemas/ApimPolicyFullData_tiers_values_inner'
+          type: array
+        version:
+          format: int64
+          type: integer
       type: object
     ApimPolicyFull_template:
       properties:
@@ -1326,9 +1520,6 @@ components:
       title: PointcutDataItem
       type: object
     PolicyConfiguration_configuration_inner:
-      example:
-        propertyName: propertyName
-        type: type
       properties:
         propertyName:
           type: string

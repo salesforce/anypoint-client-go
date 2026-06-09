@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Category** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**Expiration** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**Type** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**Category** | Pointer to **string** | The category of the subscription. | [optional] [default to ""]
+**Expiration** | Pointer to **string** | The expiration date of the subscription. | [optional] [default to ""]
+**Type** | Pointer to **string** | The type of the subscription. | [optional] [default to ""]
 
 ## Methods
 

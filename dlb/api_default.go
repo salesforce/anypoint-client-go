@@ -20,18 +20,18 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	dlbId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteExecute(r)
 }
 
@@ -44,10 +44,10 @@ Deletes a DLB
  @param orgId The ID of the organization in GUID format
  @param vpcId The ID of the VPC in GUID format
  @param dlbId The ID of the DLB in GUID format
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete(ctx context.Context, orgId string, vpcId string, dlbId string) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete(ctx context.Context, orgId string, vpcId string, dlbId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -57,14 +57,14 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete(
 }
 
 // Execute executes the request
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -123,15 +123,15 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdDeleteE
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	dlbId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest) Execute() (*Dlb, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest) Execute() (*Dlb, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetExecute(r)
 }
 
@@ -144,10 +144,10 @@ Retrieves a DLB by id
  @param orgId The ID of the organization in GUID format
  @param vpcId The ID of the VPC in GUID format
  @param dlbId The ID of the DLB in GUID format
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet(ctx context.Context, orgId string, vpcId string, dlbId string) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet(ctx context.Context, orgId string, vpcId string, dlbId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -158,7 +158,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet(ctx
 
 // Execute executes the request
 //  @return Dlb
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest) (*Dlb, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetRequest) (*Dlb, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -166,7 +166,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetExec
 		localVarReturnValue  *Dlb
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -234,21 +234,21 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdGetExec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	dlbId string
 	updateObject *[]UpdateObject
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest) UpdateObject(updateObject []UpdateObject) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest) UpdateObject(updateObject []UpdateObject) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest {
 	r.updateObject = &updateObject
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest) Execute() (*Dlb, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest) Execute() (*Dlb, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchExecute(r)
 }
 
@@ -261,10 +261,10 @@ Updates a dlb. uses JSON Patch body object
  @param orgId The ID of the organization in GUID format
  @param vpcId The ID of the VPC in GUID format
  @param dlbId The ID of the DLB in GUID format
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(ctx context.Context, orgId string, vpcId string, dlbId string) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(ctx context.Context, orgId string, vpcId string, dlbId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -275,7 +275,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch(c
 
 // Execute executes the request
 //  @return Dlb
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest) (*Dlb, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchRequest) (*Dlb, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -283,7 +283,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchEx
 		localVarReturnValue  *Dlb
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -364,14 +364,14 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersDlbIdPatchEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest) Execute() (*OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest) Execute() (*OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersGetExecute(r)
 }
 
@@ -383,10 +383,10 @@ Returns all loadbalancers in the given vpc
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param vpcId The ID of the VPC in GUID format
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -396,7 +396,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGet(ctx cont
 
 // Execute executes the request
 //  @return OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGetExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest) (*OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGetExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersGetRequest) (*OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -404,7 +404,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGetExecute(r
 		localVarReturnValue  *OrganizationsOrgIdVpcsVpcIdLoadbalancersGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdLoadbalancersGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -471,20 +471,20 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersGetExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest struct {
+type DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	vpcId string
 	dlbPostBody *DlbPostBody
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbPostBody(dlbPostBody DlbPostBody) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) DlbPostBody(dlbPostBody DlbPostBody) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
 	r.dlbPostBody = &dlbPostBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) Execute() (*Dlb, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) Execute() (*Dlb, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r)
 }
 
@@ -496,10 +496,10 @@ create a DLB
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param vpcId The ID of the VPC in GUID format
- @return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest
+ @return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx context.Context, orgId string, vpcId string) DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
-	return DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx context.Context, orgId string, vpcId string) DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest {
+	return DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -509,7 +509,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPost(ctx con
 
 // Execute executes the request
 //  @return Dlb
-func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r DefaultApiOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) (*Dlb, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(r DefaultAPIOrganizationsOrgIdVpcsVpcIdLoadbalancersPostRequest) (*Dlb, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -517,7 +517,7 @@ func (a *DefaultApiService) OrganizationsOrgIdVpcsVpcIdLoadbalancersPostExecute(
 		localVarReturnValue  *Dlb
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdVpcsVpcIdLoadbalancersPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

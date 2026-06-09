@@ -21,8 +21,8 @@ Name | Type | Description | Notes
 **IsFederated** | Pointer to **bool** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
-**MemberOfOrganizations** | Pointer to [**[]Org**](Org.md) |  | [optional] 
-**ContributorOfOrganizations** | Pointer to [**[]Org**](Org.md) |  | [optional] 
+**MemberOfOrganizations** | Pointer to [**[]Organization**](Organization.md) |  | [optional] 
+**ContributorOfOrganizations** | Pointer to [**[]Organization**](Organization.md) |  | [optional] 
 **Properties** | Pointer to [**Properties**](Properties.md) |  | [optional] 
 **OrganizationPreferences** | Pointer to **map[string]interface{}** |  | [optional] 
 **PrimaryOrganization** | Pointer to [**PrimaryOrganization**](PrimaryOrganization.md) |  | [optional] 
@@ -473,20 +473,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetMemberOfOrganizations
 
-`func (o *UserCore) GetMemberOfOrganizations() []Org`
+`func (o *UserCore) GetMemberOfOrganizations() []Organization`
 
 GetMemberOfOrganizations returns the MemberOfOrganizations field if non-nil, zero value otherwise.
 
 ### GetMemberOfOrganizationsOk
 
-`func (o *UserCore) GetMemberOfOrganizationsOk() (*[]Org, bool)`
+`func (o *UserCore) GetMemberOfOrganizationsOk() (*[]Organization, bool)`
 
 GetMemberOfOrganizationsOk returns a tuple with the MemberOfOrganizations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemberOfOrganizations
 
-`func (o *UserCore) SetMemberOfOrganizations(v []Org)`
+`func (o *UserCore) SetMemberOfOrganizations(v []Organization)`
 
 SetMemberOfOrganizations sets MemberOfOrganizations field to given value.
 
@@ -498,20 +498,20 @@ HasMemberOfOrganizations returns a boolean if a field has been set.
 
 ### GetContributorOfOrganizations
 
-`func (o *UserCore) GetContributorOfOrganizations() []Org`
+`func (o *UserCore) GetContributorOfOrganizations() []Organization`
 
 GetContributorOfOrganizations returns the ContributorOfOrganizations field if non-nil, zero value otherwise.
 
 ### GetContributorOfOrganizationsOk
 
-`func (o *UserCore) GetContributorOfOrganizationsOk() (*[]Org, bool)`
+`func (o *UserCore) GetContributorOfOrganizationsOk() (*[]Organization, bool)`
 
 GetContributorOfOrganizationsOk returns a tuple with the ContributorOfOrganizations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContributorOfOrganizations
 
-`func (o *UserCore) SetContributorOfOrganizations(v []Org)`
+`func (o *UserCore) SetContributorOfOrganizations(v []Organization)`
 
 SetContributorOfOrganizations sets ContributorOfOrganizations field to given value.
 

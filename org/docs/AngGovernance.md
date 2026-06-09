@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Level** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Level** | Pointer to **int32** | Ang Governance level | [optional] [default to 0]
 
 ## Methods
 
 ### NewAngGovernance
 
-`func NewAngGovernance(level int32, ) *AngGovernance`
+`func NewAngGovernance() *AngGovernance`
 
 NewAngGovernance instantiates a new AngGovernance object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetLevel sets Level field to given value.
 
+### HasLevel
+
+`func (o *AngGovernance) HasLevel() bool`
+
+HasLevel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

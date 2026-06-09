@@ -20,16 +20,16 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdIdentityProvidersGetRequest struct {
+type DefaultAPIOrganizationsOrgIdIdentityProvidersGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersGetRequest) Execute() (*OrganizationsOrgIdIdentityProvidersGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersGetRequest) Execute() (*OrganizationsOrgIdIdentityProvidersGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdIdentityProvidersGetExecute(r)
 }
 
@@ -40,10 +40,10 @@ Returns all identity providers for the given organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdIdentityProvidersGetRequest
+ @return DefaultAPIOrganizationsOrgIdIdentityProvidersGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersGet(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdIdentityProvidersGetRequest {
-	return DefaultApiOrganizationsOrgIdIdentityProvidersGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersGet(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdIdentityProvidersGetRequest {
+	return DefaultAPIOrganizationsOrgIdIdentityProvidersGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -52,7 +52,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersGet(ctx context.C
 
 // Execute executes the request
 //  @return OrganizationsOrgIdIdentityProvidersGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersGetExecute(r DefaultApiOrganizationsOrgIdIdentityProvidersGetRequest) (*OrganizationsOrgIdIdentityProvidersGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersGetExecute(r DefaultAPIOrganizationsOrgIdIdentityProvidersGetRequest) (*OrganizationsOrgIdIdentityProvidersGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -60,7 +60,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersGetExecute(r Defa
 		localVarReturnValue  *OrganizationsOrgIdIdentityProvidersGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdIdentityProvidersGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -126,14 +126,14 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersGetExecute(r Defa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	idpId string
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdIdentityProvidersIdpIdDeleteExecute(r)
 }
 
@@ -145,10 +145,10 @@ Deletes the given identity provider for the given organization
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param idpId The ID of the Identity Provider in GUID format
- @return DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdDelete(ctx context.Context, orgId string, idpId string) DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest {
-	return DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersIdpIdDelete(ctx context.Context, orgId string, idpId string) DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -157,14 +157,14 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdDelete(ctx c
 }
 
 // Execute executes the request
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdDeleteExecute(r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersIdpIdDeleteExecute(r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersIdpIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdIdentityProvidersIdpIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -233,14 +233,14 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdDeleteExecut
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	idpId string
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) Execute() (*Idp, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) Execute() (*Idp, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r)
 }
 
@@ -252,10 +252,10 @@ Returns all identity providers for the given organization
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param idpId The ID of the Identity Provider in GUID format
- @return DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGet(ctx context.Context, orgId string, idpId string) DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest {
-	return DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersIdpIdGet(ctx context.Context, orgId string, idpId string) DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -265,7 +265,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGet(ctx cont
 
 // Execute executes the request
 //  @return Idp
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) (*Idp, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdGetRequest) (*Idp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -273,7 +273,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r
 		localVarReturnValue  *Idp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersIdpIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdIdentityProvidersIdpIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -351,20 +351,20 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdGetExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest struct {
+type DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	idpId string
 	idpPatchBody *IdpPatchBody
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) IdpPatchBody(idpPatchBody IdpPatchBody) DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) IdpPatchBody(idpPatchBody IdpPatchBody) DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest {
 	r.idpPatchBody = &idpPatchBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) Execute() (*Idp, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) Execute() (*Idp, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute(r)
 }
 
@@ -376,10 +376,10 @@ Updates the given identity provider for the given organization
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param idpId The ID of the Identity Provider in GUID format
- @return DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest
+ @return DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatch(ctx context.Context, orgId string, idpId string) DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest {
-	return DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersIdpIdPatch(ctx context.Context, orgId string, idpId string) DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest {
+	return DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -389,7 +389,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatch(ctx co
 
 // Execute executes the request
 //  @return Idp
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute(r DefaultApiOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) (*Idp, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute(r DefaultAPIOrganizationsOrgIdIdentityProvidersIdpIdPatchRequest) (*Idp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -397,7 +397,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute
 		localVarReturnValue  *Idp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersIdpIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdIdentityProvidersIdpIdPatch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -488,19 +488,19 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersIdpIdPatchExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest struct {
+type DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	idpPostBody *IdpPostBody
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest) IdpPostBody(idpPostBody IdpPostBody) DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest) IdpPostBody(idpPostBody IdpPostBody) DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest {
 	r.idpPostBody = &idpPostBody
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest) Execute() (*Idp, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest) Execute() (*Idp, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdIdentityProvidersPostExecute(r)
 }
 
@@ -511,10 +511,10 @@ Creates an IDP connection through SAML or OIDC
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest
+ @return DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersPost(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest {
-	return DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersPost(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest {
+	return DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -523,7 +523,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersPost(ctx context.
 
 // Execute executes the request
 //  @return Idp
-func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersPostExecute(r DefaultApiOrganizationsOrgIdIdentityProvidersPostRequest) (*Idp, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdIdentityProvidersPostExecute(r DefaultAPIOrganizationsOrgIdIdentityProvidersPostRequest) (*Idp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -531,7 +531,7 @@ func (a *DefaultApiService) OrganizationsOrgIdIdentityProvidersPostExecute(r Def
 		localVarReturnValue  *Idp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdIdentityProvidersPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdIdentityProvidersPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

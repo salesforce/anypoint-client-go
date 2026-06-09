@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Description of the Team Roles API
   title: Team Roles API
-  version: 1.0.0
+  version: 1.1.0
 servers:
 - description: Anypoint Cloudhub
   url: https://anypoint.mulesoft.com/accounts/api/
@@ -16,6 +16,7 @@ paths:
   /organizations/{orgId}/teams/{teamId}/roles:
     delete:
       description: deletes a set of roles from the given team
+      operationId: deleteTeamRoles
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -37,7 +38,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/teamRolesDeleteBody'
+              $ref: '#/components/schemas/TeamRolesDeleteBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -45,6 +46,7 @@ paths:
           description: Success response
     get:
       description: retrieves team assigned roles
+      operationId: getTeamRoles
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -102,18 +104,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorsResponse'
+                $ref: '#/components/schemas/ErrorsResponse'
           description: Bad request response
         "404":
           description: resource not found
-        "201":
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/teamRoleCollection'
+                $ref: '#/components/schemas/TeamRoleCollection'
           description: Success response
     post:
       description: assignes a set of roles to the given team
+      operationId: assignTeamRoles
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -135,7 +138,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/teamRolesPostBody'
+              $ref: '#/components/schemas/TeamRolesPostBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -149,7 +152,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorsResponse'
+            $ref: '#/components/schemas/ErrorsResponse'
       description: Bad request response
     NotFoundError:
       description: resource not found
@@ -157,32 +160,46 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/teamRoleCollection'
+            $ref: '#/components/schemas/TeamRoleCollection'
       description: Success response
     SuccessPostTeamRoles:
       description: Success response
     SuccessDeleteTeamRoles:
       description: Success response
   schemas:
-    errorsResponse:
+    ErrorsResponse:
+      example:
+        errors:
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors_inner'
+            $ref: '#/components/schemas/ErrorsResponse_errors_inner'
           type: array
-      title: errorsResponse
+      title: ErrorsResponse
       type: object
-    teamRolesPostBody:
+    TeamRolesPostBody:
       items:
-        $ref: '#/components/schemas/teamRolePostBody'
-      title: teamRolesPostBody
+        $ref: '#/components/schemas/TeamRolePostBody'
+      title: TeamRolesPostBody
       type: array
-    teamRolesDeleteBody:
+    TeamRolesDeleteBody:
       items:
-        $ref: '#/components/schemas/teamRoleDeleteBody'
-      title: teamRolesDeleteBody
+        $ref: '#/components/schemas/TeamRoleDeleteBody'
+      title: TeamRolesDeleteBody
       type: array
-    teamRole:
+    TeamRole:
       example:
         role_id: role_id
         name: name
@@ -198,9 +215,9 @@ components:
           type: string
         context_params:
           $ref: '#/components/schemas/contextParams'
-      title: teamRole
+      title: TeamRole
       type: object
-    teamRoleCollection:
+    TeamRoleCollection:
       example:
         total: 0
         data:
@@ -217,15 +234,22 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/teamRole'
+            $ref: '#/components/schemas/TeamRole'
           title: data
           type: array
         total:
           title: total
           type: integer
-      title: teamRoleCollection
+      title: TeamRoleCollection
       type: object
-    errorsResponse_errors_inner:
+    ErrorsResponse_errors_inner:
+      example:
+        schema: schema
+        data: data
+        type: type
+        keyword: keyword
+        message: message
+        dataPath: dataPath
       properties:
         type:
           title: type
@@ -259,23 +283,33 @@ components:
           type: string
       title: contextParams
       type: object
-    teamRolePostBody:
+    TeamRolePostBody:
+      example:
+        role_id: role_id
+        context_params:
+          org: org
+          envId: envId
       properties:
         role_id:
           title: roleId
           type: string
         context_params:
           $ref: '#/components/schemas/contextParams'
-      title: teamRolePostBody
+      title: TeamRolePostBody
       type: object
-    teamRoleDeleteBody:
+    TeamRoleDeleteBody:
+      example:
+        role_id: role_id
+        context_params:
+          org: org
+          envId: envId
       properties:
         role_id:
           title: roleId
           type: string
         context_params:
           $ref: '#/components/schemas/contextParams'
-      title: teamRoleDeleteBody
+      title: TeamRoleDeleteBody
       type: object
   securitySchemes:
     bearerAuth:
