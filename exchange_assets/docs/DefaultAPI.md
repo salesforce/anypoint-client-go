@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**AssetsOrgIdAssetIdVersionDelete**](DefaultAPI.md#AssetsOrgIdAssetIdVersionDelete) | **Delete** /assets/{orgId}/{assetId}/{version} | Delete an asset
 [**AssetsPost**](DefaultAPI.md#AssetsPost) | **Post** /assets | Create a new asset
 [**AssetsSearchGet**](DefaultAPI.md#AssetsSearchGet) | **Get** /assets/search | Search for assets
+[**PostLLMAsset**](DefaultAPI.md#PostLLMAsset) | **Post** /organizations/{orgId}/assets/{groupId}/{assetId}/{version} | Publish an LLM-typed Exchange asset
 
 
 
@@ -486,6 +487,97 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostLLMAsset
+
+> PostLLMAssetResponse PostLLMAsset(ctx, orgId, groupId, assetId, version).Name(name).Type_(type_).Status(status).XStrictPackage(xStrictPackage).PropertiesPlatform(propertiesPlatform).Tags(tags).Execute()
+
+Publish an LLM-typed Exchange asset
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/mulesoft-anypoint/anypoint-client-go/exchange_assets"
+)
+
+func main() {
+	orgId := "orgId_example" // string | The ID of the organization in GUID format
+	groupId := "groupId_example" // string | The business group id (often equals orgId for root-level assets)
+	assetId := "assetId_example" // string | The asset slug
+	version := "version_example" // string | The asset version (must follow Semver, e.g. 1.0.0)
+	name := "name_example" // string | The visible name of the asset.
+	type_ := "type__example" // string | Always \\\"llm\\\" for this resource.
+	status := "status_example" // string | Publication status. Defaults to \\\"published\\\". (default to "published")
+	xStrictPackage := true // bool | Indicates if the asset package is immutable. (optional) (default to false)
+	propertiesPlatform := "propertiesPlatform_example" // string | The LLM vendor identifier. Free string — Anypoint does not enforce an enum. Known values include \\\"openai\\\", \\\"bedrock\\\", \\\"anthropic\\\", \\\"azure-openai\\\", \\\"gemini\\\", \\\"other\\\". Defaults server-side to \\\"other\\\" if omitted. (optional)
+	tags := "tags_example" // string | Stringified JSON array of asset tags. Optional. The field must be sent as a String; pass the stringified value. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.PostLLMAsset(context.Background(), orgId, groupId, assetId, version).Name(name).Type_(type_).Status(status).XStrictPackage(xStrictPackage).PropertiesPlatform(propertiesPlatform).Tags(tags).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.PostLLMAsset``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostLLMAsset`: PostLLMAssetResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.PostLLMAsset`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgId** | **string** | The ID of the organization in GUID format | 
+**groupId** | **string** | The business group id (often equals orgId for root-level assets) | 
+**assetId** | **string** | The asset slug | 
+**version** | **string** | The asset version (must follow Semver, e.g. 1.0.0) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostLLMAssetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+ **name** | **string** | The visible name of the asset. | 
+ **type_** | **string** | Always \\\&quot;llm\\\&quot; for this resource. | 
+ **status** | **string** | Publication status. Defaults to \\\&quot;published\\\&quot;. | [default to &quot;published&quot;]
+ **xStrictPackage** | **bool** | Indicates if the asset package is immutable. | [default to false]
+ **propertiesPlatform** | **string** | The LLM vendor identifier. Free string — Anypoint does not enforce an enum. Known values include \\\&quot;openai\\\&quot;, \\\&quot;bedrock\\\&quot;, \\\&quot;anthropic\\\&quot;, \\\&quot;azure-openai\\\&quot;, \\\&quot;gemini\\\&quot;, \\\&quot;other\\\&quot;. Defaults server-side to \\\&quot;other\\\&quot; if omitted. | 
+ **tags** | **string** | Stringified JSON array of asset tags. Optional. The field must be sent as a String; pass the stringified value. | 
+
+### Return type
+
+[**PostLLMAssetResponse**](PostLLMAssetResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

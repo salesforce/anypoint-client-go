@@ -1009,3 +1009,196 @@ func (a *DefaultAPIService) AssetsSearchGetExecute(r DefaultAPIAssetsSearchGetRe
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
+type DefaultAPIPostLLMAssetRequest struct {
+	ctx context.Context
+	ApiService *DefaultAPIService
+	orgId string
+	groupId string
+	assetId string
+	version string
+	name *string
+	type_ *string
+	status *string
+	xStrictPackage *bool
+	propertiesPlatform *string
+	tags *string
+}
+
+// The visible name of the asset.
+func (r DefaultAPIPostLLMAssetRequest) Name(name string) DefaultAPIPostLLMAssetRequest {
+	r.name = &name
+	return r
+}
+
+// Always \\\&quot;llm\\\&quot; for this resource.
+func (r DefaultAPIPostLLMAssetRequest) Type_(type_ string) DefaultAPIPostLLMAssetRequest {
+	r.type_ = &type_
+	return r
+}
+
+// Publication status. Defaults to \\\&quot;published\\\&quot;.
+func (r DefaultAPIPostLLMAssetRequest) Status(status string) DefaultAPIPostLLMAssetRequest {
+	r.status = &status
+	return r
+}
+
+// Indicates if the asset package is immutable.
+func (r DefaultAPIPostLLMAssetRequest) XStrictPackage(xStrictPackage bool) DefaultAPIPostLLMAssetRequest {
+	r.xStrictPackage = &xStrictPackage
+	return r
+}
+
+// The LLM vendor identifier. Free string — Anypoint does not enforce an enum. Known values include \\\&quot;openai\\\&quot;, \\\&quot;bedrock\\\&quot;, \\\&quot;anthropic\\\&quot;, \\\&quot;azure-openai\\\&quot;, \\\&quot;gemini\\\&quot;, \\\&quot;other\\\&quot;. Defaults server-side to \\\&quot;other\\\&quot; if omitted.
+func (r DefaultAPIPostLLMAssetRequest) PropertiesPlatform(propertiesPlatform string) DefaultAPIPostLLMAssetRequest {
+	r.propertiesPlatform = &propertiesPlatform
+	return r
+}
+
+// Stringified JSON array of asset tags. Optional. The field must be sent as a String; pass the stringified value.
+func (r DefaultAPIPostLLMAssetRequest) Tags(tags string) DefaultAPIPostLLMAssetRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r DefaultAPIPostLLMAssetRequest) Execute() (*PostLLMAssetResponse, *http.Response, error) {
+	return r.ApiService.PostLLMAssetExecute(r)
+}
+
+/*
+PostLLMAsset Publish an LLM-typed Exchange asset
+
+Publish an Exchange asset of type "llm". This is the metadata-only variant
+used by the Anypoint AI Gateway: no spec file is uploaded — Anypoint
+generates the LLM metadata artifacts server-side. Returns 202 with the
+publication status link; the resource is queryable immediately
+(Exchange publish is synchronous from the caller's perspective).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgId The ID of the organization in GUID format
+ @param groupId The business group id (often equals orgId for root-level assets)
+ @param assetId The asset slug
+ @param version The asset version (must follow Semver, e.g. 1.0.0)
+ @return DefaultAPIPostLLMAssetRequest
+*/
+func (a *DefaultAPIService) PostLLMAsset(ctx context.Context, orgId string, groupId string, assetId string, version string) DefaultAPIPostLLMAssetRequest {
+	return DefaultAPIPostLLMAssetRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: orgId,
+		groupId: groupId,
+		assetId: assetId,
+		version: version,
+	}
+}
+
+// Execute executes the request
+//  @return PostLLMAssetResponse
+func (a *DefaultAPIService) PostLLMAssetExecute(r DefaultAPIPostLLMAssetRequest) (*PostLLMAssetResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PostLLMAssetResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostLLMAsset")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/organizations/{orgId}/assets/{groupId}/{assetId}/{version}"
+	localVarPath = strings.Replace(localVarPath, "{"+"orgId"+"}", url.PathEscape(parameterValueToString(r.orgId, "orgId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"assetId"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version"+"}", url.PathEscape(parameterValueToString(r.version, "version")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.name == nil {
+		return localVarReturnValue, nil, reportError("name is required and must be specified")
+	}
+	if r.type_ == nil {
+		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
+	}
+	if r.status == nil {
+		return localVarReturnValue, nil, reportError("status is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xStrictPackage != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "x-strict-package", r.xStrictPackage, "simple", "")
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "status", r.status, "", "")
+	if r.propertiesPlatform != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "properties.platform", r.propertiesPlatform, "", "")
+	}
+	if r.tags != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "tags", r.tags, "", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v AssetsPost400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
