@@ -287,8 +287,41 @@ components:
   schemas:
     alert:
       allOf:
-      - $ref: '#/components/schemas/alertId'
+      - properties:
+          id:
+            title: id
+            type: string
+        required:
+        - id
+        title: alertId
+        type: object
       - $ref: '#/components/schemas/alertCore'
+      example:
+        apiAlertsVersion: apiAlertsVersion
+        severity: severity
+        condition:
+          value: 0
+          operator: operator
+          resourceType: resourceType
+          aggregate: aggregate
+        period:
+          duration:
+            count: 6
+            weight: weight
+          repeat: 1
+        recipients:
+        - firstName: firstName
+          lastName: lastName
+          type: type
+          value: value
+        - firstName: firstName
+          lastName: lastName
+          type: type
+          value: value
+        name: name
+        id: id
+        type: type
+        enabled: true
       title: alert
     alertCore:
       properties:
@@ -326,6 +359,11 @@ components:
       title: alertCore
       type: object
     recipient:
+      example:
+        firstName: firstName
+        lastName: lastName
+        type: type
+        value: value
       properties:
         type:
           type: string
@@ -343,6 +381,11 @@ components:
       title: recipient
       type: object
     condition:
+      example:
+        value: 0
+        operator: operator
+        resourceType: resourceType
+        aggregate: aggregate
       properties:
         resourceType:
           type: string
@@ -361,6 +404,11 @@ components:
       title: condition
       type: object
     period:
+      example:
+        duration:
+          count: 6
+          weight: weight
+        repeat: 1
       properties:
         duration:
           $ref: '#/components/schemas/duration'
@@ -373,6 +421,9 @@ components:
       title: period
       type: object
     duration:
+      example:
+        count: 6
+        weight: weight
       properties:
         count:
           format: int32
@@ -384,16 +435,6 @@ components:
       - weight
       title: duration
       type: object
-    alertId:
-      properties:
-        id:
-          title: id
-          type: string
-      required:
-      - id
-      title: alertId
-      type: object
-      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

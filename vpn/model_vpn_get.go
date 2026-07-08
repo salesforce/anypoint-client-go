@@ -12,6 +12,8 @@ package vpn
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the VpnGet type satisfies the MappedNullable interface at compile time
@@ -19,13 +21,15 @@ var _ MappedNullable = &VpnGet{}
 
 // VpnGet struct for VpnGet
 type VpnGet struct {
-	// The vpn Id
-	Id string `json:"id"`
 	Spec *Spec `json:"spec,omitempty"`
 	State *State `json:"state,omitempty"`
 	UpdateAvailable *bool `json:"updateAvailable,omitempty"`
 	Name *string `json:"name,omitempty"`
+	// The vpn Id
+	Id string `json:"id"`
 }
+
+type _VpnGet VpnGet
 
 // NewVpnGet instantiates a new VpnGet object
 // This constructor will assign default values to properties that have it defined,
@@ -33,9 +37,9 @@ type VpnGet struct {
 // will change when the set of required properties is changed
 func NewVpnGet(id string) *VpnGet {
 	this := VpnGet{}
-	this.Id = id
 	var updateAvailable bool = false
 	this.UpdateAvailable = &updateAvailable
+	this.Id = id
 	return &this
 }
 
@@ -47,30 +51,6 @@ func NewVpnGetWithDefaults() *VpnGet {
 	var updateAvailable bool = false
 	this.UpdateAvailable = &updateAvailable
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *VpnGet) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *VpnGet) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *VpnGet) SetId(v string) {
-	o.Id = v
 }
 
 // GetSpec returns the Spec field value if set, zero value otherwise.
@@ -201,6 +181,30 @@ func (o *VpnGet) SetName(v string) {
 	o.Name = &v
 }
 
+// GetId returns the Id field value
+func (o *VpnGet) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *VpnGet) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *VpnGet) SetId(v string) {
+	o.Id = v
+}
+
 func (o VpnGet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -211,7 +215,6 @@ func (o VpnGet) MarshalJSON() ([]byte, error) {
 
 func (o VpnGet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
 	if !IsNil(o.Spec) {
 		toSerialize["spec"] = o.Spec
 	}
@@ -224,7 +227,45 @@ func (o VpnGet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
+}
+
+func (o *VpnGet) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVpnGet := _VpnGet{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVpnGet)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VpnGet(varVpnGet)
+
+	return err
 }
 
 type NullableVpnGet struct {

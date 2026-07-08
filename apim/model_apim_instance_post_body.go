@@ -171,7 +171,7 @@ func (o *ApimInstancePostBody) GetRoutingOk() ([]RoutingPostBodyInner, bool) {
 
 // HasRouting returns a boolean if a field has been set.
 func (o *ApimInstancePostBody) HasRouting() bool {
-	if o != nil && IsNil(o.Routing) {
+	if o != nil && !IsNil(o.Routing) {
 		return true
 	}
 

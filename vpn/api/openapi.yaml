@@ -228,13 +228,94 @@ components:
       type: object
     vpnGet:
       allOf:
-      - $ref: '#/components/schemas/vpnId'
+      - properties:
+          id:
+            description: The vpn Id
+            example: 62a07860f052884d1d129a31
+            title: id
+            type: string
+        required:
+        - id
+        title: vpnId
+        type: object
       - $ref: '#/components/schemas/vpnCoreGet'
+      example:
+        name: vpnforawesomevpc
+        id: 62a07860f052884d1d129a31
+        state:
+          vpnConnectionStatus: AVAILABLE
+          createdAt: 2022-06-13T13:21:36.283Z
+          remoteAsn: 65000
+          vpnTunnels:
+          - acceptedRouteCount: 0
+            lastStatusChange": 2022-06-13T13:25:41Z
+            localExternalIpAddress": 3.20.144.122
+            localPtpIpAddress": 169.254.12.1
+            remotePtpIpAddress": 169.254.12.2
+            psk": 23847329fn3u__...
+            status": DOWN
+            statusMessage": IPSEC IS DOWN
+          - acceptedRouteCount: 0
+            lastStatusChange: 2022-06-13T13:24:06Z
+            localExternalIpAddress: 13.59.129.13
+            localPtpIpAddress: 169.254.12.5
+            remotePtpIpAddress: 169.254.12.6
+            psk: nsdkjfnsauf23f2linf
+            status: DOWN
+            statusMessage: IPSEC IS DOWN
+          localAsn: 64512
+          failedReason: ""
+        updateAvailable: false
+        spec:
+          tunnelConfigs:
+          - psk: 23847329fn3u__...
+            ptpCidr: 169.254.12.0/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          - psk: nsdkjfnsauf23f2linf
+            ptpCidr: 169.254.12.4/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          remoteAsn: 65000
+          remoteNetworks:
+          - 10.0.0.0/24
+          name: vpnforawesomevpc
+          remoteIpAddress: 192.168.0.0
       title: vpnGet
     vpnPost:
       allOf:
-      - $ref: '#/components/schemas/vpnId'
+      - properties:
+          id:
+            description: The vpn Id
+            example: 62a07860f052884d1d129a31
+            title: id
+            type: string
+        required:
+        - id
+        title: vpnId
+        type: object
       - $ref: '#/components/schemas/vpnCorePost'
+      example:
+        name: myDatacenterVpn
+        id: 62a33f23f052884d1d60af34
+        state:
+          vpnConnectionStatus: PENDING
+        updateAvailable: false
+        spec:
+          tunnelConfigs:
+          - psk: 23847329fn3u__...
+            ptpCidr: 169.254.12.0/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          - psk: nsdkjfnsauf23f2linf
+            ptpCidr: 169.254.12.4/30
+            rekeyMarginInSeconds: 0
+            rekeyFuzz: 0
+          remoteAsn: 65000
+          remoteNetworks:
+          - 10.0.0.0/24
+          name: myDatacenterVpn
+          remoteIpAddress: 100.100.100.100
       title: vpnPost
     vpnCoreGet:
       properties:
@@ -277,8 +358,88 @@ components:
       example:
         total: 1
         data:
-        - null
-        - null
+        - name: vpnforawesomevpc
+          id: 62a07860f052884d1d129a31
+          state:
+            vpnConnectionStatus: AVAILABLE
+            createdAt: 2022-06-13T13:21:36.283Z
+            remoteAsn: 65000
+            vpnTunnels:
+            - acceptedRouteCount: 0
+              lastStatusChange": 2022-06-13T13:25:41Z
+              localExternalIpAddress": 3.20.144.122
+              localPtpIpAddress": 169.254.12.1
+              remotePtpIpAddress": 169.254.12.2
+              psk": 23847329fn3u__...
+              status": DOWN
+              statusMessage": IPSEC IS DOWN
+            - acceptedRouteCount: 0
+              lastStatusChange: 2022-06-13T13:24:06Z
+              localExternalIpAddress: 13.59.129.13
+              localPtpIpAddress: 169.254.12.5
+              remotePtpIpAddress: 169.254.12.6
+              psk: nsdkjfnsauf23f2linf
+              status: DOWN
+              statusMessage: IPSEC IS DOWN
+            localAsn: 64512
+            failedReason: ""
+          updateAvailable: false
+          spec:
+            tunnelConfigs:
+            - psk: 23847329fn3u__...
+              ptpCidr: 169.254.12.0/30
+              rekeyMarginInSeconds: 0
+              rekeyFuzz: 0
+            - psk: nsdkjfnsauf23f2linf
+              ptpCidr: 169.254.12.4/30
+              rekeyMarginInSeconds: 0
+              rekeyFuzz: 0
+            remoteAsn: 65000
+            remoteNetworks:
+            - 10.0.0.0/24
+            name: vpnforawesomevpc
+            remoteIpAddress: 192.168.0.0
+        - name: vpnforawesomevpc
+          id: 62a07860f052884d1d129a31
+          state:
+            vpnConnectionStatus: AVAILABLE
+            createdAt: 2022-06-13T13:21:36.283Z
+            remoteAsn: 65000
+            vpnTunnels:
+            - acceptedRouteCount: 0
+              lastStatusChange": 2022-06-13T13:25:41Z
+              localExternalIpAddress": 3.20.144.122
+              localPtpIpAddress": 169.254.12.1
+              remotePtpIpAddress": 169.254.12.2
+              psk": 23847329fn3u__...
+              status": DOWN
+              statusMessage": IPSEC IS DOWN
+            - acceptedRouteCount: 0
+              lastStatusChange: 2022-06-13T13:24:06Z
+              localExternalIpAddress: 13.59.129.13
+              localPtpIpAddress: 169.254.12.5
+              remotePtpIpAddress: 169.254.12.6
+              psk: nsdkjfnsauf23f2linf
+              status: DOWN
+              statusMessage: IPSEC IS DOWN
+            localAsn: 64512
+            failedReason: ""
+          updateAvailable: false
+          spec:
+            tunnelConfigs:
+            - psk: 23847329fn3u__...
+              ptpCidr: 169.254.12.0/30
+              rekeyMarginInSeconds: 0
+              rekeyFuzz: 0
+            - psk: nsdkjfnsauf23f2linf
+              ptpCidr: 169.254.12.4/30
+              rekeyMarginInSeconds: 0
+              rekeyFuzz: 0
+            remoteAsn: 65000
+            remoteNetworks:
+            - 10.0.0.0/24
+            name: vpnforawesomevpc
+            remoteIpAddress: 192.168.0.0
       properties:
         data:
           items:
@@ -310,18 +471,6 @@ components:
       - ptpCidr
       title: tunnelConfig
       type: object
-    vpnId:
-      properties:
-        id:
-          description: The vpn Id
-          example: 62a07860f052884d1d129a31
-          title: id
-          type: string
-      required:
-      - id
-      title: vpnId
-      type: object
-      example: null
     tunnelConfig_1:
       properties:
         psk:
@@ -363,6 +512,21 @@ components:
       title: tunnelConfig
       type: object
     spec:
+      example:
+        tunnelConfigs:
+        - psk: 23847329fn3u__...
+          ptpCidr: 169.254.12.0/30
+          rekeyMarginInSeconds: 0
+          rekeyFuzz: 0
+        - psk: nsdkjfnsauf23f2linf
+          ptpCidr: 169.254.12.4/30
+          rekeyMarginInSeconds: 0
+          rekeyFuzz: 0
+        remoteAsn: 65000
+        remoteNetworks:
+        - 10.0.0.0/24
+        name: vpnforawesomevpc
+        remoteIpAddress: 192.168.0.0
       properties:
         name:
           example: vpnforawesomevpc
@@ -472,6 +636,29 @@ components:
       title: vpnTunnel
       type: object
     state:
+      example:
+        vpnConnectionStatus: AVAILABLE
+        createdAt: 2022-06-13T13:21:36.283Z
+        remoteAsn: 65000
+        vpnTunnels:
+        - acceptedRouteCount: 0
+          lastStatusChange": 2022-06-13T13:25:41Z
+          localExternalIpAddress": 3.20.144.122
+          localPtpIpAddress": 169.254.12.1
+          remotePtpIpAddress": 169.254.12.2
+          psk": 23847329fn3u__...
+          status": DOWN
+          statusMessage": IPSEC IS DOWN
+        - acceptedRouteCount: 0
+          lastStatusChange: 2022-06-13T13:24:06Z
+          localExternalIpAddress: 13.59.129.13
+          localPtpIpAddress: 169.254.12.5
+          remotePtpIpAddress: 169.254.12.6
+          psk: nsdkjfnsauf23f2linf
+          status: DOWN
+          statusMessage: IPSEC IS DOWN
+        localAsn: 64512
+        failedReason: ""
       properties:
         vpnConnectionStatus:
           default: ""
@@ -524,6 +711,21 @@ components:
       title: state
       type: object
     spec_1:
+      example:
+        tunnelConfigs:
+        - psk: 23847329fn3u__...
+          ptpCidr: 169.254.12.0/30
+          rekeyMarginInSeconds: 0
+          rekeyFuzz: 0
+        - psk: nsdkjfnsauf23f2linf
+          ptpCidr: 169.254.12.4/30
+          rekeyMarginInSeconds: 0
+          rekeyFuzz: 0
+        remoteAsn: 65000
+        remoteNetworks:
+        - 10.0.0.0/24
+        name: myDatacenterVpn
+        remoteIpAddress: 100.100.100.100
       properties:
         name:
           example: myDatacenterVpn
@@ -569,6 +771,8 @@ components:
       title: spec
       type: object
     state_1:
+      example:
+        vpnConnectionStatus: PENDING
       properties:
         vpnConnectionStatus:
           example: PENDING

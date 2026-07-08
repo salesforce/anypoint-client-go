@@ -22,6 +22,8 @@ type ExchangePolicyTemplateAllVersionsInner struct {
 	GroupId *string `json:"groupId,omitempty"`
 	AssetId *string `json:"assetId,omitempty"`
 	Version *string `json:"version,omitempty"`
+	// Lifecycle status of the version (e.g. published, deprecated, development).
+	Status *string `json:"status,omitempty"`
 }
 
 // NewExchangePolicyTemplateAllVersionsInner instantiates a new ExchangePolicyTemplateAllVersionsInner object
@@ -137,6 +139,38 @@ func (o *ExchangePolicyTemplateAllVersionsInner) SetVersion(v string) {
 	o.Version = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplateAllVersionsInner) GetStatus() string {
+	if o == nil || IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplateAllVersionsInner) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplateAllVersionsInner) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *ExchangePolicyTemplateAllVersionsInner) SetStatus(v string) {
+	o.Status = &v
+}
+
 func (o ExchangePolicyTemplateAllVersionsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -155,6 +189,9 @@ func (o ExchangePolicyTemplateAllVersionsInner) ToMap() (map[string]interface{},
 	}
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil
 }

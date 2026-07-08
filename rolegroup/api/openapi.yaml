@@ -331,6 +331,9 @@ components:
           type: integer
       type: object
     _organizations__orgId__rolegroups_post_400_response:
+      example:
+        message: A sample message here
+        status: 0
       properties:
         status:
           default: 400

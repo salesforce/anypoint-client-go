@@ -12,6 +12,8 @@ package vpc
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FirewallRule type satisfies the MappedNullable interface at compile time
@@ -28,6 +30,8 @@ type FirewallRule struct {
 	// An explanation about the purpose of this instance.
 	ToPort int32 `json:"toPort"`
 }
+
+type _FirewallRule FirewallRule
 
 // NewFirewallRule instantiates a new FirewallRule object
 // This constructor will assign default values to properties that have it defined,
@@ -169,6 +173,46 @@ func (o FirewallRule) ToMap() (map[string]interface{}, error) {
 	toSerialize["protocol"] = o.Protocol
 	toSerialize["toPort"] = o.ToPort
 	return toSerialize, nil
+}
+
+func (o *FirewallRule) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cidrBlock",
+		"fromPort",
+		"protocol",
+		"toPort",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFirewallRule := _FirewallRule{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallRule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FirewallRule(varFirewallRule)
+
+	return err
 }
 
 type NullableFirewallRule struct {

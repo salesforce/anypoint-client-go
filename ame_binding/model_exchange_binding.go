@@ -21,6 +21,7 @@ var _ MappedNullable = &ExchangeBinding{}
 type ExchangeBinding struct {
 	QueueId *string `json:"queueId,omitempty"`
 	ExchangeId *string `json:"exchangeId,omitempty"`
+	Fifo *bool `json:"fifo,omitempty"`
 }
 
 // NewExchangeBinding instantiates a new ExchangeBinding object
@@ -104,6 +105,38 @@ func (o *ExchangeBinding) SetExchangeId(v string) {
 	o.ExchangeId = &v
 }
 
+// GetFifo returns the Fifo field value if set, zero value otherwise.
+func (o *ExchangeBinding) GetFifo() bool {
+	if o == nil || IsNil(o.Fifo) {
+		var ret bool
+		return ret
+	}
+	return *o.Fifo
+}
+
+// GetFifoOk returns a tuple with the Fifo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeBinding) GetFifoOk() (*bool, bool) {
+	if o == nil || IsNil(o.Fifo) {
+		return nil, false
+	}
+	return o.Fifo, true
+}
+
+// HasFifo returns a boolean if a field has been set.
+func (o *ExchangeBinding) HasFifo() bool {
+	if o != nil && !IsNil(o.Fifo) {
+		return true
+	}
+
+	return false
+}
+
+// SetFifo gets a reference to the given bool and assigns it to the Fifo field.
+func (o *ExchangeBinding) SetFifo(v bool) {
+	o.Fifo = &v
+}
+
 func (o ExchangeBinding) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -119,6 +152,9 @@ func (o ExchangeBinding) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ExchangeId) {
 		toSerialize["exchangeId"] = o.ExchangeId
+	}
+	if !IsNil(o.Fifo) {
+		toSerialize["fifo"] = o.Fifo
 	}
 	return toSerialize, nil
 }

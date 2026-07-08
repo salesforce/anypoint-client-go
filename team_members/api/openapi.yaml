@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Description of the Team Members API
   title: Team Members API
-  version: 1.0.0
+  version: 1.1.0
 servers:
 - description: Anypoint Cloudhub
   url: https://anypoint.mulesoft.com/accounts/api/
@@ -16,6 +16,7 @@ paths:
   /organizations/{orgId}/teams/{teamId}/members:
     get:
       description: retrieves team members
+      operationId: getTeamMembers
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -112,7 +113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorsResponse'
+                $ref: '#/components/schemas/ErrorsResponse'
           description: Bad request response
         "404":
           description: resource not found
@@ -120,11 +121,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/teamMemberCollection'
+                $ref: '#/components/schemas/TeamMemberCollection'
           description: Success response
   /organizations/{orgId}/teams/{teamId}/members/{userId}:
     delete:
       description: delete the given user from the given team
+      operationId: deleteTeamMember
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -157,6 +159,7 @@ paths:
           description: Success response
     put:
       description: adds the given user to the given team
+      operationId: putTeamMember
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -186,7 +189,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/teamMemberPutBody'
+              $ref: '#/components/schemas/TeamMemberPutBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -200,7 +203,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorsResponse'
+            $ref: '#/components/schemas/ErrorsResponse'
       description: Bad request response
     NotFoundError:
       description: resource not found
@@ -208,22 +211,38 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/teamMemberCollection'
+            $ref: '#/components/schemas/TeamMemberCollection'
       description: Success response
     SuccessPutTeamMember:
       description: Success response
     SuccessDeleteTeamMember:
       description: Success response
   schemas:
-    errorsResponse:
+    ErrorsResponse:
+      example:
+        errors:
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors_inner'
+            $ref: '#/components/schemas/ErrorsResponse_errors_inner'
           type: array
-      title: errorsResponse
+      title: ErrorsResponse
       type: object
-    teamMemberPutBody:
+    TeamMemberPutBody:
+      example:
+        membership_type: member
       properties:
         membership_type:
           enum:
@@ -231,9 +250,9 @@ components:
           - maintainer
           title: membershipType
           type: string
-      title: teamMemberPutBody
+      title: TeamMemberPutBody
       type: object
-    teamMember:
+    TeamMember:
       example:
         is_assigned_via_external_groups: true
         updated_at: updated_at
@@ -264,9 +283,9 @@ components:
         updated_at:
           title: updatedAt
           type: string
-      title: teamMember
+      title: TeamMember
       type: object
-    teamMemberCollection:
+    TeamMemberCollection:
       example:
         total: 0
         data:
@@ -287,15 +306,22 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/teamMember'
+            $ref: '#/components/schemas/TeamMember'
           title: data
           type: array
         total:
           title: total
           type: integer
-      title: teamMemberCollection
+      title: TeamMemberCollection
       type: object
-    errorsResponse_errors_inner:
+    ErrorsResponse_errors_inner:
+      example:
+        schema: schema
+        data: data
+        type: type
+        keyword: keyword
+        message: message
+        dataPath: dataPath
       properties:
         type:
           title: type

@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **QueueId** | Pointer to **string** |  | [optional] 
 **ExchangeId** | Pointer to **string** |  | [optional] 
-**Rules** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**Fifo** | Pointer to **bool** |  | [optional] 
+**RoutingRules** | Pointer to **[]map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -77,30 +78,55 @@ SetExchangeId sets ExchangeId field to given value.
 
 HasExchangeId returns a boolean if a field has been set.
 
-### GetRules
+### GetFifo
 
-`func (o *ExchangeBindingWithRules) GetRules() []map[string]interface{}`
+`func (o *ExchangeBindingWithRules) GetFifo() bool`
 
-GetRules returns the Rules field if non-nil, zero value otherwise.
+GetFifo returns the Fifo field if non-nil, zero value otherwise.
 
-### GetRulesOk
+### GetFifoOk
 
-`func (o *ExchangeBindingWithRules) GetRulesOk() (*[]map[string]interface{}, bool)`
+`func (o *ExchangeBindingWithRules) GetFifoOk() (*bool, bool)`
 
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+GetFifoOk returns a tuple with the Fifo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRules
+### SetFifo
 
-`func (o *ExchangeBindingWithRules) SetRules(v []map[string]interface{})`
+`func (o *ExchangeBindingWithRules) SetFifo(v bool)`
 
-SetRules sets Rules field to given value.
+SetFifo sets Fifo field to given value.
 
-### HasRules
+### HasFifo
 
-`func (o *ExchangeBindingWithRules) HasRules() bool`
+`func (o *ExchangeBindingWithRules) HasFifo() bool`
 
-HasRules returns a boolean if a field has been set.
+HasFifo returns a boolean if a field has been set.
+
+### GetRoutingRules
+
+`func (o *ExchangeBindingWithRules) GetRoutingRules() []map[string]interface{}`
+
+GetRoutingRules returns the RoutingRules field if non-nil, zero value otherwise.
+
+### GetRoutingRulesOk
+
+`func (o *ExchangeBindingWithRules) GetRoutingRulesOk() (*[]map[string]interface{}, bool)`
+
+GetRoutingRulesOk returns a tuple with the RoutingRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoutingRules
+
+`func (o *ExchangeBindingWithRules) SetRoutingRules(v []map[string]interface{})`
+
+SetRoutingRules sets RoutingRules field to given value.
+
+### HasRoutingRules
+
+`func (o *ExchangeBindingWithRules) HasRoutingRules() bool`
+
+HasRoutingRules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

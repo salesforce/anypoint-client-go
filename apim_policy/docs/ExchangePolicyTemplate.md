@@ -33,7 +33,13 @@ Name | Type | Description | Notes
 **OasV2Snippet** | Pointer to **string** |  | [optional] 
 **OasV3Snippet** | Pointer to **string** |  | [optional] 
 **Applicable** | Pointer to **bool** |  | [optional] 
-**Configuration** | Pointer to [**[]PolicyConfiguration**](PolicyConfiguration.md) |  | [optional] 
+**Configuration** | Pointer to **interface{}** | Policy configuration. Legacy policies (mule3/older mule4) return an array of PolicyConfiguration items describing each configurable property. Modern policies (AI/MCP/A2A and newer mule4) return a JSON Schema object (draft-2019-09) describing the same structure with richer validation (if/then/else, oneOf, etc.). Consumer code must check the runtime type and parse accordingly.  | [optional] 
+**SchemaId** | Pointer to **string** | Identifier of the underlying JSON schema for modern policies. | [optional] 
+**SplitAssetModel** | Pointer to **bool** | Whether the policy uses the split asset model. | [optional] 
+**OotbUpgradeableImpl** | Pointer to **bool** | Whether the OOTB implementation supports in-place upgrades. | [optional] 
+**SupportedJavaVersions** | Pointer to **[]string** | Java runtime versions this policy implementation is compatible with. | [optional] 
+**InterfaceScope** | Pointer to **[]string** | Scopes at which the policy can be applied (e.g. \&quot;api\&quot;, \&quot;resource\&quot;). | [optional] 
+**InterfaceTransformation** | Pointer to [**[]ExchangePolicyTemplateInterfaceTransformationInner**](ExchangePolicyTemplateInterfaceTransformationInner.md) | Modern replacement for the flat ramlSnippet/oasV2Snippet/oasV3Snippet fields. Each entry pairs a language identifier with a transformation snippet to apply to the API definition.  | [optional] 
 **AllVersions** | Pointer to [**[]ExchangePolicyTemplateAllVersionsInner**](ExchangePolicyTemplateAllVersionsInner.md) |  | [optional] 
 
 ## Methods
@@ -782,20 +788,20 @@ HasApplicable returns a boolean if a field has been set.
 
 ### GetConfiguration
 
-`func (o *ExchangePolicyTemplate) GetConfiguration() []PolicyConfiguration`
+`func (o *ExchangePolicyTemplate) GetConfiguration() interface{}`
 
 GetConfiguration returns the Configuration field if non-nil, zero value otherwise.
 
 ### GetConfigurationOk
 
-`func (o *ExchangePolicyTemplate) GetConfigurationOk() (*[]PolicyConfiguration, bool)`
+`func (o *ExchangePolicyTemplate) GetConfigurationOk() (*interface{}, bool)`
 
 GetConfigurationOk returns a tuple with the Configuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfiguration
 
-`func (o *ExchangePolicyTemplate) SetConfiguration(v []PolicyConfiguration)`
+`func (o *ExchangePolicyTemplate) SetConfiguration(v interface{})`
 
 SetConfiguration sets Configuration field to given value.
 
@@ -804,6 +810,166 @@ SetConfiguration sets Configuration field to given value.
 `func (o *ExchangePolicyTemplate) HasConfiguration() bool`
 
 HasConfiguration returns a boolean if a field has been set.
+
+### SetConfigurationNil
+
+`func (o *ExchangePolicyTemplate) SetConfigurationNil(b bool)`
+
+ SetConfigurationNil sets the value for Configuration to be an explicit nil
+
+### UnsetConfiguration
+`func (o *ExchangePolicyTemplate) UnsetConfiguration()`
+
+UnsetConfiguration ensures that no value is present for Configuration, not even an explicit nil
+### GetSchemaId
+
+`func (o *ExchangePolicyTemplate) GetSchemaId() string`
+
+GetSchemaId returns the SchemaId field if non-nil, zero value otherwise.
+
+### GetSchemaIdOk
+
+`func (o *ExchangePolicyTemplate) GetSchemaIdOk() (*string, bool)`
+
+GetSchemaIdOk returns a tuple with the SchemaId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSchemaId
+
+`func (o *ExchangePolicyTemplate) SetSchemaId(v string)`
+
+SetSchemaId sets SchemaId field to given value.
+
+### HasSchemaId
+
+`func (o *ExchangePolicyTemplate) HasSchemaId() bool`
+
+HasSchemaId returns a boolean if a field has been set.
+
+### GetSplitAssetModel
+
+`func (o *ExchangePolicyTemplate) GetSplitAssetModel() bool`
+
+GetSplitAssetModel returns the SplitAssetModel field if non-nil, zero value otherwise.
+
+### GetSplitAssetModelOk
+
+`func (o *ExchangePolicyTemplate) GetSplitAssetModelOk() (*bool, bool)`
+
+GetSplitAssetModelOk returns a tuple with the SplitAssetModel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSplitAssetModel
+
+`func (o *ExchangePolicyTemplate) SetSplitAssetModel(v bool)`
+
+SetSplitAssetModel sets SplitAssetModel field to given value.
+
+### HasSplitAssetModel
+
+`func (o *ExchangePolicyTemplate) HasSplitAssetModel() bool`
+
+HasSplitAssetModel returns a boolean if a field has been set.
+
+### GetOotbUpgradeableImpl
+
+`func (o *ExchangePolicyTemplate) GetOotbUpgradeableImpl() bool`
+
+GetOotbUpgradeableImpl returns the OotbUpgradeableImpl field if non-nil, zero value otherwise.
+
+### GetOotbUpgradeableImplOk
+
+`func (o *ExchangePolicyTemplate) GetOotbUpgradeableImplOk() (*bool, bool)`
+
+GetOotbUpgradeableImplOk returns a tuple with the OotbUpgradeableImpl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOotbUpgradeableImpl
+
+`func (o *ExchangePolicyTemplate) SetOotbUpgradeableImpl(v bool)`
+
+SetOotbUpgradeableImpl sets OotbUpgradeableImpl field to given value.
+
+### HasOotbUpgradeableImpl
+
+`func (o *ExchangePolicyTemplate) HasOotbUpgradeableImpl() bool`
+
+HasOotbUpgradeableImpl returns a boolean if a field has been set.
+
+### GetSupportedJavaVersions
+
+`func (o *ExchangePolicyTemplate) GetSupportedJavaVersions() []*string`
+
+GetSupportedJavaVersions returns the SupportedJavaVersions field if non-nil, zero value otherwise.
+
+### GetSupportedJavaVersionsOk
+
+`func (o *ExchangePolicyTemplate) GetSupportedJavaVersionsOk() (*[]*string, bool)`
+
+GetSupportedJavaVersionsOk returns a tuple with the SupportedJavaVersions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportedJavaVersions
+
+`func (o *ExchangePolicyTemplate) SetSupportedJavaVersions(v []*string)`
+
+SetSupportedJavaVersions sets SupportedJavaVersions field to given value.
+
+### HasSupportedJavaVersions
+
+`func (o *ExchangePolicyTemplate) HasSupportedJavaVersions() bool`
+
+HasSupportedJavaVersions returns a boolean if a field has been set.
+
+### GetInterfaceScope
+
+`func (o *ExchangePolicyTemplate) GetInterfaceScope() []string`
+
+GetInterfaceScope returns the InterfaceScope field if non-nil, zero value otherwise.
+
+### GetInterfaceScopeOk
+
+`func (o *ExchangePolicyTemplate) GetInterfaceScopeOk() (*[]string, bool)`
+
+GetInterfaceScopeOk returns a tuple with the InterfaceScope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceScope
+
+`func (o *ExchangePolicyTemplate) SetInterfaceScope(v []string)`
+
+SetInterfaceScope sets InterfaceScope field to given value.
+
+### HasInterfaceScope
+
+`func (o *ExchangePolicyTemplate) HasInterfaceScope() bool`
+
+HasInterfaceScope returns a boolean if a field has been set.
+
+### GetInterfaceTransformation
+
+`func (o *ExchangePolicyTemplate) GetInterfaceTransformation() []ExchangePolicyTemplateInterfaceTransformationInner`
+
+GetInterfaceTransformation returns the InterfaceTransformation field if non-nil, zero value otherwise.
+
+### GetInterfaceTransformationOk
+
+`func (o *ExchangePolicyTemplate) GetInterfaceTransformationOk() (*[]ExchangePolicyTemplateInterfaceTransformationInner, bool)`
+
+GetInterfaceTransformationOk returns a tuple with the InterfaceTransformation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceTransformation
+
+`func (o *ExchangePolicyTemplate) SetInterfaceTransformation(v []ExchangePolicyTemplateInterfaceTransformationInner)`
+
+SetInterfaceTransformation sets InterfaceTransformation field to given value.
+
+### HasInterfaceTransformation
+
+`func (o *ExchangePolicyTemplate) HasInterfaceTransformation() bool`
+
+HasInterfaceTransformation returns a boolean if a field has been set.
 
 ### GetAllVersions
 

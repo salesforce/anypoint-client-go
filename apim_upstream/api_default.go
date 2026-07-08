@@ -20,19 +20,19 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiDeleteApimInstanceUpstreamRequest struct {
+type DefaultAPIDeleteApimInstanceUpstreamRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
 	upstreamId string
 }
 
-func (r DefaultApiDeleteApimInstanceUpstreamRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteApimInstanceUpstreamRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteApimInstanceUpstreamExecute(r)
 }
 
@@ -46,10 +46,10 @@ Delete a specific Upstream in a API Manager Instance  in a specific environment 
  @param envId The environment id
  @param envApiId The api id specific to a given environment
  @param upstreamId The upstream id
- @return DefaultApiDeleteApimInstanceUpstreamRequest
+ @return DefaultAPIDeleteApimInstanceUpstreamRequest
 */
-func (a *DefaultApiService) DeleteApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string, upstreamId string) DefaultApiDeleteApimInstanceUpstreamRequest {
-	return DefaultApiDeleteApimInstanceUpstreamRequest{
+func (a *DefaultAPIService) DeleteApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string, upstreamId string) DefaultAPIDeleteApimInstanceUpstreamRequest {
+	return DefaultAPIDeleteApimInstanceUpstreamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -60,14 +60,14 @@ func (a *DefaultApiService) DeleteApimInstanceUpstream(ctx context.Context, orgI
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteApimInstanceUpstreamExecute(r DefaultApiDeleteApimInstanceUpstreamRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteApimInstanceUpstreamExecute(r DefaultAPIDeleteApimInstanceUpstreamRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteApimInstanceUpstream")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteApimInstanceUpstream")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -138,16 +138,16 @@ func (a *DefaultApiService) DeleteApimInstanceUpstreamExecute(r DefaultApiDelete
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetApimInstanceUpstreamRequest struct {
+type DefaultAPIGetApimInstanceUpstreamRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
 	upstreamId string
 }
 
-func (r DefaultApiGetApimInstanceUpstreamRequest) Execute() (*UpstreamDetails, *http.Response, error) {
+func (r DefaultAPIGetApimInstanceUpstreamRequest) Execute() (*UpstreamDetails, *http.Response, error) {
 	return r.ApiService.GetApimInstanceUpstreamExecute(r)
 }
 
@@ -161,10 +161,10 @@ Retrieve a specific upstream for a given API Manager instance in a given environ
  @param envId The environment id
  @param envApiId The api id specific to a given environment
  @param upstreamId The upstream id
- @return DefaultApiGetApimInstanceUpstreamRequest
+ @return DefaultAPIGetApimInstanceUpstreamRequest
 */
-func (a *DefaultApiService) GetApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string, upstreamId string) DefaultApiGetApimInstanceUpstreamRequest {
-	return DefaultApiGetApimInstanceUpstreamRequest{
+func (a *DefaultAPIService) GetApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string, upstreamId string) DefaultAPIGetApimInstanceUpstreamRequest {
+	return DefaultAPIGetApimInstanceUpstreamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -176,7 +176,7 @@ func (a *DefaultApiService) GetApimInstanceUpstream(ctx context.Context, orgId s
 
 // Execute executes the request
 //  @return UpstreamDetails
-func (a *DefaultApiService) GetApimInstanceUpstreamExecute(r DefaultApiGetApimInstanceUpstreamRequest) (*UpstreamDetails, *http.Response, error) {
+func (a *DefaultAPIService) GetApimInstanceUpstreamExecute(r DefaultAPIGetApimInstanceUpstreamRequest) (*UpstreamDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -184,7 +184,7 @@ func (a *DefaultApiService) GetApimInstanceUpstreamExecute(r DefaultApiGetApimIn
 		localVarReturnValue  *UpstreamDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetApimInstanceUpstream")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimInstanceUpstream")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -264,15 +264,15 @@ func (a *DefaultApiService) GetApimInstanceUpstreamExecute(r DefaultApiGetApimIn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetApimInstanceUpstreamsRequest struct {
+type DefaultAPIGetApimInstanceUpstreamsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
 }
 
-func (r DefaultApiGetApimInstanceUpstreamsRequest) Execute() (*UpstreamCollection, *http.Response, error) {
+func (r DefaultAPIGetApimInstanceUpstreamsRequest) Execute() (*UpstreamCollection, *http.Response, error) {
 	return r.ApiService.GetApimInstanceUpstreamsExecute(r)
 }
 
@@ -285,10 +285,10 @@ Retrieves all upstreams for a given API Manager instance in a given environment.
  @param orgId The organization Id
  @param envId The environment id
  @param envApiId The api id specific to a given environment
- @return DefaultApiGetApimInstanceUpstreamsRequest
+ @return DefaultAPIGetApimInstanceUpstreamsRequest
 */
-func (a *DefaultApiService) GetApimInstanceUpstreams(ctx context.Context, orgId string, envId string, envApiId string) DefaultApiGetApimInstanceUpstreamsRequest {
-	return DefaultApiGetApimInstanceUpstreamsRequest{
+func (a *DefaultAPIService) GetApimInstanceUpstreams(ctx context.Context, orgId string, envId string, envApiId string) DefaultAPIGetApimInstanceUpstreamsRequest {
+	return DefaultAPIGetApimInstanceUpstreamsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -299,7 +299,7 @@ func (a *DefaultApiService) GetApimInstanceUpstreams(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return UpstreamCollection
-func (a *DefaultApiService) GetApimInstanceUpstreamsExecute(r DefaultApiGetApimInstanceUpstreamsRequest) (*UpstreamCollection, *http.Response, error) {
+func (a *DefaultAPIService) GetApimInstanceUpstreamsExecute(r DefaultAPIGetApimInstanceUpstreamsRequest) (*UpstreamCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -307,7 +307,7 @@ func (a *DefaultApiService) GetApimInstanceUpstreamsExecute(r DefaultApiGetApimI
 		localVarReturnValue  *UpstreamCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetApimInstanceUpstreams")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetApimInstanceUpstreams")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -386,9 +386,9 @@ func (a *DefaultApiService) GetApimInstanceUpstreamsExecute(r DefaultApiGetApimI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchApimInstanceUpstreamRequest struct {
+type DefaultAPIPatchApimInstanceUpstreamRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
@@ -397,12 +397,12 @@ type DefaultApiPatchApimInstanceUpstreamRequest struct {
 }
 
 // Patch API Manager Instance Upstream Body
-func (r DefaultApiPatchApimInstanceUpstreamRequest) UpstreamPatchBody(upstreamPatchBody UpstreamPatchBody) DefaultApiPatchApimInstanceUpstreamRequest {
+func (r DefaultAPIPatchApimInstanceUpstreamRequest) UpstreamPatchBody(upstreamPatchBody UpstreamPatchBody) DefaultAPIPatchApimInstanceUpstreamRequest {
 	r.upstreamPatchBody = &upstreamPatchBody
 	return r
 }
 
-func (r DefaultApiPatchApimInstanceUpstreamRequest) Execute() (*Upstream, *http.Response, error) {
+func (r DefaultAPIPatchApimInstanceUpstreamRequest) Execute() (*Upstream, *http.Response, error) {
 	return r.ApiService.PatchApimInstanceUpstreamExecute(r)
 }
 
@@ -416,10 +416,10 @@ Update a specific upstream in a given API Manager instance in a given environmen
  @param envId The environment id
  @param envApiId The api id specific to a given environment
  @param upstreamId The upstream id
- @return DefaultApiPatchApimInstanceUpstreamRequest
+ @return DefaultAPIPatchApimInstanceUpstreamRequest
 */
-func (a *DefaultApiService) PatchApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string, upstreamId string) DefaultApiPatchApimInstanceUpstreamRequest {
-	return DefaultApiPatchApimInstanceUpstreamRequest{
+func (a *DefaultAPIService) PatchApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string, upstreamId string) DefaultAPIPatchApimInstanceUpstreamRequest {
+	return DefaultAPIPatchApimInstanceUpstreamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -431,7 +431,7 @@ func (a *DefaultApiService) PatchApimInstanceUpstream(ctx context.Context, orgId
 
 // Execute executes the request
 //  @return Upstream
-func (a *DefaultApiService) PatchApimInstanceUpstreamExecute(r DefaultApiPatchApimInstanceUpstreamRequest) (*Upstream, *http.Response, error) {
+func (a *DefaultAPIService) PatchApimInstanceUpstreamExecute(r DefaultAPIPatchApimInstanceUpstreamRequest) (*Upstream, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -439,7 +439,7 @@ func (a *DefaultApiService) PatchApimInstanceUpstreamExecute(r DefaultApiPatchAp
 		localVarReturnValue  *Upstream
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchApimInstanceUpstream")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchApimInstanceUpstream")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -521,9 +521,9 @@ func (a *DefaultApiService) PatchApimInstanceUpstreamExecute(r DefaultApiPatchAp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostApimInstanceUpstreamRequest struct {
+type DefaultAPIPostApimInstanceUpstreamRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	envApiId string
@@ -531,12 +531,12 @@ type DefaultApiPostApimInstanceUpstreamRequest struct {
 }
 
 // Post API Manager Instance Upstream Body
-func (r DefaultApiPostApimInstanceUpstreamRequest) UpstreamPostBody(upstreamPostBody UpstreamPostBody) DefaultApiPostApimInstanceUpstreamRequest {
+func (r DefaultAPIPostApimInstanceUpstreamRequest) UpstreamPostBody(upstreamPostBody UpstreamPostBody) DefaultAPIPostApimInstanceUpstreamRequest {
 	r.upstreamPostBody = &upstreamPostBody
 	return r
 }
 
-func (r DefaultApiPostApimInstanceUpstreamRequest) Execute() (*UpstreamDetails, *http.Response, error) {
+func (r DefaultAPIPostApimInstanceUpstreamRequest) Execute() (*UpstreamDetails, *http.Response, error) {
 	return r.ApiService.PostApimInstanceUpstreamExecute(r)
 }
 
@@ -549,10 +549,10 @@ Creates an upstream for a given API Manager instance in a given environment. Con
  @param orgId The organization Id
  @param envId The environment id
  @param envApiId The api id specific to a given environment
- @return DefaultApiPostApimInstanceUpstreamRequest
+ @return DefaultAPIPostApimInstanceUpstreamRequest
 */
-func (a *DefaultApiService) PostApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string) DefaultApiPostApimInstanceUpstreamRequest {
-	return DefaultApiPostApimInstanceUpstreamRequest{
+func (a *DefaultAPIService) PostApimInstanceUpstream(ctx context.Context, orgId string, envId string, envApiId string) DefaultAPIPostApimInstanceUpstreamRequest {
+	return DefaultAPIPostApimInstanceUpstreamRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -563,7 +563,7 @@ func (a *DefaultApiService) PostApimInstanceUpstream(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return UpstreamDetails
-func (a *DefaultApiService) PostApimInstanceUpstreamExecute(r DefaultApiPostApimInstanceUpstreamRequest) (*UpstreamDetails, *http.Response, error) {
+func (a *DefaultAPIService) PostApimInstanceUpstreamExecute(r DefaultAPIPostApimInstanceUpstreamRequest) (*UpstreamDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -571,7 +571,7 @@ func (a *DefaultApiService) PostApimInstanceUpstreamExecute(r DefaultApiPostApim
 		localVarReturnValue  *UpstreamDetails
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostApimInstanceUpstream")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostApimInstanceUpstream")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

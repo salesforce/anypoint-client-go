@@ -20,12 +20,12 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiCreateAMERequest struct {
+type DefaultAPICreateAMERequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -33,12 +33,12 @@ type DefaultApiCreateAMERequest struct {
 	exchangeBody *ExchangeBody
 }
 
-func (r DefaultApiCreateAMERequest) ExchangeBody(exchangeBody ExchangeBody) DefaultApiCreateAMERequest {
+func (r DefaultAPICreateAMERequest) ExchangeBody(exchangeBody ExchangeBody) DefaultAPICreateAMERequest {
 	r.exchangeBody = &exchangeBody
 	return r
 }
 
-func (r DefaultApiCreateAMERequest) Execute() (*Exchange, *http.Response, error) {
+func (r DefaultAPICreateAMERequest) Execute() (*Exchange, *http.Response, error) {
 	return r.ApiService.CreateAMEExecute(r)
 }
 
@@ -52,10 +52,10 @@ Create exchange
  @param envId The environment id
  @param regionId The region id
  @param exchangeId The id of a specific exchange
- @return DefaultApiCreateAMERequest
+ @return DefaultAPICreateAMERequest
 */
-func (a *DefaultApiService) CreateAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiCreateAMERequest {
-	return DefaultApiCreateAMERequest{
+func (a *DefaultAPIService) CreateAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultAPICreateAMERequest {
+	return DefaultAPICreateAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -67,7 +67,7 @@ func (a *DefaultApiService) CreateAME(ctx context.Context, orgId string, envId s
 
 // Execute executes the request
 //  @return Exchange
-func (a *DefaultApiService) CreateAMEExecute(r DefaultApiCreateAMERequest) (*Exchange, *http.Response, error) {
+func (a *DefaultAPIService) CreateAMEExecute(r DefaultAPICreateAMERequest) (*Exchange, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -75,7 +75,7 @@ func (a *DefaultApiService) CreateAMEExecute(r DefaultApiCreateAMERequest) (*Exc
 		localVarReturnValue  *Exchange
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAME")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAME")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -146,16 +146,16 @@ func (a *DefaultApiService) CreateAMEExecute(r DefaultApiCreateAMERequest) (*Exc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiDeleteAMERequest struct {
+type DefaultAPIDeleteAMERequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
 	exchangeId string
 }
 
-func (r DefaultApiDeleteAMERequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteAMERequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAMEExecute(r)
 }
 
@@ -169,10 +169,10 @@ Delete an exchange
  @param envId The environment id
  @param regionId The region id
  @param exchangeId The id of a specific exchange
- @return DefaultApiDeleteAMERequest
+ @return DefaultAPIDeleteAMERequest
 */
-func (a *DefaultApiService) DeleteAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiDeleteAMERequest {
-	return DefaultApiDeleteAMERequest{
+func (a *DefaultAPIService) DeleteAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultAPIDeleteAMERequest {
+	return DefaultAPIDeleteAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -183,14 +183,14 @@ func (a *DefaultApiService) DeleteAME(ctx context.Context, orgId string, envId s
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteAMEExecute(r DefaultApiDeleteAMERequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteAMEExecute(r DefaultAPIDeleteAMERequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAME")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAME")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -250,16 +250,16 @@ func (a *DefaultApiService) DeleteAMEExecute(r DefaultApiDeleteAMERequest) (*htt
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetAMERequest struct {
+type DefaultAPIGetAMERequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
 	exchangeId string
 }
 
-func (r DefaultApiGetAMERequest) Execute() (*Exchange, *http.Response, error) {
+func (r DefaultAPIGetAMERequest) Execute() (*Exchange, *http.Response, error) {
 	return r.ApiService.GetAMEExecute(r)
 }
 
@@ -273,10 +273,10 @@ Get details about an exchange
  @param envId The environment id
  @param regionId The region id
  @param exchangeId The id of a specific exchange
- @return DefaultApiGetAMERequest
+ @return DefaultAPIGetAMERequest
 */
-func (a *DefaultApiService) GetAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiGetAMERequest {
-	return DefaultApiGetAMERequest{
+func (a *DefaultAPIService) GetAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultAPIGetAMERequest {
+	return DefaultAPIGetAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -288,7 +288,7 @@ func (a *DefaultApiService) GetAME(ctx context.Context, orgId string, envId stri
 
 // Execute executes the request
 //  @return Exchange
-func (a *DefaultApiService) GetAMEExecute(r DefaultApiGetAMERequest) (*Exchange, *http.Response, error) {
+func (a *DefaultAPIService) GetAMEExecute(r DefaultAPIGetAMERequest) (*Exchange, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -296,7 +296,7 @@ func (a *DefaultApiService) GetAMEExecute(r DefaultApiGetAMERequest) (*Exchange,
 		localVarReturnValue  *Exchange
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAME")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetAME")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -365,9 +365,9 @@ func (a *DefaultApiService) GetAMEExecute(r DefaultApiGetAMERequest) (*Exchange,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiUpdateAMERequest struct {
+type DefaultAPIUpdateAMERequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -375,12 +375,12 @@ type DefaultApiUpdateAMERequest struct {
 	exchangeBody *ExchangeBody
 }
 
-func (r DefaultApiUpdateAMERequest) ExchangeBody(exchangeBody ExchangeBody) DefaultApiUpdateAMERequest {
+func (r DefaultAPIUpdateAMERequest) ExchangeBody(exchangeBody ExchangeBody) DefaultAPIUpdateAMERequest {
 	r.exchangeBody = &exchangeBody
 	return r
 }
 
-func (r DefaultApiUpdateAMERequest) Execute() (*Exchange, *http.Response, error) {
+func (r DefaultAPIUpdateAMERequest) Execute() (*Exchange, *http.Response, error) {
 	return r.ApiService.UpdateAMEExecute(r)
 }
 
@@ -394,10 +394,10 @@ Modify an exchange's properties
  @param envId The environment id
  @param regionId The region id
  @param exchangeId The id of a specific exchange
- @return DefaultApiUpdateAMERequest
+ @return DefaultAPIUpdateAMERequest
 */
-func (a *DefaultApiService) UpdateAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultApiUpdateAMERequest {
-	return DefaultApiUpdateAMERequest{
+func (a *DefaultAPIService) UpdateAME(ctx context.Context, orgId string, envId string, regionId string, exchangeId string) DefaultAPIUpdateAMERequest {
+	return DefaultAPIUpdateAMERequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -409,7 +409,7 @@ func (a *DefaultApiService) UpdateAME(ctx context.Context, orgId string, envId s
 
 // Execute executes the request
 //  @return Exchange
-func (a *DefaultApiService) UpdateAMEExecute(r DefaultApiUpdateAMERequest) (*Exchange, *http.Response, error) {
+func (a *DefaultAPIService) UpdateAMEExecute(r DefaultAPIUpdateAMERequest) (*Exchange, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -417,7 +417,7 @@ func (a *DefaultApiService) UpdateAMEExecute(r DefaultApiUpdateAMERequest) (*Exc
 		localVarReturnValue  *Exchange
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAME")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateAME")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

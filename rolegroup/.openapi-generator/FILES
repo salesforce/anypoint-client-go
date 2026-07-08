@@ -5,7 +5,7 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/OrganizationsOrgIdRolegroupsGet200Response.md
 docs/OrganizationsOrgIdRolegroupsPost400Response.md
 docs/Rolegroup.md

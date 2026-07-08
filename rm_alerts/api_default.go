@@ -20,16 +20,16 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiAlertsAlertIdDeleteRequest struct {
+type DefaultAPIAlertsAlertIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	alertId string
 }
 
-func (r DefaultApiAlertsAlertIdDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIAlertsAlertIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AlertsAlertIdDeleteExecute(r)
 }
 
@@ -40,10 +40,10 @@ Delete alert using its Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param alertId the alert Id
- @return DefaultApiAlertsAlertIdDeleteRequest
+ @return DefaultAPIAlertsAlertIdDeleteRequest
 */
-func (a *DefaultApiService) AlertsAlertIdDelete(ctx context.Context, alertId string) DefaultApiAlertsAlertIdDeleteRequest {
-	return DefaultApiAlertsAlertIdDeleteRequest{
+func (a *DefaultAPIService) AlertsAlertIdDelete(ctx context.Context, alertId string) DefaultAPIAlertsAlertIdDeleteRequest {
+	return DefaultAPIAlertsAlertIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		alertId: alertId,
@@ -51,14 +51,14 @@ func (a *DefaultApiService) AlertsAlertIdDelete(ctx context.Context, alertId str
 }
 
 // Execute executes the request
-func (a *DefaultApiService) AlertsAlertIdDeleteExecute(r DefaultApiAlertsAlertIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) AlertsAlertIdDeleteExecute(r DefaultAPIAlertsAlertIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AlertsAlertIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AlertsAlertIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -115,13 +115,13 @@ func (a *DefaultApiService) AlertsAlertIdDeleteExecute(r DefaultApiAlertsAlertId
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiAlertsAlertIdGetRequest struct {
+type DefaultAPIAlertsAlertIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	alertId string
 }
 
-func (r DefaultApiAlertsAlertIdGetRequest) Execute() ([]Alert, *http.Response, error) {
+func (r DefaultAPIAlertsAlertIdGetRequest) Execute() ([]Alert, *http.Response, error) {
 	return r.ApiService.AlertsAlertIdGetExecute(r)
 }
 
@@ -132,10 +132,10 @@ Get one specific alert
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param alertId the alert Id
- @return DefaultApiAlertsAlertIdGetRequest
+ @return DefaultAPIAlertsAlertIdGetRequest
 */
-func (a *DefaultApiService) AlertsAlertIdGet(ctx context.Context, alertId string) DefaultApiAlertsAlertIdGetRequest {
-	return DefaultApiAlertsAlertIdGetRequest{
+func (a *DefaultAPIService) AlertsAlertIdGet(ctx context.Context, alertId string) DefaultAPIAlertsAlertIdGetRequest {
+	return DefaultAPIAlertsAlertIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		alertId: alertId,
@@ -144,7 +144,7 @@ func (a *DefaultApiService) AlertsAlertIdGet(ctx context.Context, alertId string
 
 // Execute executes the request
 //  @return []Alert
-func (a *DefaultApiService) AlertsAlertIdGetExecute(r DefaultApiAlertsAlertIdGetRequest) ([]Alert, *http.Response, error) {
+func (a *DefaultAPIService) AlertsAlertIdGetExecute(r DefaultAPIAlertsAlertIdGetRequest) ([]Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -152,7 +152,7 @@ func (a *DefaultApiService) AlertsAlertIdGetExecute(r DefaultApiAlertsAlertIdGet
 		localVarReturnValue  []Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AlertsAlertIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AlertsAlertIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -218,9 +218,9 @@ func (a *DefaultApiService) AlertsAlertIdGetExecute(r DefaultApiAlertsAlertIdGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiAlertsGetRequest struct {
+type DefaultAPIAlertsGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	xANYPNTENVID *string
 	offset *int32
 	limit *int32
@@ -228,30 +228,30 @@ type DefaultApiAlertsGetRequest struct {
 }
 
 // The ID of your current environment
-func (r DefaultApiAlertsGetRequest) XANYPNTENVID(xANYPNTENVID string) DefaultApiAlertsGetRequest {
+func (r DefaultAPIAlertsGetRequest) XANYPNTENVID(xANYPNTENVID string) DefaultAPIAlertsGetRequest {
 	r.xANYPNTENVID = &xANYPNTENVID
 	return r
 }
 
 // Offset to return alerts from
-func (r DefaultApiAlertsGetRequest) Offset(offset int32) DefaultApiAlertsGetRequest {
+func (r DefaultAPIAlertsGetRequest) Offset(offset int32) DefaultAPIAlertsGetRequest {
 	r.offset = &offset
 	return r
 }
 
 // Maximum number of alerts to return
-func (r DefaultApiAlertsGetRequest) Limit(limit int32) DefaultApiAlertsGetRequest {
+func (r DefaultAPIAlertsGetRequest) Limit(limit int32) DefaultAPIAlertsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // Only return alerts which are connected to this resource (application name)
-func (r DefaultApiAlertsGetRequest) Resource(resource string) DefaultApiAlertsGetRequest {
+func (r DefaultAPIAlertsGetRequest) Resource(resource string) DefaultAPIAlertsGetRequest {
 	r.resource = &resource
 	return r
 }
 
-func (r DefaultApiAlertsGetRequest) Execute() ([]Alert, *http.Response, error) {
+func (r DefaultAPIAlertsGetRequest) Execute() ([]Alert, *http.Response, error) {
 	return r.ApiService.AlertsGetExecute(r)
 }
 
@@ -261,10 +261,10 @@ AlertsGet Get all alets for a given environment.
 Retrieve all alerts in the specified environment. Requires 'Read Alerts' role.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiAlertsGetRequest
+ @return DefaultAPIAlertsGetRequest
 */
-func (a *DefaultApiService) AlertsGet(ctx context.Context) DefaultApiAlertsGetRequest {
-	return DefaultApiAlertsGetRequest{
+func (a *DefaultAPIService) AlertsGet(ctx context.Context) DefaultAPIAlertsGetRequest {
+	return DefaultAPIAlertsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -272,7 +272,7 @@ func (a *DefaultApiService) AlertsGet(ctx context.Context) DefaultApiAlertsGetRe
 
 // Execute executes the request
 //  @return []Alert
-func (a *DefaultApiService) AlertsGetExecute(r DefaultApiAlertsGetRequest) ([]Alert, *http.Response, error) {
+func (a *DefaultAPIService) AlertsGetExecute(r DefaultAPIAlertsGetRequest) ([]Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -280,7 +280,7 @@ func (a *DefaultApiService) AlertsGetExecute(r DefaultApiAlertsGetRequest) ([]Al
 		localVarReturnValue  []Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AlertsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AlertsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -295,13 +295,13 @@ func (a *DefaultApiService) AlertsGetExecute(r DefaultApiAlertsGetRequest) ([]Al
 	}
 
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.resource != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "resource", r.resource, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resource", r.resource, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -320,7 +320,7 @@ func (a *DefaultApiService) AlertsGetExecute(r DefaultApiAlertsGetRequest) ([]Al
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "X-ANYPNT-ENV-ID", r.xANYPNTENVID, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "X-ANYPNT-ENV-ID", r.xANYPNTENVID, "simple", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -358,26 +358,26 @@ func (a *DefaultApiService) AlertsGetExecute(r DefaultApiAlertsGetRequest) ([]Al
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiAlertsPostRequest struct {
+type DefaultAPIAlertsPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	alertBody *AlertBody
 	xANYPNTENVID *string
 }
 
 // Add a new alert
-func (r DefaultApiAlertsPostRequest) AlertBody(alertBody AlertBody) DefaultApiAlertsPostRequest {
+func (r DefaultAPIAlertsPostRequest) AlertBody(alertBody AlertBody) DefaultAPIAlertsPostRequest {
 	r.alertBody = &alertBody
 	return r
 }
 
 // The ID of your current environment
-func (r DefaultApiAlertsPostRequest) XANYPNTENVID(xANYPNTENVID string) DefaultApiAlertsPostRequest {
+func (r DefaultAPIAlertsPostRequest) XANYPNTENVID(xANYPNTENVID string) DefaultAPIAlertsPostRequest {
 	r.xANYPNTENVID = &xANYPNTENVID
 	return r
 }
 
-func (r DefaultApiAlertsPostRequest) Execute() (*Alert, *http.Response, error) {
+func (r DefaultAPIAlertsPostRequest) Execute() (*Alert, *http.Response, error) {
 	return r.ApiService.AlertsPostExecute(r)
 }
 
@@ -387,10 +387,10 @@ AlertsPost Method for AlertsPost
 Create a new Alert
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiAlertsPostRequest
+ @return DefaultAPIAlertsPostRequest
 */
-func (a *DefaultApiService) AlertsPost(ctx context.Context) DefaultApiAlertsPostRequest {
-	return DefaultApiAlertsPostRequest{
+func (a *DefaultAPIService) AlertsPost(ctx context.Context) DefaultAPIAlertsPostRequest {
+	return DefaultAPIAlertsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -398,7 +398,7 @@ func (a *DefaultApiService) AlertsPost(ctx context.Context) DefaultApiAlertsPost
 
 // Execute executes the request
 //  @return Alert
-func (a *DefaultApiService) AlertsPostExecute(r DefaultApiAlertsPostRequest) (*Alert, *http.Response, error) {
+func (a *DefaultAPIService) AlertsPostExecute(r DefaultAPIAlertsPostRequest) (*Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -406,7 +406,7 @@ func (a *DefaultApiService) AlertsPostExecute(r DefaultApiAlertsPostRequest) (*A
 		localVarReturnValue  *Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AlertsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AlertsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -438,7 +438,7 @@ func (a *DefaultApiService) AlertsPostExecute(r DefaultApiAlertsPostRequest) (*A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.xANYPNTENVID != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-ANYPNT-ENV-ID", r.xANYPNTENVID, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-ANYPNT-ENV-ID", r.xANYPNTENVID, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.alertBody
@@ -479,19 +479,19 @@ func (a *DefaultApiService) AlertsPostExecute(r DefaultApiAlertsPostRequest) (*A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiModifyOneAlertRequest struct {
+type DefaultAPIModifyOneAlertRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	alertId string
 	alertBody *AlertBody
 }
 
-func (r DefaultApiModifyOneAlertRequest) AlertBody(alertBody AlertBody) DefaultApiModifyOneAlertRequest {
+func (r DefaultAPIModifyOneAlertRequest) AlertBody(alertBody AlertBody) DefaultAPIModifyOneAlertRequest {
 	r.alertBody = &alertBody
 	return r
 }
 
-func (r DefaultApiModifyOneAlertRequest) Execute() (*Alert, *http.Response, error) {
+func (r DefaultAPIModifyOneAlertRequest) Execute() (*Alert, *http.Response, error) {
 	return r.ApiService.ModifyOneAlertExecute(r)
 }
 
@@ -502,10 +502,10 @@ Modify one alert
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param alertId the alert Id
- @return DefaultApiModifyOneAlertRequest
+ @return DefaultAPIModifyOneAlertRequest
 */
-func (a *DefaultApiService) ModifyOneAlert(ctx context.Context, alertId string) DefaultApiModifyOneAlertRequest {
-	return DefaultApiModifyOneAlertRequest{
+func (a *DefaultAPIService) ModifyOneAlert(ctx context.Context, alertId string) DefaultAPIModifyOneAlertRequest {
+	return DefaultAPIModifyOneAlertRequest{
 		ApiService: a,
 		ctx: ctx,
 		alertId: alertId,
@@ -514,7 +514,7 @@ func (a *DefaultApiService) ModifyOneAlert(ctx context.Context, alertId string) 
 
 // Execute executes the request
 //  @return Alert
-func (a *DefaultApiService) ModifyOneAlertExecute(r DefaultApiModifyOneAlertRequest) (*Alert, *http.Response, error) {
+func (a *DefaultAPIService) ModifyOneAlertExecute(r DefaultAPIModifyOneAlertRequest) (*Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -522,7 +522,7 @@ func (a *DefaultApiService) ModifyOneAlertExecute(r DefaultApiModifyOneAlertRequ
 		localVarReturnValue  *Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ModifyOneAlert")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ModifyOneAlert")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

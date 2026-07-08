@@ -48,7 +48,20 @@ type ExchangePolicyTemplate struct {
 	OasV2Snippet *string `json:"oasV2Snippet,omitempty"`
 	OasV3Snippet *string `json:"oasV3Snippet,omitempty"`
 	Applicable *bool `json:"applicable,omitempty"`
-	Configuration []PolicyConfiguration `json:"configuration,omitempty"`
+	// Policy configuration. Legacy policies (mule3/older mule4) return an array of PolicyConfiguration items describing each configurable property. Modern policies (AI/MCP/A2A and newer mule4) return a JSON Schema object (draft-2019-09) describing the same structure with richer validation (if/then/else, oneOf, etc.). Consumer code must check the runtime type and parse accordingly. 
+	Configuration interface{} `json:"configuration,omitempty"`
+	// Identifier of the underlying JSON schema for modern policies.
+	SchemaId *string `json:"schemaId,omitempty"`
+	// Whether the policy uses the split asset model.
+	SplitAssetModel *bool `json:"splitAssetModel,omitempty"`
+	// Whether the OOTB implementation supports in-place upgrades.
+	OotbUpgradeableImpl *bool `json:"ootbUpgradeableImpl,omitempty"`
+	// Java runtime versions this policy implementation is compatible with.
+	SupportedJavaVersions []*string `json:"supportedJavaVersions,omitempty"`
+	// Scopes at which the policy can be applied (e.g. \"api\", \"resource\").
+	InterfaceScope []string `json:"interfaceScope,omitempty"`
+	// Modern replacement for the flat ramlSnippet/oasV2Snippet/oasV3Snippet fields. Each entry pairs a language identifier with a transformation snippet to apply to the API definition. 
+	InterfaceTransformation []ExchangePolicyTemplateInterfaceTransformationInner `json:"interfaceTransformation,omitempty"`
 	AllVersions []ExchangePolicyTemplateAllVersionsInner `json:"allVersions,omitempty"`
 }
 
@@ -997,10 +1010,10 @@ func (o *ExchangePolicyTemplate) SetApplicable(v bool) {
 	o.Applicable = &v
 }
 
-// GetConfiguration returns the Configuration field value if set, zero value otherwise.
-func (o *ExchangePolicyTemplate) GetConfiguration() []PolicyConfiguration {
-	if o == nil || IsNil(o.Configuration) {
-		var ret []PolicyConfiguration
+// GetConfiguration returns the Configuration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExchangePolicyTemplate) GetConfiguration() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Configuration
@@ -1008,11 +1021,12 @@ func (o *ExchangePolicyTemplate) GetConfiguration() []PolicyConfiguration {
 
 // GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangePolicyTemplate) GetConfigurationOk() ([]PolicyConfiguration, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExchangePolicyTemplate) GetConfigurationOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
-	return o.Configuration, true
+	return &o.Configuration, true
 }
 
 // HasConfiguration returns a boolean if a field has been set.
@@ -1024,9 +1038,201 @@ func (o *ExchangePolicyTemplate) HasConfiguration() bool {
 	return false
 }
 
-// SetConfiguration gets a reference to the given []PolicyConfiguration and assigns it to the Configuration field.
-func (o *ExchangePolicyTemplate) SetConfiguration(v []PolicyConfiguration) {
+// SetConfiguration gets a reference to the given interface{} and assigns it to the Configuration field.
+func (o *ExchangePolicyTemplate) SetConfiguration(v interface{}) {
 	o.Configuration = v
+}
+
+// GetSchemaId returns the SchemaId field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplate) GetSchemaId() string {
+	if o == nil || IsNil(o.SchemaId) {
+		var ret string
+		return ret
+	}
+	return *o.SchemaId
+}
+
+// GetSchemaIdOk returns a tuple with the SchemaId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplate) GetSchemaIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SchemaId) {
+		return nil, false
+	}
+	return o.SchemaId, true
+}
+
+// HasSchemaId returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplate) HasSchemaId() bool {
+	if o != nil && !IsNil(o.SchemaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSchemaId gets a reference to the given string and assigns it to the SchemaId field.
+func (o *ExchangePolicyTemplate) SetSchemaId(v string) {
+	o.SchemaId = &v
+}
+
+// GetSplitAssetModel returns the SplitAssetModel field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplate) GetSplitAssetModel() bool {
+	if o == nil || IsNil(o.SplitAssetModel) {
+		var ret bool
+		return ret
+	}
+	return *o.SplitAssetModel
+}
+
+// GetSplitAssetModelOk returns a tuple with the SplitAssetModel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplate) GetSplitAssetModelOk() (*bool, bool) {
+	if o == nil || IsNil(o.SplitAssetModel) {
+		return nil, false
+	}
+	return o.SplitAssetModel, true
+}
+
+// HasSplitAssetModel returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplate) HasSplitAssetModel() bool {
+	if o != nil && !IsNil(o.SplitAssetModel) {
+		return true
+	}
+
+	return false
+}
+
+// SetSplitAssetModel gets a reference to the given bool and assigns it to the SplitAssetModel field.
+func (o *ExchangePolicyTemplate) SetSplitAssetModel(v bool) {
+	o.SplitAssetModel = &v
+}
+
+// GetOotbUpgradeableImpl returns the OotbUpgradeableImpl field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplate) GetOotbUpgradeableImpl() bool {
+	if o == nil || IsNil(o.OotbUpgradeableImpl) {
+		var ret bool
+		return ret
+	}
+	return *o.OotbUpgradeableImpl
+}
+
+// GetOotbUpgradeableImplOk returns a tuple with the OotbUpgradeableImpl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplate) GetOotbUpgradeableImplOk() (*bool, bool) {
+	if o == nil || IsNil(o.OotbUpgradeableImpl) {
+		return nil, false
+	}
+	return o.OotbUpgradeableImpl, true
+}
+
+// HasOotbUpgradeableImpl returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplate) HasOotbUpgradeableImpl() bool {
+	if o != nil && !IsNil(o.OotbUpgradeableImpl) {
+		return true
+	}
+
+	return false
+}
+
+// SetOotbUpgradeableImpl gets a reference to the given bool and assigns it to the OotbUpgradeableImpl field.
+func (o *ExchangePolicyTemplate) SetOotbUpgradeableImpl(v bool) {
+	o.OotbUpgradeableImpl = &v
+}
+
+// GetSupportedJavaVersions returns the SupportedJavaVersions field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplate) GetSupportedJavaVersions() []*string {
+	if o == nil || IsNil(o.SupportedJavaVersions) {
+		var ret []*string
+		return ret
+	}
+	return o.SupportedJavaVersions
+}
+
+// GetSupportedJavaVersionsOk returns a tuple with the SupportedJavaVersions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplate) GetSupportedJavaVersionsOk() ([]*string, bool) {
+	if o == nil || IsNil(o.SupportedJavaVersions) {
+		return nil, false
+	}
+	return o.SupportedJavaVersions, true
+}
+
+// HasSupportedJavaVersions returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplate) HasSupportedJavaVersions() bool {
+	if o != nil && !IsNil(o.SupportedJavaVersions) {
+		return true
+	}
+
+	return false
+}
+
+// SetSupportedJavaVersions gets a reference to the given []*string and assigns it to the SupportedJavaVersions field.
+func (o *ExchangePolicyTemplate) SetSupportedJavaVersions(v []*string) {
+	o.SupportedJavaVersions = v
+}
+
+// GetInterfaceScope returns the InterfaceScope field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplate) GetInterfaceScope() []string {
+	if o == nil || IsNil(o.InterfaceScope) {
+		var ret []string
+		return ret
+	}
+	return o.InterfaceScope
+}
+
+// GetInterfaceScopeOk returns a tuple with the InterfaceScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplate) GetInterfaceScopeOk() ([]string, bool) {
+	if o == nil || IsNil(o.InterfaceScope) {
+		return nil, false
+	}
+	return o.InterfaceScope, true
+}
+
+// HasInterfaceScope returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplate) HasInterfaceScope() bool {
+	if o != nil && !IsNil(o.InterfaceScope) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaceScope gets a reference to the given []string and assigns it to the InterfaceScope field.
+func (o *ExchangePolicyTemplate) SetInterfaceScope(v []string) {
+	o.InterfaceScope = v
+}
+
+// GetInterfaceTransformation returns the InterfaceTransformation field value if set, zero value otherwise.
+func (o *ExchangePolicyTemplate) GetInterfaceTransformation() []ExchangePolicyTemplateInterfaceTransformationInner {
+	if o == nil || IsNil(o.InterfaceTransformation) {
+		var ret []ExchangePolicyTemplateInterfaceTransformationInner
+		return ret
+	}
+	return o.InterfaceTransformation
+}
+
+// GetInterfaceTransformationOk returns a tuple with the InterfaceTransformation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangePolicyTemplate) GetInterfaceTransformationOk() ([]ExchangePolicyTemplateInterfaceTransformationInner, bool) {
+	if o == nil || IsNil(o.InterfaceTransformation) {
+		return nil, false
+	}
+	return o.InterfaceTransformation, true
+}
+
+// HasInterfaceTransformation returns a boolean if a field has been set.
+func (o *ExchangePolicyTemplate) HasInterfaceTransformation() bool {
+	if o != nil && !IsNil(o.InterfaceTransformation) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaceTransformation gets a reference to the given []ExchangePolicyTemplateInterfaceTransformationInner and assigns it to the InterfaceTransformation field.
+func (o *ExchangePolicyTemplate) SetInterfaceTransformation(v []ExchangePolicyTemplateInterfaceTransformationInner) {
+	o.InterfaceTransformation = v
 }
 
 // GetAllVersions returns the AllVersions field value if set, zero value otherwise.
@@ -1158,8 +1364,26 @@ func (o ExchangePolicyTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Applicable) {
 		toSerialize["applicable"] = o.Applicable
 	}
-	if !IsNil(o.Configuration) {
+	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
+	}
+	if !IsNil(o.SchemaId) {
+		toSerialize["schemaId"] = o.SchemaId
+	}
+	if !IsNil(o.SplitAssetModel) {
+		toSerialize["splitAssetModel"] = o.SplitAssetModel
+	}
+	if !IsNil(o.OotbUpgradeableImpl) {
+		toSerialize["ootbUpgradeableImpl"] = o.OotbUpgradeableImpl
+	}
+	if !IsNil(o.SupportedJavaVersions) {
+		toSerialize["supportedJavaVersions"] = o.SupportedJavaVersions
+	}
+	if !IsNil(o.InterfaceScope) {
+		toSerialize["interfaceScope"] = o.InterfaceScope
+	}
+	if !IsNil(o.InterfaceTransformation) {
+		toSerialize["interfaceTransformation"] = o.InterfaceTransformation
 	}
 	if !IsNil(o.AllVersions) {
 		toSerialize["allVersions"] = o.AllVersions

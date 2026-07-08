@@ -21,19 +21,19 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiGetSecretGroupCertificateDetailsRequest struct {
+type DefaultAPIGetSecretGroupCertificateDetailsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	secretId string
 }
 
-func (r DefaultApiGetSecretGroupCertificateDetailsRequest) Execute() (*Certificate, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupCertificateDetailsRequest) Execute() (*Certificate, *http.Response, error) {
 	return r.ApiService.GetSecretGroupCertificateDetailsExecute(r)
 }
 
@@ -47,10 +47,10 @@ Retrieves certificate details by id for a given secret group in a given organiza
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The truststore id
- @return DefaultApiGetSecretGroupCertificateDetailsRequest
+ @return DefaultAPIGetSecretGroupCertificateDetailsRequest
 */
-func (a *DefaultApiService) GetSecretGroupCertificateDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiGetSecretGroupCertificateDetailsRequest {
-	return DefaultApiGetSecretGroupCertificateDetailsRequest{
+func (a *DefaultAPIService) GetSecretGroupCertificateDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIGetSecretGroupCertificateDetailsRequest {
+	return DefaultAPIGetSecretGroupCertificateDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -62,7 +62,7 @@ func (a *DefaultApiService) GetSecretGroupCertificateDetails(ctx context.Context
 
 // Execute executes the request
 //  @return Certificate
-func (a *DefaultApiService) GetSecretGroupCertificateDetailsExecute(r DefaultApiGetSecretGroupCertificateDetailsRequest) (*Certificate, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupCertificateDetailsExecute(r DefaultAPIGetSecretGroupCertificateDetailsRequest) (*Certificate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -70,7 +70,7 @@ func (a *DefaultApiService) GetSecretGroupCertificateDetailsExecute(r DefaultApi
 		localVarReturnValue  *Certificate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupCertificateDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupCertificateDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -150,15 +150,15 @@ func (a *DefaultApiService) GetSecretGroupCertificateDetailsExecute(r DefaultApi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetSecretGroupCertificatesRequest struct {
+type DefaultAPIGetSecretGroupCertificatesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 }
 
-func (r DefaultApiGetSecretGroupCertificatesRequest) Execute() ([]CertificateSummary, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupCertificatesRequest) Execute() ([]CertificateSummary, *http.Response, error) {
 	return r.ApiService.GetSecretGroupCertificatesExecute(r)
 }
 
@@ -171,10 +171,10 @@ Retrieves a secret-groups' collection of certificates.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiGetSecretGroupCertificatesRequest
+ @return DefaultAPIGetSecretGroupCertificatesRequest
 */
-func (a *DefaultApiService) GetSecretGroupCertificates(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiGetSecretGroupCertificatesRequest {
-	return DefaultApiGetSecretGroupCertificatesRequest{
+func (a *DefaultAPIService) GetSecretGroupCertificates(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIGetSecretGroupCertificatesRequest {
+	return DefaultAPIGetSecretGroupCertificatesRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -185,7 +185,7 @@ func (a *DefaultApiService) GetSecretGroupCertificates(ctx context.Context, orgI
 
 // Execute executes the request
 //  @return []CertificateSummary
-func (a *DefaultApiService) GetSecretGroupCertificatesExecute(r DefaultApiGetSecretGroupCertificatesRequest) ([]CertificateSummary, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupCertificatesExecute(r DefaultAPIGetSecretGroupCertificatesRequest) ([]CertificateSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -193,7 +193,7 @@ func (a *DefaultApiService) GetSecretGroupCertificatesExecute(r DefaultApiGetSec
 		localVarReturnValue  []CertificateSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupCertificates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupCertificates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -272,9 +272,9 @@ func (a *DefaultApiService) GetSecretGroupCertificatesExecute(r DefaultApiGetSec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchSecretGroupCertificateRequest struct {
+type DefaultAPIPatchSecretGroupCertificateRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -282,12 +282,12 @@ type DefaultApiPatchSecretGroupCertificateRequest struct {
 	body *map[string]interface{}
 }
 
-func (r DefaultApiPatchSecretGroupCertificateRequest) Body(body map[string]interface{}) DefaultApiPatchSecretGroupCertificateRequest {
+func (r DefaultAPIPatchSecretGroupCertificateRequest) Body(body map[string]interface{}) DefaultAPIPatchSecretGroupCertificateRequest {
 	r.body = &body
 	return r
 }
 
-func (r DefaultApiPatchSecretGroupCertificateRequest) Execute() (*PutSecretGroupCertificate200Response, *http.Response, error) {
+func (r DefaultAPIPatchSecretGroupCertificateRequest) Execute() (*PutSecretGroupCertificate200Response, *http.Response, error) {
 	return r.ApiService.PatchSecretGroupCertificateExecute(r)
 }
 
@@ -301,10 +301,10 @@ Update certificate details for a given secret-group in a given organization and 
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The truststore id
- @return DefaultApiPatchSecretGroupCertificateRequest
+ @return DefaultAPIPatchSecretGroupCertificateRequest
 */
-func (a *DefaultApiService) PatchSecretGroupCertificate(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPatchSecretGroupCertificateRequest {
-	return DefaultApiPatchSecretGroupCertificateRequest{
+func (a *DefaultAPIService) PatchSecretGroupCertificate(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPatchSecretGroupCertificateRequest {
+	return DefaultAPIPatchSecretGroupCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -316,7 +316,7 @@ func (a *DefaultApiService) PatchSecretGroupCertificate(ctx context.Context, org
 
 // Execute executes the request
 //  @return PutSecretGroupCertificate200Response
-func (a *DefaultApiService) PatchSecretGroupCertificateExecute(r DefaultApiPatchSecretGroupCertificateRequest) (*PutSecretGroupCertificate200Response, *http.Response, error) {
+func (a *DefaultAPIService) PatchSecretGroupCertificateExecute(r DefaultAPIPatchSecretGroupCertificateRequest) (*PutSecretGroupCertificate200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -324,7 +324,7 @@ func (a *DefaultApiService) PatchSecretGroupCertificateExecute(r DefaultApiPatch
 		localVarReturnValue  *PutSecretGroupCertificate200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchSecretGroupCertificate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchSecretGroupCertificate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -417,9 +417,9 @@ func (a *DefaultApiService) PatchSecretGroupCertificateExecute(r DefaultApiPatch
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostSecretGroupCertificateRequest struct {
+type DefaultAPIPostSecretGroupCertificateRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -431,36 +431,36 @@ type DefaultApiPostSecretGroupCertificateRequest struct {
 }
 
 // With &#39;true&#39; to allow uploading expired certificates
-func (r DefaultApiPostSecretGroupCertificateRequest) AllowExpiredCert(allowExpiredCert bool) DefaultApiPostSecretGroupCertificateRequest {
+func (r DefaultAPIPostSecretGroupCertificateRequest) AllowExpiredCert(allowExpiredCert bool) DefaultAPIPostSecretGroupCertificateRequest {
 	r.allowExpiredCert = &allowExpiredCert
 	return r
 }
 
 // Date on which this secret should expire. If not set, by default, it will be set to notAfter date of this certificate.  Once the secret expires, a grant can not be requested for it. 
-func (r DefaultApiPostSecretGroupCertificateRequest) ExpirationDate(expirationDate string) DefaultApiPostSecretGroupCertificateRequest {
+func (r DefaultAPIPostSecretGroupCertificateRequest) ExpirationDate(expirationDate string) DefaultAPIPostSecretGroupCertificateRequest {
 	r.expirationDate = &expirationDate
 	return r
 }
 
 // The file containing the certificate in PEM format
-func (r DefaultApiPostSecretGroupCertificateRequest) CertStore(certStore *os.File) DefaultApiPostSecretGroupCertificateRequest {
+func (r DefaultAPIPostSecretGroupCertificateRequest) CertStore(certStore *os.File) DefaultAPIPostSecretGroupCertificateRequest {
 	r.certStore = certStore
 	return r
 }
 
 // Type of certificate supported
-func (r DefaultApiPostSecretGroupCertificateRequest) Type_(type_ string) DefaultApiPostSecretGroupCertificateRequest {
+func (r DefaultAPIPostSecretGroupCertificateRequest) Type_(type_ string) DefaultAPIPostSecretGroupCertificateRequest {
 	r.type_ = &type_
 	return r
 }
 
 // The name of the certificate
-func (r DefaultApiPostSecretGroupCertificateRequest) Name(name string) DefaultApiPostSecretGroupCertificateRequest {
+func (r DefaultAPIPostSecretGroupCertificateRequest) Name(name string) DefaultAPIPostSecretGroupCertificateRequest {
 	r.name = &name
 	return r
 }
 
-func (r DefaultApiPostSecretGroupCertificateRequest) Execute() (*PostSecretGroupCertificate201Response, *http.Response, error) {
+func (r DefaultAPIPostSecretGroupCertificateRequest) Execute() (*PostSecretGroupCertificate201Response, *http.Response, error) {
 	return r.ApiService.PostSecretGroupCertificateExecute(r)
 }
 
@@ -473,10 +473,10 @@ Create a secret-groups' certificate.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiPostSecretGroupCertificateRequest
+ @return DefaultAPIPostSecretGroupCertificateRequest
 */
-func (a *DefaultApiService) PostSecretGroupCertificate(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiPostSecretGroupCertificateRequest {
-	return DefaultApiPostSecretGroupCertificateRequest{
+func (a *DefaultAPIService) PostSecretGroupCertificate(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIPostSecretGroupCertificateRequest {
+	return DefaultAPIPostSecretGroupCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -487,7 +487,7 @@ func (a *DefaultApiService) PostSecretGroupCertificate(ctx context.Context, orgI
 
 // Execute executes the request
 //  @return PostSecretGroupCertificate201Response
-func (a *DefaultApiService) PostSecretGroupCertificateExecute(r DefaultApiPostSecretGroupCertificateRequest) (*PostSecretGroupCertificate201Response, *http.Response, error) {
+func (a *DefaultAPIService) PostSecretGroupCertificateExecute(r DefaultAPIPostSecretGroupCertificateRequest) (*PostSecretGroupCertificate201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -495,7 +495,7 @@ func (a *DefaultApiService) PostSecretGroupCertificateExecute(r DefaultApiPostSe
 		localVarReturnValue  *PostSecretGroupCertificate201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostSecretGroupCertificate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostSecretGroupCertificate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -512,7 +512,7 @@ func (a *DefaultApiService) PostSecretGroupCertificateExecute(r DefaultApiPostSe
 		return localVarReturnValue, nil, reportError("allowExpiredCert is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
@@ -531,15 +531,13 @@ func (a *DefaultApiService) PostSecretGroupCertificateExecute(r DefaultApiPostSe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.expirationDate != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "", "")
 	}
 	var certStoreLocalVarFormFileName string
 	var certStoreLocalVarFileName     string
 	var certStoreLocalVarFileBytes    []byte
 
 	certStoreLocalVarFormFileName = "certStore"
-
-
 	certStoreLocalVarFile := r.certStore
 
 	if certStoreLocalVarFile != nil {
@@ -551,10 +549,10 @@ func (a *DefaultApiService) PostSecretGroupCertificateExecute(r DefaultApiPostSe
 		formFiles = append(formFiles, formFile{fileBytes: certStoreLocalVarFileBytes, fileName: certStoreLocalVarFileName, formFileName: certStoreLocalVarFormFileName})
 	}
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -604,9 +602,9 @@ func (a *DefaultApiService) PostSecretGroupCertificateExecute(r DefaultApiPostSe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPutSecretGroupCertificateRequest struct {
+type DefaultAPIPutSecretGroupCertificateRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -619,36 +617,36 @@ type DefaultApiPutSecretGroupCertificateRequest struct {
 }
 
 // With &#39;true&#39; to allow uploading expired certificates
-func (r DefaultApiPutSecretGroupCertificateRequest) AllowExpiredCert(allowExpiredCert bool) DefaultApiPutSecretGroupCertificateRequest {
+func (r DefaultAPIPutSecretGroupCertificateRequest) AllowExpiredCert(allowExpiredCert bool) DefaultAPIPutSecretGroupCertificateRequest {
 	r.allowExpiredCert = &allowExpiredCert
 	return r
 }
 
 // Date on which this secret should expire. If not set, by default, it will be set to notAfter date of this certificate.  Once the secret expires, a grant can not be requested for it. 
-func (r DefaultApiPutSecretGroupCertificateRequest) ExpirationDate(expirationDate string) DefaultApiPutSecretGroupCertificateRequest {
+func (r DefaultAPIPutSecretGroupCertificateRequest) ExpirationDate(expirationDate string) DefaultAPIPutSecretGroupCertificateRequest {
 	r.expirationDate = &expirationDate
 	return r
 }
 
 // The file containing the certificate in PEM format
-func (r DefaultApiPutSecretGroupCertificateRequest) CertStore(certStore *os.File) DefaultApiPutSecretGroupCertificateRequest {
+func (r DefaultAPIPutSecretGroupCertificateRequest) CertStore(certStore *os.File) DefaultAPIPutSecretGroupCertificateRequest {
 	r.certStore = certStore
 	return r
 }
 
 // Type of certificate supported
-func (r DefaultApiPutSecretGroupCertificateRequest) Type_(type_ string) DefaultApiPutSecretGroupCertificateRequest {
+func (r DefaultAPIPutSecretGroupCertificateRequest) Type_(type_ string) DefaultAPIPutSecretGroupCertificateRequest {
 	r.type_ = &type_
 	return r
 }
 
 // The name of the certificate
-func (r DefaultApiPutSecretGroupCertificateRequest) Name(name string) DefaultApiPutSecretGroupCertificateRequest {
+func (r DefaultAPIPutSecretGroupCertificateRequest) Name(name string) DefaultAPIPutSecretGroupCertificateRequest {
 	r.name = &name
 	return r
 }
 
-func (r DefaultApiPutSecretGroupCertificateRequest) Execute() (*PutSecretGroupCertificate200Response, *http.Response, error) {
+func (r DefaultAPIPutSecretGroupCertificateRequest) Execute() (*PutSecretGroupCertificate200Response, *http.Response, error) {
 	return r.ApiService.PutSecretGroupCertificateExecute(r)
 }
 
@@ -662,10 +660,10 @@ Update certificate details for a given secret-group in a given organization and 
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The truststore id
- @return DefaultApiPutSecretGroupCertificateRequest
+ @return DefaultAPIPutSecretGroupCertificateRequest
 */
-func (a *DefaultApiService) PutSecretGroupCertificate(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPutSecretGroupCertificateRequest {
-	return DefaultApiPutSecretGroupCertificateRequest{
+func (a *DefaultAPIService) PutSecretGroupCertificate(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPutSecretGroupCertificateRequest {
+	return DefaultAPIPutSecretGroupCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -677,7 +675,7 @@ func (a *DefaultApiService) PutSecretGroupCertificate(ctx context.Context, orgId
 
 // Execute executes the request
 //  @return PutSecretGroupCertificate200Response
-func (a *DefaultApiService) PutSecretGroupCertificateExecute(r DefaultApiPutSecretGroupCertificateRequest) (*PutSecretGroupCertificate200Response, *http.Response, error) {
+func (a *DefaultAPIService) PutSecretGroupCertificateExecute(r DefaultAPIPutSecretGroupCertificateRequest) (*PutSecretGroupCertificate200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -685,7 +683,7 @@ func (a *DefaultApiService) PutSecretGroupCertificateExecute(r DefaultApiPutSecr
 		localVarReturnValue  *PutSecretGroupCertificate200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutSecretGroupCertificate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PutSecretGroupCertificate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -703,7 +701,7 @@ func (a *DefaultApiService) PutSecretGroupCertificateExecute(r DefaultApiPutSecr
 		return localVarReturnValue, nil, reportError("allowExpiredCert is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
@@ -722,15 +720,13 @@ func (a *DefaultApiService) PutSecretGroupCertificateExecute(r DefaultApiPutSecr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.expirationDate != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "", "")
 	}
 	var certStoreLocalVarFormFileName string
 	var certStoreLocalVarFileName     string
 	var certStoreLocalVarFileBytes    []byte
 
 	certStoreLocalVarFormFileName = "certStore"
-
-
 	certStoreLocalVarFile := r.certStore
 
 	if certStoreLocalVarFile != nil {
@@ -742,10 +738,10 @@ func (a *DefaultApiService) PutSecretGroupCertificateExecute(r DefaultApiPutSecr
 		formFiles = append(formFiles, formFile{fileBytes: certStoreLocalVarFileBytes, fileName: certStoreLocalVarFileName, formFileName: certStoreLocalVarFormFileName})
 	}
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

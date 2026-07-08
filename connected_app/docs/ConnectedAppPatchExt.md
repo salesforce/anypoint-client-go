@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ClientId** | Pointer to **string** |  | [optional] 
 **ClientSecret** | Pointer to **string** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
+**OwnerUserId** | Pointer to **string** | User id of the connected app owner. Set to transfer ownership. | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetEnabled sets Enabled field to given value.
 `func (o *ConnectedAppPatchExt) HasEnabled() bool`
 
 HasEnabled returns a boolean if a field has been set.
+
+### GetOwnerUserId
+
+`func (o *ConnectedAppPatchExt) GetOwnerUserId() string`
+
+GetOwnerUserId returns the OwnerUserId field if non-nil, zero value otherwise.
+
+### GetOwnerUserIdOk
+
+`func (o *ConnectedAppPatchExt) GetOwnerUserIdOk() (*string, bool)`
+
+GetOwnerUserIdOk returns a tuple with the OwnerUserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwnerUserId
+
+`func (o *ConnectedAppPatchExt) SetOwnerUserId(v string)`
+
+SetOwnerUserId sets OwnerUserId field to given value.
+
+### HasOwnerUserId
+
+`func (o *ConnectedAppPatchExt) HasOwnerUserId() bool`
+
+HasOwnerUserId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

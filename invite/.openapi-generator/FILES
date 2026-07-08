@@ -5,11 +5,10 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/Invite.md
 docs/InviteCore.md
 docs/InviteDelete.md
-docs/InviteObjId.md
 docs/InvitePostBody.md
 docs/OrganizationsOrgIdInvitesGet200Response.md
 docs/OrganizationsOrgIdInvitesPost400Response.md
@@ -22,7 +21,6 @@ model__organizations__org_id__invites_post_400_response.go
 model_invite.go
 model_invite_core.go
 model_invite_delete.go
-model_invite_obj_id.go
 model_invite_post_body.go
 model_role_groups.go
 response.go

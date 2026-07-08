@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** | An explanation about the purpose of this instance. | [default to false]
-**ProductSKU** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
+**Enabled** | Pointer to **bool** | API Query enabled | [optional] [default to false]
+**ProductSKU** | Pointer to **int32** | Product SKU | [optional] [default to 0]
 
 ## Methods
 
 ### NewApiQuery
 
-`func NewApiQuery(enabled bool, ) *ApiQuery`
+`func NewApiQuery() *ApiQuery`
 
 NewApiQuery instantiates a new ApiQuery object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+### HasEnabled
+
+`func (o *ApiQuery) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
 
 ### GetProductSKU
 

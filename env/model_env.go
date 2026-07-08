@@ -12,6 +12,8 @@ package env
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Env type satisfies the MappedNullable interface at compile time
@@ -19,14 +21,16 @@ var _ MappedNullable = &Env{}
 
 // Env struct for Env
 type Env struct {
-	// The env Id
-	Id string `json:"id"`
 	Name *string `json:"name,omitempty"`
 	OrganizationId *string `json:"organizationId,omitempty"`
 	IsProduction *bool `json:"isProduction,omitempty"`
 	Type *string `json:"type,omitempty"`
 	ClientId *string `json:"clientId,omitempty"`
+	// The env Id
+	Id string `json:"id"`
 }
+
+type _Env Env
 
 // NewEnv instantiates a new Env object
 // This constructor will assign default values to properties that have it defined,
@@ -34,9 +38,9 @@ type Env struct {
 // will change when the set of required properties is changed
 func NewEnv(id string) *Env {
 	this := Env{}
-	this.Id = id
 	var isProduction bool = false
 	this.IsProduction = &isProduction
+	this.Id = id
 	return &this
 }
 
@@ -48,30 +52,6 @@ func NewEnvWithDefaults() *Env {
 	var isProduction bool = false
 	this.IsProduction = &isProduction
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *Env) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Env) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Env) SetId(v string) {
-	o.Id = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -234,6 +214,30 @@ func (o *Env) SetClientId(v string) {
 	o.ClientId = &v
 }
 
+// GetId returns the Id field value
+func (o *Env) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Env) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Env) SetId(v string) {
+	o.Id = v
+}
+
 func (o Env) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -244,7 +248,6 @@ func (o Env) MarshalJSON() ([]byte, error) {
 
 func (o Env) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -260,7 +263,45 @@ func (o Env) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ClientId) {
 		toSerialize["clientId"] = o.ClientId
 	}
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
+}
+
+func (o *Env) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEnv := _Env{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEnv)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Env(varEnv)
+
+	return err
 }
 
 type NullableEnv struct {

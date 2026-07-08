@@ -238,6 +238,84 @@ components:
       allOf:
       - $ref: '#/components/schemas/dlbExtras'
       - $ref: '#/components/schemas/dlbCore'
+      example:
+        tlsv1: false
+        proxyReadTimeout: 6
+        enableStreaming: true
+        httpMode: redirect
+        keepUrlEncoding: true
+        sslEndpoints:
+        - revocationListLabel: revocationListLabel
+          clientCertCN: clientCertCN
+          mappings:
+          - appName: "{app}"
+            upstreamProtocol: http
+            inputUri: "{app}/"
+            appUri: /
+          - appName: "{app}"
+            upstreamProtocol: http
+            inputUri: "{app}/"
+            appUri: /
+          privateKeyDigest: privateKeyDigest
+          verifyClientMode: "off"
+          clientCertDigest: clientCertDigest
+          publicKeyDigest: publicKeyDigest
+          clientCertLabel: clientCertLabel
+          privateKeyLabel: privateKeyLabel
+          publicKeyCN: publicKeyCN
+          revocationListDigest: revocationListDigest
+          publicKeyLabel: publicKeyLabel
+        - revocationListLabel: revocationListLabel
+          clientCertCN: clientCertCN
+          mappings:
+          - appName: "{app}"
+            upstreamProtocol: http
+            inputUri: "{app}/"
+            appUri: /
+          - appName: "{app}"
+            upstreamProtocol: http
+            inputUri: "{app}/"
+            appUri: /
+          privateKeyDigest: privateKeyDigest
+          verifyClientMode: "off"
+          clientCertDigest: clientCertDigest
+          publicKeyDigest: publicKeyDigest
+          clientCertLabel: clientCertLabel
+          privateKeyLabel: privateKeyLabel
+          publicKeyCN: publicKeyCN
+          revocationListDigest: revocationListDigest
+          publicKeyLabel: publicKeyLabel
+        defaultSslEndpoint: 0
+        instanceConfig:
+          imageName: imageName
+        ipWhitelist:
+        - ipWhitelist
+        - ipWhitelist
+        forwardClientCertificate: true
+        domain: domain
+        deploymentId: deploymentId
+        vpcId: vpcId
+        ipAddressesInfo:
+        - staticIp: true
+          ip: ip
+          status: status
+        - staticIp: true
+          ip: ip
+          status: status
+        name: myAwesomeDLB
+        ipAllowlist:
+        - ipAllowlist
+        - ipAllowlist
+        staticIPsDisabled: true
+        doubleStaticIps: true
+        ipAddresses:
+        - ipAddresses
+        - ipAddresses
+        id: 619d1c270322c72f81663c12
+        state: STOPPED
+        defaultCipherSuite: defaultCipherSuite
+        workers: 0
+        upstreamTlsv12: true
       title: dlb
     dlbCore:
       properties:
@@ -425,10 +503,162 @@ components:
       type: object
     _organizations__orgId__vpcs__vpcId__loadbalancers_get_200_response:
       example:
-        total: 0
+        total: 1
         data:
-        - null
-        - null
+        - tlsv1: false
+          proxyReadTimeout: 6
+          enableStreaming: true
+          httpMode: redirect
+          keepUrlEncoding: true
+          sslEndpoints:
+          - revocationListLabel: revocationListLabel
+            clientCertCN: clientCertCN
+            mappings:
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            privateKeyDigest: privateKeyDigest
+            verifyClientMode: "off"
+            clientCertDigest: clientCertDigest
+            publicKeyDigest: publicKeyDigest
+            clientCertLabel: clientCertLabel
+            privateKeyLabel: privateKeyLabel
+            publicKeyCN: publicKeyCN
+            revocationListDigest: revocationListDigest
+            publicKeyLabel: publicKeyLabel
+          - revocationListLabel: revocationListLabel
+            clientCertCN: clientCertCN
+            mappings:
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            privateKeyDigest: privateKeyDigest
+            verifyClientMode: "off"
+            clientCertDigest: clientCertDigest
+            publicKeyDigest: publicKeyDigest
+            clientCertLabel: clientCertLabel
+            privateKeyLabel: privateKeyLabel
+            publicKeyCN: publicKeyCN
+            revocationListDigest: revocationListDigest
+            publicKeyLabel: publicKeyLabel
+          defaultSslEndpoint: 0
+          instanceConfig:
+            imageName: imageName
+          ipWhitelist:
+          - ipWhitelist
+          - ipWhitelist
+          forwardClientCertificate: true
+          domain: domain
+          deploymentId: deploymentId
+          vpcId: vpcId
+          ipAddressesInfo:
+          - staticIp: true
+            ip: ip
+            status: status
+          - staticIp: true
+            ip: ip
+            status: status
+          name: myAwesomeDLB
+          ipAllowlist:
+          - ipAllowlist
+          - ipAllowlist
+          staticIPsDisabled: true
+          doubleStaticIps: true
+          ipAddresses:
+          - ipAddresses
+          - ipAddresses
+          id: 619d1c270322c72f81663c12
+          state: STOPPED
+          defaultCipherSuite: defaultCipherSuite
+          workers: 0
+          upstreamTlsv12: true
+        - tlsv1: false
+          proxyReadTimeout: 6
+          enableStreaming: true
+          httpMode: redirect
+          keepUrlEncoding: true
+          sslEndpoints:
+          - revocationListLabel: revocationListLabel
+            clientCertCN: clientCertCN
+            mappings:
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            privateKeyDigest: privateKeyDigest
+            verifyClientMode: "off"
+            clientCertDigest: clientCertDigest
+            publicKeyDigest: publicKeyDigest
+            clientCertLabel: clientCertLabel
+            privateKeyLabel: privateKeyLabel
+            publicKeyCN: publicKeyCN
+            revocationListDigest: revocationListDigest
+            publicKeyLabel: publicKeyLabel
+          - revocationListLabel: revocationListLabel
+            clientCertCN: clientCertCN
+            mappings:
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            - appName: "{app}"
+              upstreamProtocol: http
+              inputUri: "{app}/"
+              appUri: /
+            privateKeyDigest: privateKeyDigest
+            verifyClientMode: "off"
+            clientCertDigest: clientCertDigest
+            publicKeyDigest: publicKeyDigest
+            clientCertLabel: clientCertLabel
+            privateKeyLabel: privateKeyLabel
+            publicKeyCN: publicKeyCN
+            revocationListDigest: revocationListDigest
+            publicKeyLabel: publicKeyLabel
+          defaultSslEndpoint: 0
+          instanceConfig:
+            imageName: imageName
+          ipWhitelist:
+          - ipWhitelist
+          - ipWhitelist
+          forwardClientCertificate: true
+          domain: domain
+          deploymentId: deploymentId
+          vpcId: vpcId
+          ipAddressesInfo:
+          - staticIp: true
+            ip: ip
+            status: status
+          - staticIp: true
+            ip: ip
+            status: status
+          name: myAwesomeDLB
+          ipAllowlist:
+          - ipAllowlist
+          - ipAllowlist
+          staticIPsDisabled: true
+          doubleStaticIps: true
+          ipAddresses:
+          - ipAddresses
+          - ipAddresses
+          id: 619d1c270322c72f81663c12
+          state: STOPPED
+          defaultCipherSuite: defaultCipherSuite
+          workers: 0
+          upstreamTlsv12: true
       properties:
         data:
           items:
@@ -440,6 +670,9 @@ components:
           type: integer
       type: object
     _organizations__orgId__vpcs__vpcId__loadbalancers_post_400_response:
+      example:
+        message: A sample message here
+        status: 0
       properties:
         status:
           default: 400
@@ -451,6 +684,11 @@ components:
           type: string
       type: object
     dlbCore_sslEndpoints_inner_mappings_inner:
+      example:
+        appName: "{app}"
+        upstreamProtocol: http
+        inputUri: "{app}/"
+        appUri: /
       properties:
         inputUri:
           example: "{app}/"
@@ -470,6 +708,27 @@ components:
           type: string
       type: object
     dlbCore_sslEndpoints_inner:
+      example:
+        revocationListLabel: revocationListLabel
+        clientCertCN: clientCertCN
+        mappings:
+        - appName: "{app}"
+          upstreamProtocol: http
+          inputUri: "{app}/"
+          appUri: /
+        - appName: "{app}"
+          upstreamProtocol: http
+          inputUri: "{app}/"
+          appUri: /
+        privateKeyDigest: privateKeyDigest
+        verifyClientMode: "off"
+        clientCertDigest: clientCertDigest
+        publicKeyDigest: publicKeyDigest
+        clientCertLabel: clientCertLabel
+        privateKeyLabel: privateKeyLabel
+        publicKeyCN: publicKeyCN
+        revocationListDigest: revocationListDigest
+        publicKeyLabel: publicKeyLabel
       properties:
         privateKeyLabel:
           title: privateKeyLabel
@@ -511,6 +770,8 @@ components:
           type: array
       type: object
     instanceConfig:
+      example:
+        imageName: imageName
       properties:
         imageName:
           title: imageName
@@ -518,6 +779,10 @@ components:
       title: instanceConfig
       type: object
     dlbExtras_ipAddressesInfo_inner:
+      example:
+        staticIp: true
+        ip: ip
+        status: status
       properties:
         ip:
           title: ip

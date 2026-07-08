@@ -5,10 +5,9 @@ api/openapi.yaml
 api_default.go
 client.go
 configuration.go
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/Env.md
 docs/EnvCore.md
-docs/EnvId.md
 docs/OrganizationsOrgIdEnvironmentsGet200Response.md
 docs/OrganizationsOrgIdEnvironmentsPost400Response.md
 git_push.sh
@@ -18,6 +17,5 @@ model__organizations__org_id__environments_get_200_response.go
 model__organizations__org_id__environments_post_400_response.go
 model_env.go
 model_env_core.go
-model_env_id.go
 response.go
 utils.go

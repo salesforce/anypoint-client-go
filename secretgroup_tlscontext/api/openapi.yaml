@@ -337,6 +337,20 @@ components:
       description: patch tls-context details response
   schemas:
     errorsResponse:
+      example:
+        errors:
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
       properties:
         errors:
           items:
@@ -354,8 +368,8 @@ components:
           path: path
           id: id
         name: name
-        type: type
         expirationDate: expirationDate
+        target: target
       properties:
         name:
           type: string
@@ -363,7 +377,7 @@ components:
           $ref: '#/components/schemas/Meta'
         expirationDate:
           type: string
-        type:
+        target:
           type: string
       type: object
     TlsContextDetails:
@@ -526,6 +540,72 @@ components:
         }
       type: object
     TlsContextSfBody:
+      example:
+        mutualAuthentication:
+          certCheckingStrength: Strict
+          requireCrlForAllCa: false
+          crlDistributorConfig:
+            path: path
+          certificatePinning:
+            certificatePinset:
+              path: path
+            performCertificatePinning: true
+          authenticationOverrides:
+            certificateUntrusted: false
+            certificateHasExpired: false
+            certificateUnresolved: false
+            invalidPurpose: false
+            other: false
+            certificateBadFormat: false
+            allowSelfSigned: false
+            certificateBadSignature: false
+            certificateNotYetValid: false
+            invalidCa: false
+          performDomainChecking: false
+          revocationCheckingMethod: revocationCheckingMethod
+          sendTruststore: false
+          certificatePolicyChecking: false
+          requireInitialExplicitPolicy: false
+          certificatePolicies:
+          - certificatePolicies
+          - certificatePolicies
+          verificationDepth: 0
+          revocationChecking: false
+        acceptableCipherSuites:
+          dheRsaAes128GcmSha256: false
+          dheRsaChacha20Poly1305: false
+          tlsChacha20Poly1305Sha256: false
+          dheRsaAes256Sha256: false
+          dheRsaAes128Sha256: false
+          ecdheEcdsaAes128GcmSha256: false
+          aes128GcmSha256: false
+          tlsAes128GcmSha256: false
+          aes128Sha256: false
+          ecdheRsaAes128GcmSha256: false
+          ecdheRsaChacha20Poly1305: false
+          tlsAes256GcmSha384: false
+          dheRsaAes256GcmSha384: false
+          ecdheEcdsaAes256Sha1: false
+          ecdheEcdsaChacha20Poly1305: false
+          aes256Sha256: false
+          aes256GcmSha384: false
+          ecdheRsaAes256Sha1: false
+          ecdheRsaAes256GcmSha384: false
+          ecdheEcdsaAes256GcmSha384: false
+          ecdheRsaAes128Sha1: false
+          ecdheEcdsaAes128Sha1: false
+        name: name
+        keystore:
+          path: path
+        truststore:
+          path: path
+        enableMutualAuthentication: true
+        expirationDate: expirationDate
+        acceptableTlsVersions:
+          tlsV1Dot3: true
+          tlsV1Dot2: true
+          tlsV1Dot1: true
+        target: SecurityFabric
       properties:
         expirationDate:
           description: |
@@ -974,6 +1054,9 @@ components:
           type: string
       type: object
     GetSecretGroupTlsContextDetails_404_response:
+      example:
+        name: name
+        message: message
       properties:
         name:
           type: string
@@ -988,6 +1071,13 @@ components:
           type: string
       type: object
     errorsResponse_errors_inner:
+      example:
+        schema: schema
+        data: data
+        type: type
+        keyword: keyword
+        message: message
+        dataPath: dataPath
       properties:
         type:
           title: type

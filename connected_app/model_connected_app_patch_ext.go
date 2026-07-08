@@ -30,6 +30,8 @@ type ConnectedAppPatchExt struct {
 	ClientId *string `json:"client_id,omitempty"`
 	ClientSecret *string `json:"client_secret,omitempty"`
 	Enabled *bool `json:"enabled,omitempty"`
+	// User id of the connected app owner. Set to transfer ownership.
+	OwnerUserId *string `json:"owner_user_id,omitempty"`
 }
 
 // NewConnectedAppPatchExt instantiates a new ConnectedAppPatchExt object
@@ -369,6 +371,38 @@ func (o *ConnectedAppPatchExt) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+// GetOwnerUserId returns the OwnerUserId field value if set, zero value otherwise.
+func (o *ConnectedAppPatchExt) GetOwnerUserId() string {
+	if o == nil || IsNil(o.OwnerUserId) {
+		var ret string
+		return ret
+	}
+	return *o.OwnerUserId
+}
+
+// GetOwnerUserIdOk returns a tuple with the OwnerUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectedAppPatchExt) GetOwnerUserIdOk() (*string, bool) {
+	if o == nil || IsNil(o.OwnerUserId) {
+		return nil, false
+	}
+	return o.OwnerUserId, true
+}
+
+// HasOwnerUserId returns a boolean if a field has been set.
+func (o *ConnectedAppPatchExt) HasOwnerUserId() bool {
+	if o != nil && !IsNil(o.OwnerUserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerUserId gets a reference to the given string and assigns it to the OwnerUserId field.
+func (o *ConnectedAppPatchExt) SetOwnerUserId(v string) {
+	o.OwnerUserId = &v
+}
+
 func (o ConnectedAppPatchExt) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -408,6 +442,9 @@ func (o ConnectedAppPatchExt) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.OwnerUserId) {
+		toSerialize["owner_user_id"] = o.OwnerUserId
 	}
 	return toSerialize, nil
 }

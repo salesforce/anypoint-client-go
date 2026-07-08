@@ -1,0 +1,787 @@
+openapi: 3.0.0
+info:
+  description: Description of the Private Space TLS Context API
+  title: Private Space TLS Context API
+  version: 1.0.0
+servers:
+- description: Anypoint Cloudhub
+  url: https://anypoint.mulesoft.com/runtimefabric/api
+- description: Anypoint Cloudhub EU
+  url: https://eu1.anypoint.mulesoft.com/runtimefabric/api
+- description: Anypoint Cloudhub GOV
+  url: https://gov.anypoint.mulesoft.com/runtimefabric/api
+security:
+- bearerAuth: []
+paths:
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/tlsContexts:
+    get:
+      description: Get TLS Contexts
+      operationId: getTlsContexts
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Private Space ID
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "415":
+          description: Unsupported media type
+        "429":
+          description: Too many requests
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TlsContext'
+                type: array
+          description: TLS Contexts retrieved successfully
+      summary: Get TLS Contexts
+    post:
+      description: Create a TLS Context
+      operationId: createTlsContext
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Private Space ID
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TlsContextPostBody'
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "415":
+          description: Unsupported media type
+        "429":
+          description: Too many requests
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TlsContext'
+          description: TLS Context created successfully
+      summary: Create a TLS Context
+  /organizations/{orgId}/privatespaces/{privateSpaceId}/tlsContexts/{tlsContextId}:
+    delete:
+      description: Delete TLS Context
+      operationId: deleteTlsContext
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Private Space ID
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: TLS Context ID
+        explode: false
+        in: path
+        name: tlsContextId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "429":
+          description: Too many requests
+        "404":
+          description: Not found
+        "204":
+          description: TLS Context deleted successfully
+      summary: Delete TLS Context
+    get:
+      description: Get TLS Context
+      operationId: getTlsContext
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Private Space ID
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: TLS Context ID
+        explode: false
+        in: path
+        name: tlsContextId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "415":
+          description: Unsupported media type
+        "429":
+          description: Too many requests
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TlsContext'
+          description: TLS Context retrieved successfully
+      summary: Get TLS Context
+    patch:
+      description: Update TLS Context
+      operationId: updateTlsContext
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Private Space ID
+        explode: false
+        in: path
+        name: privateSpaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: TLS Context ID
+        explode: false
+        in: path
+        name: tlsContextId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TlsContextPutBody'
+        required: true
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "403":
+          description: Forbidden
+        "415":
+          description: Unsupported media type
+        "429":
+          description: Too many requests
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TlsContext'
+          description: TLS Context updated successfully
+      summary: Update TLS Context
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    ForbiddenError:
+      description: Forbidden
+    BadRequestError:
+      description: Bad request
+    NotFoundError:
+      description: Not found
+    ConflictError:
+      description: Conflict
+    UnsupportedMediaTypeError:
+      description: Unsupported media type
+    TooManyRequestsError:
+      description: Too many requests
+    SuccessCreateTlsContext:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TlsContext'
+      description: TLS Context created successfully
+    SuccessGetTlsContexts:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/TlsContext'
+            type: array
+      description: TLS Contexts retrieved successfully
+    SuccessGetTlsContext:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TlsContext'
+      description: TLS Context retrieved successfully
+    SuccessUpdateTlsContext:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TlsContext'
+      description: TLS Context updated successfully
+    SuccessDeleteTlsContext:
+      description: TLS Context deleted successfully
+  schemas:
+    TlsContextPutBody:
+      $ref: '#/components/schemas/TlsContextPostBody'
+    TlsContextPostBody:
+      example:
+        name: name
+        ciphers:
+          dheRsaChacha20Poly1305: true
+          tlsChacha20Poly1305Sha256: true
+          dheRsaAes256Sha256: true
+          dheRsaAes128Sha256: true
+          ecdheEcdsaAes128GcmSha256: true
+          aes128GcmSha256: true
+          tlsAes128GcmSha256: true
+          aes128Sha256: true
+          ecdheRsaAes128GcmSha256: true
+          ecdheRsaChacha20Poly1305: true
+          tlsAes256GcmSha384: true
+          dheRsaAes256GcmSha384: true
+          ecdheEcdsaChacha20Poly1305: true
+          aes256Sha256: true
+          aes256GcmSha384: true
+          ecdheRsaAes256GcmSha384: true
+          ecdheEcdsaAes256GcmSha384: true
+        tlsConfig:
+          keyStore:
+            certificateFileName: certificateFileName
+            capathFileName: capathFileName
+            certificate: certificate
+            capath: capath
+            source: PEM
+            keyPassphrase: keyPassphrase
+            key: key
+            keyFileName: keyFileName
+          trustStore:
+          - source: PEM
+            trustStorePEM: trustStorePEM
+          - source: PEM
+            trustStorePEM: trustStorePEM
+      properties:
+        name:
+          type: string
+        tlsConfig:
+          $ref: '#/components/schemas/TlsContextPostBody_tlsConfig'
+        ciphers:
+          $ref: '#/components/schemas/Ciphers'
+      type: object
+    TlsContextPostBodyKeyStorePEM:
+      example:
+        certificateFileName: certificateFileName
+        capathFileName: capathFileName
+        certificate: certificate
+        capath: capath
+        source: PEM
+        keyPassphrase: keyPassphrase
+        key: key
+        keyFileName: keyFileName
+      properties:
+        source:
+          default: PEM
+          enum:
+          - PEM
+          type: string
+        certificate:
+          type: string
+        key:
+          type: string
+        keyPassphrase:
+          type: string
+        keyFileName:
+          type: string
+        certificateFileName:
+          type: string
+        capath:
+          type: string
+        capathFileName:
+          type: string
+      required:
+      - certificate
+      - certificateFileName
+      - key
+      - keyFileName
+      - source
+      title: TlsContextPostBodyKeyStorePEM
+      type: object
+    TlsContextPostBodyKeyStoreJKS:
+      properties:
+        source:
+          default: JKS
+          enum:
+          - JKS
+          type: string
+        keystoreBase64:
+          type: string
+        keyPassphrase:
+          type: string
+        storePassphrase:
+          type: string
+        alias:
+          type: string
+        keystoreFileName:
+          type: string
+      required:
+      - keystoreBase64
+      - source
+      - storePassphrase
+      title: TlsContextPostBodyKeyStoreJKS
+      type: object
+    TlsContext:
+      example:
+        keyStore:
+          san:
+          - san
+          - san
+          fileName: fileName
+          capathFileName: capathFileName
+          cn: cn
+          type: type
+          keyFileName: keyFileName
+          expirationDate: expirationDate
+        name: name
+        trustStore:
+          fileName: fileName
+          type: type
+          dnList:
+          - serialNumber: serialNumber
+            keyUsage:
+            - keyUsage
+            - keyUsage
+            subject:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              countryName: countryName
+              state: state
+            publicKeyAlgorithm: publicKeyAlgorithm
+            basicConstraints:
+              certificateAuthority: true
+            validity:
+              notAfter: notAfter
+              notBefore: notBefore
+            version: version
+            issuer:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              countryName: countryName
+              state: state
+            signatureAlgorithm: signatureAlgorithm
+            certificateType: certificateType
+          - serialNumber: serialNumber
+            keyUsage:
+            - keyUsage
+            - keyUsage
+            subject:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              countryName: countryName
+              state: state
+            publicKeyAlgorithm: publicKeyAlgorithm
+            basicConstraints:
+              certificateAuthority: true
+            validity:
+              notAfter: notAfter
+              notBefore: notBefore
+            version: version
+            issuer:
+              commonName: commonName
+              localityName: localityName
+              organizationName: organizationName
+              organizationUnit: organizationUnit
+              countryName: countryName
+              state: state
+            signatureAlgorithm: signatureAlgorithm
+            certificateType: certificateType
+          expirationDate: expirationDate
+        ciphers:
+          dheRsaChacha20Poly1305: true
+          tlsChacha20Poly1305Sha256: true
+          dheRsaAes256Sha256: true
+          dheRsaAes128Sha256: true
+          ecdheEcdsaAes128GcmSha256: true
+          aes128GcmSha256: true
+          tlsAes128GcmSha256: true
+          aes128Sha256: true
+          ecdheRsaAes128GcmSha256: true
+          ecdheRsaChacha20Poly1305: true
+          tlsAes256GcmSha384: true
+          dheRsaAes256GcmSha384: true
+          ecdheEcdsaChacha20Poly1305: true
+          aes256Sha256: true
+          aes256GcmSha384: true
+          ecdheRsaAes256GcmSha384: true
+          ecdheEcdsaAes256GcmSha384: true
+        id: id
+        type: type
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        trustStore:
+          $ref: '#/components/schemas/TrustStore'
+        keyStore:
+          $ref: '#/components/schemas/KeyStore'
+        ciphers:
+          $ref: '#/components/schemas/Ciphers'
+        type:
+          type: string
+      type: object
+    TrustStore:
+      example:
+        fileName: fileName
+        type: type
+        dnList:
+        - serialNumber: serialNumber
+          keyUsage:
+          - keyUsage
+          - keyUsage
+          subject:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            countryName: countryName
+            state: state
+          publicKeyAlgorithm: publicKeyAlgorithm
+          basicConstraints:
+            certificateAuthority: true
+          validity:
+            notAfter: notAfter
+            notBefore: notBefore
+          version: version
+          issuer:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            countryName: countryName
+            state: state
+          signatureAlgorithm: signatureAlgorithm
+          certificateType: certificateType
+        - serialNumber: serialNumber
+          keyUsage:
+          - keyUsage
+          - keyUsage
+          subject:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            countryName: countryName
+            state: state
+          publicKeyAlgorithm: publicKeyAlgorithm
+          basicConstraints:
+            certificateAuthority: true
+          validity:
+            notAfter: notAfter
+            notBefore: notBefore
+          version: version
+          issuer:
+            commonName: commonName
+            localityName: localityName
+            organizationName: organizationName
+            organizationUnit: organizationUnit
+            countryName: countryName
+            state: state
+          signatureAlgorithm: signatureAlgorithm
+          certificateType: certificateType
+        expirationDate: expirationDate
+      properties:
+        fileName:
+          type: string
+        expirationDate:
+          type: string
+        dnList:
+          items:
+            $ref: '#/components/schemas/TrustStore_dnList_inner'
+          type: array
+        type:
+          type: string
+      type: object
+    KeyStore:
+      example:
+        san:
+        - san
+        - san
+        fileName: fileName
+        capathFileName: capathFileName
+        cn: cn
+        type: type
+        keyFileName: keyFileName
+        expirationDate: expirationDate
+      properties:
+        type:
+          type: string
+        cn:
+          type: string
+        san:
+          items:
+            type: string
+          type: array
+        fileName:
+          type: string
+        keyFileName:
+          type: string
+        capathFileName:
+          type: string
+        expirationDate:
+          type: string
+      type: object
+    Ciphers:
+      example:
+        dheRsaChacha20Poly1305: true
+        tlsChacha20Poly1305Sha256: true
+        dheRsaAes256Sha256: true
+        dheRsaAes128Sha256: true
+        ecdheEcdsaAes128GcmSha256: true
+        aes128GcmSha256: true
+        tlsAes128GcmSha256: true
+        aes128Sha256: true
+        ecdheRsaAes128GcmSha256: true
+        ecdheRsaChacha20Poly1305: true
+        tlsAes256GcmSha384: true
+        dheRsaAes256GcmSha384: true
+        ecdheEcdsaChacha20Poly1305: true
+        aes256Sha256: true
+        aes256GcmSha384: true
+        ecdheRsaAes256GcmSha384: true
+        ecdheEcdsaAes256GcmSha384: true
+      properties:
+        aes128GcmSha256:
+          type: boolean
+        aes128Sha256:
+          type: boolean
+        aes256GcmSha384:
+          type: boolean
+        aes256Sha256:
+          type: boolean
+        dheRsaAes128Sha256:
+          type: boolean
+        dheRsaAes256GcmSha384:
+          type: boolean
+        dheRsaAes256Sha256:
+          type: boolean
+        ecdheEcdsaAes128GcmSha256:
+          type: boolean
+        ecdheEcdsaAes256GcmSha384:
+          type: boolean
+        ecdheRsaAes128GcmSha256:
+          type: boolean
+        ecdheRsaAes256GcmSha384:
+          type: boolean
+        ecdheEcdsaChacha20Poly1305:
+          type: boolean
+        ecdheRsaChacha20Poly1305:
+          type: boolean
+        dheRsaChacha20Poly1305:
+          type: boolean
+        tlsAes256GcmSha384:
+          type: boolean
+        tlsChacha20Poly1305Sha256:
+          type: boolean
+        tlsAes128GcmSha256:
+          type: boolean
+      type: object
+    TlsContextPostBody_tlsConfig_keyStore:
+      oneOf:
+      - $ref: '#/components/schemas/TlsContextPostBodyKeyStorePEM'
+      - $ref: '#/components/schemas/TlsContextPostBodyKeyStoreJKS'
+    TlsContextPostBodyTrustStorePEM:
+      example:
+        source: PEM
+        trustStorePEM: trustStorePEM
+      properties:
+        source:
+          enum:
+          - PEM
+          type: string
+        trustStorePEM:
+          type: string
+      title: TlsContextPostBodyTrustStorePEM
+      type: object
+    TlsContextPostBody_tlsConfig:
+      example:
+        keyStore:
+          certificateFileName: certificateFileName
+          capathFileName: capathFileName
+          certificate: certificate
+          capath: capath
+          source: PEM
+          keyPassphrase: keyPassphrase
+          key: key
+          keyFileName: keyFileName
+        trustStore:
+        - source: PEM
+          trustStorePEM: trustStorePEM
+        - source: PEM
+          trustStorePEM: trustStorePEM
+      properties:
+        keyStore:
+          $ref: '#/components/schemas/TlsContextPostBody_tlsConfig_keyStore'
+        trustStore:
+          items:
+            $ref: '#/components/schemas/TlsContextPostBodyTrustStorePEM'
+          type: array
+      type: object
+    TrustStore_dnList_inner_issuer:
+      example:
+        commonName: commonName
+        localityName: localityName
+        organizationName: organizationName
+        organizationUnit: organizationUnit
+        countryName: countryName
+        state: state
+      properties:
+        commonName:
+          type: string
+        countryName:
+          type: string
+        localityName:
+          type: string
+        organizationName:
+          type: string
+        organizationUnit:
+          type: string
+        state:
+          type: string
+      type: object
+    TrustStore_dnList_inner_basicConstraints:
+      example:
+        certificateAuthority: true
+      properties:
+        certificateAuthority:
+          type: boolean
+      type: object
+    TrustStore_dnList_inner_validity:
+      example:
+        notAfter: notAfter
+        notBefore: notBefore
+      properties:
+        notBefore:
+          type: string
+        notAfter:
+          type: string
+      type: object
+    TrustStore_dnList_inner:
+      example:
+        serialNumber: serialNumber
+        keyUsage:
+        - keyUsage
+        - keyUsage
+        subject:
+          commonName: commonName
+          localityName: localityName
+          organizationName: organizationName
+          organizationUnit: organizationUnit
+          countryName: countryName
+          state: state
+        publicKeyAlgorithm: publicKeyAlgorithm
+        basicConstraints:
+          certificateAuthority: true
+        validity:
+          notAfter: notAfter
+          notBefore: notBefore
+        version: version
+        issuer:
+          commonName: commonName
+          localityName: localityName
+          organizationName: organizationName
+          organizationUnit: organizationUnit
+          countryName: countryName
+          state: state
+        signatureAlgorithm: signatureAlgorithm
+        certificateType: certificateType
+      properties:
+        issuer:
+          $ref: '#/components/schemas/TrustStore_dnList_inner_issuer'
+        subject:
+          $ref: '#/components/schemas/TrustStore_dnList_inner_issuer'
+        version:
+          type: string
+        serialNumber:
+          type: string
+        signatureAlgorithm:
+          type: string
+        publicKeyAlgorithm:
+          type: string
+        basicConstraints:
+          $ref: '#/components/schemas/TrustStore_dnList_inner_basicConstraints'
+        validity:
+          $ref: '#/components/schemas/TrustStore_dnList_inner_validity'
+        keyUsage:
+          items:
+            type: string
+          type: array
+        certificateType:
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

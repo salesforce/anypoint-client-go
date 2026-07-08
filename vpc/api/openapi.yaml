@@ -208,8 +208,49 @@ components:
   schemas:
     vpc:
       allOf:
-      - $ref: '#/components/schemas/vpcId'
+      - properties:
+          id:
+            description: The vpc Id
+            example: vpc-0b111d1a1ace2a12f
+            title: id
+            type: string
+        required:
+        - id
+        title: vpcId
+        type: object
       - $ref: '#/components/schemas/vpcCore'
+      example:
+        isDefault: false
+        internalDns:
+          specialDomains:
+          - specialDomains
+          - specialDomains
+          dnsServers:
+          - dnsServers
+          - dnsServers
+        cidrBlock: 10.0.0.0/20
+        name: myAwesomeVPC
+        associatedEnvironments:
+        - eeeeb145-6f79-402d-85fc-8c90905d2490
+        id: vpc-0b111d1a1ace2a12f
+        vpcRoutes:
+        - Next Hop: Local
+          CIDR: 10.0.0.0/20
+        - Next Hop: Internet Gateway
+          CIDR: 0.0.0.0/0
+        ownerId: 0000-1111-2222-3333-4444
+        region: us-east-1
+        sharedWith:
+        - 0000000-1111-2222-3333-44444444444
+        firewallRules:
+        - cidrBlock: 0.0.0.0/0
+          protocol: tcp
+          fromPort: 8081
+          toPort: 8082
+        - cidrBlock: 192.168.1.0/24
+          protocol: tcp
+          fromPort: 8091
+          toPort: 8092
       title: vpc
     vpcCore:
       properties:
@@ -286,8 +327,68 @@ components:
       example:
         total: 0
         data:
-        - null
-        - null
+        - isDefault: false
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+          cidrBlock: 10.0.0.0/20
+          name: myAwesomeVPC
+          associatedEnvironments:
+          - eeeeb145-6f79-402d-85fc-8c90905d2490
+          id: vpc-0b111d1a1ace2a12f
+          vpcRoutes:
+          - Next Hop: Local
+            CIDR: 10.0.0.0/20
+          - Next Hop: Internet Gateway
+            CIDR: 0.0.0.0/0
+          ownerId: 0000-1111-2222-3333-4444
+          region: us-east-1
+          sharedWith:
+          - 0000000-1111-2222-3333-44444444444
+          firewallRules:
+          - cidrBlock: 0.0.0.0/0
+            protocol: tcp
+            fromPort: 8081
+            toPort: 8082
+          - cidrBlock: 192.168.1.0/24
+            protocol: tcp
+            fromPort: 8091
+            toPort: 8092
+        - isDefault: false
+          internalDns:
+            specialDomains:
+            - specialDomains
+            - specialDomains
+            dnsServers:
+            - dnsServers
+            - dnsServers
+          cidrBlock: 10.0.0.0/20
+          name: myAwesomeVPC
+          associatedEnvironments:
+          - eeeeb145-6f79-402d-85fc-8c90905d2490
+          id: vpc-0b111d1a1ace2a12f
+          vpcRoutes:
+          - Next Hop: Local
+            CIDR: 10.0.0.0/20
+          - Next Hop: Internet Gateway
+            CIDR: 0.0.0.0/0
+          ownerId: 0000-1111-2222-3333-4444
+          region: us-east-1
+          sharedWith:
+          - 0000000-1111-2222-3333-44444444444
+          firewallRules:
+          - cidrBlock: 0.0.0.0/0
+            protocol: tcp
+            fromPort: 8081
+            toPort: 8082
+          - cidrBlock: 192.168.1.0/24
+            protocol: tcp
+            fromPort: 8091
+            toPort: 8092
       properties:
         data:
           items:
@@ -299,6 +400,9 @@ components:
           type: integer
       type: object
     _organizations__orgId__vpcs_post_400_response:
+      example:
+        message: "vpcs limit has been reached (max=1, use=1) for the organization"
+        status: 0
       properties:
         status:
           default: 400
@@ -309,18 +413,6 @@ components:
           title: the error message
           type: string
       type: object
-    vpcId:
-      properties:
-        id:
-          description: The vpc Id
-          example: vpc-0b111d1a1ace2a12f
-          title: id
-          type: string
-      required:
-      - id
-      title: vpcId
-      type: object
-      example: null
     firewallRule:
       properties:
         cidrBlock:
@@ -354,6 +446,13 @@ components:
       default:
         dnsServers: []
         specialDomains: []
+      example:
+        specialDomains:
+        - specialDomains
+        - specialDomains
+        dnsServers:
+        - dnsServers
+        - dnsServers
       properties:
         dnsServers:
           default: []

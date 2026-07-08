@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedules** | **int32** | An explanation about the purpose of this instance. | [default to 0]
+**Schedules** | Pointer to **int32** | Schedules | [optional] [default to 0]
 
 ## Methods
 
 ### NewApiMonitoring
 
-`func NewApiMonitoring(schedules int32, ) *ApiMonitoring`
+`func NewApiMonitoring() *ApiMonitoring`
 
 NewApiMonitoring instantiates a new ApiMonitoring object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetSchedules sets Schedules field to given value.
 
+### HasSchedules
+
+`func (o *ApiMonitoring) HasSchedules() bool`
+
+HasSchedules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

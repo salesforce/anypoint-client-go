@@ -20,17 +20,17 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	environmentId string
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvironmentIdDeleteExecute(r)
 }
 
@@ -42,10 +42,10 @@ Delete an environment
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param environmentId The id of an environment
- @return DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdDelete(ctx context.Context, orgId string, environmentId string) DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvironmentIdDelete(ctx context.Context, orgId string, environmentId string) DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -54,14 +54,14 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdDelete(ct
 }
 
 // Execute executes the request
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdDeleteExecute(r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest) (*http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvironmentIdDeleteExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvironmentIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsEnvironmentIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -119,14 +119,14 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdDeleteExe
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	environmentId string
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest) Execute() (*Env, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest) Execute() (*Env, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvironmentIdGetExecute(r)
 }
 
@@ -138,10 +138,10 @@ Retrieves an environment by id
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param environmentId The id of an environment
- @return DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdGet(ctx context.Context, orgId string, environmentId string) DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvironmentIdGet(ctx context.Context, orgId string, environmentId string) DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -151,7 +151,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdGet(ctx c
 
 // Execute executes the request
 //  @return Env
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdGetExecute(r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest) (*Env, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvironmentIdGetExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdGetRequest) (*Env, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -159,7 +159,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdGetExecut
 		localVarReturnValue  *Env
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvironmentIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsEnvironmentIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -226,20 +226,20 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdGetExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	environmentId string
 	envCore *EnvCore
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) EnvCore(envCore EnvCore) DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) EnvCore(envCore EnvCore) DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest {
 	r.envCore = &envCore
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) Execute() (*Env, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) Execute() (*Env, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvironmentIdPutExecute(r)
 }
 
@@ -251,10 +251,10 @@ Update an environment, implemented as a patch. Note that only the name is allowe
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
  @param environmentId The id of an environment
- @return DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdPut(ctx context.Context, orgId string, environmentId string) DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvironmentIdPut(ctx context.Context, orgId string, environmentId string) DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -264,7 +264,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdPut(ctx c
 
 // Execute executes the request
 //  @return Env
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdPutExecute(r DefaultApiOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) (*Env, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvironmentIdPutExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsEnvironmentIdPutRequest) (*Env, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -272,7 +272,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdPutExecut
 		localVarReturnValue  *Env
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvironmentIdPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsEnvironmentIdPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -352,13 +352,13 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvironmentIdPutExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdEnvironmentsGetRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsGetRequest) Execute() (*OrganizationsOrgIdEnvironmentsGet200Response, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsGetRequest) Execute() (*OrganizationsOrgIdEnvironmentsGet200Response, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsGetExecute(r)
 }
 
@@ -369,10 +369,10 @@ Returns all matching environments
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdEnvironmentsGetRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsGet(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdEnvironmentsGetRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsGet(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdEnvironmentsGetRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -381,7 +381,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsGet(ctx context.Contex
 
 // Execute executes the request
 //  @return OrganizationsOrgIdEnvironmentsGet200Response
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsGetExecute(r DefaultApiOrganizationsOrgIdEnvironmentsGetRequest) (*OrganizationsOrgIdEnvironmentsGet200Response, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsGetExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsGetRequest) (*OrganizationsOrgIdEnvironmentsGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -389,7 +389,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsGetExecute(r DefaultAp
 		localVarReturnValue  *OrganizationsOrgIdEnvironmentsGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -455,19 +455,19 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsGetExecute(r DefaultAp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdEnvironmentsPostRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envCore *EnvCore
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsPostRequest) EnvCore(envCore EnvCore) DefaultApiOrganizationsOrgIdEnvironmentsPostRequest {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest) EnvCore(envCore EnvCore) DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest {
 	r.envCore = &envCore
 	return r
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsPostRequest) Execute() (*Env, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest) Execute() (*Env, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsPostExecute(r)
 }
 
@@ -478,10 +478,10 @@ Creates an environment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgId The ID of the organization in GUID format
- @return DefaultApiOrganizationsOrgIdEnvironmentsPostRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsPost(ctx context.Context, orgId string) DefaultApiOrganizationsOrgIdEnvironmentsPostRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsPostRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsPost(ctx context.Context, orgId string) DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -490,7 +490,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsPost(ctx context.Conte
 
 // Execute executes the request
 //  @return Env
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsPostExecute(r DefaultApiOrganizationsOrgIdEnvironmentsPostRequest) (*Env, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsPostExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsPostRequest) (*Env, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -498,7 +498,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsPostExecute(r DefaultA
 		localVarReturnValue  *Env
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

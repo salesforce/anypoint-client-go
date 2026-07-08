@@ -438,6 +438,9 @@ components:
       title: queueBody
       type: object
     UpdateAMQ_404_response:
+      example:
+        message: api error message
+        status: 0
       properties:
         status:
           default: 404

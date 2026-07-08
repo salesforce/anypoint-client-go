@@ -21,12 +21,12 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiCreateAMQRequest struct {
+type DefaultAPICreateAMQRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -34,12 +34,12 @@ type DefaultApiCreateAMQRequest struct {
 	queueBody *QueueBody
 }
 
-func (r DefaultApiCreateAMQRequest) QueueBody(queueBody QueueBody) DefaultApiCreateAMQRequest {
+func (r DefaultAPICreateAMQRequest) QueueBody(queueBody QueueBody) DefaultAPICreateAMQRequest {
 	r.queueBody = &queueBody
 	return r
 }
 
-func (r DefaultApiCreateAMQRequest) Execute() (*Queue, *http.Response, error) {
+func (r DefaultAPICreateAMQRequest) Execute() (*Queue, *http.Response, error) {
 	return r.ApiService.CreateAMQExecute(r)
 }
 
@@ -53,10 +53,10 @@ Create queue
  @param envId The environment id
  @param regionId The region id
  @param queueId The id of a specific queue
- @return DefaultApiCreateAMQRequest
+ @return DefaultAPICreateAMQRequest
 */
-func (a *DefaultApiService) CreateAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiCreateAMQRequest {
-	return DefaultApiCreateAMQRequest{
+func (a *DefaultAPIService) CreateAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultAPICreateAMQRequest {
+	return DefaultAPICreateAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -68,7 +68,7 @@ func (a *DefaultApiService) CreateAMQ(ctx context.Context, orgId string, envId s
 
 // Execute executes the request
 //  @return Queue
-func (a *DefaultApiService) CreateAMQExecute(r DefaultApiCreateAMQRequest) (*Queue, *http.Response, error) {
+func (a *DefaultAPIService) CreateAMQExecute(r DefaultAPICreateAMQRequest) (*Queue, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -76,7 +76,7 @@ func (a *DefaultApiService) CreateAMQExecute(r DefaultApiCreateAMQRequest) (*Que
 		localVarReturnValue  *Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAMQ")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAMQ")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -147,16 +147,16 @@ func (a *DefaultApiService) CreateAMQExecute(r DefaultApiCreateAMQRequest) (*Que
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiDeleteAMQRequest struct {
+type DefaultAPIDeleteAMQRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
 	queueId string
 }
 
-func (r DefaultApiDeleteAMQRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteAMQRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteAMQExecute(r)
 }
 
@@ -170,10 +170,10 @@ Delete queue
  @param envId The environment id
  @param regionId The region id
  @param queueId The id of a specific queue
- @return DefaultApiDeleteAMQRequest
+ @return DefaultAPIDeleteAMQRequest
 */
-func (a *DefaultApiService) DeleteAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiDeleteAMQRequest {
-	return DefaultApiDeleteAMQRequest{
+func (a *DefaultAPIService) DeleteAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultAPIDeleteAMQRequest {
+	return DefaultAPIDeleteAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -184,14 +184,14 @@ func (a *DefaultApiService) DeleteAMQ(ctx context.Context, orgId string, envId s
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteAMQExecute(r DefaultApiDeleteAMQRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteAMQExecute(r DefaultAPIDeleteAMQRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAMQ")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAMQ")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -251,16 +251,16 @@ func (a *DefaultApiService) DeleteAMQExecute(r DefaultApiDeleteAMQRequest) (*htt
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiGetAMQRequest struct {
+type DefaultAPIGetAMQRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
 	queueId string
 }
 
-func (r DefaultApiGetAMQRequest) Execute() (*Queue, *http.Response, error) {
+func (r DefaultAPIGetAMQRequest) Execute() (*Queue, *http.Response, error) {
 	return r.ApiService.GetAMQExecute(r)
 }
 
@@ -274,10 +274,10 @@ Get details about a queue
  @param envId The environment id
  @param regionId The region id
  @param queueId The id of a specific queue
- @return DefaultApiGetAMQRequest
+ @return DefaultAPIGetAMQRequest
 */
-func (a *DefaultApiService) GetAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiGetAMQRequest {
-	return DefaultApiGetAMQRequest{
+func (a *DefaultAPIService) GetAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultAPIGetAMQRequest {
+	return DefaultAPIGetAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -289,7 +289,7 @@ func (a *DefaultApiService) GetAMQ(ctx context.Context, orgId string, envId stri
 
 // Execute executes the request
 //  @return Queue
-func (a *DefaultApiService) GetAMQExecute(r DefaultApiGetAMQRequest) (*Queue, *http.Response, error) {
+func (a *DefaultAPIService) GetAMQExecute(r DefaultAPIGetAMQRequest) (*Queue, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -297,7 +297,7 @@ func (a *DefaultApiService) GetAMQExecute(r DefaultApiGetAMQRequest) (*Queue, *h
 		localVarReturnValue  *Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAMQ")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetAMQ")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -366,9 +366,9 @@ func (a *DefaultApiService) GetAMQExecute(r DefaultApiGetAMQRequest) (*Queue, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetAMQListRequest struct {
+type DefaultAPIGetAMQListRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -381,42 +381,42 @@ type DefaultApiGetAMQListRequest struct {
 }
 
 // Defines what to fetch
-func (r DefaultApiGetAMQListRequest) Inclusion(inclusion string) DefaultApiGetAMQListRequest {
+func (r DefaultAPIGetAMQListRequest) Inclusion(inclusion string) DefaultAPIGetAMQListRequest {
 	r.inclusion = &inclusion
 	return r
 }
 
 // Defines what to fetch
-func (r DefaultApiGetAMQListRequest) DestinationType(destinationType string) DefaultApiGetAMQListRequest {
+func (r DefaultAPIGetAMQListRequest) DestinationType(destinationType string) DefaultAPIGetAMQListRequest {
 	r.destinationType = &destinationType
 	return r
 }
 
 // Skip over a number of elements by specifying an offset value for the query.
-func (r DefaultApiGetAMQListRequest) Offset(offset int32) DefaultApiGetAMQListRequest {
+func (r DefaultAPIGetAMQListRequest) Offset(offset int32) DefaultAPIGetAMQListRequest {
 	r.offset = &offset
 	return r
 }
 
 // Limit the number of elements in the response.
-func (r DefaultApiGetAMQListRequest) Limit(limit int32) DefaultApiGetAMQListRequest {
+func (r DefaultAPIGetAMQListRequest) Limit(limit int32) DefaultAPIGetAMQListRequest {
 	r.limit = &limit
 	return r
 }
 
 // Searchs the field from the left using the passed string.
-func (r DefaultApiGetAMQListRequest) StartsWith(startsWith string) DefaultApiGetAMQListRequest {
+func (r DefaultAPIGetAMQListRequest) StartsWith(startsWith string) DefaultAPIGetAMQListRequest {
 	r.startsWith = &startsWith
 	return r
 }
 
 // Includes only results with the given Ids.
-func (r DefaultApiGetAMQListRequest) DestinationIds(destinationIds []string) DefaultApiGetAMQListRequest {
+func (r DefaultAPIGetAMQListRequest) DestinationIds(destinationIds []string) DefaultAPIGetAMQListRequest {
 	r.destinationIds = &destinationIds
 	return r
 }
 
-func (r DefaultApiGetAMQListRequest) Execute() ([]Queue, *http.Response, error) {
+func (r DefaultAPIGetAMQListRequest) Execute() ([]Queue, *http.Response, error) {
 	return r.ApiService.GetAMQListExecute(r)
 }
 
@@ -429,10 +429,10 @@ Get a list of queues in a region
  @param orgId The organization Id
  @param envId The environment id
  @param regionId The region id for MQ
- @return DefaultApiGetAMQListRequest
+ @return DefaultAPIGetAMQListRequest
 */
-func (a *DefaultApiService) GetAMQList(ctx context.Context, orgId string, envId string, regionId string) DefaultApiGetAMQListRequest {
-	return DefaultApiGetAMQListRequest{
+func (a *DefaultAPIService) GetAMQList(ctx context.Context, orgId string, envId string, regionId string) DefaultAPIGetAMQListRequest {
+	return DefaultAPIGetAMQListRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -443,7 +443,7 @@ func (a *DefaultApiService) GetAMQList(ctx context.Context, orgId string, envId 
 
 // Execute executes the request
 //  @return []Queue
-func (a *DefaultApiService) GetAMQListExecute(r DefaultApiGetAMQListRequest) ([]Queue, *http.Response, error) {
+func (a *DefaultAPIService) GetAMQListExecute(r DefaultAPIGetAMQListRequest) ([]Queue, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -451,7 +451,7 @@ func (a *DefaultApiService) GetAMQListExecute(r DefaultApiGetAMQListRequest) ([]
 		localVarReturnValue  []Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAMQList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetAMQList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -466,29 +466,35 @@ func (a *DefaultApiService) GetAMQListExecute(r DefaultApiGetAMQListRequest) ([]
 	localVarFormParams := url.Values{}
 
 	if r.inclusion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "inclusion", r.inclusion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "inclusion", r.inclusion, "form", "")
 	}
 	if r.destinationType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "destinationType", r.destinationType, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "destinationType", r.destinationType, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		r.offset = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
 	}
 	if r.startsWith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "startsWith", r.startsWith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startsWith", r.startsWith, "form", "")
 	}
 	if r.destinationIds != nil {
 		t := *r.destinationIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "destinationIds", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "destinationIds", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "destinationIds", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "destinationIds", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -545,9 +551,9 @@ func (a *DefaultApiService) GetAMQListExecute(r DefaultApiGetAMQListRequest) ([]
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiUpdateAMQRequest struct {
+type DefaultAPIUpdateAMQRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	regionId string
@@ -555,12 +561,12 @@ type DefaultApiUpdateAMQRequest struct {
 	queueBody *QueueBody
 }
 
-func (r DefaultApiUpdateAMQRequest) QueueBody(queueBody QueueBody) DefaultApiUpdateAMQRequest {
+func (r DefaultAPIUpdateAMQRequest) QueueBody(queueBody QueueBody) DefaultAPIUpdateAMQRequest {
 	r.queueBody = &queueBody
 	return r
 }
 
-func (r DefaultApiUpdateAMQRequest) Execute() (*Queue, *http.Response, error) {
+func (r DefaultAPIUpdateAMQRequest) Execute() (*Queue, *http.Response, error) {
 	return r.ApiService.UpdateAMQExecute(r)
 }
 
@@ -574,10 +580,10 @@ Modify a queue's properties
  @param envId The environment id
  @param regionId The region id
  @param queueId The id of a specific queue
- @return DefaultApiUpdateAMQRequest
+ @return DefaultAPIUpdateAMQRequest
 */
-func (a *DefaultApiService) UpdateAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultApiUpdateAMQRequest {
-	return DefaultApiUpdateAMQRequest{
+func (a *DefaultAPIService) UpdateAMQ(ctx context.Context, orgId string, envId string, regionId string, queueId string) DefaultAPIUpdateAMQRequest {
+	return DefaultAPIUpdateAMQRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -589,7 +595,7 @@ func (a *DefaultApiService) UpdateAMQ(ctx context.Context, orgId string, envId s
 
 // Execute executes the request
 //  @return Queue
-func (a *DefaultApiService) UpdateAMQExecute(r DefaultApiUpdateAMQRequest) (*Queue, *http.Response, error) {
+func (a *DefaultAPIService) UpdateAMQExecute(r DefaultAPIUpdateAMQRequest) (*Queue, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -597,7 +603,7 @@ func (a *DefaultApiService) UpdateAMQExecute(r DefaultApiUpdateAMQRequest) (*Que
 		localVarReturnValue  *Queue
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAMQ")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateAMQ")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

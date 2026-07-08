@@ -21,7 +21,8 @@ var _ MappedNullable = &ExchangeBindingWithRules{}
 type ExchangeBindingWithRules struct {
 	QueueId *string `json:"queueId,omitempty"`
 	ExchangeId *string `json:"exchangeId,omitempty"`
-	Rules []map[string]interface{} `json:"rules,omitempty"`
+	Fifo *bool `json:"fifo,omitempty"`
+	RoutingRules []map[string]interface{} `json:"routingRules,omitempty"`
 }
 
 // NewExchangeBindingWithRules instantiates a new ExchangeBindingWithRules object
@@ -105,36 +106,68 @@ func (o *ExchangeBindingWithRules) SetExchangeId(v string) {
 	o.ExchangeId = &v
 }
 
-// GetRules returns the Rules field value if set, zero value otherwise.
-func (o *ExchangeBindingWithRules) GetRules() []map[string]interface{} {
-	if o == nil || IsNil(o.Rules) {
-		var ret []map[string]interface{}
+// GetFifo returns the Fifo field value if set, zero value otherwise.
+func (o *ExchangeBindingWithRules) GetFifo() bool {
+	if o == nil || IsNil(o.Fifo) {
+		var ret bool
 		return ret
 	}
-	return o.Rules
+	return *o.Fifo
 }
 
-// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// GetFifoOk returns a tuple with the Fifo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeBindingWithRules) GetRulesOk() ([]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Rules) {
+func (o *ExchangeBindingWithRules) GetFifoOk() (*bool, bool) {
+	if o == nil || IsNil(o.Fifo) {
 		return nil, false
 	}
-	return o.Rules, true
+	return o.Fifo, true
 }
 
-// HasRules returns a boolean if a field has been set.
-func (o *ExchangeBindingWithRules) HasRules() bool {
-	if o != nil && !IsNil(o.Rules) {
+// HasFifo returns a boolean if a field has been set.
+func (o *ExchangeBindingWithRules) HasFifo() bool {
+	if o != nil && !IsNil(o.Fifo) {
 		return true
 	}
 
 	return false
 }
 
-// SetRules gets a reference to the given []map[string]interface{} and assigns it to the Rules field.
-func (o *ExchangeBindingWithRules) SetRules(v []map[string]interface{}) {
-	o.Rules = v
+// SetFifo gets a reference to the given bool and assigns it to the Fifo field.
+func (o *ExchangeBindingWithRules) SetFifo(v bool) {
+	o.Fifo = &v
+}
+
+// GetRoutingRules returns the RoutingRules field value if set, zero value otherwise.
+func (o *ExchangeBindingWithRules) GetRoutingRules() []map[string]interface{} {
+	if o == nil || IsNil(o.RoutingRules) {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.RoutingRules
+}
+
+// GetRoutingRulesOk returns a tuple with the RoutingRules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeBindingWithRules) GetRoutingRulesOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.RoutingRules) {
+		return nil, false
+	}
+	return o.RoutingRules, true
+}
+
+// HasRoutingRules returns a boolean if a field has been set.
+func (o *ExchangeBindingWithRules) HasRoutingRules() bool {
+	if o != nil && !IsNil(o.RoutingRules) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoutingRules gets a reference to the given []map[string]interface{} and assigns it to the RoutingRules field.
+func (o *ExchangeBindingWithRules) SetRoutingRules(v []map[string]interface{}) {
+	o.RoutingRules = v
 }
 
 func (o ExchangeBindingWithRules) MarshalJSON() ([]byte, error) {
@@ -153,8 +186,11 @@ func (o ExchangeBindingWithRules) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExchangeId) {
 		toSerialize["exchangeId"] = o.ExchangeId
 	}
-	if !IsNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	if !IsNil(o.Fifo) {
+		toSerialize["fifo"] = o.Fifo
+	}
+	if !IsNil(o.RoutingRules) {
+		toSerialize["routingRules"] = o.RoutingRules
 	}
 	return toSerialize, nil
 }

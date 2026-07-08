@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Description of the Organization API
   title: Organization API
-  version: 1.0.0
+  version: 1.1.1
 servers:
 - description: Anypoint Cloudhub
   url: https://anypoint.mulesoft.com/accounts/api/
@@ -15,8 +15,9 @@ security:
 paths:
   /organizations:
     post:
-      description: Creates a new Business Group within an organization. This action
-        can only be performed with an access token generated from user/pwd.
+      description: Creates a new Business Group. This action can only be performed
+        with an access token generated from user/pwd.
+      operationId: createBG
       requestBody:
         content:
           application/json:
@@ -41,10 +42,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/BGCore'
           description: Success response
-      summary: Creates a new Business Group within an organization.
+      summary: Creates a new Business Group.
   /organizations/{orgId}:
     delete:
       description: Delete a Business Group by its given id.
+      operationId: deleteBG
       parameters:
       - description: The organization Id
         explode: false
@@ -61,12 +63,12 @@ paths:
           content:
             application/json:
               schema:
-                default: {}
                 type: object
           description: Success response
       summary: Delete a Business Group by its id.
     get:
       description: Returns the Business Group with the given id
+      operationId: getBG
       parameters:
       - description: The organization Id
         explode: false
@@ -83,11 +85,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/masterBGDetail'
+                $ref: '#/components/schemas/MasterBGDetail'
           description: Success response
-      summary: Returns the business Group instance with the given id.
+      summary: Returns the Business Group instance with the given id.
     put:
-      description: Put a Business Group by its given id.
+      description: Update a Business Group by its given id.
+      operationId: updateBG
       parameters:
       - description: The organization Id
         explode: false
@@ -101,7 +104,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BGPutReqBody'
+              $ref: '#/components/schemas/BGUpdateReqBody'
         description: Business Group Request Body Object
         required: true
       responses:
@@ -113,7 +116,60 @@ paths:
               schema:
                 $ref: '#/components/schemas/BGCore'
           description: Success response
-      summary: Put a Business Group by its id.
+      summary: Update a Business Group by its id.
+  /organizations/{orgId}/clients/{clientId}:
+    get:
+      description: Get client ID and client secret
+      operationId: getClientCredentials
+      parameters:
+      - description: The ID of the organization in GUID format
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The client ID of the client
+        explode: false
+        in: path
+        name: clientId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: Success response
+  /cs/organizations/{orgId}/usage:
+    get:
+      description: Returns the usage for a given Business Group
+      operationId: getBGUsage
+      parameters:
+      - description: The organization Id
+        explode: false
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          description: Access token is missing or invalid
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usage'
+          description: Success response
+      summary: Returns the usage for a given Business Group.
 components:
   responses:
     UnauthorizedError:
@@ -130,7 +186,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/masterBGDetail'
+            $ref: '#/components/schemas/MasterBGDetail'
       description: Success response
     SuccessPostBG:
       content:
@@ -142,14 +198,25 @@ components:
       content:
         application/json:
           schema:
-            default: {}
             type: object
       description: Success response
-    SuccessPutBG:
+    SuccessUpdateBG:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/BGCore'
+      description: Success response
+    SuccessGetClient:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Client'
+      description: Success response
+    SuccessGetUsage:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Usage'
       description: Success response
   schemas:
     BGPostReqBody:
@@ -157,47 +224,47 @@ components:
         entitlements:
           globalDeployment: false
           staticIps:
-            reassigned: 5
-            assigned: 4
+            reassigned: 4
+            assigned: 1
           createSubOrgs: false
           loadBalancer:
-            reassigned: 2
-            assigned: 5
+            reassigned: 7
+            assigned: 2
           vpns:
             reassigned: 6
-            assigned: 6
+            assigned: 2
           vCoresSandbox:
-            reassigned: 6.965117697638846
-            assigned: 3.5571952270680973
+            reassigned: 3.5571952270680973
+            assigned: 6.438423552598547
           vCoresProduction:
-            reassigned: 6.438423552598547
-            assigned: 9.018348186070783
+            reassigned: 9.018348186070783
+            assigned: 8.762042012749001
           createEnvironments: false
           vCoresDesign:
-            reassigned: 8.762042012749001
-            assigned: 6.683562403749608
+            reassigned: 6.683562403749608
+            assigned: 9.369310271410669
           vpcs:
-            reassigned: 2
-            assigned: 1
-        name: name
-        ownerId: ownerId
-        parentOrganizationId: parentOrganizationId
+            reassigned: 1
+            assigned: 6
+        name: ""
+        ownerId: ""
+        parentOrganizationId: ""
       properties:
         entitlements:
-          $ref: '#/components/schemas/entitlementsCore'
+          $ref: '#/components/schemas/EntitlementsCore'
         name:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The name of the organization
           title: name
           type: string
         ownerId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the owner of the organization.
           title: ownerId
           type: string
         parentOrganizationId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: a reference to the parent organization
           title: parentOrganizationId
           type: string
       required:
@@ -207,308 +274,382 @@ components:
       - parentOrganizationId
       title: BGPostReqBody
       type: object
-    BGPutReqBody:
+    BGUpdateReqBody:
       example:
         entitlements:
           globalDeployment: false
           staticIps:
-            reassigned: 5
-            assigned: 4
+            reassigned: 4
+            assigned: 1
           createSubOrgs: false
           loadBalancer:
-            reassigned: 2
-            assigned: 5
+            reassigned: 7
+            assigned: 2
           vpns:
             reassigned: 6
-            assigned: 6
+            assigned: 2
           vCoresSandbox:
-            reassigned: 6.965117697638846
-            assigned: 3.5571952270680973
+            reassigned: 3.5571952270680973
+            assigned: 6.438423552598547
           vCoresProduction:
-            reassigned: 6.438423552598547
-            assigned: 9.018348186070783
+            reassigned: 9.018348186070783
+            assigned: 8.762042012749001
           createEnvironments: false
           vCoresDesign:
-            reassigned: 8.762042012749001
-            assigned: 6.683562403749608
+            reassigned: 6.683562403749608
+            assigned: 9.369310271410669
           vpcs:
-            reassigned: 2
-            assigned: 1
-        name: name
+            reassigned: 1
+            assigned: 6
+        name: ""
         sessionTimeout: 0
-        ownerId: ownerId
+        ownerId: ""
       properties:
         entitlements:
-          $ref: '#/components/schemas/entitlementsCore'
+          $ref: '#/components/schemas/EntitlementsCore'
         name:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The name of the organization
           title: name
           type: string
         ownerId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the owner of the organization.
           title: ownerId
           type: string
         sessionTimeout:
           default: 0
-          description: An explanation about the purpose of this instance.
+          description: The session timeout in minutes
           title: sessionTimeout
           type: integer
-      title: BGPutReqBody
+      title: BGUpdateReqBody
       type: object
     BGCore:
       example:
         entitlements:
           workerLoggingOverride:
             enabled: false
-          globalDeployment: false
+          globalDeployment: true
+          managedGatewaySmall:
+            reassigned: 3
+            assigned: 7
+          networkConnections:
+            reassigned: 3
+            assigned: 5
           crowd:
             environments: false
             hideApiManagerDesigner: false
             hideFormerApiPlatform: false
+          apiGovernance:
+            apisPerMonth: 6
+            enabled: true
+          telemetryExporter:
+            enabled: false
           monitoringCenter:
-            productSKU: 9
+            preProductionUnits: 1.2315135367772556
+            productSKU: 3
+            storageAddOn: 4.145608029883936
+            storageBase: 2.027123023002322
+            productionUnits: 7.386281948385884
+            dataRegion: dataRegion
+          highAvailability:
+            clustering: true
+          usageBasedPricingLimits:
+            memory:
+              extra: 8
+              base: 4
+            cpu:
+              extra: 8
+              base: 4
+          apiManager:
+            usageBasedPricing:
+              api:
+                production:
+                  amount: 3
+                sandbox:
+                  amount: 3
+            governance:
+              enabled: false
           objectStoreKeys:
             addOn: 1
             base: 1
           workerClouds:
-            reassigned: 6
-            assigned: 5
+            reassigned: 5
+            assigned: 6
           vCoresDesign:
-            reassigned: 8.762042012749001
-            assigned: 6.683562403749608
+            reassigned: 6.683562403749608
+            assigned: 9.369310271410669
           vpcs:
-            reassigned: 2
-            assigned: 1
+            reassigned: 1
+            assigned: 6
           gateways:
             assigned: 5
-          appViz: false
+          appViz: true
           apiCommunityManager:
             enabled: false
-          hybridInsight: false
+          hybridInsight: true
           apiQuery:
-            productSKU: 1
+            productSKU: 6
+            production: 5
+            sandbox: 1
             enabled: false
           objectStoreRequestUnits:
             addOn: 1
-            base: 6
+            base: 1
           messaging:
-            assigned: 7
-          tradingPartnersProduction:
             assigned: 9
+          tradingPartnersProduction:
+            assigned: 5
+          muleDxEDA:
+            enabled: false
           angGovernance:
-            level: 0
+            level: -1
           anypointSecurityTokenization:
             enabled: false
           hybrid:
             enabled: false
+          cloudhub1:
+            enabled: false
           apis:
             enabled: false
           staticIps:
-            reassigned: 5
-            assigned: 4
+            reassigned: 4
+            assigned: 1
+          idp:
+            enabled: false
           runtimeFabricCloud:
+            enabled: false
+          muleDxWebIde:
             enabled: false
           kpiDashboard:
             enabled: false
-          autoscaling: false
+          autoscaling: true
           partnersSandbox:
-            assigned: 1
-          externalIdentity: false
-          hybridAutoDiscoverProperties: false
+            assigned: 7
+          externalIdentity: true
+          usageBasedPricing:
+            muleRuntimeIntegration:
+              flows: 7
+              messages: 6
+              throughput: 0
+              enabled: false
+          hybridAutoDiscoverProperties: true
           vpns:
             reassigned: 6
-            assigned: 6
-          runtimeFabric: false
+            assigned: 2
+          muleDxGenAI:
+            enabled: false
+          runtimeFabric: true
           serviceMesh:
             enabled: false
           cam:
             enabled: false
           anypointSecurityEdgePolicies:
             enabled: false
-          pcf: false
-          armAlerts: false
-          createSubOrgs: false
+          pcf: true
+          armAlerts: true
+          createSubOrgs: true
           loadBalancer:
-            reassigned: 2
-            assigned: 5
+            reassigned: 7
+            assigned: 2
           mqMessages:
-            addOn: 3
-            base: 2
+            addOn: 1
+            base: 1
           vCoresSandbox:
-            reassigned: 6.965117697638846
-            assigned: 3.5571952270680973
-          createEnvironments: false
+            reassigned: 3.5571952270680973
+            assigned: 6.438423552598547
+          createEnvironments: true
+          rpa:
+            active: true
+            composerVersion: composerVersion
+            enabled: true
           apiMonitoring:
-            schedules: 6
+            schedules: 0
+          composer:
+            unlimitedConnectors: true
+            tasksPerMonth: 7
+            maxConnectors: 0
+            isHyperAutomation: true
+            enabled: true
           tradingPartnersSandbox:
             assigned: 9
+          apiCatalog:
+            enabled: false
+          managedGatewayLarge:
+            reassigned: 7
+            assigned: 3
           mqRequests:
-            addOn: 4
-            base: 7
+            addOn: 1
+            base: 1
           apiQueryC360:
             enabled: false
+          apiGovernanceDomain:
+            domain: domain
           partnersProduction:
-            assigned: 7
+            assigned: 6
           exchange2:
-            enabled: false
+            enabled: true
+            assetUsageAndEngagement:
+              enabled: true
           mqAdvancedFeatures:
             enabled: false
           vCoresProduction:
-            reassigned: 6.438423552598547
-            assigned: 9.018348186070783
+            reassigned: 9.018348186070783
+            assigned: 8.762042012749001
           crowdSelfServiceMigration:
             enabled: false
           designCenter:
-            api: false
-            mozart: false
+            apiVisual: true
+            api: true
+            apiExample: true
+            mozart: true
         isAutomaticAdminPromotionExempt: false
         owner:
-          lastLogin: lastLogin
-          lastName: lastName
-          mfaVerifiersConfigured: mfaVerifiersConfigured
-          type: type
+          lastLogin: ""
+          lastName: ""
+          mfaVerifiersConfigured: ""
+          type: ""
           enabled: false
           mfaVerificationExcluded: false
-          organizationId: organizationId
-          createdAt: createdAt
-          firstName: firstName
+          organizationId: ""
+          createdAt: ""
+          firstName: ""
           deleted: false
-          phoneNumber: phoneNumber
-          id: id
-          idprovider_id: idprovider_id
-          email: email
-          updatedAt: updatedAt
-          username: username
+          phoneNumber: ""
+          id: ""
+          idprovider_id: ""
+          email: ""
+          updatedAt: ""
+          username: ""
         subOrganizationIds:
-        - subOrganizationIds
-        - subOrganizationIds
+        - ""
+        - ""
         clientId: "[\"1ab4bb7db66448be902379d1fcfb1a43\"]"
+        isRoot: false
         environments:
-        - organizationId: organizationId
-          clientId: clientId
+        - organizationId: ""
+          clientId: ""
           isProduction: false
-          name: name
-          id: id
-          type: type
-        - organizationId: organizationId
-          clientId: clientId
+          name: ""
+          id: ""
+          type: ""
+        - organizationId: ""
+          clientId: ""
           isProduction: false
-          name: name
-          id: id
-          type: type
+          name: ""
+          id: ""
+          type: ""
         tenantOrganizationIds:
         - tenantOrganizationIds
         - tenantOrganizationIds
-        ownerId: ownerId
+        ownerId: ""
         isFederated: false
         createdAt: "[\"2021-03-05T14:06:52.976Z\"]"
         isMaster: false
         domain: "[\"ms-04\"]"
-        name: name
-        id: id
-        mfaRequired: mfaRequired
-        idprovider_id: idprovider_id
+        name: ""
+        id: ""
+        mfaRequired: ""
+        idprovider_id: ""
         properties: "{}"
         parentOrganizationIds:
         - parentOrganizationIds
         - parentOrganizationIds
-        updatedAt: updatedAt
+        updatedAt: ""
       properties:
         clientId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The client id of the organization
           example: "[\"1ab4bb7db66448be902379d1fcfb1a43\"]"
           title: clientId
           type: string
         createdAt:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The creation date of the organization
           example: "[\"2021-03-05T14:06:52.976Z\"]"
           title: createdAt
           type: string
         domain:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The domain of the organization
           example: "[\"ms-04\"]"
           title: domain
           type: string
         entitlements:
-          $ref: '#/components/schemas/entitlements'
+          $ref: '#/components/schemas/Entitlements'
         environments:
-          default: []
-          description: An explanation about the purpose of this instance.
+          description: List of environments.
           items:
-            $ref: '#/components/schemas/environment'
+            $ref: '#/components/schemas/Environment'
           title: environments
           type: array
         id:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the organization
           title: id
           type: string
         idprovider_id:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the idprovider of the organization.
           title: idprovider_id
           type: string
         isAutomaticAdminPromotionExempt:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the organization is exempt from automatic admin promotion.
           title: isAutomaticAdminPromotionExempt
           type: boolean
         isFederated:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the organization is federated.
           title: isFederated
+          type: boolean
+        isRoot:
+          default: false
+          description: Whether the organization is a root organization.
+          title: isRoot
           type: boolean
         isMaster:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the organization is a master organization.
           title: isMaster
           type: boolean
         mfaRequired:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: Whether multi-factor authentication is required for the organization.
           title: mfaRequired
           type: string
         name:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The name of the organization.
           title: name
           type: string
         ownerId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the owner of the organization.
           title: ownerId
           type: string
         parentOrganizationIds:
-          default: []
-          description: An explanation about the purpose of this instance.
+          description: The ids of the parent organizations.
           items:
             title: parentOrganizationId
             type: string
           title: parentOrganizationIds
           type: array
         properties:
-          default: {}
-          description: An explanation about the purpose of this instance.
+          description: The properties of the organization.
           title: properties
           type: object
         subOrganizationIds:
-          default: []
-          description: An explanation about the purpose of this instance.
+          description: The ids of the sub organizations.
           items:
             default: ""
-            description: An explanation about the purpose of this instance.
+            description: The id of a sub organization.
             title: subOrganizationId
             type: string
           title: subOrganizationIds
           type: array
         tenantOrganizationIds:
-          default: []
-          description: An explanation about the purpose of this instance.
+          description: The ids of the tenant organizations.
           items:
             title: tenantOrganizationId
             type: string
@@ -516,667 +657,1225 @@ components:
           type: array
         updatedAt:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The last update date of the organization.
           title: updatedAt
           type: string
         owner:
-          $ref: '#/components/schemas/owner'
+          $ref: '#/components/schemas/User'
       title: BGCore
       type: object
-    masterBGDetail:
+    MasterBGDetail:
       allOf:
       - $ref: '#/components/schemas/BGCore'
-      - $ref: '#/components/schemas/masterBGSpecificDetails'
+      - properties:
+          sessionTimeout:
+            default: 0
+            description: The session timeout in minutes.
+            title: sessionTimeout
+            type: integer
+          subscription:
+            $ref: '#/components/schemas/subscription'
+          gdotId:
+            default: ""
+            description: The gdot id of the organization
+            title: gdotId
+            type: string
+          deletedAt:
+            description: The deleted date of the organization
+            nullable: true
+            title: deletedAt
+            type: string
+          orgType:
+            default: ""
+            description: The type of the organization
+            title: orgType
+            type: string
+        title: masterBGSpecificDetails
+        type: object
+      example:
+        entitlements:
+          workerLoggingOverride:
+            enabled: false
+          globalDeployment: true
+          managedGatewaySmall:
+            reassigned: 3
+            assigned: 7
+          networkConnections:
+            reassigned: 3
+            assigned: 5
+          crowd:
+            environments: false
+            hideApiManagerDesigner: false
+            hideFormerApiPlatform: false
+          apiGovernance:
+            apisPerMonth: 6
+            enabled: true
+          telemetryExporter:
+            enabled: false
+          monitoringCenter:
+            preProductionUnits: 1.2315135367772556
+            productSKU: 3
+            storageAddOn: 4.145608029883936
+            storageBase: 2.027123023002322
+            productionUnits: 7.386281948385884
+            dataRegion: dataRegion
+          highAvailability:
+            clustering: true
+          usageBasedPricingLimits:
+            memory:
+              extra: 8
+              base: 4
+            cpu:
+              extra: 8
+              base: 4
+          apiManager:
+            usageBasedPricing:
+              api:
+                production:
+                  amount: 3
+                sandbox:
+                  amount: 3
+            governance:
+              enabled: false
+          objectStoreKeys:
+            addOn: 1
+            base: 1
+          workerClouds:
+            reassigned: 5
+            assigned: 6
+          vCoresDesign:
+            reassigned: 6.683562403749608
+            assigned: 9.369310271410669
+          vpcs:
+            reassigned: 1
+            assigned: 6
+          gateways:
+            assigned: 5
+          appViz: true
+          apiCommunityManager:
+            enabled: false
+          hybridInsight: true
+          apiQuery:
+            productSKU: 6
+            production: 5
+            sandbox: 1
+            enabled: false
+          objectStoreRequestUnits:
+            addOn: 1
+            base: 1
+          messaging:
+            assigned: 9
+          tradingPartnersProduction:
+            assigned: 5
+          muleDxEDA:
+            enabled: false
+          angGovernance:
+            level: -1
+          anypointSecurityTokenization:
+            enabled: false
+          hybrid:
+            enabled: false
+          cloudhub1:
+            enabled: false
+          apis:
+            enabled: false
+          staticIps:
+            reassigned: 4
+            assigned: 1
+          idp:
+            enabled: false
+          runtimeFabricCloud:
+            enabled: false
+          muleDxWebIde:
+            enabled: false
+          kpiDashboard:
+            enabled: false
+          autoscaling: true
+          partnersSandbox:
+            assigned: 7
+          externalIdentity: true
+          usageBasedPricing:
+            muleRuntimeIntegration:
+              flows: 7
+              messages: 6
+              throughput: 0
+              enabled: false
+          hybridAutoDiscoverProperties: true
+          vpns:
+            reassigned: 6
+            assigned: 2
+          muleDxGenAI:
+            enabled: false
+          runtimeFabric: true
+          serviceMesh:
+            enabled: false
+          cam:
+            enabled: false
+          anypointSecurityEdgePolicies:
+            enabled: false
+          pcf: true
+          armAlerts: true
+          createSubOrgs: true
+          loadBalancer:
+            reassigned: 7
+            assigned: 2
+          mqMessages:
+            addOn: 1
+            base: 1
+          vCoresSandbox:
+            reassigned: 3.5571952270680973
+            assigned: 6.438423552598547
+          createEnvironments: true
+          rpa:
+            active: true
+            composerVersion: composerVersion
+            enabled: true
+          apiMonitoring:
+            schedules: 0
+          composer:
+            unlimitedConnectors: true
+            tasksPerMonth: 7
+            maxConnectors: 0
+            isHyperAutomation: true
+            enabled: true
+          tradingPartnersSandbox:
+            assigned: 9
+          apiCatalog:
+            enabled: false
+          managedGatewayLarge:
+            reassigned: 7
+            assigned: 3
+          mqRequests:
+            addOn: 1
+            base: 1
+          apiQueryC360:
+            enabled: false
+          apiGovernanceDomain:
+            domain: domain
+          partnersProduction:
+            assigned: 6
+          exchange2:
+            enabled: true
+            assetUsageAndEngagement:
+              enabled: true
+          mqAdvancedFeatures:
+            enabled: false
+          vCoresProduction:
+            reassigned: 9.018348186070783
+            assigned: 8.762042012749001
+          crowdSelfServiceMigration:
+            enabled: false
+          designCenter:
+            apiVisual: true
+            api: true
+            apiExample: true
+            mozart: true
+        subOrganizationIds:
+        - ""
+        - ""
+        isRoot: false
+        environments:
+        - organizationId: ""
+          clientId: ""
+          isProduction: false
+          name: ""
+          id: ""
+          type: ""
+        - organizationId: ""
+          clientId: ""
+          isProduction: false
+          name: ""
+          id: ""
+          type: ""
+        gdotId: ""
+        subscription:
+          expiration: ""
+          category: ""
+          type: ""
+        ownerId: ""
+        createdAt: "[\"2021-03-05T14:06:52.976Z\"]"
+        orgType: ""
+        isMaster: false
+        id: ""
+        mfaRequired: ""
+        idprovider_id: ""
+        parentOrganizationIds:
+        - parentOrganizationIds
+        - parentOrganizationIds
+        updatedAt: ""
+        isAutomaticAdminPromotionExempt: false
+        owner:
+          lastLogin: ""
+          lastName: ""
+          mfaVerifiersConfigured: ""
+          type: ""
+          enabled: false
+          mfaVerificationExcluded: false
+          organizationId: ""
+          createdAt: ""
+          firstName: ""
+          deleted: false
+          phoneNumber: ""
+          id: ""
+          idprovider_id: ""
+          email: ""
+          updatedAt: ""
+          username: ""
+        clientId: "[\"1ab4bb7db66448be902379d1fcfb1a43\"]"
+        tenantOrganizationIds:
+        - tenantOrganizationIds
+        - tenantOrganizationIds
+        isFederated: false
+        deletedAt: deletedAt
+        domain: "[\"ms-04\"]"
+        name: ""
+        sessionTimeout: 0
+        properties: "{}"
       title: masterBGDetail
-    entitlements:
-      description: An explanation about the purpose of this instance.
+    Environment:
+      description: an instance of an environment.
       example:
-        workerLoggingOverride:
-          enabled: false
-        globalDeployment: false
-        crowd:
-          environments: false
-          hideApiManagerDesigner: false
-          hideFormerApiPlatform: false
-        monitoringCenter:
-          productSKU: 9
-        objectStoreKeys:
-          addOn: 1
-          base: 1
-        workerClouds:
-          reassigned: 6
-          assigned: 5
-        vCoresDesign:
-          reassigned: 8.762042012749001
-          assigned: 6.683562403749608
-        vpcs:
-          reassigned: 2
-          assigned: 1
-        gateways:
-          assigned: 5
-        appViz: false
-        apiCommunityManager:
-          enabled: false
-        hybridInsight: false
-        apiQuery:
-          productSKU: 1
-          enabled: false
-        objectStoreRequestUnits:
-          addOn: 1
-          base: 6
-        messaging:
-          assigned: 7
-        tradingPartnersProduction:
-          assigned: 9
-        angGovernance:
-          level: 0
-        anypointSecurityTokenization:
-          enabled: false
-        hybrid:
-          enabled: false
-        apis:
-          enabled: false
-        staticIps:
-          reassigned: 5
-          assigned: 4
-        runtimeFabricCloud:
-          enabled: false
-        kpiDashboard:
-          enabled: false
-        autoscaling: false
-        partnersSandbox:
-          assigned: 1
-        externalIdentity: false
-        hybridAutoDiscoverProperties: false
-        vpns:
-          reassigned: 6
-          assigned: 6
-        runtimeFabric: false
-        serviceMesh:
-          enabled: false
-        cam:
-          enabled: false
-        anypointSecurityEdgePolicies:
-          enabled: false
-        pcf: false
-        armAlerts: false
-        createSubOrgs: false
-        loadBalancer:
-          reassigned: 2
-          assigned: 5
-        mqMessages:
-          addOn: 3
-          base: 2
-        vCoresSandbox:
-          reassigned: 6.965117697638846
-          assigned: 3.5571952270680973
-        createEnvironments: false
-        apiMonitoring:
-          schedules: 6
-        tradingPartnersSandbox:
-          assigned: 9
-        mqRequests:
-          addOn: 4
-          base: 7
-        apiQueryC360:
-          enabled: false
-        partnersProduction:
-          assigned: 7
-        exchange2:
-          enabled: false
-        mqAdvancedFeatures:
-          enabled: false
-        vCoresProduction:
-          reassigned: 6.438423552598547
-          assigned: 9.018348186070783
-        crowdSelfServiceMigration:
-          enabled: false
-        designCenter:
-          api: false
-          mozart: false
-      properties:
-        angGovernance:
-          $ref: '#/components/schemas/angGovernance'
-        anypointSecurityEdgePolicies:
-          $ref: '#/components/schemas/anypointSecurityEdgePolicies'
-        anypointSecurityTokenization:
-          $ref: '#/components/schemas/anypointSecurityTokenization'
-        apiCommunityManager:
-          $ref: '#/components/schemas/apiCommunityManager'
-        apiMonitoring:
-          $ref: '#/components/schemas/apiMonitoring'
-        apiQuery:
-          $ref: '#/components/schemas/apiQuery'
-        apiQueryC360:
-          $ref: '#/components/schemas/apiQueryC360'
-        apis:
-          $ref: '#/components/schemas/apis'
-        appViz:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: appViz
-          type: boolean
-        armAlerts:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: armAlerts
-          type: boolean
-        autoscaling:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: autoscaling
-          type: boolean
-        cam:
-          $ref: '#/components/schemas/cam'
-        createEnvironments:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: createEnvironments
-          type: boolean
-        createSubOrgs:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: createSubOrgs
-          type: boolean
-        crowd:
-          $ref: '#/components/schemas/crowd'
-        crowdSelfServiceMigration:
-          $ref: '#/components/schemas/crowdSelfServiceMigration'
-        designCenter:
-          $ref: '#/components/schemas/The_designCenter_schema'
-        exchange2:
-          $ref: '#/components/schemas/exchange2'
-        externalIdentity:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: externalIdentity
-          type: boolean
-        gateways:
-          $ref: '#/components/schemas/gateways'
-        globalDeployment:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: globalDeployment
-          type: boolean
-        hybrid:
-          $ref: '#/components/schemas/The_hybrid_schema'
-        hybridAutoDiscoverProperties:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: hybridAutoDiscoverProperties
-          type: boolean
-        hybridInsight:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: hybridInsight
-          type: boolean
-        kpiDashboard:
-          $ref: '#/components/schemas/kpiDashboard'
-        loadBalancer:
-          $ref: '#/components/schemas/loadBalancer'
-        messaging:
-          $ref: '#/components/schemas/messaging'
-        monitoringCenter:
-          $ref: '#/components/schemas/monitoringCenter'
-        mqAdvancedFeatures:
-          $ref: '#/components/schemas/mqAdvancedFeatures'
-        mqMessages:
-          $ref: '#/components/schemas/mqMessages'
-        mqRequests:
-          $ref: '#/components/schemas/mqRequests'
-        objectStoreKeys:
-          $ref: '#/components/schemas/objectStoreKeys'
-        objectStoreRequestUnits:
-          $ref: '#/components/schemas/objectStoreRequestUnits'
-        partnersProduction:
-          $ref: '#/components/schemas/partnersProduction'
-        partnersSandbox:
-          $ref: '#/components/schemas/partnersSandbox'
-        pcf:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: pcf
-          type: boolean
-        runtimeFabric:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: runtimeFabric
-          type: boolean
-        runtimeFabricCloud:
-          $ref: '#/components/schemas/runtimeFabricCloud'
-        serviceMesh:
-          $ref: '#/components/schemas/serviceMesh'
-        staticIps:
-          $ref: '#/components/schemas/staticIps'
-        tradingPartnersProduction:
-          $ref: '#/components/schemas/tradingPartnersProduction'
-        tradingPartnersSandbox:
-          $ref: '#/components/schemas/tradingPartnersSandbox'
-        vCoresDesign:
-          $ref: '#/components/schemas/vCoresDesign'
-        vCoresProduction:
-          $ref: '#/components/schemas/vCoresProduction'
-        vCoresSandbox:
-          $ref: '#/components/schemas/vCoresSandbox'
-        vpcs:
-          $ref: '#/components/schemas/vpcs'
-        vpns:
-          $ref: '#/components/schemas/vpns'
-        workerClouds:
-          $ref: '#/components/schemas/workerClouds'
-        workerLoggingOverride:
-          $ref: '#/components/schemas/workerLoggingOverride'
-      required:
-      - createEnvironments
-      - createSubOrgs
-      - globalDeployment
-      - loadBalancer
-      - staticIps
-      - vCoresDesign
-      - vCoresProduction
-      - vCoresSandbox
-      - vpcs
-      - vpns
-      title: entitlements
-      type: object
-    entitlementsCore:
-      description: An explanation about the purpose of this instance.
-      example:
-        globalDeployment: false
-        staticIps:
-          reassigned: 5
-          assigned: 4
-        createSubOrgs: false
-        loadBalancer:
-          reassigned: 2
-          assigned: 5
-        vpns:
-          reassigned: 6
-          assigned: 6
-        vCoresSandbox:
-          reassigned: 6.965117697638846
-          assigned: 3.5571952270680973
-        vCoresProduction:
-          reassigned: 6.438423552598547
-          assigned: 9.018348186070783
-        createEnvironments: false
-        vCoresDesign:
-          reassigned: 8.762042012749001
-          assigned: 6.683562403749608
-        vpcs:
-          reassigned: 2
-          assigned: 1
-      properties:
-        globalDeployment:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: globalDeployment
-          type: boolean
-        createEnvironments:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: createEnvironments
-          type: boolean
-        createSubOrgs:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: createSubOrgs
-          type: boolean
-        loadBalancer:
-          $ref: '#/components/schemas/loadBalancer'
-        staticIps:
-          $ref: '#/components/schemas/staticIps'
-        vCoresDesign:
-          $ref: '#/components/schemas/vCoresDesign'
-        vCoresProduction:
-          $ref: '#/components/schemas/vCoresProduction'
-        vCoresSandbox:
-          $ref: '#/components/schemas/vCoresSandbox'
-        vpcs:
-          $ref: '#/components/schemas/vpcs'
-        vpns:
-          $ref: '#/components/schemas/vpns'
-      required:
-      - createEnvironments
-      - createSubOrgs
-      - globalDeployment
-      - loadBalancer
-      - staticIps
-      - vCoresDesign
-      - vCoresProduction
-      - vCoresSandbox
-      - vpcs
-      - vpns
-      title: entitlementsCore
-      type: object
-    environment:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        organizationId: organizationId
-        clientId: clientId
+        organizationId: ""
+        clientId: ""
         isProduction: false
-        name: name
-        id: id
-        type: type
+        name: ""
+        id: ""
+        type: ""
       properties:
         clientId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The client id of the environment.
           title: clientId
           type: string
         id:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the environment.
           title: id
           type: string
         isProduction:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the environment is a production environment.
           title: isProduction
           type: boolean
         name:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The name of the environment.
           title: name
           type: string
         organizationId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the organization.
           title: organizationId
           type: string
         type:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The type of the environment.
           title: type
           type: string
-      required:
-      - clientId
-      - id
-      - isProduction
-      - name
-      - organizationId
-      - type
       title: environment
       type: object
-    owner:
+    User:
       example:
-        lastLogin: lastLogin
-        lastName: lastName
-        mfaVerifiersConfigured: mfaVerifiersConfigured
-        type: type
+        lastLogin: ""
+        lastName: ""
+        mfaVerifiersConfigured: ""
+        type: ""
         enabled: false
         mfaVerificationExcluded: false
-        organizationId: organizationId
-        createdAt: createdAt
-        firstName: firstName
+        organizationId: ""
+        createdAt: ""
+        firstName: ""
         deleted: false
-        phoneNumber: phoneNumber
-        id: id
-        idprovider_id: idprovider_id
-        email: email
-        updatedAt: updatedAt
-        username: username
+        phoneNumber: ""
+        id: ""
+        idprovider_id: ""
+        email: ""
+        updatedAt: ""
+        username: ""
       properties:
         createdAt:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The creation date of the user.
           title: createdAt
           type: string
         deleted:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the user is deleted.
           title: deleted
           type: boolean
         email:
           default: ""
-          description: An explanation about the purpose of this instance.
-          title: The email schema
+          description: The email of the user.
+          title: email
           type: string
         enabled:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the user is enabled.
           title: enabled
           type: boolean
         firstName:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The first name of the user.
           title: firstName
           type: string
         id:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the user.
           title: id
           type: string
         idprovider_id:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The idprovider id of the user.
           title: idprovider_id
           type: string
         lastLogin:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The last login date of the user.
           title: lastLogin
           type: string
         lastName:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The last name of the user.
           title: lastName
           type: string
         mfaVerificationExcluded:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether the user is excluded from MFA verification.
           title: mfaVerificationExcluded
           type: boolean
         mfaVerifiersConfigured:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: Whether the user has configured MFA verifiers.
           title: mfaVerifiersConfigured
           type: string
         organizationId:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The id of the organization.
           title: organizationId
           type: string
         phoneNumber:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The phone number of the user.
           title: phoneNumber
           type: string
         type:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The type of the user.
           title: type
           type: string
         updatedAt:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The last update date of the user.
           title: updatedAt
           type: string
         username:
           default: ""
-          description: An explanation about the purpose of this instance.
+          description: The username of the user.
           title: username
           type: string
-      title: owner
       type: object
-    subscription:
-      description: An explanation about the purpose of this instance.
-      properties:
-        category:
-          default: ""
-          description: An explanation about the purpose of this instance.
-          title: category
-          type: string
-        expiration:
-          default: ""
-          description: An explanation about the purpose of this instance.
-          title: expiration
-          type: string
-        type:
-          default: ""
-          description: An explanation about the purpose of this instance.
-          title: type
-          type: string
-      title: subscription
-      type: object
-      example: null
-    masterBGSpecificDetails:
-      properties:
-        sessionTimeout:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: sessionTimeout
-          type: integer
-        subscription:
-          $ref: '#/components/schemas/subscription'
-      title: masterBGSpecificDetails
-      type: object
-      example: null
-    angGovernance:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    Entitlements:
+      description: Business Group entitlements
       example:
-        level: 0
+        workerLoggingOverride:
+          enabled: false
+        globalDeployment: true
+        managedGatewaySmall:
+          reassigned: 3
+          assigned: 7
+        networkConnections:
+          reassigned: 3
+          assigned: 5
+        crowd:
+          environments: false
+          hideApiManagerDesigner: false
+          hideFormerApiPlatform: false
+        apiGovernance:
+          apisPerMonth: 6
+          enabled: true
+        telemetryExporter:
+          enabled: false
+        monitoringCenter:
+          preProductionUnits: 1.2315135367772556
+          productSKU: 3
+          storageAddOn: 4.145608029883936
+          storageBase: 2.027123023002322
+          productionUnits: 7.386281948385884
+          dataRegion: dataRegion
+        highAvailability:
+          clustering: true
+        usageBasedPricingLimits:
+          memory:
+            extra: 8
+            base: 4
+          cpu:
+            extra: 8
+            base: 4
+        apiManager:
+          usageBasedPricing:
+            api:
+              production:
+                amount: 3
+              sandbox:
+                amount: 3
+          governance:
+            enabled: false
+        objectStoreKeys:
+          addOn: 1
+          base: 1
+        workerClouds:
+          reassigned: 5
+          assigned: 6
+        vCoresDesign:
+          reassigned: 6.683562403749608
+          assigned: 9.369310271410669
+        vpcs:
+          reassigned: 1
+          assigned: 6
+        gateways:
+          assigned: 5
+        appViz: true
+        apiCommunityManager:
+          enabled: false
+        hybridInsight: true
+        apiQuery:
+          productSKU: 6
+          production: 5
+          sandbox: 1
+          enabled: false
+        objectStoreRequestUnits:
+          addOn: 1
+          base: 1
+        messaging:
+          assigned: 9
+        tradingPartnersProduction:
+          assigned: 5
+        muleDxEDA:
+          enabled: false
+        angGovernance:
+          level: -1
+        anypointSecurityTokenization:
+          enabled: false
+        hybrid:
+          enabled: false
+        cloudhub1:
+          enabled: false
+        apis:
+          enabled: false
+        staticIps:
+          reassigned: 4
+          assigned: 1
+        idp:
+          enabled: false
+        runtimeFabricCloud:
+          enabled: false
+        muleDxWebIde:
+          enabled: false
+        kpiDashboard:
+          enabled: false
+        autoscaling: true
+        partnersSandbox:
+          assigned: 7
+        externalIdentity: true
+        usageBasedPricing:
+          muleRuntimeIntegration:
+            flows: 7
+            messages: 6
+            throughput: 0
+            enabled: false
+        hybridAutoDiscoverProperties: true
+        vpns:
+          reassigned: 6
+          assigned: 2
+        muleDxGenAI:
+          enabled: false
+        runtimeFabric: true
+        serviceMesh:
+          enabled: false
+        cam:
+          enabled: false
+        anypointSecurityEdgePolicies:
+          enabled: false
+        pcf: true
+        armAlerts: true
+        createSubOrgs: true
+        loadBalancer:
+          reassigned: 7
+          assigned: 2
+        mqMessages:
+          addOn: 1
+          base: 1
+        vCoresSandbox:
+          reassigned: 3.5571952270680973
+          assigned: 6.438423552598547
+        createEnvironments: true
+        rpa:
+          active: true
+          composerVersion: composerVersion
+          enabled: true
+        apiMonitoring:
+          schedules: 0
+        composer:
+          unlimitedConnectors: true
+          tasksPerMonth: 7
+          maxConnectors: 0
+          isHyperAutomation: true
+          enabled: true
+        tradingPartnersSandbox:
+          assigned: 9
+        apiCatalog:
+          enabled: false
+        managedGatewayLarge:
+          reassigned: 7
+          assigned: 3
+        mqRequests:
+          addOn: 1
+          base: 1
+        apiQueryC360:
+          enabled: false
+        apiGovernanceDomain:
+          domain: domain
+        partnersProduction:
+          assigned: 6
+        exchange2:
+          enabled: true
+          assetUsageAndEngagement:
+            enabled: true
+        mqAdvancedFeatures:
+          enabled: false
+        vCoresProduction:
+          reassigned: 9.018348186070783
+          assigned: 8.762042012749001
+        crowdSelfServiceMigration:
+          enabled: false
+        designCenter:
+          apiVisual: true
+          api: true
+          apiExample: true
+          mozart: true
+      properties:
+        angGovernance:
+          $ref: '#/components/schemas/AngGovernanceEntitlement'
+        anypointSecurityEdgePolicies:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        anypointSecurityTokenization:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        apiCommunityManager:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        apiMonitoring:
+          $ref: '#/components/schemas/ApiMonitoringEntitlement'
+        apiQuery:
+          $ref: '#/components/schemas/ApiQueryEntitlement'
+        apiQueryC360:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        apis:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        appViz:
+          description: AppViz entitlements
+          title: appViz
+          type: boolean
+        armAlerts:
+          description: ARM Alerts entitlements
+          title: armAlerts
+          type: boolean
+        autoscaling:
+          description: Autoscaling entitlements
+          title: autoscaling
+          type: boolean
+        cam:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        createEnvironments:
+          description: Create Environments entitlements
+          title: createEnvironments
+          type: boolean
+        createSubOrgs:
+          description: Create Sub Orgs entitlements
+          title: createSubOrgs
+          type: boolean
+        crowd:
+          $ref: '#/components/schemas/CrowdEntitlement'
+        crowdSelfServiceMigration:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        designCenter:
+          $ref: '#/components/schemas/DesignCenterEntitlement'
+        exchange2:
+          $ref: '#/components/schemas/Exchange2Entitlement'
+        externalIdentity:
+          description: External Identity entitlements
+          title: externalIdentity
+          type: boolean
+        gateways:
+          $ref: '#/components/schemas/GatewaysEntitlement'
+        globalDeployment:
+          description: Global Deployment entitlements
+          title: globalDeployment
+          type: boolean
+        hybrid:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        hybridAutoDiscoverProperties:
+          description: Hybrid auto-discover properties
+          title: hybridAutoDiscoverProperties
+          type: boolean
+        hybridInsight:
+          description: Hybrid Insight entitlements
+          title: hybridInsight
+          type: boolean
+        kpiDashboard:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        loadBalancer:
+          $ref: '#/components/schemas/LoadBalancerEntitlement'
+        messaging:
+          $ref: '#/components/schemas/MessagingEntitlement'
+        monitoringCenter:
+          $ref: '#/components/schemas/MonitoringCenterEntitlement'
+        mqAdvancedFeatures:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        mqMessages:
+          $ref: '#/components/schemas/AddOnEntitlement'
+        mqRequests:
+          $ref: '#/components/schemas/AddOnEntitlement'
+        objectStoreKeys:
+          $ref: '#/components/schemas/AddOnEntitlement'
+        objectStoreRequestUnits:
+          $ref: '#/components/schemas/AddOnEntitlement'
+        partnersProduction:
+          $ref: '#/components/schemas/PartnersProductionEntitlement'
+        partnersSandbox:
+          $ref: '#/components/schemas/PartnersSandboxEntitlement'
+        pcf:
+          description: PCF entitlements
+          title: pcf
+          type: boolean
+        runtimeFabric:
+          description: Runtime Fabric entitlements
+          title: runtimeFabric
+          type: boolean
+        runtimeFabricCloud:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        serviceMesh:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        staticIps:
+          $ref: '#/components/schemas/StaticIpsEntitlement'
+        tradingPartnersProduction:
+          $ref: '#/components/schemas/TradingPartnersProductionEntitlement'
+        tradingPartnersSandbox:
+          $ref: '#/components/schemas/TradingPartnersSandboxEntitlement'
+        vCoresDesign:
+          $ref: '#/components/schemas/vCoresDesignEntitlement'
+        vCoresProduction:
+          $ref: '#/components/schemas/vCoresProductionEntitlement'
+        vCoresSandbox:
+          $ref: '#/components/schemas/vCoresSandboxEntitlement'
+        vpcs:
+          $ref: '#/components/schemas/VpcsEntitlement'
+        vpns:
+          $ref: '#/components/schemas/VpnsEntitlement'
+        workerClouds:
+          $ref: '#/components/schemas/WorkerCloudsEntitlement'
+        workerLoggingOverride:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        muleDxWebIde:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        muleDxGenAI:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        muleDxEDA:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        highAvailability:
+          $ref: '#/components/schemas/HighAvailabilityEntitlement'
+        cloudhub1:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        apiGovernance:
+          $ref: '#/components/schemas/ApiGovernanceEntitlement'
+        apiGovernanceDomain:
+          $ref: '#/components/schemas/ApiGovernanceDomainEntitlement'
+        apiCatalog:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        apiManager:
+          $ref: '#/components/schemas/ApiManagerEntitlement'
+        composer:
+          $ref: '#/components/schemas/ComposerEntitlement'
+        rpa:
+          $ref: '#/components/schemas/RpaEntitlement'
+        idp:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        usageBasedPricing:
+          $ref: '#/components/schemas/UsageBasedPricingEntitlement'
+        usageBasedPricingLimits:
+          $ref: '#/components/schemas/UsageBasedPricingLimitsEntitlement'
+        telemetryExporter:
+          $ref: '#/components/schemas/EnablementResourceEntitlement'
+        managedGatewaySmall:
+          $ref: '#/components/schemas/ManagedGatewaySmallEntitlement'
+        managedGatewayLarge:
+          $ref: '#/components/schemas/ManagedGatewayLargeEntitlement'
+        networkConnections:
+          $ref: '#/components/schemas/NetworkConnectionsEntitlement'
+      title: entitlements
+      type: object
+    EntitlementsCore:
+      description: Entitlements core
+      example:
+        globalDeployment: false
+        staticIps:
+          reassigned: 4
+          assigned: 1
+        createSubOrgs: false
+        loadBalancer:
+          reassigned: 7
+          assigned: 2
+        vpns:
+          reassigned: 6
+          assigned: 2
+        vCoresSandbox:
+          reassigned: 3.5571952270680973
+          assigned: 6.438423552598547
+        vCoresProduction:
+          reassigned: 9.018348186070783
+          assigned: 8.762042012749001
+        createEnvironments: false
+        vCoresDesign:
+          reassigned: 6.683562403749608
+          assigned: 9.369310271410669
+        vpcs:
+          reassigned: 1
+          assigned: 6
+      properties:
+        globalDeployment:
+          default: false
+          description: Global Deployment
+          title: globalDeployment
+          type: boolean
+        createEnvironments:
+          default: false
+          description: Create Environments
+          title: createEnvironments
+          type: boolean
+        createSubOrgs:
+          default: false
+          description: Create Sub Orgs
+          title: createSubOrgs
+          type: boolean
+        loadBalancer:
+          $ref: '#/components/schemas/LoadBalancerEntitlement'
+        staticIps:
+          $ref: '#/components/schemas/StaticIpsEntitlement'
+        vCoresDesign:
+          $ref: '#/components/schemas/vCoresDesignEntitlement'
+        vCoresProduction:
+          $ref: '#/components/schemas/vCoresProductionEntitlement'
+        vCoresSandbox:
+          $ref: '#/components/schemas/vCoresSandboxEntitlement'
+        vpcs:
+          $ref: '#/components/schemas/VpcsEntitlement'
+        vpns:
+          $ref: '#/components/schemas/VpnsEntitlement'
+      title: entitlementsCore
+      type: object
+    AngGovernanceEntitlement:
+      example:
+        level: -1
       properties:
         level:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Ang Governance level
+          example: -1
           title: level
           type: integer
-      required:
-      - level
-      title: angGovernance
       type: object
-    anypointSecurityEdgePolicies:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    ApiMonitoringEntitlement:
       example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: anypointSecurityEdgePolicies
-      type: object
-    anypointSecurityTokenization:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: anypointSecurityTokenization
-      type: object
-    apiCommunityManager:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: apiCommunityManager
-      type: object
-    apiMonitoring:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        schedules: 6
+        schedules: 0
       properties:
         schedules:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Schedules
           title: schedules
           type: integer
-      required:
-      - schedules
-      title: apiMonitoring
       type: object
-    apiQuery:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    TradingPartnersProductionEntitlement:
       example:
-        productSKU: 1
+        assigned: 5
+      properties:
+        assigned:
+          default: 0
+          description: Trading Partners Production assigned
+          title: assigned
+          type: integer
+      title: tradingPartnersProduction
+      type: object
+    TradingPartnersSandboxEntitlement:
+      example:
+        assigned: 9
+      properties:
+        assigned:
+          default: 0
+          description: Trading Partners Sandbox assigned
+          title: assigned
+          type: integer
+      title: tradingPartnersSandbox
+      type: object
+    LoadBalancerEntitlement:
+      example:
+        reassigned: 7
+        assigned: 2
+      properties:
+        assigned:
+          default: 0
+          description: Load Balancers assigned
+          title: assigned
+          type: integer
+        reassigned:
+          default: 0
+          description: Load Balancers reassigned
+          title: reassigned
+          type: integer
+      title: loadBalancer
+      type: object
+    StaticIpsEntitlement:
+      description: Static IPs entitlements
+      example:
+        reassigned: 4
+        assigned: 1
+      properties:
+        assigned:
+          default: 0
+          description: Static IPs assigned
+          title: assigned
+          type: integer
+        reassigned:
+          default: 0
+          description: Static IPs reassigned
+          title: reassigned
+          type: integer
+      type: object
+    VpnsEntitlement:
+      example:
+        reassigned: 6
+        assigned: 2
+      properties:
+        assigned:
+          default: 0
+          description: VPNs assigned
+          title: assigned
+          type: integer
+        reassigned:
+          default: 0
+          description: VPNs reassigned
+          title: reassigned
+          type: integer
+      title: vpn
+      type: object
+    VpcsEntitlement:
+      example:
+        reassigned: 1
+        assigned: 6
+      properties:
+        assigned:
+          default: 0
+          description: VPCs assigned
+          title: assigned
+          type: integer
+        reassigned:
+          default: 0
+          description: VPCs reassigned
+          title: reassigned
+          type: integer
+      title: vpc
+      type: object
+    vCoresProductionEntitlement:
+      example:
+        reassigned: 9.018348186070783
+        assigned: 8.762042012749001
+      properties:
+        assigned:
+          default: 0
+          description: VCores Production assigned
+          title: assigned
+          type: number
+        reassigned:
+          default: 0
+          description: VCores Production reassigned
+          title: reassigned
+          type: number
+      title: vCoresProduction
+      type: object
+    vCoresDesignEntitlement:
+      example:
+        reassigned: 6.683562403749608
+        assigned: 9.369310271410669
+      properties:
+        assigned:
+          default: 0
+          description: VCores Design assigned
+          title: assigned
+          type: number
+        reassigned:
+          default: 0
+          description: VCores Design reassigned
+          title: reassigned
+          type: number
+      title: vCoresDesign
+      type: object
+    vCoresSandboxEntitlement:
+      example:
+        reassigned: 3.5571952270680973
+        assigned: 6.438423552598547
+      properties:
+        assigned:
+          default: 0
+          description: VCores Sandbox assigned
+          title: assigned
+          type: number
+        reassigned:
+          default: 0
+          description: VCores Sandbox reassigned
+          title: reassigned
+          type: number
+      title: vCoresSandbox
+      type: object
+    WorkerCloudsEntitlement:
+      example:
+        reassigned: 5
+        assigned: 6
+      properties:
+        assigned:
+          default: 0
+          description: Worker Clouds assigned
+          title: assigned
+          type: integer
+        reassigned:
+          default: 0
+          description: Worker Clouds reassigned
+          title: reassigned
+          type: integer
+      title: workerClouds
+      type: object
+    MessagingEntitlement:
+      description: Messaging entitlements
+      example:
+        assigned: 9
+      properties:
+        assigned:
+          default: 0
+          description: Messaging assigned
+          title: assigned
+          type: integer
+      title: messaging
+      type: object
+    MonitoringCenterEntitlement:
+      description: Monitoring Center entitlements
+      example:
+        preProductionUnits: 1.2315135367772556
+        productSKU: 3
+        storageAddOn: 4.145608029883936
+        storageBase: 2.027123023002322
+        productionUnits: 7.386281948385884
+        dataRegion: dataRegion
+      properties:
+        productSKU:
+          description: Product SKU
+          title: productSKU
+          type: integer
+        dataRegion:
+          description: Data region
+          title: dataRegion
+          type: string
+        storageBase:
+          description: Storage base
+          title: storageBase
+          type: number
+        storageAddOn:
+          description: Storage add-on
+          title: storageAddOn
+          type: number
+        productionUnits:
+          description: Production units
+          title: productionUnits
+          type: number
+        preProductionUnits:
+          description: Pre-production units
+          title: preProductionUnits
+          type: number
+      title: monitoringCenter
+      type: object
+    PartnersSandboxEntitlement:
+      description: Partners Sandbox entitlements
+      example:
+        assigned: 7
+      properties:
+        assigned:
+          description: Partners Sandbox assigned
+          title: assigned
+          type: integer
+      title: partnersSandbox
+      type: object
+    GatewaysEntitlement:
+      description: Gateway entitlements
+      example:
+        assigned: 5
+      properties:
+        assigned:
+          default: 0
+          description: Gateway assigned
+          title: assigned
+          type: integer
+      title: gateways
+      type: object
+    PartnersProductionEntitlement:
+      description: Partners Production entitlements
+      example:
+        assigned: 6
+      properties:
+        assigned:
+          default: 0
+          description: Partners Production assigned
+          title: assigned
+          type: integer
+      title: partnersProduction
+      type: object
+    EnablementResourceEntitlement:
+      example:
         enabled: false
       properties:
         enabled:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Whether entitlement resource is enabled
+          title: enabled
+          type: boolean
+      title: enablementResource
+      type: object
+    AddOnEntitlement:
+      example:
+        addOn: 1
+        base: 1
+      properties:
+        addOn:
+          default: 0
+          description: Add-on
+          title: addOn
+          type: integer
+        base:
+          default: 0
+          description: Base
+          title: base
+          type: integer
+      type: object
+    ApiManagerEntitlement:
+      example:
+        usageBasedPricing:
+          api:
+            production:
+              amount: 3
+            sandbox:
+              amount: 3
+        governance:
+          enabled: false
+      properties:
+        governance:
+          $ref: '#/components/schemas/governance'
+        usageBasedPricing:
+          $ref: '#/components/schemas/usageBasedPricing'
+      type: object
+    ComposerEntitlement:
+      example:
+        unlimitedConnectors: true
+        tasksPerMonth: 7
+        maxConnectors: 0
+        isHyperAutomation: true
+        enabled: true
+      properties:
+        enabled:
+          description: Composer enabled
+          title: enabled
+          type: boolean
+        tasksPerMonth:
+          description: Tasks per month
+          title: tasksPerMonth
+          type: integer
+        maxConnectors:
+          description: Max connectors
+          title: maxConnectors
+          type: integer
+        unlimitedConnectors:
+          description: Unlimited connectors
+          title: unlimitedConnectors
+          type: boolean
+        isHyperAutomation:
+          description: Hyper Automation
+          title: hyperAutomation
+          type: boolean
+      type: object
+    RpaEntitlement:
+      example:
+        active: true
+        composerVersion: composerVersion
+        enabled: true
+      properties:
+        enabled:
+          description: RPA enabled
+          title: enabled
+          type: boolean
+        active:
+          description: RPA active
+          title: active
+          type: boolean
+        composerVersion:
+          description: Composer version
+          title: composerVersion
+          type: string
+      type: object
+    UsageBasedPricingEntitlement:
+      example:
+        muleRuntimeIntegration:
+          flows: 7
+          messages: 6
+          throughput: 0
+          enabled: false
+      properties:
+        muleRuntimeIntegration:
+          $ref: '#/components/schemas/muleRuntimeIntegration'
+      type: object
+    UsageBasedPricingLimitsEntitlement:
+      example:
+        memory:
+          extra: 8
+          base: 4
+        cpu:
+          extra: 8
+          base: 4
+      properties:
+        cpu:
+          $ref: '#/components/schemas/UsageBasedPricingLimitsEntitlement_cpu'
+        memory:
+          $ref: '#/components/schemas/UsageBasedPricingLimitsEntitlement_cpu'
+      type: object
+    ApiQueryEntitlement:
+      description: API Query entitlements
+      example:
+        productSKU: 6
+        production: 5
+        sandbox: 1
+        enabled: false
+      properties:
+        enabled:
+          default: false
+          description: API Query enabled
           title: enabled
           type: boolean
         productSKU:
           default: 0
-          description: An explanation about the purpose of this instance.
+          description: Product SKU
           title: productSKU
           type: integer
-      required:
-      - enabled
-      title: apiQuery
+        sandbox:
+          description: Product SKU
+          title: productSKU
+          type: integer
+        production:
+          description: Product SKU
+          title: productSKU
+          type: integer
       type: object
-    apiQueryC360:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: apiQueryC360
-      type: object
-    apis:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: apis
-      type: object
-    cam:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: cam
-      type: object
-    crowd:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    CrowdEntitlement:
+      description: Crowd entitlements
       example:
         environments: false
         hideApiManagerDesigner: false
@@ -1184,512 +1883,360 @@ components:
       properties:
         environments:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Crowd environments
           title: environments
           type: boolean
         hideApiManagerDesigner:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Crowd Hide API Manager Designer
           title: hideApiManagerDesigner
           type: boolean
         hideFormerApiPlatform:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: Crowd Hide Former API Platform
           title: hideFormerApiPlatform
           type: boolean
-      required:
-      - environments
-      - hideApiManagerDesigner
-      - hideFormerApiPlatform
-      title: crowd
       type: object
-    crowdSelfServiceMigration:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    Exchange2Entitlement:
+      description: Exchange 2 entitlements
       example:
-        enabled: false
+        enabled: true
+        assetUsageAndEngagement:
+          enabled: true
       properties:
         enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
+          description: Exchange 2 enabled
           title: enabled
           type: boolean
-      required:
-      - enabled
-      title: crowdSelfServiceMigration
+        assetUsageAndEngagement:
+          $ref: '#/components/schemas/Exchange2Entitlement_assetUsageAndEngagement'
       type: object
-    The_designCenter_schema:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    DesignCenterEntitlement:
+      description: Design Center entitlements
       example:
-        api: false
-        mozart: false
+        apiVisual: true
+        api: true
+        apiExample: true
+        mozart: true
       properties:
         api:
-          default: false
-          description: An explanation about the purpose of this instance.
+          description: API entitlements
           title: api
           type: boolean
         mozart:
-          default: false
-          description: An explanation about the purpose of this instance.
+          description: Mozart entitlements
           title: mozart
           type: boolean
-      title: The designCenter schema
-      type: object
-    exchange2:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
+        apiVisual:
+          description: API Visual entitlements
+          title: apiVisual
           type: boolean
-      required:
-      - enabled
-      title: exchange2
-      type: object
-    gateways:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        assigned: 5
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-      required:
-      - assigned
-      title: gateways
-      type: object
-    The_hybrid_schema:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
+        apiExample:
+          description: API Example entitlements
+          title: apiExample
           type: boolean
-      required:
-      - enabled
-      title: The hybrid schema
       type: object
-    kpiDashboard:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    ManagedGatewaySmallEntitlement:
+      description: Managed Gateway Small entitlements
       example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: kpiDashboard
-      type: object
-    loadBalancer:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 2
-        assigned: 5
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-        reassigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: reassigned
-          type: integer
-      required:
-      - assigned
-      title: loadBalancer
-      type: object
-    messaging:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
+        reassigned: 3
         assigned: 7
       properties:
         assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-      required:
-      - assigned
-      title: messaging
-      type: object
-    monitoringCenter:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        productSKU: 9
-      properties:
-        productSKU:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: productSKU
-          type: integer
-      required:
-      - productSKU
-      title: monitoringCenter
-      type: object
-    mqAdvancedFeatures:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: mqAdvancedFeatures
-      type: object
-    mqMessages:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        addOn: 3
-        base: 2
-      properties:
-        addOn:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: addOn
-          type: integer
-        base:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: base
-          type: integer
-      title: mqMessages
-      type: object
-    mqRequests:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        addOn: 4
-        base: 7
-      properties:
-        addOn:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: addOn
-          type: integer
-        base:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: base
-          type: integer
-      title: mqRequests
-      type: object
-    objectStoreKeys:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        addOn: 1
-        base: 1
-      properties:
-        addOn:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: addOn
-          type: integer
-        base:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: base
-          type: integer
-      title: objectStoreKeys
-      type: object
-    objectStoreRequestUnits:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        addOn: 1
-        base: 6
-      properties:
-        addOn:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: addOn
-          type: integer
-        base:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: base
-          type: integer
-      title: objectStoreRequestUnits
-      type: object
-    partnersProduction:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        assigned: 7
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-      required:
-      - assigned
-      title: partnersProduction
-      type: object
-    partnersSandbox:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        assigned: 1
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-      required:
-      - assigned
-      title: partnersSandbox
-      type: object
-    runtimeFabricCloud:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: runtimeFabricCloud
-      type: object
-    serviceMesh:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        enabled: false
-      properties:
-        enabled:
-          default: false
-          description: An explanation about the purpose of this instance.
-          title: enabled
-          type: boolean
-      required:
-      - enabled
-      title: serviceMesh
-      type: object
-    staticIps:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 5
-        assigned: 4
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Managed Gateway Small assigned
           title: assigned
           type: integer
         reassigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Managed Gateway Small reassigned
           title: reassigned
           type: integer
-      required:
-      - assigned
-      title: staticIps
       type: object
-    tradingPartnersProduction:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    ManagedGatewayLargeEntitlement:
+      description: Managed Gateway Large entitlements
       example:
-        assigned: 9
+        reassigned: 7
+        assigned: 3
       properties:
         assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-      required:
-      - assigned
-      title: tradingPartnersProduction
-      type: object
-    tradingPartnersSandbox:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        assigned: 9
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-      required:
-      - assigned
-      title: tradingPartnersSandbox
-      type: object
-    vCoresDesign:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 8.762042012749001
-        assigned: 6.683562403749608
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: number
-        reassigned:
-          default: 0.0
-          description: An explanation about the purpose of this instance.
-          title: reassigned
-          type: number
-      required:
-      - assigned
-      title: vCoresDesign
-      type: object
-    vCoresProduction:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 6.438423552598547
-        assigned: 9.018348186070783
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: number
-        reassigned:
-          default: 0.0
-          description: An explanation about the purpose of this instance.
-          title: reassigned
-          type: number
-      required:
-      - assigned
-      title: vCoresProduction
-      type: object
-    vCoresSandbox:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 6.965117697638846
-        assigned: 3.5571952270680973
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: number
-        reassigned:
-          default: 0.0
-          description: An explanation about the purpose of this instance.
-          title: reassigned
-          type: number
-      required:
-      - assigned
-      title: vCoresSandbox
-      type: object
-    vpcs:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 2
-        assigned: 1
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Managed Gateway Large assigned
           title: assigned
           type: integer
         reassigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Managed Gateway Large reassigned
           title: reassigned
           type: integer
-      required:
-      - assigned
-      title: vpcs
       type: object
-    vpns:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    NetworkConnectionsEntitlement:
+      description: Network connections entitlements
       example:
-        reassigned: 6
-        assigned: 6
-      properties:
-        assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: assigned
-          type: integer
-        reassigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
-          title: reassigned
-          type: integer
-      required:
-      - assigned
-      title: vpns
-      type: object
-    workerClouds:
-      default: {}
-      description: An explanation about the purpose of this instance.
-      example:
-        reassigned: 6
+        reassigned: 3
         assigned: 5
       properties:
         assigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Network connections assigned
           title: assigned
           type: integer
         reassigned:
-          default: 0
-          description: An explanation about the purpose of this instance.
+          description: Network connections reassigned
           title: reassigned
           type: integer
-      required:
-      - assigned
-      title: workerClouds
       type: object
-    workerLoggingOverride:
-      default: {}
-      description: An explanation about the purpose of this instance.
+    ApiGovernanceEntitlement:
+      example:
+        apisPerMonth: 6
+        enabled: true
+      properties:
+        enabled:
+          description: API Governance enabled
+          title: enabled
+          type: boolean
+        apisPerMonth:
+          description: APIs per month
+          title: apisPerMonth
+          type: integer
+      type: object
+    ApiGovernanceDomainEntitlement:
+      example:
+        domain: domain
+      properties:
+        domain:
+          description: API Governance domain
+          title: domain
+          type: string
+      type: object
+    HighAvailabilityEntitlement:
+      example:
+        clustering: true
+      properties:
+        clustering:
+          description: Clustering
+          title: clustering
+          type: boolean
+      type: object
+    Usage:
+      example:
+        networkConnectionsConsumed: 7
+        productionVCoresConsumed: 0.8008281904610115
+        sandboxVCoresConsumed: 6.027456183070403
+        staticIpsConsumed: 5.962133916683182
+        vpcsConsumed: 5
+        designVCoresConsumed: 1.4658129805029452
+        loadbalancerWorkersConsumed: 3
+        loadBalancersConsumed: 9
+        vpnsConsumed: 2
+      properties:
+        productionVCoresConsumed:
+          default: 0
+          description: Production VCores consumed
+          title: productionVCoresConsumed
+          type: number
+        sandboxVCoresConsumed:
+          default: 0
+          description: Sandbox VCores consumed
+          title: sandboxVCoresConsumed
+          type: number
+        designVCoresConsumed:
+          default: 0
+          description: Design VCores consumed
+          title: designVCoresConsumed
+          type: number
+        staticIpsConsumed:
+          default: 0
+          description: Static IPs consumed
+          title: staticIpsConsumed
+          type: number
+        vpcsConsumed:
+          default: 0
+          description: VPCs consumed
+          title: vpcsConsumed
+          type: integer
+        vpnsConsumed:
+          default: 0
+          description: VPNs consumed
+          title: vpnsConsumed
+          type: integer
+        networkConnectionsConsumed:
+          default: 0
+          description: Network connections consumed
+          title: networkConnectionsConsumed
+          type: integer
+        loadBalancersConsumed:
+          default: 0
+          description: Load balancers consumed
+          title: loadBalancersConsumed
+          type: integer
+        loadbalancerWorkersConsumed:
+          default: 0
+          description: Load balancer workers consumed
+          title: loadbalancerWorkersConsumed
+          type: integer
+      type: object
+    Client:
+      example:
+        grant_types:
+        - grant_types
+        - grant_types
+        user_id: user_id
+        org_id: org_id
+        name: name
+        client_secret: client_secret
+        client_id: client_id
+      properties:
+        client_id:
+          title: Client ID
+          type: string
+        client_secret:
+          title: Client Secret
+          type: string
+        name:
+          title: Credentials name
+          type: string
+        org_id:
+          title: Organization ID
+          type: string
+        user_id:
+          type: string
+        grant_types:
+          items:
+            type: string
+          title: Grants for the client credentials
+          type: array
+      type: object
+    subscription:
+      description: The subscription details of the organization.
+      example:
+        expiration: ""
+        category: ""
+        type: ""
+      properties:
+        category:
+          default: ""
+          description: The category of the subscription.
+          title: category
+          type: string
+        expiration:
+          default: ""
+          description: The expiration date of the subscription.
+          title: expiration
+          type: string
+        type:
+          default: ""
+          description: The type of the subscription.
+          title: type
+          type: string
+      title: subscription
+      type: object
+    governance:
       example:
         enabled: false
       properties:
         enabled:
           default: false
-          description: An explanation about the purpose of this instance.
+          description: API Manager governance enabled
           title: enabled
           type: boolean
-      required:
-      - enabled
-      title: workerLoggingOverride
+      title: governance
+      type: object
+    production:
+      example:
+        amount: 3
+      properties:
+        amount:
+          default: 0
+          description: Amount
+          title: amount
+          type: integer
+      title: production
+      type: object
+    sandbox:
+      example:
+        amount: 3
+      properties:
+        amount:
+          default: 0
+          description: Amount
+          title: amount
+          type: integer
+      title: sandbox
+      type: object
+    api:
+      example:
+        production:
+          amount: 3
+        sandbox:
+          amount: 3
+      properties:
+        production:
+          $ref: '#/components/schemas/production'
+        sandbox:
+          $ref: '#/components/schemas/sandbox'
+      title: api
+      type: object
+    usageBasedPricing:
+      example:
+        api:
+          production:
+            amount: 3
+          sandbox:
+            amount: 3
+      properties:
+        api:
+          $ref: '#/components/schemas/api'
+      title: usageBasedPricing
+      type: object
+    muleRuntimeIntegration:
+      example:
+        flows: 7
+        messages: 6
+        throughput: 0
+        enabled: false
+      properties:
+        enabled:
+          default: false
+          description: Mule Runtime Integration enabled
+          title: enabled
+          type: boolean
+        flows:
+          default: 0
+          description: Flows
+          title: flows
+          type: integer
+        messages:
+          default: 0
+          description: Messages
+          title: messages
+          type: integer
+        throughput:
+          default: 0
+          description: Throughput
+          title: throughput
+          type: integer
+      title: muleRuntimeIntegration
+      type: object
+    UsageBasedPricingLimitsEntitlement_cpu:
+      example:
+        extra: 8
+        base: 4
+      properties:
+        base:
+          default: 0
+          description: Base
+          title: base
+          type: integer
+        extra:
+          default: 0
+          description: Extra
+          title: extra
+          type: integer
+      type: object
+    Exchange2Entitlement_assetUsageAndEngagement:
+      example:
+        enabled: true
+      properties:
+        enabled:
+          description: Asset usage and engagement enabled
+          title: enabled
+          type: boolean
       type: object
   securitySchemes:
     bearerAuth:

@@ -20,12 +20,12 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiCreateAlertForAPIManagerInstanceRequest struct {
+type DefaultAPICreateAlertForAPIManagerInstanceRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiVersion string
@@ -33,12 +33,12 @@ type DefaultApiCreateAlertForAPIManagerInstanceRequest struct {
 }
 
 // 
-func (r DefaultApiCreateAlertForAPIManagerInstanceRequest) AlertCore(alertCore AlertCore) DefaultApiCreateAlertForAPIManagerInstanceRequest {
+func (r DefaultAPICreateAlertForAPIManagerInstanceRequest) AlertCore(alertCore AlertCore) DefaultAPICreateAlertForAPIManagerInstanceRequest {
 	r.alertCore = &alertCore
 	return r
 }
 
-func (r DefaultApiCreateAlertForAPIManagerInstanceRequest) Execute() (*Alert, *http.Response, error) {
+func (r DefaultAPICreateAlertForAPIManagerInstanceRequest) Execute() (*Alert, *http.Response, error) {
 	return r.ApiService.CreateAlertForAPIManagerInstanceExecute(r)
 }
 
@@ -51,10 +51,10 @@ Create a new alert for API manager
  @param orgId The organization Id
  @param envId The environment id
  @param apiVersion The api version
- @return DefaultApiCreateAlertForAPIManagerInstanceRequest
+ @return DefaultAPICreateAlertForAPIManagerInstanceRequest
 */
-func (a *DefaultApiService) CreateAlertForAPIManagerInstance(ctx context.Context, orgId string, envId string, apiVersion string) DefaultApiCreateAlertForAPIManagerInstanceRequest {
-	return DefaultApiCreateAlertForAPIManagerInstanceRequest{
+func (a *DefaultAPIService) CreateAlertForAPIManagerInstance(ctx context.Context, orgId string, envId string, apiVersion string) DefaultAPICreateAlertForAPIManagerInstanceRequest {
+	return DefaultAPICreateAlertForAPIManagerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -65,7 +65,7 @@ func (a *DefaultApiService) CreateAlertForAPIManagerInstance(ctx context.Context
 
 // Execute executes the request
 //  @return Alert
-func (a *DefaultApiService) CreateAlertForAPIManagerInstanceExecute(r DefaultApiCreateAlertForAPIManagerInstanceRequest) (*Alert, *http.Response, error) {
+func (a *DefaultAPIService) CreateAlertForAPIManagerInstanceExecute(r DefaultAPICreateAlertForAPIManagerInstanceRequest) (*Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *DefaultApiService) CreateAlertForAPIManagerInstanceExecute(r DefaultApi
 		localVarReturnValue  *Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertForAPIManagerInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAlertForAPIManagerInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -143,16 +143,16 @@ func (a *DefaultApiService) CreateAlertForAPIManagerInstanceExecute(r DefaultApi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiDeleteanAlertfromAPImanagerRequest struct {
+type DefaultAPIDeleteanAlertfromAPImanagerRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiVersion string
 	alertId string
 }
 
-func (r DefaultApiDeleteanAlertfromAPImanagerRequest) Execute() (*http.Response, error) {
+func (r DefaultAPIDeleteanAlertfromAPImanagerRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteanAlertfromAPImanagerExecute(r)
 }
 
@@ -166,10 +166,10 @@ Delete an Alert from API manager
  @param envId the environment id
  @param apiVersion the api version
  @param alertId the id of the alert
- @return DefaultApiDeleteanAlertfromAPImanagerRequest
+ @return DefaultAPIDeleteanAlertfromAPImanagerRequest
 */
-func (a *DefaultApiService) DeleteanAlertfromAPImanager(ctx context.Context, orgId string, envId string, apiVersion string, alertId string) DefaultApiDeleteanAlertfromAPImanagerRequest {
-	return DefaultApiDeleteanAlertfromAPImanagerRequest{
+func (a *DefaultAPIService) DeleteanAlertfromAPImanager(ctx context.Context, orgId string, envId string, apiVersion string, alertId string) DefaultAPIDeleteanAlertfromAPImanagerRequest {
+	return DefaultAPIDeleteanAlertfromAPImanagerRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -180,14 +180,14 @@ func (a *DefaultApiService) DeleteanAlertfromAPImanager(ctx context.Context, org
 }
 
 // Execute executes the request
-func (a *DefaultApiService) DeleteanAlertfromAPImanagerExecute(r DefaultApiDeleteanAlertfromAPImanagerRequest) (*http.Response, error) {
+func (a *DefaultAPIService) DeleteanAlertfromAPImanagerExecute(r DefaultAPIDeleteanAlertfromAPImanagerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteanAlertfromAPImanager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteanAlertfromAPImanager")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -247,9 +247,9 @@ func (a *DefaultApiService) DeleteanAlertfromAPImanagerExecute(r DefaultApiDelet
 	return localVarHTTPResponse, nil
 }
 
-type DefaultApiModifyonealertfromAPImangerRequest struct {
+type DefaultAPIModifyonealertfromAPImangerRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiVersion string
@@ -257,12 +257,12 @@ type DefaultApiModifyonealertfromAPImangerRequest struct {
 	alertCore *AlertCore
 }
 
-func (r DefaultApiModifyonealertfromAPImangerRequest) AlertCore(alertCore AlertCore) DefaultApiModifyonealertfromAPImangerRequest {
+func (r DefaultAPIModifyonealertfromAPImangerRequest) AlertCore(alertCore AlertCore) DefaultAPIModifyonealertfromAPImangerRequest {
 	r.alertCore = &alertCore
 	return r
 }
 
-func (r DefaultApiModifyonealertfromAPImangerRequest) Execute() (*Alert, *http.Response, error) {
+func (r DefaultAPIModifyonealertfromAPImangerRequest) Execute() (*Alert, *http.Response, error) {
 	return r.ApiService.ModifyonealertfromAPImangerExecute(r)
 }
 
@@ -276,10 +276,10 @@ Modify one alert from API manger
  @param envId the environment id
  @param apiVersion the api version
  @param alertId the id of the alert
- @return DefaultApiModifyonealertfromAPImangerRequest
+ @return DefaultAPIModifyonealertfromAPImangerRequest
 */
-func (a *DefaultApiService) ModifyonealertfromAPImanger(ctx context.Context, orgId string, envId string, apiVersion string, alertId string) DefaultApiModifyonealertfromAPImangerRequest {
-	return DefaultApiModifyonealertfromAPImangerRequest{
+func (a *DefaultAPIService) ModifyonealertfromAPImanger(ctx context.Context, orgId string, envId string, apiVersion string, alertId string) DefaultAPIModifyonealertfromAPImangerRequest {
+	return DefaultAPIModifyonealertfromAPImangerRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -291,7 +291,7 @@ func (a *DefaultApiService) ModifyonealertfromAPImanger(ctx context.Context, org
 
 // Execute executes the request
 //  @return Alert
-func (a *DefaultApiService) ModifyonealertfromAPImangerExecute(r DefaultApiModifyonealertfromAPImangerRequest) (*Alert, *http.Response, error) {
+func (a *DefaultAPIService) ModifyonealertfromAPImangerExecute(r DefaultAPIModifyonealertfromAPImangerRequest) (*Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -299,7 +299,7 @@ func (a *DefaultApiService) ModifyonealertfromAPImangerExecute(r DefaultApiModif
 		localVarReturnValue  *Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ModifyonealertfromAPImanger")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ModifyonealertfromAPImanger")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -370,16 +370,16 @@ func (a *DefaultApiService) ModifyonealertfromAPImangerExecute(r DefaultApiModif
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiVersion string
 	alertId string
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest) Execute() (*Alert, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest) Execute() (*Alert, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetExecute(r)
 }
 
@@ -393,10 +393,10 @@ Get one alert
  @param envId the environment id
  @param apiVersion the api version
  @param alertId the id of the alert
- @return DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet(ctx context.Context, orgId string, envId string, apiVersion string, alertId string) DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet(ctx context.Context, orgId string, envId string, apiVersion string, alertId string) DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -408,7 +408,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAle
 
 // Execute executes the request
 //  @return Alert
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetExecute(r DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest) (*Alert, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGetRequest) (*Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -416,7 +416,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAle
 		localVarReturnValue  *Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsAlertIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -485,15 +485,15 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAle
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest struct {
+type DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	apiVersion string
 }
 
-func (r DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest) Execute() ([]Alert, *http.Response, error) {
+func (r DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest) Execute() ([]Alert, *http.Response, error) {
 	return r.ApiService.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetExecute(r)
 }
 
@@ -506,10 +506,10 @@ Get Alerts from API manager
  @param orgId The organization Id
  @param envId The environment id
  @param apiVersion The api version
- @return DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest
+ @return DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest
 */
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet(ctx context.Context, orgId string, envId string, apiVersion string) DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest {
-	return DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest{
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet(ctx context.Context, orgId string, envId string, apiVersion string) DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest {
+	return DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -520,7 +520,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAle
 
 // Execute executes the request
 //  @return []Alert
-func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetExecute(r DefaultApiOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest) ([]Alert, *http.Response, error) {
+func (a *DefaultAPIService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetExecute(r DefaultAPIOrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGetRequest) ([]Alert, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -528,7 +528,7 @@ func (a *DefaultApiService) OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAle
 		localVarReturnValue  []Alert
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.OrganizationsOrgIdEnvironmentsEnvIdApisApiVersionAlertsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

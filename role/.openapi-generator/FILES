@@ -8,7 +8,7 @@ configuration.go
 docs/AssignedRole.md
 docs/ContextParams.md
 docs/ContextParamsJson.md
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/OrganizationsOrgIdRolegroupsRolegroupIdRolesGet200Response.md
 docs/OrganizationsOrgIdRolegroupsRolegroupIdRolesPost400Response.md
 docs/Role.md

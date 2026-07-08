@@ -12,6 +12,8 @@ package vpn
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TunnelConfig type satisfies the MappedNullable interface at compile time
@@ -24,6 +26,8 @@ type TunnelConfig struct {
 	// Point-to-point Classless Inter-Domain Routing (CIDR)
 	PtpCidr string `json:"ptpCidr"`
 }
+
+type _TunnelConfig TunnelConfig
 
 // NewTunnelConfig instantiates a new TunnelConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -109,6 +113,44 @@ func (o TunnelConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["psk"] = o.Psk
 	toSerialize["ptpCidr"] = o.PtpCidr
 	return toSerialize, nil
+}
+
+func (o *TunnelConfig) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"psk",
+		"ptpCidr",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTunnelConfig := _TunnelConfig{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTunnelConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TunnelConfig(varTunnelConfig)
+
+	return err
 }
 
 type NullableTunnelConfig struct {

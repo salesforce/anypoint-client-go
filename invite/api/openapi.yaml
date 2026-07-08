@@ -153,8 +153,22 @@ components:
       type: array
     invite:
       allOf:
-      - $ref: '#/components/schemas/inviteObjId'
+      - properties:
+          id:
+            title: id
+            type: string
+        required:
+        - id
+        title: inviteObjId
+        type: object
       - $ref: '#/components/schemas/inviteCore'
+      example:
+        code: code
+        expires_at: expires_at
+        invited_at: invited_at
+        id: id
+        invited_email: invited_email
+        status: status
       title: invite
     inviteCore:
       properties:
@@ -179,8 +193,18 @@ components:
       example:
         total: 0
         data:
-        - null
-        - null
+        - code: code
+          expires_at: expires_at
+          invited_at: invited_at
+          id: id
+          invited_email: invited_email
+          status: status
+        - code: code
+          expires_at: expires_at
+          invited_at: invited_at
+          id: id
+          invited_email: invited_email
+          status: status
       properties:
         data:
           items:
@@ -192,6 +216,9 @@ components:
           type: integer
       type: object
     _organizations__orgId__invites_post_400_response:
+      example:
+        message: A sample message here
+        status: 0
       properties:
         status:
           default: 400
@@ -219,16 +246,6 @@ components:
           type: string
       title: inviteDelete
       type: object
-    inviteObjId:
-      properties:
-        id:
-          title: id
-          type: string
-      required:
-      - id
-      title: inviteObjId
-      type: object
-      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

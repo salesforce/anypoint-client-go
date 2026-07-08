@@ -12,6 +12,8 @@ package invite
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Invite type satisfies the MappedNullable interface at compile time
@@ -19,13 +21,15 @@ var _ MappedNullable = &Invite{}
 
 // Invite struct for Invite
 type Invite struct {
-	Id string `json:"id"`
 	Code *string `json:"code,omitempty"`
 	InvitedAt *string `json:"invited_at,omitempty"`
 	InvitedEmail *string `json:"invited_email,omitempty"`
 	ExpiresAt *string `json:"expires_at,omitempty"`
 	Status *string `json:"status,omitempty"`
+	Id string `json:"id"`
 }
+
+type _Invite Invite
 
 // NewInvite instantiates a new Invite object
 // This constructor will assign default values to properties that have it defined,
@@ -43,30 +47,6 @@ func NewInvite(id string) *Invite {
 func NewInviteWithDefaults() *Invite {
 	this := Invite{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *Invite) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Invite) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Invite) SetId(v string) {
-	o.Id = v
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
@@ -229,6 +209,30 @@ func (o *Invite) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetId returns the Id field value
+func (o *Invite) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Invite) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Invite) SetId(v string) {
+	o.Id = v
+}
+
 func (o Invite) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -239,7 +243,6 @@ func (o Invite) MarshalJSON() ([]byte, error) {
 
 func (o Invite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
@@ -255,7 +258,45 @@ func (o Invite) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
+}
+
+func (o *Invite) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInvite := _Invite{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInvite)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Invite(varInvite)
+
+	return err
 }
 
 type NullableInvite struct {

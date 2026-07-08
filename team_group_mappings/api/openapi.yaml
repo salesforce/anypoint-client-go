@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Description of the Team Group Mappings API
   title: Team Group Mappings API
-  version: 1.0.0
+  version: 1.1.0
 servers:
 - description: Anypoint Cloudhub
   url: https://anypoint.mulesoft.com/accounts/api/
@@ -16,6 +16,7 @@ paths:
   /organizations/{orgId}/teams/{teamId}/groupmappings:
     get:
       description: retrieves team groupmappings
+      operationId: getTeamGroupMappings
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -56,7 +57,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorsResponse'
+                $ref: '#/components/schemas/ErrorsResponse'
           description: Bad request response
         "404":
           description: resource not found
@@ -64,10 +65,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/teamGroupMappingsCollection'
+                $ref: '#/components/schemas/TeamGroupMappingsCollection'
           description: Success response
     put:
       description: adds the given group mappings to the given team
+      operationId: putTeamGroupMappings
       parameters:
       - description: The ID of the organization in GUID format
         explode: false
@@ -89,7 +91,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/teamGroupMappingsPutBody'
+              $ref: '#/components/schemas/TeamGroupMappingsPutBody'
       responses:
         "401":
           description: Access token is missing or invalid
@@ -103,7 +105,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorsResponse'
+            $ref: '#/components/schemas/ErrorsResponse'
       description: Bad request response
     NotFoundError:
       description: resource not found
@@ -111,25 +113,39 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/teamGroupMappingsCollection'
+            $ref: '#/components/schemas/TeamGroupMappingsCollection'
       description: Success response
     SuccessPutGroupMappings:
       description: Success response
   schemas:
-    errorsResponse:
+    ErrorsResponse:
+      example:
+        errors:
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
+        - schema: schema
+          data: data
+          type: type
+          keyword: keyword
+          message: message
+          dataPath: dataPath
       properties:
         errors:
           items:
-            $ref: '#/components/schemas/errorsResponse_errors_inner'
+            $ref: '#/components/schemas/ErrorsResponse_errors_inner'
           type: array
-      title: errorsResponse
+      title: ErrorsResponse
       type: object
-    teamGroupMappingsPutBody:
+    TeamGroupMappingsPutBody:
       items:
-        $ref: '#/components/schemas/teamGroupMappingPutBody'
-      title: teamGroupMappingsPutBody
+        $ref: '#/components/schemas/TeamGroupMappingPutBody'
+      title: TeamGroupMappingsPutBody
       type: array
-    teamGroupMapping:
+    TeamGroupMapping:
       example:
         provider_id: provider_id
         external_group_name: external_group_name
@@ -144,9 +160,9 @@ components:
         provider_id:
           title: providerId
           type: string
-      title: teamGroupMapping
+      title: TeamGroupMapping
       type: object
-    teamGroupMappingsCollection:
+    TeamGroupMappingsCollection:
       example:
         total: 0
         data:
@@ -159,15 +175,22 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/teamGroupMapping'
+            $ref: '#/components/schemas/TeamGroupMapping'
           title: data
           type: array
         total:
           title: total
           type: integer
-      title: teamGroupMappingsCollection
+      title: TeamGroupMappingsCollection
       type: object
-    errorsResponse_errors_inner:
+    ErrorsResponse_errors_inner:
+      example:
+        schema: schema
+        data: data
+        type: type
+        keyword: keyword
+        message: message
+        dataPath: dataPath
       properties:
         type:
           title: type
@@ -188,7 +211,11 @@ components:
           title: message
           type: string
       type: object
-    teamGroupMappingPutBody:
+    TeamGroupMappingPutBody:
+      example:
+        provider_id: provider_id
+        external_group_name: external_group_name
+        membership_type: member
       properties:
         membership_type:
           enum:
@@ -202,7 +229,7 @@ components:
         provider_id:
           title: providerId
           type: string
-      title: teamGroupMappingPutBody
+      title: TeamGroupMappingPutBody
       type: object
   securitySchemes:
     bearerAuth:

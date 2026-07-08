@@ -21,19 +21,19 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiGetSecretGroupKeystoreDetailsRequest struct {
+type DefaultAPIGetSecretGroupKeystoreDetailsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
 	secretId string
 }
 
-func (r DefaultApiGetSecretGroupKeystoreDetailsRequest) Execute() (*Keystore, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupKeystoreDetailsRequest) Execute() (*Keystore, *http.Response, error) {
 	return r.ApiService.GetSecretGroupKeystoreDetailsExecute(r)
 }
 
@@ -47,10 +47,10 @@ Retrieves keystore details by id for a given secret group in a given organizatio
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The keystore id
- @return DefaultApiGetSecretGroupKeystoreDetailsRequest
+ @return DefaultAPIGetSecretGroupKeystoreDetailsRequest
 */
-func (a *DefaultApiService) GetSecretGroupKeystoreDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiGetSecretGroupKeystoreDetailsRequest {
-	return DefaultApiGetSecretGroupKeystoreDetailsRequest{
+func (a *DefaultAPIService) GetSecretGroupKeystoreDetails(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIGetSecretGroupKeystoreDetailsRequest {
+	return DefaultAPIGetSecretGroupKeystoreDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -62,7 +62,7 @@ func (a *DefaultApiService) GetSecretGroupKeystoreDetails(ctx context.Context, o
 
 // Execute executes the request
 //  @return Keystore
-func (a *DefaultApiService) GetSecretGroupKeystoreDetailsExecute(r DefaultApiGetSecretGroupKeystoreDetailsRequest) (*Keystore, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupKeystoreDetailsExecute(r DefaultAPIGetSecretGroupKeystoreDetailsRequest) (*Keystore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -70,7 +70,7 @@ func (a *DefaultApiService) GetSecretGroupKeystoreDetailsExecute(r DefaultApiGet
 		localVarReturnValue  *Keystore
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupKeystoreDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupKeystoreDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -150,9 +150,9 @@ func (a *DefaultApiService) GetSecretGroupKeystoreDetailsExecute(r DefaultApiGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiGetSecretGroupKeystoresRequest struct {
+type DefaultAPIGetSecretGroupKeystoresRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -160,12 +160,12 @@ type DefaultApiGetSecretGroupKeystoresRequest struct {
 }
 
 // Filter the elements on the response to be of a specific type from {PEM, JKS, JCEKS, PKCS12}
-func (r DefaultApiGetSecretGroupKeystoresRequest) Type_(type_ string) DefaultApiGetSecretGroupKeystoresRequest {
+func (r DefaultAPIGetSecretGroupKeystoresRequest) Type_(type_ string) DefaultAPIGetSecretGroupKeystoresRequest {
 	r.type_ = &type_
 	return r
 }
 
-func (r DefaultApiGetSecretGroupKeystoresRequest) Execute() ([]KeystoreSummary, *http.Response, error) {
+func (r DefaultAPIGetSecretGroupKeystoresRequest) Execute() ([]KeystoreSummary, *http.Response, error) {
 	return r.ApiService.GetSecretGroupKeystoresExecute(r)
 }
 
@@ -178,10 +178,10 @@ Retrieves a secret-groups' collection of keystores.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiGetSecretGroupKeystoresRequest
+ @return DefaultAPIGetSecretGroupKeystoresRequest
 */
-func (a *DefaultApiService) GetSecretGroupKeystores(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiGetSecretGroupKeystoresRequest {
-	return DefaultApiGetSecretGroupKeystoresRequest{
+func (a *DefaultAPIService) GetSecretGroupKeystores(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIGetSecretGroupKeystoresRequest {
+	return DefaultAPIGetSecretGroupKeystoresRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -192,7 +192,7 @@ func (a *DefaultApiService) GetSecretGroupKeystores(ctx context.Context, orgId s
 
 // Execute executes the request
 //  @return []KeystoreSummary
-func (a *DefaultApiService) GetSecretGroupKeystoresExecute(r DefaultApiGetSecretGroupKeystoresRequest) ([]KeystoreSummary, *http.Response, error) {
+func (a *DefaultAPIService) GetSecretGroupKeystoresExecute(r DefaultAPIGetSecretGroupKeystoresRequest) ([]KeystoreSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -200,7 +200,7 @@ func (a *DefaultApiService) GetSecretGroupKeystoresExecute(r DefaultApiGetSecret
 		localVarReturnValue  []KeystoreSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetSecretGroupKeystores")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSecretGroupKeystores")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -215,7 +215,7 @@ func (a *DefaultApiService) GetSecretGroupKeystoresExecute(r DefaultApiGetSecret
 	localVarFormParams := url.Values{}
 
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -282,9 +282,9 @@ func (a *DefaultApiService) GetSecretGroupKeystoresExecute(r DefaultApiGetSecret
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPatchSecretGroupKeystoreRequest struct {
+type DefaultAPIPatchSecretGroupKeystoreRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -292,12 +292,12 @@ type DefaultApiPatchSecretGroupKeystoreRequest struct {
 	body *map[string]interface{}
 }
 
-func (r DefaultApiPatchSecretGroupKeystoreRequest) Body(body map[string]interface{}) DefaultApiPatchSecretGroupKeystoreRequest {
+func (r DefaultAPIPatchSecretGroupKeystoreRequest) Body(body map[string]interface{}) DefaultAPIPatchSecretGroupKeystoreRequest {
 	r.body = &body
 	return r
 }
 
-func (r DefaultApiPatchSecretGroupKeystoreRequest) Execute() (*PutSecretGroupKeystore200Response, *http.Response, error) {
+func (r DefaultAPIPatchSecretGroupKeystoreRequest) Execute() (*PutSecretGroupKeystore200Response, *http.Response, error) {
 	return r.ApiService.PatchSecretGroupKeystoreExecute(r)
 }
 
@@ -311,10 +311,10 @@ Update keystore details for a given secret-group in a given organization and env
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The keystore id
- @return DefaultApiPatchSecretGroupKeystoreRequest
+ @return DefaultAPIPatchSecretGroupKeystoreRequest
 */
-func (a *DefaultApiService) PatchSecretGroupKeystore(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPatchSecretGroupKeystoreRequest {
-	return DefaultApiPatchSecretGroupKeystoreRequest{
+func (a *DefaultAPIService) PatchSecretGroupKeystore(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPatchSecretGroupKeystoreRequest {
+	return DefaultAPIPatchSecretGroupKeystoreRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -326,7 +326,7 @@ func (a *DefaultApiService) PatchSecretGroupKeystore(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return PutSecretGroupKeystore200Response
-func (a *DefaultApiService) PatchSecretGroupKeystoreExecute(r DefaultApiPatchSecretGroupKeystoreRequest) (*PutSecretGroupKeystore200Response, *http.Response, error) {
+func (a *DefaultAPIService) PatchSecretGroupKeystoreExecute(r DefaultAPIPatchSecretGroupKeystoreRequest) (*PutSecretGroupKeystore200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -334,7 +334,7 @@ func (a *DefaultApiService) PatchSecretGroupKeystoreExecute(r DefaultApiPatchSec
 		localVarReturnValue  *PutSecretGroupKeystore200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchSecretGroupKeystore")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchSecretGroupKeystore")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -427,9 +427,9 @@ func (a *DefaultApiService) PatchSecretGroupKeystoreExecute(r DefaultApiPatchSec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPostSecretGroupKeystoresRequest struct {
+type DefaultAPIPostSecretGroupKeystoresRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -448,77 +448,77 @@ type DefaultApiPostSecretGroupKeystoresRequest struct {
 }
 
 // With &#39;true&#39; to allow uploading expired certificates
-func (r DefaultApiPostSecretGroupKeystoresRequest) AllowExpiredCert(allowExpiredCert bool) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) AllowExpiredCert(allowExpiredCert bool) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.allowExpiredCert = &allowExpiredCert
 	return r
 }
 
 // Date on which this secret should expire. If not set, by default, it will be set to notAfter date of the public certificate from this keystore. Once the secret expires, a grant can not be requested for it. 
-func (r DefaultApiPostSecretGroupKeystoresRequest) ExpirationDate(expirationDate string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) ExpirationDate(expirationDate string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.expirationDate = &expirationDate
 	return r
 }
 
 // The encrypted private key. Required in case of PEM type. 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Key(key *os.File) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Key(key *os.File) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.key = key
 	return r
 }
 
 // The name of this keystore instance. 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Name(name string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Name(name string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.name = &name
 	return r
 }
 
 // Passphrase with which private key for a particular alias is protected 
-func (r DefaultApiPostSecretGroupKeystoresRequest) KeyPassphrase(keyPassphrase string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) KeyPassphrase(keyPassphrase string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.keyPassphrase = &keyPassphrase
 	return r
 }
 
 // The public certificate. Required in the case of PEM type. 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Certificate(certificate *os.File) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Certificate(certificate *os.File) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.certificate = certificate
 	return r
 }
 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Type_(type_ string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Type_(type_ string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.type_ = &type_
 	return r
 }
 
 // The concatenated chain of CA certificates, except the leaf, leading up to the root CA. Can only be set in case of PEM type. 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Capath(capath *os.File) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Capath(capath *os.File) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.capath = capath
 	return r
 }
 
 // File containing one or more certificate entries Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPostSecretGroupKeystoresRequest) KeyStore(keyStore *os.File) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) KeyStore(keyStore *os.File) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.keyStore = keyStore
 	return r
 }
 
 // The algorithm used to initialize KeyManagerFactory Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Algorithm(algorithm string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Algorithm(algorithm string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.algorithm = &algorithm
 	return r
 }
 
 // Passphrase with which keystore is protected Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPostSecretGroupKeystoresRequest) StorePassphrase(storePassphrase string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) StorePassphrase(storePassphrase string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.storePassphrase = &storePassphrase
 	return r
 }
 
 // The alias name of the entry that contains the certificate. Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Alias(alias string) DefaultApiPostSecretGroupKeystoresRequest {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Alias(alias string) DefaultAPIPostSecretGroupKeystoresRequest {
 	r.alias = &alias
 	return r
 }
 
-func (r DefaultApiPostSecretGroupKeystoresRequest) Execute() (*PostSecretGroupKeystores201Response, *http.Response, error) {
+func (r DefaultAPIPostSecretGroupKeystoresRequest) Execute() (*PostSecretGroupKeystores201Response, *http.Response, error) {
 	return r.ApiService.PostSecretGroupKeystoresExecute(r)
 }
 
@@ -531,10 +531,10 @@ Create a secret-groups' keystore.
  @param orgId The organization Id
  @param envId The environment id
  @param secretGroupId The secret group id
- @return DefaultApiPostSecretGroupKeystoresRequest
+ @return DefaultAPIPostSecretGroupKeystoresRequest
 */
-func (a *DefaultApiService) PostSecretGroupKeystores(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultApiPostSecretGroupKeystoresRequest {
-	return DefaultApiPostSecretGroupKeystoresRequest{
+func (a *DefaultAPIService) PostSecretGroupKeystores(ctx context.Context, orgId string, envId string, secretGroupId string) DefaultAPIPostSecretGroupKeystoresRequest {
+	return DefaultAPIPostSecretGroupKeystoresRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -545,7 +545,7 @@ func (a *DefaultApiService) PostSecretGroupKeystores(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return PostSecretGroupKeystores201Response
-func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecretGroupKeystoresRequest) (*PostSecretGroupKeystores201Response, *http.Response, error) {
+func (a *DefaultAPIService) PostSecretGroupKeystoresExecute(r DefaultAPIPostSecretGroupKeystoresRequest) (*PostSecretGroupKeystores201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -553,7 +553,7 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 		localVarReturnValue  *PostSecretGroupKeystores201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostSecretGroupKeystores")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PostSecretGroupKeystores")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -570,7 +570,7 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 		return localVarReturnValue, nil, reportError("allowExpiredCert is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
@@ -589,15 +589,13 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.expirationDate != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "", "")
 	}
 	var keyLocalVarFormFileName string
 	var keyLocalVarFileName     string
 	var keyLocalVarFileBytes    []byte
 
 	keyLocalVarFormFileName = "key"
-
-
 	keyLocalVarFile := r.key
 
 	if keyLocalVarFile != nil {
@@ -609,18 +607,16 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 		formFiles = append(formFiles, formFile{fileBytes: keyLocalVarFileBytes, fileName: keyLocalVarFileName, formFileName: keyLocalVarFormFileName})
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
 	}
 	if r.keyPassphrase != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "keyPassphrase", r.keyPassphrase, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "keyPassphrase", r.keyPassphrase, "", "")
 	}
 	var certificateLocalVarFormFileName string
 	var certificateLocalVarFileName     string
 	var certificateLocalVarFileBytes    []byte
 
 	certificateLocalVarFormFileName = "certificate"
-
-
 	certificateLocalVarFile := r.certificate
 
 	if certificateLocalVarFile != nil {
@@ -632,15 +628,13 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 		formFiles = append(formFiles, formFile{fileBytes: certificateLocalVarFileBytes, fileName: certificateLocalVarFileName, formFileName: certificateLocalVarFormFileName})
 	}
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
 	}
 	var capathLocalVarFormFileName string
 	var capathLocalVarFileName     string
 	var capathLocalVarFileBytes    []byte
 
 	capathLocalVarFormFileName = "capath"
-
-
 	capathLocalVarFile := r.capath
 
 	if capathLocalVarFile != nil {
@@ -656,8 +650,6 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 	var keyStoreLocalVarFileBytes    []byte
 
 	keyStoreLocalVarFormFileName = "keyStore"
-
-
 	keyStoreLocalVarFile := r.keyStore
 
 	if keyStoreLocalVarFile != nil {
@@ -669,13 +661,13 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 		formFiles = append(formFiles, formFile{fileBytes: keyStoreLocalVarFileBytes, fileName: keyStoreLocalVarFileName, formFileName: keyStoreLocalVarFormFileName})
 	}
 	if r.algorithm != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "algorithm", r.algorithm, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "algorithm", r.algorithm, "", "")
 	}
 	if r.storePassphrase != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "storePassphrase", r.storePassphrase, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "storePassphrase", r.storePassphrase, "", "")
 	}
 	if r.alias != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "alias", r.alias, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "alias", r.alias, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -725,9 +717,9 @@ func (a *DefaultApiService) PostSecretGroupKeystoresExecute(r DefaultApiPostSecr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiPutSecretGroupKeystoreRequest struct {
+type DefaultAPIPutSecretGroupKeystoreRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	orgId string
 	envId string
 	secretGroupId string
@@ -747,77 +739,77 @@ type DefaultApiPutSecretGroupKeystoreRequest struct {
 }
 
 // With &#39;true&#39; to allow uploading expired certificates
-func (r DefaultApiPutSecretGroupKeystoreRequest) AllowExpiredCert(allowExpiredCert bool) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) AllowExpiredCert(allowExpiredCert bool) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.allowExpiredCert = &allowExpiredCert
 	return r
 }
 
 // Date on which this secret should expire. If not set, by default, it will be set to notAfter date of the public certificate from this keystore. Once the secret expires, a grant can not be requested for it. 
-func (r DefaultApiPutSecretGroupKeystoreRequest) ExpirationDate(expirationDate string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) ExpirationDate(expirationDate string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.expirationDate = &expirationDate
 	return r
 }
 
 // The encrypted private key. Required in case of PEM type. 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Key(key *os.File) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Key(key *os.File) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.key = key
 	return r
 }
 
 // The name of this keystore instance. 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Name(name string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Name(name string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.name = &name
 	return r
 }
 
 // Passphrase with which private key for a particular alias is protected 
-func (r DefaultApiPutSecretGroupKeystoreRequest) KeyPassphrase(keyPassphrase string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) KeyPassphrase(keyPassphrase string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.keyPassphrase = &keyPassphrase
 	return r
 }
 
 // The public certificate. Required in the case of PEM type. 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Certificate(certificate *os.File) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Certificate(certificate *os.File) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.certificate = certificate
 	return r
 }
 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Type_(type_ string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Type_(type_ string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.type_ = &type_
 	return r
 }
 
 // The concatenated chain of CA certificates, except the leaf, leading up to the root CA. Can only be set in case of PEM type. 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Capath(capath *os.File) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Capath(capath *os.File) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.capath = capath
 	return r
 }
 
 // File containing one or more certificate entries Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPutSecretGroupKeystoreRequest) KeyStore(keyStore *os.File) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) KeyStore(keyStore *os.File) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.keyStore = keyStore
 	return r
 }
 
 // The algorithm used to initialize KeyManagerFactory Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Algorithm(algorithm string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Algorithm(algorithm string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.algorithm = &algorithm
 	return r
 }
 
 // Passphrase with which keystore is protected Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPutSecretGroupKeystoreRequest) StorePassphrase(storePassphrase string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) StorePassphrase(storePassphrase string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.storePassphrase = &storePassphrase
 	return r
 }
 
 // The alias name of the entry that contains the certificate. Required in case of JKS, JCEKS and PKCS12 types 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Alias(alias string) DefaultApiPutSecretGroupKeystoreRequest {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Alias(alias string) DefaultAPIPutSecretGroupKeystoreRequest {
 	r.alias = &alias
 	return r
 }
 
-func (r DefaultApiPutSecretGroupKeystoreRequest) Execute() (*PutSecretGroupKeystore200Response, *http.Response, error) {
+func (r DefaultAPIPutSecretGroupKeystoreRequest) Execute() (*PutSecretGroupKeystore200Response, *http.Response, error) {
 	return r.ApiService.PutSecretGroupKeystoreExecute(r)
 }
 
@@ -831,10 +823,10 @@ Update keystore details for a given secret-group in a given organization and env
  @param envId The environment id
  @param secretGroupId The secret group id
  @param secretId The keystore id
- @return DefaultApiPutSecretGroupKeystoreRequest
+ @return DefaultAPIPutSecretGroupKeystoreRequest
 */
-func (a *DefaultApiService) PutSecretGroupKeystore(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultApiPutSecretGroupKeystoreRequest {
-	return DefaultApiPutSecretGroupKeystoreRequest{
+func (a *DefaultAPIService) PutSecretGroupKeystore(ctx context.Context, orgId string, envId string, secretGroupId string, secretId string) DefaultAPIPutSecretGroupKeystoreRequest {
+	return DefaultAPIPutSecretGroupKeystoreRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgId: orgId,
@@ -846,7 +838,7 @@ func (a *DefaultApiService) PutSecretGroupKeystore(ctx context.Context, orgId st
 
 // Execute executes the request
 //  @return PutSecretGroupKeystore200Response
-func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretGroupKeystoreRequest) (*PutSecretGroupKeystore200Response, *http.Response, error) {
+func (a *DefaultAPIService) PutSecretGroupKeystoreExecute(r DefaultAPIPutSecretGroupKeystoreRequest) (*PutSecretGroupKeystore200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -854,7 +846,7 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 		localVarReturnValue  *PutSecretGroupKeystore200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutSecretGroupKeystore")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PutSecretGroupKeystore")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -872,7 +864,7 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 		return localVarReturnValue, nil, reportError("allowExpiredCert is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "allowExpiredCert", r.allowExpiredCert, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
@@ -891,15 +883,13 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.expirationDate != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "expirationDate", r.expirationDate, "", "")
 	}
 	var keyLocalVarFormFileName string
 	var keyLocalVarFileName     string
 	var keyLocalVarFileBytes    []byte
 
 	keyLocalVarFormFileName = "key"
-
-
 	keyLocalVarFile := r.key
 
 	if keyLocalVarFile != nil {
@@ -911,18 +901,16 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 		formFiles = append(formFiles, formFile{fileBytes: keyLocalVarFileBytes, fileName: keyLocalVarFileName, formFileName: keyLocalVarFormFileName})
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
 	}
 	if r.keyPassphrase != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "keyPassphrase", r.keyPassphrase, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "keyPassphrase", r.keyPassphrase, "", "")
 	}
 	var certificateLocalVarFormFileName string
 	var certificateLocalVarFileName     string
 	var certificateLocalVarFileBytes    []byte
 
 	certificateLocalVarFormFileName = "certificate"
-
-
 	certificateLocalVarFile := r.certificate
 
 	if certificateLocalVarFile != nil {
@@ -934,15 +922,13 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 		formFiles = append(formFiles, formFile{fileBytes: certificateLocalVarFileBytes, fileName: certificateLocalVarFileName, formFileName: certificateLocalVarFormFileName})
 	}
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
 	}
 	var capathLocalVarFormFileName string
 	var capathLocalVarFileName     string
 	var capathLocalVarFileBytes    []byte
 
 	capathLocalVarFormFileName = "capath"
-
-
 	capathLocalVarFile := r.capath
 
 	if capathLocalVarFile != nil {
@@ -958,8 +944,6 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 	var keyStoreLocalVarFileBytes    []byte
 
 	keyStoreLocalVarFormFileName = "keyStore"
-
-
 	keyStoreLocalVarFile := r.keyStore
 
 	if keyStoreLocalVarFile != nil {
@@ -971,13 +955,13 @@ func (a *DefaultApiService) PutSecretGroupKeystoreExecute(r DefaultApiPutSecretG
 		formFiles = append(formFiles, formFile{fileBytes: keyStoreLocalVarFileBytes, fileName: keyStoreLocalVarFileName, formFileName: keyStoreLocalVarFormFileName})
 	}
 	if r.algorithm != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "algorithm", r.algorithm, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "algorithm", r.algorithm, "", "")
 	}
 	if r.storePassphrase != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "storePassphrase", r.storePassphrase, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "storePassphrase", r.storePassphrase, "", "")
 	}
 	if r.alias != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "alias", r.alias, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "alias", r.alias, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

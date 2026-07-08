@@ -19,22 +19,22 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
-type DefaultApiApiV2Oauth2TokenPostRequest struct {
+type DefaultAPIApiV2Oauth2TokenPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	credentials *Credentials
 }
 
 // Request body containing credentials
-func (r DefaultApiApiV2Oauth2TokenPostRequest) Credentials(credentials Credentials) DefaultApiApiV2Oauth2TokenPostRequest {
+func (r DefaultAPIApiV2Oauth2TokenPostRequest) Credentials(credentials Credentials) DefaultAPIApiV2Oauth2TokenPostRequest {
 	r.credentials = &credentials
 	return r
 }
 
-func (r DefaultApiApiV2Oauth2TokenPostRequest) Execute() (*ApiV2Oauth2TokenPost200Response, *http.Response, error) {
+func (r DefaultAPIApiV2Oauth2TokenPostRequest) Execute() (*ApiV2Oauth2TokenPost200Response, *http.Response, error) {
 	return r.ApiService.ApiV2Oauth2TokenPostExecute(r)
 }
 
@@ -44,10 +44,10 @@ ApiV2Oauth2TokenPost Returns access token
 Authenticates a connected app and returns access token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiApiV2Oauth2TokenPostRequest
+ @return DefaultAPIApiV2Oauth2TokenPostRequest
 */
-func (a *DefaultApiService) ApiV2Oauth2TokenPost(ctx context.Context) DefaultApiApiV2Oauth2TokenPostRequest {
-	return DefaultApiApiV2Oauth2TokenPostRequest{
+func (a *DefaultAPIService) ApiV2Oauth2TokenPost(ctx context.Context) DefaultAPIApiV2Oauth2TokenPostRequest {
+	return DefaultAPIApiV2Oauth2TokenPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -55,7 +55,7 @@ func (a *DefaultApiService) ApiV2Oauth2TokenPost(ctx context.Context) DefaultApi
 
 // Execute executes the request
 //  @return ApiV2Oauth2TokenPost200Response
-func (a *DefaultApiService) ApiV2Oauth2TokenPostExecute(r DefaultApiApiV2Oauth2TokenPostRequest) (*ApiV2Oauth2TokenPost200Response, *http.Response, error) {
+func (a *DefaultAPIService) ApiV2Oauth2TokenPostExecute(r DefaultAPIApiV2Oauth2TokenPostRequest) (*ApiV2Oauth2TokenPost200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -63,7 +63,7 @@ func (a *DefaultApiService) ApiV2Oauth2TokenPostExecute(r DefaultApiApiV2Oauth2T
 		localVarReturnValue  *ApiV2Oauth2TokenPost200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV2Oauth2TokenPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV2Oauth2TokenPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -133,19 +133,19 @@ func (a *DefaultApiService) ApiV2Oauth2TokenPostExecute(r DefaultApiApiV2Oauth2T
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type DefaultApiLoginPostRequest struct {
+type DefaultAPILoginPostRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *DefaultAPIService
 	userPwdCredentials *UserPwdCredentials
 }
 
 // Request body containing credentials
-func (r DefaultApiLoginPostRequest) UserPwdCredentials(userPwdCredentials UserPwdCredentials) DefaultApiLoginPostRequest {
+func (r DefaultAPILoginPostRequest) UserPwdCredentials(userPwdCredentials UserPwdCredentials) DefaultAPILoginPostRequest {
 	r.userPwdCredentials = &userPwdCredentials
 	return r
 }
 
-func (r DefaultApiLoginPostRequest) Execute() (*LoginPost200Response, *http.Response, error) {
+func (r DefaultAPILoginPostRequest) Execute() (*LoginPost200Response, *http.Response, error) {
 	return r.ApiService.LoginPostExecute(r)
 }
 
@@ -155,10 +155,10 @@ LoginPost Returns access token
 Authenticates a user and returns access token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DefaultApiLoginPostRequest
+ @return DefaultAPILoginPostRequest
 */
-func (a *DefaultApiService) LoginPost(ctx context.Context) DefaultApiLoginPostRequest {
-	return DefaultApiLoginPostRequest{
+func (a *DefaultAPIService) LoginPost(ctx context.Context) DefaultAPILoginPostRequest {
+	return DefaultAPILoginPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -166,7 +166,7 @@ func (a *DefaultApiService) LoginPost(ctx context.Context) DefaultApiLoginPostRe
 
 // Execute executes the request
 //  @return LoginPost200Response
-func (a *DefaultApiService) LoginPostExecute(r DefaultApiLoginPostRequest) (*LoginPost200Response, *http.Response, error) {
+func (a *DefaultAPIService) LoginPostExecute(r DefaultAPILoginPostRequest) (*LoginPost200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -174,7 +174,7 @@ func (a *DefaultApiService) LoginPostExecute(r DefaultApiLoginPostRequest) (*Log
 		localVarReturnValue  *LoginPost200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.LoginPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.LoginPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

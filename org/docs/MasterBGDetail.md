@@ -4,27 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**CreatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**Domain** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
+**ClientId** | Pointer to **string** | The client id of the organization | [optional] [default to ""]
+**CreatedAt** | Pointer to **string** | The creation date of the organization | [optional] [default to ""]
+**Domain** | Pointer to **string** | The domain of the organization | [optional] [default to ""]
 **Entitlements** | Pointer to [**Entitlements**](Entitlements.md) |  | [optional] 
-**Environments** | Pointer to [**[]Environment**](Environment.md) | An explanation about the purpose of this instance. | [optional] [default to []]
-**Id** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**IdproviderId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**IsAutomaticAdminPromotionExempt** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
-**IsFederated** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
-**IsMaster** | Pointer to **bool** | An explanation about the purpose of this instance. | [optional] [default to false]
-**MfaRequired** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**Name** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**OwnerId** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**ParentOrganizationIds** | Pointer to **[]string** | An explanation about the purpose of this instance. | [optional] [default to []]
-**Properties** | Pointer to **map[string]interface{}** | An explanation about the purpose of this instance. | [optional] [default to {}]
-**SubOrganizationIds** | Pointer to **[]string** | An explanation about the purpose of this instance. | [optional] [default to []]
-**TenantOrganizationIds** | Pointer to **[]string** | An explanation about the purpose of this instance. | [optional] [default to []]
-**UpdatedAt** | Pointer to **string** | An explanation about the purpose of this instance. | [optional] [default to ""]
-**Owner** | Pointer to [**Owner**](Owner.md) |  | [optional] 
-**SessionTimeout** | Pointer to **int32** | An explanation about the purpose of this instance. | [optional] [default to 0]
+**Environments** | Pointer to [**[]Environment**](Environment.md) | List of environments. | [optional] 
+**Id** | Pointer to **string** | The id of the organization | [optional] [default to ""]
+**IdproviderId** | Pointer to **string** | The id of the idprovider of the organization. | [optional] [default to ""]
+**IsAutomaticAdminPromotionExempt** | Pointer to **bool** | Whether the organization is exempt from automatic admin promotion. | [optional] [default to false]
+**IsFederated** | Pointer to **bool** | Whether the organization is federated. | [optional] [default to false]
+**IsRoot** | Pointer to **bool** | Whether the organization is a root organization. | [optional] [default to false]
+**IsMaster** | Pointer to **bool** | Whether the organization is a master organization. | [optional] [default to false]
+**MfaRequired** | Pointer to **string** | Whether multi-factor authentication is required for the organization. | [optional] [default to ""]
+**Name** | Pointer to **string** | The name of the organization. | [optional] [default to ""]
+**OwnerId** | Pointer to **string** | The id of the owner of the organization. | [optional] [default to ""]
+**ParentOrganizationIds** | Pointer to **[]string** | The ids of the parent organizations. | [optional] 
+**Properties** | Pointer to **map[string]interface{}** | The properties of the organization. | [optional] 
+**SubOrganizationIds** | Pointer to **[]string** | The ids of the sub organizations. | [optional] 
+**TenantOrganizationIds** | Pointer to **[]string** | The ids of the tenant organizations. | [optional] 
+**UpdatedAt** | Pointer to **string** | The last update date of the organization. | [optional] [default to ""]
+**Owner** | Pointer to [**User**](User.md) |  | [optional] 
+**SessionTimeout** | Pointer to **int32** | The session timeout in minutes. | [optional] [default to 0]
 **Subscription** | Pointer to [**Subscription**](Subscription.md) |  | [optional] 
+**GdotId** | Pointer to **string** | The gdot id of the organization | [optional] [default to ""]
+**DeletedAt** | Pointer to **NullableString** | The deleted date of the organization | [optional] 
+**OrgType** | Pointer to **string** | The type of the organization | [optional] [default to ""]
 
 ## Methods
 
@@ -270,6 +274,31 @@ SetIsFederated sets IsFederated field to given value.
 
 HasIsFederated returns a boolean if a field has been set.
 
+### GetIsRoot
+
+`func (o *MasterBGDetail) GetIsRoot() bool`
+
+GetIsRoot returns the IsRoot field if non-nil, zero value otherwise.
+
+### GetIsRootOk
+
+`func (o *MasterBGDetail) GetIsRootOk() (*bool, bool)`
+
+GetIsRootOk returns a tuple with the IsRoot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsRoot
+
+`func (o *MasterBGDetail) SetIsRoot(v bool)`
+
+SetIsRoot sets IsRoot field to given value.
+
+### HasIsRoot
+
+`func (o *MasterBGDetail) HasIsRoot() bool`
+
+HasIsRoot returns a boolean if a field has been set.
+
 ### GetIsMaster
 
 `func (o *MasterBGDetail) GetIsMaster() bool`
@@ -497,20 +526,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetOwner
 
-`func (o *MasterBGDetail) GetOwner() Owner`
+`func (o *MasterBGDetail) GetOwner() User`
 
 GetOwner returns the Owner field if non-nil, zero value otherwise.
 
 ### GetOwnerOk
 
-`func (o *MasterBGDetail) GetOwnerOk() (*Owner, bool)`
+`func (o *MasterBGDetail) GetOwnerOk() (*User, bool)`
 
 GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwner
 
-`func (o *MasterBGDetail) SetOwner(v Owner)`
+`func (o *MasterBGDetail) SetOwner(v User)`
 
 SetOwner sets Owner field to given value.
 
@@ -569,6 +598,91 @@ SetSubscription sets Subscription field to given value.
 `func (o *MasterBGDetail) HasSubscription() bool`
 
 HasSubscription returns a boolean if a field has been set.
+
+### GetGdotId
+
+`func (o *MasterBGDetail) GetGdotId() string`
+
+GetGdotId returns the GdotId field if non-nil, zero value otherwise.
+
+### GetGdotIdOk
+
+`func (o *MasterBGDetail) GetGdotIdOk() (*string, bool)`
+
+GetGdotIdOk returns a tuple with the GdotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGdotId
+
+`func (o *MasterBGDetail) SetGdotId(v string)`
+
+SetGdotId sets GdotId field to given value.
+
+### HasGdotId
+
+`func (o *MasterBGDetail) HasGdotId() bool`
+
+HasGdotId returns a boolean if a field has been set.
+
+### GetDeletedAt
+
+`func (o *MasterBGDetail) GetDeletedAt() string`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *MasterBGDetail) GetDeletedAtOk() (*string, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *MasterBGDetail) SetDeletedAt(v string)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *MasterBGDetail) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### SetDeletedAtNil
+
+`func (o *MasterBGDetail) SetDeletedAtNil(b bool)`
+
+ SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
+
+### UnsetDeletedAt
+`func (o *MasterBGDetail) UnsetDeletedAt()`
+
+UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
+### GetOrgType
+
+`func (o *MasterBGDetail) GetOrgType() string`
+
+GetOrgType returns the OrgType field if non-nil, zero value otherwise.
+
+### GetOrgTypeOk
+
+`func (o *MasterBGDetail) GetOrgTypeOk() (*string, bool)`
+
+GetOrgTypeOk returns a tuple with the OrgType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgType
+
+`func (o *MasterBGDetail) SetOrgType(v string)`
+
+SetOrgType sets OrgType field to given value.
+
+### HasOrgType
+
+`func (o *MasterBGDetail) HasOrgType() bool`
+
+HasOrgType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

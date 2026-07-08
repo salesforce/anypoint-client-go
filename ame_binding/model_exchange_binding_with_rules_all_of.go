@@ -19,7 +19,7 @@ var _ MappedNullable = &ExchangeBindingWithRulesAllOf{}
 
 // ExchangeBindingWithRulesAllOf struct for ExchangeBindingWithRulesAllOf
 type ExchangeBindingWithRulesAllOf struct {
-	Rules []map[string]interface{} `json:"rules,omitempty"`
+	RoutingRules []map[string]interface{} `json:"routingRules,omitempty"`
 }
 
 // NewExchangeBindingWithRulesAllOf instantiates a new ExchangeBindingWithRulesAllOf object
@@ -39,36 +39,36 @@ func NewExchangeBindingWithRulesAllOfWithDefaults() *ExchangeBindingWithRulesAll
 	return &this
 }
 
-// GetRules returns the Rules field value if set, zero value otherwise.
-func (o *ExchangeBindingWithRulesAllOf) GetRules() []map[string]interface{} {
-	if o == nil || IsNil(o.Rules) {
+// GetRoutingRules returns the RoutingRules field value if set, zero value otherwise.
+func (o *ExchangeBindingWithRulesAllOf) GetRoutingRules() []map[string]interface{} {
+	if o == nil || IsNil(o.RoutingRules) {
 		var ret []map[string]interface{}
 		return ret
 	}
-	return o.Rules
+	return o.RoutingRules
 }
 
-// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// GetRoutingRulesOk returns a tuple with the RoutingRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeBindingWithRulesAllOf) GetRulesOk() ([]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Rules) {
+func (o *ExchangeBindingWithRulesAllOf) GetRoutingRulesOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.RoutingRules) {
 		return nil, false
 	}
-	return o.Rules, true
+	return o.RoutingRules, true
 }
 
-// HasRules returns a boolean if a field has been set.
-func (o *ExchangeBindingWithRulesAllOf) HasRules() bool {
-	if o != nil && !IsNil(o.Rules) {
+// HasRoutingRules returns a boolean if a field has been set.
+func (o *ExchangeBindingWithRulesAllOf) HasRoutingRules() bool {
+	if o != nil && !IsNil(o.RoutingRules) {
 		return true
 	}
 
 	return false
 }
 
-// SetRules gets a reference to the given []map[string]interface{} and assigns it to the Rules field.
-func (o *ExchangeBindingWithRulesAllOf) SetRules(v []map[string]interface{}) {
-	o.Rules = v
+// SetRoutingRules gets a reference to the given []map[string]interface{} and assigns it to the RoutingRules field.
+func (o *ExchangeBindingWithRulesAllOf) SetRoutingRules(v []map[string]interface{}) {
+	o.RoutingRules = v
 }
 
 func (o ExchangeBindingWithRulesAllOf) MarshalJSON() ([]byte, error) {
@@ -81,8 +81,8 @@ func (o ExchangeBindingWithRulesAllOf) MarshalJSON() ([]byte, error) {
 
 func (o ExchangeBindingWithRulesAllOf) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	if !IsNil(o.RoutingRules) {
+		toSerialize["routingRules"] = o.RoutingRules
 	}
 	return toSerialize, nil
 }
